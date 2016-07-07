@@ -54,7 +54,7 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
     }
     try
     {
-        ob.enumeratedType = typeIDToStringID(actionReference.gettEnumeratedType())
+        ob.enumeratedType = typeIDToStringID(actionReference.getEnumeratedType())
     } catch (e)
     {
     }
@@ -90,7 +90,9 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
     }
     try
     {
-        ob.name = actionReference.getName()
+        var t = actionReference.getName();
+        if (t.length > 0) ob.name = t;
+
     } catch (e)
     {
     }
@@ -298,72 +300,71 @@ Muclease.prototype.objectToActionReference = function (ob)
 {
     if (ob.constructor !== Object)
     {
-        return null;
+        return "not_Object";
     }
+
+    var hasDesiredClass =false;//只有当没有设置 DesiredClass 时才 putClass();
 
 
     var af = new ActionReference();
 
-    if (ob.form !== undefined)
+    if (ob.property !== undefined)
     {
-        af.putForm()
+        // $.writeln("property:" + ob.property);
+        var idDC = stringIDToTypeID(ob.desiredClass);
+        var idPR = stringIDToTypeID(ob.property);
+        // $.writeln("putProperty:" + typeIDToCharID(idDC) + " , " + typeIDToCharID(idPR));
+        // putProperty(desiredClass,value)
+        af.putProperty(idDC, idPR);
+        hasDesiredClass=true;
+
+    }
+    if (ob.identifier !== undefined)
+    {
+        //putIdentifier(desiredClass,value)
+        af.putIdentifier(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.identifier))
+        hasDesiredClass=true;
+    }
+    if (ob.index !== undefined)
+    {
+        //putIndex(desiredClass, value)
+        af.putIndex(stringIDToTypeID(ob.desiredClass), ob.index);
+        hasDesiredClass=true;
+    }
+    if (ob.offset !== undefined)
+    {
+        //   putOffset(desiredClass,value)
+        af.putOffset(stringIDToTypeID(ob.desiredClass), ob.offset);
+        hasDesiredClass=true;
+    }
+    if (ob.name !== undefined)
+    {
+        // putName(desiredClass,value)
+        af.putName(stringIDToTypeID(ob.desiredClass), ob.name);
+        hasDesiredClass=true;
+    }
+    if ((ob.enumeratedValue !== undefined) && (ob.enumeratedType !== undefined))
+    {
+        //putEnumerated(desiredClass,enumType,value)
+        af.putEnumerated(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.enumeratedType), stringIDToTypeID(ob.enumeratedValue));
+        hasDesiredClass=true;
+    }
+
+    if ((ob.desiredClass !== undefined)&& (hasDesiredClass == false))
+    {
+        $.writeln("desiredClass:" + ob.desiredClass);
+        af.putClass(stringIDToTypeID(ob.desiredClass));
     }
 
 
-    try
-    {
-        ob.form = actionReference.getForm().toString()
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.desiredClass = typeIDToStringID(actionReference.getDesiredClass())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.enumeratedType = typeIDToStringID(actionReference.gettEnumeratedType())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.enumeratedValue = typeIDToStringID(actionReference.getEnumeratedValue())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.identifier = typeIDToStringID(actionReference.getIdentifier())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.index = actionReference.getIndex()
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.offset = actionReference.getOffset()
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.property = typeIDToStringID(actionReference.getProperty())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.name = actionReference.getName()
-    } catch (e)
-    {
-    }
+    var ref50 = new ActionReference();
+    var idPrpr = charIDToTypeID("Prpr");
+    var idLefx = charIDToTypeID("Lefx");
+    ref50.putProperty(idPrpr, idLefx);
+    var idLyr = charIDToTypeID("Lyr ");
+    var idOrdn = charIDToTypeID("Ordn");
+    var idTrgt = charIDToTypeID("Trgt");
+    ref50.putEnumerated(idLyr, idOrdn, idTrgt);
 
-    return ob;
+    return af;
 }
