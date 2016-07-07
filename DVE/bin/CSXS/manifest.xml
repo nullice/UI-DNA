@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="UI-DNA" ExtensionBundleVersion="1.0" Version="6.0"> <!-- MAJOR-VERSION-UPDATE-MARKER -->
+    <ExtensionList>
+        <Extension Id="UI-DNA" Version="1.0"/> <!-- 设置扩展 ID-->
+    </ExtensionList>
+
+    <ExecutionEnvironment>
+        <HostList> <!-- 设置扩展能在 11.0 版本之后 PhotoShop 中运行-->
+            <Host Name="PHSP" Version="11.0" />
+			<Host Name="PHXS" Version="11.0" />
+        </HostList>
+
+        <LocaleList>
+            <Locale Code="All"/>
+        </LocaleList>
+
+        <RequiredRuntimeList>
+            <RequiredRuntime Name="CSXS" Version="6.0"/>
+        </RequiredRuntimeList>
+    </ExecutionEnvironment>
+
+    <DispatchInfoList>
+        <Extension Id="UI-DNA"> <!-- 为 new_panel_0 设置属性-->
+            <DispatchInfo>
+                <Resources>
+
+                    <MainPath>./index.html</MainPath> <!-- 指定起始载入的网页-->
+                    <CEFCommandLine>
+                        <Parameter>--enable-nodejs</Parameter>
+                        <Parameter>--mixed-context</Parameter>
+                    </CEFCommandLine>
+
+                    <ScriptPath>./JSX/main.jsx</ScriptPath> <!-- 指定用到的 JSX 文件-->
+                </Resources>
+
+                <Lifecycle>
+                    <AutoVisible>true</AutoVisible> <!-- 设置扩展面板为可视-->
+                    <StartOn>
+                    </StartOn>
+                </Lifecycle>
+
+                <UI>
+                    <Type>Panel</Type> <!-- 设置扩展显示为面板模式-->
+                    <Menu>UI-DNA</Menu> <!-- 设置扩展标题-->
+                    <Geometry>
+                        <Size>  <!-- 设置扩展面板尺寸-->
+                            <Height>300</Height>
+                            <Width>320</Width>
+                        </Size>             
+                        <MaxSize>
+                            <Height>900</Height>
+                            <Width>900</Width>
+                        </MaxSize>
+                        <MinSize>
+                            <Height>300</Height>
+                            <Width>300</Width>
+                        </MinSize>
+                    </Geometry>
+                    <Icons>  <!-- 设置扩展面板图标-->
+                        <Icon Type="Normal">./img/light.png</Icon>
+                        <Icon Type="DarkNormal">./img/dark.png</Icon>
+                    </Icons>
+                </UI>
+
+            </DispatchInfo>
+        </Extension>
+    </DispatchInfoList>
+
+    <Author>nullice</Author> <!-- 作者信息-->
+    <Abstract>一个空白的扩展.</Abstract> <!-- 扩展描述-->
+</ExtensionManifest>

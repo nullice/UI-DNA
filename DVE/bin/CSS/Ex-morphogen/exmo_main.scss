@@ -1,0 +1,434 @@
+$width: 100px;
+$_name: facebook;
+
+$font_list: 'Microsoft YaHei', 'Microsoft JhengHei', PingFang, 'Hiragino Sans GB', 'WenQuanYi Micro Hei', メイリオ, Meiryo, Helvetica, Arial, sans-serif;
+
+
+@import "icon_font/style.css";
+
+//由暗到亮 4 档级别，从最亮到最暗： light1、2，dark1、2
+
+//高亮颜色
+$color_highlight_light1: #1e76e3 !default;
+$color_highlight_light2: #1b6acc !default;
+$color_highlight_dark1: #1b6acc !default;
+$color_highlight_dark2: #1b6acc !default;
+$color_highlight : $color_highlight_light1;
+
+//文本颜色
+$color_read_light1: #292929 !default;
+$color_read_light2: #1f1f1f !default;
+$color_read_dark1:#1f1f1f !default;
+$color_read_dark2:#1f1f1f !default;
+$color_read : $color_read_light1;
+
+
+//文本颜色_禁用
+$color_read_disabled_light1: #606060 !default;
+$color_read_disabled_light2: #808080 !default;
+$color_read_disabled_dark1:#808080 !default;
+$color_read_disabled_dark2:#808080 !default;
+$color_read_disabled : $color_read_disabled_light1;
+
+//文本颜色_线条
+$color_read_line_light1: #adadad !default;
+$color_read_line_light2: #adadad !default;
+$color_read_line_dark1:#adadad !default;
+$color_read_line_dark2:#adadad !default;
+$color_read_line : $color_read_line_light1;
+
+//文本颜色_占位符
+$color_read_placeholder_light1: #909090 !default;
+$color_read_placeholder_light2: #909090 !default;
+$color_read_placeholder_dark1:#909090 !default;
+$color_read_placeholder_dark2:#909090 !default;
+$color_read_placeholder : $color_read_placeholder_light1;
+
+//文本颜色_警告色
+$color_read_warn_light1: #ec7669 !default;
+$color_read_warn_light2: #ec7669 !default;
+$color_read_warn_dark1:#ec7669 !default;
+$color_read_warn_dark2:#ec7669 !default;
+$color_read_warn : $color_read_warn_light1;
+
+//分隔条颜色分割线
+$color_divide_light1: rgba(0, 0, 0, 0.08) !default;
+$color_divide_light2: rgba(0, 0, 0, 0.08) !default;
+$color_divide_dark1:rgba(0, 0, 0, 0.08) !default;
+$color_divide_dark2:rgba(0, 0, 0, 0.08) !default;
+$color_divide : $color_divide_light1;
+
+
+
+
+
+
+
+
+body{
+  font-family:$font_list;
+  -webkit-user-select: none;
+  padding: 0;
+  margin: 0;
+}
+
+.test {
+  width: $width;
+}
+
+.exmo_input_text {
+  outline: none;
+  -webkit-user-select: none;
+  border: none;
+
+  border-bottom: 1px solid $color_read_line;
+  color: $color_read;
+  background: rgba(255, 255, 255, 0);
+
+  padding: 4px 0px;
+  margin: 4px 6px;
+  width: 100px;
+  min-width: 10px;
+  font-family:$font_list;
+  font-size: 13px;
+
+
+
+  &:focus
+  {
+    border-bottom: 1px solid $color_highlight;
+  }
+
+  &:disabled {
+    color: $color_read_disabled_light1;
+    opacity: .7;
+  }
+
+
+  &::-webkit-input-placeholder {
+    color: $color_read_placeholder;
+  }
+
+  &:invalid {
+    border-bottom: 1px solid #ec7669;
+  }
+}
+
+
+
+
+.exmo_area{
+  padding:  16px;
+  border-bottom: 2px solid $color_divide;
+}
+
+
+
+h1,h2,h3,h4,h5,h6
+{
+  margin: 0 4px;
+  font-size: 14px;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.51);
+  -webkit-user-select: text;
+  cursor:default;
+
+}
+
+h2{
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.39);
+  margin: -6px 0 16px 0;
+  letter-spacing: .4px;
+}
+
+i.adobe{
+  background-image: url("adobe_ico/layer-adjustment.svg");
+  width: 16px;
+  height: 16px;
+  opacity: .8;
+  display: inline-block;
+}
+
+
+
+//按钮边框颜色
+$color_button_border : #B2B2B2;
+//按钮背景颜色
+$color_button_background : #fdfdfd;
+//按钮高亮颜色
+$color_button_highlight : #2480E8;
+//按钮按下颜色
+$color_button_active :  rgba(255, 255, 255, 0.51);
+
+
+//按钮_警告_边框颜色
+$color_button_warning_border : rgb(239, 152, 141);
+//按钮_警告_背景颜色
+$color_button_warning_background :  rgb(255, 234, 234);
+//按钮_警告_文字颜色
+$color_button_warning_read : rgb(190, 60, 60);
+//按钮_警告_高亮颜色
+$color_button_warning_highlight : #FF0200;
+//按钮_警告_按下颜色
+$color_button_warning_active :   rgba(253, 221, 221, 1);
+
+.exmo_button {
+  outline: none;
+  -webkit-user-select: none;
+  border: 1px solid $color_button_border;
+  border-radius: 3px;
+  padding: 4px 14px;
+  background-color: $color_button_background;
+  font-size: 13px;
+  color: $color_read;
+  font-family: $font_list;
+  margin: 4px 0;
+
+
+
+  &:hover:not(:disabled){
+    color:$color_button_highlight;
+  }
+
+
+  &:disabled {
+    opacity: .6;
+  }
+
+  &:active{
+    background-color:$color_button_active
+  }
+
+
+  &.warning
+  {
+
+
+      border-color: $color_button_warning_border;
+      color: $color_button_warning_read;
+      background-color:$color_button_warning_background;
+
+    &:hover:not(:disabled){
+      color: $color_button_warning_highlight;
+    }
+
+    &:active{
+      background-color:$color_button_warning_active;
+    }
+
+  }
+
+}
+
+
+//按钮边框颜色
+$color_button_ghost_border : #848484;
+//按钮背景颜色
+$color_button_ghost_background : #fdfdfd;
+//按钮文字颜色
+$color_button_ghost_read : #5C5C5C;
+//按钮高亮颜色
+$color_button_ghost_highlight : #f0f2fd;
+//按钮按下颜色
+$color_button_ghost_active : rgba(255, 255, 255, 0.51);
+
+
+
+.exmo_button_ghost{
+  @extend .exmo_button;
+  border-radius: 20px;
+  padding: 5px 20px;
+  background-color: rgba(255, 255, 255, 0);
+  border-color: $color_button_ghost_border;
+  color : $color_button_ghost_read;
+
+  &:hover:not(:disabled){
+    background-color: rgba(255, 255, 255, 0);
+    color : $color_button_ghost_read;
+  }
+
+  &:active:hover{
+    color: $color_button_ghost_highlight;
+    background-color:$color_button_ghost_border
+  }
+
+
+  &.warning {
+    &:hover:not(:disabled){
+      color: $color_button_warning_read;
+      background-color:$color_button_warning_background;
+    }
+
+
+    &:active:hover{
+      color: $color_button_ghost_highlight;
+      background-color:$color_button_warning_read;
+      border-color: $color_button_warning_read;
+    }
+
+  }
+
+}
+
+
+
+.exmo_box_name {
+  display: inline-block;
+  font-size: 12px;
+  color: #808080;
+  text-align: right;
+  width: 50px;
+  vertical-align: text-bottom;
+
+  -webkit-user-select: text;
+  cursor:default;
+
+
+  i{
+    font-size: 16px;
+  }
+}
+
+
+.exmo_inbox{
+  display: inline-block;
+}
+
+
+.exmo_row{
+}
+
+.exmo_btn_group
+{
+
+  position: relative;
+  margin: 10px 0;
+  height: 30px;
+
+
+  input {
+    opacity: 0.01;
+    position: absolute;
+    width: 0;
+    height: 0;
+  }
+
+  .btn_primary
+  {
+    @extend .exmo_button;
+    padding: 5px 10px;
+    position: relative;
+    border-radius: 0;
+
+   span{
+     margin-left: 3px;
+   }
+
+
+    &:not(:nth-of-type(1))
+    {
+      border-left:none;
+    }
+
+    &:nth-of-type(1)
+    {
+      border-radius: 3px;
+      border-bottom-right-radius:0;
+      border-top-right-radius:0;
+      padding-right:7px;
+      span{
+        margin-left:0;
+      }
+      i{margin-left: 3px; margin-right: 3px}
+
+    }
+
+    &:nth-last-of-type(1)
+    {
+      border-bottom-right-radius:3px;
+      border-top-right-radius:3px;
+      padding-left:9px;
+      span{
+        margin-left:0;
+      }
+      i{margin-left: 3px; margin-right: 3px}
+    }
+
+    i{
+      font-size: 14px;
+      color: #5C5C5C;
+      vertical-align: text-bottom;
+    }
+  }
+
+  input:checked+.btn_primary
+  {
+    color: #1e76e3;
+    background: #EAF5FF;
+
+  i{
+    color: #1e76e3;
+  }
+  }
+}
+
+
+.exmo_button_icon
+{
+  outline: none;
+  border: none;
+  background: none;
+  border: 1px solid rgba(220, 220, 220, 0);
+  padding: 3px 8px;
+  margin-right: 0;
+  margin-right: 0;
+
+  i{
+    font-size: 18px;
+    color: #5C5C5C;
+    vertical-align: text-bottom;
+  }
+
+  &:hover
+  {
+    background: #fff;
+    border: 1px solid #DCDCDC;
+  }
+  &:active
+  {
+    background: rgba(146, 146, 146, 0.09);
+  }
+
+  &.mini {
+    padding: 0px 3px;
+
+    i{
+      font-size: 15px;
+      vertical-align: initial;
+    }
+  }
+
+}
+
+
+
+.exmo_icon_cheackbox
+{
+  opacity: 0.01;
+  position: absolute;
+  width: 0;
+  height: 0;
+
+  &:checked+.exmo_button_icon
+  {
+    border: 1px solid #bfbfbf;
+    background: rgba(80, 80, 80, 0.16);
+  }
+
+}
+
+
+
+
+
