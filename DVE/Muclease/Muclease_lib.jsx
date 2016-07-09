@@ -149,6 +149,10 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
             {
                 obValue = ad.getClass(key);
             }
+            else if ("DescValueType.RAWTYPE" == obType)
+            {
+                obValue = ad.getData(key);
+            }
             else if ("DescValueType.LARGEINTEGERTYPE" == obType)
             {
                 obValue = ad.getLargeInteger(key);
@@ -296,6 +300,12 @@ Muclease.prototype.jsonToFile = function (filePath, json)
     f.close();
 }
 
+
+/**
+ * 把通过  actionReferenceToObject() 得到的  object 转回 ActionReference
+ * @param ob
+ * @returns {*}
+ */
 Muclease.prototype.objectToActionReference = function (ob)
 {
     if (ob.constructor !== Object)
@@ -303,7 +313,7 @@ Muclease.prototype.objectToActionReference = function (ob)
         return "not_Object";
     }
 
-    var hasDesiredClass =false;//只有当没有设置 DesiredClass 时才 putClass();
+    var hasDesiredClass = false;//只有当没有设置 DesiredClass 时才 putClass();
 
 
     var af = new ActionReference();
@@ -316,41 +326,41 @@ Muclease.prototype.objectToActionReference = function (ob)
         // $.writeln("putProperty:" + typeIDToCharID(idDC) + " , " + typeIDToCharID(idPR));
         // putProperty(desiredClass,value)
         af.putProperty(idDC, idPR);
-        hasDesiredClass=true;
+        hasDesiredClass = true;
 
     }
     if (ob.identifier !== undefined)
     {
         //putIdentifier(desiredClass,value)
         af.putIdentifier(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.identifier))
-        hasDesiredClass=true;
+        hasDesiredClass = true;
     }
     if (ob.index !== undefined)
     {
         //putIndex(desiredClass, value)
         af.putIndex(stringIDToTypeID(ob.desiredClass), ob.index);
-        hasDesiredClass=true;
+        hasDesiredClass = true;
     }
     if (ob.offset !== undefined)
     {
         //   putOffset(desiredClass,value)
         af.putOffset(stringIDToTypeID(ob.desiredClass), ob.offset);
-        hasDesiredClass=true;
+        hasDesiredClass = true;
     }
     if (ob.name !== undefined)
     {
         // putName(desiredClass,value)
         af.putName(stringIDToTypeID(ob.desiredClass), ob.name);
-        hasDesiredClass=true;
+        hasDesiredClass = true;
     }
     if ((ob.enumeratedValue !== undefined) && (ob.enumeratedType !== undefined))
     {
         //putEnumerated(desiredClass,enumType,value)
         af.putEnumerated(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.enumeratedType), stringIDToTypeID(ob.enumeratedValue));
-        hasDesiredClass=true;
+        hasDesiredClass = true;
     }
 
-    if ((ob.desiredClass !== undefined)&& (hasDesiredClass == false))
+    if ((ob.desiredClass !== undefined) && (hasDesiredClass == false))
     {
         $.writeln("desiredClass:" + ob.desiredClass);
         af.putClass(stringIDToTypeID(ob.desiredClass));
@@ -368,3 +378,171 @@ Muclease.prototype.objectToActionReference = function (ob)
 
     return af;
 }
+
+
+Muclease.prototype.objectToActionDescriptor = function (ob)
+{
+    var ad = new ActionDescriptor();
+    _creatAD(ob, ad)
+
+    function _creatAD(in_ob, in_ad, mod)
+    {
+        for (var i in in_ob)
+        {
+            if (in_ob[i].type == "DescValueType.UNITDOUBLE")
+            {
+                //putUnitDouble(key, unitID, value);
+                if (mod == "list")
+                {
+                    in_ad.putUnitDouble(stringIDToTypeID(in_ob[i].value.doubleType), in_ob[i].value.doubleValue);
+                } else
+                {
+                    in_ad.putUnitDouble(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value.doubleType), in_ob[i].value.doubleValue);
+                }
+            }
+            if (in_ob[i].type == "DescValueType.BOOLEANTYPE")
+            {
+                //putBoolean(key,value)
+                in_ad.putBoolean(stringIDToTypeID(i), in_ob[i].value);
+                if (mod == "list")
+                {
+                    in_ad.putBoolean(in_ob[i].value);
+                } else
+                {
+                    in_ad.putBoolean(stringIDToTypeID(i), in_ob[i].value);
+                }
+            }
+            if (in_ob[i].type == "DescValueType.CLASSTYPE")
+            {
+                // putClass(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putClass(stringIDToTypeID(in_ob[i].value));
+                } else
+                {
+                    in_ad.putClass(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value));
+                }
+            }
+            if (in_ob[i].type == "DescValueType.RAWTYPE")
+            {
+                // putData(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putData(in_ob[i].value);
+                } else
+                {
+                    in_ad.putData(stringIDToTypeID(i), in_ob[i].value);
+                }
+
+            }
+            if (in_ob[i].type == "DescValueType.ENUMERATEDTYPE")
+            {
+                // putEnumerated(key,enumType,value)
+                if (mod == "list")
+                {
+                    in_ad.putEnumerated(stringIDToTypeID(in_ob[i].value.enumerationType), stringIDToTypeID(in_ob[i].value.enumerationValue));
+                } else
+                {
+                    in_ad.putEnumerated(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value.enumerationType), stringIDToTypeID(in_ob[i].value.enumerationValue));
+                }
+
+            }
+            if (in_ob[i].type == "DescValueType.INTEGERTYPE")
+            {
+                // putInteger(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putInteger(stringIDToTypeID(in_ob[i].value));
+                } else
+                {
+                    in_ad.putInteger(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value));
+                }
+
+            }
+            if (in_ob[i].type == "DescValueType.LARGEINTEGERTYPE")
+            {
+                // putLargeInteger(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putLargeInteger(stringIDToTypeID(in_ob[i].value));
+                } else
+                {
+                    in_ad.putLargeInteger(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value));
+                }
+            }
+            if (in_ob[i].type == "DescValueType.ALIASTYPE")
+            {
+                // putPath(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putPath(new File(in_ob[i].value));
+                } else
+                {
+                    in_ad.putPath(stringIDToTypeID(i), new File(in_ob[i].value));
+                }
+            }
+            if (in_ob[i].type == "DescValueType.STRINGTYPE")
+            {
+                // putString(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putString(in_ob[i].value);
+                } else
+                {
+                    in_ad.putString(stringIDToTypeID(i), in_ob[i].value);
+                }
+            }
+            if (in_ob[i].type == "DescValueType.REFERENCETYPE")
+            {
+                // putReference(key,value)
+                var af = Muclease.prototype.objectToActionReference(in_ob[i].value);
+                if (mod == "list")
+                {
+                    in_ad.putReference(af);
+                } else
+                {
+                    in_ad.putReference(stringIDToTypeID(i), af);
+                }
+
+            }
+            if (in_ob[i].type == "DescValueType.LISTTYPE")
+            {
+                //  putList(key, value)
+                var aList = new ActionList();
+                _creatAD(in_ob[i].value, aList, "list");
+
+                if (mod == "list")
+                {
+                    in_ad.putString(aList);
+                } else
+                {
+                    in_ad.putList(stringIDToTypeID(i), aList);
+                }
+            }
+            if (in_ob[i].type == "DescValueType.OBJECTTYPE")
+            {
+                //  putObject(key,classID,value)
+                var aOb = new ActionDescriptor();
+                _creatAD(in_ob[i].value, aOb, "object");
+
+                if (mod == "list")
+                {
+                    in_ad.putString(aOb);
+                } else
+                {
+                    in_ad.putObject(stringIDToTypeID(i),stringIDToTypeID(in_ob[i].objectType) ,aOb);
+                }
+            }
+
+        }
+
+    }
+
+    return ad;
+}
+
+
+
+
+
+
