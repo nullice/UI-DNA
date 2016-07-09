@@ -40,61 +40,76 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
 {
     var ob = {};
 
-    try
+    _scanAF(actionReference, ob);
+    function _scanAF(actionReference, ob)
     {
-        ob.form = actionReference.getForm().toString()
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.desiredClass = typeIDToStringID(actionReference.getDesiredClass())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.enumeratedType = typeIDToStringID(actionReference.getEnumeratedType())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.enumeratedValue = typeIDToStringID(actionReference.getEnumeratedValue())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.identifier = typeIDToStringID(actionReference.getIdentifier())
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.index = actionReference.getIndex()
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.offset = actionReference.getOffset()
-    } catch (e)
-    {
-    }
-    try
-    {
-        ob.property = typeIDToStringID(actionReference.getProperty())
-    } catch (e)
-    {
-    }
-    try
-    {
-        var t = actionReference.getName();
-        if (t.length > 0) ob.name = t;
+        try
+        {
+            ob.container = {};
+            var c = actionReference.getContainer();
+            _scanAF(c, ob.container);
 
-    } catch (e)
-    {
+        } catch (e)
+        {
+        }
+
+        try
+        {
+            ob.form = actionReference.getForm().toString()
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.desiredClass = typeIDToStringID(actionReference.getDesiredClass())
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.enumeratedType = typeIDToStringID(actionReference.getEnumeratedType())
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.enumeratedValue = typeIDToStringID(actionReference.getEnumeratedValue())
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.identifier = typeIDToStringID(actionReference.getIdentifier())
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.index = actionReference.getIndex()
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.offset = actionReference.getOffset()
+        } catch (e)
+        {
+        }
+        try
+        {
+            ob.property = typeIDToStringID(actionReference.getProperty())
+        } catch (e)
+        {
+        }
+        try
+        {
+            var t = actionReference.getName();
+            if (t.length > 0) ob.name = t;
+
+        } catch (e)
+        {
+        }
+
     }
 
 
@@ -314,68 +329,76 @@ Muclease.prototype.objectToActionReference = function (ob)
         return "not_Object";
     }
 
-    var hasDesiredClass = false;//只有当没有设置 DesiredClass 时才 putClass();
-
-
     var af = new ActionReference();
-
-    if (ob.property !== undefined)
-    {
-        // $.writeln("property:" + ob.property);
-        var idDC = stringIDToTypeID(ob.desiredClass);
-        var idPR = stringIDToTypeID(ob.property);
-        // $.writeln("putProperty:" + typeIDToCharID(idDC) + " , " + typeIDToCharID(idPR));
-        // putProperty(desiredClass,value)
-        af.putProperty(idDC, idPR);
-        hasDesiredClass = true;
-
-    }
-    if (ob.identifier !== undefined)
-    {
-        //putIdentifier(desiredClass,value)
-        af.putIdentifier(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.identifier))
-        hasDesiredClass = true;
-    }
-    if (ob.index !== undefined)
-    {
-        //putIndex(desiredClass, value)
-        af.putIndex(stringIDToTypeID(ob.desiredClass), ob.index);
-        hasDesiredClass = true;
-    }
-    if (ob.offset !== undefined)
-    {
-        //   putOffset(desiredClass,value)
-        af.putOffset(stringIDToTypeID(ob.desiredClass), ob.offset);
-        hasDesiredClass = true;
-    }
-    if (ob.name !== undefined)
-    {
-        // putName(desiredClass,value)
-        af.putName(stringIDToTypeID(ob.desiredClass), ob.name);
-        hasDesiredClass = true;
-    }
-    if ((ob.enumeratedValue !== undefined) && (ob.enumeratedType !== undefined))
-    {
-        //putEnumerated(desiredClass,enumType,value)
-        af.putEnumerated(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.enumeratedType), stringIDToTypeID(ob.enumeratedValue));
-        hasDesiredClass = true;
-    }
-
-    if ((ob.desiredClass !== undefined) && (hasDesiredClass == false))
-    {
-        $.writeln("desiredClass:" + ob.desiredClass);
-        af.putClass(stringIDToTypeID(ob.desiredClass));
-    }
+    _creatAF(ob,af);
 
 
-    var ref50 = new ActionReference();
-    var idPrpr = charIDToTypeID("Prpr");
-    var idLefx = charIDToTypeID("Lefx");
-    ref50.putProperty(idPrpr, idLefx);
-    var idLyr = charIDToTypeID("Lyr ");
-    var idOrdn = charIDToTypeID("Ordn");
-    var idTrgt = charIDToTypeID("Trgt");
-    ref50.putEnumerated(idLyr, idOrdn, idTrgt);
+    function _creatAF(ob,af)
+    {
+        var hasDesiredClass = false;//只有当没有设置 DesiredClass 时才 putClass();
+
+        if (ob.property !== undefined)
+        {
+            // $.writeln("property:" + ob.property);
+            var idDC = stringIDToTypeID(ob.desiredClass);
+            var idPR = stringIDToTypeID(ob.property);
+            // $.writeln("putProperty:" + typeIDToCharID(idDC) + " , " + typeIDToCharID(idPR));
+            // putProperty(desiredClass,value)
+            af.putProperty(idDC, idPR);
+            hasDesiredClass = true;
+
+        }
+        if (ob.identifier !== undefined)
+        {
+            //putIdentifier(desiredClass,value)
+            af.putIdentifier(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.identifier))
+            hasDesiredClass = true;
+        }
+        if (ob.index !== undefined)
+        {
+            //putIndex(desiredClass, value)
+            af.putIndex(stringIDToTypeID(ob.desiredClass), ob.index);
+            hasDesiredClass = true;
+        }
+        if (ob.offset !== undefined)
+        {
+            //   putOffset(desiredClass,value)
+            af.putOffset(stringIDToTypeID(ob.desiredClass), ob.offset);
+            hasDesiredClass = true;
+        }
+        if (ob.name !== undefined)
+        {
+            // putName(desiredClass,value)
+            af.putName(stringIDToTypeID(ob.desiredClass), ob.name);
+            hasDesiredClass = true;
+        }
+        if ((ob.enumeratedValue !== undefined) && (ob.enumeratedType !== undefined))
+        {
+            //putEnumerated(desiredClass,enumType,value)
+            af.putEnumerated(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.enumeratedType), stringIDToTypeID(ob.enumeratedValue));
+            hasDesiredClass = true;
+        }
+
+        if ((ob.desiredClass !== undefined) && (hasDesiredClass == false))
+        {
+            // $.writeln("desiredClass:" + ob.desiredClass);
+            af.putClass(stringIDToTypeID(ob.desiredClass));
+        }
+        if (ob.container !== undefined)
+        {
+            // putName(desiredClass,value)
+
+            if(isEmptyObject(ob.container)==false)
+            {
+                 _creatAF(ob.container,af);
+            }
+
+        }
+
+
+
+    }
+
 
     return af;
 }
@@ -407,7 +430,7 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
                 //putDouble(key,value)
                 if (mod == "list")
                 {
-                    in_ad.putDouble( in_ob[i].value);
+                    in_ad.putDouble(in_ob[i].value);
                 } else
                 {
                     in_ad.putDouble(stringIDToTypeID(i), in_ob[i].value);
@@ -526,7 +549,7 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
 
                 if (mod == "list")
                 {
-                    in_ad.putString(aList);
+                    in_ad.putList(aList);
                 } else
                 {
                     in_ad.putList(stringIDToTypeID(i), aList);
@@ -540,10 +563,10 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
 
                 if (mod == "list")
                 {
-                    in_ad.putString(aOb);
+                    in_ad.putObject(stringIDToTypeID(in_ob[i].objectType), aOb);
                 } else
                 {
-                    in_ad.putObject(stringIDToTypeID(i),stringIDToTypeID(in_ob[i].objectType) ,aOb);
+                    in_ad.putObject(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].objectType), aOb);
                 }
             }
 
@@ -555,7 +578,14 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
 }
 
 
-
+function isEmptyObject(obj) {
+    for (var prop in obj) {
+        if (obj.hasOwnProperty(prop)) {
+            return false;
+        }
+    }
+    return true;
+}
 
 
 
