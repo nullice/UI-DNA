@@ -97,6 +97,7 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
     {
     }
 
+
     return ob;
 }
 
@@ -177,7 +178,7 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
             }
             else if ("DescValueType.REFERENCETYPE" == obType)
             {
-                obValue = Muclease.prototype.actionReferenceToObject(ad);
+                obValue = Muclease.prototype.actionReferenceToObject(ad.getReference(key));
             }
             else if ("DescValueType.OBJECTTYPE" == obType)
             {
@@ -389,6 +390,7 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
     {
         for (var i in in_ob)
         {
+            // $.writeln(i);
             if (in_ob[i].type == "DescValueType.UNITDOUBLE")
             {
                 //putUnitDouble(key, unitID, value);
@@ -398,6 +400,17 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
                 } else
                 {
                     in_ad.putUnitDouble(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value.doubleType), in_ob[i].value.doubleValue);
+                }
+            }
+            if (in_ob[i].type == "DescValueType.DOUBLETYPE")
+            {
+                //putDouble(key,value)
+                if (mod == "list")
+                {
+                    in_ad.putDouble( in_ob[i].value);
+                } else
+                {
+                    in_ad.putDouble(stringIDToTypeID(i), in_ob[i].value);
                 }
             }
             if (in_ob[i].type == "DescValueType.BOOLEANTYPE")
@@ -452,10 +465,10 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
                 // putInteger(key,value)
                 if (mod == "list")
                 {
-                    in_ad.putInteger(stringIDToTypeID(in_ob[i].value));
+                    in_ad.putInteger(in_ob[i].value);
                 } else
                 {
-                    in_ad.putInteger(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value));
+                    in_ad.putInteger(stringIDToTypeID(i), in_ob[i].value);
                 }
 
             }
@@ -464,10 +477,10 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
                 // putLargeInteger(key,value)
                 if (mod == "list")
                 {
-                    in_ad.putLargeInteger(stringIDToTypeID(in_ob[i].value));
+                    in_ad.putLargeInteger(in_ob[i].value);
                 } else
                 {
-                    in_ad.putLargeInteger(stringIDToTypeID(i), stringIDToTypeID(in_ob[i].value));
+                    in_ad.putLargeInteger(stringIDToTypeID(i), in_ob[i].value);
                 }
             }
             if (in_ob[i].type == "DescValueType.ALIASTYPE")
