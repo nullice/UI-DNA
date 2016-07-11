@@ -4,5 +4,4 @@
 $.evalFile(File($.fileName).path + "/test.jsx")
 
 
-
-ki.layer.getLayerIdByItemIndex(1);
+ki.layer.getTargetlayersID();

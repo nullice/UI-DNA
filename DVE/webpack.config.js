@@ -17,13 +17,13 @@ module.exports = {
 
     module:{
         loaders:[
+            {test: /\.vue$/, loader: 'vue'},
             {test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader', query: {presets: 'es2015',}},
             {test: /\.css$/, loader: 'style-loader!css-loader' },
             {test: /\.sass$/, loaders: ["style", "css", "sass"]},
-            {test: /\.scss$/, loaders: ["style", "css", "sass"]},
+            {test: /\.scss$/, loaders: ["style", "css", "scss"]},
             {test: /\.(png|jpg|jpeg)$/, loader: 'url?limit=8000&name=../bin/img/[name].[ext]'},
-            {test: /\.vue$/, loader: 'vue'},
-
+            
             ]},
     plugins: [
         new webpack.BannerPlugin("---------nullice--------Banner 注释"),
@@ -34,6 +34,12 @@ module.exports = {
         
         
     ],
-    devtool: 'eval-source-map'
+    devtool: 'eval-source-map',
+
+    vue: {
+        loaders: {
+            scss: 'style!css!sass'
+        }
+    }
 };
 
