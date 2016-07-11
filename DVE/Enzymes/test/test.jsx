@@ -1,7 +1,7 @@
 ﻿$.evalFile(File($.fileName).path + "/../Muclease_lib.jsx");
+$.evalFile(File($.fileName).path + "/../Kinase_lib.jsx");
 var mu = new Muclease();
-
-
+var ki = new Kinase();
 // task -------------------------------------
 
 
@@ -14,7 +14,7 @@ var mu = new Muclease();
 
 
 
-// base --------------------------------------------
+// base ----------------------------------------
 
 var debug_log = "";
 

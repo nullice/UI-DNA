@@ -30,7 +30,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
         // new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}})
         
-        new CopyWebpackPlugin([{ context: 'Muclease/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' }])
+        new CopyWebpackPlugin([{ context: 'Enzymes/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' }])
         
         
     ],

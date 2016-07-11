@@ -47,7 +47,10 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
         {
             ob.container = {};
             var c = actionReference.getContainer();
-            _scanAF(c, ob.container);
+            if (c != undefined)
+            {
+                _scanAF(c, ob.container);
+            }
 
         } catch (e)
         {
@@ -295,11 +298,11 @@ Muclease.prototype.actionDescriptorToSampleJSON = function (actionDescriptor)
 
 /**
  * 把 actionReference 解析为简单对象并转换为 JSON 字符串
- * @param actionDescriptor
+ * @param actionReference
  */
-Muclease.prototype.actionReferenceToJSON = function (actionDescriptor)
+Muclease.prototype.actionReferenceToJSON = function (actionReference)
 {
-    var ob = Muclease.prototype.actionReferenceToObject(actionDescriptor);
+    var ob = Muclease.prototype.actionReferenceToObject(actionReference);
     return JSON.stringify(ob);
 }
 
@@ -319,7 +322,7 @@ Muclease.prototype.jsonToFile = function (filePath, json)
 
 /**
  * 把通过  actionReferenceToObject() 得到的  object 转回 ActionReference
- * @param ob
+ * @param ob - object
  * @returns {*}
  */
 Muclease.prototype.objectToActionReference = function (ob)
@@ -330,10 +333,10 @@ Muclease.prototype.objectToActionReference = function (ob)
     }
 
     var af = new ActionReference();
-    _creatAF(ob,af);
+    _creatAF(ob, af);
 
 
-    function _creatAF(ob,af)
+    function _creatAF(ob, af)
     {
         var hasDesiredClass = false;//只有当没有设置 DesiredClass 时才 putClass();
 
@@ -388,13 +391,12 @@ Muclease.prototype.objectToActionReference = function (ob)
         {
             // putName(desiredClass,value)
 
-            if(isEmptyObject(ob.container)==false)
+            if (isEmptyObject(ob.container) == false)
             {
-                 _creatAF(ob.container,af);
+                _creatAF(ob.container, af);
             }
 
         }
-
 
 
     }
@@ -404,6 +406,11 @@ Muclease.prototype.objectToActionReference = function (ob)
 }
 
 
+/**
+ * 把通过 actionDescriptorToObject() 得到的 object 转回 actionDescriptor
+ * @param ob - object
+ * @returns {ActionDescriptor}
+ */
 Muclease.prototype.objectToActionDescriptor = function (ob)
 {
     var ad = new ActionDescriptor();
@@ -578,9 +585,99 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
 }
 
 
-function isEmptyObject(obj) {
-    for (var prop in obj) {
-        if (obj.hasOwnProperty(prop)) {
+/**
+ * actionDescriptorToJSON() 的短名别名
+ * @param ob
+ */
+Muclease.prototype._ad2Json = function (ob)
+{
+    return Muclease.prototype.actionDescriptorToJSON(ob);
+}
+
+/***
+ * actionDescriptorToObject() 的短名别名
+ * @param actionDescriptor
+ * @param in_outSimple
+ * @returns {{}}
+ * @private
+ */
+Muclease.prototype._ad2Ob = function (actionDescriptor, in_outSimple)
+{
+    return Muclease.prototype.actionDescriptorToObject(actionDescriptor, in_outSimple);
+}
+
+
+/**
+ * actionDescriptorToSampleJSON() 的短名别名
+ * @param actionDescriptor
+ * @private
+ */
+Muclease.prototype._ad2SJson = function (actionDescriptor)
+{
+    return Muclease.prototype.actionDescriptorToSampleJSON(actionDescriptor);
+}
+
+/**
+ * actionDescriptorToSimpleObject() 的 短名别名
+ * @param actionDescriptor
+ * @returns {{}}
+ * @private
+ */
+Muclease.prototype._ad2SOb = function (actionDescriptor)
+{
+    return Muclease.prototype.actionDescriptorToSimpleObject(actionDescriptor);
+}
+
+/***
+ * actionReferenceToJSON() 的短名别名
+ * @param actionReference
+ * @private
+ */
+Muclease.prototype._af2Json = function (actionReference)
+{
+    return Muclease.prototype.actionReferenceToJSON(actionReference);
+}
+
+
+/***
+ * actionReferenceToObject() 的短名别名
+ * @param actionReference
+ * @returns {{}}
+ * @private
+ */
+Muclease.prototype._af2Ob = function (actionReference)
+{
+    return Muclease.prototype.actionReferenceToObject(actionReference);
+}
+
+/**
+ * objectToActionDescriptor() 的短名别名
+ * @param ob
+ * @returns {ActionDescriptor}
+ */
+Muclease.prototype._ob2Ad = function (ob)
+{
+    return Muclease.prototype.objectToActionDescriptor(ob);
+}
+
+
+/**
+ * objectToActionReference() 的短名别名
+ * @param ob
+ * @returns {ActionDescriptor}
+ */
+Muclease.prototype._ob2Af = function (ob)
+{
+    return Muclease.prototype.objectToActionReference(ob);
+}
+
+
+function isEmptyObject(obj)
+{
+    for (var prop in obj)
+    {
+        if (obj.hasOwnProperty(prop))
+        {
             return false;
         }
     }

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/Enzymes/test/debug.log" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/Enzymes/test/debug_json_out_1.json" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Muclease/test/debug.log" charset="GBK" />
     <file url="file://$PROJECT_DIR$/Muclease/test/debug_json_out_1.json" charset="GBK" />
   </component>
