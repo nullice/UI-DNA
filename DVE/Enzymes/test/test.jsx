@@ -82,14 +82,35 @@ function json(ob)
 }
 
 
-
-
 function seeLayers_byID(arr)
 {
-    log("seeLayers_byID"+arr)
-    for (var i=0; i < arr.length; i++)
+    log("seeLayers_byID" + arr)
+    for (var i = 0; i < arr.length; i++)
     {
         log(arr[i] + ":" + "(" + ki.layer.getItemIndexBylayerID(arr[i]) +
             ")" + ki.layer.getLayerName_byID(arr[i]));
     }
 }
+
+function seeLayers_byItemIndex(arr)
+{
+    log("seeLayers_byItemIndex" + arr)
+    for (var i = 0; i < arr.length; i++)
+    {
+        try
+        {
+            log("#"+ki.layer.getLayerIdByItemIndex(arr[i]) + ":" + "(" + arr[i] +
+                ")" + ki.layer.getLayerName_byItemIndex(arr[i]));
+        } catch (e)
+        {
+            log(i + "=" + arr[i] + ":err")
+        }
+
+    }
+}
+
+
+
+
+
+

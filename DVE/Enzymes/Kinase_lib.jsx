@@ -112,6 +112,8 @@ Kinase.prototype.layer.getLayerIdByItemIndex = function (itemIndex)
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('layerID'));
 
     ref.putIndex(charIDToTypeID("Lyr "), itemIndex + Kinase.BKOffset());
+
+    // log("index:"+itemIndex +":"+Kinase.BKOffset())
     var layerDesc = executeActionGet(ref);
 
     return layerDesc.getInteger(stringIDToTypeID('layerID'));
@@ -125,7 +127,7 @@ Kinase.prototype.layer.getLayerIdByItemIndex = function (itemIndex)
  */
 Kinase.prototype.layer.getItemIndexBylayerID = function (layerID)
 {
-    log("cc:" + layerID)
+
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('itemIndex'));
 
@@ -611,11 +613,11 @@ Kinase.REF_ItemIndex = function (ref, itemIndex)
 
 Kinase.BKOffset = function ()
 {
-    backgroundIndexOffset = 1;
+    backgroundIndexOffset = 0;
     try
     {
-        if (app.activeDocument.backgroundLayer)
-            backgroundIndexOffset = 0;
+        if (app.activeDocument.backgroundLayer) backgroundIndexOffset = -1;
+
     }
     catch (err)
     {
