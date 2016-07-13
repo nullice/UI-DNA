@@ -1,0 +1,1626 @@
+{
+  "mode": {
+    "value": {
+      "enumerationType": "colorSpace",
+      "enumerationValue": "RGBColor"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "bigNudgeH": {
+    "value": 655360,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "bigNudgeV": {
+    "value": 655360,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "rulerOriginH": {
+    "value": 0,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "rulerOriginV": {
+    "value": 0,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "width": {
+    "value": {
+      "doubleType": "distanceUnit",
+      "doubleValue": 1366
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "height": {
+    "value": {
+      "doubleType": "distanceUnit",
+      "doubleValue": 768
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "resolution": {
+    "value": {
+      "doubleType": "densityUnit",
+      "doubleValue": 72
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "title": {
+    "value": "未标题-2",
+    "type": "DescValueType.STRINGTYPE"
+  },
+  "fileInfo": {
+    "value": {
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "fileInfo"
+  },
+  "numberOfPaths": {
+    "value": 0,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "numberOfChannels": {
+    "value": 3,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "numberOfLayers": {
+    "value": 5,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "targetPathIndex": {
+    "value": -1,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "workPathIndex": {
+    "value": -1,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "clippingPathInfo": {
+    "value": {
+      "clippingPathIndex": {
+        "value": -1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "clippingPathFlatness": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "clippingInfo"
+  },
+  "depth": {
+    "value": 8,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "documentID": {
+    "value": 469,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "copyright": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "watermark": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "isDirty": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "count": {
+    "value": 3,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "itemIndex": {
+    "value": 2,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "colorSamplerList": {
+    "value": {
+      "0": {
+        "value": {
+          "position": {
+            "value": {
+              "horizontal": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 362.5
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "vertical": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 270.5
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "paint"
+          },
+          "color": {
+            "value": {
+              "red": {
+                "value": 255,
+                "type": "DescValueType.DOUBLETYPE"
+              },
+              "grain": {
+                "value": 255,
+                "type": "DescValueType.DOUBLETYPE"
+              },
+              "blue": {
+                "value": 255,
+                "type": "DescValueType.DOUBLETYPE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "RGBColor"
+          },
+          "colorSpace": {
+            "value": {
+              "enumerationType": "colorSpace",
+              "enumerationValue": "RGBColor"
+            },
+            "type": "DescValueType.ENUMERATEDTYPE"
+          }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "colorSampler"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  },
+  "manage": {
+    "value": {
+      "enumerationType": "manage",
+      "enumerationValue": "none"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "workflow": {
+    "value": {
+      "workflowIsManaged": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "workflow"
+  },
+  "quickMask": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "histogram": {
+    "value": {
+      "0": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "1": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "2": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "3": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "4": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "5": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "6": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "7": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "8": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "9": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "10": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "11": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "12": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "13": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "14": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "15": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "16": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "17": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "18": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "19": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "20": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "21": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "22": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "23": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "24": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "25": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "26": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "27": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "28": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "29": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "30": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "31": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "32": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "33": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "34": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "35": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "36": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "37": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "38": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "39": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "40": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "41": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "42": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "43": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "44": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "45": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "46": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "47": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "48": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "49": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "50": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "51": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "52": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "53": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "54": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "55": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "56": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "57": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "58": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "59": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "60": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "61": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "62": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "63": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "64": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "65": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "66": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "67": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "68": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "69": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "70": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "71": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "72": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "73": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "74": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "75": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "76": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "77": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "78": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "79": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "80": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "81": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "82": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "83": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "84": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "85": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "86": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "87": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "88": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "89": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "90": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "91": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "92": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "93": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "94": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "95": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "96": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "97": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "98": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "99": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "100": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "101": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "102": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "103": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "104": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "105": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "106": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "107": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "108": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "109": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "110": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "111": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "112": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "113": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "114": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "115": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "116": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "117": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "118": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "119": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "120": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "121": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "122": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "123": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "124": {
+        "value": 1336,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "125": {
+        "value": 6,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "126": {
+        "value": 10,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "127": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "128": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "129": {
+        "value": 8,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "130": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "131": {
+        "value": 3,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "132": {
+        "value": 5,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "133": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "134": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "135": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "136": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "137": {
+        "value": 6,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "138": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "139": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "140": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "141": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "142": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "143": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "144": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "145": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "146": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "147": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "148": {
+        "value": 8,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "149": {
+        "value": 4,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "150": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "151": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "152": {
+        "value": 8,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "153": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "154": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "155": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "156": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "157": {
+        "value": 80,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "158": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "159": {
+        "value": 5,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "160": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "161": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "162": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "163": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "164": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "165": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "166": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "167": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "168": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "169": {
+        "value": 6,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "170": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "171": {
+        "value": 4,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "172": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "173": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "174": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "175": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "176": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "177": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "178": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "179": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "180": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "181": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "182": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "183": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "184": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "185": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "186": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "187": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "188": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "189": {
+        "value": 6,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "190": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "191": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "192": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "193": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "194": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "195": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "196": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "197": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "198": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "199": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "200": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "201": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "202": {
+        "value": 6,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "203": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "204": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "205": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "206": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "207": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "208": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "209": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "210": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "211": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "212": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "213": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "214": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "215": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "216": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "217": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "218": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "219": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "220": {
+        "value": 6,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "221": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "222": {
+        "value": 4,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "223": {
+        "value": 5,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "224": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "225": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "226": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "227": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "228": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "229": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "230": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "231": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "232": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "233": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "234": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "235": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "236": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "237": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "238": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "239": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "240": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "241": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "242": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "243": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "244": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "245": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "246": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "247": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "248": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "249": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "250": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "251": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "252": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "253": {
+        "value": 7,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "254": {
+        "value": 4,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "255": {
+        "value": 1047544,
+        "type": "DescValueType.INTEGERTYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  },
+  "pixelScaleFactor": {
+    "value": {
+      "doubleType": "noneUnit",
+      "doubleValue": 1
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "XMPMetadataAsUTF8": {
+    "value": "<?xpacket begin=\"\ufeff\" id=\"W5M0MpCehiHzreSzNTczkc9d\"?>\n<x:xmpmeta xmlns:x=\"adobe:ns:meta/\" x:xmptk=\"Adobe XMP Core 5.6-c132 79.159284, 2016/04/19-13:13:40        \">\n   <rdf:RDF xmlns:rdf=\"http://www.w3.org/1999/02/22-rdf-syntax-ns#\">\n      <rdf:Description rdf:about=\"\"\n            xmlns:xmp=\"http://ns.adobe.com/xap/1.0/\"\n            xmlns:dc=\"http://purl.org/dc/elements/1.1/\"\n            xmlns:photoshop=\"http://ns.adobe.com/photoshop/1.0/\">\n         <xmp:CreatorTool>Adobe Photoshop CC 2015.5 (Windows)</xmp:CreatorTool>\n         <xmp:CreateDate>2016-07-13T18:23:08+08:00</xmp:CreateDate>\n         <xmp:ModifyDate>2016-07-13T18:23:08+08:00</xmp:ModifyDate>\n         <xmp:MetadataDate>2016-07-13T18:23:08+08:00</xmp:MetadataDate>\n         <dc:format>application/vnd.adobe.photoshop</dc:format>\n         <photoshop:ColorMode>3</photoshop:ColorMode>\n      </rdf:Description>\n   </rdf:RDF>\n</x:xmpmeta>\n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                                                                                                    \n                            \n<?xpacket end=\"w\"?>",
+    "type": "DescValueType.STRINGTYPE"
+  },
+  "measurementScale": {
+    "value": {
+      "null": {
+        "value": {
+          "container": {
+            "container": {
+              "container": {
+              }
+            },
+            "form": "ReferenceFormType.ENUMERATED",
+            "desiredClass": "document",
+            "enumeratedType": "ordinal",
+            "enumeratedValue": "targetEnum"
+          },
+          "form": "ReferenceFormType.PROPERTY",
+          "desiredClass": "property",
+          "property": "measurementScale"
+        },
+        "type": "DescValueType.REFERENCETYPE"
+      },
+      "to": {
+        "value": {
+          "pixelLength": {
+            "value": 1,
+            "type": "DescValueType.INTEGERTYPE"
+          },
+          "logicalLength": {
+            "value": 1,
+            "type": "DescValueType.DOUBLETYPE"
+          },
+          "logicalUnits": {
+            "value": "像素",
+            "type": "DescValueType.STRINGTYPE"
+          }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "measurementScale"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "measurementScale"
+  },
+  "selection": {
+    "value": {
+      "top": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "left": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "bottom": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 768
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "right": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 1366
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "rectangle"
+  },
+  "solid": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "targetLayers": {
+    "value": {
+      "0": {
+        "value": {
+          "container": {
+            "container": {
+            }
+          },
+          "form": "ReferenceFormType.INDEX",
+          "desiredClass": "layer",
+          "index": 3
+        },
+        "type": "DescValueType.REFERENCETYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  },
+  "targetLayersIDs": {
+    "value": {
+      "0": {
+        "value": {
+          "container": {
+            "container": {
+            }
+          },
+          "form": "ReferenceFormType.IDENTIFIER",
+          "desiredClass": "layer",
+          "identifier": "workingRGB"
+        },
+        "type": "DescValueType.REFERENCETYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  },
+  "targetLayersIndexes": {
+    "value": {
+      "0": {
+        "value": {
+          "container": {
+            "container": {
+            }
+          },
+          "form": "ReferenceFormType.INDEX",
+          "desiredClass": "layer",
+          "index": 3
+        },
+        "type": "DescValueType.REFERENCETYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  },
+  "zoom": {
+    "value": {
+      "doubleType": "percentUnit",
+      "doubleValue": 0.70909090909091
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "printCopies": {
+    "value": 1,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "printCurrentPrinter": {
+    "value": "Microsoft Print to PDF",
+    "type": "DescValueType.STRINGTYPE"
+  },
+  "printerList": {
+    "value": {
+      "0": {
+        "value": "Send To OneNote 2016",
+        "type": "DescValueType.STRINGTYPE"
+      },
+      "1": {
+        "value": "Microsoft XPS Document Writer",
+        "type": "DescValueType.STRINGTYPE"
+      },
+      "2": {
+        "value": "Microsoft Print to PDF",
+        "type": "DescValueType.STRINGTYPE"
+      },
+      "3": {
+        "value": "Fax",
+        "type": "DescValueType.STRINGTYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  },
+  "printColorHandling": {
+    "value": {
+      "enumerationType": "printColorHandling",
+      "enumerationValue": "printerManaged"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "printOutputOptions": {
+    "value": {
+      "caption": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "calibrationBars": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "registrationMarks": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "cornerCropMarks": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "centerCropMarks": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "labels": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "negative": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "emulsionDown": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "interfaceIconFrameDimmed": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "background": {
+        "value": {
+          "red": {
+            "value": 255,
+            "type": "DescValueType.DOUBLETYPE"
+          },
+          "grain": {
+            "value": 255,
+            "type": "DescValueType.DOUBLETYPE"
+          },
+          "blue": {
+            "value": 255,
+            "type": "DescValueType.DOUBLETYPE"
+          }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "RGBColor"
+      },
+      "borderThickness": {
+        "value": {
+          "doubleType": "distanceUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "bleed": {
+        "value": {
+          "doubleType": "distanceUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "resolution": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 72
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vectorData": {
+        "value": true,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "pagePosition": {
+        "value": {
+          "enumerationType": "pagePosition",
+          "enumerationValue": "pagePosCentered"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
+      },
+      "left": {
+        "value": {
+          "doubleType": "distanceUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "top": {
+        "value": {
+          "doubleType": "distanceUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "scale": {
+        "value": {
+          "doubleType": "percentUnit",
+          "doubleValue": 100
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "cropWhenPrinting": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "cropRectBottom": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "cropRectLeft": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "cropRectRight": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "cropRectTop": {
+        "value": 0,
+        "type": "DescValueType.INTEGERTYPE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "printOutputOptions"
+  },
+  "printOutput": {
+    "value": {
+      "postScriptColor": {
+        "value": true,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "intent": {
+        "value": {
+          "enumerationType": "intent",
+          "enumerationValue": "image"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
+      },
+      "printSixteenBit": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "printerName": {
+        "value": "",
+        "type": "DescValueType.STRINGTYPE"
+      },
+      "printProofSetup": {
+        "value": {
+          "builtin": {
+            "value": {
+              "enumerationType": "builtinProof",
+              "enumerationValue": "proofCMYK"
+            },
+            "type": "DescValueType.ENUMERATEDTYPE"
+          }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "proofSetup"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "printOutput"
+  },
+  "center": {
+    "value": {
+      "horizontal": {
+        "value": {
+          "doubleType": "distanceUnit",
+          "doubleValue": 412.5
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "distanceUnit",
+          "doubleValue": 208
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "paint"
+  },
+  "hasBackgroundLayer": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "generatorSettings": {
+    "value": {
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "generatorSettings"
+  },
+  "targetPathVisibility": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "guidesVisibility": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "smartGuidesVisibility": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "rulersVisibility": {
+    "value": true,
+    "type": "DescValueType.BOOLEANTYPE"
+  }
+}

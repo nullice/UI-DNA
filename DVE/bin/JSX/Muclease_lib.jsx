@@ -674,6 +674,10 @@ Muclease.prototype._ob2Af = function (ob)
 
 function isEmptyObject(obj)
 {
+    if (obj == undefined)
+    {
+        return true;
+    }
     for (var prop in obj)
     {
         if (obj.hasOwnProperty(prop))
@@ -683,6 +687,8 @@ function isEmptyObject(obj)
     }
     return true;
 }
+
+
 
 
 

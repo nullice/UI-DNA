@@ -5,15 +5,6 @@ var ki = new Kinase();
 // task -------------------------------------
 
 
-
-
-
-
-
-
-
-
-
 // base ----------------------------------------
 
 var debug_log = "";
@@ -22,7 +13,7 @@ var debug_log = "";
 function log(info)
 {
     $.writeln(info);
-    debug_log = debug_log +info +"\n";
+    debug_log = debug_log + info + "\n";
 }
 
 
@@ -34,34 +25,34 @@ function logSave()
 }
 
 
-function  obo_af(in_af)
+function obo_af(in_af)
 {
     var ob = mu.actionReferenceToObject(in_af);
     var af = mu.objectToActionReference(ob);
 
-    if(mu.actionReferenceToJSON(in_af)!=mu.actionReferenceToJSON(af))
+    if (mu.actionReferenceToJSON(in_af) != mu.actionReferenceToJSON(af))
     {
-       log("// ERR--------------------");
+        log("// ERR--------------------");
     }
 
-   log(mu.actionReferenceToJSON(in_af));
-   log(mu.actionReferenceToJSON(af));
+    log(mu.actionReferenceToJSON(in_af));
+    log(mu.actionReferenceToJSON(af));
 
 }
 
-function  obo_ad(in_af)
+function obo_ad(in_af)
 {
     var ob = mu.actionDescriptorToObject(in_af);
     var ad = mu.objectToActionDescriptor(ob);
-   log("//===============================");
-    if(mu.actionDescriptorToJSON(in_af)!=mu.actionDescriptorToJSON(ad))
+    log("//===============================");
+    if (mu.actionDescriptorToJSON(in_af) != mu.actionDescriptorToJSON(ad))
     {
-       log("//ERR--------------------");
+        log("//ERR--------------------");
     }
 
-   log(mu.actionDescriptorToJSON(in_af));
-   log("//------");
-   log(mu.actionDescriptorToJSON(ad));
+    log(mu.actionDescriptorToJSON(in_af));
+    log("//------");
+    log(mu.actionDescriptorToJSON(ad));
 
 }
 
@@ -69,12 +60,12 @@ function  obo_ad(in_af)
 function see(ob)
 {
 
-    var str="\n"
+    var str = "\n"
     for (var i  in ob)
     {
         try
         {
-            str+=i +":" +ob[i]+"\n";
+            str += i + ":" + ob[i] + "\n";
         } catch (e)
         {
         }
@@ -83,4 +74,22 @@ function see(ob)
 
     alert(str)
 
+}
+
+function json(ob)
+{
+    return JSON.stringify(ob);
+}
+
+
+
+
+function seeLayers_byID(arr)
+{
+    log("seeLayers_byID"+arr)
+    for (var i=0; i < arr.length; i++)
+    {
+        log(arr[i] + ":" + "(" + ki.layer.getItemIndexBylayerID(arr[i]) +
+            ")" + ki.layer.getLayerName_byID(arr[i]));
+    }
 }

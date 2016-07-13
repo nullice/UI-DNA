@@ -131,3 +131,13 @@ function getLayerEffects()
     }
 }
 ```
+
+
+
+#### 获取系统信息对象
+
+```js
+var ref = new ActionReference();
+ref.putEnumerated( charIDToTypeID('capp'), charIDToTypeID('Ordn'), charIDToTypeID('Trgt') );
+var layerDesc = executeActionGet(ref);
+```

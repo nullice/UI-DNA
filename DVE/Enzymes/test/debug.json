@@ -1,41 +1,97 @@
 {
-  "targetLayers": [
-    {
-      "container": {
-        "container": {
-        }
-      },
-      "form": "ReferenceFormType.INDEX",
-      "desiredClass": "layer",
-      "index": 7
+  "keyOriginType": {
+    "value": {
+      "0": {
+        "value": {
+          "keyOriginType": {
+            "value": 2,
+            "type": "DescValueType.INTEGERTYPE"
+          },
+          "keyOriginRRectRadii": {
+            "value": {
+              "unitValueQuadVersion": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "topRight": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 32
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "topLeft": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 32
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottomLeft": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 32
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottomRight": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 32
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "radii"
+          },
+          "keyOriginShapeBBox": {
+            "value": {
+              "unitValueQuadVersion": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "top": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 352
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "left": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 840
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottom": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 552
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "right": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 944
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "unitRect"
+          },
+          "keyActionMode": {
+            "value": 3,
+            "type": "DescValueType.INTEGERTYPE"
+          }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "null"
+      }
     },
-    {
-      "container": {
-        "container": {
-        }
-      },
-      "form": "ReferenceFormType.INDEX",
-      "desiredClass": "layer",
-      "index": 8
-    },
-    {
-      "container": {
-        "container": {
-        }
-      },
-      "form": "ReferenceFormType.INDEX",
-      "desiredClass": "layer",
-      "index": 11
-    },
-    {
-      "container": {
-        "container": {
-        }
-      },
-      "form": "ReferenceFormType.INDEX",
-      "desiredClass": "layer",
-      "index": 13
-    }
-  ]
+    "type": "DescValueType.LISTTYPE"
+  }
 }
-

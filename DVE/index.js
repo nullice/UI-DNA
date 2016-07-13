@@ -3,13 +3,28 @@
  */
 
 import Vue from "vue";
-import app from "./components/area.vue";
+import App from "./components/area.vue";
 
 
 Vue.config.debug = true;//开启错误提示
-new Vue(app);
 
-// import lodash from "lodash";
+
+
+
+
+
+new Vue({
+    el: 'body',
+    components: {
+        // include the required component
+        // in the options
+        app: App
+    }
+})
+
+
+
+
 
 
 
