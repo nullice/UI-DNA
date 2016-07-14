@@ -262,6 +262,33 @@ Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, tar
 
 }
 
+Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
+{
+    var ref = new ActionReference();
+    ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID("AGMStrokeStyleInfo"));
+    targetReference(ref, target);
+
+    var layerDesc = executeActionGet(ref);
+    return mu.actionDescriptorToObject(layerDesc);
+
+}
+
+
+Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
+{
+    var radianInfo = {
+        strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
+        fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+        lineWidth: null, /*边线宽度*/
+        dashSet: null, /*虚线设置*/
+        ineAlignment: null, /*描边选项-对齐*/
+        lineCapType: null, /*描边选项-端点*/
+        lineJoinType: null, /*描边选项-角点*/
+    };
+
+
+}
+
 
 /**
  * 返回指定图层的形状的圆角信息（Objcet），包括 topRight、topLeft、bottomLeft、bottomRight。
@@ -361,7 +388,7 @@ Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
                 "bottomRight": {
                     "value": {
                         "doubleType": "pixelsUnit",
-                        "doubleValue":radianInfo.bottomRight
+                        "doubleValue": radianInfo.bottomRight
                     },
                     "type": "DescValueType.UNITDOUBLE"
                 }
@@ -599,38 +626,11 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
  */
 Kinase.prototype.layer.selctLayer_byID = function (layerID)
 {
-    var adOb = {
-        "null": {
-            "value": {
-                "container": {
-                    "container": {}
-                },
-                "form": "ReferenceFormType.NAME",
-                "desiredClass": "layer",
-                "name": Kinase.prototype.layer.getLayerName_byID(layerID)
-            },
-            "type": "DescValueType.REFERENCETYPE"
-        },
-        "makeVisible": {
-            "value": false,
-            "type": "DescValueType.BOOLEANTYPE"
-        },
-        "layerID": {
-            "value": {
-                "0": {
-                    "value": layerID,
-                    "type": "DescValueType.INTEGERTYPE"
-                }
-            },
-            "type": "DescValueType.LISTTYPE"
-        }
-    }
-
-
-    var ad = mu.objectToActionDescriptor(adOb);
-
-    var idslct = charIDToTypeID("slct");
-    executeAction(idslct, ad, DialogModes.NO);
+    var ref = new ActionReference();
+    ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
+    var desc = new ActionDescriptor();
+    desc.putReference(charIDToTypeID("null"), ref);
+    executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
 }
 
 /**
@@ -639,8 +639,11 @@ Kinase.prototype.layer.selctLayer_byID = function (layerID)
  */
 Kinase.prototype.layer.selctLayer_byItemIndex = function (ItemIndex)
 {
-    var layerID = Kinase.prototype.layer.getLayerIdByItemIndex(ItemIndex);
-    Kinase.prototype.layer.selctLayer_byID(layerID)
+    var ref = new ActionReference();
+    ref.putIndex(charIDToTypeID("Lyr "), ItemIndex + Kinase.BKOffset());
+    var desc = new ActionDescriptor();
+    desc.putReference(charIDToTypeID("null"), ref);
+    executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
 
 }
 
@@ -755,19 +758,23 @@ Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
 }
 
 // 选取目标 Reference--------------------------------
-Kinase.REF_ActiveLayer = function (ref)
+Kinase.REF_ActiveLayer = function (ref, classString)
 {
-    ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+    var desiredClass = classString || "Lyr ";
+    ref.putEnumerated(charIDToTypeID(desiredClass), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
 }
 
-Kinase.REF_LayerID = function (ref, layerID)
+Kinase.REF_LayerID = function (ref, layerID, classString)
 {
-    ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
+    var desiredClass = classString || "Lyr ";
+    ref.putIdentifier(charIDToTypeID(desiredClass), layerID);
 }
 
-Kinase.REF_ItemIndex = function (ref, itemIndex)
+Kinase.REF_ItemIndex = function (ref, itemIndex, classString)
 {
-    ref.putIndex(charIDToTypeID("Lyr "));
+    var desiredClass = classString || "Lyr ";
+    ref.putIndex(charIDToTypeID(desiredClass), itemIndex);
+
 }
 
 /**
