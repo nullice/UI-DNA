@@ -5,7 +5,10 @@ $.evalFile(File($.fileName).path + "/test.jsx")
 
 
 var arr = ki.layer.getAllLayersItemIndex()
+ arr = ki.layer.itemIndexArray_ToLayerIdArray(arr);
+
 log("arr"+arr)
-seeLayers_byItemIndex(arr)
+
+ki.layer.selctMultLayers_byID(arr)
 //ki.layer.selctMultLayers_byID(arr)
 

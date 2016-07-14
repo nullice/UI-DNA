@@ -112,8 +112,7 @@ Kinase.prototype.layer.getLayerIdByItemIndex = function (itemIndex)
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('layerID'));
 
     ref.putIndex(charIDToTypeID("Lyr "), itemIndex + Kinase.BKOffset());
-
-    // log("index:"+itemIndex +":"+Kinase.BKOffset())
+    // log("index:" + itemIndex + ":" + Kinase.BKOffset())
     var layerDesc = executeActionGet(ref);
 
     return layerDesc.getInteger(stringIDToTypeID('layerID'));
@@ -137,6 +136,37 @@ Kinase.prototype.layer.getItemIndexBylayerID = function (layerID)
     return layerDesc.getInteger(stringIDToTypeID('itemIndex'));
 }
 
+/**
+ * itemIndex 数组转换到 LayerID 数组
+ * @param itemIndexArray
+ * @returns {Array}
+ */
+Kinase.prototype.layer.itemIndexArray_ToLayerIdArray = function (itemIndexArray)
+{
+    var layerIdArray = []
+    for (var i = 0; i < itemIndexArray.length; i++)
+    {
+        layerIdArray.push(Kinase.prototype.layer.getLayerIdByItemIndex(itemIndexArray[i]))
+    }
+    return layerIdArray;
+}
+
+
+/**
+ *  LayerID 数组转换到 itemIndex 数组
+ * @param layerIdArray
+ * @returns {Array}
+ */
+Kinase.prototype.layer.layerIdArray_ToItemIndexArray = function (layerIdArray)
+{
+    var itemIndexArray = []
+    for (var i = 0; i < layerIdArray.length; i++)
+    {
+        itemIndexArray.push(Kinase.prototype.layer.getItemIndexBylayerID(layerIdArray[i]))
+    }
+    return itemIndexArray;
+}
+
 
 /**
  * 获取所有选中图层的图层序号（ItemIndex），返回数组
@@ -157,7 +187,7 @@ Kinase.prototype.layer.getTargetLayersItemIndex = function ()
     var arr = [];
     for (var i in ob.targetLayers)
     {
-        arr.push(ob.targetLayers[i].index)
+        arr.push(ob.targetLayers[i].index + 1)
     }
     return arr;
 }
@@ -182,7 +212,7 @@ Kinase.prototype.layer.getTargetLayersID = function ()
     var arr = [];
     for (var i in ob.targetLayers)
     {
-        arr.push(Kinase.prototype.layer.getLayerIdByItemIndex(ob.targetLayers[i].index))
+        arr.push(Kinase.prototype.layer.getLayerIdByItemIndex(ob.targetLayers[i].index + 1))
     }
     return arr;
 }
@@ -437,9 +467,18 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 
 }
 
+
+
+
+
+
+
 //----------------------
 
-
+/**
+ * 根据图层 ID 单选图层
+ * @param layerID
+ */
 Kinase.prototype.layer.selctLayer_byID = function (layerID)
 {
     var adOb = {
@@ -470,27 +509,16 @@ Kinase.prototype.layer.selctLayer_byID = function (layerID)
     }
 
 
-    // var adOb2 = {
-    //     "null": {
-    //         "value": {
-    //             "container": {
-    //                 "container": {}
-    //             }
-    //             ,
-    //             "form": "ReferenceFormType.INDEX", "desiredClass": "layer", "index": 1
-    //         }
-    //         ,
-    //         "type": "DescValueType.REFERENCETYPE"
-    //     }
-    // }
-
     var ad = mu.objectToActionDescriptor(adOb);
 
     var idslct = charIDToTypeID("slct");
     executeAction(idslct, ad, DialogModes.NO);
 }
 
-
+/**
+ * 根据图层 ItemIndex 单选图层
+ * @param ItemIndex
+ */
 Kinase.prototype.layer.selctLayer_byItemIndex = function (ItemIndex)
 {
     var layerID = Kinase.prototype.layer.getLayerIdByItemIndex(ItemIndex);
@@ -498,60 +526,75 @@ Kinase.prototype.layer.selctLayer_byItemIndex = function (ItemIndex)
 
 }
 
-
-Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray)
+/**
+ * 根据图层 ID ，多选图层。不会取消之前选中的图层（如果 repick 不为真）。
+ * @param layerIDArray
+ * @param repick - 为真会取消之前的已选图层重新选择。
+ * @returns {string}
+ */
+Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray, repick)
 {
 
     if (layerIDArray == undefined)
     {
         return "err";
     }
-    var idOb = {
-        "value": null,
-        "type": "DescValueType.INTEGERTYPE"
-    }
 
-    var adOb = {
-        "null": {
-            "value": {
-                "container": {
-                    "container": {}
-                },
-                "form": "ReferenceFormType.NAME",
-                "desiredClass": "layer",
-                "name": Kinase.prototype.layer.getLayerName_byID(layerIDArray[layerIDArray.length - 1])
-            },
-            "type": "DescValueType.REFERENCETYPE"
-        },
-        "selectionModifier": {
-            "value": {
-                "enumerationType": "selectionModifierType",
-                "enumerationValue": "addToSelection"
-            },
-            "type": "DescValueType.ENUMERATEDTYPE"
-        },
-        "makeVisible": {
-            "value": false,
-            "type": "DescValueType.BOOLEANTYPE"
-        },
-        "layerID": {
-            "value": {},
-            "type": "DescValueType.LISTTYPE"
-        }
+    layerIDArray = layerIDArray.sort();
+    if(repick)
+    {
+        Kinase.prototype.layer.selctLayer_byID(layerIDArray[0]);
     }
-
     for (var i = 0; i < layerIDArray.length; i++)
     {
-        adOb.layerID.value[i] = {
-            "value": layerIDArray[i],
-            "type": "DescValueType.INTEGERTYPE"
-        }
+        var desc = new ActionDescriptor();
+        var ref = new ActionReference();
+        ref.putIdentifier( charIDToTypeID('Lyr '), layerIDArray[i] );
+        desc.putReference( charIDToTypeID('null'), ref );
+        desc.putEnumerated( stringIDToTypeID('selectionModifier'),
+            stringIDToTypeID('selectionModifierType'),
+            stringIDToTypeID('addToSelection') );
+        desc.putBoolean( charIDToTypeID('MkVs'), false );
+        executeAction( charIDToTypeID('slct'), desc, DialogModes.NO );
+
+    }
+}
+
+/**
+ * 根据图层 ItemIndex ，多选图层。不会取消之前选中的图层（如果 repick 不为真）。
+ * @param itemIndexArray
+ * @param repick - 为真会取消之前的已选图层重新选择。
+ * @returns {string}
+ */
+Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, repick)
+{
+
+    if (itemIndexArray == undefined)
+    {
+        return "err";
     }
 
-    var ad = mu.objectToActionDescriptor(adOb);
-    var idslct = charIDToTypeID("slct");
-    executeAction(idslct, ad, DialogModes.NO);
+    if(repick)
+    {
+        Kinase.prototype.layer.selctLayer_byItemIndex(itemIndexArray[0]);
+    }
+
+    for (var i = 0; i < itemIndexArray.length; i++)
+    {
+        var desc = new ActionDescriptor();
+        var ref = new ActionReference();
+        ref.putIndex( charIDToTypeID('Lyr '), itemIndexArray[i] +Kinase.BKOffset());
+        desc.putReference( charIDToTypeID('null'), ref );
+        desc.putEnumerated( stringIDToTypeID('selectionModifier'),
+            stringIDToTypeID('selectionModifierType'),
+            stringIDToTypeID('addToSelection') );
+        desc.putBoolean( charIDToTypeID('MkVs'), false );
+        executeAction( charIDToTypeID('slct'), desc, DialogModes.NO );
+
+    }
 }
+
+
 
 
 /**
@@ -595,7 +638,7 @@ Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
     }
 }
 
-
+// 选取目标 Reference--------------------------------
 Kinase.REF_ActiveLayer = function (ref)
 {
     ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
@@ -611,6 +654,11 @@ Kinase.REF_ItemIndex = function (ref, itemIndex)
     ref.putIndex(charIDToTypeID("Lyr "));
 }
 
+/**
+ * 取背景索引偏移。由于 PS 内部 index ，背景图层无论存在与否始终占用 0 位，所以在使用 itemIndex 时，背景图层存在时，需要 -1 位。
+ * @returns {number}
+ * @constructor
+ */
 Kinase.BKOffset = function ()
 {
     backgroundIndexOffset = 0;
