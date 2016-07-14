@@ -4,11 +4,7 @@
 $.evalFile(File($.fileName).path + "/test.jsx")
 
 
-var arr = ki.layer.getAllLayersItemIndex()
- arr = ki.layer.itemIndexArray_ToLayerIdArray(arr);
+var arr = ki.layer.getLayerRadian(Kinase.REF_ActiveLayer,null)
 
 log("arr"+arr)
-
-ki.layer.selctMultLayers_byID(arr)
-//ki.layer.selctMultLayers_byID(arr)
 

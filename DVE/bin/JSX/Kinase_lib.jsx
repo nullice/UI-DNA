@@ -262,6 +262,49 @@ Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, tar
 
 }
 
+Kinase.prototype.layer.getLayerRadian = function (targetReference, target, returnKeyOriginType)
+{
+    var radianInfo = {topRight: null, topLeft: null, bottomLeft: null, bottomRight: null};
+    var keyOriginType_raw = Kinase.prototype.layer.get_keyOriginType_Objcet(targetReference, target);
+
+    if (isEmptyObject(keyOriginType_raw) || keyOriginType_raw.keyOriginType == undefined)
+    {
+        radianInfo.err = "err:not shape layer."
+        return radianInfo;
+    }
+    else
+    {
+        var keyOriginType = keyOriginType_raw.keyOriginType;
+    }
+
+    for (var i in keyOriginType.value)
+    {
+        try{
+            var _topRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.topRight.value.doubleValue;
+            var _topLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.topLeft.value.doubleValue;
+            var _bottomRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomRight.value.doubleValue;
+            var _bottomLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomLeft.value.doubleValue;
+
+            radianInfo.topRight = _topRight;
+            radianInfo.topLeft = _topLeft;
+            radianInfo.bottomRight = _bottomRight;
+            radianInfo.bottomLeft = _bottomLeft;
+        } catch(e){};
+
+        break;//暂定一次
+    }
+
+    if (returnKeyOriginType)
+    {
+        radianInfo.keyOriginType = keyOriginType_raw;
+        return radianInfo;
+    } else
+    {
+        return radianInfo;
+    }
+
+}
+
 
 /**
  * 返回指定图层的形状属性对象，包括 x: 到左边界距离、y: 到顶边界距离、w: 宽度、h: 高度。
@@ -468,11 +511,6 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 }
 
 
-
-
-
-
-
 //----------------------
 
 /**
@@ -541,7 +579,7 @@ Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray, repick)
     }
 
     layerIDArray = layerIDArray.sort();
-    if(repick)
+    if (repick)
     {
         Kinase.prototype.layer.selctLayer_byID(layerIDArray[0]);
     }
@@ -549,13 +587,13 @@ Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray, repick)
     {
         var desc = new ActionDescriptor();
         var ref = new ActionReference();
-        ref.putIdentifier( charIDToTypeID('Lyr '), layerIDArray[i] );
-        desc.putReference( charIDToTypeID('null'), ref );
-        desc.putEnumerated( stringIDToTypeID('selectionModifier'),
+        ref.putIdentifier(charIDToTypeID('Lyr '), layerIDArray[i]);
+        desc.putReference(charIDToTypeID('null'), ref);
+        desc.putEnumerated(stringIDToTypeID('selectionModifier'),
             stringIDToTypeID('selectionModifierType'),
-            stringIDToTypeID('addToSelection') );
-        desc.putBoolean( charIDToTypeID('MkVs'), false );
-        executeAction( charIDToTypeID('slct'), desc, DialogModes.NO );
+            stringIDToTypeID('addToSelection'));
+        desc.putBoolean(charIDToTypeID('MkVs'), false);
+        executeAction(charIDToTypeID('slct'), desc, DialogModes.NO);
 
     }
 }
@@ -574,7 +612,7 @@ Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, r
         return "err";
     }
 
-    if(repick)
+    if (repick)
     {
         Kinase.prototype.layer.selctLayer_byItemIndex(itemIndexArray[0]);
     }
@@ -583,18 +621,16 @@ Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, r
     {
         var desc = new ActionDescriptor();
         var ref = new ActionReference();
-        ref.putIndex( charIDToTypeID('Lyr '), itemIndexArray[i] +Kinase.BKOffset());
-        desc.putReference( charIDToTypeID('null'), ref );
-        desc.putEnumerated( stringIDToTypeID('selectionModifier'),
+        ref.putIndex(charIDToTypeID('Lyr '), itemIndexArray[i] + Kinase.BKOffset());
+        desc.putReference(charIDToTypeID('null'), ref);
+        desc.putEnumerated(stringIDToTypeID('selectionModifier'),
             stringIDToTypeID('selectionModifierType'),
-            stringIDToTypeID('addToSelection') );
-        desc.putBoolean( charIDToTypeID('MkVs'), false );
-        executeAction( charIDToTypeID('slct'), desc, DialogModes.NO );
+            stringIDToTypeID('addToSelection'));
+        desc.putBoolean(charIDToTypeID('MkVs'), false);
+        executeAction(charIDToTypeID('slct'), desc, DialogModes.NO);
 
     }
 }
-
-
 
 
 /**

@@ -1,243 +1,202 @@
-//------
 {
-  "null": {
+  "keyOriginType": {
     "value": {
-      "form": "ReferenceFormType.PROPERTY",
-      "desiredClass": "property",
-      "property": "layerEffects"
-    },
-    "type": "DescValueType.REFERENCETYPE"
-  },
-  "to": {
-    "value": {
-      "scale": {
+      "0": {
         "value": {
-          "doubleType": "percentUnit",
-          "doubleValue": 100
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "dropShadowMulti": {
-        "value": {
-          "0": {
-            "value": {
-              "enabled": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "present": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "showInDialog": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "mode": {
-                "value": {
-                  "enumerationType": "blendMode",
-                  "enumerationValue": "normal"
-                },
-                "type": "DescValueType.ENUMERATEDTYPE"
-              },
-              "color": {
-                "value": {
-                  "red": {
-                    "value": 255,
-                    "type": "DescValueType.DOUBLETYPE"
-                  },
-                  "grain": {
-                    "value": 0,
-                    "type": "DescValueType.DOUBLETYPE"
-                  },
-                  "blue": {
-                    "value": 0.023346,
-                    "type": "DescValueType.DOUBLETYPE"
-                  }
-                },
-                "type": "DescValueType.OBJECTTYPE",
-                "objectType": "RGBColor"
-              },
-              "opacity": {
-                "value": {
-                  "doubleType": "percentUnit",
-                  "doubleValue": 71
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "useGlobalAngle": {
-                "value": false,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "localLightingAngle": {
-                "value": {
-                  "doubleType": "angleUnit",
-                  "doubleValue": 90
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "distance": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 13
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "chokeMatte": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 1
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "blur": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 10
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "noise": {
-                "value": {
-                  "doubleType": "percentUnit",
-                  "doubleValue": 0
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "antiAlias": {
-                "value": false,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "transferSpec": {
-                "value": {
-                  "name": {
-                    "value": "线性",
-                    "type": "DescValueType.STRINGTYPE"
-                  }
-                },
-                "type": "DescValueType.OBJECTTYPE",
-                "objectType": "shapeCurveType"
-              },
-              "layerConceals": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
-              }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "dropShadow"
+          "keyOriginType": {
+            "value": 2,
+            "type": "DescValueType.INTEGERTYPE"
           },
-          "1": {
+          "keyOriginRRectRadii": {
             "value": {
-              "enabled": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
+              "unitValueQuadVersion": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
               },
-              "present": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "showInDialog": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "mode": {
-                "value": {
-                  "enumerationType": "blendMode",
-                  "enumerationValue": "normal"
-                },
-                "type": "DescValueType.ENUMERATEDTYPE"
-              },
-              "color": {
-                "value": {
-                  "red": {
-                    "value": 96.571985,
-                    "type": "DescValueType.DOUBLETYPE"
-                  },
-                  "grain": {
-                    "value": 255,
-                    "type": "DescValueType.DOUBLETYPE"
-                  },
-                  "blue": {
-                    "value": 54.000001,
-                    "type": "DescValueType.DOUBLETYPE"
-                  }
-                },
-                "type": "DescValueType.OBJECTTYPE",
-                "objectType": "RGBColor"
-              },
-              "opacity": {
-                "value": {
-                  "doubleType": "percentUnit",
-                  "doubleValue": 71
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "useGlobalAngle": {
-                "value": false,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "localLightingAngle": {
-                "value": {
-                  "doubleType": "angleUnit",
-                  "doubleValue": 90
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "distance": {
+              "topRight": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 28
+                  "doubleValue": 4
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
-              "chokeMatte": {
+              "topLeft": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 1
+                  "doubleValue": 4
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
-              "blur": {
+              "bottomLeft": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 18
+                  "doubleValue": 4
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
-              "noise": {
+              "bottomRight": {
                 "value": {
-                  "doubleType": "percentUnit",
-                  "doubleValue": 0
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 4
                 },
                 "type": "DescValueType.UNITDOUBLE"
-              },
-              "antiAlias": {
-                "value": false,
-                "type": "DescValueType.BOOLEANTYPE"
-              },
-              "transferSpec": {
-                "value": {
-                  "name": {
-                    "value": "线性",
-                    "type": "DescValueType.STRINGTYPE"
-                  }
-                },
-                "type": "DescValueType.OBJECTTYPE",
-                "objectType": "shapeCurveType"
-              },
-              "layerConceals": {
-                "value": true,
-                "type": "DescValueType.BOOLEANTYPE"
               }
             },
             "type": "DescValueType.OBJECTTYPE",
-            "objectType": "dropShadow"
+            "objectType": "radii"
+          },
+          "keyOriginShapeBBox": {
+            "value": {
+              "unitValueQuadVersion": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "top": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 594
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "left": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 224
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottom": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 726
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "right": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 416
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "unitRect"
+          },
+          "keyActionMode": {
+            "value": 0,
+            "type": "DescValueType.INTEGERTYPE"
           }
         },
-        "type": "DescValueType.LISTTYPE"
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "null"
       }
     },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "layerEffects"
+    "type": "DescValueType.LISTTYPE"
   }
+}
+
+{
+  "keyOriginType": {
+    "value": {
+      "0": {
+        "value": {
+          "keyOriginType": {
+            "value": 2,
+            "type": "DescValueType.INTEGERTYPE"
+          },
+          "keyOriginRRectRadii": {
+            "value": {
+              "unitValueQuadVersion": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "topRight": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 4
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "topLeft": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 4
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottomLeft": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 4
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottomRight": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 4
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "radii"
+          },
+          "keyOriginShapeBBox": {
+            "value": {
+              "unitValueQuadVersion": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "top": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 594
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "left": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 224
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "bottom": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 726
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "right": {
+                "value": {
+                  "doubleType": "pixelsUnit",
+                  "doubleValue": 416
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "unitRect"
+          },
+          "keyActionMode": {
+            "value": 0,
+            "type": "DescValueType.INTEGERTYPE"
+          }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "null"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  }
+}
+{
+  "topRight": 4,
+  "topLeft": 4,
+  "bottomLeft": null,
+  "bottomRight": 4,
+  "bottomLef": 4
 }
