@@ -1,202 +1,52 @@
 {
   "keyOriginType": {
+    "value": 1,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "keyOriginRRectRadii": {
     "value": {
-      "0": {
+      "unitValueQuadVersion": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "topRight": {
         "value": {
-          "keyOriginType": {
-            "value": 2,
-            "type": "DescValueType.INTEGERTYPE"
-          },
-          "keyOriginRRectRadii": {
-            "value": {
-              "unitValueQuadVersion": {
-                "value": 1,
-                "type": "DescValueType.INTEGERTYPE"
-              },
-              "topRight": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "topLeft": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottomLeft": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottomRight": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "radii"
-          },
-          "keyOriginShapeBBox": {
-            "value": {
-              "unitValueQuadVersion": {
-                "value": 1,
-                "type": "DescValueType.INTEGERTYPE"
-              },
-              "top": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 594
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "left": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 224
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottom": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 726
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "right": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 416
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "unitRect"
-          },
-          "keyActionMode": {
-            "value": 0,
-            "type": "DescValueType.INTEGERTYPE"
-          }
+          "doubleType": "pixelsUnit",
+          "doubleValue": 35.39
         },
-        "type": "DescValueType.OBJECTTYPE",
-        "objectType": "null"
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "topLeft": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 1000
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "bottomLeft": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 38.26
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "bottomRight": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 38.26
+        },
+        "type": "DescValueType.UNITDOUBLE"
       }
     },
-    "type": "DescValueType.LISTTYPE"
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "radii"
+  },
+  "keyActionRadiiSource": {
+    "value": 1,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "keyActionChangeAllCorners": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
   }
-}
-
-{
-  "keyOriginType": {
-    "value": {
-      "0": {
-        "value": {
-          "keyOriginType": {
-            "value": 2,
-            "type": "DescValueType.INTEGERTYPE"
-          },
-          "keyOriginRRectRadii": {
-            "value": {
-              "unitValueQuadVersion": {
-                "value": 1,
-                "type": "DescValueType.INTEGERTYPE"
-              },
-              "topRight": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "topLeft": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottomLeft": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottomRight": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 4
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "radii"
-          },
-          "keyOriginShapeBBox": {
-            "value": {
-              "unitValueQuadVersion": {
-                "value": 1,
-                "type": "DescValueType.INTEGERTYPE"
-              },
-              "top": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 594
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "left": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 224
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottom": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 726
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "right": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 416
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "unitRect"
-          },
-          "keyActionMode": {
-            "value": 0,
-            "type": "DescValueType.INTEGERTYPE"
-          }
-        },
-        "type": "DescValueType.OBJECTTYPE",
-        "objectType": "null"
-      }
-    },
-    "type": "DescValueType.LISTTYPE"
-  }
-}
-{
-  "topRight": 4,
-  "topLeft": 4,
-  "bottomLeft": null,
-  "bottomRight": 4,
-  "bottomLef": 4
 }

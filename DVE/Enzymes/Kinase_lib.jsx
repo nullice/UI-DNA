@@ -262,6 +262,14 @@ Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, tar
 
 }
 
+
+/**
+ * 返回指定图层的形状的圆角信息（Objcet），包括 topRight、topLeft、bottomLeft、bottomRight。
+ * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @param returnKeyOriginType - 在返回值中包含 keyOriginType
+ * @returns {{topRight: null, topLeft: null, bottomLeft: null, bottomRight: null}}
+ */
 Kinase.prototype.layer.getLayerRadian = function (targetReference, target, returnKeyOriginType)
 {
     var radianInfo = {topRight: null, topLeft: null, bottomLeft: null, bottomRight: null};
@@ -279,7 +287,8 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
 
     for (var i in keyOriginType.value)
     {
-        try{
+        try
+        {
             var _topRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.topRight.value.doubleValue;
             var _topLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.topLeft.value.doubleValue;
             var _bottomRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomRight.value.doubleValue;
@@ -289,7 +298,10 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
             radianInfo.topLeft = _topLeft;
             radianInfo.bottomRight = _bottomRight;
             radianInfo.bottomLeft = _bottomLeft;
-        } catch(e){};
+        } catch (e)
+        {
+        }
+        ;
 
         break;//暂定一次
     }
@@ -302,6 +314,74 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
     {
         return radianInfo;
     }
+
+}
+
+Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
+{
+    var oldRadianInfo = Kinase.prototype.layer.getLayerRadian(Kinase.REF_ActiveLayer, null);
+    if (radianInfo.topRight == undefined) radianInfo.topRight = oldRadianInfo.topRight;
+    if (radianInfo.topLeft == undefined) radianInfo.topLeft = oldRadianInfo.topLeft;
+    if (radianInfo.bottomRight == undefined) radianInfo.bottomRight = oldRadianInfo.bottomRight;
+    if (radianInfo.bottomLeft == undefined) radianInfo.bottomLeft = oldRadianInfo.bottomLeft;
+
+
+    var adOb = {
+        "keyOriginType": {
+            "value": 1,
+            "type": "DescValueType.INTEGERTYPE"
+        },
+        "keyOriginRRectRadii": {
+            "value": {
+                "unitValueQuadVersion": {
+                    "value": 1,
+                    "type": "DescValueType.INTEGERTYPE"
+                },
+                "topRight": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": radianInfo.topRight
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                },
+                "topLeft": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": radianInfo.topLeft
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                },
+                "bottomLeft": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": radianInfo.bottomLeft
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                },
+                "bottomRight": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue":radianInfo.bottomRight
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "radii"
+        },
+        "keyActionRadiiSource": {
+            "value": 1,
+            "type": "DescValueType.INTEGERTYPE"
+        },
+        "keyActionChangeAllCorners": {
+            "value": false,
+            "type": "DescValueType.BOOLEANTYPE"
+        }
+    }
+
+    var ad = mu.objectToActionDescriptor(adOb);
+    var idtoolModalStateChanged = stringIDToTypeID("changePathDetails");
+    executeAction(idtoolModalStateChanged, ad, DialogModes.NO);
 
 }
 
@@ -453,7 +533,7 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
     var bottom = sizeInfo.h + top;
 
 
-    log(json({left: left, top: top}))
+    // log(json({left: left, top: top}))
     var actionDescriptorOb = {
         "keyOriginType": {
             "value": 2,

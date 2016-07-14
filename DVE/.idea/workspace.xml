@@ -22,11 +22,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="test_layerszie.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="test_layerszie.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+            <state relative-caret-position="210">
+              <caret line="10" column="32" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -62,13 +62,18 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="141">
-              <caret line="264" column="37" selection-start-line="264" selection-start-column="23" selection-end-line="264" selection-end-column="37" />
+            <state relative-caret-position="352">
+              <caret line="323" column="26" selection-start-line="323" selection-start-column="19" selection-end-line="323" selection-end-column="26" />
               <folding>
-                <element signature="e#10726#14184#0" expanded="false" />
+                <element signature="e#8988#9071#0" expanded="false" />
+                <element signature="e#9104#10466#0" expanded="false" />
+                <element signature="e#9127#10373#0" expanded="false" />
+                <element signature="e#10500#10583#0" expanded="false" />
+                <element signature="e#10622#10709#0" expanded="false" />
+                <element signature="e#11427#13331#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -87,8 +92,8 @@
       <file leaf-file-name="tsconfig.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/tsconfig.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="9" column="30" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="30" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -161,9 +166,9 @@
         <option value="$PROJECT_DIR$/Enzymes/test/test_task_U2_GET-ID-INDEX-NAME.jsx" />
         <option value="C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/SeamlessTextures2/js/main.js" />
         <option value="C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/3Dmap/css/style.css" />
-        <option value="$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test/tsconfig.json" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
+        <option value="$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx" />
       </list>
     </option>
   </component>
@@ -323,12 +328,12 @@
       <workItem from="1467686172878" duration="1116000" />
       <workItem from="1467691741821" duration="50443000" />
       <workItem from="1467875405667" duration="5031000" />
-      <workItem from="1467898185834" duration="155992000" />
+      <workItem from="1467898185834" duration="157010000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="212730000" />
+    <option name="totallyTimeSpent" value="213748000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -340,7 +345,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19717261" sideWeight="0.37806875" order="0" side_tool="false" content_ui="combo" />
@@ -394,7 +399,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="10" />
+      <option name="time" value="13" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -732,14 +737,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/debug_json_out_1.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2241">
@@ -750,19 +747,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/tsconfig.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="30" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
-          <caret line="264" column="37" selection-start-line="264" selection-start-column="23" selection-end-line="264" selection-end-column="37" />
+        <state relative-caret-position="352">
+          <caret line="323" column="26" selection-start-line="323" selection-start-column="19" selection-end-line="323" selection-end-column="26" />
           <folding>
-            <element signature="e#10726#14184#0" expanded="false" />
+            <element signature="e#8988#9071#0" expanded="false" />
+            <element signature="e#9104#10466#0" expanded="false" />
+            <element signature="e#9127#10373#0" expanded="false" />
+            <element signature="e#10500#10583#0" expanded="false" />
+            <element signature="e#10622#10709#0" expanded="false" />
+            <element signature="e#11427#13331#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="32" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
