@@ -1,97 +1,114 @@
 {
-  "keyOriginType": {
+  "AGMStrokeStyleInfo": {
     "value": {
-      "0": {
+      "strokeStyleVersion": {
+        "value": 2,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "strokeEnabled": {
+        "value": true,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "fillEnabled": {
+        "value": true,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "strokeStyleLineWidth": {
         "value": {
-          "keyOriginType": {
-            "value": 2,
-            "type": "DescValueType.INTEGERTYPE"
-          },
-          "keyOriginRRectRadii": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 1
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "strokeStyleLineDashOffset": {
+        "value": {
+          "doubleType": "pointsUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "strokeStyleMiterLimit": {
+        "value": 100,
+        "type": "DescValueType.DOUBLETYPE"
+      },
+      "strokeStyleLineCapType": {
+        "value": {
+          "enumerationType": "strokeStyleLineCapType",
+          "enumerationValue": "strokeStyleButtCap"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
+      },
+      "strokeStyleLineJoinType": {
+        "value": {
+          "enumerationType": "strokeStyleLineJoinType",
+          "enumerationValue": "strokeStyleMiterJoin"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
+      },
+      "strokeStyleLineAlignment": {
+        "value": {
+          "enumerationType": "strokeStyleLineAlignment",
+          "enumerationValue": "strokeStyleAlignInside"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
+      },
+      "strokeStyleScaleLock": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "strokeStyleStrokeAdjust": {
+        "value": false,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "strokeStyleLineDashSet": {
+        "value": {
+        },
+        "type": "DescValueType.LISTTYPE"
+      },
+      "strokeStyleBlendMode": {
+        "value": {
+          "enumerationType": "blendMode",
+          "enumerationValue": "normal"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
+      },
+      "strokeStyleOpacity": {
+        "value": {
+          "doubleType": "percentUnit",
+          "doubleValue": 100
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "strokeStyleContent": {
+        "value": {
+          "color": {
             "value": {
-              "unitValueQuadVersion": {
-                "value": 1,
-                "type": "DescValueType.INTEGERTYPE"
+              "red": {
+                "value": 157.000005841255,
+                "type": "DescValueType.DOUBLETYPE"
               },
-              "topRight": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 32
-                },
-                "type": "DescValueType.UNITDOUBLE"
+              "grain": {
+                "value": 157.000005841255,
+                "type": "DescValueType.DOUBLETYPE"
               },
-              "topLeft": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 32
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottomLeft": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 32
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottomRight": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 32
-                },
-                "type": "DescValueType.UNITDOUBLE"
+              "blue": {
+                "value": 157.000005841255,
+                "type": "DescValueType.DOUBLETYPE"
               }
             },
             "type": "DescValueType.OBJECTTYPE",
-            "objectType": "radii"
-          },
-          "keyOriginShapeBBox": {
-            "value": {
-              "unitValueQuadVersion": {
-                "value": 1,
-                "type": "DescValueType.INTEGERTYPE"
-              },
-              "top": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 352
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "left": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 840
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "bottom": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 552
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              },
-              "right": {
-                "value": {
-                  "doubleType": "pixelsUnit",
-                  "doubleValue": 944
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "unitRect"
-          },
-          "keyActionMode": {
-            "value": 3,
-            "type": "DescValueType.INTEGERTYPE"
+            "objectType": "RGBColor"
           }
         },
         "type": "DescValueType.OBJECTTYPE",
-        "objectType": "null"
+        "objectType": "solidColorLayer"
+      },
+      "strokeStyleResolution": {
+        "value": 72,
+        "type": "DescValueType.DOUBLETYPE"
       }
     },
-    "type": "DescValueType.LISTTYPE"
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "strokeStyle"
   }
 }

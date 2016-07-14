@@ -26,15 +26,15 @@
     "type": "DescValueType.INTEGERTYPE"
   },
   "layerID": {
-    "value": 17,
+    "value": 13,
     "type": "DescValueType.INTEGERTYPE"
   },
   "itemIndex": {
-    "value": 5,
+    "value": 11,
     "type": "DescValueType.INTEGERTYPE"
   },
   "count": {
-    "value": 15,
+    "value": 12,
     "type": "DescValueType.INTEGERTYPE"
   },
   "preserveTransparency": {
@@ -245,15 +245,15 @@
           "color": {
             "value": {
               "red": {
-                "value": 0,
+                "value": 83.4049241244793,
                 "type": "DescValueType.DOUBLETYPE"
               },
               "grain": {
-                "value": 0,
+                "value": 83.4049241244793,
                 "type": "DescValueType.DOUBLETYPE"
               },
               "blue": {
-                "value": 0,
+                "value": 83.4049317240715,
                 "type": "DescValueType.DOUBLETYPE"
               }
             },
@@ -272,35 +272,35 @@
       "top": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 406
+          "doubleValue": 266
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "left": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 638
+          "doubleValue": 174
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "bottom": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 660
+          "doubleValue": 520
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "right": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 859
+          "doubleValue": 336
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "width": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 221
+          "doubleValue": 162
         },
         "type": "DescValueType.UNITDOUBLE"
       },
@@ -320,35 +320,35 @@
       "top": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 406
+          "doubleValue": 266
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "left": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 638
+          "doubleValue": 174
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "bottom": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 660
+          "doubleValue": 520
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "right": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 859
+          "doubleValue": 336
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "width": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 221
+          "doubleValue": 162
         },
         "type": "DescValueType.UNITDOUBLE"
       },
@@ -416,19 +416,19 @@
       "pathBounds": {
         "value": {
           "top": {
-            "value": 406.40625,
+            "value": 266,
             "type": "DescValueType.DOUBLETYPE"
           },
           "left": {
-            "value": 638,
+            "value": 174,
             "type": "DescValueType.DOUBLETYPE"
           },
           "bottom": {
-            "value": 660,
+            "value": 520,
             "type": "DescValueType.DOUBLETYPE"
           },
           "right": {
-            "value": 858.40625,
+            "value": 336,
             "type": "DescValueType.DOUBLETYPE"
           }
         },
@@ -466,7 +466,7 @@
       "strokeStyleLineWidth": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 27.51
+          "doubleValue": 14.69
         },
         "type": "DescValueType.UNITDOUBLE"
       },
@@ -484,7 +484,7 @@
       "strokeStyleLineCapType": {
         "value": {
           "enumerationType": "strokeStyleLineCapType",
-          "enumerationValue": "strokeStyleButtCap"
+          "enumerationValue": "strokeStyleRoundCap"
         },
         "type": "DescValueType.ENUMERATEDTYPE"
       },
@@ -512,6 +512,34 @@
       },
       "strokeStyleLineDashSet": {
         "value": {
+          "0": {
+            "value": {
+              "doubleType": "noneUnit",
+              "doubleValue": 0
+            },
+            "type": "DescValueType.UNITDOUBLE"
+          },
+          "1": {
+            "value": {
+              "doubleType": "noneUnit",
+              "doubleValue": 2
+            },
+            "type": "DescValueType.UNITDOUBLE"
+          },
+          "2": {
+            "value": {
+              "doubleType": "noneUnit",
+              "doubleValue": 3
+            },
+            "type": "DescValueType.UNITDOUBLE"
+          },
+          "3": {
+            "value": {
+              "doubleType": "noneUnit",
+              "doubleValue": 4
+            },
+            "type": "DescValueType.UNITDOUBLE"
+          }
         },
         "type": "DescValueType.LISTTYPE"
       },
@@ -534,15 +562,15 @@
           "color": {
             "value": {
               "red": {
-                "value": 157.000005841255,
+                "value": 156.992223858833,
                 "type": "DescValueType.DOUBLETYPE"
               },
               "grain": {
-                "value": 157.000005841255,
+                "value": 5.54085602983832,
                 "type": "DescValueType.DOUBLETYPE"
               },
               "blue": {
-                "value": 157.000005841255,
+                "value": 26.9377425312996,
                 "type": "DescValueType.DOUBLETYPE"
               }
             },
@@ -585,7 +613,7 @@
               "topLeft": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 30
+                  "doubleValue": 20
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
@@ -616,38 +644,34 @@
               "top": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 146
+                  "doubleValue": 266
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
               "left": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 134
+                  "doubleValue": 174
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
               "bottom": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 458
+                  "doubleValue": 520
                 },
                 "type": "DescValueType.UNITDOUBLE"
               },
               "right": {
                 "value": {
                   "doubleType": "pixelsUnit",
-                  "doubleValue": 232
+                  "doubleValue": 336
                 },
                 "type": "DescValueType.UNITDOUBLE"
               }
             },
             "type": "DescValueType.OBJECTTYPE",
             "objectType": "unitRect"
-          },
-          "keyShapeInvalidated": {
-            "value": true,
-            "type": "DescValueType.BOOLEANTYPE"
           },
           "keyActionMode": {
             "value": 0,

@@ -266,27 +266,94 @@ Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID("AGMStrokeStyleInfo"));
-    targetReference(ref, target);
-
+    targetReference(ref, target, "contentLayer");
     var layerDesc = executeActionGet(ref);
     return mu.actionDescriptorToObject(layerDesc);
-
 }
 
+Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
+{
+    var ref = new ActionReference();
+    ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID(xxx));
+    targetReference(ref, target, "contentLayer");
+    var layerDesc = executeActionGet(ref);
+    return mu.actionDescriptorToObject(layerDesc);
+}
 
 Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
 {
-    var radianInfo = {
+    var strokeStyle = {
         strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
         fillColor: {r: null, g: null, b: null}, /*填充颜色*/
         lineWidth: null, /*边线宽度*/
         dashSet: null, /*虚线设置*/
-        ineAlignment: null, /*描边选项-对齐*/
+        lineAlignment: null, /*描边选项-对齐*/
         lineCapType: null, /*描边选项-端点*/
         lineJoinType: null, /*描边选项-角点*/
     };
+    var AGMStrokeStyleInfo_raw = Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet(targetReference, target);
+    var adjustment_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "adjustment")
 
 
+    if (isEmptyObject(AGMStrokeStyleInfo_raw) || AGMStrokeStyleInfo_raw.AGMStrokeStyleInfo == undefined)
+    {
+        strokeStyle.err = "err:not shape layer."
+        return strokeStyle;
+    }
+    else
+    {
+        var AGMStrokeStyleInfo = AGMStrokeStyleInfo_raw.AGMStrokeStyleInfo;
+    }
+    try
+    {
+        strokeStyle.strokeColor.r = AGMStrokeStyleInfo.value.strokeStyleContent.value.color.value.red.value;
+        strokeStyle.strokeColor.g = AGMStrokeStyleInfo.value.strokeStyleContent.value.color.value.grain.value;
+        strokeStyle.strokeColor.b = AGMStrokeStyleInfo.value.strokeStyleContent.value.color.value.blue.value;
+    } catch (e)
+    {
+        log(e);
+    }
+    try
+    {
+        strokeStyle.fillColor.r = adjustment_raw.adjustment.value[0].value.color.value.red.value;
+        strokeStyle.fillColor.g = adjustment_raw.adjustment.value[0].value.color.value.grain.value;
+        strokeStyle.fillColor.b = adjustment_raw.adjustment.value[0].value.color.value.blue.value;
+    } catch (e)
+    {
+        log(e);
+    }
+    try
+    {
+        strokeStyle.lineWidth = AGMStrokeStyleInfo.value.strokeStyleLineWidth.value.doubleValue;
+    } catch (e)
+    {
+        log(e);
+    }
+    try
+    {
+        var set = [];
+        for (var i in AGMStrokeStyleInfo.value.strokeStyleLineDashSet.value)
+        {
+            set.push(strokeStyle.dashSet = AGMStrokeStyleInfo.value.strokeStyleLineDashSet.value[i].value.doubleValue);
+        }
+        if (set.length > 0) strokeStyle.dashSet = set;
+
+    } catch (e)
+    {
+        log(e);
+    }
+    try
+    {
+        strokeStyle.lineAlignment = AGMStrokeStyleInfo.value.strokeStyleLineAlignment.value.enumerationValue;
+        strokeStyle.lineCapType = AGMStrokeStyleInfo.value.strokeStyleLineCapType.value.enumerationValue;
+        strokeStyle.lineJoinType = AGMStrokeStyleInfo.value.strokeStyleLineJoinType.value.enumerationValue;
+
+    } catch (e)
+    {
+        log(e);
+    }
+
+    return strokeStyle;
 }
 
 
