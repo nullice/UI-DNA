@@ -585,6 +585,24 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
 }
 
 
+Muclease.prototype.executeActionObjcet = function (eventID, ob)
+{
+    var ad = Muclease.prototype.objectToActionDescriptor(ob);
+    // idsetd = charIDToTypeID("setd");
+    try
+    {
+        executeAction(eventID, ad, DialogModes.NO);
+        return true;
+    } catch (e)
+    {
+
+        log("executeActionObjcet:" + typeIDToCharID(eventID))
+        log(json(ob))
+        return false;
+    }
+}
+
+
 /**
  * actionDescriptorToJSON() 的短名别名
  * @param ob

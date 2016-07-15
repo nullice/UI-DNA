@@ -283,8 +283,8 @@ Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
 Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
 {
     var strokeStyle = {
-        strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
-        fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+        strokeColor: {r: null, g: null, b: null, enabled: null}, /*描边颜色*/
+        fillColor: {r: null, g: null, b: null, enabled: null}, /*填充颜色*/
         lineWidth: null, /*边线宽度*/
         dashSet: null, /*虚线设置*/
         lineAlignment: null, /*描边选项-对齐*/
@@ -306,15 +306,18 @@ Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, retur
     }
     try
     {
+        strokeStyle.strokeColor.enabled = AGMStrokeStyleInfo.value.strokeEnabled.value;
         strokeStyle.strokeColor.r = AGMStrokeStyleInfo.value.strokeStyleContent.value.color.value.red.value;
         strokeStyle.strokeColor.g = AGMStrokeStyleInfo.value.strokeStyleContent.value.color.value.grain.value;
         strokeStyle.strokeColor.b = AGMStrokeStyleInfo.value.strokeStyleContent.value.color.value.blue.value;
+
     } catch (e)
     {
         log(e);
     }
     try
     {
+        strokeStyle.fillColor.enabled = AGMStrokeStyleInfo.value.fillEnabled.value;
         strokeStyle.fillColor.r = adjustment_raw.adjustment.value[0].value.color.value.red.value;
         strokeStyle.fillColor.g = adjustment_raw.adjustment.value[0].value.color.value.grain.value;
         strokeStyle.fillColor.b = adjustment_raw.adjustment.value[0].value.color.value.blue.value;
@@ -356,9 +359,314 @@ Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, retur
     return strokeStyle;
 }
 
+Kinase.prototype.layer.setStrokeStyle_byActive = function (strokeStyle)
+{
+    var oldStrokeStyle = Kinase.prototype.layer.getStrokeStyle(Kinase.REF_ActiveLayer, null);
+
+    //颜色-------------------------------------------------------------------
+    if (strokeStyle.strokeColor.enabled == undefined) strokeStyle.strokeColor.enabled = oldStrokeStyle.strokeColor.enabled;
+    if (strokeStyle.strokeColor.r == undefined) strokeStyle.strokeColor.r = oldStrokeStyle.strokeColor.r;
+    if (strokeStyle.strokeColor.g == undefined) strokeStyle.strokeColor.g = oldStrokeStyle.strokeColor.g;
+    if (strokeStyle.strokeColor.b == undefined) strokeStyle.strokeColor.b = oldStrokeStyle.strokeColor.b;
+    if (strokeStyle.fillColor.enabled == undefined) strokeStyle.fillColor.enabled = oldStrokeStyle.fillColor.enabled;
+    if (strokeStyle.fillColor.r == undefined) strokeStyle.fillColor.r = oldStrokeStyle.fillColor.r;
+    if (strokeStyle.fillColor.g == undefined) strokeStyle.fillColor.g = oldStrokeStyle.fillColor.g;
+    if (strokeStyle.fillColor.b == undefined) strokeStyle.fillColor.b = oldStrokeStyle.fillColor.b;
+
+    var adOb_strokeColor = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "contentLayer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {
+                "strokeStyle": {
+                    "value": {
+                        "strokeStyleContent": {
+                            "value": {
+                                "color": {
+                                    "value": {
+                                        "red": {"value": strokeStyle.strokeColor.r, "type": "DescValueType.DOUBLETYPE"},
+                                        "grain": {
+                                            "value": strokeStyle.strokeColor.g,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "blue": {"value": strokeStyle.strokeColor.b, "type": "DescValueType.DOUBLETYPE"}
+                                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
+                                }
+                            }, "type": "DescValueType.OBJECTTYPE", "objectType": "solidColorLayer"
+                        },
+                        "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                        "strokeEnabled": {"value": strokeStyle.strokeColor.enabled, "type": "DescValueType.BOOLEANTYPE"}
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                }
+            }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
+        }
+    }
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb_strokeColor)
+
+    var adOb_fillColor = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "contentLayer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {
+                "fillContents": {
+                    "value": {
+                        "color": {
+                            "value": {
+                                "red": {"value": strokeStyle.fillColor.r, "type": "DescValueType.DOUBLETYPE"},
+                                "grain": {"value": strokeStyle.fillColor.g, "type": "DescValueType.DOUBLETYPE"},
+                                "blue": {"value": strokeStyle.fillColor.b, "type": "DescValueType.DOUBLETYPE"}
+                            }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
+                        }
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "solidColorLayer"
+                },
+                "strokeStyle": {
+                    "value": {
+                        "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                        "fillEnabled": {"value": strokeStyle.fillColor.enabled, "type": "DescValueType.BOOLEANTYPE"}
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                }
+            }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
+        }
+    }
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb_fillColor)
+
+    //描边宽度-------------------------------------------------------------------
+    if (strokeStyle.lineWidth != undefined)
+    {
+        var adOb_lineWidth = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "contentLayer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "strokeStyle": {
+                        "value": {
+                            "strokeStyleLineWidth": {
+                                "value": {
+                                    "doubleType": "pixelsUnit",
+                                    "doubleValue": strokeStyle.lineWidth
+                                }, "type": "DescValueType.UNITDOUBLE"
+                            },
+                            "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                            "strokeEnabled": {
+                                "value": strokeStyle.strokeColor.enabled,
+                                "type": "DescValueType.BOOLEANTYPE"
+                            }
+                        }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_lineWidth)
+    }
+    //虚线设置-------------------------------------------------------------------
+    if (strokeStyle.dashSet != undefined)
+    {
+        var adOb_dashSet = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "contentLayer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "strokeStyle": {
+                        "value": {
+                            "strokeStyleLineDashSet": {
+                                "value": {},
+                                "type": "DescValueType.LISTTYPE"
+                            },
+                            "strokeStyleVersion": {
+                                "value": 2,
+                                "type": "DescValueType.INTEGERTYPE"
+                            },
+                            "strokeEnabled": {
+                                "value": strokeStyle.strokeColor.enabled,
+                                "type": "DescValueType.BOOLEANTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "strokeStyle"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "shapeStyle"
+            }
+        }
+        for (var i = 0; i < strokeStyle.dashSet.length; i++)
+        {
+            adOb_dashSet.to.value.strokeStyle.value.strokeStyleLineDashSet.value[i] = {
+                "value": {
+                    "doubleType": "noneUnit",
+                    "doubleValue": strokeStyle.dashSet[i],
+                }, "type": "DescValueType.UNITDOUBLE"
+            }
+        }
+
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_dashSet)
+    }
+    //描边选项-对齐-------------------------------------------------------------------
+    if (strokeStyle.lineAlignment != undefined)
+    {
+        var adOb_lineAlignment = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "contentLayer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "strokeStyle": {
+                        "value": {
+                            "strokeStyleLineAlignment": {
+                                "value": {
+                                    "enumerationType": "strokeStyleLineAlignment",
+                                    "enumerationValue": strokeStyle.lineAlignment
+                                },
+                                "type": "DescValueType.ENUMERATEDTYPE"
+                            },
+                            "strokeStyleVersion": {
+                                "value": 2,
+                                "type": "DescValueType.INTEGERTYPE"
+                            },
+                            "strokeEnabled": {
+                                "value": strokeStyle.strokeColor.enabled,
+                                "type": "DescValueType.BOOLEANTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "strokeStyle"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "shapeStyle"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_lineAlignment)
+    }
+    //描边选项-端点-------------------------------------------------------------------
+    if (strokeStyle.lineCapType != undefined)
+    {
+        var adOb_lineCapType = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "contentLayer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "strokeStyle": {
+                        "value": {
+                            "strokeStyleLineCapType": {
+                                "value": {
+                                    "enumerationType": "strokeStyleLineCapType",
+                                    "enumerationValue": strokeStyle.lineCapType
+                                }, "type": "DescValueType.ENUMERATEDTYPE"
+                            },
+                            "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                            "strokeEnabled": {
+                                "value": strokeStyle.strokeColor.enabled,
+                                "type": "DescValueType.BOOLEANTYPE"
+                            }
+                        }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_lineCapType)
+    }
+    //描边选项-角点-------------------------------------------------------------------
+    if (strokeStyle.lineJoinType != undefined)
+    {
+        var adOb_lineJoinType = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "contentLayer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "strokeStyle": {
+                        "value": {
+                            "strokeStyleLineJoinType": {
+                                "value": {
+                                    "enumerationType": "strokeStyleLineJoinType",
+                                    "enumerationValue": strokeStyle.lineJoinType
+                                }, "type": "DescValueType.ENUMERATEDTYPE"
+                            },
+                            "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                            "strokeEnabled": {"value":strokeStyle.strokeColor.enabled, "type": "DescValueType.BOOLEANTYPE"}
+                        }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_lineJoinType)
+    }
+
+    // if (strokeStyle.dashSet == undefined) strokeStyle.dashSet = oldStrokeStyle.dashSet;
+    // if (strokeStyle.lineAlignment == undefined) strokeStyle.lineAlignment = oldStrokeStyle.lineAlignment;
+    // if (strokeStyle.lineCapType == undefined) strokeStyle.lineCapType = oldStrokeStyle.lineCapType;
+    // if (strokeStyle.lineJoinType == undefined) strokeStyle.lineJoinType = oldStrokeStyle.lineJoinType;
+
+
+}
+
 
 /**
- * 返回指定图层的形状的圆角信息（Objcet），包括 topRight、topLeft、bottomLeft、bottomRight。
+ * 返回指定图层的形状的圆角信息（Objcet），包括 topRight、topLeft、bottomLeft、bottomRight。fillColor
  * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @param returnKeyOriginType - 在返回值中包含 keyOriginType
