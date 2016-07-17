@@ -10,7 +10,6 @@
 
 $.evalFile(File($.fileName).path + "/Muclease_lib.jsx");
 
-
 try
 {
     var mu = new Muclease();
@@ -39,7 +38,6 @@ Kinase.prototype.layer = {};
  */
 Kinase.prototype.layer.getLayerInfoObject_byReference = function (ref)
 {
-
     var ad = executeActionGet(ref);
     var ob = mu.actionDescriptorToObject(ad);
     return ob;
@@ -279,6 +277,31 @@ Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
     var layerDesc = executeActionGet(ref);
     return mu.actionDescriptorToObject(layerDesc);
 }
+
+
+Kinase.prototype.layer.getAppearance = function (targetReference, target)
+{
+    var appearanceInfo = {
+        fillOpacity: null, /*不透明度*/
+        opacity: null, /*不透明*/
+        visible: null, /*可视*/
+        userMaskDensity: null, /*图层蒙版-浓度*/
+        userMaskFeather: null, /*图层蒙版-羽化*/
+        vectorMaskDensity: null, /*矢量蒙版-浓度*/
+        vectorMaskFeather: null, /*矢量蒙版-羽化*/
+    };
+
+    var fillOpacity_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "fillOpacity")
+    if (fillOpacity_raw.fillOpacity != undefined)
+    {
+        appearanceInfo.fillOpacity=fillOpacity_raw.fillOpacity.value;
+    }
+
+
+
+        log(json(fillOpacity_raw))
+}
+
 
 Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
 {
@@ -719,6 +742,10 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
 
 }
 
+/**
+ * 设置
+ * @param radianInfo
+ */
 Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
 {
     var oldRadianInfo = Kinase.prototype.layer.getLayerRadian(Kinase.REF_ActiveLayer, null);
@@ -816,7 +843,13 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
 }
 
 
-Kinase.prototype.layer.setLayerBounds = function (targetReference, target, boundsInfo)
+/**
+ * 改变图层边界，相当于自由形变，可位移图层、改变改变图层尺寸。
+ * @param boundsInfo {x:新的 X 坐标, y：新的 Y 坐标, w：新的宽度, h：新的高度，centerState：锚点位置（默认左上角，8为中心）}
+ * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ */
+Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, target)
 {
     // {x: null, y: null, w: null, h: null,centerStatea,}
     var oldradianInfo = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
@@ -838,7 +871,7 @@ Kinase.prototype.layer.setLayerBounds = function (targetReference, target, bound
         "freeTransformCenterState": {
             "value": {
                 "enumerationType": "quadCenterState",
-                "enumerationValue": "QCSAverage"
+                "enumerationValue": "QCSCorner0"
             },
             "type": "DescValueType.ENUMERATEDTYPE"
         },
@@ -880,15 +913,15 @@ Kinase.prototype.layer.setLayerBounds = function (targetReference, target, bound
     if (boundsInfo.centerState == undefined) boundsInfo.centerState = 0;
     var centerStatelist = ["QCSCorner0", "QCSSide0", "QCSCorner1", "QCSSide1", "QCSCorner2", "QCSSide2", "QCSCorner3", "QCSSide3", "QCSAverage"]
     var centerStateStr = centerStatelist[boundsInfo.centerState]
-
+    adOb.freeTransformCenterState.value.enumerationValue = centerStateStr;
 
     Kinase._boundsAnchor(oldradianInfo, boundsInfo.centerState);
     if (boundsInfo.x != undefined) adOb.offset.value.horizontal.value.doubleValue = boundsInfo.x - oldradianInfo.x;
     if (boundsInfo.y != undefined) adOb.offset.value.vertical.value.doubleValue = boundsInfo.y - oldradianInfo.y;
     if (boundsInfo.h != undefined)
     {
-        var offset = boundsInfo.h / oldradianInfo.h * 100;
-        adOb.offset.value.height = {
+        var offset = (boundsInfo.h / oldradianInfo.h) * 100;
+        adOb.height = {
             "value": {
                 "doubleType": "percentUnit",
                 "doubleValue": offset
@@ -898,8 +931,8 @@ Kinase.prototype.layer.setLayerBounds = function (targetReference, target, bound
     }
     if (boundsInfo.w != undefined)
     {
-        var offset = boundsInfo.w / oldradianInfo.w * 100;
-        adOb.offset.value.width = {
+        var offset = (boundsInfo.w / oldradianInfo.w) * 100;
+        adOb.width = {
             "value": {
                 "doubleType": "percentUnit",
                 "doubleValue": offset
@@ -909,6 +942,8 @@ Kinase.prototype.layer.setLayerBounds = function (targetReference, target, bound
     }
 
 
+    // log(json(adOb))
+    mu.executeActionObjcet(charIDToTypeID("Trnf"), adOb);
 }
 
 
@@ -939,6 +974,14 @@ Kinase._xywh2rltb = function (boundsInfo)
     return newBoundsInfo;
 }
 
+
+/**
+ * 计算锚点位置
+ * @param boundsInfo - {x: null, y: null, w: null, h: null}
+ * @param centerStatea - 锚点
+ * @returns {*}
+ * @private
+ */
 Kinase._boundsAnchor = function (boundsInfo, centerStatea)
 {
     // {x: null, y: null, w: null, h: null,centerStatea,}
@@ -996,12 +1039,16 @@ Kinase._boundsAnchor = function (boundsInfo, centerStatea)
         boundsInfo.y = boundsInfo.y + (boundsInfo.h / 2);
     }
 
-
+    // log("aaa:" + json(boundsInfo))
     return boundsInfo;
-
 }
 
-
+/**
+ * 移动图层位置，使用的是偏移值
+ * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @param offsets - 偏移值对象 {x,y}
+ */
 Kinase.prototype.layer.moveLayerXY = function (targetReference, target, offsets)
 {
 

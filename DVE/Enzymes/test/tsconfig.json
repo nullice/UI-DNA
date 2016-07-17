@@ -239,3 +239,69 @@
     "type": "DescValueType.ENUMERATEDTYPE"
   }
 }
+
+
+
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {
+        }
+      },
+      "form": "ReferenceFormType.ENUMERATED",
+      "desiredClass": "layer",
+      "enumeratedType": "ordinal",
+      "enumeratedValue": "targetEnum"
+    },
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "freeTransformCenterState": {
+    "value": {
+      "enumerationType": "quadCenterState",
+      "enumerationValue": "QCSCorner0"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "offset": {
+    "value": {
+      "horizontal": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 0
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "offset"
+  },
+  "width": {
+    "value": {
+      "doubleType": "percentUnit",
+      "doubleValue": 42.138365
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "height": {
+    "value": {
+      "doubleType": "percentUnit",
+      "doubleValue": 35.714286
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "interfaceIconFrameDimmed": {
+    "value": {
+      "enumerationType": "interpolationType",
+      "enumerationValue": "bicubic"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  }
+}
