@@ -647,7 +647,10 @@ Kinase.prototype.layer.setStrokeStyle_byActive = function (strokeStyle)
                                 }, "type": "DescValueType.ENUMERATEDTYPE"
                             },
                             "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
-                            "strokeEnabled": {"value":strokeStyle.strokeColor.enabled, "type": "DescValueType.BOOLEANTYPE"}
+                            "strokeEnabled": {
+                                "value": strokeStyle.strokeColor.enabled,
+                                "type": "DescValueType.BOOLEANTYPE"
+                            }
                         }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
                     }
                 }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
@@ -655,13 +658,10 @@ Kinase.prototype.layer.setStrokeStyle_byActive = function (strokeStyle)
         }
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb_lineJoinType)
     }
-
     // if (strokeStyle.dashSet == undefined) strokeStyle.dashSet = oldStrokeStyle.dashSet;
     // if (strokeStyle.lineAlignment == undefined) strokeStyle.lineAlignment = oldStrokeStyle.lineAlignment;
     // if (strokeStyle.lineCapType == undefined) strokeStyle.lineCapType = oldStrokeStyle.lineCapType;
     // if (strokeStyle.lineJoinType == undefined) strokeStyle.lineJoinType = oldStrokeStyle.lineJoinType;
-
-
 }
 
 
@@ -785,6 +785,235 @@ Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
     var idtoolModalStateChanged = stringIDToTypeID("changePathDetails");
     executeAction(idtoolModalStateChanged, ad, DialogModes.NO);
 
+}
+
+
+Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getType)
+{
+    var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}
+    var classStr = getType || "boundsNoEffects";//"bounds"、"boundsNoMask"
+    var boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, classStr);
+
+
+    if (isEmptyObject(boundsInfo_raw) || boundsInfo_raw[classStr] == undefined)
+    {
+        boundsInfo.err = "err:not shape layer."
+        return boundsInfo;
+    }
+    else
+    {
+        var boundsInfo_raw = boundsInfo_raw[classStr];
+    }
+
+    boundsInfo.x = boundsInfo_raw.value.left.value.doubleValue
+    boundsInfo.y = boundsInfo_raw.value.top.value.doubleValue
+    boundsInfo.w = boundsInfo_raw.value.width.value.doubleValue
+    boundsInfo.h = boundsInfo_raw.value.height.value.doubleValue
+    boundsInfo.right = boundsInfo_raw.value.right.value.doubleValue
+    boundsInfo.bottom = boundsInfo_raw.value.bottom.value.doubleValue
+
+    return boundsInfo;
+}
+
+
+Kinase.prototype.layer.setLayerBounds = function (targetReference, target, boundsInfo)
+{
+    // {x: null, y: null, w: null, h: null,centerStatea,}
+    var oldradianInfo = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
+
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "layer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "freeTransformCenterState": {
+            "value": {
+                "enumerationType": "quadCenterState",
+                "enumerationValue": "QCSAverage"
+            },
+            "type": "DescValueType.ENUMERATEDTYPE"
+        },
+        "offset": {
+            "value": {
+                "horizontal": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": 0
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                },
+                "vertical": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": 0
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "offset"
+        },
+        "interfaceIconFrameDimmed": {
+            "value": {
+                "enumerationType": "interpolationType",
+                "enumerationValue": "bicubic"
+            },
+            "type": "DescValueType.ENUMERATEDTYPE"
+        }
+    }
+
+    //描点位置
+    // ----------------------------------------------------------
+    // | (0):QCSCorner0   | (1):QCSSide0   |  (2):QCSCorner1    |
+    // | (7):QCSSide3     | (8):QCSAverage |  (3):QCSSide1      |
+    // | (6):QCSCorner3   | (5):QCSSide2   |  (4):QCSCorner2    |
+    // ----------------------------------------------------------
+    if (boundsInfo.centerState == undefined) boundsInfo.centerState = 0;
+    var centerStatelist = ["QCSCorner0", "QCSSide0", "QCSCorner1", "QCSSide1", "QCSCorner2", "QCSSide2", "QCSCorner3", "QCSSide3", "QCSAverage"]
+    var centerStateStr = centerStatelist[boundsInfo.centerState]
+
+
+    Kinase._boundsAnchor(oldradianInfo, boundsInfo.centerState);
+    if (boundsInfo.x != undefined) adOb.offset.value.horizontal.value.doubleValue = boundsInfo.x - oldradianInfo.x;
+    if (boundsInfo.y != undefined) adOb.offset.value.vertical.value.doubleValue = boundsInfo.y - oldradianInfo.y;
+    if (boundsInfo.h != undefined)
+    {
+        var offset = boundsInfo.h / oldradianInfo.h * 100;
+        adOb.offset.value.height = {
+            "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": offset
+            },
+            "type": "DescValueType.UNITDOUBLE"
+        }
+    }
+    if (boundsInfo.w != undefined)
+    {
+        var offset = boundsInfo.w / oldradianInfo.w * 100;
+        adOb.offset.value.width = {
+            "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": offset
+            },
+            "type": "DescValueType.UNITDOUBLE"
+        }
+    }
+
+
+}
+
+
+Kinase._rltb2xywh = function (boundsInfo)
+{
+// {x: null, y: null, w: null, h: null,centerStatea,}
+    var newBoundsInfo = {x: null, y: null, w: null, h: null};
+
+    newBoundsInfo.x = boundsInfo.left;
+    newBoundsInfo.y = boundsInfo.top;
+    newBoundsInfo.h = boundsInfo.bottom - boundsInfo.top;
+    newBoundsInfo.w = boundsInfo.right - boundsInfo.left;
+
+    return newBoundsInfo;
+}
+
+
+Kinase._xywh2rltb = function (boundsInfo)
+{
+// {x: null, y: null, w: null, h: null,centerStatea,}
+    var newBoundsInfo = {left: null, right: null, top: null, bottom: null};
+
+    newBoundsInfo.left = boundsInfo.x;
+    newBoundsInfo.top = boundsInfo.y;
+    newBoundsInfo.right = boundsInfo.x + boundsInfo.w;
+    newBoundsInfo.bottom = boundsInfo.y + boundsInfo.h;
+
+    return newBoundsInfo;
+}
+
+Kinase._boundsAnchor = function (boundsInfo, centerStatea)
+{
+    // {x: null, y: null, w: null, h: null,centerStatea,}
+    //描点位置
+    // ----------------------------------------------------------
+    // | (0):QCSCorner0   | (1):QCSSide0   |  (2):QCSCorner1    |
+    // | (7):QCSSide3     | (8):QCSAverage |  (3):QCSSide1      |
+    // | (6):QCSCorner3   | (5):QCSSide2   |  (4):QCSCorner2    |
+    // ----------------------------------------------------------
+
+
+    if (centerStatea == 0)
+    {
+        boundsInfo.x = boundsInfo.x;
+        boundsInfo.y = boundsInfo.y;
+    }
+    else if (centerStatea == 1)
+    {
+        boundsInfo.x = boundsInfo.x + (boundsInfo.w / 2);
+        boundsInfo.y = boundsInfo.y
+    }
+    else if (centerStatea == 2)
+    {
+        boundsInfo.x = boundsInfo.x + boundsInfo.w;
+        boundsInfo.y = boundsInfo.y
+    }
+    else if (centerStatea == 3)
+    {
+        boundsInfo.x = boundsInfo.x + boundsInfo.w;
+        boundsInfo.y = boundsInfo.y + (boundsInfo.h / 2);
+    }
+    else if (centerStatea == 4)
+    {
+        boundsInfo.x = boundsInfo.x + boundsInfo.w;
+        boundsInfo.y = boundsInfo.y + boundsInfo.h;
+    }
+    else if (centerStatea == 5)
+    {
+        boundsInfo.x = boundsInfo.x + (boundsInfo.w / 2);
+        boundsInfo.y = boundsInfo.y + boundsInfo.h;
+    }
+    else if (centerStatea == 6)
+    {
+        boundsInfo.x = boundsInfo.x;
+        boundsInfo.y = boundsInfo.y + boundsInfo.h;
+    }
+    else if (centerStatea == 7)
+    {
+        boundsInfo.x = boundsInfo.x;
+        boundsInfo.y = boundsInfo.y + (boundsInfo.h / 2);
+    }
+    else if (centerStatea == 8)
+    {
+        boundsInfo.x = boundsInfo.x + (boundsInfo.w / 2);
+        boundsInfo.y = boundsInfo.y + (boundsInfo.h / 2);
+    }
+
+
+    return boundsInfo;
+
+}
+
+
+Kinase.prototype.layer.moveLayerXY = function (targetReference, target, offsets)
+{
+
+    var desc = new ActionDescriptor();
+    var ref = new ActionReference();
+    targetReference(ref, target);
+    desc.putReference(charIDToTypeID("null"), ref);
+    var pdesc = new ActionDescriptor();
+    pdesc.putUnitDouble(charIDToTypeID('Hrzn'), charIDToTypeID('#Pxl'), offsets.x);
+    pdesc.putUnitDouble(charIDToTypeID('Vrtc'), charIDToTypeID('#Pxl'), offsets.y);
+    desc.putObject(charIDToTypeID('T   '), charIDToTypeID('Ofst'), pdesc);
+    executeAction(charIDToTypeID('move'), desc, DialogModes.NO);
 }
 
 

@@ -4,7 +4,7 @@
 $.evalFile(File($.fileName).path + "/test.jsx")
 
 
-var arr = ki.layer.getStrokeStyle(Kinase.REF_ActiveLayer,null)
+var arr = ki.layer.getLayerBounds(Kinase.REF_ActiveLayer,null)
 
 log(json(arr))
 

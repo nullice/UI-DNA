@@ -6,38 +6,119 @@
         }
       },
       "form": "ReferenceFormType.ENUMERATED",
-      "desiredClass": "contentLayer",
+      "desiredClass": "layer",
       "enumeratedType": "ordinal",
       "enumeratedValue": "targetEnum"
     },
     "type": "DescValueType.REFERENCETYPE"
   },
-  "to": {
+  "freeTransformCenterState": {
     "value": {
-      "strokeStyle": {
+      "enumerationType": "quadCenterState",
+      "enumerationValue": "QCSAverage"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "offset": {
+    "value": {
+      "horizontal": {
         "value": {
-          "strokeStyleLineDashSet": {
-            "value": {
-            },
-            "type": "DescValueType.LISTTYPE"
-          },
-          "strokeStyleVersion": {
-            "value": 2,
-            "type": "DescValueType.INTEGERTYPE"
-          },
-          "strokeEnabled": {
-            "value": true,
-            "type": "DescValueType.BOOLEANTYPE"
-          }
+          "doubleType": "pixelsUnit",
+          "doubleValue": 222
         },
-        "type": "DescValueType.OBJECTTYPE",
-        "objectType": "strokeStyle"
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": -95
+        },
+        "type": "DescValueType.UNITDOUBLE"
       }
     },
     "type": "DescValueType.OBJECTTYPE",
-    "objectType": "shapeStyle"
+    "objectType": "offset"
+  },
+  "interfaceIconFrameDimmed": {
+    "value": {
+      "enumerationType": "interpolationType",
+      "enumerationValue": "bicubic"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
   }
 }
+
+
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {
+        }
+      },
+      "form": "ReferenceFormType.ENUMERATED",
+      "desiredClass": "layer",
+      "enumeratedType": "ordinal",
+      "enumeratedValue": "targetEnum"
+    },
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "freeTransformCenterState": {
+    "value": {
+      "enumerationType": "quadCenterState",
+      "enumerationValue": "QCSIndependent"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "position": {
+    "value": {
+      "horizontal": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 877.231721
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 314.919355
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "paint"
+  },
+  "offset": {
+    "value": {
+      "horizontal": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": -44
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": -10
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "offset"
+  },
+  "interfaceIconFrameDimmed": {
+    "value": {
+      "enumerationType": "interpolationType",
+      "enumerationValue": "bicubic"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  }
+}
+
 
 
 
@@ -49,42 +130,112 @@
         }
       },
       "form": "ReferenceFormType.ENUMERATED",
-      "desiredClass": "contentLayer",
+      "desiredClass": "layer",
       "enumeratedType": "ordinal",
       "enumeratedValue": "targetEnum"
     },
     "type": "DescValueType.REFERENCETYPE"
   },
-  "to": {
+  "freeTransformCenterState": {
     "value": {
-      "strokeStyle": {
+      "enumerationType": "quadCenterState",
+      "enumerationValue": "QCSCorner0"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "offset": {
+    "value": {
+      "horizontal": {
         "value": {
-          "strokeStyleLineDashSet": {
-            "value": {
-              "0": {
-                "value": {
-                  "doubleType": "noneUnit",
-                  "doubleValue": 0
-                },
-                "type": "DescValueType.UNITDOUBLE"
-              }
-            }
-          },
-          "type": "DescValueType.LISTTYPE"
+          "doubleType": "pixelsUnit",
+          "doubleValue": 39
         },
-        "strokeStyleVersion": {
-          "value": 2,
-          "type": "DescValueType.INTEGERTYPE"
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": -40
         },
-        "strokeEnabled": {
-          "value": true,
-          "type": "DescValueType.BOOLEANTYPE"
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "offset"
+  },
+  "interfaceIconFrameDimmed": {
+    "value": {
+      "enumerationType": "interpolationType",
+      "enumerationValue": "bicubic"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  }
+}
+
+
+
+
+
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {
         }
       },
-      "type": "DescValueType.OBJECTTYPE",
-      "objectType": "strokeStyle"
-    }
+      "form": "ReferenceFormType.ENUMERATED",
+      "desiredClass": "layer",
+      "enumeratedType": "ordinal",
+      "enumeratedValue": "targetEnum"
+    },
+    "type": "DescValueType.REFERENCETYPE"
   },
-  "type": "DescValueType.OBJECTTYPE",
-  "objectType": "shapeStyle"
+  "freeTransformCenterState": {
+    "value": {
+      "enumerationType": "quadCenterState",
+      "enumerationValue": "QCSCorner1"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  },
+  "offset": {
+    "value": {
+      "horizontal": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": -11
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "vertical": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 19
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "offset"
+  },
+  "width": {
+    "value": {
+      "doubleType": "percentUnit",
+      "doubleValue": 140.234375
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "height": {
+    "value": {
+      "doubleType": "percentUnit",
+      "doubleValue": 178.475336
+    },
+    "type": "DescValueType.UNITDOUBLE"
+  },
+  "interfaceIconFrameDimmed": {
+    "value": {
+      "enumerationType": "interpolationType",
+      "enumerationValue": "bicubic"
+    },
+    "type": "DescValueType.ENUMERATEDTYPE"
+  }
 }
