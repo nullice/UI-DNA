@@ -343,8 +343,6 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
 
     if (appearanceInfo.opacity == undefined)
     {
-    } else
-    {
         var adOb_opacity = {
             "null": {
                 "value": {
@@ -366,7 +364,10 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
                 }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
             }
         }
-        mu.executeActionObjcet( charIDToTypeID("setd"),adOb_opacity)
+        mu.executeActionObjcet( charIDToTypeID("setd"),adOb_opacity);
+
+
+
     }
 
 

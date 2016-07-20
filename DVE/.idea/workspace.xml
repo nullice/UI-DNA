@@ -52,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="368" column="25" selection-start-line="368" selection-start-column="25" selection-end-line="368" selection-end-column="25" />
+            <state relative-caret-position="145">
+              <caret line="339" column="45" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="45" />
               <folding>
                 <element signature="e#694#795#0" expanded="false" />
                 <element signature="e#931#1099#0" expanded="false" />
@@ -69,37 +69,39 @@
                 <element signature="e#3942#4456#0" expanded="false" />
                 <element signature="e#4565#5125#0" expanded="false" />
                 <element signature="e#6238#6488#0" expanded="false" />
-                <element signature="e#10547#13252#0" expanded="false" />
-                <element signature="e#13326#27488#0" expanded="false" />
-                <element signature="e#14387#16228#0" expanded="false" />
-                <element signature="e#16324#17931#0" expanded="false" />
-                <element signature="e#18157#19583#0" expanded="false" />
-                <element signature="e#19814#21292#0" expanded="false" />
-                <element signature="e#21906#23590#0" expanded="false" />
-                <element signature="e#21928#22354#0" expanded="false" />
-                <element signature="e#23836#25292#0" expanded="false" />
-                <element signature="e#25538#26997#0" expanded="false" />
-                <element signature="e#28066#29477#0" expanded="false" />
-                <element signature="e#29585#32005#0" expanded="false" />
-                <element signature="e#30088#30171#0" expanded="false" />
-                <element signature="e#30204#31567#0" expanded="false" />
-                <element signature="e#30227#31474#0" expanded="false" />
-                <element signature="e#31601#31684#0" expanded="false" />
-                <element signature="e#31723#31810#0" expanded="false" />
-                <element signature="e#37233#37573#0" expanded="false" />
-                <element signature="e#38163#39900#0" expanded="false" />
-                <element signature="e#38169#38222#0" expanded="false" />
-                <element signature="e#40296#40810#0" expanded="false" />
+                <element signature="e#9560#10351#0" expanded="false" />
+                <element signature="e#9582#9985#0" expanded="false" />
+                <element signature="e#10534#13239#0" expanded="false" />
+                <element signature="e#13313#27475#0" expanded="false" />
+                <element signature="e#14374#16215#0" expanded="false" />
+                <element signature="e#16311#17918#0" expanded="false" />
+                <element signature="e#18144#19570#0" expanded="false" />
+                <element signature="e#19801#21279#0" expanded="false" />
+                <element signature="e#21893#23577#0" expanded="false" />
+                <element signature="e#21915#22341#0" expanded="false" />
+                <element signature="e#23823#25279#0" expanded="false" />
+                <element signature="e#25525#26984#0" expanded="false" />
+                <element signature="e#28053#29464#0" expanded="false" />
+                <element signature="e#29572#31992#0" expanded="false" />
+                <element signature="e#30075#30158#0" expanded="false" />
+                <element signature="e#30191#31554#0" expanded="false" />
+                <element signature="e#30214#31461#0" expanded="false" />
+                <element signature="e#31588#31671#0" expanded="false" />
+                <element signature="e#31710#31797#0" expanded="false" />
+                <element signature="e#37220#37560#0" expanded="false" />
+                <element signature="e#38150#39887#0" expanded="false" />
+                <element signature="e#38156#38209#0" expanded="false" />
+                <element signature="e#40283#40797#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Muclease_lib.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Muclease_lib.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="188">
-              <caret line="587" column="63" selection-start-line="587" selection-start-column="63" selection-end-line="587" selection-end-column="63" />
+            <state relative-caret-position="104">
+              <caret line="588" column="27" selection-start-line="588" selection-start-column="27" selection-end-line="588" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -193,8 +195,8 @@
         <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
         <option value="$PROJECT_DIR$/Enzymes/test/tsconfig.json" />
         <option value="$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx" />
-        <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/Muclease_lib.jsx" />
+        <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
       </list>
     </option>
   </component>
@@ -207,8 +209,7 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
+    <option name="x" value="238" />
     <option name="width" value="1364" />
     <option name="height" value="726" />
   </component>
@@ -337,7 +338,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="application.passwordSafe" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
@@ -437,12 +438,12 @@
       <workItem from="1467898185834" duration="181111000" />
       <workItem from="1468589217809" duration="36287000" />
       <workItem from="1468762112270" duration="1434000" />
-      <workItem from="1468998017334" duration="4609000" />
+      <workItem from="1468998017334" duration="6228000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="280179000" />
+    <option name="totallyTimeSpent" value="281798000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -454,7 +455,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1" y="1" width="1364" height="726" extended-state="0" />
+    <frame x="238" y="0" width="1364" height="726" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19607843" sideWeight="0.3642496" order="0" side_tool="false" content_ui="combo" />
@@ -760,10 +761,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="104">
+          <caret line="588" column="27" selection-start-line="588" selection-start-column="27" selection-end-line="588" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="241">
-          <caret line="368" column="25" selection-start-line="368" selection-start-column="25" selection-end-line="368" selection-end-column="25" />
+        <state relative-caret-position="145">
+          <caret line="339" column="45" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="45" />
           <folding>
             <element signature="e#694#795#0" expanded="false" />
             <element signature="e#931#1099#0" expanded="false" />
@@ -776,36 +785,30 @@
             <element signature="e#3942#4456#0" expanded="false" />
             <element signature="e#4565#5125#0" expanded="false" />
             <element signature="e#6238#6488#0" expanded="false" />
-            <element signature="e#10547#13252#0" expanded="false" />
-            <element signature="e#13326#27488#0" expanded="false" />
-            <element signature="e#14387#16228#0" expanded="false" />
-            <element signature="e#16324#17931#0" expanded="false" />
-            <element signature="e#18157#19583#0" expanded="false" />
-            <element signature="e#19814#21292#0" expanded="false" />
-            <element signature="e#21906#23590#0" expanded="false" />
-            <element signature="e#21928#22354#0" expanded="false" />
-            <element signature="e#23836#25292#0" expanded="false" />
-            <element signature="e#25538#26997#0" expanded="false" />
-            <element signature="e#28066#29477#0" expanded="false" />
-            <element signature="e#29585#32005#0" expanded="false" />
-            <element signature="e#30088#30171#0" expanded="false" />
-            <element signature="e#30204#31567#0" expanded="false" />
-            <element signature="e#30227#31474#0" expanded="false" />
-            <element signature="e#31601#31684#0" expanded="false" />
-            <element signature="e#31723#31810#0" expanded="false" />
-            <element signature="e#37233#37573#0" expanded="false" />
-            <element signature="e#38163#39900#0" expanded="false" />
-            <element signature="e#38169#38222#0" expanded="false" />
-            <element signature="e#40296#40810#0" expanded="false" />
+            <element signature="e#9560#10351#0" expanded="false" />
+            <element signature="e#9582#9985#0" expanded="false" />
+            <element signature="e#10534#13239#0" expanded="false" />
+            <element signature="e#13313#27475#0" expanded="false" />
+            <element signature="e#14374#16215#0" expanded="false" />
+            <element signature="e#16311#17918#0" expanded="false" />
+            <element signature="e#18144#19570#0" expanded="false" />
+            <element signature="e#19801#21279#0" expanded="false" />
+            <element signature="e#21893#23577#0" expanded="false" />
+            <element signature="e#21915#22341#0" expanded="false" />
+            <element signature="e#23823#25279#0" expanded="false" />
+            <element signature="e#25525#26984#0" expanded="false" />
+            <element signature="e#28053#29464#0" expanded="false" />
+            <element signature="e#29572#31992#0" expanded="false" />
+            <element signature="e#30075#30158#0" expanded="false" />
+            <element signature="e#30191#31554#0" expanded="false" />
+            <element signature="e#30214#31461#0" expanded="false" />
+            <element signature="e#31588#31671#0" expanded="false" />
+            <element signature="e#31710#31797#0" expanded="false" />
+            <element signature="e#37220#37560#0" expanded="false" />
+            <element signature="e#38150#39887#0" expanded="false" />
+            <element signature="e#38156#38209#0" expanded="false" />
+            <element signature="e#40283#40797#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="188">
-          <caret line="587" column="63" selection-start-line="587" selection-start-column="63" selection-end-line="587" selection-end-column="63" />
-          <folding />
         </state>
       </provider>
     </entry>
