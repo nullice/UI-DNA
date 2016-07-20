@@ -4,9 +4,29 @@
 $.evalFile(File($.fileName).path + "/test.jsx")
 
 
+var adOb_opacity = {
+    "null": {
+        "value": {
+            "container": {
+                "container": {}
+            },
+            "form": "ReferenceFormType.ENUMERATED",
+            "desiredClass": "layer",
+            "enumeratedType": "ordinal",
+            "enumeratedValue": "targetEnum"
+        }, "type": "DescValueType.REFERENCETYPE"
+    },
+    "to": {
+        "value": {
+            "opacity": {
+                "value": {"doubleType": "percentUnit", "doubleValue": 47},
+                "type": "DescValueType.UNITDOUBLE"
+            }
+        }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
+    }
+}
 
-ki.layer.setLayerBounds({x:0,y:0})
-var arr = ki.layer.getLayerBounds(Kinase.REF_ActiveLayer,null)
 
-log(json(arr))
+mu.executeActionObjcet()
+// log(json(arr))
 

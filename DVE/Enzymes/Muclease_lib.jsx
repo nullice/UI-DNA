@@ -584,7 +584,12 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
     return ad;
 }
 
-
+/**
+ * 执行一个 ActionObjcet ，相当于把 ActionObjcet 转回 ActionDescriptor 并执行
+ * @param eventID
+ * @param ob
+ * @returns {boolean}
+ */
 Muclease.prototype.executeActionObjcet = function (eventID, ob)
 {
     var ad = Muclease.prototype.objectToActionDescriptor(ob);

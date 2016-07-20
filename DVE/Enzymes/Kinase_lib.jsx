@@ -216,9 +216,12 @@ Kinase.prototype.layer.getTargetLayersID = function ()
 }
 
 
+/**
+ * 返回包含全部图层的图层索引（ItemIndex）的数组
+ * @returns {Array}
+ */
 Kinase.prototype.layer.getAllLayersItemIndex = function ()
 {
-
     var doc = app.activeDocument.layers;
     var indexArray = [];
     _getLayers(doc, indexArray);
@@ -260,6 +263,13 @@ Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, tar
 
 }
 
+
+/**
+ * 返回指定图层的 AGMStrokeStyle 信息对象，其中包含图层中形状的描边信息。
+ * @param targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @returns {{}}
+ */
 Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
 {
     var ref = new ActionReference();
@@ -269,37 +279,98 @@ Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference
     return mu.actionDescriptorToObject(layerDesc);
 }
 
+
+/**
+ * 返回指定图层信息对象中指定的属性
+ * @param targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @param xxx - 属性名称
+ * @returns {{}}
+ */
 Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID(xxx));
-    targetReference(ref, target, "contentLayer");
+    targetReference(ref, target, "Lyr ");//"contentLayer"
     var layerDesc = executeActionGet(ref);
     return mu.actionDescriptorToObject(layerDesc);
 }
 
-
+/**
+ * 获取图层外观信息，以对象形式返回。包括不透明度、填充不透明度、可视性
+ * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @returns {{fillOpacity: null, opacity: null, visible: null}}
+ */
 Kinase.prototype.layer.getAppearance = function (targetReference, target)
 {
     var appearanceInfo = {
-        fillOpacity: null, /*不透明度*/
-        opacity: null, /*不透明*/
+        fillOpacity: null, /*填充不透明度 0-255*/
+        opacity: null, /*不透明 0-100*/
         visible: null, /*可视*/
-        userMaskDensity: null, /*图层蒙版-浓度*/
-        userMaskFeather: null, /*图层蒙版-羽化*/
-        vectorMaskDensity: null, /*矢量蒙版-浓度*/
-        vectorMaskFeather: null, /*矢量蒙版-羽化*/
+        // userMaskDensity: null, /*图层蒙版-浓度*/
+        // userMaskFeather: null, /*图层蒙版-羽化*/
+        // vectorMaskDensity: null, /*矢量蒙版-浓度*/
+        // vectorMaskFeather: null, /*矢量蒙版-羽化*/
     };
 
     var fillOpacity_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "fillOpacity")
     if (fillOpacity_raw.fillOpacity != undefined)
     {
-        appearanceInfo.fillOpacity=fillOpacity_raw.fillOpacity.value;
+        appearanceInfo.fillOpacity = fillOpacity_raw.fillOpacity.value;
+    }
+
+    var opacity_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "opacity")
+    if (opacity_raw.opacity != undefined)
+    {
+        appearanceInfo.opacity = opacity_raw.opacity.value;
+    }
+
+    var visible_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "visible")
+    if (visible_raw.visible != undefined)
+    {
+        appearanceInfo.visible = visible_raw.visible.value;
+    }
+
+    // log(json(fillOpacity_raw));
+    return appearanceInfo;
+}
+
+
+Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
+{
+    var oldAppearanceInfo = Kinase.prototype.layer.getAppearance( Kinase.REF_ActiveLayer, null);
+
+    if (appearanceInfo.opacity == undefined)
+    {
+    } else
+    {
+        var adOb_opacity = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "opacity": {
+                        "value": {"doubleType": "percentUnit", "doubleValue": appearanceInfo.opacity},
+                        "type": "DescValueType.UNITDOUBLE"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
+            }
+        }
+        mu.executeActionObjcet( charIDToTypeID("setd"),adOb_opacity)
     }
 
 
 
-        log(json(fillOpacity_raw))
 }
 
 
@@ -819,7 +890,7 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
 {
     var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}
     var classStr = getType || "boundsNoEffects";//"bounds"、"boundsNoMask"
-    var boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, classStr);
+    var boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
 
 
     if (isEmptyObject(boundsInfo_raw) || boundsInfo_raw[classStr] == undefined)
@@ -853,7 +924,6 @@ Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, t
 {
     // {x: null, y: null, w: null, h: null,centerStatea,}
     var oldradianInfo = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
-
 
     var adOb = {
         "null": {
@@ -903,6 +973,14 @@ Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, t
             "type": "DescValueType.ENUMERATEDTYPE"
         }
     }
+    var ref = new ActionReference();
+
+    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    targetReference(ref, target || null)
+    var refOb = mu.actionReferenceToObject(ref)
+    adOb.null.value = refOb;
+
+    log(json(adOb))
 
     //描点位置
     // ----------------------------------------------------------
@@ -1423,7 +1501,10 @@ Kinase.REF_LayerID = function (ref, layerID, classString)
 
 Kinase.REF_ItemIndex = function (ref, itemIndex, classString)
 {
+
     var desiredClass = classString || "Lyr ";
+    log(itemIndex)
+    log(desiredClass)
     ref.putIndex(charIDToTypeID(desiredClass), itemIndex);
 
 }
