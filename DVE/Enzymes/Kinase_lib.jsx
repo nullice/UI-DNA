@@ -339,7 +339,7 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
 
 Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
 {
-    var oldAppearanceInfo = Kinase.prototype.layer.getAppearance( Kinase.REF_ActiveLayer, null);
+    var oldAppearanceInfo = Kinase.prototype.layer.getAppearance(Kinase.REF_ActiveLayer, null);
 
     if (appearanceInfo.opacity == undefined)
     {
@@ -364,11 +364,38 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
                 }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
             }
         }
-        mu.executeActionObjcet( charIDToTypeID("setd"),adOb_opacity);
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_opacity);
 
 
 
     }
+
+
+    if (appearanceInfo.fillOpacity == undefined)
+    {
+        var adOb_fillOpacity = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "fillOpacity": {
+                        "value": {"doubleType": "percentUnit", "doubleValue": 0},
+                        "type": "DescValueType.UNITDOUBLE"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
+            }
+        }
+    }
+
 
 
 
@@ -1517,7 +1544,7 @@ Kinase.REF_ItemIndex = function (ref, itemIndex, classString)
  */
 Kinase.BKOffset = function ()
 {
-    backgroundIndexOffset = 0;
+    var backgroundIndexOffset = 0;
     try
     {
         if (app.activeDocument.backgroundLayer) backgroundIndexOffset = -1;
