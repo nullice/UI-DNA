@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BookmarkManager">
+    <bookmark url="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" line="416" mnemonic="9" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0f7900ed-0a4b-49a9-8d7c-5356735c16e3" name="Default" comment="" />
     <ignored path="DVE.iws" />
@@ -52,7 +55,52 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="debug.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="312">
+              <caret line="339" column="45" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="45" />
+              <folding>
+                <element signature="e#694#795#0" expanded="false" />
+                <element signature="e#931#1099#0" expanded="false" />
+                <element signature="e#1255#1440#0" expanded="false" />
+                <element signature="e#1557#2148#0" expanded="false" />
+                <element signature="e#2291#2644#0" expanded="false" />
+                <element signature="e#2784#3066#0" expanded="false" />
+                <element signature="e#3232#3441#0" expanded="false" />
+                <element signature="e#3605#3816#0" expanded="false" />
+                <element signature="e#3942#4456#0" expanded="false" />
+                <element signature="e#4565#5125#0" expanded="false" />
+                <element signature="e#6238#6488#0" expanded="false" />
+                <element signature="e#10537#10940#0" expanded="false" />
+                <element signature="e#11475#12110#0" expanded="false" />
+                <element signature="e#12592#15297#0" expanded="false" />
+                <element signature="e#15371#29533#0" expanded="false" />
+                <element signature="e#16432#18273#0" expanded="false" />
+                <element signature="e#18369#19976#0" expanded="false" />
+                <element signature="e#20202#21628#0" expanded="false" />
+                <element signature="e#21859#23337#0" expanded="false" />
+                <element signature="e#23951#25635#0" expanded="false" />
+                <element signature="e#23973#24399#0" expanded="false" />
+                <element signature="e#25881#27337#0" expanded="false" />
+                <element signature="e#27583#29042#0" expanded="false" />
+                <element signature="e#30111#31522#0" expanded="false" />
+                <element signature="e#31630#34050#0" expanded="false" />
+                <element signature="e#32133#32216#0" expanded="false" />
+                <element signature="e#32249#33612#0" expanded="false" />
+                <element signature="e#32272#33519#0" expanded="false" />
+                <element signature="e#33646#33729#0" expanded="false" />
+                <element signature="e#33768#33855#0" expanded="false" />
+                <element signature="e#39278#39618#0" expanded="false" />
+                <element signature="e#40208#41945#0" expanded="false" />
+                <element signature="e#40214#40267#0" expanded="false" />
+                <element signature="e#42341#42855#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="debug.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
@@ -144,10 +192,10 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="x" value="-185" />
+    <option name="y" value="324" />
+    <option name="width" value="1364" />
+    <option name="height" value="726" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -227,56 +275,7 @@
     </navigator>
     <panes>
       <pane id="ProjectPane">
-        <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Enzymes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DVE" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Enzymes" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
+        <subPane />
       </pane>
       <pane id="Scratches" />
       <pane id="Scope" />
@@ -385,12 +384,12 @@
       <workItem from="1468762112270" duration="1434000" />
       <workItem from="1468998017334" duration="11616000" />
       <workItem from="1469800217271" duration="597000" />
-      <workItem from="1469974374023" duration="1226000" />
+      <workItem from="1469974374023" duration="4936000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="289009000" />
+    <option name="totallyTimeSpent" value="292719000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -402,26 +401,26 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-185" y="324" width="1364" height="726" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1369863" sideWeight="0.7703142" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1369863" sideWeight="0.7703142" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33224222" sideWeight="0.51908803" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22767857" sideWeight="0.5319149" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19915701" sideWeight="0.74106175" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2850679" sideWeight="0.73187184" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2618658" sideWeight="0.48091197" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1369863" sideWeight="0.22968581" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2850679" sideWeight="0.26812816" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32666665" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
@@ -456,7 +455,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="32" />
+      <option name="time" value="33" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -686,50 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="852">
-          <caret line="1554" column="5" selection-start-line="1554" selection-start-column="5" selection-end-line="1554" selection-end-column="5" />
-          <folding>
-            <element signature="e#694#795#0" expanded="false" />
-            <element signature="e#931#1099#0" expanded="false" />
-            <element signature="e#1255#1440#0" expanded="false" />
-            <element signature="e#1557#2148#0" expanded="false" />
-            <element signature="e#2291#2644#0" expanded="false" />
-            <element signature="e#2784#3066#0" expanded="false" />
-            <element signature="e#3232#3441#0" expanded="false" />
-            <element signature="e#3605#3816#0" expanded="false" />
-            <element signature="e#3942#4456#0" expanded="false" />
-            <element signature="e#4565#5125#0" expanded="false" />
-            <element signature="e#6238#6488#0" expanded="false" />
-            <element signature="e#9559#10350#0" expanded="false" />
-            <element signature="e#9581#9984#0" expanded="false" />
-            <element signature="e#10540#10943#0" expanded="false" />
-            <element signature="e#11403#14108#0" expanded="false" />
-            <element signature="e#14182#28344#0" expanded="false" />
-            <element signature="e#15243#17084#0" expanded="false" />
-            <element signature="e#17180#18787#0" expanded="false" />
-            <element signature="e#19013#20439#0" expanded="false" />
-            <element signature="e#20670#22148#0" expanded="false" />
-            <element signature="e#22762#24446#0" expanded="false" />
-            <element signature="e#22784#23210#0" expanded="false" />
-            <element signature="e#24692#26148#0" expanded="false" />
-            <element signature="e#26394#27853#0" expanded="false" />
-            <element signature="e#28922#30333#0" expanded="false" />
-            <element signature="e#30441#32861#0" expanded="false" />
-            <element signature="e#30944#31027#0" expanded="false" />
-            <element signature="e#31060#32423#0" expanded="false" />
-            <element signature="e#31083#32330#0" expanded="false" />
-            <element signature="e#32457#32540#0" expanded="false" />
-            <element signature="e#32579#32666#0" expanded="false" />
-            <element signature="e#38089#38429#0" expanded="false" />
-            <element signature="e#39019#40756#0" expanded="false" />
-            <element signature="e#39025#39078#0" expanded="false" />
-            <element signature="e#41152#41666#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/CSS/Ex-morphogen/exmo_main.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="488">
@@ -759,6 +714,49 @@
         <state relative-caret-position="252">
           <caret line="12" column="10" selection-start-line="12" selection-start-column="3" selection-end-line="12" selection-end-column="10" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="312">
+          <caret line="339" column="45" selection-start-line="339" selection-start-column="23" selection-end-line="339" selection-end-column="45" />
+          <folding>
+            <element signature="e#694#795#0" expanded="false" />
+            <element signature="e#931#1099#0" expanded="false" />
+            <element signature="e#1255#1440#0" expanded="false" />
+            <element signature="e#1557#2148#0" expanded="false" />
+            <element signature="e#2291#2644#0" expanded="false" />
+            <element signature="e#2784#3066#0" expanded="false" />
+            <element signature="e#3232#3441#0" expanded="false" />
+            <element signature="e#3605#3816#0" expanded="false" />
+            <element signature="e#3942#4456#0" expanded="false" />
+            <element signature="e#4565#5125#0" expanded="false" />
+            <element signature="e#6238#6488#0" expanded="false" />
+            <element signature="e#10537#10940#0" expanded="false" />
+            <element signature="e#11475#12110#0" expanded="false" />
+            <element signature="e#12592#15297#0" expanded="false" />
+            <element signature="e#15371#29533#0" expanded="false" />
+            <element signature="e#16432#18273#0" expanded="false" />
+            <element signature="e#18369#19976#0" expanded="false" />
+            <element signature="e#20202#21628#0" expanded="false" />
+            <element signature="e#21859#23337#0" expanded="false" />
+            <element signature="e#23951#25635#0" expanded="false" />
+            <element signature="e#23973#24399#0" expanded="false" />
+            <element signature="e#25881#27337#0" expanded="false" />
+            <element signature="e#27583#29042#0" expanded="false" />
+            <element signature="e#30111#31522#0" expanded="false" />
+            <element signature="e#31630#34050#0" expanded="false" />
+            <element signature="e#32133#32216#0" expanded="false" />
+            <element signature="e#32249#33612#0" expanded="false" />
+            <element signature="e#32272#33519#0" expanded="false" />
+            <element signature="e#33646#33729#0" expanded="false" />
+            <element signature="e#33768#33855#0" expanded="false" />
+            <element signature="e#39278#39618#0" expanded="false" />
+            <element signature="e#40208#41945#0" expanded="false" />
+            <element signature="e#40214#40267#0" expanded="false" />
+            <element signature="e#42341#42855#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

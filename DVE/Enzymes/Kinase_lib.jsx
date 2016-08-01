@@ -341,7 +341,7 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
 {
     var oldAppearanceInfo = Kinase.prototype.layer.getAppearance(Kinase.REF_ActiveLayer, null);
 
-    if (appearanceInfo.opacity == undefined)
+    if (appearanceInfo.opacity != undefined)
     {
         var adOb_opacity = {
             "null": {
@@ -365,13 +365,10 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
             }
         }
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb_opacity);
-
-
-
     }
 
 
-    if (appearanceInfo.fillOpacity == undefined)
+    if (appearanceInfo.fillOpacity != undefined)
     {
         var adOb_fillOpacity = {
             "null": {
@@ -388,16 +385,44 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
             "to": {
                 "value": {
                     "fillOpacity": {
-                        "value": {"doubleType": "percentUnit", "doubleValue": 0},
+                        "value": {"doubleType": "percentUnit", "doubleValue": appearanceInfo.fillOpacity},
                         "type": "DescValueType.UNITDOUBLE"
                     }
                 }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
             }
         }
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_fillOpacity);
     }
 
 
-
+    if (appearanceInfo.visible != undefined)
+    {
+        var adOb_visible = {
+            "null": {
+                "value": {
+                    "0": {
+                        "value": {
+                            "container": {
+                                "container": {}
+                            },
+                            "form": "ReferenceFormType.ENUMERATED",
+                            "desiredClass": "layer",
+                            "enumeratedType": "ordinal",
+                            "enumeratedValue": "targetEnum"
+                        }, "type": "DescValueType.REFERENCETYPE"
+                    }
+                }, "type": "DescValueType.LISTTYPE"
+            }
+        };
+        if ((appearanceInfo.visible == true) && (oldAppearanceInfo.visible == false))
+        {
+            mu.executeActionObjcet(charIDToTypeID("Shw "), adOb_fillOpacity);
+        }
+        else if ((appearanceInfo.visible == false) && (oldAppearanceInfo.visible == true))
+        {
+            mu.executeActionObjcet(charIDToTypeID("Hd  "), adOb_fillOpacity);
+        }
+    }
 
 }
 
