@@ -429,6 +429,93 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
 
 }
 
+Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
+{
+    var textInfo = {
+        text: null, /*文本内容*/
+        bounds: {x: null, y: null, w: null, h: null}, /*文本框边界(在图层边界内的位置)*/
+        boundingBox: {x: null, y: null, w: null, h: null}, /*文本框最小边界(在图层边界内的位置)*/
+        color: {r: null, g: null, b: null}, /*字体颜色*/
+        size: null, /*字体尺寸*/
+        fontPostScriptName: null, /*字体*/
+        bold: null, /*仿粗体*/
+        italic: null, /*仿斜体*/
+        antiAlias: null, /*消除锯齿方式*/
+        underline: null, /*下划线类型*/
+        justification: null, /*段落对齐方式*/
+    }
+
+
+    var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    // log("layerKind :" + layerKind.layerKind.value)
+    if (layerKind.layerKind.value == 3)
+    {
+        var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
+        textKey_raw = textKey_raw.textKey;
+
+        textInfo.text = textKey_raw.value.textKey.value;
+        textInfo.boundingBox = Kinase._rltb2xywh(textKey_raw.value.boundingBox.value);
+        textInfo.bounds = Kinase._rltb2xywh(textKey_raw.value.bounds.value);
+        textInfo.antiAlias = textKey_raw.value.antiAlias.value.enumerationValue;
+        textInfo.color.r = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.red.value;
+        textInfo.color.g = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.grain.value;
+        textInfo.color.b = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.blue.value;
+        try
+        {
+            textInfo.size = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.size.value.doubleValue;
+        } catch (e)
+        {
+        }
+        try
+        {
+            textInfo.fontPostScriptName = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.fontPostScriptName.value;
+        } catch (e)
+        {
+        }
+        try
+        {
+            textInfo.bold = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.syntheticBold.value;
+        } catch (e)
+        {
+            textInfo.bold = false;
+        }
+        try
+        {
+            textInfo.italic = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.syntheticItalic.value;
+        } catch (e)
+        {
+            textInfo.italic = false;
+        }
+        try
+        {
+            textInfo.underline = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.underline.value.enumerationValue;
+        } catch (e)
+        {
+
+        }
+        try
+        {
+            textInfo.justification = textKey_raw.value.paragraphStyleRange.value[0].value.paragraphStyle.value.align.value.enumerationValue;
+        } catch (e)
+        {
+
+        }
+
+
+
+
+    }
+    else
+    {
+        log("not text layer :" + layerKind.layerKind.value)
+    }
+
+
+    return textInfo
+
+
+}
+
 
 Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
 {
@@ -976,7 +1063,7 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
         if (artBoard_raw.artboardEnabled.value == true)
         {
             var artBoard_boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "boundsNoEffects", "Lyr ");
-            artBoard_boundsInfo_raw =artBoard_boundsInfo_raw.boundsNoEffects;
+            artBoard_boundsInfo_raw = artBoard_boundsInfo_raw.boundsNoEffects;
 
             boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
             boundsInfo.right = boundsInfo.right - artBoard_boundsInfo_raw.value.left.value.doubleValue;
@@ -991,13 +1078,10 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
 }
 
 
-
-Kinase.prototype.layer.setLayerBounds_byActive =function (boundsInfo)
+Kinase.prototype.layer.setLayerBounds_byActive = function (boundsInfo)
 {
-    return ki.layer.setLayerBounds(boundsInfo,Kinase.REF_ActiveLayer,null);
+    return ki.layer.setLayerBounds(boundsInfo, Kinase.REF_ActiveLayer, null);
 }
-
-
 
 
 /**
@@ -1116,6 +1200,13 @@ Kinase._rltb2xywh = function (boundsInfo)
 // {x: null, y: null, w: null, h: null,centerStatea,}
     var newBoundsInfo = {x: null, y: null, w: null, h: null};
 
+
+    for (var i in boundsInfo)
+    {
+        if (boundsInfo[i].value != undefined)boundsInfo[i] = boundsInfo[i].value.doubleValue;
+    }
+
+
     newBoundsInfo.x = boundsInfo.left;
     newBoundsInfo.y = boundsInfo.top;
     newBoundsInfo.h = boundsInfo.bottom - boundsInfo.top;
@@ -1129,6 +1220,12 @@ Kinase._xywh2rltb = function (boundsInfo)
 {
 // {x: null, y: null, w: null, h: null,centerStatea,}
     var newBoundsInfo = {left: null, right: null, top: null, bottom: null};
+
+    for (var i in boundsInfo)
+    {
+        if (boundsInfo[i].value != undefined)boundsInfo[i] = boundsInfo[i].value.doubleValue;
+    }
+
 
     newBoundsInfo.left = boundsInfo.x;
     newBoundsInfo.top = boundsInfo.y;
