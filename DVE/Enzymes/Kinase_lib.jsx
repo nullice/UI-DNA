@@ -306,7 +306,7 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
 {
     var appearanceInfo = {
         fillOpacity: null, /*填充不透明度 0-255*/
-        opacity: null, /*不透明 0-100*/
+        opacity: null, /*不透明 0-255*/
         visible: null, /*可视*/
         // userMaskDensity: null, /*图层蒙版-浓度*/
         // userMaskFeather: null, /*图层蒙版-羽化*/
@@ -318,12 +318,16 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
     if (fillOpacity_raw.fillOpacity != undefined)
     {
         appearanceInfo.fillOpacity = fillOpacity_raw.fillOpacity.value;
+        appearanceInfo.fillOpacity = appearanceInfo.fillOpacity / 255 * 100
+        appearanceInfo.fillOpacity = appearanceInfo.fillOpacity.toFixed();
     }
 
     var opacity_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "opacity")
     if (opacity_raw.opacity != undefined)
     {
         appearanceInfo.opacity = opacity_raw.opacity.value;
+        appearanceInfo.opacity = appearanceInfo.opacity / 255 * 100
+        appearanceInfo.opacity = appearanceInfo.opacity.toFixed();
     }
 
     var visible_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "visible")
@@ -366,7 +370,6 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
         }
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb_opacity);
     }
-
 
     if (appearanceInfo.fillOpacity != undefined)
     {
@@ -963,8 +966,38 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
     boundsInfo.right = boundsInfo_raw.value.right.value.doubleValue
     boundsInfo.bottom = boundsInfo_raw.value.bottom.value.doubleValue
 
+
+    //画板修正
+    var itemIndex_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "itemIndex", "Lyr ");
+    var parentLayerItemIndex = ki.layer.getParentLayerItemIndex_byItemIndex(itemIndex_raw.itemIndex.value);
+    if (parentLayerItemIndex > -1)
+    {
+        var artBoard_raw = Kinase.prototype.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "artboardEnabled", "Lyr ");
+        if (artBoard_raw.artboardEnabled.value == true)
+        {
+            var artBoard_boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "boundsNoEffects", "Lyr ");
+            artBoard_boundsInfo_raw =artBoard_boundsInfo_raw.boundsNoEffects;
+
+            boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+            boundsInfo.right = boundsInfo.right - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+
+            boundsInfo.y = boundsInfo.y - artBoard_boundsInfo_raw.value.top.value.doubleValue;
+            boundsInfo.bottom = boundsInfo.bottom - artBoard_boundsInfo_raw.value.top.value.doubleValue;
+        }
+    }
+
+
     return boundsInfo;
 }
+
+
+
+Kinase.prototype.layer.setLayerBounds_byActive =function (boundsInfo)
+{
+    return ki.layer.setLayerBounds(boundsInfo,Kinase.REF_ActiveLayer,null);
+}
+
+
 
 
 /**
@@ -1033,7 +1066,7 @@ Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, t
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
 
-    log(json(adOb))
+    // log(json(oldradianInfo))
 
     //描点位置
     // ----------------------------------------------------------
@@ -1539,6 +1572,50 @@ Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
     }
 }
 
+
+Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
+{
+
+    var parentItemIndex = -1;
+    try
+    {
+        parentItemIndex = ki.layer.getLayerDOMObject_byItemIndex(itemIndex).parent.itemIndex;
+    } catch (e)
+    {
+        // log(e)
+    }
+    return parentItemIndex;
+
+}
+
+
+Kinase.prototype.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
+{
+
+    return _scanLayers(app.activeDocument.layers)
+
+    function _scanLayers(layers)
+    {
+        var layerSet;
+        // log("===_scanLayers:"+layers +"("+layers.length+")")
+        for (var i = layers.length - 1; i >= 0; i--)
+        {
+
+            // log(i + "/" + layers.length + "-#" + layers[i].itemIndex + layers[i])
+            if (layers[i].itemIndex == itemIndex)
+            {
+                return layers[i];
+            }
+
+            if ((layers[i].typename == "LayerSet") && layers[i].itemIndex > itemIndex)
+            {
+                return _scanLayers(layers[i].layers)
+            }
+        }
+    }
+}
+
+
 // 选取目标 Reference--------------------------------
 Kinase.REF_ActiveLayer = function (ref, classString)
 {
@@ -1556,8 +1633,8 @@ Kinase.REF_ItemIndex = function (ref, itemIndex, classString)
 {
 
     var desiredClass = classString || "Lyr ";
-    log(itemIndex)
-    log(desiredClass)
+    // log(itemIndex)
+    // log(desiredClass)
     ref.putIndex(charIDToTypeID(desiredClass), itemIndex);
 
 }
