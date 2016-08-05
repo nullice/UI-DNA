@@ -1,35 +1,163 @@
 {
-  "text": "去玩儿去玩儿",
-  "bounds": {
-    "x": 0,
-    "y": -8.71875,
-    "w": 236.312240600586,
-    "h": 117.198745727539
+  "null": {
+    "value": {
+      "container": {
+        "container": {
+        }
+      },
+      "form": "ReferenceFormType.INDEX",
+      "desiredClass": "textLayer",
+      "index": 3
+    },
+    "type": "DescValueType.REFERENCETYPE"
   },
-  "boundingBox": {
-    "x": 0,
-    "y": -7.171875,
-    "w": 216,
-    "h": 37.828125
-  },
-  "color": {
-    "r": 173.147862553596,
-    "g": 182.992222309113,
-    "b": 167.202336788177
-  },
-  "size": 36,
-  "fontPostScriptName": "BDZYJT--GB1-0",
-  "bold": false,
-  "italic": false,
-  "antiAlias": "antiAliasSharp",
-  "underline": "underlineOnLeftInVertical",
-  "justification": "left"
+  "to": {
+    "value": {
+      "textKey": {
+        "value": "111ggsm222d",
+        "type": "DescValueType.STRINGTYPE"
+      },
+      "textShape": {
+        "value": {
+          "0": {
+            "value": {
+              "char": {
+                "value": {
+                  "enumerationType": "char",
+                  "enumerationValue": "paint"
+                },
+                "type": "DescValueType.ENUMERATEDTYPE"
+              },
+              "orientation": {
+                "value": {
+                  "enumerationType": "orientation",
+                  "enumerationValue": "horizontal"
+                },
+                "type": "DescValueType.ENUMERATEDTYPE"
+              },
+              "transform": {
+                "value": {
+                  "xx": {
+                    "value": 1,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "xy": {
+                    "value": 0,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "yx": {
+                    "value": 0,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "yy": {
+                    "value": 1,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "tx": {
+                    "value": 0,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "ty": {
+                    "value": 0,
+                    "type": "DescValueType.DOUBLETYPE"
+                  }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "transform"
+              },
+              "rowCount": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "columnCount": {
+                "value": 1,
+                "type": "DescValueType.INTEGERTYPE"
+              },
+              "rowMajorOrder": {
+                "value": true,
+                "type": "DescValueType.BOOLEANTYPE"
+              },
+              "rowGutter": {
+                "value": {
+                  "doubleType": "pointsUnit",
+                  "doubleValue": 0
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "columnGutter": {
+                "value": {
+                  "doubleType": "pointsUnit",
+                  "doubleValue": 0
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "spacing": {
+                "value": {
+                  "doubleType": "pointsUnit",
+                  "doubleValue": 0
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "frameBaselineAlignment": {
+                "value": {
+                  "enumerationType": "frameBaselineAlignment",
+                  "enumerationValue": "alignByAscent"
+                },
+                "type": "DescValueType.ENUMERATEDTYPE"
+              },
+              "firstBaselineMinimum": {
+                "value": {
+                  "doubleType": "pointsUnit",
+                  "doubleValue": 0
+                },
+                "type": "DescValueType.UNITDOUBLE"
+              },
+              "base": {
+                "value": {
+                  "horizontal": {
+                    "value": 0,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "vertical": {
+                    "value": 0,
+                    "type": "DescValueType.DOUBLETYPE"
+                  }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "paint"
+              },
+              "bounds": {
+                "value": {
+                  "top": {
+                    "value": 3,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "left": {
+                    "value": 3,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "bottom": {
+                    "value": 303,
+                    "type": "DescValueType.DOUBLETYPE"
+                  },
+                  "right": {
+                    "value": 503,
+                    "type": "DescValueType.DOUBLETYPE"
+                  }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "rectangle"
+              }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "textShape"
+          }
+        },
+        "type": "DescValueType.LISTTYPE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "textLayer"
+  }
 }
-{
-  "x": 30,
-  "y": 340,
-  "w": 217,
-  "h": 39,
-  "right": 247,
-  "bottom": 379
-}
+

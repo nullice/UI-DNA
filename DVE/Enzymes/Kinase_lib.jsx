@@ -291,8 +291,9 @@ Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID(xxx));
-    targetReference(ref, target, "Lyr ");//"contentLayer"
+    targetReference(ref, target, "layer");//"contentLayer"
     var layerDesc = executeActionGet(ref);
+
     return mu.actionDescriptorToObject(layerDesc);
 }
 
@@ -429,6 +430,13 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
 
 }
 
+
+/**
+ * 获取文本图层的各文本信息
+ * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @returns {{text: null, bounds: {x: null, y: null, w: null, h: null}, boundingBox: {x: null, y: null, w: null, h: null}, color: {r: null, g: null, b: null}, size: null, fontPostScriptName: null, bold: null, italic: null, antiAlias: null, underline: null, justification: null, leading: null, tracking: null, baselineShift: null, horizontalScale: null, verticalScale: null}}
+ */
 Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
 {
     var textInfo = {
@@ -443,6 +451,11 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
         antiAlias: null, /*消除锯齿方式*/
         underline: null, /*下划线类型*/
         justification: null, /*段落对齐方式*/
+        leading: null, /*行距*/
+        tracking: null, /*字符间距*/
+        baselineShift: null, /*基线偏移*/
+        horizontalScale: null, /*水平缩放*/
+        verticalScale: null, /*垂直缩放*/
     }
 
 
@@ -498,10 +511,40 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
             textInfo.justification = textKey_raw.value.paragraphStyleRange.value[0].value.paragraphStyle.value.align.value.enumerationValue;
         } catch (e)
         {
+        }
+        try
+        {
+            textInfo.leading = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.leading.value.doubleValue;
+        } catch (e)
+        {
+        }
+        try
+        {
+            textInfo.tracking = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.tracking.value;
+        } catch (e)
+        {
+        }
+        try
+        {
+            textInfo.baselineShift = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.baselineShift.value.doubleValue;
+        } catch (e)
+        {
 
         }
+        try
+        {
+            textInfo.horizontalScale = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.horizontalScale.value;
+        } catch (e)
+        {
 
+        }
+        try
+        {
+            textInfo.verticalScale = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.verticalScale.value;
+        } catch (e)
+        {
 
+        }
 
 
     }
@@ -512,8 +555,153 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
 
 
     return textInfo
+}
+
+Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, target)
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "textLayer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {
+                "textKey": {
+                    "value": text,
+                    "type": "DescValueType.STRINGTYPE"
+                },
+
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "textLayer"
+        }
+    }
 
 
+    var ref = new ActionReference();
+
+    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    targetReference(ref, target || null, "textLayer")
+    var refOb = mu.actionReferenceToObject(ref)
+    adOb.null.value = refOb;
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+
+}
+
+Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, target)
+{
+
+    var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    if (layerKind.layerKind.value != 3)
+    {
+        return;
+    }
+
+
+    var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
+    textKey_raw = textKey_raw.textKey;
+
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "textLayer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {},
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "textLayer"
+        }
+    }
+
+    if (textInfo.text != undefined)
+    {
+        adOb.to.value.textKey = {
+            "value": textInfo.text,
+            "type": "DescValueType.STRINGTYPE"
+        }
+    }
+    if (textInfo.bounds != undefined)
+    {
+        var tempBounds = Kinase._xywh2rltb(textInfo.bounds)
+        adOb.to.value.textShape = textKey_raw.value.textShape
+
+        adOb.to.value.textShape.value[0].value.char.value.enumerationValue = "box";
+        adOb.to.value.textShape.value[0].value.bounds =
+        {
+            "value": {
+                "top": {
+                    "value": tempBounds.top,
+                    "type": "DescValueType.DOUBLETYPE"
+                },
+                "left": {
+                    "value": tempBounds.left,
+                    "type": "DescValueType.DOUBLETYPE"
+                },
+                "bottom": {
+                    "value": tempBounds.bottom,
+                    "type": "DescValueType.DOUBLETYPE"
+                },
+                "right": {
+                    "value": tempBounds.right,
+                    "type": "DescValueType.DOUBLETYPE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "rectangle"
+        }
+    }
+
+
+    if (textInfo.color != undefined)
+    {
+        if (adOb.to.value.textStyleRange == undefined)
+        {
+            adOb.to.value.textStyleRange = textKey_raw.value.textStyleRange
+        }
+
+        for (var i in  adOb.to.value.textStyleRange.value)
+        {
+            try
+            {
+                adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.red.value = textInfo.color.r;
+                adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.grain.value = textInfo.color.g;
+                adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.blue.value = textInfo.color.b;
+            } catch (e)
+            {
+
+            }
+
+        }
+
+    }
+
+
+    var ref = new ActionReference();
+    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    targetReference(ref, target || null, "textLayer")
+    var refOb = mu.actionReferenceToObject(ref)
+    adOb.null.value = refOb;
+    log(json(adOb))
+    logSave();
+
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
 }
 
 
@@ -1714,25 +1902,46 @@ Kinase.prototype.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
 
 
 // 选取目标 Reference--------------------------------
-Kinase.REF_ActiveLayer = function (ref, classString)
+Kinase.REF_ActiveLayer = function (ref, noting, classString)
 {
-    var desiredClass = classString || "Lyr ";
-    ref.putEnumerated(charIDToTypeID(desiredClass), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+    if (classString != undefined)
+    {
+        var typeID = stringIDToTypeID(classString);
+    } else
+    {
+        var typeID = charIDToTypeID("Lyr ");
+    }
+
+
+    ref.putEnumerated(typeID, charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
 }
 
 Kinase.REF_LayerID = function (ref, layerID, classString)
 {
-    var desiredClass = classString || "Lyr ";
-    ref.putIdentifier(charIDToTypeID(desiredClass), layerID);
+    if (classString != undefined)
+    {
+        var typeID = stringIDToTypeID(classString);
+    } else
+    {
+        var typeID = charIDToTypeID("Lyr ");
+    }
+
+    ref.putIdentifier(typeID, layerID);
 }
 
 Kinase.REF_ItemIndex = function (ref, itemIndex, classString)
 {
+    if (classString != undefined)
+    {
+        var typeID = stringIDToTypeID(classString);
+    } else
+    {
+        var typeID = charIDToTypeID("Lyr ");
+    }
 
-    var desiredClass = classString || "Lyr ";
     // log(itemIndex)
     // log(desiredClass)
-    ref.putIndex(charIDToTypeID(desiredClass), itemIndex);
+    ref.putIndex(typeID, itemIndex);
 
 }
 
