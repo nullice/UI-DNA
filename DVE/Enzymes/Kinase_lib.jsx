@@ -605,10 +605,102 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         return;
     }
 
+    // 单独设置动作-----
+    if (textInfo.size != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {
+                            "container": {
+                            }
+                        },
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "textLayer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.PROPERTY",
+                    "desiredClass": "property",
+                    "property": "textStyle"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "textOverrideFeatureName": {
+                        "value": 808465458,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "typeStyleOperationType": {
+                        "value": 3,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "size": {
+                        "value": {
+                            "doubleType": "pointsUnit",
+                            "doubleValue": textInfo.size
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "textStyle"
+            }
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "textLayer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value.container = refOb;
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    }
+    if (textInfo.fontPostScriptName != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {
+                            "container": {
+                            }
+                        },
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "textLayer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.PROPERTY",
+                    "desiredClass": "property",
+                    "property": "textStyle"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "fontPostScriptName": {
+                        "value": textInfo.fontPostScriptName,
+                        "type": "DescValueType.STRINGTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "textStyle"
+            }
+        }
+
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "textLayer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value.container = refOb;
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    }
 
     var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
     textKey_raw = textKey_raw.textKey;
-
 
     var adOb = {
         "null": {
@@ -668,6 +760,17 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
     }
 
+    if (textInfo.antiAlias != undefined)
+    {
+        adOb.to.value.antiAlias = {
+            "value": {
+                "enumerationType": "antiAliasType",
+                "enumerationValue": textInfo.antiAlias
+            },
+            "type": "DescValueType.ENUMERATEDTYPE"
+        }
+    }
+
 
     if (textInfo.color != undefined)
     {
@@ -687,9 +790,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
             {
 
             }
-
         }
-
     }
 
 
