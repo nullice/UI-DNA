@@ -17,6 +17,10 @@ var i = 3
 var old = ki.layer.getLayerTextInfo(Kinase.REF_ItemIndex, i)
 
 ki.layer.setLayerTextInfo({
+    baselineShift:12,
+    horizontalScale:122,
+    tracking:22,
+    leading:"auto",
     justification:"center",
     underline: "underlineOnLeftInVertical",
     bold: true,
