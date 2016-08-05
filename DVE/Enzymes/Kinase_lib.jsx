@@ -449,7 +449,7 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
         bold: null, /*仿粗体*/
         italic: null, /*仿斜体*/
         antiAlias: null, /*消除锯齿方式*/
-        underline: null, /*下划线类型*/
+        underline: null, /*下划线类型 underlineOnLeftInVertical:下划线,underlineOff:无，*/
         justification: null, /*段落对齐方式*/
         leading: null, /*行距*/
         tracking: null, /*字符间距*/
@@ -613,8 +613,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
                 "value": {
                     "container": {
                         "container": {
-                            "container": {
-                            }
+                            "container": {}
                         },
                         "form": "ReferenceFormType.ENUMERATED",
                         "desiredClass": "textLayer",
@@ -664,8 +663,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
                 "value": {
                     "container": {
                         "container": {
-                            "container": {
-                            }
+                            "container": {}
                         },
                         "form": "ReferenceFormType.ENUMERATED",
                         "desiredClass": "textLayer",
@@ -698,6 +696,202 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
     }
+    if (textInfo.bold != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {
+                            "container": {}
+                        },
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "textLayer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.PROPERTY",
+                    "desiredClass": "property",
+                    "property": "textStyle"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "textOverrideFeatureName": {
+                        "value": 808465459,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "typeStyleOperationType": {
+                        "value": 3,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "syntheticBold": {
+                        "value": textInfo.bold,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "textStyle"
+            }
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "textLayer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value.container = refOb;
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    }
+
+    if (textInfo.italic != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {
+                            "container": {}
+                        },
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "textLayer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.PROPERTY",
+                    "desiredClass": "property",
+                    "property": "textStyle"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "textOverrideFeatureName": {
+                        "value": 808465460,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "typeStyleOperationType": {
+                        "value": 3,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "syntheticItalic": {
+                        "value": textInfo.italic,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "textStyle"
+            }
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "textLayer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value.container = refOb;
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    }
+
+    if (textInfo.underline != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {
+                            "container": {}
+                        },
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "textLayer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.PROPERTY",
+                    "desiredClass": "property",
+                    "property": "textStyle"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "textOverrideFeatureName": {
+                        "value": 808465715,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "typeStyleOperationType": {
+                        "value": 3,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "underline": {
+                        "value": {
+                            "enumerationType": "underline",
+                            "enumerationValue": textInfo.underline
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "textStyle"
+            }
+        }
+
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "textLayer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value.container = refOb;
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    }
+
+
+    if (textInfo.justification != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {
+                            "container": {}
+                        },
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "textLayer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.PROPERTY",
+                    "desiredClass": "property",
+                    "property": "paragraphStyle"
+                },
+                "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "textOverrideFeatureName": {
+                        "value": 808464433,
+                        "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "align": {
+                        "value": {
+                            "enumerationType": "alignmentType",
+                            "enumerationValue": textInfo.justification
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "paragraphStyle"
+            }
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "textLayer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value.container = refOb;
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    }
+
 
     var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
     textKey_raw = textKey_raw.textKey;
@@ -731,8 +925,23 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
     }
     if (textInfo.bounds != undefined)
     {
-        var tempBounds = Kinase._xywh2rltb(textInfo.bounds)
-        adOb.to.value.textShape = textKey_raw.value.textShape
+        //----考虑没有指定某边界值时，用当前边界替代，如不指定 x,y 只指定 h,w
+        var oldBounds = Kinase._rltb2xywh({
+            top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
+            left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
+            bottom: textKey_raw.value.textShape.value[0].value.bounds.value.bottom.value,
+            right: textKey_raw.value.textShape.value[0].value.bounds.value.right.value
+        })
+
+        if (textInfo.bounds.x == undefined)textInfo.bounds.x = oldBounds.x;
+        if (textInfo.bounds.y == undefined)textInfo.bounds.y = oldBounds.y;
+        if (textInfo.bounds.h == undefined)textInfo.bounds.h = oldBounds.h;
+        if (textInfo.bounds.w == undefined)textInfo.bounds.w = oldBounds.w;
+        //--------------------------------------------------------------------undefined
+        var tempBounds = Kinase._xywh2rltb(textInfo.bounds);
+
+        adOb.to.value.textShape = textKey_raw.value.textShape;
+
 
         adOb.to.value.textShape.value[0].value.char.value.enumerationValue = "box";
         adOb.to.value.textShape.value[0].value.bounds =

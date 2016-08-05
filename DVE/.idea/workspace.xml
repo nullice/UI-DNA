@@ -40,8 +40,8 @@
       <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="659" column="35" selection-start-line="659" selection-start-column="17" selection-end-line="659" selection-end-column="35" />
+            <state relative-caret-position="247">
+              <caret line="925" column="8" selection-start-line="925" selection-start-column="8" selection-end-line="925" selection-end-column="23" />
               <folding>
                 <element signature="e#694#795#0" expanded="false" />
                 <element signature="e#931#1099#0" expanded="false" />
@@ -55,29 +55,29 @@
                 <element signature="e#4565#5125#0" expanded="false" />
                 <element signature="e#6238#6488#0" expanded="false" />
                 <element signature="e#11762#12397#0" expanded="false" />
-                <element signature="e#17509#18529#0" expanded="false" />
-                <element signature="e#22394#22935#0" expanded="false" />
-                <element signature="e#24261#24383#0" expanded="false" />
-                <element signature="e#25616#28321#0" expanded="false" />
-                <element signature="e#29456#31297#0" expanded="false" />
-                <element signature="e#31393#33000#0" expanded="false" />
-                <element signature="e#33226#34652#0" expanded="false" />
-                <element signature="e#34883#36361#0" expanded="false" />
-                <element signature="e#36975#38659#0" expanded="false" />
-                <element signature="e#36997#37423#0" expanded="false" />
-                <element signature="e#38905#40361#0" expanded="false" />
-                <element signature="e#40607#42066#0" expanded="false" />
-                <element signature="e#43135#44546#0" expanded="false" />
-                <element signature="e#44654#47074#0" expanded="false" />
-                <element signature="e#45157#45240#0" expanded="false" />
-                <element signature="e#45273#46636#0" expanded="false" />
-                <element signature="e#45296#46543#0" expanded="false" />
-                <element signature="e#46670#46753#0" expanded="false" />
-                <element signature="e#46792#46879#0" expanded="false" />
-                <element signature="e#54800#56537#0" expanded="false" />
-                <element signature="e#54806#54859#0" expanded="false" />
-                <element signature="e#56933#57447#0" expanded="false" />
-                <marker date="1470377814840" expanded="false" signature="23011:23105" ph="{&quot;type&quot;: &quot;DescValueType.STRINGTYPE&quot;...}" />
+                <element signature="e#17555#18575#0" expanded="false" />
+                <element signature="e#29675#30216#0" expanded="false" />
+                <element signature="e#32392#32514#0" expanded="false" />
+                <element signature="e#33747#36452#0" expanded="false" />
+                <element signature="e#37587#39428#0" expanded="false" />
+                <element signature="e#39524#41131#0" expanded="false" />
+                <element signature="e#41357#42783#0" expanded="false" />
+                <element signature="e#43014#44492#0" expanded="false" />
+                <element signature="e#45106#46790#0" expanded="false" />
+                <element signature="e#45128#45554#0" expanded="false" />
+                <element signature="e#47036#48492#0" expanded="false" />
+                <element signature="e#48738#50197#0" expanded="false" />
+                <element signature="e#51266#52677#0" expanded="false" />
+                <element signature="e#52785#55205#0" expanded="false" />
+                <element signature="e#53288#53371#0" expanded="false" />
+                <element signature="e#53404#54767#0" expanded="false" />
+                <element signature="e#53427#54674#0" expanded="false" />
+                <element signature="e#54801#54884#0" expanded="false" />
+                <element signature="e#54923#55010#0" expanded="false" />
+                <element signature="e#62931#64668#0" expanded="false" />
+                <element signature="e#62937#62990#0" expanded="false" />
+                <element signature="e#65064#65578#0" expanded="false" />
+                <marker date="1470387032749" expanded="false" signature="30292:30386" ph="{&quot;type&quot;: &quot;DescValueType.STRINGTYPE&quot;...}" />
               </folding>
             </state>
           </provider>
@@ -96,8 +96,8 @@
       <file leaf-file-name="adout_.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/adout_.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-118">
-              <caret line="4" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+            <state relative-caret-position="1575">
+              <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -126,8 +126,8 @@
       <file leaf-file-name="test_kinase.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/test_kinase.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+            <state relative-caret-position="372">
+              <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -222,9 +222,9 @@
         <option value="$PROJECT_DIR$/Enzymes/test/矩形.json" />
         <option value="$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.log" />
+        <option value="$PROJECT_DIR$/Enzymes/test/test_kinase.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test/adout_.json" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/Enzymes/test/test_kinase.jsx" />
       </list>
     </option>
   </component>
@@ -431,12 +431,12 @@
       <workItem from="1469800217271" duration="597000" />
       <workItem from="1469974374023" duration="39076000" />
       <workItem from="1470231092312" duration="7084000" />
-      <workItem from="1470270139484" duration="25408000" />
+      <workItem from="1470270139484" duration="30830000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="359351000" />
+    <option name="totallyTimeSpent" value="364773000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -744,14 +744,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/test/adout_.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-118">
-          <caret line="4" column="22" selection-start-line="0" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/fun_getLayerInfoObject.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -762,16 +754,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/test_kinase.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+        <state relative-caret-position="372">
+          <caret line="27" column="31" selection-start-line="27" selection-start-column="31" selection-end-line="27" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/test/adout_.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1575">
+          <caret line="127" column="20" selection-start-line="127" selection-start-column="20" selection-end-line="127" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="659" column="35" selection-start-line="659" selection-start-column="17" selection-end-line="659" selection-end-column="35" />
+        <state relative-caret-position="247">
+          <caret line="925" column="8" selection-start-line="925" selection-start-column="8" selection-end-line="925" selection-end-column="23" />
           <folding>
             <element signature="e#694#795#0" expanded="false" />
             <element signature="e#931#1099#0" expanded="false" />
@@ -785,29 +785,29 @@
             <element signature="e#4565#5125#0" expanded="false" />
             <element signature="e#6238#6488#0" expanded="false" />
             <element signature="e#11762#12397#0" expanded="false" />
-            <element signature="e#17509#18529#0" expanded="false" />
-            <element signature="e#22394#22935#0" expanded="false" />
-            <element signature="e#24261#24383#0" expanded="false" />
-            <element signature="e#25616#28321#0" expanded="false" />
-            <element signature="e#29456#31297#0" expanded="false" />
-            <element signature="e#31393#33000#0" expanded="false" />
-            <element signature="e#33226#34652#0" expanded="false" />
-            <element signature="e#34883#36361#0" expanded="false" />
-            <element signature="e#36975#38659#0" expanded="false" />
-            <element signature="e#36997#37423#0" expanded="false" />
-            <element signature="e#38905#40361#0" expanded="false" />
-            <element signature="e#40607#42066#0" expanded="false" />
-            <element signature="e#43135#44546#0" expanded="false" />
-            <element signature="e#44654#47074#0" expanded="false" />
-            <element signature="e#45157#45240#0" expanded="false" />
-            <element signature="e#45273#46636#0" expanded="false" />
-            <element signature="e#45296#46543#0" expanded="false" />
-            <element signature="e#46670#46753#0" expanded="false" />
-            <element signature="e#46792#46879#0" expanded="false" />
-            <element signature="e#54800#56537#0" expanded="false" />
-            <element signature="e#54806#54859#0" expanded="false" />
-            <element signature="e#56933#57447#0" expanded="false" />
-            <marker date="1470377814840" expanded="false" signature="23011:23105" ph="{&quot;type&quot;: &quot;DescValueType.STRINGTYPE&quot;...}" />
+            <element signature="e#17555#18575#0" expanded="false" />
+            <element signature="e#29675#30216#0" expanded="false" />
+            <element signature="e#32392#32514#0" expanded="false" />
+            <element signature="e#33747#36452#0" expanded="false" />
+            <element signature="e#37587#39428#0" expanded="false" />
+            <element signature="e#39524#41131#0" expanded="false" />
+            <element signature="e#41357#42783#0" expanded="false" />
+            <element signature="e#43014#44492#0" expanded="false" />
+            <element signature="e#45106#46790#0" expanded="false" />
+            <element signature="e#45128#45554#0" expanded="false" />
+            <element signature="e#47036#48492#0" expanded="false" />
+            <element signature="e#48738#50197#0" expanded="false" />
+            <element signature="e#51266#52677#0" expanded="false" />
+            <element signature="e#52785#55205#0" expanded="false" />
+            <element signature="e#53288#53371#0" expanded="false" />
+            <element signature="e#53404#54767#0" expanded="false" />
+            <element signature="e#53427#54674#0" expanded="false" />
+            <element signature="e#54801#54884#0" expanded="false" />
+            <element signature="e#54923#55010#0" expanded="false" />
+            <element signature="e#62931#64668#0" expanded="false" />
+            <element signature="e#62937#62990#0" expanded="false" />
+            <element signature="e#65064#65578#0" expanded="false" />
+            <marker date="1470387032749" expanded="false" signature="30292:30386" ph="{&quot;type&quot;: &quot;DescValueType.STRINGTYPE&quot;...}" />
           </folding>
         </state>
       </provider>
