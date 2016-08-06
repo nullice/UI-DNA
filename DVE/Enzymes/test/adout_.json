@@ -1,12 +1,29 @@
-old:bounds:{"x":24.7040672302246,"y":-62.9040489196777,"w":203.410373687744,"h":90.4182357788086}
-old:boundingBox:{"x":24.9853210449219,"y":-62.4790496826172,"w":119.109924316406,"h":13}
------------
-{"value":{"left":{"value":{"doubleType":"pointsUnit","doubleValue":24.9853210449219},
-"type":"DescValueType.UNITDOUBLE"},"top":{"value":{"doubleType":"pointsUnit","doubleValue":-62.4790496826172},
-"type":"DescValueType.UNITDOUBLE"},"right":{"value":{"doubleType":"pointsUnit","doubleValue":144.095245361328},
-"type":"DescValueType.UNITDOUBLE"},"bottom":{"value":{"doubleType":"pointsUnit","doubleValue":-49.4790496826172},
-"type":"DescValueType.UNITDOUBLE"}},"type":"DescValueType.OBJECTTYPE","objectType":"boundingBox"}
------------
-newd:bounds:{"x":24.7040672302246,"y":-62.9040489196777,"w":96.4058570861816,"h":77.9040489196777}
-newd:boundingBox:{"x":24.9853210449219,"y":-62.3852996826172,"w":94.9788513183594,"h":26.1343841552734}
-Result: undefined
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {
+          "container": {
+          }
+        },
+        "form": "ReferenceFormType.INDEX",
+        "desiredClass": "layer",
+        "index": 2
+      },
+      "form": "ReferenceFormType.PROPERTY",
+      "desiredClass": "property",
+      "property": "name"
+    },
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "to": {
+    "value": {
+      "name": {
+        "value": "asdf第三方啥地方的司法斯蒂芬",
+        "type": "DescValueType.STRINGTYPE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "layer"
+  }
+}

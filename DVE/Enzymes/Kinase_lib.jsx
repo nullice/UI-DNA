@@ -2463,6 +2463,26 @@ Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, r
 }
 
 
+
+/**
+ * 获取当前图层名称
+ * @param layerID
+ * @returns {*}
+ */
+Kinase.prototype.layer.getLayerName_byActive = function ()
+{
+    var ref = new ActionReference();
+    ref.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ),  charIDToTypeID( "Trgt" ) );
+
+    try
+    {
+        return executeActionGet(ref).getString(charIDToTypeID("Nm  "));
+    } catch (e)
+    {
+        return null;
+    }
+}
+
 /**
  * 根据图层 ID 获取图层名称
  * @param layerID
@@ -2504,6 +2524,24 @@ Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
     }
 }
 
+/**
+ * 设置当前图层名称
+ * @param name
+ */
+Kinase.prototype.layer.setLayerName_byActive = function (name)
+{
+
+    var ad = new ActionDescriptor();
+    var ref = new ActionReference();
+    ref.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
+
+
+    ad.putReference( charIDToTypeID( "null" ), ref );
+    var ad2 = new ActionDescriptor();
+    ad2.putString(  charIDToTypeID( "Nm  " ), name );
+    ad.putObject( charIDToTypeID( "T   " ), charIDToTypeID( "Lyr " ), ad2 );
+    executeAction( charIDToTypeID( "setd" ), ad, DialogModes.NO );
+}
 
 Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
 {
