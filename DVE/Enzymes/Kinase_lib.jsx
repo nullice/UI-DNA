@@ -557,6 +557,13 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
     return textInfo
 }
 
+
+/**
+ * 快速设置文本图层的文本内容
+ * @param text - 文本内容
+ * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ */
 Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, target)
 {
     var adOb = {
@@ -596,8 +603,116 @@ Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, tar
 
 }
 
+
+Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
+{
+    var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    if (layerKind.layerKind.value != 3)
+    {
+        return;
+    }
+
+    var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
+    textKey_raw = textKey_raw.textKey;
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "textLayer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {},
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "textLayer"
+        }
+    }
+
+
+    // log("-----------")
+    // log(json(textKey_raw.value.boundingBox))
+    // log("-----------")
+    var newBounds = {
+        top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
+        left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
+        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + textKey_raw.value.boundingBox.value.bottom.value.doubleValue -textKey_raw.value.boundingBox.value.top.value.doubleValue+2,
+        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value +textKey_raw.value.boundingBox.value.right.value.doubleValue -textKey_raw.value.boundingBox.value.left.value.doubleValue+2
+    }
+
+
+
+    adOb.to.value.textShape = textKey_raw.value.textShape;
+    adOb.to.value.textShape.value[0].value.char.value.enumerationValue = "box";
+    adOb.to.value.textShape.value[0].value.bounds =
+    {
+        "value": {
+            "top": {
+                "value":newBounds.top,
+                "type": "DescValueType.DOUBLETYPE"
+            },
+            "left": {
+                "value": newBounds.left,
+                "type": "DescValueType.DOUBLETYPE"
+            },
+            "bottom": {
+                "value":newBounds.bottom,
+                "type": "DescValueType.DOUBLETYPE"
+            },
+            "right": {
+                "value": newBounds.right,
+                "type": "DescValueType.DOUBLETYPE"
+            }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "rectangle"
+    }
+
+
+    var ref = new ActionReference();
+    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    targetReference(ref, target || null, "textLayer")
+    var refOb = mu.actionReferenceToObject(ref)
+    adOb.null.value = refOb;
+    // log(json(adOb))
+    // logSave();
+
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+}
+
+
+/**
+ * 设置文本图层各属性
+ * @param {object} textInfo 参数
+ * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ */
 Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 {
+    /*    textInfo{
+     text: null, /!*文本内容*!/
+     bounds: {x: null, y: null, w: null, h: null}, /!*文本框边界(在图层边界内的位置)*!/
+     boundingBox: {x: null, y: null, w: null, h: null}, /!*文本框最小边界(在图层边界内的位置)*!/
+     color: {r: null, g: null, b: null}, /!*字体颜色*!/
+     size: null, /!*字体尺寸*!/
+     fontPostScriptName: null, /!*字体*!/
+     bold: null, /!*仿粗体*!/
+     italic: null, /!*仿斜体*!/
+     antiAlias: null, /!*消除锯齿方式*!/
+     underline: null, /!*下划线类型 underlineOnLeftInVertical:下划线,underlineOff:无，*!/
+     justification: null, /!*段落对齐方式*!/
+     leading: null, /!*行距*!/
+     tracking: null, /!*字符间距*!/
+     baselineShift: null, /!*基线偏移*!/
+     horizontalScale: null, /!*水平缩放*!/
+     verticalScale: null, /!*垂直缩放*!/
+     }*/
 
     var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     if (layerKind.layerKind.value != 3)
@@ -1230,8 +1345,8 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
     targetReference(ref, target || null, "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
-    log(json(adOb))
-    logSave();
+    // log(json(adOb))
+    // logSave();
 
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
 }
