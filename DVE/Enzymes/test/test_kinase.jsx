@@ -5,5 +5,7 @@ $.evalFile(File($.fileName).path + "/test.jsx")
 
 
 var i = 3
-ki.layer.getLayerName_byActive()
-ki.layer.setLayerName_byActive("asdf第三方啥地方的司法斯蒂芬")
+var e = ki.layer.getLayerEffects(Kinase.REF_ActiveLayer)
+log(ki.layer.getLayerName_byItemIndex(i))
+
+ki.layer.setLayerEffects(e, Kinase.REF_ItemIndex,i)

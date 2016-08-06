@@ -642,10 +642,9 @@ Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, 
     var newBounds = {
         top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
         left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
-        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + textKey_raw.value.boundingBox.value.bottom.value.doubleValue -textKey_raw.value.boundingBox.value.top.value.doubleValue+2,
-        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value +textKey_raw.value.boundingBox.value.right.value.doubleValue -textKey_raw.value.boundingBox.value.left.value.doubleValue+2
+        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + textKey_raw.value.boundingBox.value.bottom.value.doubleValue - textKey_raw.value.boundingBox.value.top.value.doubleValue + 2,
+        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value + textKey_raw.value.boundingBox.value.right.value.doubleValue - textKey_raw.value.boundingBox.value.left.value.doubleValue + 2
     }
-
 
 
     adOb.to.value.textShape = textKey_raw.value.textShape;
@@ -654,7 +653,7 @@ Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, 
     {
         "value": {
             "top": {
-                "value":newBounds.top,
+                "value": newBounds.top,
                 "type": "DescValueType.DOUBLETYPE"
             },
             "left": {
@@ -662,7 +661,7 @@ Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, 
                 "type": "DescValueType.DOUBLETYPE"
             },
             "bottom": {
-                "value":newBounds.bottom,
+                "value": newBounds.bottom,
                 "type": "DescValueType.DOUBLETYPE"
             },
             "right": {
@@ -2365,7 +2364,60 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 }
 
 
-//----------------------
+//==============================[图层样式]======================
+
+Kinase.prototype.layer.getLayerEffects = function (targetReference, target)
+{
+    var layerEffects_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
+    layerEffects_raw = layerEffects_raw.layerEffects;
+    return layerEffects_raw
+
+}
+
+Kinase.prototype.layer.setLayerEffects = function (effectsObejct,targetReference, target)
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "form": "ReferenceFormType.PROPERTY", "desiredClass": "property", "property": "layerEffects"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": effectsObejct.value,
+            "type": "DescValueType.OBJECTTYPE", "objectType": "layerEffects"
+        }
+    }
+
+    var ref = new ActionReference();
+    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    targetReference(ref, target || null, "textLayer")
+    var refOb = mu.actionReferenceToObject(ref)
+    adOb.null.value.container = refOb;
+
+    // log(json(adOb))
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+    
+    
+}
+
+
+Kinase.prototype.layer.getEffects_dropShadow = function ()
+{
+    var layerEffects_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
+    layerEffects_raw = layerEffects_raw.layerEffects;
+    return layerEffects_raw
+
+}
+//END===========================[图层样式]========================
+
 
 /**
  * 根据图层 ID 单选图层
@@ -2463,7 +2515,6 @@ Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, r
 }
 
 
-
 /**
  * 获取当前图层名称
  * @param layerID
@@ -2472,7 +2523,7 @@ Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, r
 Kinase.prototype.layer.getLayerName_byActive = function ()
 {
     var ref = new ActionReference();
-    ref.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ),  charIDToTypeID( "Trgt" ) );
+    ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
 
     try
     {
@@ -2533,14 +2584,14 @@ Kinase.prototype.layer.setLayerName_byActive = function (name)
 
     var ad = new ActionDescriptor();
     var ref = new ActionReference();
-    ref.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
+    ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
 
 
-    ad.putReference( charIDToTypeID( "null" ), ref );
+    ad.putReference(charIDToTypeID("null"), ref);
     var ad2 = new ActionDescriptor();
-    ad2.putString(  charIDToTypeID( "Nm  " ), name );
-    ad.putObject( charIDToTypeID( "T   " ), charIDToTypeID( "Lyr " ), ad2 );
-    executeAction( charIDToTypeID( "setd" ), ad, DialogModes.NO );
+    ad2.putString(charIDToTypeID("Nm  "), name);
+    ad.putObject(charIDToTypeID("T   "), charIDToTypeID("Lyr "), ad2);
+    executeAction(charIDToTypeID("setd"), ad, DialogModes.NO);
 }
 
 Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
