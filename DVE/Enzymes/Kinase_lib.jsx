@@ -2366,15 +2366,21 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 
 //==============================[图层样式]======================
 
-Kinase.prototype.layer.getLayerEffects = function (targetReference, target)
+Kinase.prototype.layer.getLayerEffectsObject = function (targetReference, target)
 {
     var layerEffects_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
     layerEffects_raw = layerEffects_raw.layerEffects;
-    return layerEffects_raw
+
+    if (layerEffects_raw == undefined)
+    {
+        layerEffects_raw = {noEffects: true}
+    }
+    return layerEffects_raw;
+
 
 }
 
-Kinase.prototype.layer.setLayerEffects = function (effectsObejct,targetReference, target)
+Kinase.prototype.layer.setLayerEffectsObject = function (effectsObejct, targetReference, target)
 {
     var adOb = {
         "null": {
@@ -2398,24 +2404,448 @@ Kinase.prototype.layer.setLayerEffects = function (effectsObejct,targetReference
 
     var ref = new ActionReference();
     if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
-    targetReference(ref, target || null, "textLayer")
+    targetReference(ref, target || null, "layer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value.container = refOb;
 
     // log(json(adOb))
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
-    
-    
+
+
 }
 
 
-Kinase.prototype.layer.getEffects_dropShadow = function ()
+Kinase.prototype.layer.getEffectsList_dropShadow = function (layerEffects_raw, onlyEnabled)
 {
-    var layerEffects_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
-    layerEffects_raw = layerEffects_raw.layerEffects;
-    return layerEffects_raw
+    var dropShadowInfo = [];
+    if (layerEffects_raw.value.dropShadowMulti != undefined)
+    {
+
+        for (var i in layerEffects_raw.value.dropShadowMulti.value)
+        {
+            var info = _analyseDropShadow(layerEffects_raw.value.dropShadowMulti.value[i], onlyEnabled)
+            if (info != undefined)
+            {
+                dropShadowInfo.push(info)
+            }
+
+        }
+    }
+    else
+    {
+        var info = _analyseDropShadow(layerEffects_raw.value.dropShadow, onlyEnabled);
+        dropShadowInfo.push(info);
+    }
+    return dropShadowInfo;
+
+    function _analyseDropShadow(dropShadow, onlyEnabled)
+    {
+        var ob = {
+            enabled: null, /*启用*/
+            color: {r: null, g: null, b: null}, /*结构-颜色*/
+            opacity: null, /*结构-不透明度*/
+            lightingAngle: null, /*结构-角度*/
+            useGlobalAngle: null, /*结构-使用全局光*/
+            blendMode: null, /*结构-混合模式*/
+            distance: null, /*结构-距离*/
+            chokeMatte: null, /*结构-扩展*/
+            blur: null, /*结构-大小*/
+            antiAlias: null, /*品质-消除锯齿*/
+            noise: null, /*品质-杂色*/
+            transferSpec: null, /*品质-等高线*/
+            layerConceals: null, /*???*/
+            present: null, /*???*/
+            showInDialog: null, /*???*/
+        };
+
+        ob.enabled = dropShadow.value.enabled.value;
+        if (onlyEnabled && ( ob.enabled == false))
+        {
+            return null;
+        }
+        ob.antiAlias = dropShadow.value.antiAlias.value;
+        ob.chokeMatte = dropShadow.value.chokeMatte.value.doubleValue;
+        ob.blur = dropShadow.value.blur.value.doubleValue;
+        ob.color.r = dropShadow.value.color.value.red.value;
+        ob.color.g = dropShadow.value.color.value.grain.value;
+        ob.color.b = dropShadow.value.color.value.blue.value;
+        ob.distance = dropShadow.value.distance.value.doubleValue;
+        ob.layerConceals = dropShadow.value.layerConceals.value;
+        ob.lightingAngle = dropShadow.value.localLightingAngle.value.doubleValue;
+        ob.blendMode = dropShadow.value.mode.value.enumerationValue;
+        ob.noise = dropShadow.value.noise.value.doubleValue;
+        ob.opacity = dropShadow.value.opacity.value.doubleValue;
+        ob.present = dropShadow.value.present.value;
+        ob.showInDialog = dropShadow.value.showInDialog.value
+        ob.transferSpec = dropShadow.value.transferSpec.value.name.value;
+        ob.useGlobalAngle = dropShadow.value.useGlobalAngle.value;
+        return ob;
+    }
+}
+
+Kinase.prototype.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowList)
+{
+    var ob = {
+        enabled: null, /*启用*/
+        color: {r: null, g: null, b: null}, /*结构-颜色*/
+        opacity: null, /*结构-不透明度*/
+        lightingAngle: null, /*结构-角度*/
+        useGlobalAngle: null, /*结构-使用全局光*/
+        blendMode: null, /*结构-混合模式*/
+        distance: null, /*结构-距离*/
+        chokeMatte: null, /*结构-扩展*/
+        blur: null, /*结构-大小*/
+        antiAlias: null, /*品质-消除锯齿*/
+        noise: null, /*品质-杂色*/
+        transferSpec: null, /*品质-等高线*/
+        layerConceals: null, /*???*/
+        present: null, /*???*/
+        showInDialog: null, /*???*/
+    };
+
+
+    if (layerEffects_raw.noEffects)
+    {
+        layerEffects_raw = {
+            "value": {
+                "scale": {
+                    "value": {
+                        "doubleType": "percentUnit",
+                        "doubleValue": 100
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "null"
+        };
+
+    }
+
+
+    if (layerEffects_raw.value.dropShadowMulti != undefined)
+    {
+        _setMulti()
+    }
+    else
+    {
+
+        if (dropShadowList.length > 1)
+        {
+            layerEffects_raw.value.dropShadowMulti = {
+                "value": {}, "type": "DescValueType.LISTTYPE"
+            }
+            _setMulti();
+            if (layerEffects_raw.value.dropShadow != undefined)
+            {
+                delete layerEffects_raw.value.dropShadow;
+            }
+
+        } else
+        {
+            if (layerEffects_raw.value.dropShadow == undefined)
+            {
+                layerEffects_raw.value.dropShadow = {
+                    "value": {
+                        "enabled": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "present": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "showInDialog": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "mode": {
+                            "value": {
+                                "enumerationType": "blendMode",
+                                "enumerationValue": "multiply"
+                            },
+                            "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "color": {
+                            "value": {
+                                "red": {
+                                    "value": 3.53486244566739,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "grain": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "blue": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "RGBColor"
+                        },
+                        "opacity": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 35
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "useGlobalAngle": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "localLightingAngle": {
+                            "value": {
+                                "doubleType": "angleUnit",
+                                "doubleValue": 90
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "distance": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 3
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "chokeMatte": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "blur": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 7
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "noise": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "antiAlias": {
+                            "value": false,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "transferSpec": {
+                            "value": {
+                                "name": {
+                                    "value": "线性",
+                                    "type": "DescValueType.STRINGTYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "shapeCurveType"
+                        },
+                        "layerConceals": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "dropShadow"
+                };
+            }
+            _setSingle();
+        }
+
+    }
+    return layerEffects_raw;
+
+    function _setMulti()
+    {
+        var len = 0;
+        for (var i in layerEffects_raw.value.dropShadowMulti.value)
+        {
+            len++;
+        }
+
+        if (len < dropShadowList.length)
+        {
+            for (var i = 0; i < dropShadowList.length - len; i++)
+            {
+                layerEffects_raw.value.dropShadowMulti.value[len + i] = {
+                    "value": {
+                        "enabled": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "present": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "showInDialog": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "mode": {
+                            "value": {
+                                "enumerationType": "blendMode",
+                                "enumerationValue": "multiply"
+                            },
+                            "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "color": {
+                            "value": {
+                                "red": {
+                                    "value": 3.53486244566739,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "grain": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "blue": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "RGBColor"
+                        },
+                        "opacity": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 35
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "useGlobalAngle": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "localLightingAngle": {
+                            "value": {
+                                "doubleType": "angleUnit",
+                                "doubleValue": 90
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "distance": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 3
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "chokeMatte": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "blur": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 7
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "noise": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "antiAlias": {
+                            "value": false,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "transferSpec": {
+                            "value": {
+                                "name": {
+                                    "value": "线性",
+                                    "type": "DescValueType.STRINGTYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "shapeCurveType"
+                        },
+                        "layerConceals": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "dropShadow"
+                }
+            }
+        }
+        for (var i = 0; i < dropShadowList.length; i++)
+        {
+            layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value = dropShadowList[i].enabled || layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value
+            layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value = dropShadowList[i].antiAlias || layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue = dropShadowList[i].chokeMatte || layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue = dropShadowList[i].blur || layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value = dropShadowList[i].color.r || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value = dropShadowList[i].color.g || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value = dropShadowList[i].color.b || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue = dropShadowList[i].distance || layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value = dropShadowList[i].layerConceals || layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue = dropShadowList[i].lightingAngle || layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue = dropShadowList[i].blendMode || layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue = dropShadowList[i].noise || layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue = dropShadowList[i].opacity || layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.present.value = dropShadowList[i].present || layerEffects_raw.value.dropShadowMulti.value[i].value.present.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value = dropShadowList[i].showInDialog || layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value = dropShadowList[i].transferSpec || layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value = dropShadowList[i].useGlobalAngle || layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value;
+        }
+    }
+
+    function _setSingle()
+    {
+        layerEffects_raw.value.dropShadow.value.enabled.value = dropShadowList[0].enabled || layerEffects_raw.value.dropShadow.value.enabled.value;
+        layerEffects_raw.value.dropShadow.value.antiAlias.value = dropShadowList[0].antiAlias || layerEffects_raw.value.dropShadow.value.antiAlias.value;
+        layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue = dropShadowList[0].chokeMatte || layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue;
+        layerEffects_raw.value.dropShadow.value.blur.value.doubleValue = dropShadowList[0].blur || layerEffects_raw.value.dropShadow.value.blur.value.doubleValue;
+        layerEffects_raw.value.dropShadow.value.color.value.red.value = dropShadowList[0].color.r || layerEffects_raw.value.dropShadow.value.color.value.red.value;
+        layerEffects_raw.value.dropShadow.value.color.value.grain.value = dropShadowList[0].color.g || layerEffects_raw.value.dropShadow.value.color.value.grain.value;
+        layerEffects_raw.value.dropShadow.value.color.value.blue.value = dropShadowList[0].color.b || layerEffects_raw.value.dropShadow.value.color.value.blue.value;
+        layerEffects_raw.value.dropShadow.value.distance.value.doubleValue = dropShadowList[0].distance || layerEffects_raw.value.dropShadow.value.distance.value.doubleValue;
+        layerEffects_raw.value.dropShadow.value.layerConceals.value = dropShadowList[0].layerConceals || layerEffects_raw.value.dropShadow.value.layerConceals.value;
+        layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue = dropShadowList[0].lightingAngle || layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue;
+        layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue = dropShadowList[0].blendMode || layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue;
+        layerEffects_raw.value.dropShadow.value.noise.value.doubleValue = dropShadowList[0].noise || layerEffects_raw.value.dropShadow.value.noise.value.doubleValue;
+        layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue = dropShadowList[0].opacity || layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue;
+        layerEffects_raw.value.dropShadow.value.present.value = dropShadowList[0].present || layerEffects_raw.value.dropShadow.value.present.value;
+        layerEffects_raw.value.dropShadow.value.showInDialog.value = dropShadowList[0].showInDialog || layerEffects_raw.value.dropShadow.value.showInDialog.value;
+        layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value = dropShadowList[0].transferSpec || layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value;
+        layerEffects_raw.value.dropShadow.value.useGlobalAngle.value = dropShadowList[0].useGlobalAngle || layerEffects_raw.value.dropShadow.value.useGlobalAngle.value;
+
+    }
+}
+
+
+/*
+ @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ */
+
+
+
+/*
+Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list, Kinase.REF_ActiveLayer, null)
+*/
+Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, targetReference, target)
+{
+
+    var eOb = ki.layer.getLayerEffectsObject(targetReference, target)
+    eOb = listFunction(eOb, list)    // 如 eOb = ki.layer.putEffectsList_dropShadow(eOb, list)
+    ki.layer.setLayerEffectsObject(eOb, targetReference, target)
 
 }
+
+
 //END===========================[图层样式]========================
 
 

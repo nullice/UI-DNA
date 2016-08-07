@@ -596,12 +596,14 @@ Muclease.prototype.executeActionObjcet = function (eventID, ob)
     // idsetd = charIDToTypeID("setd");
     try
     {
+        // log(json(ob))
+        // logSave()
         executeAction(eventID, ad, DialogModes.NO);
         return true;
     } catch (e)
     {
 
-        log("executeActionObjcet:" + typeIDToCharID(eventID))
+        log("ERR executeAction fail, executeActionObjcet:" + typeIDToCharID(eventID))
         log(json(ob))
         return false;
     }
