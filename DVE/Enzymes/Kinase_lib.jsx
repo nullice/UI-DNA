@@ -2414,6 +2414,7 @@ Kinase.prototype.layer.setLayerEffectsObject = function (effectsObejct, targetRe
 
 }
 
+//----
 
 Kinase.prototype.layer.getEffectsList_dropShadow = function (layerEffects_raw, onlyEnabled)
 {
@@ -2825,6 +2826,77 @@ Kinase.prototype.layer.putEffectsList_dropShadow = function (layerEffects_raw, d
     }
 }
 
+Kinase.prototype.layer.getEffectsList_universal = function (layerEffects_raw, effectName, onlyEnabled)
+{
+    var effectInfo = [];
+    if (layerEffects_raw.value[effectName + "Multi"] != undefined)
+    {
+        for (var i in layerEffects_raw.value[effectName + "Multi"].value)
+        {
+            var info = Kinase.prototype.layer._effectUniverAnalyse(layerEffects_raw.value[effectName + "Multi"].value[i], onlyEnabled)
+            if (info != undefined)
+            {
+                effectInfo.push(info)
+            }
+        }
+    }
+    else
+    {
+        var info = Kinase.prototype.layer._effectUniverAnalyse(layerEffects_raw.value[effectName], onlyEnabled);
+        effectInfo.push(info);
+    }
+    return effectInfo;
+
+}
+
+Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnabled)
+{
+    var ob = {};
+    _scanEffct(effectObject, ob);
+
+    function _scanEffct(effectObject, ob)
+    {
+        for (var i in effectObject.value)
+        {
+            if ((effectObject.value[i].type == "DescValueType.OBJECTTYPE"))
+            {
+
+                ob[i] = {};
+                _scanEffct(effectObject.value[i], ob[i])
+            }
+            else if ((i != "type" ))
+            {
+                if (effectObject.value[i].value.constructor == Object)
+                {
+                    _cut(effectObject.value[i].value, ["enumerationValue", "doubleValue"])
+                    function  _cut(value, nameList)
+                    {
+                        for(var name in nameList)
+                        {
+                            if( value[nameList[name]]!= undefined)
+                            {
+                                ob[i] =  value[nameList[name]];
+                                return
+                            }
+                        }
+                    }
+
+
+                }
+                else
+                {
+                    ob[i] = effectObject.value[i].value;
+                }
+
+            }
+        }
+    }
+
+    return ob;
+
+
+}
+
 
 /*
  @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
@@ -2834,8 +2906,8 @@ Kinase.prototype.layer.putEffectsList_dropShadow = function (layerEffects_raw, d
 
 
 /*
-Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list, Kinase.REF_ActiveLayer, null)
-*/
+ Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list, Kinase.REF_ActiveLayer, null)
+ */
 Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, targetReference, target)
 {
 

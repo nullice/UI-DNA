@@ -1,13 +1,47 @@
-{
-  "value": {
-    "scale": {
-      "value": {
-        "doubleType": "percentUnit",
-        "doubleValue": 100
-      },
-      "type": "DescValueType.UNITDOUBLE"
+[
+  {
+    "enabled": true,
+    "present": true,
+    "showInDialog": true,
+    "mode": "linearLight",
+    "color": {
+      "red": 3.53486244566739,
+      "grain": 0,
+      "blue": 0
+    },
+    "opacity": 33,
+    "useGlobalAngle": false,
+    "localLightingAngle": 90,
+    "distance": 3,
+    "chokeMatte": 0,
+    "blur": 2,
+    "noise": 0,
+    "antiAlias": false,
+    "transferSpec": {
+      "name": "线性"
     }
   },
-  "type": "DescValueType.OBJECTTYPE",
-  "objectType": "null"
-}
+  {
+    "enabled": true,
+    "present": true,
+    "showInDialog": true,
+    "mode": "linearLight",
+    "color": {
+      "red": 3.53486244566739,
+      "grain": 0,
+      "blue": 0
+    },
+    "opacity": 14,
+    "useGlobalAngle": false,
+    "localLightingAngle": 90,
+    "distance": 3,
+    "chokeMatte": 0,
+    "blur": 2,
+    "noise": 0,
+    "antiAlias": false,
+    "transferSpec": {
+      "name": "线性"
+    }
+  }
+]
+
