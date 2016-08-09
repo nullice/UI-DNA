@@ -1,20 +1,24 @@
-x
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":true,"type":"DescValueType.BOOLEANTYPE"}
-{"value":true,"type":"DescValueType.BOOLEANTYPE"}
-{"value":3.53486244566739,"type":"DescValueType.DOUBLETYPE"}
-{"value":3.53486244566739,"type":"DescValueType.DOUBLETYPE"}
-{"value":0,"type":"DescValueType.DOUBLETYPE"}
-{"value":0,"type":"DescValueType.DOUBLETYPE"}
-{"value":0,"type":"DescValueType.DOUBLETYPE"}
-{"value":0,"type":"DescValueType.DOUBLETYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":false,"type":"DescValueType.BOOLEANTYPE"}
-{"value":"$$$/Contours/Defaults/Linear=Linear","type":"DescValueType.STRINGTYPE"}
-{"value":"$$$/Contours/Defaults/Linear=Linear","type":"DescValueType.STRINGTYPE"}
-Result: undefined
+[
+  {
+    "enabled": true,
+    "present": true,
+    "showInDialog": true,
+    "mode": "normal",
+    "color": {
+      "red": 235.000001192093,
+      "grain": 0,
+      "blue": 0
+    },
+    "opacity": 100,
+    "useGlobalAngle": false,
+    "localLightingAngle": 90,
+    "distance": 0,
+    "chokeMatte": 0,
+    "blur": 38,
+    "noise": 0,
+    "antiAlias": false,
+    "transferSpec": {
+      "name": "$$$/Contours/Defaults/Linear=Linear"
+    }
+  }
+]
