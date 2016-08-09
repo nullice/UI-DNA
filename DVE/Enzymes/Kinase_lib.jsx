@@ -2849,8 +2849,9 @@ Kinase.prototype.layer.getEffectsList_universal = function (layerEffects_raw, ef
 
 }
 
-Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw,effectName, list)
+Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, effectName, list)
 {
+    // log(json(list))
 
     if (layerEffects_raw.noEffects)
     {
@@ -2870,8 +2871,9 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw,eff
 
     }
 
-    if (layerEffects_raw.value[effectName+"Multi"] != undefined)
+    if (layerEffects_raw.value[effectName + "Multi"] != undefined)
     {
+
         _setMulti()
     }
     else
@@ -2879,7 +2881,7 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw,eff
 
         if (list.length > 1)
         {
-            layerEffects_raw.value[effectName+"Multi"]  = {
+            layerEffects_raw.value[effectName + "Multi"] = {
                 "value": {}, "type": "DescValueType.LISTTYPE"
             }
             _setMulti();
@@ -2892,125 +2894,20 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw,eff
         {
             if (layerEffects_raw.value[effectName] == undefined)
             {
-                layerEffects_raw.value[effectName] = {
-                    "value": {
-                        "enabled": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "present": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "showInDialog": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "mode": {
-                            "value": {
-                                "enumerationType": "blendMode",
-                                "enumerationValue": "multiply"
-                            },
-                            "type": "DescValueType.ENUMERATEDTYPE"
-                        },
-                        "color": {
-                            "value": {
-                                "red": {
-                                    "value": 3.53486244566739,
-                                    "type": "DescValueType.DOUBLETYPE"
-                                },
-                                "grain": {
-                                    "value": 0,
-                                    "type": "DescValueType.DOUBLETYPE"
-                                },
-                                "blue": {
-                                    "value": 0,
-                                    "type": "DescValueType.DOUBLETYPE"
-                                }
-                            },
-                            "type": "DescValueType.OBJECTTYPE",
-                            "objectType": "RGBColor"
-                        },
-                        "opacity": {
-                            "value": {
-                                "doubleType": "percentUnit",
-                                "doubleValue": 35
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "useGlobalAngle": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "localLightingAngle": {
-                            "value": {
-                                "doubleType": "angleUnit",
-                                "doubleValue": 90
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "distance": {
-                            "value": {
-                                "doubleType": "pixelsUnit",
-                                "doubleValue": 3
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "chokeMatte": {
-                            "value": {
-                                "doubleType": "pixelsUnit",
-                                "doubleValue": 0
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "blur": {
-                            "value": {
-                                "doubleType": "pixelsUnit",
-                                "doubleValue": 7
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "noise": {
-                            "value": {
-                                "doubleType": "percentUnit",
-                                "doubleValue": 0
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "antiAlias": {
-                            "value": false,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "transferSpec": {
-                            "value": {
-                                "name": {
-                                    "value": "线性",
-                                    "type": "DescValueType.STRINGTYPE"
-                                }
-                            },
-                            "type": "DescValueType.OBJECTTYPE",
-                            "objectType": "shapeCurveType"
-                        },
-                        "layerConceals": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        }
-                    },
-                    "type": "DescValueType.OBJECTTYPE",
-                    "objectType": "dropShadow"
-                };
+                layerEffects_raw.value[effectName] = _getDefaultEffectObject(effectName);
             }
             _setSingle(layerEffects_raw.value[effectName].value, list[0])
         }
 
     }
 
+
     return layerEffects_raw;
 
     function _setMulti()
     {
         var len = 0;
-        for (var i in layerEffects_raw.value[effectName+"Multi"].value)
+        for (var i in layerEffects_raw.value[effectName + "Multi"].value)
         {
             len++;
         }
@@ -3019,143 +2916,399 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw,eff
         {
             for (var i = 0; i < list.length - len; i++)
             {
-                layerEffects_raw.value[effectName+"Multi"].value[len + i] = {
-                    "value": {
-                        "enabled": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "present": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "showInDialog": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "mode": {
-                            "value": {
-                                "enumerationType": "blendMode",
-                                "enumerationValue": "multiply"
-                            },
-                            "type": "DescValueType.ENUMERATEDTYPE"
-                        },
-                        "color": {
-                            "value": {
-                                "red": {
-                                    "value": 3.53486244566739,
-                                    "type": "DescValueType.DOUBLETYPE"
-                                },
-                                "grain": {
-                                    "value": 0,
-                                    "type": "DescValueType.DOUBLETYPE"
-                                },
-                                "blue": {
-                                    "value": 0,
-                                    "type": "DescValueType.DOUBLETYPE"
-                                }
-                            },
-                            "type": "DescValueType.OBJECTTYPE",
-                            "objectType": "RGBColor"
-                        },
-                        "opacity": {
-                            "value": {
-                                "doubleType": "percentUnit",
-                                "doubleValue": 35
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "useGlobalAngle": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "localLightingAngle": {
-                            "value": {
-                                "doubleType": "angleUnit",
-                                "doubleValue": 90
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "distance": {
-                            "value": {
-                                "doubleType": "pixelsUnit",
-                                "doubleValue": 3
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "chokeMatte": {
-                            "value": {
-                                "doubleType": "pixelsUnit",
-                                "doubleValue": 0
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "blur": {
-                            "value": {
-                                "doubleType": "pixelsUnit",
-                                "doubleValue": 7
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "noise": {
-                            "value": {
-                                "doubleType": "percentUnit",
-                                "doubleValue": 0
-                            },
-                            "type": "DescValueType.UNITDOUBLE"
-                        },
-                        "antiAlias": {
-                            "value": false,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        },
-                        "transferSpec": {
-                            "value": {
-                                "name": {
-                                    "value": "线性",
-                                    "type": "DescValueType.STRINGTYPE"
-                                }
-                            },
-                            "type": "DescValueType.OBJECTTYPE",
-                            "objectType": "shapeCurveType"
-                        },
-                        "layerConceals": {
-                            "value": true,
-                            "type": "DescValueType.BOOLEANTYPE"
-                        }
-                    },
-                    "type": "DescValueType.OBJECTTYPE",
-                    "objectType": "dropShadow"
-                }
+                layerEffects_raw.value[effectName + "Multi"].value[len + i] = _getDefaultEffectObject(effectName);
             }
         }
         for (var i = 0; i < list.length; i++)
         {
-            _setSingle(layerEffects_raw.value[effectName+"Multi"].value[i], list[i])
+            _setSingle(layerEffects_raw.value[effectName + "Multi"].value[i].value, list[i])
 
         }
     }
 
     function _setSingle(ob, listItem)
     {
-        for(var i in listItem)
+        // log(json(ob))
+        for (var i in listItem)
         {
-           if( ob[i] != undefined)
-           {
-               if( ob[i].value.construct = Object)
-               {
-                   _setSingle(ob[i].value, listItem[i])
-               }else
-               {
-                   ob[i].value =  listItem[i];
-               }
-           }
+            if (ob[i] != undefined)
+            {
+                if (ob[i].value.constructor == Object)
+                {
+                    _setSingle(ob[i].value, listItem[i])
+                } else
+                {
+                    _unCut(["value","enumerationValue", "doubleValue"])
+                    function _unCut(nameList)
+                    {
+                        for (var name in nameList)
+                        {
+                            // log(json(ob[i] ))
+                            if (ob[i][nameList[name]] != undefined)
+                            {
+                                ob[i][nameList[name]] = listItem[i];
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
 
         }
     }
 
 
-}
+    function _getDefaultEffectObject(effectName)
+    {
+        if (effectName == "bevelEmboss")
+        {
+            return {
+                "value": {
+                    "enabled": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "present": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "showInDialog": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "highlightMode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "screen"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "highlightColor": {
+                        "value": {
+                            "red": {
+                                "value": 255,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 255,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 255,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "highlightOpacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 50
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "shadowMode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "multiply"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "shadowColor": {
+                        "value": {
+                            "red": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "shadowOpacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 50
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "bevelTechnique": {
+                        "value": {
+                            "enumerationType": "bevelTechnique",
+                            "enumerationValue": "softMatte"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "bevelStyle": {
+                        "value": {
+                            "enumerationType": "bevelEmbossStyle",
+                            "enumerationValue": "innerBevel"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "useGlobalAngle": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "localLightingAngle": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 90
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "localLightingAltitude": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 30
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "strengthRatio": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "blur": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 7
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "bevelDirection": {
+                        "value": {
+                            "enumerationType": "bevelEmbossStampStyle",
+                            "enumerationValue": "in"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "transferSpec": {
+                        "value": {
+                            "name": {
+                                "value": "线性",
+                                "type": "DescValueType.STRINGTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "shapeCurveType"
+                    },
+                    "antialiasGloss": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "softness": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "useShape": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "mappingShape": {
+                        "value": {
+                            "name": {
+                                "value": "线性",
+                                "type": "DescValueType.STRINGTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "shapeCurveType"
+                    },
+                    "antiAlias": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "inputRange": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 50
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "useTexture": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "invertTexture": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "align": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "scale": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "textureDepth": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "pattern": {
+                        "value": {
+                            "name": {
+                                "value": "$$$/Patterns/Defaults/Watercolor=Watercolor",
+                                "type": "DescValueType.STRINGTYPE"
+                            },
+                            "ID": {
+                                "value": "af45cb54-5b90-11e6-b53f-dd17143f2590",
+                                "type": "DescValueType.STRINGTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "pattern"
+                    },
+                    "phase": {
+                        "value": {
+                            "horizontal": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "vertical": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "paint"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "bevelEmboss"
+            };
+        }
+        else if (effectName == "innerShadow")
+        {
+            return {
+                "value": {
+                    "enabled": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "present": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "showInDialog": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "mode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "normal"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "color": {
+                        "value": {
+                            "red": {
+                                "value": 235.000001192093,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "opacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "useGlobalAngle": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "localLightingAngle": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 90
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "distance": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "chokeMatte": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "blur": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 38
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "noise": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "antiAlias": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "transferSpec": {
+                        "value": {
+                            "name": {
+                                "value": "$$$/Contours/Defaults/Linear=Linear",
+                                "type": "DescValueType.STRINGTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "shapeCurveType"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "innerShadow"
+            };
+        }
 
+    }
+
+
+}
 
 
 Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnabled)
@@ -3178,13 +3331,13 @@ Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnable
                 if (effectObject.value[i].value.constructor == Object)
                 {
                     _cut(effectObject.value[i].value, ["enumerationValue", "doubleValue"])
-                    function  _cut(value, nameList)
+                    function _cut(value, nameList)
                     {
-                        for(var name in nameList)
+                        for (var name in nameList)
                         {
-                            if( value[nameList[name]]!= undefined)
+                            if (value[nameList[name]] != undefined)
                             {
-                                ob[i] =  value[nameList[name]];
+                                ob[i] = value[nameList[name]];
                                 return
                             }
                         }
@@ -3205,13 +3358,6 @@ Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnable
 }
 
 
-
-
-
-
-
-
-
 /*
  @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
@@ -3222,11 +3368,20 @@ Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnable
 /*
  Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list, Kinase.REF_ActiveLayer, null)
  */
-Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, targetReference, target)
+Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, targetReference, target, effectName)
 {
 
     var eOb = ki.layer.getLayerEffectsObject(targetReference, target)
-    eOb = listFunction(eOb, list)    // 如 eOb = ki.layer.putEffectsList_dropShadow(eOb, list)
+
+    if (effectName == undefined)
+    {
+        eOb = listFunction(eOb, list)    // 如 eOb = ki.layer.putEffectsList_dropShadow(eOb, list)
+    } else
+    {
+        eOb = listFunction(eOb, effectName, list)
+    }
+
+
     ki.layer.setLayerEffectsObject(eOb, targetReference, target)
 
 }

@@ -14,10 +14,26 @@ var list1 = ki.layer.getEffectsList_dropShadow(eOb1, true)
 Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list1, Kinase.REF_ActiveLayer, null)*/
 //----------------------------------------------
 
-var eOb1 = ki.layer.getLayerEffectsObject( Kinase.REF_ActiveLayer, null)
-var list = ki.layer.getEffectsList_universal(eOb1,"innerShadow",true)
 
-log(json(list))
+
+log(ki.layer.getLayerName_byItemIndex(i))
+ var eOb1 = ki.layer.getLayerEffectsObject(Kinase.REF_ItemIndex, i)
+ var list1 = ki.layer.getEffectsList_universal(eOb1,"innerShadow", true)
+ Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_universal, list1, Kinase.REF_ActiveLayer, null,"innerShadow")
+
+
+
+
+
+
+
+
+
+//
+// var eOb1 = ki.layer.getLayerEffectsObject( Kinase.REF_ActiveLayer, null)
+// var list = ki.layer.getEffectsList_universal(eOb1,"innerShadow",true)
+
+// log(json(list))
 
 
 // /*

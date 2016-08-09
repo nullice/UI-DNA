@@ -1,25 +1,20 @@
-{
-  "null": {
-    "value": {
-      "container": {
-        "container": {
-        }
-      },
-      "form": "ReferenceFormType.ENUMERATED",
-      "desiredClass": "layer",
-      "enumeratedType": "ordinal",
-      "enumeratedValue": "targetEnum"
-    },
-    "type": "DescValueType.REFERENCETYPE"
-  },
-  "to": {
-    "value": {
-      "name": {
-        "value": "xxx2222",
-        "type": "DescValueType.STRINGTYPE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "layer"
-  }
-}
+x
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":true,"type":"DescValueType.BOOLEANTYPE"}
+{"value":true,"type":"DescValueType.BOOLEANTYPE"}
+{"value":3.53486244566739,"type":"DescValueType.DOUBLETYPE"}
+{"value":3.53486244566739,"type":"DescValueType.DOUBLETYPE"}
+{"value":0,"type":"DescValueType.DOUBLETYPE"}
+{"value":0,"type":"DescValueType.DOUBLETYPE"}
+{"value":0,"type":"DescValueType.DOUBLETYPE"}
+{"value":0,"type":"DescValueType.DOUBLETYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+{"value":"$$$/Contours/Defaults/Linear=Linear","type":"DescValueType.STRINGTYPE"}
+{"value":"$$$/Contours/Defaults/Linear=Linear","type":"DescValueType.STRINGTYPE"}
+Result: undefined
