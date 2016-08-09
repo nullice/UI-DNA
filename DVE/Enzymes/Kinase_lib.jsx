@@ -2849,6 +2849,315 @@ Kinase.prototype.layer.getEffectsList_universal = function (layerEffects_raw, ef
 
 }
 
+Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw,effectName, list)
+{
+
+    if (layerEffects_raw.noEffects)
+    {
+        layerEffects_raw = {
+            "value": {
+                "scale": {
+                    "value": {
+                        "doubleType": "percentUnit",
+                        "doubleValue": 100
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "null"
+        };
+
+    }
+
+    if (layerEffects_raw.value[effectName+"Multi"] != undefined)
+    {
+        _setMulti()
+    }
+    else
+    {
+
+        if (list.length > 1)
+        {
+            layerEffects_raw.value[effectName+"Multi"]  = {
+                "value": {}, "type": "DescValueType.LISTTYPE"
+            }
+            _setMulti();
+            if (layerEffects_raw.value[effectName] != undefined)
+            {
+                delete layerEffects_raw.value[effectName];
+            }
+
+        } else
+        {
+            if (layerEffects_raw.value[effectName] == undefined)
+            {
+                layerEffects_raw.value[effectName] = {
+                    "value": {
+                        "enabled": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "present": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "showInDialog": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "mode": {
+                            "value": {
+                                "enumerationType": "blendMode",
+                                "enumerationValue": "multiply"
+                            },
+                            "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "color": {
+                            "value": {
+                                "red": {
+                                    "value": 3.53486244566739,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "grain": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "blue": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "RGBColor"
+                        },
+                        "opacity": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 35
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "useGlobalAngle": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "localLightingAngle": {
+                            "value": {
+                                "doubleType": "angleUnit",
+                                "doubleValue": 90
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "distance": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 3
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "chokeMatte": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "blur": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 7
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "noise": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "antiAlias": {
+                            "value": false,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "transferSpec": {
+                            "value": {
+                                "name": {
+                                    "value": "线性",
+                                    "type": "DescValueType.STRINGTYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "shapeCurveType"
+                        },
+                        "layerConceals": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "dropShadow"
+                };
+            }
+            _setSingle(layerEffects_raw.value[effectName].value, list[0])
+        }
+
+    }
+
+    return layerEffects_raw;
+
+    function _setMulti()
+    {
+        var len = 0;
+        for (var i in layerEffects_raw.value[effectName+"Multi"].value)
+        {
+            len++;
+        }
+
+        if (len < list.length)
+        {
+            for (var i = 0; i < list.length - len; i++)
+            {
+                layerEffects_raw.value[effectName+"Multi"].value[len + i] = {
+                    "value": {
+                        "enabled": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "present": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "showInDialog": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "mode": {
+                            "value": {
+                                "enumerationType": "blendMode",
+                                "enumerationValue": "multiply"
+                            },
+                            "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "color": {
+                            "value": {
+                                "red": {
+                                    "value": 3.53486244566739,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "grain": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                },
+                                "blue": {
+                                    "value": 0,
+                                    "type": "DescValueType.DOUBLETYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "RGBColor"
+                        },
+                        "opacity": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 35
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "useGlobalAngle": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "localLightingAngle": {
+                            "value": {
+                                "doubleType": "angleUnit",
+                                "doubleValue": 90
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "distance": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 3
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "chokeMatte": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "blur": {
+                            "value": {
+                                "doubleType": "pixelsUnit",
+                                "doubleValue": 7
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "noise": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "antiAlias": {
+                            "value": false,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        },
+                        "transferSpec": {
+                            "value": {
+                                "name": {
+                                    "value": "线性",
+                                    "type": "DescValueType.STRINGTYPE"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "shapeCurveType"
+                        },
+                        "layerConceals": {
+                            "value": true,
+                            "type": "DescValueType.BOOLEANTYPE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "dropShadow"
+                }
+            }
+        }
+        for (var i = 0; i < list.length; i++)
+        {
+            _setSingle(layerEffects_raw.value[effectName+"Multi"].value[i], list[i])
+
+        }
+    }
+
+    function _setSingle(ob, listItem)
+    {
+        for(var i in listItem)
+        {
+           if( ob[i] != undefined)
+           {
+               if( ob[i].value.construct = Object)
+               {
+                   _setSingle(ob[i].value, listItem[i])
+               }else
+               {
+                   ob[i].value =  listItem[i];
+               }
+           }
+
+        }
+    }
+
+
+}
+
+
+
 Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnabled)
 {
     var ob = {};
@@ -2893,9 +3202,14 @@ Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnable
     }
 
     return ob;
-
-
 }
+
+
+
+
+
+
+
 
 
 /*
