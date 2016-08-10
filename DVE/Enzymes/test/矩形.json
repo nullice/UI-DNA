@@ -3,22 +3,16 @@
     "enabled": true,
     "present": true,
     "showInDialog": true,
+    "style": "outsetFrame",
+    "paintType": "solidColor",
     "mode": "normal",
+    "opacity": 85,
+    "size": 35,
     "color": {
-      "red": 235.000001192093,
-      "grain": 0,
-      "blue": 0
+      "red": 255,
+      "grain": 6.00000011734664,
+      "blue": 187.645908594131
     },
-    "opacity": 100,
-    "useGlobalAngle": false,
-    "localLightingAngle": 90,
-    "distance": 0,
-    "chokeMatte": 0,
-    "blur": 38,
-    "noise": 0,
-    "antiAlias": false,
-    "transferSpec": {
-      "name": "$$$/Contours/Defaults/Linear=Linear"
-    }
+    "overprint": false
   }
 ]

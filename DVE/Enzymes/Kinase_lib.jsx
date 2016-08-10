@@ -2928,28 +2928,50 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, ef
 
     function _setSingle(ob, listItem)
     {
+        var nameList = ["value", "enumerationValue", "doubleValue"];
+
+
         // log(json(ob))
         for (var i in listItem)
         {
+
             if (ob[i] != undefined)
             {
+
+                log(i + "=" + (ob[i].value.constructor == Object) + json(ob[i]))
                 if (ob[i].value.constructor == Object)
                 {
-                    _setSingle(ob[i].value, listItem[i])
+
+
+                    if (listItem[i].constructor == Object)
+                    {
+                        _setSingle(ob[i].value, listItem[i])
+                    } else
+                    {
+
+                        // _setSingle(ob[i].value, listItem)
+                        log("set:" + i + "----" + json(ob[i]) +"-"+ json(listItem[i]))
+                        _unCut(ob[i].value, ["value", "enumerationValue", "doubleValue"])
+
+                    }
+
+
                 } else
                 {
-                    _unCut(["value", "enumerationValue", "doubleValue"])
-                    function _unCut(nameList)
+
+                    _unCut(ob[i], ["value", "enumerationValue", "doubleValue"])
+                }
+            }
+
+            function _unCut(ob, nameList)
+            {
+                for (var name in nameList)
+                {
+                    // log(json(ob[i] ))
+                    if (ob[nameList[name]] != undefined)
                     {
-                        for (var name in nameList)
-                        {
-                            // log(json(ob[i] ))
-                            if (ob[i][nameList[name]] != undefined)
-                            {
-                                ob[i][nameList[name]] = listItem[i];
-                                return;
-                            }
-                        }
+                        ob[nameList[name]] = listItem[i];
+                        return;
                     }
                 }
             }
@@ -3845,76 +3867,76 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, ef
         else if (effectName == "patternFill")
         {
             return {
-            "value": {
-                "enabled": {
-                    "value": true,
+                "value": {
+                    "enabled": {
+                        "value": true,
                         "type": "DescValueType.BOOLEANTYPE"
-                },
-                "present": {
-                    "value": true,
+                    },
+                    "present": {
+                        "value": true,
                         "type": "DescValueType.BOOLEANTYPE"
-                },
-                "showInDialog": {
-                    "value": true,
+                    },
+                    "showInDialog": {
+                        "value": true,
                         "type": "DescValueType.BOOLEANTYPE"
-                },
-                "mode": {
-                    "value": {
-                        "enumerationType": "blendMode",
+                    },
+                    "mode": {
+                        "value": {
+                            "enumerationType": "blendMode",
                             "enumerationValue": "normal"
-                    },
-                    "type": "DescValueType.ENUMERATEDTYPE"
-                },
-                "opacity": {
-                    "value": {
-                        "doubleType": "percentUnit",
-                            "doubleValue": 100
-                    },
-                    "type": "DescValueType.UNITDOUBLE"
-                },
-                "pattern": {
-                    "value": {
-                        "name": {
-                            "value": "$$$/Patterns/Defaults/RightDiagonalLine1=Right Diagonal Line 1",
-                                "type": "DescValueType.STRINGTYPE"
                         },
-                        "ID": {
-                            "value": "bf565312-67b6-1177-9181-9d5762aa7056",
-                                "type": "DescValueType.STRINGTYPE"
-                        }
+                        "type": "DescValueType.ENUMERATEDTYPE"
                     },
-                    "type": "DescValueType.OBJECTTYPE",
+                    "opacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "pattern": {
+                        "value": {
+                            "name": {
+                                "value": "$$$/Patterns/Defaults/RightDiagonalLine1=Right Diagonal Line 1",
+                                "type": "DescValueType.STRINGTYPE"
+                            },
+                            "ID": {
+                                "value": "bf565312-67b6-1177-9181-9d5762aa7056",
+                                "type": "DescValueType.STRINGTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
                         "objectType": "pattern"
-                },
-                "scale": {
-                    "value": {
-                        "doubleType": "percentUnit",
+                    },
+                    "scale": {
+                        "value": {
+                            "doubleType": "percentUnit",
                             "doubleValue": 100
-                    },
-                    "type": "DescValueType.UNITDOUBLE"
-                },
-                "align": {
-                    "value": true,
-                        "type": "DescValueType.BOOLEANTYPE"
-                },
-                "phase": {
-                    "value": {
-                        "horizontal": {
-                            "value": 0,
-                                "type": "DescValueType.DOUBLETYPE"
                         },
-                        "vertical": {
-                            "value": 0,
-                                "type": "DescValueType.DOUBLETYPE"
-                        }
+                        "type": "DescValueType.UNITDOUBLE"
                     },
-                    "type": "DescValueType.OBJECTTYPE",
+                    "align": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "phase": {
+                        "value": {
+                            "horizontal": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "vertical": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
                         "objectType": "paint"
-                }
-            },
-            "type": "DescValueType.OBJECTTYPE",
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
                 "objectType": "patternFill"
-        }
+            }
         }
         else if (effectName == "solidFill")
         {

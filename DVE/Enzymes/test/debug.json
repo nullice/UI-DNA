@@ -1,38 +1,20 @@
-[
-  {
-    "enabled": true,
-    "present": true,
-    "showInDialog": true,
-    "0": "linearLight",
-    "color": {
-      "red": 3.53486244566739,
-      "grain": 0,
-      "blue": 0
-    },
-    "1": 0,
-    "useGlobalAngle": false,
-    "antiAlias": false,
-    "transferSpec": {
-      "name": "线性"
-    }
-  }
-,
-  {
-    "enabled": true,
-    "present": true,
-    "showInDialog": true,
-    "0": "linearLight",
-    "color": {
-      "red": 3.53486244566739,
-      "grain": 0,
-      "blue": 0
-    },
-    "1": 0,
-    "useGlobalAngle": false,
-    "antiAlias": false,
-    "transferSpec": {
-      "name": "线性"
-    }
-  }
-]
-
+矩形 1 拷贝
+enabled=false{"value":true,"type":"DescValueType.BOOLEANTYPE"}
+present=false{"value":true,"type":"DescValueType.BOOLEANTYPE"}
+showInDialog=false{"value":true,"type":"DescValueType.BOOLEANTYPE"}
+style=true{"value":{"enumerationType":"frameStyle","enumerationValue":"outsetFrame"},"type":"DescValueType.ENUMERATEDTYPE"}
+set:style----{"value":{"enumerationType":"frameStyle","enumerationValue":"outsetFrame"},"type":"DescValueType.ENUMERATEDTYPE"}-"outsetFrame"
+paintType=true{"value":{"enumerationType":"frameFill","enumerationValue":"solidColor"},"type":"DescValueType.ENUMERATEDTYPE"}
+set:paintType----{"value":{"enumerationType":"frameFill","enumerationValue":"solidColor"},"type":"DescValueType.ENUMERATEDTYPE"}-"solidColor"
+mode=true{"value":{"enumerationType":"blendMode","enumerationValue":"normal"},"type":"DescValueType.ENUMERATEDTYPE"}
+set:mode----{"value":{"enumerationType":"blendMode","enumerationValue":"normal"},"type":"DescValueType.ENUMERATEDTYPE"}-"normal"
+opacity=true{"value":{"doubleType":"percentUnit","doubleValue":85},"type":"DescValueType.UNITDOUBLE"}
+set:opacity----{"value":{"doubleType":"percentUnit","doubleValue":85},"type":"DescValueType.UNITDOUBLE"}-85
+size=true{"value":{"doubleType":"pixelsUnit","doubleValue":9},"type":"DescValueType.UNITDOUBLE"}
+set:size----{"value":{"doubleType":"pixelsUnit","doubleValue":9},"type":"DescValueType.UNITDOUBLE"}-35
+color=true{"value":{"red":{"value":255,"type":"DescValueType.DOUBLETYPE"},"grain":{"value":6.00000011734664,"type":"DescValueType.DOUBLETYPE"},"blue":{"value":187.645908594131,"type":"DescValueType.DOUBLETYPE"}},"type":"DescValueType.OBJECTTYPE","objectType":"RGBColor"}
+red=false{"value":255,"type":"DescValueType.DOUBLETYPE"}
+grain=false{"value":6.00000011734664,"type":"DescValueType.DOUBLETYPE"}
+blue=false{"value":187.645908594131,"type":"DescValueType.DOUBLETYPE"}
+overprint=false{"value":false,"type":"DescValueType.BOOLEANTYPE"}
+Result: undefined
