@@ -4517,12 +4517,24 @@ Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, ta
 
 
 
-Kinase.prototype.layer.setLayerToSmart_ByActive = function (listFunction, list, targetReference, target, effectName)
-
+Kinase.prototype.layer.setLayerToSmart_ByActive = function (targetReference, target )
 {
-
     var idnewPlacedLayer = stringIDToTypeID( "newPlacedLayer" );
     executeAction( idnewPlacedLayer, undefined, DialogModes.NO );
+}
+
+
+
+Kinase.prototype.layer.getLayerSmartInfo= function (targetReference, target)
+{
+    var smart_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "smartObject")
+    smart_raw = smart_raw.smartObject;
+
+
+
+
+
+
 }
 
 
