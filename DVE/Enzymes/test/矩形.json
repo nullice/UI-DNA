@@ -1,18 +1,29 @@
-[
-  {
-    "enabled": true,
-    "present": true,
-    "showInDialog": true,
-    "style": "outsetFrame",
-    "paintType": "solidColor",
-    "mode": "normal",
-    "opacity": 85,
-    "size": 35,
-    "color": {
-      "red": 255,
-      "grain": 6.00000011734664,
-      "blue": 187.645908594131
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {
+        }
+      },
+      "form": "ReferenceFormType.ENUMERATED",
+      "desiredClass": "layer",
+      "enumeratedType": "ordinal",
+      "enumeratedValue": "targetEnum"
     },
-    "overprint": false
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "layerLocking": {
+    "value": {
+      "protectComposite": {
+        "value": true,
+        "type": "DescValueType.BOOLEANTYPE"
+      },
+      "protectPosition": {
+        "value": true,
+        "type": "DescValueType.BOOLEANTYPE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "layerLocking"
   }
-]
+}

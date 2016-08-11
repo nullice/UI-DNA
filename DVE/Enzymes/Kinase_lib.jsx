@@ -2364,6 +2364,204 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 }
 
 
+//获取图层编辑信息：可视、锁定、备注颜色、图层类型、是否为画板
+Kinase.prototype.layer.getLayerEditInfo = function (targetReference, target)
+{
+    var editInfo = {
+        visible: null, /*可视*/
+        color: null, /*备注颜色*/
+        lock: {
+            all: null/*全部锁定*/,
+            artboardAutonest: null/*画板自动嵌套*/,
+            composite: null, /*锁定像素*/
+            position: null, /*位置锁定*/
+            transparency: null/*锁定透明度*/
+        },
+        kind: null, /*图层类型 1：普通图层，2：调整图层，3：文本图层，4：形状图层，5：智能对象，7：图层组 */
+        isArtboard: null,
+    }
+
+    var kind_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    kind_raw = kind_raw.layerKind;
+    editInfo.kind = kind_raw.value;
+
+    var artboardEnabled_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled");
+    artboardEnabled_raw = artboardEnabled_raw.artboardEnabled;
+    editInfo.isArtboard = artboardEnabled_raw.value;
+
+    var color_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "color");
+    color_raw = color_raw.color;
+    editInfo.color = color_raw.value.enumerationValue;
+
+    var visible_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "visible");
+    visible_raw = visible_raw.visible;
+    editInfo.visible = visible_raw.value;
+
+    var layerLocking_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerLocking");
+    layerLocking_raw = layerLocking_raw.layerLocking;
+    editInfo.lock.transparency = layerLocking_raw.value.protectTransparency.value;
+    editInfo.lock.all = layerLocking_raw.value.protectAll.value;
+    editInfo.lock.composite = layerLocking_raw.value.protectComposite.value;
+    editInfo.lock.position = layerLocking_raw.value.protectPosition.value
+    if (layerLocking_raw.value.protectArtboardAutonest != undefined)
+    {
+        editInfo.lock.artboardAutonest = layerLocking_raw.value.protectArtboardAutonest.value;
+    }
+
+    return editInfo;
+}
+
+
+/*要取消所有图层锁定，要设置每一个 lock 项都为 false： ki.layer.setLayerEditInfo( {lock:{all:false,artboardAutonest:false,position:false, composite:false}},Kinase.REF_ItemIndex,2);*/
+/*色彩设置只可对当前图层设置（参数 targetReference == Kinase.REF_ActiveLayer）*/
+
+Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, target)
+{
+    if (editInfo.visible != undefined)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "0": {
+                        "value": {
+                            "container": {
+                                "container": {}
+                            },
+                            "form": "ReferenceFormType.ENUMERATED",
+                            "desiredClass": "layer",
+                            "enumeratedType": "ordinal",
+                            "enumeratedValue": "targetEnum"
+                        }, "type": "DescValueType.REFERENCETYPE"
+                    }
+                }, "type": "DescValueType.LISTTYPE"
+            }
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "layer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value[0].value = refOb;
+        if (editInfo.visible)
+        {
+            mu.executeActionObjcet(charIDToTypeID("Shw "), adOb)
+        } else
+        {
+            mu.executeActionObjcet(charIDToTypeID("Hd  "), adOb)
+        }
+    }
+
+
+    if (editInfo.lock != undefined)
+    {
+        var lockItems = ["all", "artboardAutonest", "composite", "position", "transparency"];
+        var lockOrgName = ["protectAll", "protectArtboardAutonest", "protectComposite", "protectPosition", "protectTransparency"];
+
+        var oldEditInfo = Kinase.prototype.layer.getLayerEditInfo(targetReference, target);
+
+
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "layerLocking": {
+                "value": {},
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "layerLocking"
+            }
+        }
+
+        var leng = 0;
+
+
+        for (var i = 0; i < lockItems.length; i++)
+        {
+            if (editInfo.lock[lockItems[i]] != undefined)
+            {
+                if (editInfo.lock[lockItems[i]])
+                {
+                    _setLock(lockOrgName[i]);
+                    if (i == 0)break;
+                }
+            } else
+            {
+                if (oldEditInfo.lock[lockItems[i]])
+                {
+                    _setLock(lockOrgName[i]);
+                    if (i == 0)break;
+
+                }
+            }
+        }
+
+
+        if (leng == 0)
+        {
+            _setLock("protectNone");
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "layer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value = refOb;
+        mu.executeActionObjcet(stringIDToTypeID("applyLocking"), adOb);
+
+        function _setLock(orgName)
+        {
+            adOb.layerLocking.value[orgName] = {"value": true, "type": "DescValueType.BOOLEANTYPE"};
+            leng++;
+        }
+
+
+    }
+
+
+    if ((editInfo.color != undefined) && (targetReference == Kinase.REF_ActiveLayer))
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "color": {
+                        "value": {"enumerationType": "color", "enumerationValue": editInfo.color},
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
+            }
+        }
+
+        var ref = new ActionReference();
+        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        targetReference(ref, target || null, "layer")
+        var refOb = mu.actionReferenceToObject(ref)
+        adOb.null.value = refOb;
+        // log(json(adOb))
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+
+    }
+
+}
+
+
 //==============================[图层样式]======================
 
 Kinase.prototype.layer.getLayerEffectsObject = function (targetReference, target)
@@ -2938,7 +3136,7 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, ef
             if (ob[i] != undefined)
             {
 
-                log(i + "=" + (ob[i].value.constructor == Object) + json(ob[i]))
+                // log(i + "=" + (ob[i].value.constructor == Object) + json(ob[i]))
                 if (ob[i].value.constructor == Object)
                 {
 
@@ -2950,7 +3148,7 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, ef
                     {
 
                         // _setSingle(ob[i].value, listItem)
-                        log("set:" + i + "----" + json(ob[i]) +"-"+ json(listItem[i]))
+                        // log("set:" + i + "----" + json(ob[i]) +"-"+ json(listItem[i]))
                         _unCut(ob[i].value, ["value", "enumerationValue", "doubleValue"])
 
                     }
@@ -4236,7 +4434,6 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, ef
 
 }
 
-
 Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnabled)
 {
     var ob = {};
@@ -4314,6 +4511,49 @@ Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, ta
 
 
 //END===========================[图层样式]========================
+
+
+// ===========================[智能对象]========================
+
+
+
+Kinase.prototype.layer.setLayerToSmart_ByActive = function (listFunction, list, targetReference, target, effectName)
+
+{
+
+    var idnewPlacedLayer = stringIDToTypeID( "newPlacedLayer" );
+    executeAction( idnewPlacedLayer, undefined, DialogModes.NO );
+}
+
+
+
+// END===========================[智能对象]========================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /**

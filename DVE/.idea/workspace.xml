@@ -2,7 +2,7 @@
 <project version="4">
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" line="420" mnemonic="9" />
-    <bookmark url="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" description="getLayerEffects" line="2368" />
+    <bookmark url="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" description="getLayerEffects" line="2566" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0f7900ed-0a4b-49a9-8d7c-5356735c16e3" name="Default" comment="" />
@@ -29,8 +29,8 @@
       <file leaf-file-name="test_layerszie.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="588">
-              <caret line="83" column="33" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
+            <state relative-caret-position="336">
+              <caret line="292" column="58" selection-start-line="292" selection-start-column="58" selection-end-line="292" selection-end-column="58" />
               <folding>
                 <element signature="e#657#799#0" expanded="false" />
                 <element signature="e#827#3770#0" expanded="false" />
@@ -40,21 +40,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="test_effects.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Enzymes/test/test_effects.js">
+      <file leaf-file-name="adout_.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Enzymes/test/adout_.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+            <state relative-caret-position="302">
+              <caret line="379" column="7" selection-start-line="379" selection-start-column="7" selection-end-line="379" selection-end-column="7" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="2851" column="47" selection-start-line="2851" selection-start-column="23" selection-end-line="2851" selection-end-column="47" />
+            <state relative-caret-position="607">
+              <caret line="4519" column="38" selection-start-line="4519" selection-start-column="38" selection-end-line="4519" selection-end-column="38" />
               <folding>
                 <element signature="e#694#795#0" expanded="false" />
                 <element signature="e#931#1099#0" expanded="false" />
@@ -67,6 +67,9 @@
                 <element signature="e#4565#5125#0" expanded="false" />
                 <element signature="e#6238#6488#0" expanded="false" />
                 <element signature="e#11762#12397#0" expanded="false" />
+                <element signature="e#23054#24915#0" expanded="false" />
+                <element signature="e#24970#26390#0" expanded="false" />
+                <element signature="e#26452#27830#0" expanded="false" />
                 <element signature="e#43964#44058#0" expanded="false" />
                 <element signature="e#46064#46186#0" expanded="false" />
                 <element signature="e#51265#53106#0" expanded="false" />
@@ -86,53 +89,39 @@
                 <element signature="e#76609#78346#0" expanded="false" />
                 <element signature="e#76615#76668#0" expanded="false" />
                 <element signature="e#78742#79256#0" expanded="false" />
-                <element signature="e#85686#85977#0" expanded="false" />
-                <element signature="e#86076#87136#0" expanded="false" />
-                <element signature="e#91480#96187#0" expanded="false" />
-                <element signature="e#96670#101224#0" expanded="false" />
-                <element signature="e#111992#121764#0" expanded="false" />
-                <element signature="e#121851#126008#0" expanded="false" />
-                <element signature="e#126092#129632#0" expanded="false" />
-                <element signature="e#129717#134064#0" expanded="false" />
-                <element signature="e#134146#137176#0" expanded="false" />
-                <element signature="e#137261#141838#0" expanded="false" />
-                <element signature="e#141922#148029#0" expanded="false" />
-                <element signature="e#148115#151023#0" expanded="false" />
-                <element signature="e#151107#153116#0" expanded="false" />
-                <element signature="e#153204#165670#0" expanded="false" />
+                <element signature="e#79779#81683#0" expanded="false" />
+                <element signature="e#82078#85539#0" expanded="false" />
+                <element signature="e#88014#88093#0" expanded="false" />
+                <element signature="e#92541#92832#0" expanded="false" />
+                <element signature="e#92931#93991#0" expanded="false" />
+                <element signature="e#94093#96583#0" expanded="false" />
+                <element signature="e#94728#96581#0" expanded="false" />
+                <element signature="e#96680#114624#0" expanded="false" />
+                <element signature="e#98335#103042#0" expanded="false" />
+                <element signature="e#103525#108079#0" expanded="false" />
+                <element signature="e#114729#115355#0" expanded="false" />
+                <element signature="e#115453#172553#0" expanded="false" />
+                <element signature="e#118853#128625#0" expanded="false" />
+                <element signature="e#128712#132869#0" expanded="false" />
+                <element signature="e#132953#136493#0" expanded="false" />
+                <element signature="e#136578#140925#0" expanded="false" />
+                <element signature="e#141007#144037#0" expanded="false" />
+                <element signature="e#144122#148699#0" expanded="false" />
+                <element signature="e#148783#154890#0" expanded="false" />
+                <element signature="e#154976#157884#0" expanded="false" />
+                <element signature="e#157968#159977#0" expanded="false" />
+                <element signature="e#160065#172531#0" expanded="false" />
+                <element signature="e#172638#173823#0" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="adout_.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Enzymes/test/adout_.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="334" column="51" selection-start-line="334" selection-start-column="50" selection-end-line="334" selection-end-column="51" />
-              <folding>
-                <element signature="n#!!block;n#value#0;n#!!block;n#frameFX#0;n#!!block;n#value#0;n#!!top" expanded="false" />
-                <element signature="n#!!block;n#innerGlow#0;n#!!block;n#value#0;n#!!top" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="debug.json" pinned="false" current-in-tab="false">
+      <file leaf-file-name="debug.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="420">
-              <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="test_style.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Enzymes/test_style.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="1194" column="23" selection-start-line="1194" selection-start-column="23" selection-end-line="1194" selection-end-column="23" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -141,9 +130,12 @@
       <file leaf-file-name="矩形.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/矩形.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="17" selection-end-column="1" />
-              <folding />
+            <state relative-caret-position="357">
+              <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
+              <folding>
+                <element signature="n#!!block;n#protectComposite#0;n#!!block;n#value#0;n#!!block;n#layerLocking#0;n#!!top" expanded="false" />
+                <element signature="n#!!block;n#protectPosition#0;n#!!block;n#value#0;n#!!block;n#layerLocking#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -151,8 +143,8 @@
       <file leaf-file-name="test_kinase.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Enzymes/test/test_kinase.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="256">
-              <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
+            <state relative-caret-position="315">
+              <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -223,15 +215,15 @@
         <option value="$PROJECT_DIR$/Enzymes/test/test_task_setAppearance.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test/test_task_U3_SET-LAYER-BOUNDS.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.log" />
-        <option value="$PROJECT_DIR$/Enzymes/Muclease_lib.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test/test_effects.js" />
         <option value="$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/test_style.js" />
-        <option value="$PROJECT_DIR$/Enzymes/test/adout_.json" />
-        <option value="$PROJECT_DIR$/Enzymes/test/矩形.json" />
-        <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
         <option value="$PROJECT_DIR$/Enzymes/test/test_kinase.jsx" />
+        <option value="$PROJECT_DIR$/Enzymes/test/矩形.json" />
+        <option value="$PROJECT_DIR$/Enzymes/test/adout_.json" />
+        <option value="$PROJECT_DIR$/Enzymes/Muclease_lib.jsx" />
+        <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
+        <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
       </list>
     </option>
   </component>
@@ -246,8 +238,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -326,10 +318,10 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
+      <pane id="Scope" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -439,12 +431,14 @@
       <workItem from="1469800217271" duration="597000" />
       <workItem from="1469974374023" duration="39076000" />
       <workItem from="1470231092312" duration="7084000" />
-      <workItem from="1470270139484" duration="103612000" />
+      <workItem from="1470270139484" duration="104440000" />
+      <workItem from="1470801885497" duration="24050000" />
+      <workItem from="1470911356655" duration="2820000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="437555000" />
+    <option name="totallyTimeSpent" value="465253000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -456,18 +450,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26636904" sideWeight="0.58756137" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1886196" sideWeight="0.5742145" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33224222" sideWeight="0.51908803" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19940476" sideWeight="0.49099836" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22760801" sideWeight="0.2567714" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19940476" sideWeight="0.5090016" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2611051" sideWeight="0.48091197" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22760801" sideWeight="0.7432286" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26022306" sideWeight="0.48091197" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28199404" sideWeight="0.45335516" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -475,6 +468,7 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -510,7 +504,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="58" />
+      <option name="time" value="59" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -650,18 +644,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../../Project/Adobe/Adobe 扩展开发/xtools/xlib/stdlib.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174132">
-          <caret line="8309" column="21" selection-start-line="8309" selection-start-column="21" selection-end-line="8309" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/test.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
           <caret line="19" column="9" selection-start-line="19" selection-start-column="9" selection-end-line="19" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -683,7 +669,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -691,7 +676,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
           <caret line="2" column="3" selection-start-line="2" selection-start-column="3" selection-end-line="2" selection-end-column="3" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -699,15 +683,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="84">
           <caret line="4" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1965">
-          <caret line="492" column="59" selection-start-line="492" selection-start-column="48" selection-end-line="492" selection-end-column="59" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -715,7 +690,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -727,13 +701,44 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/../../../Project/Adobe/Adobe 扩展开发/xtools/xlib/stdlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="3913" column="49" selection-start-line="3913" selection-start-column="42" selection-end-line="3913" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="268">
+          <caret line="254" column="80" selection-start-line="254" selection-start-column="42" selection-end-line="254" selection-end-column="80" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/adout_.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="334" column="51" selection-start-line="334" selection-start-column="50" selection-end-line="334" selection-end-column="51" />
+        <state relative-caret-position="302">
+          <caret line="379" column="7" selection-start-line="379" selection-start-column="7" selection-end-line="379" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/test/test_effects.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="525">
+          <caret line="45" column="57" selection-start-line="45" selection-start-column="57" selection-end-line="45" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/test/矩形.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="7" />
           <folding>
-            <element signature="n#!!block;n#value#0;n#!!block;n#frameFX#0;n#!!block;n#value#0;n#!!top" expanded="false" />
-            <element signature="n#!!block;n#innerGlow#0;n#!!block;n#value#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#protectComposite#0;n#!!block;n#value#0;n#!!block;n#layerLocking#0;n#!!top" expanded="false" />
+            <element signature="n#!!block;n#protectPosition#0;n#!!block;n#value#0;n#!!block;n#layerLocking#0;n#!!top" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -746,42 +751,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/test/矩形.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="30" selection-start-line="0" selection-start-column="0" selection-end-line="17" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="20" column="0" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/test_kinase.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="17" column="29" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/test/test_effects.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="10" selection-start-line="5" selection-start-column="10" selection-end-line="5" selection-end-column="10" />
+        <state relative-caret-position="315">
+          <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/test_layerszie.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="83" column="33" selection-start-line="83" selection-start-column="33" selection-end-line="83" selection-end-column="33" />
+        <state relative-caret-position="336">
+          <caret line="292" column="58" selection-start-line="292" selection-start-column="58" selection-end-line="292" selection-end-column="58" />
           <folding>
             <element signature="e#657#799#0" expanded="false" />
             <element signature="e#827#3770#0" expanded="false" />
@@ -792,8 +773,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="2851" column="47" selection-start-line="2851" selection-start-column="23" selection-end-line="2851" selection-end-column="47" />
+        <state relative-caret-position="607">
+          <caret line="4519" column="38" selection-start-line="4519" selection-start-column="38" selection-end-line="4519" selection-end-column="38" />
           <folding>
             <element signature="e#694#795#0" expanded="false" />
             <element signature="e#931#1099#0" expanded="false" />
@@ -806,6 +787,9 @@
             <element signature="e#4565#5125#0" expanded="false" />
             <element signature="e#6238#6488#0" expanded="false" />
             <element signature="e#11762#12397#0" expanded="false" />
+            <element signature="e#23054#24915#0" expanded="false" />
+            <element signature="e#24970#26390#0" expanded="false" />
+            <element signature="e#26452#27830#0" expanded="false" />
             <element signature="e#43964#44058#0" expanded="false" />
             <element signature="e#46064#46186#0" expanded="false" />
             <element signature="e#51265#53106#0" expanded="false" />
@@ -825,21 +809,38 @@
             <element signature="e#76609#78346#0" expanded="false" />
             <element signature="e#76615#76668#0" expanded="false" />
             <element signature="e#78742#79256#0" expanded="false" />
-            <element signature="e#85686#85977#0" expanded="false" />
-            <element signature="e#86076#87136#0" expanded="false" />
-            <element signature="e#91480#96187#0" expanded="false" />
-            <element signature="e#96670#101224#0" expanded="false" />
-            <element signature="e#111992#121764#0" expanded="false" />
-            <element signature="e#121851#126008#0" expanded="false" />
-            <element signature="e#126092#129632#0" expanded="false" />
-            <element signature="e#129717#134064#0" expanded="false" />
-            <element signature="e#134146#137176#0" expanded="false" />
-            <element signature="e#137261#141838#0" expanded="false" />
-            <element signature="e#141922#148029#0" expanded="false" />
-            <element signature="e#148115#151023#0" expanded="false" />
-            <element signature="e#151107#153116#0" expanded="false" />
-            <element signature="e#153204#165670#0" expanded="false" />
+            <element signature="e#79779#81683#0" expanded="false" />
+            <element signature="e#82078#85539#0" expanded="false" />
+            <element signature="e#88014#88093#0" expanded="false" />
+            <element signature="e#92541#92832#0" expanded="false" />
+            <element signature="e#92931#93991#0" expanded="false" />
+            <element signature="e#94093#96583#0" expanded="false" />
+            <element signature="e#94728#96581#0" expanded="false" />
+            <element signature="e#96680#114624#0" expanded="false" />
+            <element signature="e#98335#103042#0" expanded="false" />
+            <element signature="e#103525#108079#0" expanded="false" />
+            <element signature="e#114729#115355#0" expanded="false" />
+            <element signature="e#115453#172553#0" expanded="false" />
+            <element signature="e#118853#128625#0" expanded="false" />
+            <element signature="e#128712#132869#0" expanded="false" />
+            <element signature="e#132953#136493#0" expanded="false" />
+            <element signature="e#136578#140925#0" expanded="false" />
+            <element signature="e#141007#144037#0" expanded="false" />
+            <element signature="e#144122#148699#0" expanded="false" />
+            <element signature="e#148783#154890#0" expanded="false" />
+            <element signature="e#154976#157884#0" expanded="false" />
+            <element signature="e#157968#159977#0" expanded="false" />
+            <element signature="e#160065#172531#0" expanded="false" />
+            <element signature="e#172638#173823#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -178,7 +178,8 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
             }
             else if ("DescValueType.ALIASTYPE" == obType)
             {
-                obValue = ad.getPath(key);
+                obValue = ad.getPath(key).fullName;
+
             }
             else if ("DescValueType.UNITDOUBLE" == obType)
             {
@@ -245,7 +246,6 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
             }
             else
             {
-
                 ob[name] = {
                     value: obValue,
                     type: obType.toString()
@@ -260,7 +260,6 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
         }
 
     }
-
     return out_ob
 }
 
