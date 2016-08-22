@@ -4516,56 +4516,82 @@ Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, ta
 // ===========================[智能对象]========================
 
 
-
-Kinase.prototype.layer.setLayerToSmart_ByActive = function (targetReference, target )
+Kinase.prototype.layer.setLayerToSmart_ByActive = function (targetReference, target)
 {
-    var idnewPlacedLayer = stringIDToTypeID( "newPlacedLayer" );
-    executeAction( idnewPlacedLayer, undefined, DialogModes.NO );
+    var idnewPlacedLayer = stringIDToTypeID("newPlacedLayer");
+    executeAction(idnewPlacedLayer, undefined, DialogModes.NO);
 }
 
 
-
-Kinase.prototype.layer.getLayerSmartInfo= function (targetReference, target)
+Kinase.prototype.layer.getLayerSmartInfo = function (targetReference, target)
 {
     var smart_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "smartObject")
+    if (smart_raw.smartObject == undefined)
+    {
+        return null;
+    }
+
     smart_raw = smart_raw.smartObject;
 
 
+    var smartInfo = {
+        linked: null, /*是否为链接对象*/
+        link: null, /*链接地址*/
+        fileReference: null, /*链接文件名*/
 
 
+    }
+
+    if (smart_raw.value.linked != undefined)
+    {
+        smartInfo.linked = smart_raw.value.linked.value
+    }
+
+    try
+    {
+        if (smart_raw.value.link.value.elementReference != undefined)
+        {
+            smartInfo.link = smart_raw.value.link.value.elementReference.value
+        } else
+        {
+            smartInfo.link = smart_raw.value.link.value;
+        }
+
+    } catch (e)
+    {
+    }
 
 
+    try
+    {
+        smartInfo.fileReference = smart_raw.value.fileReference.value
+    } catch (e)
+    {
+    }
+
+
+    return smartInfo
 }
 
 
+/*通过拷贝创建新智能对象，新的智能对象会成为当前选中图层*/
+Kinase.prototype.layer.newSmartFromCopy_ByActive = function ()
+{
+    var ob = executeAction(stringIDToTypeID("placedLayerMakeCopy"), undefined, DialogModes.NO);
+    // log(ki.layer.getLayerName_byActive())
+}
+
+
+/*重新链接到文件*/
+Kinase.prototype.layer.smartRelinkToFile_ByActive = function (fileName)
+{
+    var ad = new ActionDescriptor();
+    ad.putPath(charIDToTypeID("null"), new File(fileName));
+    executeAction(stringIDToTypeID("placedLayerRelinkToFile"), ad, DialogModes.NO);
+}
+
 
 // END===========================[智能对象]========================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /**
