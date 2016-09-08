@@ -4516,13 +4516,15 @@ Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, ta
 // ===========================[智能对象]========================
 
 
-Kinase.prototype.layer.setLayerToSmart_ByActive = function (targetReference, target)
+/*转换图层到智能对象*/
+Kinase.prototype.layer.setLayerToSmart_ByActive = function ()
 {
     var idnewPlacedLayer = stringIDToTypeID("newPlacedLayer");
     executeAction(idnewPlacedLayer, undefined, DialogModes.NO);
 }
 
 
+/*获取智能对象信息*/
 Kinase.prototype.layer.getLayerSmartInfo = function (targetReference, target)
 {
     var smart_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "smartObject")
@@ -4538,8 +4540,6 @@ Kinase.prototype.layer.getLayerSmartInfo = function (targetReference, target)
         linked: null, /*是否为链接对象*/
         link: null, /*链接地址*/
         fileReference: null, /*链接文件名*/
-
-
     }
 
     if (smart_raw.value.linked != undefined)
@@ -4592,6 +4592,104 @@ Kinase.prototype.layer.smartRelinkToFile_ByActive = function (fileName)
 
 
 // END===========================[智能对象]========================
+
+// ===========================[拾色器]========================
+
+/*创建拾色器*/
+Kinase.prototype.layer.creatNewColorSampler = function (x, y)
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.CLASSTYPE",
+                "desiredClass": "colorSampler"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "position": {
+            "value": {
+                "horizontal": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": x
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                },
+                "vertical": {
+                    "value": {
+                        "doubleType": "pixelsUnit",
+                        "doubleValue": y
+                    },
+                    "type": "DescValueType.UNITDOUBLE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "paint"
+        }
+    }
+    mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
+}
+
+
+// END===========================[拾色器]========================
+
+
+/*创建新图层*/
+Kinase.prototype.layer.creatNewLayer_ByActive = function ()
+{
+
+    var ad = new ActionDescriptor();
+    var rf = new ActionReference();
+    rf.putClass(charIDToTypeID("Lyr "));
+    ad.putReference(charIDToTypeID("null"), rf);
+    executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
+
+}
+
+
+/*移动图层排序*/
+
+Kinase.prototype.layer.moveLayerOrder = function ()
+{
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "layer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.INDEX",
+                "desiredClass": "layer",
+                "index": 2
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "adjustment": {
+            "value": false,
+            "type": "DescValueType.BOOLEANTYPE"
+        },
+        "version": {
+            "value": 5,
+            "type": "DescValueType.INTEGERTYPE"
+        }
+    }
+    mu.executeActionObjcet(charIDToTypeID( "move" ), adOb)
+}
 
 
 /**

@@ -178,7 +178,8 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
             }
             else if ("DescValueType.ALIASTYPE" == obType)
             {
-                obValue = ad.getPath(key);
+                obValue = ad.getPath(key).fullName;
+
             }
             else if ("DescValueType.UNITDOUBLE" == obType)
             {
@@ -245,7 +246,6 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
             }
             else
             {
-
                 ob[name] = {
                     value: obValue,
                     type: obType.toString()
@@ -260,7 +260,6 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
         }
 
     }
-
     return out_ob
 }
 
@@ -584,19 +583,26 @@ Muclease.prototype.objectToActionDescriptor = function (ob)
     return ad;
 }
 
-
+/**
+ * 执行一个 ActionObjcet ，相当于把 ActionObjcet 转回 ActionDescriptor 并执行
+ * @param {Number} eventID 
+ * @param {Object} ob
+ * @returns {boolean}
+ */
 Muclease.prototype.executeActionObjcet = function (eventID, ob)
 {
     var ad = Muclease.prototype.objectToActionDescriptor(ob);
     // idsetd = charIDToTypeID("setd");
     try
     {
+        // log(json(ob))
+        // logSave()
         executeAction(eventID, ad, DialogModes.NO);
         return true;
     } catch (e)
     {
 
-        log("executeActionObjcet:" + typeIDToCharID(eventID))
+        log("ERR executeAction fail, executeActionObjcet:" + typeIDToCharID(eventID))
         log(json(ob))
         return false;
     }

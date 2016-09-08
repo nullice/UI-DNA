@@ -12,18 +12,24 @@
     },
     "type": "DescValueType.REFERENCETYPE"
   },
-  "layerLocking": {
+  "to": {
     "value": {
-      "protectComposite": {
-        "value": true,
-        "type": "DescValueType.BOOLEANTYPE"
+      "container": {
+        "container": {
+        }
       },
-      "protectPosition": {
-        "value": true,
-        "type": "DescValueType.BOOLEANTYPE"
-      }
+      "form": "ReferenceFormType.INDEX",
+      "desiredClass": "layer",
+      "index": 2
     },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "layerLocking"
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "adjustment": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "version": {
+    "value": 5,
+    "type": "DescValueType.INTEGERTYPE"
   }
 }
