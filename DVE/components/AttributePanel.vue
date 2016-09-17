@@ -25,8 +25,8 @@
         </div>
 
         <div>
-            <value-input name ="X" ,v-bind:edit_value.sync="Gob.position.x" v-bind:out_value.sync="Gob.position.assignment.x"></value-input>
-            <value-input v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y"></value-input>
+            <value-input name ="X"  v-bind:edit_value.sync="Gob.position.x" v-bind:out_value.sync="Gob.position.assignment.x"></value-input>
+            <value-input name ="Y"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y"></value-input>
             <!--<comp-a></comp-a>-->
         </div>
 

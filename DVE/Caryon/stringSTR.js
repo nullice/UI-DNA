@@ -1,9 +1,12 @@
 /**
  * Created by bgllj on 2016/9/8.
  */
+
+/**
+ * 字符串相关功能模块
+ * @type {{left: stringSTR.left, right: stringSTR.right, insert: stringSTR.insert}}
+ */
 var stringSTR = {
-
-
     /**
      * 取字符串左边
      * @param str 原文
