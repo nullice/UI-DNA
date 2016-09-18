@@ -1,11 +1,11 @@
 <template>
 
-    <div class="exmo_inbox value_input_box" v-bind:class="{press_out:pressOut_input}">
+    <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign}">
         <div class="exmo_box_name">{{name|lang}}</div>
         <input type="text" class="exmo_input_text edit_input" placeholder="值" v-model:value="edit_value">
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked
-               v-model:value="pressOut_input">
+               v-model:value="enable_assign">
         <label class="exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i
                 class="icon-layer-visible"></i></label>
 
@@ -49,13 +49,13 @@
 
 <script>
 
-    var pressOut_input = false
+//    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "out_value", 'name', "value_type", "enableAssign"],
+        props: ['edit_value', "out_value", 'name', "value_type", "enable_assign"],
         data(){
             return {
-                pressOut_input: pressOut_input,
+//                pressOut_input: pressOut_input,
 
             }
         },

@@ -18,7 +18,6 @@ var varSystem = new VarSystem();
 window.varSystem = varSystem;
 
 
-
 Vue.filter('lang', Lang.fiterFunc);
 Lang.currentLANG = Lang.LANG_Chiness2English;
 window.Lang = Lang;
@@ -27,15 +26,19 @@ Vue.config.debug = true;//开启错误提示
 
 
 window.Gob = {};
-window.Gob.position = {x: 2, y: 3, w: 4, h: 5, assignment:{x:null, y:null, w:null, h:null}};
-
-
+window.Gob.position = {
+    x: 2,
+    y: 3,
+    w: 4,
+    h: 5,
+    assignment: {x: null, y: null, w: null, h: null},
+    enableAssigns: {x: false, y: false, w: false, h: false}
+};
 
 
 var mainVue = new Vue({
     el: 'body',
-    data: {
-    },
+    data: {},
     components: {
         // include the required component
         // in the options
@@ -47,8 +50,7 @@ var mainVue = new Vue({
 window.mainVue = mainVue;
 
 
-
-if(typeof window.__adobe_cep__ !== "undefined")
+if (typeof window.__adobe_cep__ !== "undefined")
 {
     window.cs = new CSInterface();
     var gExtensionID = cs.getExtensionID();
@@ -61,8 +63,6 @@ if(typeof window.__adobe_cep__ !== "undefined")
     }
 
 }
-
-
 
 
 async function doAsync()

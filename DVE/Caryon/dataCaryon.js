@@ -20,7 +20,7 @@ DataCaryon.prototype.layerSample={
     name:"图层名",
     id:2,
     index:1,
-    position:{x:0, y:0, w:0, h:0 ,assignment:{},enableAssign:false},
+    position:{x:0, y:0, w:0, h:0 ,assignment:{x:"y"},enableAssigns:{x:false}},
 
 
 
