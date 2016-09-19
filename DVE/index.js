@@ -8,14 +8,18 @@ import App from "./components/area.vue";
 
 import AttrPanel from "./components/AttributePanel.vue";
 import  Lang from "./Caryon/lang";
+//数据存储系统-------------------------------------
 import  DataCaryon  from "./Caryon/dataCaryon";
 var dataCaryon = new DataCaryon();
 window.dataCaryon = dataCaryon;
-
-
+// 变量系统-------------------------------------
 import  VarSystem  from "./Caryon/varSystem";
 var varSystem = new VarSystem();
 window.varSystem = varSystem;
+//设置系统-------------------------------------
+import  SetSystem  from "./Caryon/settingCaryon";
+var setSystem = new SetSystem();
+window.setSystem = setSystem;
 
 
 Vue.filter('lang', Lang.fiterFunc);
