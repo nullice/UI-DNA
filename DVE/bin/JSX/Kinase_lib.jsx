@@ -98,7 +98,21 @@ Kinase.prototype.layer.getLayerInfoObject_byActiveLayer = function ()
     return Kinase.prototype.layer.getLayerInfoObject_byReference(ref);
 }
 
+/**
+ * 根据图层序号（ItemIndex）获取图层 ID
+ * @param itemIndex
+ * @returns {*}
+ */
+Kinase.prototype.layer.getLayerIdByActive = function (itemIndex)
+{
+    var ref = new ActionReference();
+    ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('layerID'));
+    ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+    // log("index:" + itemIndex + ":" + Kinase.BKOffset())
+    var layerDesc = executeActionGet(ref);
 
+    return layerDesc.getInteger(stringIDToTypeID('layerID'));
+}
 /**
  * 根据图层序号（ItemIndex）获取图层 ID
  * @param itemIndex

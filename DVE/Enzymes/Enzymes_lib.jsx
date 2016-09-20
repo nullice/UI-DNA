@@ -11,3 +11,22 @@ function initEnzymes(mucleasePath, KinasePath)
     var mu = new Muclease();
     var ki = new Kinase();
 }
+
+
+
+
+var EnzJSX={};
+
+
+EnzJSX.creatLayer=function (layerName)
+{
+    ki.layer.creatNewLayer_ByActive()
+    if(layerName!==undefined)
+    {
+        ki.layer.setLayerName_byActive(layerName)
+    }
+    return ki.layer.getLayerIdByItemIndex( ki.layer.)
+}
+
+
+

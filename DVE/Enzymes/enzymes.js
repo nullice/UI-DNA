@@ -42,15 +42,12 @@ var Enzymes = function ()
 }
 
 
-Enzymes.prototype.creatLayer = async function ()
+Enzymes.prototype.creatLayer = async function (layerName)
 {
     return new Promise(function (resolve, reject)
     {
-        setTimeout(()=>
-        {
-            console.log("sleep 2s");
-            resolve()
-        }, 2000)
+ 
+        evalScript(`EnzJSX.creatLayer()`)
     })
 }
 
