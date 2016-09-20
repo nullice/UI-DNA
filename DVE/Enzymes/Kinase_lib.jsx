@@ -103,7 +103,7 @@ Kinase.prototype.layer.getLayerInfoObject_byActiveLayer = function ()
  * @param itemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerIdByActive = function (itemIndex)
+Kinase.prototype.layer.getLayerIdByActive = function ()
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('layerID'));

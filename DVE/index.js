@@ -68,10 +68,13 @@ if (typeof window.__adobe_cep__ !== "undefined")
 {
     var enzymes = new Enzymes();
     window.enzymes = enzymes;
-} 
+}
+//测试系统-------------------------------------
+import  TEST  from "./test/test_core";
+var test =  new TEST("默认测试");
+window.test = test
 
-
-
+import  test_task_Enzymes from "./test/test_Enzymes_JS";
 
 
 
@@ -115,7 +118,7 @@ async function doAsync()
         setTimeout(()=>
         {
             console.log("sleep 2s");
-            resolve()
+            resolve(444)
         }, 2000)
     })
 }
@@ -125,8 +128,8 @@ async function asyncTask()
 {
 
     console.log("ssss1")
-    await  doAsync();
-    console.log("ssss2")
+    var a = await  doAsync();
+    console.log("ssss2"+a)
 }
 
 
