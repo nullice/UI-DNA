@@ -30,7 +30,7 @@
                         <Parameter>--mixed-context</Parameter>
                     </CEFCommandLine>
 
-                    <ScriptPath>./JSX/main.jsx</ScriptPath> <!-- 指定用到的 JSX 文件-->
+                    <ScriptPath>./JSX/Enzymes_lib.jsx</ScriptPath> <!-- 指定用到的 JSX 文件-->
                 </Resources>
 
                 <Lifecycle>

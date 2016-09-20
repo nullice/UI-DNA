@@ -40,9 +40,16 @@ import App from "./components/area.vue";
 
 
 
-
 import AttrPanel from "./components/AttributePanel.vue";
 import  Lang from "./Caryon/lang";
+//CEP 库-------------------------------------
+if (typeof window.__adobe_cep__ !== "undefined")
+{
+    window.cs = new CSInterface();
+} else
+{
+    console.info("running without CEP!")
+}
 //数据存储系统-------------------------------------
 import  DataCaryon  from "./Caryon/dataCaryon";
 var dataCaryon = new DataCaryon();
@@ -55,6 +62,18 @@ window.varSystem = varSystem;
 import  SetSystem  from "./Caryon/settingCaryon";
 var setSystem = new SetSystem();
 window.setSystem = setSystem;
+//PhotoShop 接口库-------------------------------------
+import  Enzymes  from "./Enzymes/Enzymes";
+if (typeof window.__adobe_cep__ !== "undefined")
+{
+    var enzymes = new Enzymes();
+    window.enzymes = enzymes;
+} 
+
+
+
+
+
 
 
 Vue.filter('lang', Lang.fiterFunc);
@@ -89,21 +108,6 @@ var mainVue = new Vue({
 window.mainVue = mainVue;
 
 
-if (typeof window.__adobe_cep__ !== "undefined")
-{
-    window.cs = new CSInterface();
-    var gExtensionID = cs.getExtensionID();
-    cs.addEventListener("com.adobe.PhotoshopJSONCallback" + gExtensionID, PhotoshopCallbackUnique);
-
-    function PhotoshopCallbackUnique(csEvent)
-    {
-        console.log(csEvent);
-        alert("xxxxx")
-    }
-
-}
-
-
 async function doAsync()
 {
     return new Promise(function (resolve, reject)
@@ -129,4 +133,16 @@ async function asyncTask()
 asyncTask()
 console.log("sss_end")
 
-
+// if (typeof window.__adobe_cep__ !== "undefined")
+// {
+//     window.cs = new CSInterface();
+//     var gExtensionID = cs.getExtensionID();
+//     cs.addEventListener("com.adobe.PhotoshopJSONCallback" + gExtensionID, PhotoshopCallbackUnique);
+//
+//     function PhotoshopCallbackUnique(csEvent)
+//     {
+//         console.log(csEvent);
+//         alert("xxxxx22")
+//     }
+//
+// }
