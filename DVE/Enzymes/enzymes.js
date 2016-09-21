@@ -86,8 +86,12 @@ Enzymes.prototype.createLayer = async function (layerName)
 
 
 /**
- *
- * @param getType
+ * 获取全部图层的名称、ID、itemIndex 信息的数组。根据给定的参数，可返回 4 种类型的数组：
+ * 0.图层 [id]；
+ * 1.图层 [itemIndex]；
+ * 2.图层 [name]；
+ * 3.图层 [{name,id,itemIndex}]
+ * @param getType 0 或 "id" 返回 [id] 数组。1 或 "itemIndex" 返回 [itemIndex] 数组。2 或 "name" 返回 [name] 数组；其他或没有参数，返回  [{name,id,itemIndex}]
  */
 Enzymes.prototype.getAllLayerArray = async function (getType)
 {
@@ -96,19 +100,30 @@ Enzymes.prototype.getAllLayerArray = async function (getType)
         if (getType == "id" || getType == 0)
         {
             evalScript(`EnzJSX.getAllLayersID()`,
-                (r)=> {resolve(r)})
-        } else if (getType == "id" || getType == 0)
+                (r)=> {resolve(JSON.parse(r))})
+
+        } else if (getType == "itemIndex" || getType == 1)
         {
+            evalScript(`EnzJSX.getAllLayersItemIndex()`,
+                (r)=> {resolve(JSON.parse(r))})
+
+        } else if (getType == "name" || getType == 2)
+        {
+            evalScript(`EnzJSX.getAllLayersName()`,
+                (r)=> {resolve(JSON.parse(r))})
 
         } else
         {// [{name ,id ,itemIndex}]
 
             evalScript(`EnzJSX.getAllLayersList()`,
-                (r)=> {resolve(r)})
+                (r)=> {resolve(JSON.parse(r))})
         }
     })
 
 }
+
+
+
 
 
 /**

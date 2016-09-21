@@ -67,8 +67,8 @@ EnzJSX.getAllLayersList = function ()
         )
     }
 
-    JSON.stringify()
-    return layersList;
+
+    return  JSON.stringify(layersList);
 }
 
 
@@ -86,7 +86,7 @@ EnzJSX.getAllLayersName = function ()
         names.push(ki.layer.getLayerName_byItemIndex(itemIndexs[i]));
     }
 
-    return names;
+    return  JSON.stringify(names);
 }
 
 
@@ -104,7 +104,8 @@ EnzJSX.getAllLayersID = function ()
         ids.push(ki.layer.getLayerIdByItemIndex(itemIndexs[i]));
     }
 
-    return ids;
+
+    return JSON.stringify(ids);
 }
 /**
  * 返回包含全部图层 itemIndex 的数组
@@ -113,7 +114,8 @@ EnzJSX.getAllLayersID = function ()
 EnzJSX.getAllLayersItemIndex = function ()
 {
     var itemIndexs = ki.layer.getAllLayersItemIndex();
-    return itemIndexs;
+
+    return JSON.stringify(itemIndexs);
 }
 
 

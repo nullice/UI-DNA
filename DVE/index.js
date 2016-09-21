@@ -147,3 +147,4 @@ console.log("sss_end")
 //     }
 //
 // }
+tests.test_task_Enzymes()
