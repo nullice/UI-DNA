@@ -38,8 +38,6 @@ import App from "./components/area.vue";
 //                 +--------------------------+
 
 
-
-
 import AttrPanel from "./components/AttributePanel.vue";
 import  Lang from "./Caryon/lang";
 //CEP 库-------------------------------------
@@ -71,12 +69,12 @@ if (typeof window.__adobe_cep__ !== "undefined")
 }
 //测试系统-------------------------------------
 import  TEST  from "./test/test_core";
-var test =  new TEST("默认测试");
+var test = new TEST("默认测试");
 window.test = test
 
+window.tests = {};
 import  test_task_Enzymes from "./test/test_Enzymes_JS";
-
-
+window.tests.test_task_Enzymes = test_task_Enzymes;
 
 
 Vue.filter('lang', Lang.fiterFunc);
@@ -129,7 +127,7 @@ async function asyncTask()
 
     console.log("ssss1")
     var a = await  doAsync();
-    console.log("ssss2"+a)
+    console.log("ssss2" + a)
 }
 
 

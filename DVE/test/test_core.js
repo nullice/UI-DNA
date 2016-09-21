@@ -10,6 +10,7 @@ var TEST = function (testName)
     this.allTimes = 0;
     this.errTimes = 0;
     this.warnTimes = 0;
+    this.errsLog = "";
     this.log = "";
 
     return this;
@@ -37,7 +38,7 @@ TEST.prototype.report = function (retrunString)
         , "color: #f54a4a; font-weight: bold;"
         , " color: #e2d567; font-weight: bold;"
     )
-    console.log(this.errsLog, " color: #f55;")
+    console.log("%c"+this.errsLog, " color: #f55;")
     console.log(this.log)
     console.log("%c-----------------------------------------------", " color: #aaa;")
 
@@ -55,11 +56,11 @@ TEST.prototype.seeVelue = function (value, expectValue, name)
     if (value !== expectValue)
     {
         this.errTimes++;
-        this.errsLog += "\n" + "[ERR] " + name + `  ( ${value} + ${expectValue} )`;
+        this.errsLog += "\n" + "[ERR] " + name + `  ( ${value} !== ${expectValue} )`;
 
     } else
     {
-        this.log += "\n" + "[OK] " + name + `  ( ${value} + ${expectValue} )`;
+        this.log += "\n" + "[OK] " + name + `  ( ${value} == ${expectValue} )`;
     }
 }
 
