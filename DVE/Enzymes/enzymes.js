@@ -122,8 +122,46 @@ Enzymes.prototype.getAllLayerArray = async function (getType)
 
 }
 
+/**
+ * 检查图层的存在性。
+ * @param layerHandle 检查凭据，可以是图层名称、ID、itemIndex
+ * @param handleType 凭据类型，0||"id"、1||"itemIndex"、2||"name";
+ * @param scanAll
+ * @returns {Promise}
+ */
+Enzymes.prototype.checkLayerExist = async function (layerHandle, handleType, scanAll)
+{
+    return new Promise(function (resolve, reject)
+        {
+            if (scanAll === undefined)
+            {
+                scanAll = false;
+            }
 
+            evalScript(`EnzJSX.checkLayerExist("${layerHandle}", "${handleType}", ${scanAll})`,
+                (r)=>
+                {
+                    var result = JSON.parse(r)
+                    if (result != undefined)
+                    {
+                        var len = result.length;
+                    } else
+                    {
+                        var len = 0;
+                    }
 
+                    var re = {
+                        exist: result != undefined,
+                        length: len,
+                        layerList: result
+                    }
+
+                    resolve(re)
+
+                })
+        }
+    )
+}
 
 
 /**
@@ -135,7 +173,9 @@ Enzymes.prototype.getLayerName_byID = async function (layerID)
 {
     return new Promise(function (resolve, reject)
     {
-        evalScript(`ki.layer.getLayerName_byID(${layerID})`,
+        evalScript(
+            `ki.layer.getLayerName_byID(${layerID})`
+            ,
             (r)=> {resolve(r)})
     })
 }

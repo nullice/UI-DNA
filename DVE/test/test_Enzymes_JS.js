@@ -14,6 +14,7 @@ async function test_task_Enzymes()
     id = await enzymes.createLayer("await - 新建图层3")
     test.seeVelue(await enzymes.getLayerName_byID(id), "await - 新建图层3", 'enzymes.createLayer("await - 新建图层3")')
 
+
     test.report();
 
 
@@ -21,6 +22,17 @@ async function test_task_Enzymes()
     console.log(await enzymes.getAllLayerArray("itemIndex"))
     console.log(await enzymes.getAllLayerArray("name"))
     console.log(await enzymes.getAllLayerArray())
+    console.log(JSON.stringify(await enzymes.checkLayerExist(3, "id")))
+    console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2","name", true)))
+    console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2","name")))
+
+    
+    
+   var re = await enzymes.checkLayerExist("__UI-DNA__","name");
+    if(re.exist==true)
+    {
+        
+    }
 }
 
 

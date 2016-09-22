@@ -4652,7 +4652,7 @@ Kinase.prototype.layer.creatNewColorSampler = function (x, y)
 
 
 /*创建新图层*/
-Kinase.prototype.layer.creatNewLayer_ByActive = function ()
+Kinase.prototype.layer.creatNewLayer_ByActive = function (name)
 {
 
     var ad = new ActionDescriptor();
@@ -4660,6 +4660,336 @@ Kinase.prototype.layer.creatNewLayer_ByActive = function ()
     rf.putClass(charIDToTypeID("Lyr "));
     ad.putReference(charIDToTypeID("null"), rf);
     executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
+
+    if (name != undefined)
+    {
+        Kinase.prototype.layer.setLayerName_byActive("");
+    }
+
+
+}
+
+
+/*创建新文本图层*/
+Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
+{
+
+    var ad = new ActionDescriptor();
+    var rf = new ActionReference();
+    rf.putClass(charIDToTypeID("Lyr "));
+    ad.putReference(charIDToTypeID("null"), rf);
+    executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
+
+    var w = w || 100;
+    var h = h || 50;
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.CLASSTYPE",
+                "desiredClass": "textLayer"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "using": {
+            "value": {
+                "textKey": {
+                    "value": "",
+                    "type": "DescValueType.STRINGTYPE"
+                },
+                "warp": {
+                    "value": {
+                        "warpStyle": {
+                            "value": {
+                                "enumerationType": "warpStyle",
+                                "enumerationValue": "warpNone"
+                            },
+                            "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "warpValue": {
+                            "value": 0,
+                            "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "warpPerspective": {
+                            "value": 0,
+                            "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "warpPerspectiveOther": {
+                            "value": 0,
+                            "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "warpRotate": {
+                            "value": {
+                                "enumerationType": "orientation",
+                                "enumerationValue": "horizontal"
+                            },
+                            "type": "DescValueType.ENUMERATEDTYPE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "warp"
+                },
+                "textClickPoint": {
+                    "value": {
+                        "horizontal": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 7.421875
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "vertical": {
+                            "value": {
+                                "doubleType": "percentUnit",
+                                "doubleValue": 7.8
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "paint"
+                },
+                "textGridding": {
+                    "value": {
+                        "enumerationType": "textGridding",
+                        "enumerationValue": "none"
+                    },
+                    "type": "DescValueType.ENUMERATEDTYPE"
+                },
+                "orientation": {
+                    "value": {
+                        "enumerationType": "orientation",
+                        "enumerationValue": "horizontal"
+                    },
+                    "type": "DescValueType.ENUMERATEDTYPE"
+                },
+                "antiAlias": {
+                    "value": {
+                        "enumerationType": "antiAliasType",
+                        "enumerationValue": "antiAliasPlatformLCD"
+                    },
+                    "type": "DescValueType.ENUMERATEDTYPE"
+                },
+                "bounds": {
+                    "value": {
+                        "left": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "top": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": -2.047638
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "right": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": 160
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "bottom": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": 108
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "bounds"
+                },
+                "boundingBox": {
+                    "value": {
+                        "left": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "top": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "right": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": 0
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "bottom": {
+                            "value": {
+                                "doubleType": "pointsUnit",
+                                "doubleValue": -1
+                            },
+                            "type": "DescValueType.UNITDOUBLE"
+                        }
+                    },
+                    "type": "DescValueType.OBJECTTYPE",
+                    "objectType": "boundingBox"
+                },
+                "textShape": {
+                    "value": {
+                        "0": {
+                            "value": {
+                                "char": {
+                                    "value": {
+                                        "enumerationType": "char",
+                                        "enumerationValue": "box"
+                                    },
+                                    "type": "DescValueType.ENUMERATEDTYPE"
+                                },
+                                "orientation": {
+                                    "value": {
+                                        "enumerationType": "orientation",
+                                        "enumerationValue": "horizontal"
+                                    },
+                                    "type": "DescValueType.ENUMERATEDTYPE"
+                                },
+                                "transform": {
+                                    "value": {
+                                        "xx": {
+                                            "value": 1,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "xy": {
+                                            "value": 0,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "yx": {
+                                            "value": 0,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "yy": {
+                                            "value": 1,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "tx": {
+                                            "value": 0,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "ty": {
+                                            "value": 0,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        }
+                                    },
+                                    "type": "DescValueType.OBJECTTYPE",
+                                    "objectType": "transform"
+                                },
+                                "rowCount": {
+                                    "value": 1,
+                                    "type": "DescValueType.INTEGERTYPE"
+                                },
+                                "columnCount": {
+                                    "value": 1,
+                                    "type": "DescValueType.INTEGERTYPE"
+                                },
+                                "rowMajorOrder": {
+                                    "value": true,
+                                    "type": "DescValueType.BOOLEANTYPE"
+                                },
+                                "rowGutter": {
+                                    "value": {
+                                        "doubleType": "pointsUnit",
+                                        "doubleValue": 0
+                                    },
+                                    "type": "DescValueType.UNITDOUBLE"
+                                },
+                                "columnGutter": {
+                                    "value": {
+                                        "doubleType": "pointsUnit",
+                                        "doubleValue": 0
+                                    },
+                                    "type": "DescValueType.UNITDOUBLE"
+                                },
+                                "spacing": {
+                                    "value": {
+                                        "doubleType": "pointsUnit",
+                                        "doubleValue": 0
+                                    },
+                                    "type": "DescValueType.UNITDOUBLE"
+                                },
+                                "frameBaselineAlignment": {
+                                    "value": {
+                                        "enumerationType": "frameBaselineAlignment",
+                                        "enumerationValue": "alignByAscent"
+                                    },
+                                    "type": "DescValueType.ENUMERATEDTYPE"
+                                },
+                                "firstBaselineMinimum": {
+                                    "value": {
+                                        "doubleType": "pointsUnit",
+                                        "doubleValue": 0
+                                    },
+                                    "type": "DescValueType.UNITDOUBLE"
+                                },
+                                "bounds": {
+                                    "value": {
+                                        "top": {
+                                            "value": 0,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "left": {
+                                            "value": 0,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "bottom": {
+                                            "value": h,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "right": {
+                                            "value": w,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        }
+                                    },
+                                    "type": "DescValueType.OBJECTTYPE",
+                                    "objectType": "rectangle"
+                                }
+                            },
+                            "type": "DescValueType.OBJECTTYPE",
+                            "objectType": "textShape"
+                        }
+                    },
+                    "type": "DescValueType.LISTTYPE"
+                },
+                "textStyleRange": {
+                    "value": {},
+                    "type": "DescValueType.LISTTYPE"
+                }
+            },
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "textLayer"
+        },
+        "layerID": {
+            "value": 0,
+            "type": "DescValueType.INTEGERTYPE"
+        }
+    }
+    mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
+
+    if (text != undefined)
+    {
+        Kinase.prototype.layer.setLayerText_Quick(text, Kinase.REF_ActiveLayer, null);
+    }
+
+    if (name != undefined)
+    {
+        Kinase.prototype.layer.setLayerName_byActive(name);
+    }
+
 
 }
 
@@ -4702,7 +5032,7 @@ Kinase.prototype.layer.moveLayerOrder = function ()
             "type": "DescValueType.INTEGERTYPE"
         }
     }
-    mu.executeActionObjcet(charIDToTypeID( "move" ), adOb)
+    mu.executeActionObjcet(charIDToTypeID("move"), adOb)
 }
 
 

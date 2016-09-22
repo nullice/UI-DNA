@@ -51,7 +51,7 @@ EnzJSX.getLayerId_byName = function (layerName)
  * 返回包含全部图层 {名称、ID、itemIndex} 的数组
  * @returns {Array}
  */
-EnzJSX.getAllLayersList = function ()
+EnzJSX.getAllLayersList = function (retrunRaw)
 {
     var layersList = [];
     var itemIndexs = ki.layer.getAllLayersItemIndex();
@@ -60,15 +60,22 @@ EnzJSX.getAllLayersList = function ()
     {
         layersList.push(
             {
-                name: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
-                id: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
-                itemIndexs: itemIndexs[i]
+                name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
+                id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
+                itemIndex: itemIndexs[i]
             }
         )
     }
 
+    if (retrunRaw == true)
+    {
+        return layersList;
+    }
+    else {
+        return JSON.stringify(layersList);
+    }
 
-    return  JSON.stringify(layersList);
+
 }
 
 
@@ -76,7 +83,7 @@ EnzJSX.getAllLayersList = function ()
  * 返回包含全部图层名称 的数组
  * @returns {Array}
  */
-EnzJSX.getAllLayersName = function ()
+EnzJSX.getAllLayersName = function (retrunRaw)
 {
     var names = [];
     var itemIndexs = ki.layer.getAllLayersItemIndex();
@@ -86,7 +93,12 @@ EnzJSX.getAllLayersName = function ()
         names.push(ki.layer.getLayerName_byItemIndex(itemIndexs[i]));
     }
 
-    return  JSON.stringify(names);
+    if (retrunRaw == true)
+    {
+        return names;
+    }
+
+    return JSON.stringify(names);
 }
 
 
@@ -94,7 +106,7 @@ EnzJSX.getAllLayersName = function ()
  * 返回包含全部图层 ID 的数组
  * @returns {Array}
  */
-EnzJSX.getAllLayersID = function ()
+EnzJSX.getAllLayersID = function (retrunRaw)
 {
     var ids = [];
     var itemIndexs = ki.layer.getAllLayersItemIndex();
@@ -104,6 +116,10 @@ EnzJSX.getAllLayersID = function ()
         ids.push(ki.layer.getLayerIdByItemIndex(itemIndexs[i]));
     }
 
+    if (retrunRaw == true)
+    {
+        return ids;
+    }
 
     return JSON.stringify(ids);
 }
@@ -111,12 +127,80 @@ EnzJSX.getAllLayersID = function ()
  * 返回包含全部图层 itemIndex 的数组
  * @returns {Array}
  */
-EnzJSX.getAllLayersItemIndex = function ()
+EnzJSX.getAllLayersItemIndex = function (retrunRaw)
 {
     var itemIndexs = ki.layer.getAllLayersItemIndex();
 
-    return JSON.stringify(itemIndexs);
+    if (retrunRaw == true)
+    {
+        itemIndexs;
+    }else {
+        return JSON.stringify(itemIndexs);
+
+    }
+
+
 }
+
+
+EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
+{
+    var layerList = EnzJSX.getAllLayersList(true);
+
+
+    if (handleType == 0)
+    {
+        handleType = "id"
+    } else if (handleType == 1)
+    {
+        handleType = "itemIndex";
+    } else if (handleType == 2)
+    {
+        handleType = "name";
+    }
+
+    var allResult = [];
+
+    for (var i = 0; i < layerList.length; i++)
+    {
+
+        if (layerList[i][handleType] == layerHandle)
+        {
+
+            if (scanAll == true)
+            {
+                allResult.push(layerList[i]);
+            } else
+            {
+                 return JSON.stringify([layerList[i]]);
+            }
+        }
+    }
+
+    if (scanAll == true)
+    {
+        if (allResult.length == 0)
+        {
+            return null;
+        } else
+        {
+            return JSON.stringify(allResult);
+        }
+
+    } else
+    {
+        return null;
+    }
+
+
+}
+
+
+
+
+
+
+
 
 
 
