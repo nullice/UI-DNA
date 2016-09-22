@@ -74,7 +74,7 @@ window.test = test
 
 window.tests = {};
 import  test_task_Enzymes from "./test/test_Enzymes_JS";
-window.tests.test_task_Enzymes = test_task_Enzymes;
+window.tests.task_Enzymes = test_task_Enzymes;
 
 
 Vue.filter('lang', Lang.fiterFunc);
@@ -147,4 +147,4 @@ console.log("sss_end")
 //     }
 //
 // }
-tests.test_task_Enzymes()
+tests.task_Enzymes()

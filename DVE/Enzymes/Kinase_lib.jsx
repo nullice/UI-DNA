@@ -4996,7 +4996,7 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
 
 /*移动图层排序*/
 
-Kinase.prototype.layer.moveLayerOrder = function ()
+Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
 {
 
     var adOb = {
@@ -5019,7 +5019,7 @@ Kinase.prototype.layer.moveLayerOrder = function ()
                 },
                 "form": "ReferenceFormType.INDEX",
                 "desiredClass": "layer",
-                "index": 2
+                "index": itemIndex + Kinase.BKOffset()
             },
             "type": "DescValueType.REFERENCETYPE"
         },
@@ -5337,3 +5337,16 @@ Kinase.BKOffset = function ()
     return backgroundIndexOffset
 }
 
+Kinase.lowerIndex = function ()
+{
+    var lowerIndex = 0;
+    try
+    {
+        if (app.activeDocument.backgroundLayer) lowerIndex = 2;
+
+    }
+    catch (err)
+    {
+    }
+    return lowerIndex
+}

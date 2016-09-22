@@ -122,6 +122,43 @@ Enzymes.prototype.getAllLayerArray = async function (getType)
 
 }
 
+Enzymes.prototype.getSelectLayerArray = async function (getType)
+{
+
+    return new Promise(function (resolve, reject)
+    {
+        if (getType == "id" || getType == 0)
+        {
+            evalScript(`EnzJSX.getSelectLayerID()`,
+                (r)=> {resolve(JSON.parse(r))})
+
+        } else if (getType == "itemIndex" || getType == 1)
+        {
+            evalScript(`EnzJSX.getSelectLayerItemIndex()`,
+                (r)=> {resolve(JSON.parse(r))})
+
+        } else if (getType == "name" || getType == 2)
+        {
+            evalScript(`EnzJSX.getSelectLayerName()`,
+                (r)=> {resolve(JSON.parse(r))})
+
+        } else
+        {// [{name ,id ,itemIndex}]
+
+            evalScript(`EnzJSX.getSelectLayerArray()`,
+                (r)=> {resolve(JSON.parse(r))})
+        }
+    })
+
+    
+}
+
+
+
+
+
+
+
 /**
  * 检查图层的存在性。
  * @param layerHandle 检查凭据，可以是图层名称、ID、itemIndex
@@ -179,6 +216,59 @@ Enzymes.prototype.getLayerName_byID = async function (layerID)
             (r)=> {resolve(r)})
     })
 }
+
+
+/**
+ * 选中图层，根据图层 ID
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.selectLayer_byID =  async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `ki.layer.selectLayer_byID(${layerID})`
+            ,
+            (r)=> {resolve(r)})
+    })
+}
+
+
+/**
+ * 保存当前各图层选中状态，把返回值用作 Enzymes.selectLoad() 的参数，能再现当前各图层选中状态
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.selectSave =  async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.selectSave ()`
+            ,
+            (r)=> {resolve(JSON.parse(r))})
+    })
+}
+
+
+/**
+ * 再现各图层选中状态。参数为 id 数组，即使用  Enzymes.selectSave() 的返回值。
+ * @param layerIDs
+ * @returns {Promise}
+ */
+Enzymes.prototype.selectLoad =  async function (layerIDs)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.selectLoad([${layerIDs}])`
+            ,
+            (r)=> {resolve(r)})
+    })
+}
+
+
 
 
 //------------------------------------------------------------------------

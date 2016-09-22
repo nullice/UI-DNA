@@ -27,6 +27,11 @@ TEST.prototype.init = function ()
     this.log = "";
 }
 
+/**
+ * 生成测试报告，在控制台输出。
+ * @param retrunString 为真会返回报告文本。
+ * @returns {string}
+ */
 TEST.prototype.report = function (retrunString)
 {
     var text0 = `[test] ${this.name}  - （${new Date().toLocaleString()})`;
@@ -38,31 +43,54 @@ TEST.prototype.report = function (retrunString)
         , "color: #f54a4a; font-weight: bold;"
         , " color: #e2d567; font-weight: bold;"
     )
-    console.log("%c"+this.errsLog, " color: #f55;")
+    console.log("%c" + this.errsLog, " color: #f55;")
     console.log(this.log)
     console.log("%c-----------------------------------------------", " color: #aaa;")
 
-    if(retrunString)
+    if (retrunString)
     {
         return text0 + "\n" + text1 + "\n" + this.errsLog + "\n" + this.log;
     }
 }
 
-
+/**
+ * 值检查，比较 2 个值是否相等。
+ * @param value
+ * @param expectValue
+ * @param name
+ */
 TEST.prototype.seeVelue = function (value, expectValue, name)
 {
     this.allTimes = this.allTimes + 1;
 
-    if (value !== expectValue)
+
+    var equal = false;
+    if (typeof value == "object" && typeof expectValue == "object")
+    {
+        equal = _.isEqual(value, expectValue);
+    } else
+    {
+        equal = (value !== expectValue);
+
+    }
+
+    if (equal)
     {
         this.errTimes++;
-        this.errsLog += "\n" + "[ERR] " + name + `  ( ${value} !== ${expectValue} )`;
+        this.errsLog += "\n" + "[ERR] " + this.allTimes + ": " + name + `  ( ${value} !== ${expectValue} )`;
 
     } else
     {
-        this.log += "\n" + "[OK] " + name + `  ( ${value} == ${expectValue} )`;
+        this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${value} == ${expectValue} )`;
     }
 }
 
-
+/**
+ * 添加一行段日志
+ * @param text
+ */
+TEST.prototype.log = function (text)
+{
+    this.log += text + "\n";
+}
 export default TEST;

@@ -25,11 +25,16 @@ var EnzJSX = {};
  */
 EnzJSX.creatLayer = function (layerName)
 {
-    ki.layer.creatNewLayer_ByActive();
-
-    if (layerName !== undefined)
+    app.activeDocument.suspendHistory("#新建图层", "_func()");
+    function  _func()
     {
-        ki.layer.setLayerName_byActive(layerName)
+        ki.layer.creatNewLayer_ByActive();
+
+        if (layerName !== undefined)
+        {
+            ki.layer.setLayerName_byActive(layerName)
+        }
+
     }
     return ki.layer.getLayerIdByActive()
 }
@@ -71,7 +76,8 @@ EnzJSX.getAllLayersList = function (retrunRaw)
     {
         return layersList;
     }
-    else {
+    else
+    {
         return JSON.stringify(layersList);
     }
 
@@ -134,7 +140,8 @@ EnzJSX.getAllLayersItemIndex = function (retrunRaw)
     if (retrunRaw == true)
     {
         itemIndexs;
-    }else {
+    } else
+    {
         return JSON.stringify(itemIndexs);
 
     }
@@ -172,7 +179,7 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
                 allResult.push(layerList[i]);
             } else
             {
-                 return JSON.stringify([layerList[i]]);
+                return JSON.stringify([layerList[i]]);
             }
         }
     }
@@ -196,11 +203,63 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
 }
 
 
+EnzJSX.selectSave = function ()
+{
+    var layerIDs = ki.layer.selectSave()
+    return JSON.stringify(layerIDs);
+}
+
+EnzJSX.selectLoad = function (layerIDs)
+{
+    ki.layer.selectLoad(layerIDs)
+}
 
 
 
 
+EnzJSX.getSelectLayerItemIndex = function ()
+{
+    var itemIndexs = ki.layer.getTargetLayersItemIndex()
+    return JSON.stringify(itemIndexs);
+}
+
+EnzJSX.getSelectLayerID = function ()
+{
+    var ids = ki.layer.getTargetLayersID()
+    return JSON.stringify(ids);
+}
+
+EnzJSX.getSelectLayerName = function ()
+{
+    var names = [];
+    var itemIndexs = ki.layer.getTargetLayersItemIndex();
+
+    for (var i = 0; i < itemIndexs.length; i++)
+    {
+        names.push(ki.layer.getLayerName_byItemIndex(itemIndexs[i]));
+    }
+
+    return JSON.stringify(names);
+}
 
 
+EnzJSX.getSelectLayerArray= function ()
+{
 
+    var layersList = [];
+    var itemIndexs = ki.layer.getTargetLayersItemIndex();
+
+    for (var i = 0; i < itemIndexs.length; i++)
+    {
+        layersList.push(
+            {
+                name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
+                id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
+                itemIndex: itemIndexs[i]
+            }
+        )
+    }
+
+    return JSON.stringify(layersList);
+}
 

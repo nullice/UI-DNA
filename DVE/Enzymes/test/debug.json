@@ -1,0 +1,44 @@
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {
+        }
+      },
+      "form": "ReferenceFormType.ENUMERATED",
+      "desiredClass": "layer",
+      "enumeratedType": "ordinal",
+      "enumeratedValue": "targetEnum"
+    },
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "to": {
+    "value": {
+      "container": {
+        "container": {
+        }
+      },
+      "form": "ReferenceFormType.INDEX",
+      "desiredClass": "layer",
+      "index": 0
+    },
+    "type": "DescValueType.REFERENCETYPE"
+  },
+  "adjustment": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
+  },
+  "version": {
+    "value": 5,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "layerID": {
+    "value": {
+      "0": {
+        "value": 164,
+        "type": "DescValueType.INTEGERTYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
+  }
+}
