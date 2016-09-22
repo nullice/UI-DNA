@@ -106,7 +106,7 @@ function task_getTargetLayersID()
 
 function selctLayer_byItemIndex()
 {
-    log("测试 selctLayer_byItemIndex() ,selctLayer_byID()")
+    log("测试 selectLayer_byItemIndex() ,selectLayer_byID()")
     var err = 0;
     var time = 0;
 
@@ -115,11 +115,11 @@ function selctLayer_byItemIndex()
     log("================")
     for (var i = 0; i < arr.length; i++)
     {
-        ki.layer.selctLayer_byItemIndex(arr[i]);
+        ki.layer.selectLayer_byItemIndex(arr[i]);
         var index = ki.layer.getTargetLayersItemIndex()[0];
         if (index != arr[i])
         {
-            log("err: selctLayer_byItemIndex" + arr[i] + ")");
+            log("err: selectLayer_byItemIndex" + arr[i] + ")");
             err++;
         }
 
@@ -128,11 +128,11 @@ function selctLayer_byItemIndex()
 
     for (var i = 0; i < arr.length; i++)
     {
-        ki.layer.selctLayer_byID(ki.layer.getLayerIdByItemIndex(arr[i]));
+        ki.layer.selectLayer_byID(ki.layer.getLayerIdByItemIndex(arr[i]));
         var id = ki.layer.getTargetLayersID()[0];
         if (id != ki.layer.getLayerIdByItemIndex(arr[i]))
         {
-            log("err: selctLayer_byID" + ki.layer.getLayerIdByItemIndex(arr[i]) + ")");
+            log("err: selectLayer_byID" + ki.layer.getLayerIdByItemIndex(arr[i]) + ")");
             err++;
         }
 
@@ -147,23 +147,23 @@ function selctLayer_byItemIndex()
 
 function task_selctMultLayers_byItemIndex()
 {
-    log("测试 selctMultLayers_byItemIndex")
+    log("测试 selectMultLayers_byItemIndex")
     var err = 0;
     var time = 0;
 
     var arr = ki.layer.getAllLayersItemIndex();
     log("================")
     log("arr" + arr)
-    ki.layer.selctMultLayers_byItemIndex(arr);
-    ki.layer.selctLayer_byItemIndex(arr[0]);
+    ki.layer.selectMultLayers_byItemIndex(arr);
+    ki.layer.selectLayer_byItemIndex(arr[0]);
     arr = ki.layer.itemIndexArray_ToLayerIdArray(arr);
-    ki.layer.selctMultLayers_byID(arr,true);
-    ki.layer.selctMultLayers_byID([arr[0],arr[2]],true);
+    ki.layer.selectMultLayers_byID(arr,true);
+    ki.layer.selectMultLayers_byID([arr[0],arr[2]],true);
 
     var indexs = ki.layer.getTargetLayersItemIndex();
-    ki.layer.selctMultLayers_byItemIndex(indexs,true);
+    ki.layer.selectMultLayers_byItemIndex(indexs,true);
     var ids = ki.layer.getTargetLayersID();
-    ki.layer.selctMultLayers_byID(ids,true);
+    ki.layer.selectMultLayers_byID(ids,true);
 
 
 }

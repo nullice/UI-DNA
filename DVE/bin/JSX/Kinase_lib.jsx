@@ -5036,11 +5036,14 @@ Kinase.prototype.layer.moveLayerOrder = function ()
 }
 
 
+
+
+
 /**
  * 根据图层 ID 单选图层
  * @param layerID
  */
-Kinase.prototype.layer.selctLayer_byID = function (layerID)
+Kinase.prototype.layer.selectLayer_byID = function (layerID)
 {
     var ref = new ActionReference();
     ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
@@ -5053,7 +5056,7 @@ Kinase.prototype.layer.selctLayer_byID = function (layerID)
  * 根据图层 ItemIndex 单选图层
  * @param ItemIndex
  */
-Kinase.prototype.layer.selctLayer_byItemIndex = function (ItemIndex)
+Kinase.prototype.layer.selectLayer_byItemIndex = function (ItemIndex)
 {
     var ref = new ActionReference();
     ref.putIndex(charIDToTypeID("Lyr "), ItemIndex + Kinase.BKOffset());
@@ -5069,7 +5072,7 @@ Kinase.prototype.layer.selctLayer_byItemIndex = function (ItemIndex)
  * @param repick - 为真会取消之前的已选图层重新选择。
  * @returns {string}
  */
-Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray, repick)
+Kinase.prototype.layer.selectMultLayers_byID = function (layerIDArray, repick)
 {
 
     if (layerIDArray == undefined)
@@ -5080,7 +5083,7 @@ Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray, repick)
     layerIDArray = layerIDArray.sort();
     if (repick)
     {
-        Kinase.prototype.layer.selctLayer_byID(layerIDArray[0]);
+        Kinase.prototype.layer.selectLayer_byID(layerIDArray[0]);
     }
     for (var i = 0; i < layerIDArray.length; i++)
     {
@@ -5103,7 +5106,7 @@ Kinase.prototype.layer.selctMultLayers_byID = function (layerIDArray, repick)
  * @param repick - 为真会取消之前的已选图层重新选择。
  * @returns {string}
  */
-Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, repick)
+Kinase.prototype.layer.selectMultLayers_byItemIndex = function (itemIndexArray, repick)
 {
 
     if (itemIndexArray == undefined)
@@ -5113,7 +5116,7 @@ Kinase.prototype.layer.selctMultLayers_byItemIndex = function (itemIndexArray, r
 
     if (repick)
     {
-        Kinase.prototype.layer.selctLayer_byItemIndex(itemIndexArray[0]);
+        Kinase.prototype.layer.selectLayer_byItemIndex(itemIndexArray[0]);
     }
 
     for (var i = 0; i < itemIndexArray.length; i++)
