@@ -79,8 +79,8 @@
       <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="5118" column="54" selection-start-line="5118" selection-start-column="31" selection-end-line="5118" selection-end-column="54" />
+            <state relative-caret-position="166">
+              <caret line="5042" column="33" selection-start-line="5042" selection-start-column="23" selection-end-line="5042" selection-end-column="33" />
               <folding>
                 <element signature="e#3734#3943#0" expanded="false" />
                 <element signature="e#4107#4318#0" expanded="false" />
@@ -480,12 +480,12 @@
       <workItem from="1473928975214" duration="8194000" />
       <workItem from="1474173361293" duration="17758000" />
       <workItem from="1474337133927" duration="40318000" />
-      <workItem from="1474454398947" duration="15860000" />
+      <workItem from="1474454398947" duration="16877000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="648497000" />
+    <option name="totallyTimeSpent" value="649514000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -920,8 +920,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="5118" column="54" selection-start-line="5118" selection-start-column="31" selection-end-line="5118" selection-end-column="54" />
+        <state relative-caret-position="166">
+          <caret line="5042" column="33" selection-start-line="5042" selection-start-column="23" selection-end-line="5042" selection-end-column="33" />
           <folding>
             <element signature="e#3734#3943#0" expanded="false" />
             <element signature="e#4107#4318#0" expanded="false" />

@@ -5036,7 +5036,24 @@ Kinase.prototype.layer.moveLayerOrder = function ()
 }
 
 
+/**
+ * 保存当前各图层选中状态，把返回值用作 Kinase.layer.selectLoad() 的参数，能再现当前各图层选中状态
+ * @returns {Array} layerIDArray
+ */
+Kinase.prototype.layer.selectSave = function ()
+{
+   return Kinase.prototype.layer.getTargetLayersID()
+}
 
+
+/**
+ * 再现各图层选中状态。参数为使用 Kinase.layer.selectSave() 的返回值。
+ * @param layerIDArray
+ */
+Kinase.prototype.layer.selectLoad= function (layerIDArray)
+{
+    Kinase.prototype.layer.selectMultLayers_byID (layerIDArray, true);
+}
 
 
 /**
