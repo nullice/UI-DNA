@@ -80,9 +80,25 @@ Enzymes.prototype.createLayer = async function (layerName)
     {
         // console.log(`EnzJSX.creatLayer(${'"' + layerName + '"' || ""})`)
         evalScript(`EnzJSX.creatLayer(${'"' + layerName + '"' || ""})`,
-            (r)=> {resolve(r)})
+            (r)=> {resolve(Number(r))})
     })
 }
+
+/**
+ * 删除图层，根据图层 ID。可用数组作为参数删除多个图层
+ * @param id 图层 ID 或图层 ID 数组
+ * @returns {Promise}
+ */
+Enzymes.prototype.deleteLayer = async function (id)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(`EnzJSX.deletLayer(${JSON.stringify(id)})`,
+            (r)=> {resolve(Number(r))})
+    })
+}
+
+
 
 
 /**

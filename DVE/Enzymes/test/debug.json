@@ -12,30 +12,18 @@
     },
     "type": "DescValueType.REFERENCETYPE"
   },
-  "to": {
-    "value": {
-      "container": {
-        "container": {
-        }
-      },
-      "form": "ReferenceFormType.INDEX",
-      "desiredClass": "layer",
-      "index": 0
-    },
-    "type": "DescValueType.REFERENCETYPE"
-  },
-  "adjustment": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "version": {
-    "value": 5,
-    "type": "DescValueType.INTEGERTYPE"
-  },
   "layerID": {
     "value": {
       "0": {
-        "value": 164,
+        "value": 266,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "1": {
+        "value": 267,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "2": {
+        "value": 268,
         "type": "DescValueType.INTEGERTYPE"
       }
     },

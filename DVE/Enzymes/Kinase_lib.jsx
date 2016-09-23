@@ -4994,6 +4994,53 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
 }
 
 
+/**
+ * 删除选中图层
+ */
+Kinase.prototype.layer.deleteLayer_ByActive = function ()
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "layer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            },
+            "type": "DescValueType.REFERENCETYPE"
+        },
+        "layerID": {
+            "value": {},
+            "type": "DescValueType.LISTTYPE"
+        }
+    }
+
+    // if (id instanceof Array)
+    // {
+    //     for (var i = 0; i < id.length; i++)
+    //     {
+    //         adOb.layerID.value[i] = {
+    //             "value": id[i],
+    //             "type": "DescValueType.INTEGERTYPE"
+    //         }
+    //     }
+    //
+    // } else
+    // {
+    //     adOb.layerID.value[0] = {
+    //         "value": id,
+    //         "type": "DescValueType.INTEGERTYPE"
+    //     }
+    // }
+
+    // log(json(adOb))
+    mu.executeActionObjcet(charIDToTypeID("Dlt "), adOb)
+
+}
+
 /*移动图层排序*/
 
 Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
@@ -5042,7 +5089,7 @@ Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
  */
 Kinase.prototype.layer.selectSave = function ()
 {
-   return Kinase.prototype.layer.getTargetLayersID()
+    return Kinase.prototype.layer.getTargetLayersID()
 }
 
 
@@ -5050,9 +5097,9 @@ Kinase.prototype.layer.selectSave = function ()
  * 再现各图层选中状态。参数为使用 Kinase.layer.selectSave() 的返回值。
  * @param layerIDArray
  */
-Kinase.prototype.layer.selectLoad= function (layerIDArray)
+Kinase.prototype.layer.selectLoad = function (layerIDArray)
 {
-    Kinase.prototype.layer.selectMultLayers_byID (layerIDArray, true);
+    Kinase.prototype.layer.selectMultLayers_byID(layerIDArray, true);
 }
 
 

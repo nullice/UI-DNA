@@ -63,25 +63,47 @@ TEST.prototype.seeVelue = function (value, expectValue, name)
 {
     this.allTimes = this.allTimes + 1;
 
-
+    var objectMode = false;
     var equal = false;
     if (typeof value == "object" && typeof expectValue == "object")
     {
+        objectMode = true;
         equal = _.isEqual(value, expectValue);
+
+        // if(equal == false)
+        // {
+        //     window.o1 =value;
+        //     ewindow.o2 =xpectValue
+        // }
+
     } else
     {
-        equal = (value !== expectValue);
-
+        equal = (value == expectValue);
     }
 
-    if (equal)
+    if (equal == false)
     {
         this.errTimes++;
-        this.errsLog += "\n" + "[ERR] " + this.allTimes + ": " + name + `  ( ${value} !== ${expectValue} )`;
+
+        if (objectMode)
+        {
+            this.errsLog += "\n" + "[ERR] " + this.allTimes + ": " + name + `  ( ${JSON.stringify(value)} !== ${ JSON.stringify(expectValue)} )`;
+        } else
+        {
+            this.errsLog += "\n" + "[ERR] " + this.allTimes + ": " + name + `  ( ${value} !== ${expectValue} )`;
+        }
+
 
     } else
     {
-        this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${value} == ${expectValue} )`;
+        if (objectMode)
+        {
+            this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${_.truncate(JSON.stringify(value), 10)} == ${_.truncate(JSON.stringify(expectValue))} )`;
+        } else
+        {
+            this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${value} == ${expectValue} )`;
+        }
+
     }
 }
 
@@ -89,8 +111,20 @@ TEST.prototype.seeVelue = function (value, expectValue, name)
  * 添加一行段日志
  * @param text
  */
-TEST.prototype.log = function (text)
+TEST.prototype.toLog = function (text)
 {
-    this.log += text + "\n";
+    this.log = this.log + "\n" + text;
 }
+
+
+TEST.prototype.timeStart = function (text)
+{
+    return new Date().getTime();
+}
+
+TEST.prototype.timeOut = function (startTime)
+{
+    return ( new Date().getTime() - startTime)+"ms";
+}
+
 export default TEST;

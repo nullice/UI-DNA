@@ -4,6 +4,18 @@
 var mu, ki;
 var extendPath = ""
 
+/**
+ * 处理文本翻译
+ * @param str
+ * @returns {*}
+ */
+function lang(str, postfix)
+{
+
+    return str;
+}
+
+
 function initEnzymes(in_extendPath)
 {
     extendPath = in_extendPath;
@@ -19,24 +31,30 @@ function initEnzymes(in_extendPath)
 var EnzJSX = {};
 
 /**
- * 创建图层
+ * 删除图层
  * @param layerName
- * @returns {*}
  */
-EnzJSX.creatLayer = function (layerName)
+EnzJSX.deletLayer = function (id)
 {
-    app.activeDocument.suspendHistory("#新建图层", "_func()");
-    function  _func()
+
+    if ((id instanceof Array) == false)
     {
-        ki.layer.creatNewLayer_ByActive();
-
-        if (layerName !== undefined)
-        {
-            ki.layer.setLayerName_byActive(layerName)
-        }
-
+        id = [id];
     }
-    return ki.layer.getLayerIdByActive()
+
+    app.activeDocument.suspendHistory(lang("#删除图层"), "_func()");
+
+    function _func()
+    {
+        var selectSave = EnzJSX.selectSave()
+        EnzJSX.selectLoad(id)
+        ki.layer.deleteLayer_ByActive();
+        selectSave = EnzJSX.ArrayRemove(selectSave, id);
+        // alert(typeof  selectSave)
+        EnzJSX.selectLoad(selectSave)
+    }
+
+
 }
 
 
@@ -82,6 +100,29 @@ EnzJSX.getAllLayersList = function (retrunRaw)
     }
 
 
+}
+
+
+/**
+ * 创建图层
+ * @param layerName
+ * @returns {*}
+ */
+EnzJSX.creatLayer = function (layerName)
+{
+    app.activeDocument.suspendHistory(lang("#新建图层"), "_func()");
+    function _func()
+    {
+        ki.layer.creatNewLayer_ByActive();
+
+        if (layerName !== undefined)
+        {
+            ki.layer.setLayerName_byActive(layerName)
+        }
+
+    }
+
+    return ki.layer.getLayerIdByActive()
 }
 
 
@@ -206,15 +247,13 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
 EnzJSX.selectSave = function ()
 {
     var layerIDs = ki.layer.selectSave()
-    return JSON.stringify(layerIDs);
+    return layerIDs;
 }
 
 EnzJSX.selectLoad = function (layerIDs)
 {
     ki.layer.selectLoad(layerIDs)
 }
-
-
 
 
 EnzJSX.getSelectLayerItemIndex = function ()
@@ -243,7 +282,7 @@ EnzJSX.getSelectLayerName = function ()
 }
 
 
-EnzJSX.getSelectLayerArray= function ()
+EnzJSX.getSelectLayerArray = function ()
 {
 
     var layersList = [];
@@ -263,3 +302,21 @@ EnzJSX.getSelectLayerArray= function ()
     return JSON.stringify(layersList);
 }
 
+EnzJSX.ArrayRemove = function (array, removeArray)
+{
+    for (var i = 0; i < array.length; i++)
+    {
+        for (var z = 0; z < removeArray.length; z++)
+        {
+            if (array[i] == removeArray[z])
+            {
+                array.splice(i, 1)
+                i--;
+                break;
+            }
+        }
+    }
+
+
+    return array;
+}

@@ -2889,7 +2889,7 @@
      * @returns {boolean} Returns `true` if the values are equivalent, else `false`.
      */
     function baseIsEqual(value, other, customizer, bitmask, stack) {
-      if (value === other) {
+      if (value === other) {difference
         return true;
       }
       if (value == null || other == null || (!isObject(value) && !isObjectLike(other))) {

@@ -33,6 +33,7 @@ var VueLang =
     },
 
 
+
 }
 
 
@@ -43,6 +44,6 @@ VueLang.LANG_Chiness2English = {
     "链接": "Link",
 }
 
-
+VueLang.to = VueLang.fiterFunc;
 //--------------------------------------------
 export default VueLang;
