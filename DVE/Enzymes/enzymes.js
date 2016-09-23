@@ -261,7 +261,7 @@ Enzymes.prototype.selectSave =  async function (layerID)
     return new Promise(function (resolve, reject)
     {
         evalScript(
-            `EnzJSX.selectSave ()`
+            `EnzJSX.selectSave()`
             ,
             (r)=> {resolve(JSON.parse(r))})
     })

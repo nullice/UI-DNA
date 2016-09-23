@@ -6,6 +6,9 @@ async function task_Enzymes()
 {
     console.time('计时');
     var time0 = test.timeStart()
+    var select0 =  await  enzymes.selectSave();
+    console.log(select0)
+
 
     var id = []
 
@@ -39,6 +42,10 @@ async function task_Enzymes()
     test.seeVelue(id2, id, "getSelectLayerArray()");
 
 
+
+
+
+    await  enzymes.selectLoad(select0);
     // 删除-----------
     test.toLog("删除-----------")
     await enzymes.deleteLayer(id[0]);
@@ -55,6 +62,9 @@ async function task_Enzymes()
     }
 
     test.seeVelue(false, isF, `enzymes.deleteLayer(${id})`)
+
+    var getIds = await enzymes.getSelectLayerArray("id");
+    test.seeVelue(select0, getIds, "getSelectLayerArray('select0') 最初选择图层检查");
 
     console.timeEnd('计时');
 

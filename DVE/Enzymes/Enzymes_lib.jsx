@@ -46,7 +46,7 @@ EnzJSX.deletLayer = function (id)
 
     function _func()
     {
-        var selectSave = EnzJSX.selectSave()
+        var selectSave = EnzJSX.selectSave(true)
         EnzJSX.selectLoad(id)
         ki.layer.deleteLayer_ByActive();
         selectSave = EnzJSX.ArrayRemove(selectSave, id);
@@ -244,10 +244,19 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
 }
 
 
-EnzJSX.selectSave = function ()
+EnzJSX.selectSave = function (retrunRaw)
 {
     var layerIDs = ki.layer.selectSave()
-    return layerIDs;
+
+    if (retrunRaw)
+    {
+        return layerIDs;
+    } else
+    {
+        return JSON.stringify(layerIDs)
+    }
+
+
 }
 
 EnzJSX.selectLoad = function (layerIDs)
