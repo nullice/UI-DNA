@@ -290,5 +290,33 @@ Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
 }
 
 
+Enzymes.prototype.readJSON = async function (rootName, itemName)
+{
+    return new Promise(function (resolve, reject)
+    {
+        console.log(`EnzJSX.readJSON("${rootName}", "${itemName}")`)
+        evalScript(
+            `EnzJSX.readJSON("${rootName}", "${itemName}")`
+            ,
+            (r)=> {resolve(r)})
+    })
+}
+
+
+// Enzymes.prototype.readJSONDOM = async function (rootName, itemName)
+// {
+//     return new Promise(function (resolve, reject)
+//     {
+//         evalScript(
+//             `EnzJSX.readJSONDOM("${rootName}", "${itemName}")`
+//             ,
+//             (r)=> {resolve(r)})
+//     })
+// }
+
+
+
+
+
 //------------------------------------------------------------------------
 export default Enzymes;

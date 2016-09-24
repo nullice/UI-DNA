@@ -81,7 +81,15 @@ async function task_Enzymes()
     // console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2", "name", true)))
     // console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2", "name")))
 
-   await  enzymes.writeJSON("__UI-DNA__","_DNA_",JSON.stringify(test));
+   // await  enzymes.writeJSON("__UI-DNA__","_DNA_",JSON.stringify(test));
+    console.log("------read-------")
+
+    console.time('DOM-readJSON');
+    var text2 = await  enzymes.readJSON("__UI-DNA__","_DNA_DATA_");
+    console.log(text2)
+    console.timeEnd('DOM-readJSON');
+
+
 
 
 }

@@ -2,6 +2,7 @@
 // $.evalFile(File($.fileName).path + "/Kinase_lib.jsx");
 
 var mu, ki;
+
 var extendPath = ""
 
 /**
@@ -23,8 +24,12 @@ function initEnzymes(in_extendPath)
     $.evalFile(extendPath + "/JSX/Muclease_lib.jsx");
     $.evalFile(extendPath + "/JSX/Kinase_lib.jsx");
 
+    $.global.Kinase = Kinase;
+    $.global.Muclease = Muclease;
+    // Muclease = Muclease;
     mu = new Muclease();
     ki = new Kinase();
+
 }
 
 
@@ -397,8 +402,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
         if (re == undefined || hasSameNameElse)
         {
-            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
-            alert(1)
+            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId) - 1)
             ki.layer.creatNewTextLayer_ByActive(itemName, 50, 100, json)
             ki.layer.setAppearance_byActive({
                 fillOpacity: 50, /*填充不透明度 0-255*/
@@ -425,4 +429,48 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
     }
 
+}
+
+//速度慢
+// EnzJSX.readJSONAD = function (rootName, itemName)
+// {
+//     var re = EnzJSX.checkLayerExist(itemName, "name", false, true);
+//     // alert(JSON.stringify(re))
+//     // alert("readJSON")
+//     if (re != undefined)
+//     {
+//         // alert(JSON.stringify(re))
+//         // alert(re[0].id + "\n" + Kinase.REF_LayerID)
+//         var textInfo = ki.layer.getLayerTextInfo(Kinase.REF_LayerID, re[0].id)
+//          // alert(JSON.stringify(textInfo))
+//     } else
+//     {
+//         return null;
+//     }
+//     return textInfo.text;
+// }
+
+
+/**
+ * 
+ * @param rootName
+ * @param itemName
+ * @returns {*}
+ */
+EnzJSX.readJSON= function (rootName, itemName)//EnzJSX.readJSONDOM 
+{
+    var re = EnzJSX.checkLayerExist(itemName, "name", false, true);
+    
+    
+    
+    
+    if (re != undefined)
+    {
+        var layer = ki.layer.getLayerDOMObject_byItemIndex(re[0].itemIndex)
+    } else
+    {
+        return null;
+    }
+
+    return layer.textItem.contents;
 }

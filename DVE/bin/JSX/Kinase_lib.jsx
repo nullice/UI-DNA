@@ -5227,7 +5227,7 @@ Kinase.prototype.layer.selectLoad = function (layerIDArray)
  */
 Kinase.prototype.layer.selectLayer_byID = function (layerID)
 {
-    if(layerID==undefined)
+    if (layerID == undefined)
     {
         return;
     }
@@ -5413,6 +5413,11 @@ Kinase.prototype.layer.setLayerName_byActive = function (name)
 }
 
 
+/**
+ * 根据 ItemIndex 获取图层父级图层的 ItemIndex
+ * @param itemIndex
+ * @returns {number}
+ */
 Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
 {
 
@@ -5428,7 +5433,94 @@ Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex
 
 }
 
+/**
+ * 根据 ItemIndex 获取图层组的所有子元素的 id 数组
+ * @param itemIndex
+ * @param getLayerList
+ * @returns {*}
+ */
+Kinase.prototype.layer.getChildLayerID_byItemIndex = function (itemIndex, getLayerList)
+{
+    var ids = [];
+    var childs = Kinase.prototype.layer.getChildLayerDOM_byItemIndex(itemIndex)
+    if (childs != undefined)
+    {
+        for (var i = 0; i < childs.length; i++)
+        {
+            if (getLayerList)
+            {
+                ids.push({id: childs[i].id, name: childs[i].name, itemIndex: childs[i].itemIndex});
+            }
+            else
+            {
+                ids.push(childs[i].id)
+            }
+        }
+            return ids;
+    }
+    else
+    {
+        return null;
+    }
 
+
+}
+
+
+/**
+ * 根据 ItemIndex 获取图层组的所有子元素的 layerList （[{name, id , itemIndex}]）
+ * @param itemIndex
+ * @returns {*}
+ */
+Kinase.prototype.layer.getChildLayerList_byItemIndex = function (itemIndex)
+{
+   return Kinase.prototype.layer.getChildLayerID_byItemIndex  (itemIndex, true);
+}
+
+
+/**
+ * 根据 ItemIndex 获取图层组的所有子元素的 DOM 对象
+ * @param itemIndex
+ * @returns {*}
+ */
+Kinase.prototype.layer.getChildLayerDOM_byItemIndex = function (itemIndex)
+{
+    var rootLayer = Kinase.prototype.layer.getLayerDOMObject_byItemIndex(itemIndex)
+    var childs = []
+
+    if (rootLayer.typename == "LayerSet")
+    {
+        _scanLayers(rootLayer.layers);
+
+        return childs;
+
+    }
+    else
+    {
+        return null
+    }
+
+
+    function _scanLayers(layers)
+    {
+        var layerSet;
+        for (var i = 0; i < layers.length; i++)
+        {
+            childs.push(layers[i]);
+            if ((layers[i].typename == "LayerSet"))
+            {
+                _scanLayers(layers[i].layers)
+            }
+        }
+    }
+}
+
+
+/**
+ * 根据 ItemIndex 获取图层的 DOM 对象
+ * @param itemIndex
+ * @returns {*}
+ */
 Kinase.prototype.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
 {
 

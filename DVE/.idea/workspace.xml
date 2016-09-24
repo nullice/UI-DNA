@@ -3,7 +3,7 @@
   <component name="BookmarkManager">
     <bookmark url="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" line="434" mnemonic="9" />
     <bookmark url="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" description="getLayerEffects" line="2580" />
-    <bookmark url="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" line="173" />
+    <bookmark url="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" line="178" />
     <bookmark url="file://$PROJECT_DIR$/Enzymes/Enzymes.js" line="172" />
   </component>
   <component name="ChangeListManager">
@@ -33,8 +33,8 @@
           <file leaf-file-name="Enzymes.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="646">
-                  <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
+                <state relative-caret-position="465">
+                  <caret line="305" column="0" selection-start-line="305" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -52,11 +52,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="541">
-                  <caret line="404" column="38" selection-start-line="404" selection-start-column="38" selection-end-line="404" selection-end-column="38" />
+                <state relative-caret-position="320">
+                  <caret line="84" column="51" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="51" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -67,8 +67,8 @@
           <file leaf-file-name="test_Enzymes_JS.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/test_Enzymes_JS.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1339">
-                  <caret line="83" column="69" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="69" />
+                <state relative-caret-position="423">
+                  <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="22" />
                   <folding>
                     <element signature="n#!!doc;n#task_Enzymes#0" expanded="false" />
                   </folding>
@@ -79,8 +79,8 @@
           <file leaf-file-name="test_core.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/test_core.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="590">
-                  <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
+                <state relative-caret-position="437">
+                  <caret line="100" column="88" selection-start-line="100" selection-start-column="80" selection-end-line="100" selection-end-column="88" />
                   <folding>
                     <element signature="e#0#41#0" expanded="false" />
                   </folding>
@@ -88,11 +88,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="163">
-                  <caret line="5097" column="43" selection-start-line="5097" selection-start-column="23" selection-end-line="5097" selection-end-column="43" />
+                <state relative-caret-position="310">
+                  <caret line="5420" column="0" selection-start-line="5420" selection-start-column="0" selection-end-line="5420" selection-end-column="58" />
                   <folding>
                     <element signature="e#3724#3933#0" expanded="false" />
                     <element signature="e#4097#4308#0" expanded="false" />
@@ -155,7 +155,7 @@
           <file leaf-file-name="Muclease_lib.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="10718">
+                <state relative-caret-position="-2340">
                   <caret line="530" column="52" selection-start-line="530" selection-start-column="52" selection-end-line="530" selection-end-column="52" />
                   <folding />
                 </state>
@@ -165,8 +165,8 @@
           <file leaf-file-name="debug.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="147">
-                  <caret line="31" column="12" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="12" />
+                <state relative-caret-position="-8400">
+                  <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -180,7 +180,7 @@
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="522">
-                  <caret line="309" column="1" selection-start-line="309" selection-start-column="1" selection-end-line="309" selection-end-column="1" />
+                  <caret line="314" column="1" selection-start-line="314" selection-start-column="1" selection-end-line="314" selection-end-column="1" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -250,11 +250,11 @@
         <option value="$PROJECT_DIR$/bin/JS/lodash.js" />
         <option value="$PROJECT_DIR$/test/test_core.js" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.log" />
-        <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
+        <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes.js" />
         <option value="$PROJECT_DIR$/test/test_Enzymes_JS.js" />
+        <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
       </list>
     </option>
   </component>
@@ -488,12 +488,12 @@
       <workItem from="1474173361293" duration="17758000" />
       <workItem from="1474337133927" duration="40318000" />
       <workItem from="1474454398947" duration="58625000" />
-      <workItem from="1474682979597" duration="13570000" />
+      <workItem from="1474682979597" duration="20567000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="704832000" />
+    <option name="totallyTimeSpent" value="711829000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -508,14 +508,14 @@
     <frame x="-8" y="-8" width="1924" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27200425" sideWeight="0.46587217" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27200425" sideWeight="0.45720476" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32932165" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13217768" sideWeight="0.5377778" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16489926" sideWeight="0.35861322" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16489926" sideWeight="0.36944744" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16489926" sideWeight="0.6413868" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13217768" sideWeight="0.46222222" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16489926" sideWeight="0.63055253" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13109426" sideWeight="0.46222222" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28199404" sideWeight="0.45335516" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -783,13 +783,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/JSX/Enzymes_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/CSXS/manifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -865,6 +858,24 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/bin/JSX/Enzymes_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8740">
+          <caret line="9" column="0" selection-start-line="9" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_core.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="437">
+          <caret line="100" column="88" selection-start-line="100" selection-start-column="80" selection-end-line="100" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#41#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/bin/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="568">
@@ -873,56 +884,56 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_core.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="590">
-          <caret line="128" column="0" selection-start-line="128" selection-start-column="0" selection-end-line="128" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#41#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="31" column="12" selection-start-line="31" selection-start-column="3" selection-end-line="31" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="10718">
-          <caret line="530" column="52" selection-start-line="530" selection-start-column="52" selection-end-line="530" selection-end-column="52" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_Enzymes_JS.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1339">
-          <caret line="83" column="69" selection-start-line="83" selection-start-column="28" selection-end-line="83" selection-end-column="69" />
-          <folding>
-            <element signature="n#!!doc;n#task_Enzymes#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="293" column="17" selection-start-line="293" selection-start-column="17" selection-end-line="293" selection-end-column="17" />
+        <state relative-caret-position="465">
+          <caret line="305" column="0" selection-start-line="305" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="84" column="51" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="51" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_Enzymes_JS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="423">
+          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="22" />
+          <folding>
+            <element signature="n#!!doc;n#task_Enzymes#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2340">
+          <caret line="530" column="52" selection-start-line="530" selection-start-column="52" selection-end-line="530" selection-end-column="52" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8400">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="5097" column="43" selection-start-line="5097" selection-start-column="23" selection-end-line="5097" selection-end-column="43" />
+        <state relative-caret-position="310">
+          <caret line="5420" column="0" selection-start-line="5420" selection-start-column="0" selection-end-line="5420" selection-end-column="58" />
           <folding>
             <element signature="e#3724#3933#0" expanded="false" />
             <element signature="e#4097#4308#0" expanded="false" />
@@ -977,16 +988,6 @@
             <element signature="e#180579#180863#0" expanded="false" />
             <element signature="e#180602#180802#0" expanded="false" />
             <element signature="e#187895#189505#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="541">
-          <caret line="404" column="38" selection-start-line="404" selection-start-column="38" selection-end-line="404" selection-end-column="38" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>

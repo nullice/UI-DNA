@@ -1,6 +1,6 @@
 {
   "name": {
-    "value": "1111",
+    "value": "Í¼²ã 9",
     "type": "DescValueType.STRINGTYPE"
   },
   "color": {
@@ -17,7 +17,7 @@
   "mode": {
     "value": {
       "enumerationType": "blendMode",
-      "enumerationValue": "passThrough"
+      "enumerationValue": "normal"
     },
     "type": "DescValueType.ENUMERATEDTYPE"
   },
@@ -26,15 +26,15 @@
     "type": "DescValueType.INTEGERTYPE"
   },
   "layerID": {
-    "value": 49,
+    "value": 363,
     "type": "DescValueType.INTEGERTYPE"
   },
   "itemIndex": {
-    "value": 9,
+    "value": 33,
     "type": "DescValueType.INTEGERTYPE"
   },
   "count": {
-    "value": 12,
+    "value": 35,
     "type": "DescValueType.INTEGERTYPE"
   },
   "preserveTransparency": {
@@ -56,7 +56,7 @@
   "layerSection": {
     "value": {
       "enumerationType": "layerSectionType",
-      "enumerationValue": "layerSectionStart"
+      "enumerationValue": "layerSectionContent"
     },
     "type": "DescValueType.ENUMERATEDTYPE"
   },
@@ -88,10 +88,6 @@
   },
   "group": {
     "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "layerSectionExpanded": {
-    "value": true,
     "type": "DescValueType.BOOLEANTYPE"
   },
   "targetChannels": {
@@ -213,7 +209,7 @@
     "type": "DescValueType.BOOLEANTYPE"
   },
   "layerKind": {
-    "value": 7,
+    "value": 1,
     "type": "DescValueType.INTEGERTYPE"
   },
   "hasFilterMask": {
@@ -255,28 +251,28 @@
       "bottom": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 500
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "right": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 256
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "width": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 256
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "height": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 500
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       }
@@ -303,28 +299,28 @@
       "bottom": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 500
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "right": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 256
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "width": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 256
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "height": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 500
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       }
@@ -351,28 +347,28 @@
       "bottom": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 500
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "right": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 256
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "width": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 256
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       },
       "height": {
         "value": {
           "doubleType": "pixelsUnit",
-          "doubleValue": 500
+          "doubleValue": 0
         },
         "type": "DescValueType.UNITDOUBLE"
       }
