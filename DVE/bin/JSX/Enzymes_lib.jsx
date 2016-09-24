@@ -373,9 +373,11 @@ EnzJSX.ArrayRemove = function (array, removeArray)
 EnzJSX.writeJSON = function (rootName, itemName, json)
 {
     app.activeDocument.suspendHistory(lang("#更新数据"), "_func()");
+    // alert ("writeJSON")
 
     function _func()
     {
+
         var select0 = EnzJSX.selectSave(true);
         var rootId = 0;
         var isOpen = false;
@@ -402,7 +404,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist("ui-dna.nullice.com", "name", false, true);
         if (re == undefined)
         {
-            ki.layer.creatNewTextLayer_ByActive("ui-dna.nullice.com", 100, 100, json)
+            ki.layer.creatNewTextLayer_ByActive("ui-dna.nullice.com", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
             ki.layer.setAppearance_byActive({
                 fillOpacity: 100, /*填充不透明度 0-255*/
                 opacity: 100, /*不透明 0-255*/
@@ -425,6 +427,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         {
             ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId) - 1)
             ki.layer.creatNewTextLayer_ByActive(itemName, 50, 100, json)
+
             ki.layer.setAppearance_byActive({
                 fillOpacity: 50, /*填充不透明度 0-255*/
                 opacity: 50, /*不透明 0-255*/
@@ -445,10 +448,13 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
             EnzJSX.selectLoad(select0);
         } else
         {
+            // alert (re[0].id)
             ki.layer.setLayerText_Quick(json, Kinase.REF_LayerID, re[0].id)
         }
+        
 
     }
+
 
 }
 
@@ -486,10 +492,10 @@ EnzJSX.readJSON = function (rootName, itemName)//EnzJSX.readJSONDOM
         return null;
     }
 
-    var rootLayerList =  ki.layer.getChildLayerList_byItemIndex(re[0].itemIndex)
+    var rootLayerList = ki.layer.getChildLayerList_byItemIndex(re[0].itemIndex)
 
 
-    var re = EnzJSX.checkLayerExist(itemName, "name", false, true,rootLayerList);
+    var re = EnzJSX.checkLayerExist(itemName, "name", false, true, rootLayerList);
 
 
     if (re != undefined)

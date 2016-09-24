@@ -277,28 +277,42 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
     })
 }
 
-
+/**
+ * 把文本数据写入 Photoshop 文档中的图层。指定 rootName 为图层组名称，itemName 为图层名称。
+ * @param rootName 图层组名称
+ * @param itemName 存储数据的图层名称
+ * @param json
+ * @returns {Promise}
+ */
 Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
 {
+    json = Enzymes.prototype. _escape(json);
     return new Promise(function (resolve, reject)
     {
+
+        // console.log( `EnzJSX.writeJSON("${rootName}", "${itemName}",'${json}')`)
         evalScript(
-            `EnzJSX.writeJSON("${rootName}", "${itemName}","${json}")`
+            `EnzJSX.writeJSON("${rootName}", "${itemName}",'${json}')`
             ,
             (r)=> {resolve(r)})
     })
 }
 
-
+/**
+ * 从 Photoshop 文档中的图层中读取数据。
+ * @param rootName 图层组名称
+ * @param itemName 存储数据的图层名称
+ * @returns {Promise}
+ */
 Enzymes.prototype.readJSON = async function (rootName, itemName)
 {
     return new Promise(function (resolve, reject)
     {
-        console.log(`EnzJSX.readJSON("${rootName}", "${itemName}")`)
+        // console.log(`EnzJSX.readJSON("${rootName}", "${itemName}")`)
         evalScript(
             `EnzJSX.readJSON("${rootName}", "${itemName}")`
             ,
-            (r)=> {resolve(r)})
+            (r)=> {resolve(Enzymes.prototype._unEscape(r))})
     })
 }
 
@@ -315,8 +329,29 @@ Enzymes.prototype.readJSON = async function (rootName, itemName)
 // }
 
 
+/**
+ * 把字符串的中的引号转义处理，换行符转换为 \n
+ * @param str
+ * @returns {*}
+ * @private
+ */
+Enzymes.prototype._escape = function (str)
+{
+    str =str.replace(/\\/g, "\\\\")
+    str =str.replace(/\'/g, "$(q1)$")
+    str =str.replace(/\"/g, "$(q2)$")
+    str =str.replace(/\n/g, "\\n")
 
+    return str;
+}
 
+Enzymes.prototype._unEscape = function (str)
+{
+    str =str.replace(/\$\(q1\)\$/g, "\'")
+    str =str.replace(/\$\(q2\)\$/g, "\"")
+    str =str.replace(/\\\\/g, "\\")
+    return str;
+}
 
 //------------------------------------------------------------------------
 export default Enzymes;

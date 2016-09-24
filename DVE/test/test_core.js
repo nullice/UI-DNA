@@ -101,7 +101,7 @@ TEST.prototype.seeVelue = function (value, expectValue, name)
             this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${_.truncate(JSON.stringify(value), 10)} == ${_.truncate(JSON.stringify(expectValue))} )`;
         } else
         {
-            this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${value} == ${expectValue} )`;
+            this.log += "\n" + "[OK] " + this.allTimes + ": " + name + `  ( ${_.truncate(value,10)} == ${_.truncate(expectValue,10)} )`;
         }
 
     }

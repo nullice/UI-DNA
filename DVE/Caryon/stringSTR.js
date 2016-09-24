@@ -54,8 +54,8 @@ var stringSTR = {
     insert: function (str, start, offset, inStr)
     {
         return str.slice(0, start) + inStr + str.slice(start + Math.abs(offset));
-    }
-
+    },
+    
 
 }
 

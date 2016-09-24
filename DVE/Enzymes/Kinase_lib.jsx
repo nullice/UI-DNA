@@ -4722,7 +4722,7 @@ Kinase.prototype.layer.creatNewLayerSet_ByActive = function (name)
  * @param h
  * @param text
  */
-Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
+Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
 {
 
     var ad = new ActionDescriptor();
@@ -5030,6 +5030,10 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
         }
     }
     mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
+    if(english==true)
+    {
+        _setEnglish();
+    }
 
     if (text != undefined)
     {
@@ -5041,7 +5045,34 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
         Kinase.prototype.layer.setLayerName_byActive(name);
     }
 
-
+    function _setEnglish()
+    {
+        var idsetd = charIDToTypeID( "setd" );
+        var desc2569 = new ActionDescriptor();
+        var idnull = charIDToTypeID( "null" );
+        var ref412 = new ActionReference();
+        var idPrpr = charIDToTypeID( "Prpr" );
+        var idTxtS = charIDToTypeID( "TxtS" );
+        ref412.putProperty( idPrpr, idTxtS );
+        var idTxLr = charIDToTypeID( "TxLr" );
+        var idOrdn = charIDToTypeID( "Ordn" );
+        var idTrgt = charIDToTypeID( "Trgt" );
+        ref412.putEnumerated( idTxLr, idOrdn, idTrgt );
+        desc2569.putReference( idnull, ref412 );
+        var idT = charIDToTypeID( "T   " );
+        var desc2570 = new ActionDescriptor();
+        var idtextOverrideFeatureName = stringIDToTypeID( "textOverrideFeatureName" );
+        desc2570.putInteger( idtextOverrideFeatureName, 808466225 );
+        var idtypeStyleOperationType = stringIDToTypeID( "typeStyleOperationType" );
+        desc2570.putInteger( idtypeStyleOperationType, 3 );
+        var idtextLanguage = stringIDToTypeID( "textLanguage" );
+        var idtextLanguage = stringIDToTypeID( "textLanguage" );
+        var idenglishLanguage = stringIDToTypeID( "englishLanguage" );
+        desc2570.putEnumerated( idtextLanguage, idtextLanguage, idenglishLanguage );
+        var idTxtS = charIDToTypeID( "TxtS" );
+        desc2569.putObject( idT, idTxtS, desc2570 );
+        executeAction( idsetd, desc2569, DialogModes.NO );
+    }
 }
 
 

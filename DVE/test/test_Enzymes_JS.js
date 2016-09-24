@@ -6,7 +6,7 @@ async function task_Enzymes()
 {
     console.time('计时');
     var time0 = test.timeStart()
-    var select0 =  await  enzymes.selectSave();
+    var select0 = await  enzymes.selectSave();
     console.log(select0)
 
 
@@ -42,9 +42,6 @@ async function task_Enzymes()
     test.seeVelue(id2, id, "getSelectLayerArray()");
 
 
-
-
-
     await  enzymes.selectLoad(select0);
     // 删除-----------
     test.toLog("删除-----------")
@@ -63,13 +60,40 @@ async function task_Enzymes()
 
     test.seeVelue(false, isF, `enzymes.deleteLayer(${id})`)
 
+
+    //"------read-------"
+
+
+    //文本写入测试------------------------------------
+    var text1 = test.log;
+    await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", text1);
+
+    console.time('DOM-readJSON');
+    var text2 = await  enzymes.readJSON("__UI-DNA__", "_DNA_DATA_");
+    console.timeEnd('DOM-readJSON');
+    test.seeVelue(text1, text2, "文本写入 writeJSON() readJSON()");
+    console.log(_.truncate(text2, 100))
+    //对象写入测试------------------------------------
+    var ob = {
+        a: {b: [1234]}, d: ["asdsadfsf盛大'发'售", "SDAFASDFS"]
+    }
+
+
+    var text1 = JSON3.stringify(ob);
+    await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", text1);
+
+    console.time('DOM-readJSON');
+    var text2 = await  enzymes.readJSON("__UI-DNA__", "_DNA_DATA_");
+    console.timeEnd('DOM-readJSON');
+    window.v = text2;
+    test.seeVelue(ob, JSON3.parse(text2), "对象写入 writeJSON() readJSON()");
+
+
     var getIds = await enzymes.getSelectLayerArray("id");
     test.seeVelue(select0, getIds, "getSelectLayerArray('select0') 最初选择图层检查");
-
     console.timeEnd('计时');
 
-
-    test.toLog("耗时：" +test.timeOut(time0))
+    test.toLog("耗时：" + test.timeOut(time0))
     test.report();
 
 
@@ -81,15 +105,7 @@ async function task_Enzymes()
     // console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2", "name", true)))
     // console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2", "name")))
 
-   // await  enzymes.writeJSON("__UI-DNA__","_DNA_",JSON.stringify(test));
-    console.log("------read-------")
-
-    console.time('DOM-readJSON');
-    var text2 = await  enzymes.readJSON("__UI-DNA__","_DNA_DATA_");
-    console.log(_.truncate(text2,100))
-    console.timeEnd('DOM-readJSON');
-
-
+    // await  enzymes.writeJSON("__UI-DNA__","_DNA_",JSON.stringify(test));
 
 
 }
