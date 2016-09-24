@@ -196,9 +196,30 @@ EnzJSX.getAllLayersItemIndex = function (retrunRaw)
 }
 
 
-EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll, returnRaw)
+EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll, returnRaw, giveLayerList, equalFunc)
 {
-    var layerList = EnzJSX.getAllLayersList(true);
+
+    //指定检查范围 LayerList ；不指定检查所有图层。
+    if (giveLayerList != undefined)
+    {
+        var layerList = giveLayerList;
+    } else
+    {
+        var layerList = EnzJSX.getAllLayersList(true);
+    }
+
+    //指定比较函数；不指定使用默认比较函数。
+    if (equalFunc != undefined)
+    {
+        var _equal = equalFunc;
+    }
+    else
+    {
+        function _equal(value1, value2)
+        {
+            return (value1 == value2)
+        }
+    }
 
 
     if (handleType == 0)
@@ -217,7 +238,7 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll, returnRaw)
     for (var i = 0; i < layerList.length; i++)
     {
 
-        if (layerList[i][handleType] == layerHandle)
+        if (_equal(layerList[i][handleType], layerHandle))
         {
 
             if (scanAll == true)
@@ -452,18 +473,25 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
 
 /**
- * 
+ *
  * @param rootName
  * @param itemName
  * @returns {*}
  */
-EnzJSX.readJSON= function (rootName, itemName)//EnzJSX.readJSONDOM 
+EnzJSX.readJSON = function (rootName, itemName)//EnzJSX.readJSONDOM
 {
-    var re = EnzJSX.checkLayerExist(itemName, "name", false, true);
-    
-    
-    
-    
+    var re = EnzJSX.checkLayerExist(rootName, "name", false, true);
+    if (re == undefined)
+    {
+        return null;
+    }
+
+    var rootLayerList =  ki.layer.getChildLayerList_byItemIndex(re[0].itemIndex)
+
+
+    var re = EnzJSX.checkLayerExist(itemName, "name", false, true,rootLayerList);
+
+
     if (re != undefined)
     {
         var layer = ki.layer.getLayerDOMObject_byItemIndex(re[0].itemIndex)

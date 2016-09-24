@@ -86,7 +86,7 @@ async function task_Enzymes()
 
     console.time('DOM-readJSON');
     var text2 = await  enzymes.readJSON("__UI-DNA__","_DNA_DATA_");
-    console.log(text2)
+    console.log(_.truncate(text2,100))
     console.timeEnd('DOM-readJSON');
 
 

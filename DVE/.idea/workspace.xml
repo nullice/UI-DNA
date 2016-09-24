@@ -52,11 +52,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="320">
-                  <caret line="84" column="51" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="51" />
+                <state relative-caret-position="353">
+                  <caret line="480" column="0" selection-start-line="480" selection-start-column="0" selection-end-line="480" selection-end-column="15" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -67,8 +67,8 @@
           <file leaf-file-name="test_Enzymes_JS.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/test/test_Enzymes_JS.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="423">
-                  <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="22" />
+                <state relative-caret-position="500">
+                  <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc;n#task_Enzymes#0" expanded="false" />
                   </folding>
@@ -88,7 +88,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="310">
@@ -179,8 +179,8 @@
           <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="522">
-                  <caret line="314" column="1" selection-start-line="314" selection-start-column="1" selection-end-line="314" selection-end-column="1" />
+                <state relative-caret-position="60">
+                  <caret line="313" column="0" selection-start-line="312" selection-start-column="0" selection-end-line="313" selection-end-column="0" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -250,11 +250,11 @@
         <option value="$PROJECT_DIR$/bin/JS/lodash.js" />
         <option value="$PROJECT_DIR$/test/test_core.js" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.log" />
-        <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes.js" />
-        <option value="$PROJECT_DIR$/test/test_Enzymes_JS.js" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
+        <option value="$PROJECT_DIR$/test/test_Enzymes_JS.js" />
+        <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
       </list>
     </option>
   </component>
@@ -488,12 +488,12 @@
       <workItem from="1474173361293" duration="17758000" />
       <workItem from="1474337133927" duration="40318000" />
       <workItem from="1474454398947" duration="58625000" />
-      <workItem from="1474682979597" duration="20567000" />
+      <workItem from="1474682979597" duration="22159000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="711829000" />
+    <option name="totallyTimeSpent" value="713421000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -884,36 +884,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="305" column="0" selection-start-line="305" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
-          <caret line="84" column="51" selection-start-line="84" selection-start-column="30" selection-end-line="84" selection-end-column="51" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test/test_Enzymes_JS.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="88" column="2" selection-start-line="88" selection-start-column="2" selection-end-line="88" selection-end-column="22" />
-          <folding>
-            <element signature="n#!!doc;n#task_Enzymes#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Muclease_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-2340">
@@ -988,6 +958,36 @@
             <element signature="e#180579#180863#0" expanded="false" />
             <element signature="e#180602#180802#0" expanded="false" />
             <element signature="e#187895#189505#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="465">
+          <caret line="305" column="0" selection-start-line="305" selection-start-column="0" selection-end-line="315" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test/test_Enzymes_JS.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="91" column="0" selection-start-line="91" selection-start-column="0" selection-end-line="91" selection-end-column="0" />
+          <folding>
+            <element signature="n#!!doc;n#task_Enzymes#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="480" column="0" selection-start-line="480" selection-start-column="0" selection-end-line="480" selection-end-column="15" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
