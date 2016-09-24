@@ -81,12 +81,9 @@ async function task_Enzymes()
     // console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2", "name", true)))
     // console.log(JSON.stringify(await enzymes.checkLayerExist("await - 新建图层2", "name")))
 
+   await  enzymes.writeJSON("__UI-DNA__","_DNA_",JSON.stringify(test));
 
-    var re = await enzymes.checkLayerExist("__UI-DNA__", "name");
-    if (re.exist == false)
-    {
 
-    }
 }
 
 

@@ -99,7 +99,7 @@ Kinase.prototype.layer.getLayerInfoObject_byActiveLayer = function ()
 }
 
 /**
- * 根据图层序号（ItemIndex）获取图层 ID
+ *  获取当前选中图层图层 ID
  * @param itemIndex
  * @returns {*}
  */
@@ -4649,9 +4649,30 @@ Kinase.prototype.layer.creatNewColorSampler = function (x, y)
 
 
 // END===========================[拾色器]========================
+/**
+ * 判断图层是否是图层组
+ * @param targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @returns {boolean}
+ */
+Kinase.prototype.layer.isLayerSet = function (targetReference, target)
+{
+    var layerSection = ki.layer.get_XXX_Objcet(targetReference, target, "layerSection").layerSection.value.enumerationValue;
+
+    if (layerSection == "layerSectionStart")
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
 
 
-/*创建新图层*/
+/**
+ * 创建新图层
+ * @param name
+ */
 Kinase.prototype.layer.creatNewLayer_ByActive = function (name)
 {
 
@@ -4665,12 +4686,42 @@ Kinase.prototype.layer.creatNewLayer_ByActive = function (name)
     {
         Kinase.prototype.layer.setLayerName_byActive("");
     }
+}
 
+/**
+ * 创建新图层组
+ * @param name
+ */
+Kinase.prototype.layer.creatNewLayerSet_ByActive = function (name)
+{
+    adOb = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                }, "form": "ReferenceFormType.CLASSTYPE", "desiredClass": "layerSection"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "layerSectionStart": {"value": 0, "type": "DescValueType.INTEGERTYPE"},
+        "layerSectionEnd": {"value": 0, "type": "DescValueType.INTEGERTYPE"},
+        "name": {"value": "", "type": "DescValueType.STRINGTYPE"}
+    }
+    mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
 
+    if (name != undefined)
+    {
+        Kinase.prototype.layer.setLayerName_byActive(name);
+    }
 }
 
 
-/*创建新文本图层*/
+/**
+ * 创建新文本图层
+ * @param name
+ * @param w
+ * @param h
+ * @param text
+ */
 Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text)
 {
 
@@ -5041,6 +5092,7 @@ Kinase.prototype.layer.deleteLayer_ByActive = function ()
 
 }
 
+
 /*移动图层排序*/
 
 Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
@@ -5082,6 +5134,72 @@ Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
     mu.executeActionObjcet(charIDToTypeID("move"), adOb)
 }
 
+/**
+ * 关闭展开的图层组。图层组内必须有 2 个及以上成员图层（可以添加临时图层来给关闭只有一个图层的图层组）。会丢失图层组蒙版属性。
+ */
+Kinase.prototype.layer.closeLayerSet_byActive = function ()
+{
+    var layerSet = activeDocument.activeLayer;
+    var oldName = layerSet.name;
+    var oldOpacity = layerSet.opacity;
+    var oldBlendMode = layerSet.blendMode;
+    var oldVisible = layerSet.visible
+    var oldLinkedLayers = layerSet.linkedLayers;
+
+
+    Kinase.prototype.layer.ungroupLayers_byActive();
+    Kinase.prototype.layer.groupLayers_byActive(oldName);
+
+
+    var newLyaerSet = activeDocument.activeLayer;
+
+    newLyaerSet.opacity = oldOpacity;
+    newLyaerSet.blendMode = oldBlendMode;
+    newLyaerSet.visible = oldVisible;
+
+    for (var x in oldLinkedLayers)
+    {
+        if (oldLinkedLayers[x].typename == "LayerSet")
+            activeDocument.activeLayer.link(oldLinkedLayers[x]);
+    }
+}
+
+/**
+ * 取消当前选中图层图层组，
+ */
+Kinase.prototype.layer.ungroupLayers_byActive = function ()
+{
+    var ad = new ActionDescriptor();
+    var ref = new ActionReference();
+    ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+    ad.putReference(charIDToTypeID("null"), ref);
+
+    try
+    {
+        executeAction(stringIDToTypeID("ungroupLayersEvent"), ad, DialogModes.NO);
+    }
+    catch (e)
+    {
+    }
+
+}
+
+
+Kinase.prototype.layer.groupLayers_byActive = function (name)
+{
+    var ad = new ActionDescriptor();
+    var ref = new ActionReference();
+    ref.putClass(stringIDToTypeID("layerSection"));
+    ad.putReference(charIDToTypeID("null"), ref);
+    var m_Ref02 = new ActionReference();
+    m_Ref02.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+    ad.putReference(charIDToTypeID("From"), m_Ref02);
+    var m_Dsc02 = new ActionDescriptor();
+    m_Dsc02.putString(charIDToTypeID("Nm  "), name);
+    ad.putObject(charIDToTypeID("Usng"), stringIDToTypeID("layerSection"), m_Dsc02);
+    executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
+}
+
 
 /**
  * 保存当前各图层选中状态，把返回值用作 Kinase.layer.selectLoad() 的参数，能再现当前各图层选中状态
@@ -5109,6 +5227,10 @@ Kinase.prototype.layer.selectLoad = function (layerIDArray)
  */
 Kinase.prototype.layer.selectLayer_byID = function (layerID)
 {
+    if(layerID==undefined)
+    {
+        return;
+    }
     var ref = new ActionReference();
     ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
     var desc = new ActionDescriptor();
@@ -5266,6 +5388,8 @@ Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
 Kinase.prototype.layer.setLayerName_byActive = function (name)
 {
 
+    var isLayerSet = Kinase.prototype.layer.isLayerSet(Kinase.REF_ActiveLayer, null)
+
     var ad = new ActionDescriptor();
     var ref = new ActionReference();
     ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
@@ -5274,9 +5398,20 @@ Kinase.prototype.layer.setLayerName_byActive = function (name)
     ad.putReference(charIDToTypeID("null"), ref);
     var ad2 = new ActionDescriptor();
     ad2.putString(charIDToTypeID("Nm  "), name);
-    ad.putObject(charIDToTypeID("T   "), charIDToTypeID("Lyr "), ad2);
+
+    if (isLayerSet)
+    {
+        ad.putObject(charIDToTypeID("T   "), stringIDToTypeID("layerSection"), ad2);
+    }
+    else
+    {
+        ad.putObject(charIDToTypeID("T   "), charIDToTypeID("Lyr "), ad2);
+    }
+
+
     executeAction(charIDToTypeID("setd"), ad, DialogModes.NO);
 }
+
 
 Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
 {
@@ -5396,4 +5531,9 @@ Kinase.lowerIndex = function ()
     {
     }
     return lowerIndex
+}
+
+Kinase.upperIndex = function ()
+{
+    return app.activeDocument.layers[0].itemIndex;
 }

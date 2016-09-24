@@ -99,8 +99,6 @@ Enzymes.prototype.deleteLayer = async function (id)
 }
 
 
-
-
 /**
  * 获取全部图层的名称、ID、itemIndex 信息的数组。根据给定的参数，可返回 4 种类型的数组：
  * 0.图层 [id]；
@@ -166,13 +164,8 @@ Enzymes.prototype.getSelectLayerArray = async function (getType)
         }
     })
 
-    
+
 }
-
-
-
-
-
 
 
 /**
@@ -239,7 +232,7 @@ Enzymes.prototype.getLayerName_byID = async function (layerID)
  * @param layerID
  * @returns {Promise}
  */
-Enzymes.prototype.selectLayer_byID =  async function (layerID)
+Enzymes.prototype.selectLayer_byID = async function (layerID)
 {
     return new Promise(function (resolve, reject)
     {
@@ -256,7 +249,7 @@ Enzymes.prototype.selectLayer_byID =  async function (layerID)
  * @param layerID
  * @returns {Promise}
  */
-Enzymes.prototype.selectSave =  async function (layerID)
+Enzymes.prototype.selectSave = async function (layerID)
 {
     return new Promise(function (resolve, reject)
     {
@@ -273,7 +266,7 @@ Enzymes.prototype.selectSave =  async function (layerID)
  * @param layerIDs
  * @returns {Promise}
  */
-Enzymes.prototype.selectLoad =  async function (layerIDs)
+Enzymes.prototype.selectLoad = async function (layerIDs)
 {
     return new Promise(function (resolve, reject)
     {
@@ -285,6 +278,16 @@ Enzymes.prototype.selectLoad =  async function (layerIDs)
 }
 
 
+Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.writeJSON("${rootName}", "${itemName}","${json}")`
+            ,
+            (r)=> {resolve(r)})
+    })
+}
 
 
 //------------------------------------------------------------------------

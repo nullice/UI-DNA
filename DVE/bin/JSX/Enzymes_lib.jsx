@@ -191,7 +191,7 @@ EnzJSX.getAllLayersItemIndex = function (retrunRaw)
 }
 
 
-EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
+EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll, returnRaw)
 {
     var layerList = EnzJSX.getAllLayersList(true);
 
@@ -220,7 +220,14 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
                 allResult.push(layerList[i]);
             } else
             {
-                return JSON.stringify([layerList[i]]);
+                if (returnRaw)
+                {
+                    return [layerList[i]];
+                } else
+                {
+                    return JSON.stringify([layerList[i]]);
+                }
+
             }
         }
     }
@@ -230,17 +237,23 @@ EnzJSX.checkLayerExist = function (layerHandle, handleType, scanAll)
         if (allResult.length == 0)
         {
             return null;
+
         } else
         {
-            return JSON.stringify(allResult);
+            if (returnRaw)
+            {
+                return allResult;
+            } else
+            {
+                return JSON.stringify(allResult);
+            }
+
         }
 
     } else
     {
         return null;
     }
-
-
 }
 
 
@@ -328,4 +341,87 @@ EnzJSX.ArrayRemove = function (array, removeArray)
 
 
     return array;
+}
+
+
+EnzJSX.writeJSON = function (rootName, itemName, json)
+{
+    app.activeDocument.suspendHistory(lang("#更新数据"), "_func()");
+
+    function _func()
+    {
+        var select0 = EnzJSX.selectSave(true);
+        var rootId = 0;
+        var isOpen = false;
+        //图层组-------------------------------------------------------
+        var re = EnzJSX.checkLayerExist(rootName, "name", false, true);
+        if (re == undefined)
+        {
+            ki.layer.selectLayer_byItemIndex(Kinase.upperIndex());
+            ki.layer.creatNewLayerSet_ByActive(rootName)
+            ki.layer.setAppearance_byActive({
+                fillOpacity: 50, /*填充不透明度 0-255*/
+                opacity: 50, /*不透明 0-255*/
+                visible: false, /*可视*/
+            })
+            rootId = ki.layer.getLayerIdByActive();
+            isOpen = true;
+        } else
+        {
+            rootId = re[0].id;
+        }
+
+
+        //图层-------------------------------------------------------
+        var re = EnzJSX.checkLayerExist("ui-dna.nullice.com", "name", false, true);
+        if (re == undefined)
+        {
+            ki.layer.creatNewTextLayer_ByActive("ui-dna.nullice.com", 100, 100, json)
+            ki.layer.setAppearance_byActive({
+                fillOpacity: 100, /*填充不透明度 0-255*/
+                opacity: 100, /*不透明 0-255*/
+                visible: false, /*可视*/
+            })
+        }
+        //图层-------------------------------------------------------
+        var re = EnzJSX.checkLayerExist(itemName, "name", false, true);
+
+
+        var hasSameNameElse = false;
+        if (re != undefined)
+        {
+            hasSameNameElse = ( ki.layer.getLayerIdByItemIndex(
+                ki.layer.getParentLayerItemIndex_byItemIndex(ki.layer.getItemIndexBylayerID(re[0].id))
+            ) != rootId)
+        }
+
+        if (re == undefined || hasSameNameElse)
+        {
+            ki.layer.creatNewTextLayer_ByActive(itemName, 50, 100, json)
+            ki.layer.setAppearance_byActive({
+                fillOpacity: 50, /*填充不透明度 0-255*/
+                opacity: 50, /*不透明 0-255*/
+                visible: false, /*可视*/
+            })
+
+            isOpen = true;
+            if (isOpen)
+            {
+                ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
+                ki.layer.setAppearance_byActive({
+                    fillOpacity: 50, /*填充不透明度 0-255*/
+                    opacity: 50, /*不透明 0-255*/
+                    visible: false, /*可视*/
+                })
+                ki.layer.closeLayerSet_byActive()
+            }
+            alert(select0)
+            EnzJSX.selectLoad(select0);
+        } else
+        {
+            ki.layer.setLayerText_Quick(json, Kinase.REF_LayerID, re[0].id)
+        }
+
+    }
+
 }
