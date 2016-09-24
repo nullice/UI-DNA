@@ -397,6 +397,8 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
         if (re == undefined || hasSameNameElse)
         {
+            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
+            alert(1)
             ki.layer.creatNewTextLayer_ByActive(itemName, 50, 100, json)
             ki.layer.setAppearance_byActive({
                 fillOpacity: 50, /*填充不透明度 0-255*/
@@ -415,7 +417,6 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
                 })
                 ki.layer.closeLayerSet_byActive()
             }
-            alert(select0)
             EnzJSX.selectLoad(select0);
         } else
         {
