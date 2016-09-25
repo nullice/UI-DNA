@@ -5,14 +5,55 @@
 
 import STR from "./stringSTR.js"
 
+/**
+ * 变量基本数据类型，主要封装 evalVar()
+ * @param value
+ * @param type
+ * @param isFormula
+ * @param relatives
+ * @returns {VarType}
+ * @constructor
+ */
+var VarType = function (value, type, isFormula, relatives)
+{
+    if (value instanceof Object && arguments.length == 1)
+    {
+        this.value = value.value;
+        this.type = value.type;
+        this.isFormula = value.isFormula;
+        this.relatives = value.relatives;
+    } else
+    {
+        this.value = value;
+        this.type = type;
+        this.isFormula = isFormula;
+        this.relatives = relatives;
+    }
+
+    return this;
+}
+
+/**
+ * 解析变量。计算变量把变量变成具体值。
+ */
+VarType.prototype.evalVar = function ()
+{
+    return VarSystem.prototype.evalVar(this.value)
+}
+
+/**
+ * 变量存储系统
+ * @returns {VarSystem}
+ * @constructor
+ */
 var VarSystem = function ()
 {
     //变量存储对象：
     this.vars = {
-        'zero': {value: 12, type: null, isFormula: false, relatives: []},
-        'a': {value: 123, type: null, isFormula: false, relatives: []},
-        'b': {value: 1000, type: null, isFormula: false, relatives: []},
-        'x': {value: "a*b", type: null, isFormula: false, relatives: []},
+        'zero': new VarType({value: 12, type: null, isFormula: false, relatives: []}),
+        'a':new VarType({value: 123, type: null, isFormula: false, relatives: []}),
+        'b':new VarType({value: 1000, type: null, isFormula: false, relatives: []}),
+        'x':new VarType({value: "a*b", type: null, isFormula: false, relatives: []}),
 
     };
 
@@ -21,6 +62,9 @@ var VarSystem = function ()
     return this;
 }
 
+/**
+ 添加变量
+ */
 VarSystem.prototype.addVar = function (name, value, type, isFormula)
 {
 
@@ -29,12 +73,12 @@ VarSystem.prototype.addVar = function (name, value, type, isFormula)
         return {err: "err: Variable already exists"}
     }
 
-    this.vars[name] = {value: value, type: type || null, isFormula: isFormula || false}
-
+    this.vars[name] =new VarType( {value: value, type: type || null, isFormula: isFormula || false})
 
 }
 
-VarSystem.prototype.removeVar = function (name, value, type, isFormula)
+//删除变量
+VarSystem.prototype.removeVar = function (name)
 {
 
     var relatives = this.vars[name].relatives;
@@ -44,10 +88,11 @@ VarSystem.prototype.removeVar = function (name, value, type, isFormula)
     return relatives;
 }
 
-
+//设置变量
 VarSystem.prototype.setVar = function (name, value, type, isFormula)
 {
-    this.vars[name] = {value: value, type: type || null, isFormula: isFormula || false}
+    this.vars[name] = {value: value, type: type || null, isFormula: isFormula || false};
+
 }
 
 
@@ -56,13 +101,16 @@ VarSystem.prototype.layerSample = {
     id: 2,
     index: 1,
     position: {x: 0, y: 0, w: 0, h: 0, assignment: {}},
-
-
 }
 
-VarSystem.prototype.evalVar = function (name)
+
+/**
+ * 解析变量。计算变量把变量变成具体值。
+ *
+ **/
+VarSystem.prototype.evalVar = function (varValue)
 {
-    var inVar = name;
+    var inVar = varValue;
     var re = /[_a-zA-Z][_a-zA-Z0-9]*/g;
     var varList = [];
     var resullt;
@@ -71,13 +119,13 @@ VarSystem.prototype.evalVar = function (name)
         varList.push({name: resullt[0], index: resullt.index})
     }
 
-    var increment = 0
+    var increment = 0;
     for (let i = 0; i < varList.length; i++)
     {
 
         if (this.vars[varList[i].name] !== undefined)
         {
-            console.log(varList[i].index + increment + "-" + varList[i].name.length)
+            // console.log(varList[i].index + increment + "-" + varList[i].name.length)
 
             var getValue = this.evalVar(this.vars[varList[i].name].value)
             inVar = STR.insert(inVar,
@@ -95,7 +143,24 @@ VarSystem.prototype.evalVar = function (name)
     return math.format(math.eval(inVar), {precision: 14})
 }
 
+/**
+ * 判断是否是公式变量
+ * @param varValue
+ */
+VarSystem.prototype.isFormula = function (varValue)
+{
+    var inVar = varValue;
+    var re = /[_a-zA-Z][_a-zA-Z0-9]*/g;
+    var resullt;
+    while ((resullt = re.exec(inVar)) !== null)
+    {
+        return true;
+    }
 
-//---------------
+    return false;
+}
+
+
+// //---------------
 
 export default VarSystem;

@@ -81,19 +81,19 @@ EnzJSX.getLayerId_byName = function (layerName)
  */
 EnzJSX.getAllLayersList = function (retrunRaw)
 {
-    var layersList = [];
-    var itemIndexs = ki.layer.getAllLayersItemIndex();
-
-    for (var i = 0; i < itemIndexs.length; i++)
-    {
-        layersList.push(
-            {
-                name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
-                id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
-                itemIndex: itemIndexs[i]
-            }
-        )
-    }
+    var layersList = ki.layer.getAllLayerList();
+    // var itemIndexs = ki.layer.getAllLayersItemIndex();
+    //
+    // for (var i = 0; i < itemIndexs.length; i++)
+    // {
+    //     layersList.push(
+    //         {
+    //             name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
+    //             id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
+    //             itemIndex: itemIndexs[i]
+    //         }
+    //     )
+    // }
 
     if (retrunRaw == true)
     {
@@ -103,7 +103,6 @@ EnzJSX.getAllLayersList = function (retrunRaw)
     {
         return JSON.stringify(layersList);
     }
-
 
 }
 
@@ -508,3 +507,19 @@ EnzJSX.readJSON = function (rootName, itemName)//EnzJSX.readJSONDOM
 
     return layer.textItem.contents;
 }
+
+
+
+EnzJSX.getLayerInfo_position_byId = function (id)
+{
+    return JSON.stringify(ki.layer.getLayerBounds(Kinase.REF_LayerID, id))
+}
+
+
+
+
+
+
+
+
+

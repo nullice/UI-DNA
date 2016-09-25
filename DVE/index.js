@@ -71,6 +71,11 @@ if (typeof window.__adobe_cep__ !== "undefined")
 import  TEST  from "./test/test_core";
 var test = new TEST("默认测试");
 window.test = test
+//选中图层处理-------------------------------------
+import  GobCaryon  from "./Caryon/gobCaryon";
+var Gob = new GobCaryon("默认测试");
+window.Gob = Gob
+
 
 window.tests = {};
 import  test_task_Enzymes from "./test/test_Enzymes_JS";
@@ -84,15 +89,7 @@ window.Lang = Lang;
 Vue.config.debug = true;//开启错误提示
 
 
-window.Gob = {};
-window.Gob.position = {
-    x: 2,
-    y: 3,
-    w: 4,
-    h: 5,
-    assignment: {x: null, y: null, w: null, h: null},
-    enableAssigns: {x: false, y: false, w: false, h: false}
-};
+
 
 
 var mainVue = new Vue({

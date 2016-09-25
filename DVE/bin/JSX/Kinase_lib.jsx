@@ -254,8 +254,43 @@ Kinase.prototype.layer.getAllLayersItemIndex = function ()
     };
 
     return indexArray;
-
 }
+
+/**
+ * 返回包含全部图层的 layerList [{id,name,itemIndex}]数组
+ * @returns {Array}
+ */
+Kinase.prototype.layer.getAllLayerList = function ()
+{
+    var doc = app.activeDocument.layers;
+    var layerList = [];
+    _getLayers(doc, layerList);
+
+    function _getLayers(layers, layerList)
+    {
+        for (var i = 0; i < layers.length; i++)
+        {
+            layerList.push({
+                id:layers[i].id,
+                name:layers[i].name,
+                itemIndex:layers[i].itemIndex});
+
+            if (layers[i].typename != "ArtLayer")
+            {
+                _getLayers(layers[i].layers, layerList)
+            }
+        }
+    };
+
+    return layerList;
+}
+
+
+
+
+
+
+
 
 // 形状图层设置 =============================================================================
 
@@ -618,6 +653,11 @@ Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, tar
 }
 
 
+/**
+ * 设置文本图层文本范围为最小
+ * @param targetReference
+ * @param target
+ */
 Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
 {
     var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
@@ -1876,7 +1916,13 @@ Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
 
 }
 
-
+/**
+ * 获取图层范围边界信息
+ * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
+ * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
+ * @param getType
+ * @returns {{x: null, y: null, w: null, h: null, right: null, bottom: null}}
+ */
 Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getType)
 {
     var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}

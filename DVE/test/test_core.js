@@ -39,9 +39,9 @@ TEST.prototype.report = function (retrunString)
 
     console.log("%c" + text0, "font-size: 10pt;     border-radius: 4px;background-color: #2b5cdc;color: #f7f7f7;padding: 2px 50px;font-weight: bold;")
     console.log(text1
-        , " color: #888; font-weight: bold;"
+        , "color: #888; font-weight: bold;"
         , "color: #f54a4a; font-weight: bold;"
-        , " color: #e2d567; font-weight: bold;"
+        , "color: #e2d567; font-weight: bold;"
     )
     console.log("%c" + this.errsLog, " color: #f55;")
     console.log(this.log)

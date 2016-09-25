@@ -93,6 +93,19 @@ async function task_Enzymes()
     test.seeVelue(select0, getIds, "getSelectLayerArray('select0') 最初选择图层检查");
     console.timeEnd('计时');
 
+
+    getIds = await enzymes.getAllLayerArray();
+    console.time("getLayerInfo_position_byId")
+    for (var i = 0; i < getIds.length; i++)
+    {
+        text1 = await enzymes.getLayerInfo_position_byId(getIds[i].id);
+    }
+    console.timeEnd("getLayerInfo_position_byId")
+
+
+
+
+
     test.toLog("耗时：" + test.timeOut(time0))
     test.report();
 

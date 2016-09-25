@@ -244,6 +244,25 @@ Enzymes.prototype.selectLayer_byID = async function (layerID)
 }
 
 
+
+
+Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.getLayerInfo_position_byId(${layerID})`
+            ,
+            (r)=> {resolve(JSON.parse(r))})
+    })
+    
+}
+
+
+
+
+
+
 /**
  * 保存当前各图层选中状态，把返回值用作 Enzymes.selectLoad() 的参数，能再现当前各图层选中状态
  * @param layerID
@@ -276,6 +295,8 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
             (r)=> {resolve(r)})
     })
 }
+
+
 
 /**
  * 把文本数据写入 Photoshop 文档中的图层。指定 rootName 为图层组名称，itemName 为图层名称。
