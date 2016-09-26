@@ -120,7 +120,7 @@ async function task_Enzymes()
 
     // await  enzymes.writeJSON("__UI-DNA__","_DNA_",JSON.stringify(test));
 
-
+    Gob.position.assignment.x ="撒打发"
 }
 
 

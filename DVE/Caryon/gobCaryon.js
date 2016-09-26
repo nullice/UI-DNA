@@ -19,6 +19,73 @@ var GobCaryon = function ()
         enableAssigns: {x: false, y: false, w: false, h: false}
     };
 
+    giveSetter(this.position, "position");
+
+    function giveSetter(object, objectName,)
+    {
+        // alert("giveSetter" + index +"\n" +objectName +"\n"+names)
+        for (var z in object)
+        {
+            // if (object[z] == undefined)
+            // {
+            //     continue;
+            // }
+            alert(":" + z + ":" + JSON.stringify(object[z]))
+
+            var isObject
+            if (object[z] == undefined)
+            {
+                isObject = false;
+            } else
+            {
+
+                if (object[z].constructor == Object)
+                {
+                    isObject = true;
+                }
+                else
+                {
+                    isObject = false;
+                }
+            }
+
+
+            if (isObject)
+            {
+                giveSetter(object[z], z);
+            } else
+            {
+                // alert("defineProperty:"+objectName+":"+ z)
+                Object.defineProperty(object, z, {
+                    set: function (x)
+                    {
+                        alert("set:" + x)
+                    }
+                });
+            }
+        }
+    }
+
+    function setData(toObject, objectNames, nameIndex, value)
+    {
+        var isLastName = nameIndex == objectNames.length - 1
+
+        if (toObject[objectNames[nameIndex]] == undefined && isLastName != true)
+        {
+            toObject[objectNames[nameIndex]] = {};
+        }
+
+        if (isLastName != true)
+        {
+            setData(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value)
+        } else
+        {
+            toObject[objectNames[nameIndex]] = value;
+        }
+    }
+
+
+    // setData(dataCaryon.layers[id][objectName], names, 0, x)
 
     return this;
 }
@@ -39,14 +106,14 @@ GobCaryon.prototype.updateGob = async function ()
         h: null,
     };
 
-    this.position = {
-        x: null,
-        y: null,
-        w: null,
-        h: null,
-        assignment: {x: null, y: null, w: null, h: null},
-        enableAssigns: {x: false, y: false, w: false, h: false}
-    };
+    // this.position = {
+    //     x: null,
+    //     y: null,
+    //     w: null,
+    //     h: null,
+    //     assignment: {x: null, y: null, w: null, h: null},
+    //     enableAssigns: {x: false, y: false, w: false, h: false}
+    // };
 
 
     for (var i = 0; i < this.selectList.length; i++)
