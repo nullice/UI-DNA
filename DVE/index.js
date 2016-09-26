@@ -38,7 +38,7 @@ import App from "./components/area.vue";
 //                 +--------------------------+
 
 
-import AttrPanel from "./components/AttributePanel.vue";
+
 import  Lang from "./Caryon/lang";
 //CEP 库-------------------------------------
 if (typeof window.__adobe_cep__ !== "undefined")
@@ -91,15 +91,16 @@ Vue.config.debug = true;//开启错误提示
 
 
 
-
+import AttrPanel from "./components/AttributePanel.vue";
+import LayerSelectors from "./components/LayerSelectors.vue";
 var mainVue = new Vue({
     el: 'body',
     data: {},
     components: {
         // include the required component
         // in the options
-        app: AttrPanel,
-
+        "attr-panel": AttrPanel,
+        "layers-panel": LayerSelectors,
     }
 })
 
