@@ -18,8 +18,25 @@ DataCaryon.prototype.layerSample = {
     index: 1,
     position: {x: 0, y: 0, w: 0, h: 0, assignment: {x: "100+y", y:"dddd"}, enableAssigns: {x: false}},
 
-
 }
+
+
+DataCaryon.prototype.addLayer = function (layerListItem)
+{
+   this.layers[layerListItem.id] = {
+       name: layerListItem.name,
+       id: layerListItem.id,
+       index: layerListItem.index
+   }
+}
+
+
+
+
+
+
+
+
 
 
 var Layer = function (layerListItem)

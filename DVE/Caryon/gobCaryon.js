@@ -19,18 +19,20 @@ var GobCaryon = function ()
         enableAssigns: {x: false, y: false, w: false, h: false}
     };
 
-    giveSetter(this.position, "position");
+    var root = this;
+    giveSetter(this.position, ["position"], 1);
 
-    function giveSetter(object, objectName,)
+
+    function giveSetter(object, names, index)
     {
-        // alert("giveSetter" + index +"\n" +objectName +"\n"+names)
+        // alert("giveSetter" + index +"\n" +names +"\n"+names[index])
         for (var z in object)
         {
-            // if (object[z] == undefined)
-            // {
-            //     continue;
-            // }
-            alert(":" + z + ":" + JSON.stringify(object[z]))
+            if (z[0] == "_")
+            {
+                continue;
+            }
+            // alert(":" + z + ":" + JSON.stringify(object[z]))
 
             var isObject
             if (object[z] == undefined)
@@ -52,43 +54,114 @@ var GobCaryon = function ()
 
             if (isObject)
             {
-                giveSetter(object[z], z);
+                giveSetter(object[z], names.concat(z), index + 1);
             } else
             {
-                // alert("defineProperty:"+objectName+":"+ z)
-                Object.defineProperty(object, z, {
-                    set: function (x)
-                    {
-                        alert("set:" + x)
-                    }
-                });
+                // alert("defineProperty:" + objectName + ":" + z)
+                Object.defineProperty(object, z, _doSET(z, names.concat(z), object[z], root));
             }
         }
-    }
 
-    function setData(toObject, objectNames, nameIndex, value)
-    {
-        var isLastName = nameIndex == objectNames.length - 1
 
-        if (toObject[objectNames[nameIndex]] == undefined && isLastName != true)
+        function _doSET(objectName, names, value, root)
         {
-            toObject[objectNames[nameIndex]] = {};
+            // console.log(root)
+            _valueToObject(root, names, 0, value, true)//值写入 _XXX
+            var s = new Function("x", `Gob._setData(${JSON.stringify(names)} , x )`);
+            var g = new Function(` return Gob._getData(${JSON.stringify(names)} )`);
+            console.log(g)
+            var ob = {
+                set: s,
+                get: g
+            }
+            return ob;
         }
 
-        if (isLastName != true)
+
+    }
+
+    // setData(dataCaryon.layers[id][objectName], names, 0, x)
+    return this;
+}
+
+GobCaryon.prototype._setData = function (names, value)
+{
+
+
+    _valueToObject(this, names, 0, value, true)//值写入 _XXX
+
+    if (varSystem.isFormula(value) == false) //只写入公式变量
+    {
+        return null;
+    }
+
+    for (var i = 0; i < this.selectList.length; i++)
+    {
+        if (dataCaryon.layers[this.selectList[i].id] == undefined)
         {
-            setData(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value)
+            dataCaryon.addLayer(this.selectList[i]);
+        }
+
+        _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+
+    }
+
+
+    // alert("set:" + names + "=" + value)
+
+    // GobCaryon.prototype._valueToObject(dataCaryon.layers[id][names[0]], names, 1, value)
+}
+
+function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
+{
+    var isLastName = nameIndex == objectNames.length - 1
+
+    if (toObject[objectNames[nameIndex]] == undefined && isLastName != true)
+    {
+        toObject[objectNames[nameIndex]] = {};
+    }
+
+    if (isLastName != true)
+    {
+        _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
+    } else
+    {
+        if (prefix)
+        {
+            toObject["_" + objectNames[nameIndex]] = value;
         } else
         {
             toObject[objectNames[nameIndex]] = value;
         }
+
+    }
+}
+
+
+GobCaryon.prototype._getData = function (names)
+{
+
+    return _valueFromObject(this, names, 0, true);
+    function _valueFromObject(fromObject, names, nameIndex, prefix)
+    {
+        var isLastName = nameIndex == names.length - 1
+        if (isLastName)
+        {
+            if (prefix)
+            {
+                return fromObject["_" + names[nameIndex]];
+            } else
+            {
+                return fromObject[names[nameIndex]];
+            }
+        } else
+        {
+            return　_valueFromObject(fromObject[names[nameIndex]], names, nameIndex + 1, prefix)
+        }
     }
 
-
-    // setData(dataCaryon.layers[id][objectName], names, 0, x)
-
-    return this;
 }
+
 
 GobCaryon.prototype.updateSelect = async function ()
 {
