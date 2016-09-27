@@ -2,21 +2,33 @@
     <div class="exmo_area">
         <h2> 选中图层 </h2>
 
+        <div class="layers_list" >
+            <div class="layer-item"  v-for="layer in Gob.selectList">{{layer.name}}</div>
+
+        </div>
+
+
     </div>
 </template>
 
 <style>
 
-    /*.exmo_area .tag-box{*/
-    /*!*display: none;*!*/
-    /*opacity: 0;*/
-    /*transition: all .5s;*/
-    /*}*/
-    /*.exmo_area .tag-box.active{*/
-    /*!*display: block;*!*/
-    /*opacity: 1;*/
-    /*transition: all .5s;*/
-    /*}*/
+    .layer-item {
+        font-size: 11px;
+        color: #666;
+        margin: 4px 0;
+        padding-bottom: 6px;
+    }
+
+
+    .layer-item:not(:nth-last-of-type(1)){
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+
+
+
+
 
     .trans-fade-transition {
         transition: all .3s ease;
@@ -35,19 +47,17 @@
 
 
 <script>
-
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     //import CompA from '../components/A.vue'
 
     export default {
         data(){
             return {
-                Gob:Gob,
+                Gob: Gob,
             }
         },
-        components:{
-            "value-input":ValueInput,
-//        "comp-a":ValueInput
+        components: {
+            "value-input": ValueInput,
         }
     };
 

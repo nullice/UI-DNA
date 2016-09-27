@@ -349,7 +349,6 @@ Enzymes.prototype.readJSON = async function (rootName, itemName)
  * @param inType 指定传入值是 "charID" 还是 "stringID"。如空则会根据传入值长度，把 4 字长度的传入值当做 "charID"。
  * @returns {Promise}
  */
-
 Enzymes.prototype.getTypeID = function (inValue, inType)
 {
     return new Promise(function (resolve, reject)

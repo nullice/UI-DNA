@@ -6,7 +6,7 @@
 
 var EventCaryon = function ()
 {
-    if (cs == undefined) //检查 cs 属性是否存在
+    if (window.cs == undefined) //检查 cs 属性是否存在
     {
         if (typeof window.__adobe_cep__ !== "undefined")
         {
@@ -17,7 +17,6 @@ var EventCaryon = function ()
             return this;
         }
     }
-
 
     EventCaryon.prototype.initEvent();
 

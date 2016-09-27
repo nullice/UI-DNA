@@ -329,21 +329,28 @@ EnzJSX.getSelectLayerName = function ()
 }
 
 
-EnzJSX.getSelectLayerArray = function ()
+EnzJSX.getSelectLayerArray = function (debarDataLayer)
 {
 
     var layersList = [];
     var itemIndexs = ki.layer.getTargetLayersItemIndex();
 
+
     for (var i = 0; i < itemIndexs.length; i++)
     {
-        layersList.push(
-            {
-                name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
-                id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
-                itemIndex: itemIndexs[i]
-            }
-        )
+
+        var layer = {
+            name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
+            id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
+            itemIndex: itemIndexs[i]
+        }
+
+        if (layer.name === "__UI-DNA__" || layer.name === "_DNA_DATA_" || layer.name === "_ui-dna.nullice.com_")
+        {
+            continue;
+        }
+
+        layersList.push(layer);
     }
 
     return JSON.stringify(layersList);
@@ -400,10 +407,10 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
 
         //图层-------------------------------------------------------
-        var re = EnzJSX.checkLayerExist("ui-dna.nullice.com", "name", false, true);
+        var re = EnzJSX.checkLayerExist("_ui-dna.nullice.com_", "name", false, true);
         if (re == undefined)
         {
-            ki.layer.creatNewTextLayer_ByActive("ui-dna.nullice.com", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
+            ki.layer.creatNewTextLayer_ByActive("_ui-dna.nullice.com_", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
             ki.layer.setAppearance_byActive({
                 fillOpacity: 100, /*填充不透明度 0-255*/
                 opacity: 100, /*不透明 0-255*/
@@ -450,7 +457,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
             // alert (re[0].id)
             ki.layer.setLayerText_Quick(json, Kinase.REF_LayerID, re[0].id)
         }
-        
+
 
     }
 
@@ -507,7 +514,6 @@ EnzJSX.readJSON = function (rootName, itemName)//EnzJSX.readJSONDOM
 
     return layer.textItem.contents;
 }
-
 
 
 EnzJSX.getLayerInfo_position_byId = function (id)
