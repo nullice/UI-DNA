@@ -244,8 +244,6 @@ Enzymes.prototype.selectLayer_byID = async function (layerID)
 }
 
 
-
-
 Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
 {
     return new Promise(function (resolve, reject)
@@ -255,12 +253,8 @@ Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
             ,
             (r)=> {resolve(JSON.parse(r))})
     })
-    
+
 }
-
-
-
-
 
 
 /**
@@ -297,7 +291,6 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
 }
 
 
-
 /**
  * 把文本数据写入 Photoshop 文档中的图层。指定 rootName 为图层组名称，itemName 为图层名称。
  * @param rootName 图层组名称
@@ -307,7 +300,7 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
  */
 Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
 {
-    json = Enzymes.prototype. _escape(json);
+    json = Enzymes.prototype._escape(json);
     return new Promise(function (resolve, reject)
     {
 
@@ -351,6 +344,48 @@ Enzymes.prototype.readJSON = async function (rootName, itemName)
 
 
 /**
+ * 获取 TypeID，
+ * @param inValue 传入值，可以是 charID 或  "stringID"
+ * @param inType 指定传入值是 "charID" 还是 "stringID"。如空则会根据传入值长度，把 4 字长度的传入值当做 "charID"。
+ * @returns {Promise}
+ */
+
+Enzymes.prototype.getTypeID = function (inValue, inType)
+{
+    return new Promise(function (resolve, reject)
+    {
+
+
+        if (inType == undefined)
+        {
+            if (inValue.length == 4)
+            {
+                inValue = "charID"
+            } else
+            {
+                inValue = "stringID"
+            }
+        }
+        
+        if (inType == "charID")
+        {
+            evalScript(
+                `charIDToTypeID("${inValue}")`
+                , (r)=> {resolve(r)})
+        } else
+        {
+            evalScript(
+                `stringIDToTypeID("${inValue}")`
+                , (r)=> {resolve(r)})
+        }
+
+
+    })
+
+
+}
+
+/**
  * 把字符串的中的引号转义处理，换行符转换为 \n
  * @param str
  * @returns {*}
@@ -358,21 +393,23 @@ Enzymes.prototype.readJSON = async function (rootName, itemName)
  */
 Enzymes.prototype._escape = function (str)
 {
-    str =str.replace(/\\/g, "\\\\")
-    str =str.replace(/\'/g, "$(q1)$")
-    str =str.replace(/\"/g, "$(q2)$")
-    str =str.replace(/\n/g, "\\n")
+    str = str.replace(/\\/g, "\\\\")
+    str = str.replace(/\'/g, "$(q1)$")
+    str = str.replace(/\"/g, "$(q2)$")
+    str = str.replace(/\n/g, "\\n")
 
     return str;
 }
 
 Enzymes.prototype._unEscape = function (str)
 {
-    str =str.replace(/\$\(q1\)\$/g, "\'")
-    str =str.replace(/\$\(q2\)\$/g, "\"")
-    str =str.replace(/\\\\/g, "\\")
+    str = str.replace(/\$\(q1\)\$/g, "\'")
+    str = str.replace(/\$\(q2\)\$/g, "\"")
+    str = str.replace(/\\\\/g, "\\")
     return str;
 }
 
 //------------------------------------------------------------------------
+
+
 export default Enzymes;
