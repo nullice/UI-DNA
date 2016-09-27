@@ -18,7 +18,6 @@ var EventCaryon = function ()
         }
     }
 
-    this.EX_ID = cs.getExtensionID();
     EventCaryon.prototype.initEvent();
 
     return this;
@@ -29,17 +28,53 @@ EventCaryon.prototype.initEvent = function ()
 {
 
     console.log("---initEvent------");
-    cs.addEventListener("com.adobe.PhotoshopJSONCallback" + this.EX_ID, PhotoshopCallbackUnique);
+    
+    cs.addEventListener("com.adobe.PhotoshopJSONCallback" + cs.getExtensionID(), PhotoshopCallbackUnique);
+
 
     function PhotoshopCallbackUnique(csEvent)
     {
-       
-        alert("xxxxx22")
+        console.log("PhotoshopCallbackUnique");
+        console.log(csEvent);
+        // alert(csEvent)
     }
+
+
+
+
+
+
+
+    var eventMake = 1298866208; // "Mk  "
+    var eventDelete = 1147958304; // "Dlt "
+    var eventClose = 1131180832; // "Cls "
+    var eventSelect = 1936483188; // "slct"
+    var eventSet = 1936028772; // "setd"
+
+    var gRegisteredEvents = [eventMake, eventDelete, eventClose, eventSelect, eventSet];
+
+
+
+    var event = new CSEvent("com.adobe.PhotoshopRegisterEvent", "APPLICATION");
+
+    event.extensionId = this.EX_ID;
+    event.data = gRegisteredEvents.toString();
+    cs.dispatchEvent(event);
+
+
+
 
 }
 
 //----------------------
 
+
+function CSEvent(type, scope, appId, extensionId)
+{
+    this.type = type;
+    this.scope = scope;
+    this.appId = appId;
+    this.extensionId = extensionId;
+}
 export default EventCaryon;
 
