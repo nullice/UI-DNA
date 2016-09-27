@@ -360,10 +360,10 @@ Enzymes.prototype.getTypeID = function (inValue, inType)
         {
             if (inValue.length == 4)
             {
-                inValue = "charID"
+                inType = "charID"
             } else
             {
-                inValue = "stringID"
+                inType = "stringID"
             }
         }
         

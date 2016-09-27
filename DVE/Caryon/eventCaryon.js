@@ -47,13 +47,12 @@ EventCaryon.prototype.initEvent = async function ()
     // var eventSet = 1936028772; // "setd"
 
     var registeredEvents = [];
-    registeredEvents.push(await enzymes.getTypeID("slct"))// "slct"
-
+    registeredEvents.push(await enzymes.getTypeID("slct" , "charID"))// "slct"
 
     var event = new CSEvent("com.adobe.PhotoshopRegisterEvent", "APPLICATION");
-
-    event.extensionId = this.EX_ID;
+    event.extensionId = cs.getExtensionID();
     event.data = registeredEvents.toString();
+    console.log(" event.data = "+registeredEvents.toString() +"\n" +await enzymes.getTypeID("slct" , "charID"));
     cs.dispatchEvent(event);
 
 
