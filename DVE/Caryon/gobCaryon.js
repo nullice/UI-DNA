@@ -163,10 +163,12 @@ GobCaryon.prototype._getData = function (names)
 }
 
 
+//
 GobCaryon.prototype.updateSelect = async function ()
 {
+    console.log("updateSelect")
     this.selectList = await enzymes.getSelectLayerArray();
-
+    console.log(this.selectList)
 
 }
 
