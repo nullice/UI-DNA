@@ -75,6 +75,10 @@ window.test = test
 import  GobCaryon  from "./Caryon/gobCaryon";
 var Gob = new GobCaryon("默认测试");
 window.Gob = Gob
+//Photoshop 事件相关-------------------------------------
+import  EventCaryon  from "./Caryon/eventCaryon";
+var  eventCaryon = new EventCaryon("默认测试");
+window.eventCaryon = eventCaryon
 
 
 window.tests = {};
