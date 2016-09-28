@@ -65,11 +65,9 @@ var GobCaryon = function ()
 
         function _doSET(objectName, names, value, root)
         {
-            // console.log(root)
             _valueToObject(root, names, 0, value, true)//值写入 _XXX
             var s = new Function("x", `Gob._setData(${JSON.stringify(names)} , x )`);
             var g = new Function(` return Gob._getData(${JSON.stringify(names)} )`);
-            console.log(g)
             var ob = {
                 set: s,
                 get: g
@@ -138,19 +136,17 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
 
         if (prefix)
         {
-            if (value === "")
-            {
-                delete  toObject["_" + objectNames[nameIndex]]
-                return;
-            }
-
-
             toObject["_" + objectNames[nameIndex]] = value;
         } else
         {
             if (value === "")
             {
-                delete  toObject[objectNames[nameIndex]]
+                if (toObject[objectNames[nameIndex]] != undefined)
+                {
+                    delete  toObject[objectNames[nameIndex]];
+                    Gob.updateGob();
+                }
+
                 return;
             }
 
@@ -189,7 +185,7 @@ GobCaryon.prototype._getData = function (names)
 //
 GobCaryon.prototype.updateSelect = async function ()
 {
-    console.log("updateSelect")
+
     this.selectList = (await enzymes.getSelectLayerArray()).reverse();
     this.updateGob();
 
@@ -214,9 +210,6 @@ GobCaryon.prototype.updateGob = async function ()
     }
 
 
-    console.log('temp.position')
-    console.log(temp.position)
-
     for (var i = 0; i < this.selectList.length; i++)
     {
         //[position]---------------------------------------------------------------
@@ -228,7 +221,8 @@ GobCaryon.prototype.updateGob = async function ()
         item_position.w = position.w
         item_position.h = position.h
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
-        _objectToObject(item_position, temp.position, true);
+        console.log("temp.item_position", item_position)
+        _objectToObject(item_position, temp.position, true, !(i == 0));
 
 
         // temp.position.x = _setValue(temp.position.x, )
@@ -237,18 +231,27 @@ GobCaryon.prototype.updateGob = async function ()
         // temp.position.h = _setValue(temp.position.h, )
 
     }
-    console.log("temp.position to temp.position", temp.position)
+    console.log("temp.position", temp.position)
     _objectToObject(temp.position, this.position, false);
 
 
-    function _setValue(oldValue, value)
+    function _setValue(oldValue, value, ignoreNull)
     {
-        console.log(oldValue, value)
+
         if (oldValue == undefined)
         {
-            return value;
+            if (ignoreNull)
+            {
+
+            }
+            else
+            {
+                return value;
+            }
+
         }
 
+        console.log(oldValue + ":" + value + " MULT " + (oldValue != value))
         if (oldValue == GobCaryon.prototype.MULT || oldValue != value)
         {
             return GobCaryon.prototype.MULT;
@@ -300,24 +303,20 @@ GobCaryon.prototype.updateGob = async function ()
     }
 
 
-    function _objectToObject(object, sameObject, checkMUTI)
+    function _objectToObject(object, sameObject, checkMUTI, ignoreNull)
     {
-        console.log("==============_objectToObject()=============" + checkMUTI + arguments)
-        console.log(object)
+
 
         for (var x in object)
         {
-            console.log("_objectToObject:" + x + "  :" + object[x])
-            // console.log(object[x].constructor)
-
             if (object[x] != undefined && object[x].constructor == Object)
             {
-                _objectToObject(object[x], sameObject[x], checkMUTI)
+                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull)
             } else
             {
                 if (checkMUTI)
                 {
-                    sameObject[x] = _setValue(sameObject[x], object[x])
+                    sameObject[x] = _setValue(sameObject[x], object[x], ignoreNull)
                 } else
                 {
                     sameObject[x] = object[x]

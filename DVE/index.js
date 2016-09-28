@@ -39,7 +39,7 @@ import App from "./components/area.vue";
 
 
 
-import  Lang from "./Caryon/lang";
+
 //CEP 库-------------------------------------
 if (typeof window.__adobe_cep__ !== "undefined")
 {
@@ -85,7 +85,7 @@ window.tests = {};
 import  test_task_Enzymes from "./test/test_Enzymes_JS";
 window.tests.task_Enzymes = test_task_Enzymes;
 
-
+import  Lang from "./Caryon/lang";
 Vue.filter('lang', Lang.fiterFunc);
 Lang.currentLANG = Lang.LANG_Chiness2English;
 window.Lang = Lang;

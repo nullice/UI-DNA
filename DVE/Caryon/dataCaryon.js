@@ -16,27 +16,27 @@ DataCaryon.prototype.layerSample = {
     name: "图层名",
     id: 2,
     index: 1,
-    position: {x: 0, y: 0, w: 0, h: 0, assignment: {x: "100+y", y:"dddd"}, enableAssigns: {x: false}},
+    position: {x: 0, y: 0, w: 0, h: 0, assignment: {x: "100+y", y: "dddd"}, enableAssigns: {x: false}},
 
 }
 
 
 DataCaryon.prototype.addLayer = function (layerListItem)
 {
-   this.layers[layerListItem.id] = {
-       name: layerListItem.name,
-       id: layerListItem.id,
-       index: layerListItem.index
-   }
+    this.layers[layerListItem.id] = {
+        name: layerListItem.name,
+        id: layerListItem.id,
+        index: layerListItem.index
+    }
 }
 
 
+DataCaryon.prototype.save = async function ()
+{
+    await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
 
 
-
-
-
-
+}
 
 
 var Layer = function (layerListItem)
