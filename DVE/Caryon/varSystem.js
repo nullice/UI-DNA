@@ -149,6 +149,9 @@ VarSystem.prototype.evalVar = function (varValue)
  */
 VarSystem.prototype.isFormula = function (varValue)
 {
+    
+  
+    
     var inVar = varValue;
     var re = /[_a-zA-Z][_a-zA-Z0-9]*/g;
     var resullt;

@@ -28,13 +28,32 @@ var EventCaryon = function ()
 EventCaryon.prototype.initEvent = async function ()
 {
 
-    //选中事件
+
+
+
+   var func_updateSelect =  {func: Gob.updateSelect, inThis: Gob, agrs: null}
+
+    //选中事件-----------------------------
     this.ID_slct = await enzymes.getTypeID("slct", "charID");
-    //事件发生时要执行的函数列表
-    //格式：{func:函数名, inThis:函数的 this 对象, agrs:参数列表数组 }
-    this.FUNCS_slct = [{func: Gob.updateSelect, inThis: Gob, agrs: null}]
+         //:事件发生时要执行的函数列表格式：{func:函数名, inThis:函数的 this 对象, agrs:参数列表数组 }:
+    this.FUNCS_slct = [func_updateSelect]
+    //新建事件-----------------------------
+    this.ID_mk= await enzymes.getTypeID("Mk  ", "charID");
+    this.FUNCS_mk = [func_updateSelect]
 
 
+
+    ////ID 放入容器----------------------
+    this.IDList = [
+        {id:this.ID_slct, funcs: this.FUNCS_slct},
+        {id:this.ID_mk, funcs: this.FUNCS_mk}
+        ]
+
+    var registeredEvents = [];
+    for(var i in this.IDList )
+    {
+        registeredEvents.push( this.IDList[i].id);
+    }
 
 
     console.log("---initEvent------");
@@ -47,8 +66,6 @@ EventCaryon.prototype.initEvent = async function ()
     // var eventSelect =
     // var eventSet = 1936028772; // "setd"
 
-    var registeredEvents = [];
-    registeredEvents.push(this.ID_slct);
 
     var event = new CSEvent("com.adobe.PhotoshopRegisterEvent", "APPLICATION");
     event.extensionId = cs.getExtensionID();
@@ -64,8 +81,6 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
 {
     // console.log("PhotoshopCallbackUnique");
     // console.log(csEvent);
-
-
     try
     {
         console.log(typeof csEvent.data === "string")
@@ -73,9 +88,16 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
         {
             var eventData = csEvent.data.replace("ver1,{", "{");
             var ob = JSON.parse(eventData);
-            if (ob.eventID == eventCaryon.ID_slct)
+
+
+            for(var i in eventCaryon.IDList)
             {
-                _do_FUNCS(eventCaryon.FUNCS_slct)
+                if (ob.eventID == eventCaryon.IDList[i].id)
+                {
+                    _do_FUNCS(eventCaryon.IDList[i].funcs)
+                    break;
+                }
+
             }
 
         }

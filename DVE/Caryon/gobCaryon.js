@@ -90,10 +90,18 @@ GobCaryon.prototype._setData = function (names, value)
 
     _valueToObject(this, names, 0, value, true)//值写入 _XXX
 
-    if (varSystem.isFormula(value) == false) //只写入公式变量
+
+    if (value === "")//删除
     {
-        return null;
+
+    } else
+    {
+        if (varSystem.isFormula(value) == false || value == Gob.MULT) //只写入公式变量
+        {
+            return null;
+        }
     }
+
 
     for (var i = 0; i < this.selectList.length; i++)
     {
@@ -126,11 +134,26 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
         _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
     } else
     {
+
+
         if (prefix)
         {
+            if (value === "")
+            {
+                delete  toObject["_" + objectNames[nameIndex]]
+                return;
+            }
+
+
             toObject["_" + objectNames[nameIndex]] = value;
         } else
         {
+            if (value === "")
+            {
+                delete  toObject[objectNames[nameIndex]]
+                return;
+            }
+
             toObject[objectNames[nameIndex]] = value;
         }
 
@@ -156,7 +179,7 @@ GobCaryon.prototype._getData = function (names)
             }
         } else
         {
-            return　_valueFromObject(fromObject[names[nameIndex]], names, nameIndex + 1, prefix)
+            return _valueFromObject(fromObject[names[nameIndex]], names, nameIndex + 1, prefix)
         }
     }
 
@@ -167,46 +190,60 @@ GobCaryon.prototype._getData = function (names)
 GobCaryon.prototype.updateSelect = async function ()
 {
     console.log("updateSelect")
-    this.selectList = await enzymes.getSelectLayerArray();
-    console.log(this.selectList)
+    this.selectList = (await enzymes.getSelectLayerArray()).reverse();
+    this.updateGob();
+
 
 }
 
 GobCaryon.prototype.updateGob = async function ()
 {
-    this._position = {
-        x: null,
-        y: null,
-        w: null,
-        h: null,
-    };
+    var temp = {};
+    temp.position = new_position();
 
-    // this.position = {
-    //     x: null,
-    //     y: null,
-    //     w: null,
-    //     h: null,
-    //     assignment: {x: null, y: null, w: null, h: null},
-    //     enableAssigns: {x: false, y: false, w: false, h: false}
-    // };
+    function new_position()
+    {
+        return {
+            x: null,
+            y: null,
+            w: null,
+            h: null,
+            assignment: {x: null, y: null, w: null, h: null},
+            enableAssigns: {x: null, y: null, w: null, h: null}
+        }
+    }
 
+
+    console.log('temp.position')
+    console.log(temp.position)
 
     for (var i = 0; i < this.selectList.length; i++)
     {
         //[position]---------------------------------------------------------------
-        // var position = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
-        // this._position.x = _setValue(this._position.x, position.x)
-        // this._position.y = _setValue(this._position.y, position.y)
-        // this._position.w = _setValue(this._position.w, position.w)
-        // this._position.h = _setValue(this._position.h, position.h)
+        var item_position = new_position();
 
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], this.position, "position")
+        var position = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
+        item_position.x = position.x
+        item_position.y = position.y
+        item_position.w = position.w
+        item_position.h = position.h
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
+        _objectToObject(item_position, temp.position, true);
 
+
+        // temp.position.x = _setValue(temp.position.x, )
+        // temp.position.y = _setValue(temp.position.y, )
+        // temp.position.w = _setValue(temp.position.w, )
+        // temp.position.h = _setValue(temp.position.h, )
 
     }
+    console.log("temp.position to temp.position", temp.position)
+    _objectToObject(temp.position, this.position, false);
+
 
     function _setValue(oldValue, value)
     {
+        console.log(oldValue, value)
         if (oldValue == undefined)
         {
             return value;
@@ -230,7 +267,6 @@ GobCaryon.prototype.updateGob = async function ()
             return null
         }
 
-
         for (var x in object)
         {
             if (object[x] != undefined && object[x].constructor == Object)
@@ -250,9 +286,43 @@ GobCaryon.prototype.updateGob = async function ()
                 {
                     if (layerData[objectName][x] != undefined)
                     {
-                        object[x] = _setValue(object[x], layerData[objectName][x]);
+
+                        if (object[x] != Gob.MULT)
+                        {
+                            object[x] = layerData[objectName][x];
+                        }
+
                     }
                 }
+            }
+        }
+
+    }
+
+
+    function _objectToObject(object, sameObject, checkMUTI)
+    {
+        console.log("==============_objectToObject()=============" + checkMUTI + arguments)
+        console.log(object)
+
+        for (var x in object)
+        {
+            console.log("_objectToObject:" + x + "  :" + object[x])
+            // console.log(object[x].constructor)
+
+            if (object[x] != undefined && object[x].constructor == Object)
+            {
+                _objectToObject(object[x], sameObject[x], checkMUTI)
+            } else
+            {
+                if (checkMUTI)
+                {
+                    sameObject[x] = _setValue(sameObject[x], object[x])
+                } else
+                {
+                    sameObject[x] = object[x]
+                }
+
             }
         }
 

@@ -28,8 +28,8 @@
             <h3> {{'位置' |lang}} </h3>
             <value-input name ="X"  v-bind:edit_value.sync="Gob.position.x" v-bind:out_value.sync="Gob.position.assignment.x" v-bind:enable_assign.sync="Gob.position.enableAssigns.x"></value-input>
             <value-input name ="Y"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y" v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
-            <value-input name ="W"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y" v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
-            <value-input name ="H"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y" v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
+            <value-input name ="W"  v-bind:edit_value.sync="Gob.position.w" v-bind:out_value.sync="Gob.position.assignment.w" v-bind:enable_assign.sync="Gob.position.enableAssigns.w"></value-input>
+            <value-input name ="H"  v-bind:edit_value.sync="Gob.position.h" v-bind:out_value.sync="Gob.position.assignment.h" v-bind:enable_assign.sync="Gob.position.enableAssigns.h"></value-input>
             <!--<comp-a></comp-a>-->
         </div>
 
@@ -37,8 +37,8 @@
             <h3> {{'形状' |lang}} </h3>
             <value-input name ="X"  v-bind:edit_value.sync="Gob.position.x" v-bind:out_value.sync="Gob.position.assignment.x" v-bind:enable_assign.sync="Gob.position.enableAssigns.x"></value-input>
             <value-input name ="Y"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y" v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
-            <value-input name ="W"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y" v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
-            <value-input name ="H"  v-bind:edit_value.sync="Gob.position.y" v-bind:out_value.sync="Gob.position.assignment.y" v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
+            <value-input name ="W"  v-bind:edit_value.sync="Gob.position.w" v-bind:out_value.sync="Gob.position.assignment.w" v-bind:enable_assign.sync="Gob.position.enableAssigns.w"></value-input>
+            <value-input name ="H"  v-bind:edit_value.sync="Gob.position.h" v-bind:out_value.sync="Gob.position.assignment.h" v-bind:enable_assign.sync="Gob.position.enableAssigns.h"></value-input>
             <!--<comp-a></comp-a>-->
         </div>
     </div>
