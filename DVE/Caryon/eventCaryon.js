@@ -56,7 +56,7 @@ EventCaryon.prototype.initEvent = async function ()
     }
 
 
-    console.log("---initEvent------");
+    // console.log("---initEvent------");
     cs.addEventListener("com.adobe.PhotoshopJSONCallback" + cs.getExtensionID(), EventCaryon.prototype.PhotoshopCallbackUnique);
 
 
@@ -70,7 +70,7 @@ EventCaryon.prototype.initEvent = async function ()
     var event = new CSEvent("com.adobe.PhotoshopRegisterEvent", "APPLICATION");
     event.extensionId = cs.getExtensionID();
     event.data = registeredEvents.toString();
-    console.log(" event.data = " + registeredEvents.toString() + "\n" + await enzymes.getTypeID("slct", "charID"));
+    // console.log(" event.data = " + registeredEvents.toString() + "\n" + await enzymes.getTypeID("slct", "charID"));
     cs.dispatchEvent(event);
 
 
@@ -83,7 +83,7 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
     // console.log(csEvent);
     try
     {
-        console.log(typeof csEvent.data === "string")
+        // console.log(typeof csEvent.data === "string")
         if (typeof csEvent.data === "string")
         {
             var eventData = csEvent.data.replace("ver1,{", "{");

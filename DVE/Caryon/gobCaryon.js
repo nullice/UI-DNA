@@ -221,7 +221,7 @@ GobCaryon.prototype.updateGob = async function ()
         item_position.w = position.w
         item_position.h = position.h
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
-        console.log("temp.item_position", item_position)
+        // console.log("temp.item_position", item_position)
         _objectToObject(item_position, temp.position, true, !(i == 0));
 
 
@@ -231,7 +231,7 @@ GobCaryon.prototype.updateGob = async function ()
         // temp.position.h = _setValue(temp.position.h, )
 
     }
-    console.log("temp.position", temp.position)
+    // console.log("temp.position", temp.position)
     _objectToObject(temp.position, this.position, false);
 
 
@@ -251,7 +251,7 @@ GobCaryon.prototype.updateGob = async function ()
 
         }
 
-        console.log(oldValue + ":" + value + " MULT " + (oldValue != value))
+        // console.log(oldValue + ":" + value + " MULT " + (oldValue != value))
         if (oldValue == GobCaryon.prototype.MULT || oldValue != value)
         {
             return GobCaryon.prototype.MULT;

@@ -516,13 +516,21 @@ EnzJSX.readJSON = function (rootName, itemName)//EnzJSX.readJSONDOM
 }
 
 
+/**
+ * 获取图层位置、尺寸信息，position。根据图层 ID
+ * @param id
+ */
 EnzJSX.getLayerInfo_position_byId = function (id)
 {
     return JSON.stringify(ki.layer.getLayerBounds(Kinase.REF_LayerID, id))
 }
 
 
-
+EnzJSX.setLayerInfo_position_byId = function (boundsInfo ,id)
+{
+    
+    return ki.layer.setLayerBounds(boundsInfo , Kinase.REF_LayerID, id)
+}
 
 
 

@@ -107,7 +107,6 @@
                 // getter
                 get: function ()
                 {
-                    console.log("o_out out_value:", this.out_value)
                     if (this.out_value === Gob.MULT)
                     {
                         this.o_out_placeholder = Lang.fiterFunc("多值");
