@@ -338,7 +338,6 @@ EnzJSX.getSelectLayerArray = function (debarDataLayer)
 
     for (var i = 0; i < itemIndexs.length; i++)
     {
-
         var layer = {
             name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
             id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),

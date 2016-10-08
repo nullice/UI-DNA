@@ -305,8 +305,6 @@ GobCaryon.prototype.updateGob = async function ()
 
     function _objectToObject(object, sameObject, checkMUTI, ignoreNull)
     {
-
-
         for (var x in object)
         {
             if (object[x] != undefined && object[x].constructor == Object)

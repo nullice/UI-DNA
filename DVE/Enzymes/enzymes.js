@@ -277,7 +277,6 @@ Enzymes.prototype.setLayerInfo_position_byId = async function (boundsInfo, layer
                 (r)=> {resolve(JSON.parse(r))})
         }
     )
-
 }
 
 
