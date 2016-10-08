@@ -1,7 +1,4 @@
 /**
- * Created by bgllj on 2016/9/25.
- */
-/**
  * Created by bgllj on 2016/9/7.
  */
 
@@ -82,6 +79,7 @@ var GobCaryon = function ()
     return this;
 }
 
+
 GobCaryon.prototype._setData = function (names, value)
 {
 
@@ -118,49 +116,11 @@ GobCaryon.prototype._setData = function (names, value)
     // GobCaryon.prototype._valueToObject(dataCaryon.layers[id][names[0]], names, 1, value)
 }
 
-function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
-{
-    var isLastName = nameIndex == objectNames.length - 1
-
-    if (toObject[objectNames[nameIndex]] == undefined && isLastName != true)
-    {
-        toObject[objectNames[nameIndex]] = {};
-    }
-
-    if (isLastName != true)
-    {
-        _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
-    } else
-    {
-
-
-        if (prefix)
-        {
-            toObject["_" + objectNames[nameIndex]] = value;
-        } else
-        {
-            if (value === "")
-            {
-                if (toObject[objectNames[nameIndex]] != undefined)
-                {
-                    delete  toObject[objectNames[nameIndex]];
-                    Gob.updateGob();
-                }
-
-                return;
-            }
-
-            toObject[objectNames[nameIndex]] = value;
-        }
-
-    }
-}
 
 
 GobCaryon.prototype._getData = function (names)
 {
 
-    return _valueFromObject(this, names, 0, true);
     function _valueFromObject(fromObject, names, nameIndex, prefix)
     {
         var isLastName = nameIndex == names.length - 1
@@ -178,19 +138,18 @@ GobCaryon.prototype._getData = function (names)
             return _valueFromObject(fromObject[names[nameIndex]], names, nameIndex + 1, prefix)
         }
     }
-
+    return _valueFromObject(this, names, 0, true);
 }
 
 
-//
+
 GobCaryon.prototype.updateSelect = async function ()
 {
 
     this.selectList = (await enzymes.getSelectLayerArray()).reverse();
     this.updateGob();
-
-
 }
+
 
 GobCaryon.prototype.updateGob = async function ()
 {
@@ -327,8 +286,56 @@ GobCaryon.prototype.updateGob = async function ()
 
 }
 
+
+// 代表多值的常量
 GobCaryon.prototype.MULT = "%$*/Gob-MUTIPLE/*$%";
 
+/**
+ * 把值赋予指定对象指定路径成员
+ * @param toObject 欲赋值目标对象
+ * @param objectNames 对象成员的路径，即名称数组（数字如 a.b.c 为 ["a","b","c"] ）
+ * @param nameIndex 路径起始位置，通常从 0 开始
+ * @param value 要设置的值
+ * @param prefix 是否设置前缀"_",为真的话，会赋值到带前缀的成员，（如指定路径 a.b.c 会赋值到 a.b._c）
+ * @private
+ */
+function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
+{
+    var isLastName = nameIndex == objectNames.length - 1
+
+    if (toObject[objectNames[nameIndex]] == undefined && isLastName != true)
+    {
+        toObject[objectNames[nameIndex]] = {};
+    }
+
+    if (isLastName != true)
+    {
+        _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
+    } else
+    {
+
+
+        if (prefix)
+        {
+            toObject["_" + objectNames[nameIndex]] = value;
+        } else
+        {
+            if (value === "")
+            {
+                if (toObject[objectNames[nameIndex]] != undefined)
+                {
+                    delete  toObject[objectNames[nameIndex]];
+                    Gob.updateGob();
+                }
+
+                return;
+            }
+
+            toObject[objectNames[nameIndex]] = value;
+        }
+
+    }
+}
 
 //----------------------------------------
 
