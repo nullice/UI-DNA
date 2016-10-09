@@ -4,6 +4,7 @@
         <div class="exmo_box_name">{{name|lang}}</div>
         <input type="text" class="exmo_input_text edit_input"
                v-model:value="o_edit"
+               debounce="800"
                v-bind:placeholder="o_edit_placeholder">
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked
@@ -73,7 +74,7 @@
         },
         computed: {
             o_edit: {
-                // getter
+                //
                 get: function ()
                 {
                     if (this.edit_value === Gob.MULT)

@@ -82,7 +82,7 @@ var GobCaryon = function ()
 
 GobCaryon.prototype._setData = function (names, value)
 {
-
+    var isFormula = false;
 
     _valueToObject(this, names, 0, value, true)//值写入 _XXX
 
@@ -94,19 +94,23 @@ GobCaryon.prototype._setData = function (names, value)
     {
         if (varSystem.isFormula(value) == false || value == Gob.MULT) //只写入公式变量
         {
-            return null;
+            isFormula = true;
         }
     }
 
 
-    for (var i = 0; i < this.selectList.length; i++)
+    for (var i = 0; i < this.selectList.length; i++)//每个选中图层写入 dataCaryon，
     {
-        if (dataCaryon.layers[this.selectList[i].id] == undefined)
+        if (isFormula)
         {
-            dataCaryon.addLayer(this.selectList[i]);
+            if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
+            {
+                dataCaryon.addLayer(this.selectList[i]);
+            }
+            _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
-
-        _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+        //即时修改------------
+        renderCaryon.renderPatch(this.selectList[i].id,names,value)
 
     }
 
@@ -115,7 +119,6 @@ GobCaryon.prototype._setData = function (names, value)
 
     // GobCaryon.prototype._valueToObject(dataCaryon.layers[id][names[0]], names, 1, value)
 }
-
 
 
 GobCaryon.prototype._getData = function (names)
@@ -138,11 +141,14 @@ GobCaryon.prototype._getData = function (names)
             return _valueFromObject(fromObject[names[nameIndex]], names, nameIndex + 1, prefix)
         }
     }
+
     return _valueFromObject(this, names, 0, true);
 }
 
 
-
+/**
+ * 更新选中图层。会触发 GobCaryon.updateGob()                                                                                                                                                                                                                                                                                                                                                           。
+ */
 GobCaryon.prototype.updateSelect = async function ()
 {
 
@@ -151,6 +157,10 @@ GobCaryon.prototype.updateSelect = async function ()
 }
 
 
+/**
+ * 更新选中图层对象的数据。
+ * 会从实际图层（通过 enzymes）和 DataCaryon 拉取图层数据保存到选中图层对象。
+ */
 GobCaryon.prototype.updateGob = async function ()
 {
     var temp = {};
@@ -180,14 +190,7 @@ GobCaryon.prototype.updateGob = async function ()
         item_position.w = position.w
         item_position.h = position.h
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
-        // console.log("temp.item_position", item_position)
         _objectToObject(item_position, temp.position, true, !(i == 0));
-
-
-        // temp.position.x = _setValue(temp.position.x, )
-        // temp.position.y = _setValue(temp.position.y, )
-        // temp.position.w = _setValue(temp.position.w, )
-        // temp.position.h = _setValue(temp.position.h, )
 
     }
     // console.log("temp.position", temp.position)
@@ -337,6 +340,17 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
     }
 }
 
+function _inArray(name, array)
+{
+    for (var x in array)
+    {
+        if (name == array[x])
+        {
+            return true;
+        }
+    }
+    return false;
+}
 //----------------------------------------
 
 export default GobCaryon;

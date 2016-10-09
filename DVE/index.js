@@ -67,6 +67,10 @@ if (typeof window.__adobe_cep__ !== "undefined")
     var enzymes = new Enzymes();
     window.enzymes = enzymes;
 }
+//渲染系统-------------------------------------
+import  RenderCaryon  from "./Caryon/renderCaryon";
+var renderCaryon = new RenderCaryon();
+window.renderCaryon = renderCaryon;
 //测试系统-------------------------------------
 import  TEST  from "./test/test_core";
 var test = new TEST("默认测试");
