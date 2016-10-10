@@ -6,13 +6,11 @@
 
 var RenderCaryon = function ()
 {
-
-
     return this;
 }
 
 
-RenderCaryon.prototype.renderPatch = function (layerId, names, value)
+RenderCaryon.prototype.renderPatch = async function (layerId, names, value)
 {
     var item = names[names.length - 1];
     if (names[0] === "position")
@@ -21,7 +19,7 @@ RenderCaryon.prototype.renderPatch = function (layerId, names, value)
         {
             var ob = {};
             ob[item] = value;
-            enzymes.setLayerInfo_position_byId(ob, layerId)
+            await enzymes.setLayerInfo_position_byId(ob, layerId)
         }
     }
 

@@ -274,7 +274,7 @@ Enzymes.prototype.setLayerInfo_position_byId = async function (boundsInfo, layer
             var obJson = JSON.stringify(boundsInfo)
             evalScript(
                 `EnzJSX.setLayerInfo_position_byId(${obJson} ,${layerID})`,
-                (r)=> {resolve(JSON.parse(r))})
+                (r)=> {resolve(r)})
         }
     )
 }

@@ -48,6 +48,20 @@ if (typeof window.__adobe_cep__ !== "undefined")
 {
     console.info("running without CEP!")
 }
+
+//PhotoShop 接口库-------------------------------------
+import  Enzymes  from "./Enzymes/Enzymes";
+if (typeof window.__adobe_cep__ !== "undefined")
+{
+    var enzymes = new Enzymes();
+    window.enzymes = enzymes;
+}
+
+//渲染系统-------------------------------------
+import  RenderCaryon  from "./Caryon/renderCaryon";
+var renderCaryon = new RenderCaryon();
+window.renderCaryon = renderCaryon;
+
 //数据存储系统-------------------------------------
 import  DataCaryon  from "./Caryon/dataCaryon";
 var dataCaryon = new DataCaryon();
@@ -60,17 +74,6 @@ window.varSystem = varSystem;
 import  SetSystem  from "./Caryon/settingCaryon";
 var setSystem = new SetSystem();
 window.setSystem = setSystem;
-//PhotoShop 接口库-------------------------------------
-import  Enzymes  from "./Enzymes/Enzymes";
-if (typeof window.__adobe_cep__ !== "undefined")
-{
-    var enzymes = new Enzymes();
-    window.enzymes = enzymes;
-}
-//渲染系统-------------------------------------
-import  RenderCaryon  from "./Caryon/renderCaryon";
-var renderCaryon = new RenderCaryon();
-window.renderCaryon = renderCaryon;
 //测试系统-------------------------------------
 import  TEST  from "./test/test_core";
 var test = new TEST("默认测试");

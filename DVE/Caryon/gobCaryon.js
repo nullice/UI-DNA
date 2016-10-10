@@ -6,14 +6,16 @@
 
 var GobCaryon = function ()
 {
+    this.nowSwitching = false;//是否在切换选中图层中
+
     this.selectList = [{id: 999}];
     this.position = {
-        x: 2,
-        y: 3,
-        w: 4,
-        h: 5,
+        x: null,
+        y: null,
+        w: null,
+        h: null,
         assignment: {x: null, y: null, w: null, h: null},
-        enableAssigns: {x: false, y: false, w: false, h: false}
+        enableAssigns: {x: null, y: null, w: null, h: null}
     };
 
     var root = this;
@@ -82,9 +84,10 @@ var GobCaryon = function ()
 
 GobCaryon.prototype._setData = function (names, value)
 {
+
     var isFormula = false;
 
-    _valueToObject(this, names, 0, value, true)//值写入 _XXX
+    var change = _valueToObject(this, names, 0, value, true); //值写入 _XXX;
 
 
     if (value === "")//删除
@@ -92,7 +95,7 @@ GobCaryon.prototype._setData = function (names, value)
 
     } else
     {
-        if (varSystem.isFormula(value) == false || value == Gob.MULT) //只写入公式变量
+        if (varSystem.isFormula(value) == true || value == Gob.MULT) //只写入公式变量
         {
             isFormula = true;
         }
@@ -101,17 +104,27 @@ GobCaryon.prototype._setData = function (names, value)
 
     for (var i = 0; i < this.selectList.length; i++)//每个选中图层写入 dataCaryon，
     {
+        var change_i = false;
         if (isFormula)
         {
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);
             }
-            _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+            change_i = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
         //即时修改------------
-        renderCaryon.renderPatch(this.selectList[i].id,names,value)
+        // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
 
+        if (this.nowSwitching == false)
+        {
+            if (change_i || ((isFormula == false) & change))
+            {
+                console.log("renderPatch")
+                renderCaryon.renderPatch(this.selectList[i].id, names, value)
+                console.log("END_renderPatch")
+            }
+        }
     }
 
 
@@ -151,9 +164,10 @@ GobCaryon.prototype._getData = function (names)
  */
 GobCaryon.prototype.updateSelect = async function ()
 {
-
+    this.nowSwitching = true;
     this.selectList = (await enzymes.getSelectLayerArray()).reverse();
     this.updateGob();
+
 }
 
 
@@ -195,7 +209,7 @@ GobCaryon.prototype.updateGob = async function ()
     }
     // console.log("temp.position", temp.position)
     _objectToObject(temp.position, this.position, false);
-
+    this.nowSwitching = false;
 
     function _setValue(oldValue, value, ignoreNull)
     {
@@ -313,14 +327,18 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
 
     if (isLastName != true)
     {
-        _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
+        return _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
     } else
     {
 
 
         if (prefix)
         {
+            var change = (toObject["_" + objectNames[nameIndex]] != value);
             toObject["_" + objectNames[nameIndex]] = value;
+
+            return change;//返回是否改变原值
+
         } else
         {
             if (value === "")
@@ -331,10 +349,11 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
                     Gob.updateGob();
                 }
 
-                return;
+                return true;
             }
-
+            var change = ( toObject[objectNames[nameIndex]] != value);
             toObject[objectNames[nameIndex]] = value;
+            return change;//返回是否改变原值
         }
 
     }
