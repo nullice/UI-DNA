@@ -1,6 +1,6 @@
 <template>
-    <div class="display_label {{display_class}}" v-show="!o_editing" v-on:dblclick="dbclick">{{in_value}}</div>
-    <input type="text" id="edit_label_id_{{in_value}}" class="edit_label {{edit_class}}" v-model="edit_value" lazy
+    <div class="display_label {{display_class}} {{class_switch_1}}" v-show="!o_editing" v-on:dblclick="dbclick">{{in_value}}</div>
+    <input type="text" id="edit_label_id_{{in_value}}" class="edit_label {{edit_class}} {{class_switch_1}}" v-model="edit_value" lazy
            v-if="o_editing" v-on:blur="editEnd">
 </template>
 <style>
@@ -13,11 +13,10 @@
 <script>
 
     export default{
-        props: ["in_value", "display_class", "edit_class", "edit_set_func"],
+        props: ["in_value", "display_class", "edit_class", "class_switch_1", "edit_set_func"],
         data(){
             return {
                 o_editing: false,
-
             }
 
         },
@@ -41,11 +40,7 @@
                     }
                 },100)
 
-
-
-
-
-//
+7
 //                window.ee = this.$el.parentElement.children;
 //                console.log("edit_label_id_" + this.in_value)
 
@@ -71,6 +66,7 @@
                         return this.edit_set_func(x);
                     } else
                     {
+                        this.in_value =x;
                         return x;
                     }
 
