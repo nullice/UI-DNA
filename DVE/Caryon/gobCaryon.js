@@ -4,6 +4,7 @@
 
 
 
+
 var GobCaryon = function ()
 {
     this.nowSwitching = false;//是否在切换选中图层中

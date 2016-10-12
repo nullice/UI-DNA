@@ -104,6 +104,7 @@ Vue.config.debug = true;//开启错误提示
 
 import AttrPanel from "./components/AttributePanel.vue";
 import LayerSelectors from "./components/LayerSelectors.vue";
+import VarPanel from "./components/VarPanel.vue";
 var mainVue = new Vue({
     el: 'body',
     data: {},
@@ -112,6 +113,7 @@ var mainVue = new Vue({
         // in the options
         "attr-panel": AttrPanel,
         "layers-panel": LayerSelectors,
+        "var-panel":VarPanel
     }
 })
 
