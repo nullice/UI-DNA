@@ -45,13 +45,15 @@
     .var_item {
         margin: 0 0;
         padding: 0 10px;
-        border-bottom: 1px solid rgba(0, 0, 0, 0);
-        border-top: 1px solid rgba(0, 0, 0, 0);
+        /*border: 1px solid rgba(0, 0, 0, 0);*/
+
 
         &:hover {
-            background: rgba(0, 0, 0, 0.05);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-            border-top: 1px solid rgba(0, 0, 0, 0.04);
+            background: rgba(0, 0, 0, 0.065);
+            /*border: 1px solid rgba(0, 0, 0, 0.04);*/
+            /*!* border: 1px solid rgba(0, 0, 0, 0.04); *!*/
+            border-bottom: 1px solid rgba(0, 0, 0, 0.0) !important;
+            border-radius: 4px;
         }
 
         .var_name, .var_value {
@@ -149,7 +151,7 @@
                             UI_action.message_bubble("var_panel", "", Lang.from("变量名称不合法"),"red")
                         }
                     }
-                    
+
                 },
             }
         },

@@ -9,7 +9,7 @@ body {
 .test {
   width: 100px; }
 
-.exmo_input_text {
+.exmo_input_text, .exmo_select {
   outline: none;
   -webkit-user-select: none;
   border: none;
@@ -22,14 +22,14 @@ body {
   min-width: 10px;
   font-family: "Microsoft YaHei", "Microsoft JhengHei", PingFang, "Hiragino Sans GB", "WenQuanYi Micro Hei", メイリオ, Meiryo, Helvetica, Arial, sans-serif;
   font-size: 13px; }
-  .exmo_input_text:focus {
+  .exmo_input_text:focus, .exmo_select:focus {
     border-bottom: 1px solid #1e76e3; }
-  .exmo_input_text:disabled {
+  .exmo_input_text:disabled, .exmo_select:disabled {
     color: #606060;
     opacity: .7; }
-  .exmo_input_text::-webkit-input-placeholder {
+  .exmo_input_text::-webkit-input-placeholder, .exmo_select::-webkit-input-placeholder {
     color: #909090; }
-  .exmo_input_text:invalid {
+  .exmo_input_text:invalid, .exmo_select:invalid {
     border-bottom: 1px solid #ec7669; }
 
 .exmo_area {
@@ -195,3 +195,73 @@ i.adobe {
   .exmo_icon_cheackbox:checked + .exmo_button_icon {
     border: 1px solid #bfbfbf;
     background: rgba(80, 80, 80, 0.16); }
+
+.exmo_checkbox {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  cursor: default;
+  -webkit-user-select: none;
+  line-height: 1rem; }
+  .exmo_checkbox input[type="checkbox"] {
+    position: absolute;
+    overflow: hidden;
+    padding: 0;
+    border: 0;
+    opacity: 0.001;
+    z-index: 1;
+    vertical-align: top;
+    outline: none;
+    height: 1rem;
+    width: 1rem;
+    margin-top: 0;
+    margin-right: -1rem;
+    margin-bottom: -1rem;
+    margin-left: 0; }
+  .exmo_checkbox .exmo_checkbox_shadow {
+    width: 1rem;
+    height: 1rem;
+    ox-sizing: border-box;
+    background-clip: padding-box;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    cursor: default;
+    user-select: none;
+    outline: none; }
+    .exmo_checkbox .exmo_checkbox_shadow::before {
+      content: '';
+      position: absolute;
+      width: 1rem;
+      height: 1rem;
+      background: #fefefe;
+      border: 1px solid rgba(14, 14, 14, 0);
+      border-radius: 3px;
+      border: none;
+      outline: none; }
+    .exmo_checkbox .exmo_checkbox_shadow::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 3px;
+      opacity: 0;
+      width: 8px;
+      height: 4px;
+      border: 2px solid #c6c8c8;
+      border-width: 3px;
+      background: #737373;
+      border-right: none;
+      border-top: none;
+      border-radius: 1px;
+      transform: rotate(-50deg);
+      outline: none; }
+  .exmo_checkbox input[type="checkbox"]:focus + .exmo_checkbox_shadow:before {
+    box-shadow: 0 0 0 1px #479ddc; }
+  .exmo_checkbox input[type="checkbox"]:active + .exmo_checkbox_shadow:before {
+    border: 1px solid #333434; }
+  .exmo_checkbox input[type="checkbox"]:checked + .exmo_checkbox_shadow:after {
+    opacity: 1; }
+  .exmo_checkbox input[type="checkbox"]:checked + .exmo_checkbox_shadow:before {
+    opacity: 1;
+    background: #737373;
+    border: 1px solid transparent; }
