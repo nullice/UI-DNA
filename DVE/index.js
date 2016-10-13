@@ -38,8 +38,6 @@ import App from "./components/area.vue";
 //                 +--------------------------+
 
 
-
-
 //CEP 库-------------------------------------
 if (typeof window.__adobe_cep__ !== "undefined")
 {
@@ -84,7 +82,7 @@ var Gob = new GobCaryon("默认测试");
 window.Gob = Gob
 //Photoshop 事件相关-------------------------------------
 import  EventCaryon  from "./Caryon/eventCaryon";
-var  eventCaryon = new EventCaryon("默认测试");
+var eventCaryon = new EventCaryon("默认测试");
 window.eventCaryon = eventCaryon
 
 
@@ -99,7 +97,10 @@ window.Lang = Lang;
 
 Vue.config.debug = true;//开启错误提示
 
-
+//-------------------------
+import {UI_model, UI_action} from "./components/UI_model/UI_model.js"
+window.UI_model = UI_model;
+window.UI_action = UI_action;
 
 
 import AttrPanel from "./components/AttributePanel.vue";
@@ -113,7 +114,7 @@ var mainVue = new Vue({
         // in the options
         "attr-panel": AttrPanel,
         "layers-panel": LayerSelectors,
-        "var-panel":VarPanel
+        "var-panel": VarPanel
     }
 })
 

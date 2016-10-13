@@ -31,7 +31,10 @@ var VueLang =
         }
 
     },
-
+    from: function (value, postfix)
+    {
+        return VueLang.fiterFunc(value, postfix)
+    }
 
 
 }

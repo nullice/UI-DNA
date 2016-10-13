@@ -144,7 +144,7 @@ VarSystem.prototype.removeVar = function (name)
 //设置变量
 VarSystem.prototype.setVar = function (name, value, type, isFormula)
 {
-    
+
     this.vars[name] = {value: value, type: type || null, isFormula: isFormula || false};
 
 }
@@ -152,17 +152,24 @@ VarSystem.prototype.setVar = function (name, value, type, isFormula)
 //重命名变量
 VarSystem.prototype.renameVar = function (name, newName)
 {
-    
-    
-    if(this.vars[newName]!=undefined)
+
+
+    if (this.vars[newName] != undefined)
     {
-        return name;
+        return {name: name, err: "repe"};//存在重复的名称
     }
+
+    if (VarSystem.prototype.scanVarsInFormula(newName).length <= 0)
+    {
+        return {name: name, err: "Illegal_name"};//名称非法
+    }
+
+
     this.vars[newName] = this.vars[name].clone();
     delete this.vars[name];
 
 
-    return newName;
+    return {name: newName, err: null};
 }
 
 
