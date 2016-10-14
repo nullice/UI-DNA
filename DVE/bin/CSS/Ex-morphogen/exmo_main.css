@@ -349,13 +349,13 @@ i.adobe {
   outline: none; }
   .exmo_range::-webkit-slider-thumb {
     box-shadow: 0 0px 2px rgba(97, 97, 97, 0.97), 0px 3px 5px rgba(0, 0, 0, 0.13);
-    height: 12px;
-    width: 12px;
+    height: 14px;
+    width: 14px;
     border-radius: 10px;
     background: #ffffff;
     cursor: pointer;
     -webkit-appearance: none;
-    margin-top: -4px;
+    margin-top: -6px;
     outline: none; }
     .exmo_range::-webkit-slider-thumb:hover {
       box-shadow: 0 0px 2px rgba(66, 66, 66, 0.97), 0px 4px 5px rgba(0, 0, 0, 0.18); }
