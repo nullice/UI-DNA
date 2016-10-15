@@ -8,8 +8,9 @@ var UI_model = {
 
     msg_bubble: {
         var_panel: {title: "", msg: "", show: false, color: "none"}
-
-
+    },
+    msg_input: {
+        var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}}
     }
 
 
@@ -27,7 +28,7 @@ var UI_action = {
     message_bubble: function (panel, title, msg, color, time)
     {
         var time = time || 0;
-        var color = color ||  "none";
+        var color = color || "none";
 
         UI_model.msg_bubble[panel].show = false;
         UI_model.msg_bubble[panel].title = title;
@@ -39,8 +40,15 @@ var UI_action = {
         {
             UI_model.msg_bubble[panel].show = false;
         }, 1000 * 2.5 + 1000 * ((msg + title).length / 5) + time)
+    },
 
-
+    message_input: function (panel, title, data, callback)
+    {
+        UI_model.msg_input[panel].show = false;
+        UI_model.msg_input[panel].title = title;
+        UI_model.msg_input[panel].data = data;
+        UI_model.msg_input[panel].callback = callback;
+        UI_model.msg_input[panel].show = true;
     }
 
 

@@ -7,6 +7,13 @@
                     v-bind:msg_color="o_msg_bubble.var_panel.color"
         ></bubble-box>
 
+        <input-box
+                v-bind:msg_title="o_msg_input.var_panel.title"
+                v-bind:msg_input_data="o_msg_input.var_panel.data"
+                v-bind:msg_callback="o_msg_input.var_panel.callback"
+        >
+        </input-box>
+
 
         <div class="var_list">
             <div class="var_list_filter">
@@ -115,8 +122,6 @@
 
         }
     }
-
-
 </style>
 
 
@@ -124,6 +129,8 @@
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import EditTextLabel from '../components/EditTextLabel.vue';
     import BubbleBox from '../components/MessageBox/BubbleBox.vue';
+    import InputBox from '../components/MessageBox/InputBox.vue';
+
 
     export default {
         data(){
@@ -131,6 +138,7 @@
 
                 vars: varSystem.vars,
                 o_msg_bubble: UI_model.msg_bubble,
+                o_msg_input: UI_model.msg_input,
                 o_filter_key: "",
                 o_set_func_name: function (newValue)
                 {
@@ -159,6 +167,7 @@
             "value-input": ValueInput,
             "edit-text-label": EditTextLabel,
             "bubble-box": BubbleBox,
+            "input-box":InputBox
 
         },
 

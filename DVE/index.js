@@ -160,3 +160,20 @@ console.log("sss_end")
 //
 // }
 // tests.task_Enzymes()
+
+var data = [{name: "变量名", type: "text"}, {name: "变量值", type: "text"}, {
+    name: "值", type: "select", options: [
+        {text: 'One', value: 'A'},
+        {text: 'Two', value: 'B'},
+        {text: 'Three2222', value: 'C'}
+    ],
+    select:"B"
+},
+    {name:"智能变量", type:"checkbox"}]
+
+var func_ =function (x)
+{
+    console.log(x)    
+}
+
+UI_action.message_input("var_panel", "新建变量",data,func_)

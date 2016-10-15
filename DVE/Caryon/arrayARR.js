@@ -189,7 +189,44 @@ var arrayARR = {
         }
 
         return arr;
+    },
+
+
+    /**
+     * 从对象数组中提取一个对象，根据对象的一个属性值。
+     * arr: [{name:a},{name:b}] getByKey(arr,"name","b") => return {name:b}
+     * @param objectArr
+     * @param key
+     * @param keyValue
+     * @param equalRule
+     * @returns {*}
+     */
+    getByKey: function (objectArr, key, keyValue, equalRule)
+    {
+        for (var i = 0; i < objectArr.length; i++)
+        {
+            if (objectArr[i][key] != undefined)
+            {
+                if (equalRule != undefined)
+                {
+                    if (equalRule(objectArr[i][key], keyValue))
+                    {
+                        return objectArr[i]
+                    }
+
+                } else
+                {
+                    if (objectArr[i][key] == keyValue)
+                    {
+                        return objectArr[i]
+                    }
+                }
+            }
+        }
+
     }
+
+
 }
 
 
