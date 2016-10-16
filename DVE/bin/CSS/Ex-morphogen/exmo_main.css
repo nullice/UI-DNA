@@ -182,10 +182,11 @@ i.adobe {
   .exmo_button_icon:active {
     background: rgba(146, 146, 146, 0.09); }
   .exmo_button_icon.mini {
-    padding: 0px 3px; }
+    padding: 2px 3px;
+    padding-top: 3px; }
     .exmo_button_icon.mini i {
       font-size: 15px;
-      vertical-align: initial; }
+      vertical-align: baseline; }
 
 .exmo_icon_cheackbox {
   opacity: 0.01;

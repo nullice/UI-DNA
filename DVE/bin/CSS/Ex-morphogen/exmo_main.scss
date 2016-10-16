@@ -357,11 +357,11 @@ $color_button_ghost_active: rgba(255, 255, 255, 0.51);
     }
 
     &.mini {
-        padding: 0px 3px;
-
+        padding: 2px 3px;
+        padding-top: 3px;
         i {
             font-size: 15px;
-            vertical-align: initial;
+            vertical-align: baseline;
         }
     }
 

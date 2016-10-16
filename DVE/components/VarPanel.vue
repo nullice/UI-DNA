@@ -8,11 +8,19 @@
         ></bubble-box>
 
         <input-box
+                v-if="o_msg_input.var_panel.show"
                 v-bind:msg_title="o_msg_input.var_panel.title"
                 v-bind:msg_input_data="o_msg_input.var_panel.data"
                 v-bind:msg_callback="o_msg_input.var_panel.callback"
+                v-bind:msg_mode="o_msg_input.var_panel"
         >
         </input-box>
+
+
+        <div class="var_tool">
+            <button class="exmo_button_icon mini"> <i class="icon-add-new"></i></button>
+        </div>
+
 
 
         <div class="var_list">
@@ -40,7 +48,7 @@
 
                 ></edit-text-label>
 
-
+                <button class="exmo_button_icon mini var_delete"> <i class="icon-close"></i></button>
             </div>
         </div>
 
@@ -52,8 +60,8 @@
     .var_item {
         margin: 0 0;
         padding: 0 10px;
+        position: relative;
         /*border: 1px solid rgba(0, 0, 0, 0);*/
-
 
         &:hover {
             background: rgba(0, 0, 0, 0.065);
@@ -98,6 +106,32 @@
         &:not(:nth-last-of-type(1)) {
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
+
+        .var_delete {
+            display: none;
+            position: absolute;
+            top: 0;
+            right: 3px;
+        }
+        &:hover .var_delete
+        {
+            background-color: transparent;
+            display: inline-block;
+
+            &.exmo_button_icon.mini:hover i {
+                font-weight: bold;
+                color: #EC5D5D;
+
+            }
+
+            &.exmo_button_icon:hover {
+                background: rgba(255, 255, 255, 0);
+                border: none;
+                margin-top: 1px;
+                margin-right: 1px;
+            }
+        }
+
     }
 
     .var_list .edit_label {
@@ -147,16 +181,16 @@
                     this.in_value = result.name
                     if (result.err == undefined)
                     {
-                        UI_action.message_bubble("var_panel", "", Lang.from("重命名完成"),"none",-500)
+                        UI_action.message_bubble("var_panel", "", Lang.from("重命名完成"), "none", -500)
                     } else
                     {
                         if (result.err == "repe")
                         {
                             //UI_action.message_bubble("var_panel","","手及水电费撒打发")
-                            UI_action.message_bubble("var_panel", "", Lang.from("名称已存在"),"red")
+                            UI_action.message_bubble("var_panel", "", Lang.from("名称已存在"), "red")
                         } else if (result.err == "Illegal_name")
                         {
-                            UI_action.message_bubble("var_panel", "", Lang.from("变量名称不合法"),"red")
+                            UI_action.message_bubble("var_panel", "", Lang.from("变量名称不合法"), "red")
                         }
                     }
 
@@ -167,7 +201,7 @@
             "value-input": ValueInput,
             "edit-text-label": EditTextLabel,
             "bubble-box": BubbleBox,
-            "input-box":InputBox
+            "input-box": InputBox
 
         },
 

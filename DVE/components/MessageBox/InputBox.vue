@@ -1,6 +1,6 @@
 <template>
-    <div class="message-box-input  animated fadeInDown message-color-{{msg_color}}">
-        <div class="message-window">
+    <div class="message-box-input  message-color-{{msg_color}}">
+        <div class="message-window   animated zoomIn">
             <h2 class="message-title">{{msg_title}}</h2>
 
             <div class="input_item" v-for="item in msg_input_data">
@@ -40,6 +40,7 @@
         left: 0;
 
         .message-window {
+            animation-duration: .3s;
             position: absolute;
             width: 90%;
             background: #F0F0F0;
@@ -80,8 +81,9 @@
 </style>
 <script>
 
+    import ARR  from "../../Caryon/arrayARR.js"
     export default{
-        props: ["msg_input_data", "msg_callback", "msg_title", "msg_color"],
+        props: ["msg_input_data", "msg_callback", "msg_title", "msg_color", "msg_mode"],
         data(){
             return {
                 msg: 'hello vue'
@@ -94,6 +96,10 @@
                 {
                     this.msg_callback(this.msg_input_data)
                 }
+            },
+            cancel: function ()
+            {
+                this.msg_mode.show = false;
             }
 
         },
