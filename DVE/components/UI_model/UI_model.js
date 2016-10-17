@@ -7,7 +7,8 @@
 var UI_model = {
 
     msg_bubble: {
-        var_panel: {title: "", msg: "", show: false, color: "none"}
+        var_panel: {title: "", msg: "", show: false, color: "none"},
+        input_box: {title: "", msg: "", show: false, color: "none"}
     },
     msg_input: {
         var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}}
@@ -48,7 +49,9 @@ var UI_action = {
         UI_model.msg_input[panel].title = title;
         UI_model.msg_input[panel].data = data;
         UI_model.msg_input[panel].callback = callback;
+        UI_model.msg_input[panel]._illegal = false;
         UI_model.msg_input[panel].show = true;
+        
     }
 
 

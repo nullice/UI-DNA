@@ -161,19 +161,44 @@ console.log("sss_end")
 // }
 // tests.task_Enzymes()
 
-var data = [{name: "变量名", type: "text"}, {name: "变量值", type: "text"}, {
-    name: "值", type: "select", options: [
+var data = [
+    {
+        name: "变量名", type: "text", verify: function (x, e)
+    {
+        var result = varSystem.varifyName(x)
+        // console.log(e)
+        if (result.pass == false)
+        {
+            if (result.err == "repe")
+            {
+                UI_action.message_bubble("input_box", "", Lang.from("名称已存在"), "red");
+                e.srcElement.classList.add("illegal_value")
+            } else if (result.err == "Illegal_name")
+            {
+                UI_action.message_bubble("input_box", "", Lang.from("变量名称不合法"), "red");
+                e.srcElement.classList.add("illegal_value")
+            }
+        }
+        else
+        {
+            e.srcElement.classList.remove("illegal_value")
+        }
+    }
+    },
+    {name: "变量值", type: "text"},
+    {
+        name: "值", type: "select", options: [
         {text: 'One', value: 'A'},
         {text: 'Two', value: 'B'},
         {text: 'Three2222', value: 'C'}
     ],
-    select:"B"
-},
-    {name:"智能变量", type:"checkbox"}]
+        select: "B"
+    },
+    {name: "智能变量", type: "checkbox"}]
 
-var func_ =function (x)
+var func_ = function (x)
 {
-    console.log(x)    
+    console.log(x)
 }
 
-UI_action.message_input("var_panel", "新建变量",data,func_)
+UI_action.message_input("var_panel", "新建变量", data, func_)

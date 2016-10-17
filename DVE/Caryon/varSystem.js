@@ -126,7 +126,12 @@ VarSystem.prototype.addVar = function (name, value, type, isFormula)
         return {err: "err: Variable already exists"}
     }
 
-    this.vars[name] = new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false})
+    if(isFormula == undefined)
+    {
+        var isFormula = VarSystem.prototype.isFormula(value);
+    }
+    // this.vars[name] = new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false})
+    Vue.set(this.vars, name,new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false}))
 
 }
 
@@ -148,6 +153,27 @@ VarSystem.prototype.setVar = function (name, value, type, isFormula)
     this.vars[name] = {value: value, type: type || null, isFormula: isFormula || false};
 
 }
+/**
+ * 验证变量名称是否可用
+ * @param newName
+ * @returns {*}
+ */
+VarSystem.prototype.varifyName = function (newName)
+{
+    if (this.vars[newName] != undefined)
+    {
+        return {pass: false, err: "repe"};//存在重复的名称
+    }
+
+    if (VarSystem.prototype.scanVarsInFormula(newName).length <= 0)
+    {
+        return {pass: false, err: "Illegal_name"};//名称非法
+    }
+    
+    return {pass: true, err: null};
+}
+
+
 
 //重命名变量
 VarSystem.prototype.renameVar = function (name, newName)

@@ -1,13 +1,21 @@
 <template>
     <div class="message-box-input  message-color-{{msg_color}}">
-        <div class="message-window   animated zoomIn">
+        <div class="message-window-input   animated zoomIn">
             <h2 class="message-title">{{msg_title}}</h2>
+
+            <bubble-box v-if="o_msg_bubble.input_box.show"
+                        v-bind:msg="o_msg_bubble.input_box.msg"
+                        v-bind:msg_title="o_msg_bubble.input_box.title"
+                        v-bind:msg_color="o_msg_bubble.input_box.color"
+            ></bubble-box>
 
             <div class="input_item" v-for="item in msg_input_data">
                 <span v-if="item.type!='checkbox'">{{item.name}}</span>
                 <input v-if="item.type=='text'" type="text" class="exmo_input_text"
                        placeholder="{{item.placeholder||''}}"
-                       v-model="item.value">
+                       v-model="item.value"
+                       v-on:change="(item.verify!=undefined)?item.verify(item.value,$event):null">
+
                 <select v-if="item.type=='select'" name="select" class="exmo_select" v-model="item.select">
                     <option v-for="option in item.options" v-bind:value="option.value">
                         {{ option.text }}
@@ -38,8 +46,9 @@
         height: 100%;
         top: 0;
         left: 0;
+        z-index: 999;
 
-        .message-window {
+        .message-window-input {
             animation-duration: .3s;
             position: absolute;
             width: 90%;
@@ -57,6 +66,19 @@
                 font-size: 13px;
                 color: rgb(77, 77, 77);
                 margin-bottom: 8px;
+
+                input.illegal_value {
+                    color: #F04D45;
+                    &:focus {
+                        border-bottom: 1px solid #E24F4F;
+                    }
+                }
+                span {
+                    display: inline-block;
+                    min-width: 18%;
+                    text-align: right;
+                    opacity: .75;
+                }
             }
 
             .button_bar {
@@ -70,7 +92,7 @@
             }
 
             .exmo_input_text, .exmo_select {
-                width: inherit;
+                width: 65%;
             }
 
         }
@@ -82,11 +104,13 @@
 <script>
 
     import ARR  from "../../Caryon/arrayARR.js"
+    import BubbleBox from "./BubbleBox.vue"
+
     export default{
-        props: ["msg_input_data", "msg_callback", "msg_title", "msg_color", "msg_mode"],
+        props: ["msg_input_data", "msg_callback", "msg_title", "msg_color", "msg_mode", "msg"],
         data(){
             return {
-                msg: 'hello vue'
+                o_msg_bubble: UI_model.msg_bubble,
             }
         },
         methods: {
@@ -94,7 +118,7 @@
             {
                 if (this.msg_callback != undefined)
                 {
-                    this.msg_callback(this.msg_input_data)
+                    this.msg_callback(this.msg_input_data, this.cancel)
                 }
             },
             cancel: function ()
@@ -103,24 +127,9 @@
             }
 
         },
-        computed: {
-            o_data: {
-                // getter
-                get: function ()
-                {
-
-
-                    return this.firstName + ' ' + this.lastName
-                },
-                // setter
-                set: function (newValue)
-                {
-                    var names = newValue.split(' ')
-                    this.firstName = names[0]
-                    this.lastName = names[names.length - 1]
-                }
-            }
-        },
-        components: {}
+        computed: {},
+        components: {
+            "bubble-box": BubbleBox
+        }
     }
 </script>

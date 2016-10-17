@@ -13,14 +13,14 @@
                 v-bind:msg_input_data="o_msg_input.var_panel.data"
                 v-bind:msg_callback="o_msg_input.var_panel.callback"
                 v-bind:msg_mode="o_msg_input.var_panel"
+                v-bind:msg="o_msg_input.var_panel.msg"
         >
         </input-box>
 
 
         <div class="var_tool">
-            <button class="exmo_button_icon mini"> <i class="icon-add-new"></i></button>
+            <button v-on:click="add_new_var" class="exmo_button_icon mini"><i class="icon-add-new"></i></button>
         </div>
-
 
 
         <div class="var_list">
@@ -48,7 +48,7 @@
 
                 ></edit-text-label>
 
-                <button class="exmo_button_icon mini var_delete"> <i class="icon-close"></i></button>
+                <button class="exmo_button_icon mini var_delete"><i class="icon-close"></i></button>
             </div>
         </div>
 
@@ -113,10 +113,13 @@
             top: 0;
             right: 3px;
         }
-        &:hover .var_delete
-        {
+        &:hover .var_delete {
             background-color: transparent;
             display: inline-block;
+
+            &.exmo_button_icon.mini {
+                padding-top: 4px;
+            }
 
             &.exmo_button_icon.mini:hover i {
                 font-weight: bold;
@@ -155,6 +158,11 @@
         .exmo_input {
 
         }
+    }
+
+    .var_tool {
+        position: absolute;
+        right: 10px;
     }
 </style>
 
@@ -197,6 +205,78 @@
                 },
             }
         },
+
+        methods: {
+            add_new_var: function ()
+            {
+                var data = [{name: "变量名", type: "text", varify: varify_varName}, {name: "值", type: "text"},
+                    {
+                        name: "类型", type: "select", options: [
+                        {text: Lang.from('模板变量'), value: 'template'},
+                        {text: Lang.from('普通变量'), value: 'normal'},
+                        {text: Lang.from('脚本变量'), value: 'script'}
+                    ],
+                        select: "normal"
+                    },]
+
+                var varify_varName = function (x, e)
+                {
+                    var result = varSystem.varifyName(x)
+                    // console.log(e)
+                    if (result.pass == false)
+                    {
+                        if (result.err == "repe")
+                        {
+                            UI_action.message_bubble("input_box", "", Lang.from("名称已存在"), "red");
+                            if (e != undefined)
+                            {
+                                e.srcElement.classList.add("illegal_value")
+                            }
+                            return false;
+                        } else if (result.err == "Illegal_name")
+                        {
+                            UI_action.message_bubble("input_box", "", Lang.from("变量名称不合法"), "red");
+                            if (e != undefined)
+                            {
+                                e.srcElement.classList.add("illegal_value")
+                            }
+                            return false;
+                        }
+                    }
+                    else
+                    {
+                        if (e != undefined)
+                        {
+                            e.srcElement.classList.remove("illegal_value")
+                        }
+                        return true;
+                    }
+                }
+
+
+                var ok_func =function (data, doneFunc)
+                {
+                    if(varify_varName(data[0].value))
+                    {
+                        varSystem.addVar(data[0].value,data[1].value)
+                        if(doneFunc!=undefined)
+                        {
+                            doneFunc();
+                        }
+
+                    }
+                }
+
+                UI_action.message_input("var_panel", "新建变量", data, ok_func)
+            },
+            delete_a_var:function (x)
+            {
+                s
+
+            }
+
+        },
+
         components: {
             "value-input": ValueInput,
             "edit-text-label": EditTextLabel,
