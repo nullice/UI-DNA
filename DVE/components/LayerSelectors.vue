@@ -1,22 +1,17 @@
 <template>
-    <div class="exmo_area">
-        <h2> 选中图层 </h2>
+    <a-area area_title="选中图层" area_id="layer_selectors">
         <div class="mini_info">
-
             <!--<input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked-->
                    <!--v-model:value="enable_assign">-->
             <!--<label class="exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i-->
                     <!--class="icon-layer-visible"></i></label>-->
-
         </div>
 
         <div class="layers_list" >
             <div class="layer-item"  v-for="layer in Gob.selectList"> <span class="id">{{layer.id}}</span> <span class="name">{{layer.name}}</span> <span class="index">{{layer.itemIndex}}</span></div>
 
         </div>
-
-
-    </div>
+    </a-area>
 </template>
 
 <style lang="scss">
@@ -71,6 +66,7 @@
 
 <script>
     import ValueInput from '../components/AttributePanel_valueInput.vue';
+    import Area from '../components/area.vue';
     //import CompA from '../components/A.vue'
 
     export default {
@@ -81,6 +77,7 @@
         },
         components: {
             "value-input": ValueInput,
+            "a-area":Area
         }
     };
 

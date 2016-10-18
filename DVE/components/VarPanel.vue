@@ -1,6 +1,5 @@
 <template>
-    <div class="exmo_area">
-        <h2> 变量列表 </h2>
+    <a-area area_title="变量列表" area_id="var_panel">
         <bubble-box v-if="o_msg_bubble.var_panel.show"
                     v-bind:msg="o_msg_bubble.var_panel.msg"
                     v-bind:msg_title="o_msg_bubble.var_panel.title"
@@ -45,14 +44,14 @@
                         v-bind:in_value.sync="a_var.value"
                         display_class="var_value cell"
                         edit_class="var_value cell"
-
                 ></edit-text-label>
 
-                <button class="exmo_button_icon mini var_delete"><i class="icon-close"></i></button>
+                <button v-on:click="delete_a_var($key)" class="exmo_button_icon mini var_delete"><i
+                        class="icon-close"></i></button>
             </div>
         </div>
 
-    </div>
+    </a-area>
 </template>
 
 <style lang="scss">
@@ -172,6 +171,7 @@
     import EditTextLabel from '../components/EditTextLabel.vue';
     import BubbleBox from '../components/MessageBox/BubbleBox.vue';
     import InputBox from '../components/MessageBox/InputBox.vue';
+    import Area from '../components/area.vue';
 
 
     export default {
@@ -254,12 +254,12 @@
                 }
 
 
-                var ok_func =function (data, doneFunc)
+                var ok_func = function (data, doneFunc)
                 {
-                    if(varify_varName(data[0].value))
+                    if (varify_varName(data[0].value))
                     {
-                        varSystem.addVar(data[0].value,data[1].value)
-                        if(doneFunc!=undefined)
+                        varSystem.addVar(data[0].value, data[1].value)
+                        if (doneFunc != undefined)
                         {
                             doneFunc();
                         }
@@ -269,9 +269,35 @@
 
                 UI_action.message_input("var_panel", "新建变量", data, ok_func)
             },
-            delete_a_var:function (x)
+            delete_a_var: function (name)
             {
-                s
+                if (varSystem.vars[name] != undefined)
+                {
+                    var data = []
+
+
+                    var ok_func = function (data, doneFunc)
+                    {
+                        varSystem.removeVar(name)
+                        if (doneFunc != undefined)
+                        {
+                            doneFunc();
+                        }
+                    }
+
+                    if (varSystem.vars[name].relatives.length > 0)
+                    {
+                        var text = `这些变量引用了 ${name}：<p class="p_var_list">${varSystem.vars[name].relatives.toString()}</p>如果删除  ${name} 会使这些变量无效 <p>确认要删除 ${name} ？</p>`
+//                        var text = "这些变量引用了" + name+varSystem.vars[name].relatives.toString()+"如果删除" +name+"会使这些变量无效"
+                        UI_action.message_input("var_panel", "删除变量 " + name, data, ok_func, text)
+                    } else
+                    {
+                        UI_action.message_input("var_panel", "删除变量 " + name, data, ok_func, `确认要删除 ${name} ？`)
+                    }
+
+
+                }
+
 
             }
 
@@ -281,8 +307,8 @@
             "value-input": ValueInput,
             "edit-text-label": EditTextLabel,
             "bubble-box": BubbleBox,
-            "input-box": InputBox
-
+            "input-box": InputBox,
+            "a-area": Area
         },
 
     };

@@ -2,6 +2,7 @@
     <div class="message-box-input  message-color-{{msg_color}}">
         <div class="message-window-input   animated zoomIn">
             <h2 class="message-title">{{msg_title}}</h2>
+            <div class="message-msg">{{{msg}}}</div>
 
             <bubble-box v-if="o_msg_bubble.input_box.show"
                         v-bind:msg="o_msg_bubble.input_box.msg"
@@ -62,6 +63,16 @@
             top: 20%;
             margin: auto;
 
+
+            .message-msg {
+                font-size: 13px;
+                color: #3A3A3A;
+                p.p_var_list
+                {
+                    color: #4268DD;
+                    padding-left: 16px;
+                }
+            }
             .input_item {
                 font-size: 13px;
                 color: rgb(77, 77, 77);

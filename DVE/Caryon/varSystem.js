@@ -19,7 +19,7 @@ var VarType = function (value, name, type, isFormula, relatives)
     //----赋予 value getter，用来在设置值时可以更新依赖表 relatives
     this._value = null;
     this.value = null;
-    Object.defineProperty(this, value,
+    Object.defineProperty(this, "value",
         {
             get: function ()
             {
@@ -27,6 +27,7 @@ var VarType = function (value, name, type, isFormula, relatives)
             },
             set: function (x)
             {
+                console.log(x)
                 this.updateRelatives(x);
                 this._value = x;
                 this.isFormula = VarSystem.prototype.isFormula(x);
@@ -37,18 +38,22 @@ var VarType = function (value, name, type, isFormula, relatives)
 
     if (value instanceof Object && arguments.length == 1)
     {
+        this.name = value.name;
+        // this.updateRelatives(value.value);
         this.value = value.value;
         this.type = value.type;
-        this.name = value.name;
         this.isFormula = value.isFormula;
         this.relatives = value.relatives;
+
     } else
     {
+        this.name = name;
+        // this.updateRelatives(value);
         this.value = value;
         this.type = type;
-        this.name = name;
         this.isFormula = isFormula;
         this.relatives = relatives;
+
     }
 
 
@@ -57,23 +62,28 @@ var VarType = function (value, name, type, isFormula, relatives)
 
 VarType.prototype.updateRelatives = function (newFormula)
 {
-    var oldRelatives = VarSystem.prototype.scanVarsInFormula(this._value);
-    var newRelatives = VarSystem.prototype.scanVarsInFormula(newFormula);
-
-
-    var removeArr = ARR.difference(oldRelatives, newRelatives);
-
-    for (var i = 0; i < removeArr.length; i++)
+    var oldRelatives = VarSystem.prototype.scanVarsInFormula(this._value, true);
+    var newRelatives = VarSystem.prototype.scanVarsInFormula(newFormula, true);
+    console.log("1111111111111111111111");
+    console.log(this._value, oldRelatives, newFormula, newRelatives)
+    console.log(window.varSystem != undefined);
+    console.log("22222222222222222");
+    if (window.varSystem != undefined)
     {
-        ARR.remove(varSystem.vars[removeArr[i]].relatives, this.name, true)
+        var removeArr = ARR.difference(oldRelatives, newRelatives);
+        for (var i = 0; i < removeArr.length; i++)
+        {
+            ARR.remove(varSystem.vars[removeArr[i]].relatives, this.name, true)
+        }
+
+        var addArr = ARR.difference(newRelatives, oldRelatives);
+        for (var i = 0; i < addArr.length; i++)
+        {
+            varSystem.vars[addArr[i]].relatives.push(this.name)
+        }
+
     }
 
-    var addArr = ARR.difference(newRelatives, oldRelatives);
-
-    for (var i = 0; i < addArr.length; i++)
-    {
-        varSystem.vars[addArr[i]].relatives.push(this.name)
-    }
 }
 
 
@@ -126,12 +136,12 @@ VarSystem.prototype.addVar = function (name, value, type, isFormula)
         return {err: "err: Variable already exists"}
     }
 
-    if(isFormula == undefined)
+    if (isFormula == undefined)
     {
         var isFormula = VarSystem.prototype.isFormula(value);
     }
     // this.vars[name] = new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false})
-    Vue.set(this.vars, name,new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false}))
+    Vue.set(this.vars, name, new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false}))
 
 }
 
@@ -141,7 +151,9 @@ VarSystem.prototype.removeVar = function (name)
 
     var relatives = this.vars[name].relatives;
 
-    delete this.vars[name];
+    // delete this.vars[name];
+
+    Vue.delete(this.vars, name)
 
     return relatives;
 }
@@ -169,10 +181,9 @@ VarSystem.prototype.varifyName = function (newName)
     {
         return {pass: false, err: "Illegal_name"};//名称非法
     }
-    
+
     return {pass: true, err: null};
 }
-
 
 
 //重命名变量
@@ -258,7 +269,7 @@ VarSystem.prototype.isFormula = function (varValue)
  * 提取公式中的变量
  * @param formula
  */
-VarSystem.prototype.scanVarsInFormula = function (formula)
+VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 {
 
     // CJK统一汉字的20902汉字	0x4E00-0x9FA5
@@ -273,13 +284,23 @@ VarSystem.prototype.scanVarsInFormula = function (formula)
     var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
     var varList = [];
     var resullt;
+
+    if (formula == undefined)
+    {
+        return varList;
+    }
     while ((resullt = re.exec(formula)) !== null)
     {
-        varList.push({name: resullt[0], index: resullt.index})
+        if (flat == true)
+        {
+            varList.push(resullt[0]);
+        } else
+        {
+            varList.push({name: resullt[0], index: resullt.index})
+        }
     }
 
     return varList;
-
 }
 
 

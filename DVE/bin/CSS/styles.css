@@ -8,3 +8,25 @@ h3 {
     font-size: 12px;
     color: rgba(0, 0, 0, 0.38);
 }
+
+
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.2);
+}
+
+
