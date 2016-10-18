@@ -5,7 +5,7 @@
             <input v-model="o_fixed_height" type="checkbox" class="exmo_icon_cheackbox " id="check_btn_{{area_id}}_1"
                    autocomplete="off">
             <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1"><i
-                    class="icon-layer-visible"></i></label>
+                    class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i></label>
         </div>
 
         <slot></slot>
@@ -118,9 +118,24 @@
         top: 9px;
         right: 10px;
 
+
         .exmo_button_icon i {
             color: #ABABAB;
+
+            font-size: 11px;
         }
+
+        .exmo_icon_cheackbox:checked + .exmo_button_icon {
+            border: none;
+            background: rgba(80, 80, 80, 0.09);
+            margin-right: -2px;
+        }
+        .exmo_button_icon.mini {
+            padding: 0 4px;
+            padding-bottom: 2px;
+        }
+
+
 
     }
 </style>
