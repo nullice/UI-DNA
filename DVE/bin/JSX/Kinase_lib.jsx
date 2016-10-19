@@ -24,6 +24,56 @@ var Kinase = function ()
 }
 
 
+Kinase.prototype.document = {};
+// Kinase.document
+// 文档相关功能 ----------------------------------------------
+
+/**
+ *  获取当前文档详细信息对象
+ * @returns {{}}
+ */
+Kinase.prototype.document.getDocumentInfoObject_byActive = function ()
+{
+    var ref = new ActionReference();
+    ref.putEnumerated(charIDToTypeID('Dcmn'), charIDToTypeID('Ordn'), charIDToTypeID('Trgt'));
+    var ad = executeActionGet(ref);
+    var ob = mu.actionDescriptorToObject(ad);
+    return ob;
+}
+
+/**
+ * 是否存在画板。
+ * @param returnArtBoard 为真返回值会是个对象，会包含最先找到的画板 id：{hasArtBoard: true, aArtBoardId: id}
+ * @returns {*}
+ */
+Kinase.prototype.document.hasArtBoard = function (returnArtBoard)
+{
+
+    for (var i = 0; i < activeDocument.layers.length; i++)
+    {
+        if (Kinase.prototype.layer.isArtBoard(Kinase.REF_LayerID, activeDocument.layers[i].id))
+        {
+            if (returnArtBoard)
+            {
+                return {hasArtBoard: true, aArtBoardId: activeDocument.layers[i].id}
+            } else
+            {
+                return true
+            }
+
+        }
+    }
+
+    if (returnArtBoard)
+    {
+        return {hasArtBoard: false, aArtBoardId: null}
+    } else
+    {
+        return false;
+    }
+}
+
+
 Kinase.prototype.layer = {};
 
 // Kinase.layer
@@ -4706,8 +4756,10 @@ Kinase.prototype.layer.creatNewColorSampler = function (x, y)
 
 
 // END===========================[拾色器]========================
+
+
 /**
- * 判断图层是否是图层组
+ * 判断图层是否是图层组.
  * @param targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {boolean}
@@ -4717,6 +4769,24 @@ Kinase.prototype.layer.isLayerSet = function (targetReference, target)
     var layerSection = ki.layer.get_XXX_Objcet(targetReference, target, "layerSection").layerSection.value.enumerationValue;
 
     if (layerSection == "layerSectionStart")
+    {
+        return true;
+    } else
+    {
+        return false;
+    }
+}
+/**
+ * 判断图层是否是画板
+ * @param targetReference
+ * @param target
+ * @returns {boolean}
+ */
+Kinase.prototype.layer.isArtBoard = function (targetReference, target)
+{
+    var artBoard_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled", "Lyr ");
+
+    if (artBoard_raw.artboardEnabled.value == true)
     {
         return true;
     } else
@@ -4790,6 +4860,8 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
 
     var w = w || 100;
     var h = h || 50;
+
+    var itemIndex = ki.layer.getItemIndexBylayerID(ki.layer.getLayerIdByActive())
 
     var adOb = {
         "null": {
@@ -5130,6 +5202,8 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
         desc2569.putObject(idT, idTxtS, desc2570);
         executeAction(idsetd, desc2569, DialogModes.NO);
     }
+    
+    ki.layer.moveActiveLayerOrder(itemIndex)
 }
 
 
@@ -5182,7 +5256,6 @@ Kinase.prototype.layer.deleteLayer_ByActive = function ()
 
 
 /*移动图层排序*/
-
 Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
 {
 

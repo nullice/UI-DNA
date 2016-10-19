@@ -377,9 +377,9 @@ EnzJSX.ArrayRemove = function (array, removeArray)
 
 EnzJSX.writeJSON = function (rootName, itemName, json)
 {
-    app.activeDocument.suspendHistory(lang("#更新数据"), "_func()");
+     app.activeDocument.suspendHistory(lang("#更新数据"), "_func()");
     // alert ("writeJSON")
-
+    // _func()
     function _func()
     {
         var select0 = EnzJSX.selectSave(true);
@@ -389,7 +389,10 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist(rootName, "name", false, true);
         if (re == undefined)
         {
+
+
             ki.layer.selectLayer_byItemIndex(Kinase.upperIndex());
+
             ki.layer.creatNewLayerSet_ByActive(rootName)
             ki.layer.setAppearance_byActive({
                 fillOpacity: 50, /*填充不透明度 0-255*/
@@ -398,6 +401,17 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
             })
             rootId = ki.layer.getLayerIdByActive();
             isOpen = true;
+
+            var result = ki.document.hasArtBoard(true)
+            if (result.hasArtBoard)
+            {
+                ki.layer.moveActiveLayerOrder(ki.layer.getItemIndexBylayerID(result.aArtBoardId) - 1)
+                ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(result.aArtBoardId) - 1);
+
+            }
+            // ki.layer.getItemIndexBylayerID(result.aArtBoardId)
+
+
         } else
         {
             rootId = re[0].id;
@@ -408,15 +422,19 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist("_ui-dna.nullice.com_", "name", false, true);
         if (re == undefined)
         {
-            ki.layer.selectLayer_byID(rootId)
+
+
             ki.layer.creatNewTextLayer_ByActive("_ui-dna.nullice.com_", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
+            // ki.layer.moveActiveLayerOrder(ki.layer.getItemIndexBylayerID(rootId))
             ki.layer.setAppearance_byActive({
                 fillOpacity: 100, /*填充不透明度 0-255*/
                 opacity: 100, /*不透明 0-255*/
                 visible: false, /*可视*/
             })
+            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
         }
         //图层-------------------------------------------------------
+
         var re = EnzJSX.checkLayerExist(itemName, "name", false, true);
 
 
@@ -432,7 +450,6 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         {
             ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId) - 1)
             ki.layer.creatNewTextLayer_ByActive(itemName, 50, 100, json)
-
             ki.layer.setAppearance_byActive({
                 fillOpacity: 50, /*填充不透明度 0-255*/
                 opacity: 50, /*不透明 0-255*/
@@ -448,7 +465,12 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
                     opacity: 50, /*不透明 0-255*/
                     visible: false, /*可视*/
                 })
+                ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
+
                 ki.layer.closeLayerSet_byActive()
+                ki.layer.moveActiveLayerOrder(Kinase.upperIndex())
+
+
             }
             EnzJSX.selectLoad(select0);
         } else

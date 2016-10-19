@@ -9,7 +9,8 @@
 // nullice.com
 // license: LGPL
 
-// $.evalFile("C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/com.nullice.pschen.fonTags/jsx/json2.js");
+//todo:仅测试时用：
+ $.evalFile("C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/com.nullice.pschen.fonTags/jsx/json2.js");
 
 /**
  *
