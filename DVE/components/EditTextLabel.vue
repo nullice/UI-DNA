@@ -30,7 +30,7 @@
                 {
                     for (var i = 0; i < e.length; i++)
                     {
-                        console.log(e[i] + ":"+e[i].classList[0])
+//                        console.log(e[i] + ":"+e[i].classList[0])
                         if(e[i].classList[0]&&e[i].classList[0]=="edit_label")
                         {
 

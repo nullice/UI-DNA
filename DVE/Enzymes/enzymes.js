@@ -264,16 +264,17 @@ Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
 /**
  * 设置图层位置、尺寸信息。
  * @param boundsInfo {x:新的 X 坐标, y：新的 Y 坐标, w：新的宽度, h：新的高度，centerState：锚点位置（默认左上角，8为中心）}
+ * @param doSelect 设置前是否先选中指定图层。当确定当前图层就是指定图层时可设为 false 加快速度。
  * @returns {Promise}
  */
-Enzymes.prototype.setLayerInfo_position_byId = async function (boundsInfo, layerID)
+Enzymes.prototype.setLayerInfo_position_byId = async function (boundsInfo, layerID, doSelect)
 {
     return new Promise(function (resolve, reject)
         {
-
+            var doSelect = doSelect || false;
             var obJson = JSON.stringify(boundsInfo)
             evalScript(
-                `EnzJSX.setLayerInfo_position_byId(${obJson} ,${layerID})`,
+                `EnzJSX.setLayerInfo_position_byId(${obJson} ,${layerID},${doSelect} )`,
                 (r)=> {resolve(r)})
         }
     )

@@ -117,7 +117,7 @@ var mainVue = new Vue({
         "attr-panel": AttrPanel,
         "layers-panel": LayerSelectors,
         "var-panel": VarPanel,
-        "expression-panel":ExpressionPanel
+        "expression-panel": ExpressionPanel
     }
 })
 
@@ -136,7 +136,16 @@ async function doAsync()
     })
 }
 
-
+window.sleep = async function (ms)
+{
+    return new Promise(function (resolve, reject)
+    {
+        setTimeout(()=>
+        {
+            resolve()
+        }, ms)
+    })
+}
 async function asyncTask()
 {
 

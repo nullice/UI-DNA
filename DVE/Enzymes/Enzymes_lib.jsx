@@ -525,9 +525,12 @@ EnzJSX.getLayerInfo_position_byId = function (id)
 }
 
 
-EnzJSX.setLayerInfo_position_byId = function (boundsInfo ,id)
+EnzJSX.setLayerInfo_position_byId = function (boundsInfo ,id, doSelect)
 {
-    
+    if(doSelect)
+    {
+        ki.layer.selectLayer_byID(id)
+    }
     return ki.layer.setLayerBounds(boundsInfo , Kinase.REF_LayerID, id)
 }
 

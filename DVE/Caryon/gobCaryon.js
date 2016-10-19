@@ -1,13 +1,14 @@
 /**
  * Created by bgllj on 2016/9/7.
  */
-
-
+import ARR from "./arrayARR.js"
 
 
 var GobCaryon = function ()
 {
     this.nowSwitching = false;//是否在切换选中图层中
+    this.disableSelectEvent = false;//不触发选择图层事件
+
 
     this.selectList = [{id: 999}];
     this.position = {
@@ -19,28 +20,23 @@ var GobCaryon = function ()
         enableAssigns: {x: null, y: null, w: null, h: null}
     };
 
+    //------------注册 getter 和 setter
     var root = this;
     giveSetter(this.position, ["position"], 1);
-
-
     function giveSetter(object, names, index)
     {
-        // alert("giveSetter" + index +"\n" +names +"\n"+names[index])
         for (var z in object)
         {
             if (z[0] == "_")
             {
                 continue;
             }
-            // alert(":" + z + ":" + JSON.stringify(object[z]))
-
             var isObject
             if (object[z] == undefined)
             {
                 isObject = false;
             } else
             {
-
                 if (object[z].constructor == Object)
                 {
                     isObject = true;
@@ -51,13 +47,11 @@ var GobCaryon = function ()
                 }
             }
 
-
             if (isObject)
             {
                 giveSetter(object[z], names.concat(z), index + 1);
             } else
             {
-                // alert("defineProperty:" + objectName + ":" + z)
                 Object.defineProperty(object, z, _doSET(z, names.concat(z), object[z], root));
             }
         }
@@ -75,7 +69,6 @@ var GobCaryon = function ()
             return ob;
         }
 
-
     }
 
     // setData(dataCaryon.layers[id][objectName], names, 0, x)
@@ -83,27 +76,41 @@ var GobCaryon = function ()
 }
 
 
-GobCaryon.prototype._setData = function (names, value)
+GobCaryon.prototype._setData = async function (names, value)
 {
+    // console.log("_setData()----------------")
+    // console.log(names, value)
+
 
     var isFormula = false;
 
-    var change = _valueToObject(this, names, 0, value, true); //值写入 _XXX;
+    //-------- 1. 值写入实际存储的属性 this._XXX;
+    var change = _valueToObject(this, names, 0, value, true);
 
 
+    //-------- 2. 判断是否应该写入 dataCaryon ;
     if (value === "")//删除
     {
-
+        isFormula = true;
     } else
     {
-        if (varSystem.isFormula(value) == true || value == Gob.MULT) //只写入公式变量
+        if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
         {
             isFormula = true;
         }
     }
 
+    //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
 
-    for (var i = 0; i < this.selectList.length; i++)//每个选中图层写入 dataCaryon，
+
+    var rendered = false;
+    if (this.selectList.length > 1)
+    {
+        var save = await enzymes.selectSave();
+    }
+
+
+    for (var i = 0; i < this.selectList.length; i++)
     {
         var change_i = false;
         if (isFormula)
@@ -117,17 +124,36 @@ GobCaryon.prototype._setData = function (names, value)
         //即时修改------------
         // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
 
+        console.log(change_i,change,isFormula)
         if (this.nowSwitching == false)
         {
-            if (change_i || ((isFormula == false) & change))
+            if(value!=Gob.MULT)
             {
-                console.log("renderPatch")
-                renderCaryon.renderPatch(this.selectList[i].id, names, value)
-                console.log("END_renderPatch")
+                if (change_i || ((isFormula == false) & change))
+                {
+                    console.log("【renderPatch】-----------------" + names +"=>"+value)
+                    console.log(this.selectList[i].id, names, value)
+                    rendered = true;
+                    await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
+                    await  sleep(800)
+                    console.log("【END】renderPatch-------------------------")
+                }
             }
         }
     }
 
+
+    if (this.selectList.length > 1)
+    {
+        if (rendered)
+        {
+            var save2 = await enzymes.selectSave();
+            if (ARR.difference(save, save2).length != 0)
+            {
+                await enzymes.selectLoad(save);
+            }
+        }
+    }
 
     // alert("set:" + names + "=" + value)
 
@@ -165,6 +191,11 @@ GobCaryon.prototype._getData = function (names)
  */
 GobCaryon.prototype.updateSelect = async function ()
 {
+    if (this.disableSelectEvent)
+    {
+        return;
+    }
+
     this.nowSwitching = true;
     this.selectList = (await enzymes.getSelectLayerArray()).reverse();
     this.updateGob();
@@ -178,6 +209,8 @@ GobCaryon.prototype.updateSelect = async function ()
  */
 GobCaryon.prototype.updateGob = async function ()
 {
+
+    //----------1. 要拉取的数据：
     var temp = {};
     temp.position = new_position();
 
@@ -193,12 +226,11 @@ GobCaryon.prototype.updateGob = async function ()
         }
     }
 
-
+    //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
     {
         //[position]---------------------------------------------------------------
         var item_position = new_position();
-
         var position = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
         item_position.x = position.x
         item_position.y = position.y
@@ -239,6 +271,9 @@ GobCaryon.prototype.updateGob = async function ()
     }
 
 
+    /**
+     * 从 dataCaryon 拉取数据
+     */
     function _fromDataCaryon(layerData, object, objectName)
     {//layerData : dataCaryon.layers[layerId]
 
@@ -261,12 +296,10 @@ GobCaryon.prototype.updateGob = async function ()
 
             } else
             {
-
                 if (layerData[objectName] != undefined)
                 {
                     if (layerData[objectName][x] != undefined)
                     {
-
                         if (object[x] != Gob.MULT)
                         {
                             object[x] = layerData[objectName][x];

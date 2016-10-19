@@ -20,17 +20,14 @@ var EventCaryon = function ()
 
     EventCaryon.prototype.initEvent();
 
-
     return this;
 }
 
-
+/**
+ * 初始化事件
+ */
 EventCaryon.prototype.initEvent = async function ()
 {
-
-
-
-
    var func_updateSelect =  {func: Gob.updateSelect, inThis: Gob, agrs: null}
 
     //选中事件-----------------------------

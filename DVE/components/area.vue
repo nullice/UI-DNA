@@ -46,7 +46,6 @@
         methods: {
             drag_heigth: function (e)
             {
-              console.log(e.screenY, e)
                 this.o_height += e.screenY - this.o_last_offset;
                 this.o_style_css.height = this.o_height + "px";
                 this.o_last_offset = e.screenY;
@@ -54,7 +53,6 @@
             drag_heigth_start: function (e)
             {
 
-                console.log("start", e.screenY, e)
                 this.o_last_offset = e.screenY;
                 this.o_dragging = true
 //                this.o_dragging=false
@@ -113,11 +111,17 @@
 
     }
 
+    .exmo_area:hover .area_tool
+    {
+        display: block;
+    }
+
+
     .area_tool {
         position: absolute;
         top: 9px;
         right: 10px;
-
+        display: none;
 
         .exmo_button_icon i {
             color: #ABABAB;

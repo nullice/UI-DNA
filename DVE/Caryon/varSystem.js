@@ -64,10 +64,10 @@ VarType.prototype.updateRelatives = function (newFormula)
 {
     var oldRelatives = VarSystem.prototype.scanVarsInFormula(this._value, true);
     var newRelatives = VarSystem.prototype.scanVarsInFormula(newFormula, true);
-    console.log("1111111111111111111111");
-    console.log(this._value, oldRelatives, newFormula, newRelatives)
-    console.log(window.varSystem != undefined);
-    console.log("22222222222222222");
+    // console.log("1111111111111111111111");
+    // console.log(this._value, oldRelatives, newFormula, newRelatives)
+    // console.log(window.varSystem != undefined);
+    // console.log("22222222222222222");
     if (window.varSystem != undefined)
     {
         var removeArr = ARR.difference(oldRelatives, newRelatives);

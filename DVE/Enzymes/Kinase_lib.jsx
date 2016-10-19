@@ -271,9 +271,10 @@ Kinase.prototype.layer.getAllLayerList = function ()
         for (var i = 0; i < layers.length; i++)
         {
             layerList.push({
-                id:layers[i].id,
-                name:layers[i].name,
-                itemIndex:layers[i].itemIndex});
+                id: layers[i].id,
+                name: layers[i].name,
+                itemIndex: layers[i].itemIndex
+            });
 
             if (layers[i].typename != "ArtLayer")
             {
@@ -284,12 +285,6 @@ Kinase.prototype.layer.getAllLayerList = function ()
 
     return layerList;
 }
-
-
-
-
-
-
 
 
 // 形状图层设置 =============================================================================
@@ -1984,7 +1979,7 @@ Kinase.prototype.layer.setLayerBounds_byActive = function (boundsInfo)
  * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  */
-Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, target)
+Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, target, doVerify)
 {
     // {x: null, y: null, w: null, h: null,centerStatea,}
     var oldradianInfo = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
@@ -2086,6 +2081,22 @@ Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, t
 
     // log(json(adOb))
     mu.executeActionObjcet(charIDToTypeID("Trnf"), adOb);
+
+
+    if (doVerify)
+    {
+        var oldradianInfo2 = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
+        if (boundsInfo.x != oldradianInfo2.x ||
+            boundsInfo.y != oldradianInfo2.y ||
+            boundsInfo.h != oldradianInfo2.h ||
+            boundsInfo.w != oldradianInfo2.w
+        )
+        {
+            Kinase.prototype.layer.setLayerBounds(boundsInfo, targetReference, target)
+        }
+
+    }
+
 }
 
 
@@ -5076,7 +5087,7 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
         }
     }
     mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
-    if(english==true)
+    if (english == true)
     {
         _setEnglish();
     }
@@ -5093,31 +5104,31 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
 
     function _setEnglish()
     {
-        var idsetd = charIDToTypeID( "setd" );
+        var idsetd = charIDToTypeID("setd");
         var desc2569 = new ActionDescriptor();
-        var idnull = charIDToTypeID( "null" );
+        var idnull = charIDToTypeID("null");
         var ref412 = new ActionReference();
-        var idPrpr = charIDToTypeID( "Prpr" );
-        var idTxtS = charIDToTypeID( "TxtS" );
-        ref412.putProperty( idPrpr, idTxtS );
-        var idTxLr = charIDToTypeID( "TxLr" );
-        var idOrdn = charIDToTypeID( "Ordn" );
-        var idTrgt = charIDToTypeID( "Trgt" );
-        ref412.putEnumerated( idTxLr, idOrdn, idTrgt );
-        desc2569.putReference( idnull, ref412 );
-        var idT = charIDToTypeID( "T   " );
+        var idPrpr = charIDToTypeID("Prpr");
+        var idTxtS = charIDToTypeID("TxtS");
+        ref412.putProperty(idPrpr, idTxtS);
+        var idTxLr = charIDToTypeID("TxLr");
+        var idOrdn = charIDToTypeID("Ordn");
+        var idTrgt = charIDToTypeID("Trgt");
+        ref412.putEnumerated(idTxLr, idOrdn, idTrgt);
+        desc2569.putReference(idnull, ref412);
+        var idT = charIDToTypeID("T   ");
         var desc2570 = new ActionDescriptor();
-        var idtextOverrideFeatureName = stringIDToTypeID( "textOverrideFeatureName" );
-        desc2570.putInteger( idtextOverrideFeatureName, 808466225 );
-        var idtypeStyleOperationType = stringIDToTypeID( "typeStyleOperationType" );
-        desc2570.putInteger( idtypeStyleOperationType, 3 );
-        var idtextLanguage = stringIDToTypeID( "textLanguage" );
-        var idtextLanguage = stringIDToTypeID( "textLanguage" );
-        var idenglishLanguage = stringIDToTypeID( "englishLanguage" );
-        desc2570.putEnumerated( idtextLanguage, idtextLanguage, idenglishLanguage );
-        var idTxtS = charIDToTypeID( "TxtS" );
-        desc2569.putObject( idT, idTxtS, desc2570 );
-        executeAction( idsetd, desc2569, DialogModes.NO );
+        var idtextOverrideFeatureName = stringIDToTypeID("textOverrideFeatureName");
+        desc2570.putInteger(idtextOverrideFeatureName, 808466225);
+        var idtypeStyleOperationType = stringIDToTypeID("typeStyleOperationType");
+        desc2570.putInteger(idtypeStyleOperationType, 3);
+        var idtextLanguage = stringIDToTypeID("textLanguage");
+        var idtextLanguage = stringIDToTypeID("textLanguage");
+        var idenglishLanguage = stringIDToTypeID("englishLanguage");
+        desc2570.putEnumerated(idtextLanguage, idtextLanguage, idenglishLanguage);
+        var idTxtS = charIDToTypeID("TxtS");
+        desc2569.putObject(idT, idTxtS, desc2570);
+        executeAction(idsetd, desc2569, DialogModes.NO);
     }
 }
 
@@ -5533,7 +5544,7 @@ Kinase.prototype.layer.getChildLayerID_byItemIndex = function (itemIndex, getLay
                 ids.push(childs[i].id)
             }
         }
-            return ids;
+        return ids;
     }
     else
     {
@@ -5551,7 +5562,7 @@ Kinase.prototype.layer.getChildLayerID_byItemIndex = function (itemIndex, getLay
  */
 Kinase.prototype.layer.getChildLayerList_byItemIndex = function (itemIndex)
 {
-   return Kinase.prototype.layer.getChildLayerID_byItemIndex  (itemIndex, true);
+    return Kinase.prototype.layer.getChildLayerID_byItemIndex(itemIndex, true);
 }
 
 
