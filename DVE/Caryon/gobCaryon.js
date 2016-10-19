@@ -135,7 +135,7 @@ GobCaryon.prototype._setData = async function (names, value)
                     console.log(this.selectList[i].id, names, value)
                     rendered = true;
                     await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
-                    await  sleep(800)
+                    // await  sleep(800)
                     console.log("【END】renderPatch-------------------------")
                 }
             }
