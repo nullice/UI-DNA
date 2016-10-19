@@ -324,10 +324,10 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
  */
 Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
 {
-    json = Enzymes.prototype._escape(json);
+   
     return new Promise(function (resolve, reject)
     {
-
+        json = Enzymes.prototype._escape(json);
         // console.log( `EnzJSX.writeJSON("${rootName}", "${itemName}",'${json}')`)
         evalScript(
             `EnzJSX.writeJSON("${rootName}", "${itemName}",'${json}')`

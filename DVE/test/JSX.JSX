@@ -4,7 +4,9 @@ $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Enzymes/Enzymes_lib.jsx")
 
 
 //json(ki.layer.getLayerBounds(Kinase.REF_ActiveLayer, null))
-EnzJSX.getLayerInfo_position_byId(999)
+
 
 //log(json(ki.layer.getLayerInfoObject_byActiveLayer()))
-//logSave()
+//logSave()Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
+
+Kinase.prototype.layer.creatNewTextLayer_ByActive  ("dddd", 111,111, "sdsdfdsf", true)

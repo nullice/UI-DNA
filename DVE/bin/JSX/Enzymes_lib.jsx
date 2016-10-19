@@ -382,7 +382,6 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
     function _func()
     {
-
         var select0 = EnzJSX.selectSave(true);
         var rootId = 0;
         var isOpen = false;
@@ -409,6 +408,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist("_ui-dna.nullice.com_", "name", false, true);
         if (re == undefined)
         {
+            ki.layer.selectLayer_byID(rootId)
             ki.layer.creatNewTextLayer_ByActive("_ui-dna.nullice.com_", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
             ki.layer.setAppearance_byActive({
                 fillOpacity: 100, /*填充不透明度 0-255*/
