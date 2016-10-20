@@ -20,9 +20,9 @@ var GobCaryon = function ()
                 this.__asyncSetCounter = x;
                 if (x == 0 && this._asyncSetSwitch)
                 {
-                    console.log("this.nowSwitching = false;")
-                    this.nowSwitching = false;
-                    this._asyncSetSwitch = false;
+                    // console.log("【this.nowSwitching = false】")
+                    // this.nowSwitching = false;
+                    // this._asyncSetSwitch = false;
                 }
             },
             get: function ()
@@ -105,7 +105,6 @@ GobCaryon.prototype._setData = async function (names, value)
     // console.log(names, value)
 
 
-
     var isFormula = false;
 
     //-------- 1. 值写入实际存储的属性 this._XXX;
@@ -149,18 +148,20 @@ GobCaryon.prototype._setData = async function (names, value)
         // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
 
         console.log(change_i, change, isFormula)
+
+        console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
         if (this.nowSwitching == false)
         {
             if (value != Gob.MULT)
             {
                 if (change_i || ((isFormula == false) & change))
                 {
-                    console.log("【renderPatch】-----------------" + names + "=>" + value)
+                    console.log("【START】renderPatch--------" + names + "=>" + value)
                     console.log(this.selectList[i].id, names, value)
                     rendered = true;
                     await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
                     // await  sleep(800)
-                    console.log("【END】renderPatch-------------------------")
+                    console.log("【END】renderPatch------" + names + "=>" + value)
                 }
             }
         }
@@ -180,6 +181,13 @@ GobCaryon.prototype._setData = async function (names, value)
     }
     console.log("[--]" + names, "   " + Gob._asyncSetCounter)
     Gob._asyncSetCounter--;
+    if (Gob._asyncSetCounter == 0 && Gob._asyncSetSwitch)
+    {
+        console.log("【this.nowSwitching = false】")
+        console.log("--------" + names + "=>" + value)
+        Gob.nowSwitching = false;
+        Gob._asyncSetSwitch = false;
+    }
 
     // alert("set:" + names + "=" + value)
 
@@ -223,7 +231,7 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
     this.nowSwitching = true;
-    console.log("this.nowSwitching = true;")
+    console.log("【this.nowSwitching = true】")
     this.selectList = (await enzymes.getSelectLayerArray()).reverse();
     this.updateGob();
 
@@ -380,7 +388,7 @@ GobCaryon.prototype.updateGob = async function ()
         {
             if (object[x] != undefined && object[x].constructor == Object)
             {
-                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull)
+                _objectToObject_asyncSetCounter(object[x], sameObject[x], checkMUTI, ignoreNull,asyncCounter)
             } else
             {
                 if (asyncCounter)
@@ -388,13 +396,18 @@ GobCaryon.prototype.updateGob = async function ()
                     if (sameObject[x] != object[x])
                     {
                         _temp++;
-                        console.log("[+]" + x, "   " + Gob._asyncSetCounter)
+                        console.log("[+]" + x, "   " +  object[x])
                     }
                 }
             }
         }
 
-        Gob._asyncSetCounter += _temp;
+        if(_temp>0)
+        {
+            console.log("[++]" +_temp)
+            Gob._asyncSetCounter += _temp;
+        }
+
 
     }
 }
