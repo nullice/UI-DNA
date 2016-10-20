@@ -34,9 +34,18 @@ DataCaryon.prototype.addLayer = function (layerListItem)
 DataCaryon.prototype.save = async function ()
 {
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
+}
 
+
+DataCaryon.prototype.load = async function ()
+{
+    // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
+   var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
+
+    this.layers = JSON.parse(dataJson)
 
 }
+
 
 
 var Layer = function (layerListItem)

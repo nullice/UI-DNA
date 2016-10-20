@@ -9,6 +9,29 @@ var GobCaryon = function ()
     this.nowSwitching = false;//是否在切换选中图层中
     this.disableSelectEvent = false;//不触发选择图层事件
 
+    //----异步赋值计数器
+    this.__asyncSetCounter = 0;
+    this._asyncSetSwitch = false;
+    Object.defineProperty(this, "_asyncSetCounter",
+        {
+            set: function (x)
+            {
+                if (x < 0)x = 0;
+                this.__asyncSetCounter = x;
+                if (x == 0 && this._asyncSetSwitch)
+                {
+                    console.log("this.nowSwitching = false;")
+                    this.nowSwitching = false;
+                    this._asyncSetSwitch = false;
+                }
+            },
+            get: function ()
+            {
+                return this.__asyncSetCounter;
+            }
+        }
+    );
+
 
     this.selectList = [{id: 999}];
     this.position = {
@@ -82,6 +105,7 @@ GobCaryon.prototype._setData = async function (names, value)
     // console.log(names, value)
 
 
+
     var isFormula = false;
 
     //-------- 1. 值写入实际存储的属性 this._XXX;
@@ -124,14 +148,14 @@ GobCaryon.prototype._setData = async function (names, value)
         //即时修改------------
         // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
 
-        console.log(change_i,change,isFormula)
+        console.log(change_i, change, isFormula)
         if (this.nowSwitching == false)
         {
-            if(value!=Gob.MULT)
+            if (value != Gob.MULT)
             {
                 if (change_i || ((isFormula == false) & change))
                 {
-                    console.log("【renderPatch】-----------------" + names +"=>"+value)
+                    console.log("【renderPatch】-----------------" + names + "=>" + value)
                     console.log(this.selectList[i].id, names, value)
                     rendered = true;
                     await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
@@ -154,6 +178,8 @@ GobCaryon.prototype._setData = async function (names, value)
             }
         }
     }
+    console.log("[--]" + names, "   " + Gob._asyncSetCounter)
+    Gob._asyncSetCounter--;
 
     // alert("set:" + names + "=" + value)
 
@@ -197,6 +223,7 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
     this.nowSwitching = true;
+    console.log("this.nowSwitching = true;")
     this.selectList = (await enzymes.getSelectLayerArray()).reverse();
     this.updateGob();
 
@@ -241,8 +268,10 @@ GobCaryon.prototype.updateGob = async function ()
 
     }
     // console.log("temp.position", temp.position)
-    _objectToObject(temp.position, this.position, false);
-    this.nowSwitching = false;
+    _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
+    Gob._asyncSetSwitch = true
+    _objectToObject(temp.position, this.position, false, false, true);
+
 
     function _setValue(oldValue, value, ignoreNull)
     {
@@ -313,7 +342,7 @@ GobCaryon.prototype.updateGob = async function ()
     }
 
 
-    function _objectToObject(object, sameObject, checkMUTI, ignoreNull)
+    function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
     {
         for (var x in object)
         {
@@ -322,6 +351,15 @@ GobCaryon.prototype.updateGob = async function ()
                 _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull)
             } else
             {
+                // if (asyncCounter)
+                // {
+                //     if (sameObject[x] != object[x])
+                //     {
+                //         Gob._asyncSetCounter++;
+                //         console.log("[+]" + x, "   " + Gob._asyncSetCounter)
+                //     }
+                // }
+
                 if (checkMUTI)
                 {
                     sameObject[x] = _setValue(sameObject[x], object[x], ignoreNull)
@@ -335,6 +373,30 @@ GobCaryon.prototype.updateGob = async function ()
 
     }
 
+    function _objectToObject_asyncSetCounter(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
+    {
+        var _temp = 0
+        for (var x in object)
+        {
+            if (object[x] != undefined && object[x].constructor == Object)
+            {
+                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull)
+            } else
+            {
+                if (asyncCounter)
+                {
+                    if (sameObject[x] != object[x])
+                    {
+                        _temp++;
+                        console.log("[+]" + x, "   " + Gob._asyncSetCounter)
+                    }
+                }
+            }
+        }
+
+        Gob._asyncSetCounter += _temp;
+
+    }
 }
 
 
