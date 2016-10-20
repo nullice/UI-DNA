@@ -20,9 +20,9 @@ var GobCaryon = function ()
                 this.__asyncSetCounter = x;
                 if (x == 0 && this._asyncSetSwitch)
                 {
-                    // console.log("【this.nowSwitching = false】")
-                    // this.nowSwitching = false;
-                    // this._asyncSetSwitch = false;
+                    console.log("【this.nowSwitching = false】")
+                    this.nowSwitching = false;
+                    this._asyncSetSwitch = false;
                 }
             },
             get: function ()
@@ -147,9 +147,9 @@ GobCaryon.prototype._setData = async function (names, value)
         //即时修改------------
         // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
 
-        console.log(change_i, change, isFormula)
+        // console.log(change_i, change, isFormula)
 
-        console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
+        // console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
         if (this.nowSwitching == false)
         {
             if (value != Gob.MULT)
@@ -168,6 +168,8 @@ GobCaryon.prototype._setData = async function (names, value)
     }
 
 
+
+
     if (this.selectList.length > 1)
     {
         if (rendered)
@@ -179,15 +181,10 @@ GobCaryon.prototype._setData = async function (names, value)
             }
         }
     }
-    console.log("[--]" + names, "   " + Gob._asyncSetCounter)
+    // console.log("[--]" + names, "   " + Gob._asyncSetCounter)
     Gob._asyncSetCounter--;
-    if (Gob._asyncSetCounter == 0 && Gob._asyncSetSwitch)
-    {
-        console.log("【this.nowSwitching = false】")
-        console.log("--------" + names + "=>" + value)
-        Gob.nowSwitching = false;
-        Gob._asyncSetSwitch = false;
-    }
+ 
+
 
     // alert("set:" + names + "=" + value)
 
@@ -396,7 +393,7 @@ GobCaryon.prototype.updateGob = async function ()
                     if (sameObject[x] != object[x])
                     {
                         _temp++;
-                        console.log("[+]" + x, "   " +  object[x])
+                        // console.log("[+]" + x, "   " +  object[x])
                     }
                 }
             }
@@ -404,7 +401,7 @@ GobCaryon.prototype.updateGob = async function ()
 
         if(_temp>0)
         {
-            console.log("[++]" +_temp)
+            // console.log("[++]" +_temp)
             Gob._asyncSetCounter += _temp;
         }
 

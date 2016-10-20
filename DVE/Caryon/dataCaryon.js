@@ -6,8 +6,41 @@
 
 var DataCaryon = function ()
 {
-    this.layers = {999: DataCaryon.prototype.layerSample};//{id:{...}...}
+
+    this._layers = {
+        "test": {999: DataCaryon.prototype.layerSample}
+    }
+    this.layers = this._layers.test;
+    this._nowDoucmentId = null;
+    Object.defineProperty(this, "nowDoucmentId",
+        {
+            set: function (x)
+            {
+                if (x != undefined)
+                {
+                    if (this._layers[x] == undefined)
+                    {
+                        this._layers[x] = {}
+                        this.layers = this._layers[x];
+
+                    } else
+                    {
+                        this.layers = this._layers[x];
+                    }
+                }
+                this._nowDoucmentId = x;
+
+            },
+            get: function ()
+            {
+                return this._nowDoucmentId;
+            }
+        }
+    );
+
+
     this.selectLayers = [];
+    this.switchDocment()
     return this;
 }
 
@@ -40,12 +73,25 @@ DataCaryon.prototype.save = async function ()
 DataCaryon.prototype.load = async function ()
 {
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
-   var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
+    var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
 
     this.layers = JSON.parse(dataJson)
 
 }
 
+DataCaryon.prototype.switchDocment = async function ()
+{
+
+    // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
+    var docId = await enzymes.getActiveDocumentId()
+
+
+    if (docId != undefined)
+    {
+        console.log("【switchDocment】："+docId)
+        this.nowDoucmentId = docId;
+    }
+}
 
 
 var Layer = function (layerListItem)

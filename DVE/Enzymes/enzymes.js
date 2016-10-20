@@ -324,7 +324,7 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
  */
 Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
 {
-   
+
     return new Promise(function (resolve, reject)
     {
         json = Enzymes.prototype._escape(json);
@@ -407,6 +407,34 @@ Enzymes.prototype.getTypeID = function (inValue, inType)
 
 
 }
+
+/**
+ * 获取当前文档 ID
+ * @returns {Promise}
+ */
+
+Enzymes.prototype.getActiveDocumentId = async function ()
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `activeDocument.id`
+            ,
+            (r)=>
+            {
+                if (+(0 + r) == +r)
+                {
+                    resolve(r)
+                }
+                else
+                {
+                    resolve(null)
+                }
+            }
+        )
+    })
+}
+
 
 /**
  * 把字符串的中的引号转义处理，换行符转换为 \n

@@ -13,14 +13,12 @@ var RenderCaryon = function ()
 RenderCaryon.prototype.test = async function (x)
 {
     await enzymes.selectLayer_byID(5);
-    await enzymes.setLayerInfo_position_byId({h:x}, 5)
+    await enzymes.setLayerInfo_position_byId({h: x}, 5)
     await enzymes.selectLayer_byID(6);
-    await enzymes.setLayerInfo_position_byId({h:x}, 6)
+    await enzymes.setLayerInfo_position_byId({h: x}, 6)
     await enzymes.selectLayer_byID(7);
-    await enzymes.setLayerInfo_position_byId({h:x}, 7)
+    await enzymes.setLayerInfo_position_byId({h: x}, 7)
 }
-
-
 
 
 /**
@@ -35,33 +33,21 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     var item = names[names.length - 1];
     if (names[0] === "position")
     {
-        if (_inArray(item, ["x", "y", "w", "h"]))
+        if ((names.length == 2 )&& _inArray(item, ["x", "y", "w", "h"]))
         {
             var ob = {};
             ob[item] = value;
 
             Gob.disableSelectEvent = true;
-            console.log("----[start"+layerId+"]---")
-            // if (indepenSelect)
-            // {
-            //     Gob.disableSelectEvent = true;
-            //     console.log("enzymes.selectLayer_byID（"+layerId+")")
-            //     // var save = await enzymes.selectSave();
-            //     await enzymes.selectLayer_byID(layerId);
-            // }
-
+            console.log("----[start" + layerId + "]---")
 
             await enzymes.selectLayer_byID(layerId);
 
             console.log(`enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)
             await enzymes.setLayerInfo_position_byId(ob, layerId)
 
-            console.log("----[end"+layerId+"]---")
-            // if (indepenSelect)
-            // {
-            //     // await enzymes.selectLoad(save);
-                Gob.disableSelectEvent = false;
-            // }
+            console.log("----[end" + layerId + "]---")
+            Gob.disableSelectEvent = false;
 
 
         }

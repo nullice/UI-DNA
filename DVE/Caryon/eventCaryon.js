@@ -76,19 +76,22 @@ EventCaryon.prototype.initEvent = async function ()
     //1、在这里列出要执行的函数-----------------------------------------------------------------------------
     //          事件发生时要执行的函数列表格式：{func:函数名, inThis:函数的 this 对象, agrs:参数列表数组 , verify: 事件验证函数, sendEvent:是否把 event 当成传入参数}:
     var func_updateSelect = {func: Gob.updateSelect, inThis: Gob, agrs: null, sendEvent: false}
-    var func_alertEvent = {func: _alertEvent, inThis: window, agrs: [], sendEvent: true , verify:_isMoveTool}
+    var func_updateSelect_whenMove = {func: Gob.updateSelect, inThis: Gob, agrs: null, sendEvent: false,verify:_isMoveTool}
+    // var func_alertEvent = {func: _alertEvent, inThis: window, agrs: [], sendEvent: true , verify:_isMoveTool}
+
+    var func_SelectDocument = {func: dataCaryon.switchDocment, inThis: dataCaryon, agrs: null, sendEvent: false,verify:_isSelectDocument}
 
 
     //2、在这里列出用事件 ID 和执行的方法-----------------------------------------------------------------------------
     //（选中事件）
     this.ID_slct = await enzymes.getTypeID("slct", "charID");
-    this.FUNCS_slct = [func_updateSelect]
+    this.FUNCS_slct = [func_updateSelect,func_SelectDocument]
     //（新建事件）
     this.ID_mk = await enzymes.getTypeID("Mk  ", "charID");
     this.FUNCS_mk = [func_updateSelect]
     //（toolModalStateChanged）
     this.ID_toolModalStateChanged = await enzymes.getTypeID("toolModalStateChanged", "stringID");
-    this.FUNCS_toolModalStateChanged = [func_alertEvent]
+    this.FUNCS_toolModalStateChanged = [func_updateSelect_whenMove]
 
 
 
