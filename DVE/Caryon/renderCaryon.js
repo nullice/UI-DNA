@@ -56,6 +56,18 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
 }
 
+
+/**
+ * 渲染当前文档
+ */
+RenderCaryon.prototype.renderDocument = async function ()
+{
+    
+
+}
+
+
+
 /**
  * 值是否出现在数组中
  * @param name

@@ -222,7 +222,7 @@ VarSystem.prototype.layerSample = {
  * 解析变量。计算变量把变量变成具体值。
  *
  **/
-VarSystem.prototype.evalVar = function (varValue)
+VarSystem.prototype.evalVar = function (varValue, thisId)
 {
     var inVar = varValue;
     var varList = [];
@@ -281,7 +281,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
     // 日文片假名：30A0-30FF
 
 
-    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
+    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
     var varList = [];
     var resullt;
 

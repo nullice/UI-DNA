@@ -5202,7 +5202,7 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
         desc2569.putObject(idT, idTxtS, desc2570);
         executeAction(idsetd, desc2569, DialogModes.NO);
     }
-    
+
     ki.layer.moveActiveLayerOrder(itemIndex)
 }
 
@@ -5594,6 +5594,30 @@ Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex
 
 }
 
+
+/**
+ * 根据 ItemIndex 获取图层父级图层的 Id
+ * @param itemIndex
+ * @returns {number}
+ */
+Kinase.prototype.layer.getParentLayerId_byItemIndex = function (itemIndex)
+{
+
+    var parentItemIndex = -1;
+    try
+    {
+        parentItemIndex = ki.layer.getLayerDOMObject_byItemIndex(itemIndex).parent.id;
+    } catch (e)
+    {
+        // log(e)
+    }
+    return parentItemIndex;
+
+}
+
+
+
+
 /**
  * 根据 ItemIndex 获取图层组的所有子元素的 id 数组
  * @param itemIndex
@@ -5693,7 +5717,6 @@ Kinase.prototype.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
         // log("===_scanLayers:"+layers +"("+layers.length+")")
         for (var i = layers.length - 1; i >= 0; i--)
         {
-
             // log(i + "/" + layers.length + "-#" + layers[i].itemIndex + layers[i])
             if (layers[i].itemIndex == itemIndex)
             {

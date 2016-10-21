@@ -21,8 +21,10 @@ function initEnzymes(in_extendPath)
 {
     extendPath = in_extendPath;
     $.evalFile(extendPath + "/JSX/json3.js");
+    $.evalFile(extendPath + "/JSX/math.min.js");
     $.evalFile(extendPath + "/JSX/Muclease_lib.jsx");
     $.evalFile(extendPath + "/JSX/Kinase_lib.jsx");
+
 
     $.global.Kinase = Kinase;
     $.global.Muclease = Muclease;
@@ -377,7 +379,7 @@ EnzJSX.ArrayRemove = function (array, removeArray)
 
 EnzJSX.writeJSON = function (rootName, itemName, json)
 {
-     app.activeDocument.suspendHistory(lang("#更新数据"), "_func()");
+    app.activeDocument.suspendHistory(lang("#更新数据"), "_func()");
     // alert ("writeJSON")
     // _func()
     function _func()
@@ -557,6 +559,108 @@ EnzJSX.setLayerInfo_position_byId = function (boundsInfo, id, doSelect)
 }
 
 
+//
+
+/**
+ *
+ *
+ *
+ * @param enhancer
+ * @param thisId
+ */
+EnzJSX.evalEnhancer = function (enhancer, thisId)
+{
+    if (enhancer == undefined)
+    {
+        return;
+    }
+
+    if (enhancer[0] == "$" && enhancer[0] == "￥")
+    {
+        var keys = {
+            parent: ["parent", "父", "親"],
+            child: ["child", "子"],
+            sibling: ["sibling", "near", "mate", "邻", "同级", "隣"],
+            id: ["id"],
+
+
+        };
+
+
+        enhancer = enhancer.slice(1)
+        var nodeList = enhancer.split(".")
+
+
+        var getMode = null;
+        for (var nodeIndex = 0; nodeIndex < nodeList.length; nodeIndex++)
+        {
+            if (_inArray(nodeList[nodeIndex], keys.parent))
+            {
+                try
+                {
+                    getMode = "layerProperty";
+                    var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
+                } catch (e)
+                {
+                    var targetId = null;
+                }
+
+            }
+
+        }
+
+
+        if (getMode == "layerProperty")
+        {
+            
+        }
+
+
+    }
+
+
+    function _inArray(name, array)
+    {
+        for (var x in array)
+        {
+            if (name == array[x])
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+
+// EnzJSX.DNAExpress = function (DNAData, vars)
+// {
+//     var layers = JSON.parse(DNAData)
+//     var vars = JSON.parse(vars)
+//
+//     function _func()
+//     {
+//
+//         //图层信息查询缓存
+//         var queryCache = {};
+//
+//
+//         //【首轮循环】----------------------------
+//         for (var x in layers)
+//         {
+//             if (layers[x].position != undefined)
+//             {
+//                 if (layers[x].position.assignment != undefined)
+//                 {
+//
+//                 }
+//             }
+//
+//         }
+//
+//
+//     }
+// }
 
 
 
