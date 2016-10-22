@@ -21,7 +21,6 @@ function initEnzymes(in_extendPath)
 {
     extendPath = in_extendPath;
     $.evalFile(extendPath + "/JSX/json3.js");
-    $.evalFile(extendPath + "/JSX/math.min.js");
     $.evalFile(extendPath + "/JSX/Muclease_lib.jsx");
     $.evalFile(extendPath + "/JSX/Kinase_lib.jsx");
 
@@ -559,78 +558,110 @@ EnzJSX.setLayerInfo_position_byId = function (boundsInfo, id, doSelect)
 }
 
 
+// //
 //
-
-/**
- *
- *
- *
- * @param enhancer
- * @param thisId
- */
-EnzJSX.evalEnhancer = function (enhancer, thisId)
-{
-    if (enhancer == undefined)
-    {
-        return;
-    }
-
-    if (enhancer[0] == "$" && enhancer[0] == "￥")
-    {
-        var keys = {
-            parent: ["parent", "父", "親"],
-            child: ["child", "子"],
-            sibling: ["sibling", "near", "mate", "邻", "同级", "隣"],
-            id: ["id"],
-
-
-        };
-
-
-        enhancer = enhancer.slice(1)
-        var nodeList = enhancer.split(".")
-
-
-        var getMode = null;
-        for (var nodeIndex = 0; nodeIndex < nodeList.length; nodeIndex++)
-        {
-            if (_inArray(nodeList[nodeIndex], keys.parent))
-            {
-                try
-                {
-                    getMode = "layerProperty";
-                    var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
-                } catch (e)
-                {
-                    var targetId = null;
-                }
-
-            }
-
-        }
-
-
-        if (getMode == "layerProperty")
-        {
-            
-        }
-
-
-    }
-
-
-    function _inArray(name, array)
-    {
-        for (var x in array)
-        {
-            if (name == array[x])
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-}
+//
+// EnzJSX.EnhancerKeys = {
+//     keys: {
+//         parent: ["parent", "父", "親"],
+//         child: ["child", "子"],
+//         sibling: ["sibling", "near", "mate", "邻", "同级", "隣"],
+//         id: ["id"],
+//     },
+// }
+//
+// /**
+//  *
+//  *
+//  * @param enhancer
+//  * @param thisId
+//  */
+// EnzJSX.evalEnhancer = function (enhancer, thisId)
+// {
+//     if (enhancer == undefined)
+//     {
+//         return;
+//     }
+//
+//
+//     if (enhancer[0] == "$" && enhancer[0] == "￥")
+//     {
+//         var keys = EnzJSX.EnhancerKeys.keys;
+//
+//         enhancer = enhancer.slice(1)
+//         var nodeList = enhancer.split(".")
+//
+//
+//         var getMode = null;
+//         for (var nodeIndex = 0; nodeIndex < nodeList.length; nodeIndex++)
+//         {
+//             //parent-------------------------------------------------
+//             if (_inArray(nodeList[nodeIndex], keys.parent))
+//             {
+//                 try
+//                 {
+//                     var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
+//                     getMode = "layerProperty";
+//
+//                 } catch (e)
+//                 {
+//                     getMode = null;
+//                 }
+//             }
+//             //child-------------------------------------------------
+//             var result = _inArray(nodeList[nodeIndex], keys.child)
+//             if (result != false)
+//             {
+//
+//                 if(result.length>0)
+//
+//                 try
+//                 {
+//                     var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
+//                     getMode = "layerProperty";
+//                 } catch (e)
+//                 {
+//                     getMode = null;
+//                 }
+//             }
+//
+//
+//         }
+//
+//
+//         if (getMode == "layerProperty")
+//         {
+//
+//         }
+//
+//
+//     }
+//
+//
+//     function _inArray(name, array, prefix)
+//     {
+//         for (var x in array)
+//         {
+//             if (prefix)
+//             {
+//                 if (name == array[x].slice(0, name.length))
+//                 {
+//                     return array[x].slice(name.length);
+//                 }
+//
+//             } else
+//             {
+//                 if (name == array[x])
+//                 {
+//                     return true;
+//                 }
+//             }
+//
+//
+//         }
+//         return false;
+//     }
+// }
 
 
 // EnzJSX.DNAExpress = function (DNAData, vars)

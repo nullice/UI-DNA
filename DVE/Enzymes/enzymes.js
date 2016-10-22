@@ -139,8 +139,10 @@ Enzymes.prototype.getAllLayerArray = async function (getType)
 Enzymes.prototype.getSelectLayerArray = async function (getType)
 {
 
+    console.log("---------1")
     return new Promise(function (resolve, reject)
     {
+        console.log("---------2")
         if (getType == "id" || getType == 0)
         {
             evalScript(`EnzJSX.getSelectLayerID()`,
@@ -158,9 +160,11 @@ Enzymes.prototype.getSelectLayerArray = async function (getType)
 
         } else
         {// [{name ,id ,itemIndex}]
-
+            console.log("---------3")
             evalScript(`EnzJSX.getSelectLayerArray()`,
-                (r)=> {resolve(JSON.parse(r))})
+                (r)=> {
+                    console.log("---------4",r)
+                    resolve(JSON.parse(r))})
         }
     })
 

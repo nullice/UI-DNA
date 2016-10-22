@@ -34,7 +34,7 @@ module.exports = {
          // new webpack.ProvidePlugin({Vue: 'vue'}),// 注册全局标识符
 
     ],
-    devtool: 'eval-source-map',
+    devtool: 'eval',
 
     vue: {
         loaders: {

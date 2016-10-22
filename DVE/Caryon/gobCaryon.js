@@ -183,7 +183,7 @@ GobCaryon.prototype._setData = async function (names, value)
     }
     // console.log("[--]" + names, "   " + Gob._asyncSetCounter)
     Gob._asyncSetCounter--;
- 
+
 
 
     // alert("set:" + names + "=" + value)
@@ -257,7 +257,6 @@ GobCaryon.prototype.updateGob = async function ()
             enableAssigns: {x: null, y: null, w: null, h: null}
         }
     }
-
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
     {
