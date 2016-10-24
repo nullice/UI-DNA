@@ -231,18 +231,26 @@ VarSystem.prototype.evalVar = function (varValue, thisId)
     var increment = 0;
     for (let i = 0; i < varList.length; i++)
     {
-        if (this.vars[varList[i].name] !== undefined)
+        var _this_var = this.vars[varList[i].name];
+
+        if (_this_var !== undefined)
         {
             // console.log(varList[i].index + increment + "-" + varList[i].name.length)
+            if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
+            {
+                var getValue = enzymes.evalEnhancer(_this_var.value,thisId);
+            } else//                                                            ---普通变量
+            {
+                var getValue = this.evalVar(_this_var.value);
+            }
 
-            var getValue = this.evalVar(this.vars[varList[i].name].value)
             inVar = STR.insert(inVar,
                 varList[i].index + increment,
                 varList[i].name.toString().length,
                 getValue
             );
-
             increment += getValue.toString().length - varList[i].name.toString().length;
+
         }
     }
 

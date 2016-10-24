@@ -558,110 +558,205 @@ EnzJSX.setLayerInfo_position_byId = function (boundsInfo, id, doSelect)
 }
 
 
-// //
 //
-//
-// EnzJSX.EnhancerKeys = {
-//     keys: {
-//         parent: ["parent", "父", "親"],
-//         child: ["child", "子"],
-//         sibling: ["sibling", "near", "mate", "邻", "同级", "隣"],
-//         id: ["id"],
-//     },
-// }
-//
-// /**
-//  *
-//  *
-//  * @param enhancer
-//  * @param thisId
-//  */
-// EnzJSX.evalEnhancer = function (enhancer, thisId)
-// {
-//     if (enhancer == undefined)
-//     {
-//         return;
-//     }
-//
-//
-//     if (enhancer[0] == "$" && enhancer[0] == "￥")
-//     {
-//         var keys = EnzJSX.EnhancerKeys.keys;
-//
-//         enhancer = enhancer.slice(1)
-//         var nodeList = enhancer.split(".")
-//
-//
-//         var getMode = null;
-//         for (var nodeIndex = 0; nodeIndex < nodeList.length; nodeIndex++)
-//         {
-//             //parent-------------------------------------------------
-//             if (_inArray(nodeList[nodeIndex], keys.parent))
-//             {
-//                 try
-//                 {
-//                     var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
-//                     getMode = "layerProperty";
-//
-//                 } catch (e)
-//                 {
-//                     getMode = null;
-//                 }
-//             }
-//             //child-------------------------------------------------
-//             var result = _inArray(nodeList[nodeIndex], keys.child)
-//             if (result != false)
-//             {
-//
-//                 if(result.length>0)
-//
-//                 try
-//                 {
-//                     var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
-//                     getMode = "layerProperty";
-//                 } catch (e)
-//                 {
-//                     getMode = null;
-//                 }
-//             }
-//
-//
-//         }
-//
-//
-//         if (getMode == "layerProperty")
-//         {
-//
-//         }
-//
-//
-//     }
-//
-//
-//     function _inArray(name, array, prefix)
-//     {
-//         for (var x in array)
-//         {
-//             if (prefix)
-//             {
-//                 if (name == array[x].slice(0, name.length))
-//                 {
-//                     return array[x].slice(name.length);
-//                 }
-//
-//             } else
-//             {
-//                 if (name == array[x])
-//                 {
-//                     return true;
-//                 }
-//             }
-//
-//
-//         }
-//         return false;
-//     }
-// }
+EnzJSX.EnhancerKeys = {
+    keys: {
+        parent: ["parent", "父", "親"],
+        child: ["child", "子"],
+        sibling: ["sibling", "near", "mate", "邻", "同级", "隣"],
+        id: ["id"],
+    },
+    infoKeys: {
+        x: ["x", "左"],
+        y: ["y", "顶"],
+        h: ["h", "高"],
+        w: ["x", "宽"],
+    }
+}
+
+/**
+ *
+ * @param enhancer
+ * @param thisId
+ */
+EnzJSX.evalEnhancer = function (enhancer, thisId)
+{
+    if (enhancer == undefined)
+    {
+        return;
+    }
+
+    if (enhancer[0] == "$" && enhancer[0] == "￥")
+    {
+        var keys = EnzJSX.EnhancerKeys.keys;
+
+        enhancer = enhancer.slice(1)
+        var nodeList = enhancer.split(".")
+
+        var getMode = null;
+
+
+        if (nodeList.length > 0)
+        {
+            //parent-------------------------------------------------
+            if (_inArray(nodeList[0], keys.parent))
+            {
+                try
+                {
+                    var targetId = ki.layer.getParentLayerId_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
+                    getMode = "layerProperty";
+
+                } catch (e)
+                {
+                    getMode = null;
+                }
+            }
+            //child-------------------------------------------------
+            var result = _inArray(nodeList[0], keys.child, true)
+            if (result != false)
+            {
+                if (result[0] == "_")
+                {
+                    result = "-" + result.slice(1);
+                }
+                try
+                {
+                    var idList = ki.layer.getChildLayerID_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
+                    if (idList != undefined && idList.length > 0)
+                    {
+                        if (result.length == 0 || +result != result)
+                        {
+                            var targetId = idList[0];
+                        } else
+                        {
+                            if (result > 0)
+                            {
+                                var targetId = idList[result];
+
+                            } else
+                            {
+                                var targetId = idList[idList.length + result];
+                            }
+                        }
+
+                        if (targetId != undefined)
+                        {
+                            getMode = "layerProperty";
+                        }
+                    }
+                } catch (e)
+                {
+                    getMode = null;
+                }
+            }
+            //near-------------------------------------------------
+            var result = _inArray(nodeList[0], keys.child, true)
+            if (result != false)
+            {
+                if (result[0] == "_")
+                {
+                    result = "-" + result.slice(1);
+                }
+                try
+                {
+                    var idList = ki.layer.getChildLayerID_byItemIndex(ki.layer.getItemIndexBylayerID(thisId));
+                    if (idList != undefined && idList.length > 0)
+                    {
+                        if (result.length == 0 || +result != result)
+                        {
+                            var targetId = idList[0];
+                        } else
+                        {
+                            if (result > 0)
+                            {
+                                var targetId = idList[result];
+
+                            } else
+                            {
+                                var targetId = idList[idList.length + result];
+                            }
+                        }
+
+                        if (targetId != undefined)
+                        {
+                            getMode = "layerProperty";
+                        }
+                    }
+                } catch (e)
+                {
+                    getMode = null;
+                }
+            }
+            //near-------------------------------------------------
+            var result = _inArray(nodeList[0], keys.sibling, true)
+            if (result != false)
+            {
+                if (result[0] == "_")
+                {
+                    result = "-" + result.slice(1);
+                }
+                try
+                {
+                    var targetId = ki.layer.getLayerIdByItemIndex(ki.layer.getItemIndexBylayerID(thisId) + (+result));
+                    if (targetId != undefined)
+                    {
+                        getMode = "layerProperty";
+                    }
+                } catch (e)
+                {
+                    getMode = null;
+                }
+            }
+        }
+
+
+        if (getMode == "layerProperty")
+        {
+            if (nodeList.length > 2)
+            {
+                if (nodeList[1] = "position")
+                {
+                    var info = ki.layer.getLayerBounds(Kinase.REF_LayerID, targetId);
+                    if (info[nodeList[2]] != undefined)
+                    {
+                        var re = info[nodeList[2]];
+                        return re;
+                    }
+                }
+
+            }
+
+        }
+
+
+    }
+
+    return "";
+    
+    function _inArray(name, array, prefix)
+    {
+        for (var x in array)
+        {
+            if (prefix)
+            {
+                if (name.slice(0, array[x].length) == array[x])
+                {
+                    return name.slice(array[x].length);
+                }
+
+            } else
+            {
+                if (name == array[x])
+                {
+                    return true;
+                }
+            }
+
+
+        }
+        return false;
+    }
+}
 
 
 // EnzJSX.DNAExpress = function (DNAData, vars)

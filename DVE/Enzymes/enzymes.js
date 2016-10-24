@@ -139,10 +139,9 @@ Enzymes.prototype.getAllLayerArray = async function (getType)
 Enzymes.prototype.getSelectLayerArray = async function (getType)
 {
 
-    console.log("---------1")
     return new Promise(function (resolve, reject)
     {
-        console.log("---------2")
+
         if (getType == "id" || getType == 0)
         {
             evalScript(`EnzJSX.getSelectLayerID()`,
@@ -160,11 +159,11 @@ Enzymes.prototype.getSelectLayerArray = async function (getType)
 
         } else
         {// [{name ,id ,itemIndex}]
-            console.log("---------3")
             evalScript(`EnzJSX.getSelectLayerArray()`,
-                (r)=> {
-                    console.log("---------4",r)
-                    resolve(JSON.parse(r))})
+                (r)=>
+                {
+                    resolve(JSON.parse(r))
+                })
         }
     })
 
@@ -434,6 +433,27 @@ Enzymes.prototype.getActiveDocumentId = async function ()
                 {
                     resolve(null)
                 }
+            }
+        )
+    })
+}
+
+/**
+ * 解析增强子表达式
+ * @param enhancer 增强子表达式
+ * @param thisId 当前操作图层 id
+ * @returns {Promise}
+ */
+Enzymes.prototype.evalEnhancer = async function (enhancer, thisId)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.evalEnhancer(${enhancer},${thisId})`
+            ,
+            (r)=>
+            {
+                resolve(r);
             }
         )
     })

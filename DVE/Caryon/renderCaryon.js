@@ -33,7 +33,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     var item = names[names.length - 1];
     if (names[0] === "position")
     {
-        if ((names.length == 2 )&& _inArray(item, ["x", "y", "w", "h"]))
+        if ((names.length == 2 ) && _inArray(item, ["x", "y", "w", "h"]))
         {
             var ob = {};
             ob[item] = value;
@@ -62,10 +62,39 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
  */
 RenderCaryon.prototype.renderDocument = async function ()
 {
-    
+//  1、变量赋值
+    for (var x in dataCaryon.layers)
+    {
+        if (dataCaryon.layers[x].position != undefined)
+        {
+            _doAssign(dataCaryon.layers[x], "position")
+        }
+
+
+    }
+
+    function _doAssign(layer, propertyName)
+    {
+        if (layer[position].assignment != undefined)
+        {
+            for (var n in layer[position].assignment)
+            {
+                if(varSystem.vars[])
+
+                if( layer[position][n] != undefined)
+                {
+
+
+                }
+                
+            }
+
+        }
+
+    }
+
 
 }
-
 
 
 /**
