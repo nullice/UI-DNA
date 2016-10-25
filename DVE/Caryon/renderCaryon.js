@@ -79,14 +79,14 @@ RenderCaryon.prototype.renderDocument = async function ()
         {
             for (var n in layer[position].assignment)
             {
-                if(varSystem.vars[])
+                if(varSystem.vars[layer[position].assignment[n]] != undefined)
 
-                if( layer[position][n] != undefined)
-                {
+                    if( layer[position][n] != undefined)
+                    {
 
 
-                }
-                
+                    }
+
             }
 
         }
