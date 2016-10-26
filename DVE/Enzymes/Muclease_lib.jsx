@@ -9,7 +9,7 @@
 // nullice.com
 // license: LGPL
 
-//todo:仅测试时用：
+//todo:仅测试时用，（使用前确保载入了 JSON 库, 如 https://bestiejs.github.io/json3）：
  $.evalFile("C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/com.nullice.pschen.fonTags/jsx/json2.js");
 
 /**
@@ -25,7 +25,7 @@ Muclease = function ()
     }
     catch (e)
     {
-        $.writeln("无法使用 Muclease，因为载入 JSON 解析库，请载入 json2.js ")
+        $.writeln("无法使用 Muclease，因为未载入 JSON 解析库，请载入 json2.js ")
     }
 
     return this;

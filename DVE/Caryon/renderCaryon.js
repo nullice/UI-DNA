@@ -62,36 +62,50 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
  */
 RenderCaryon.prototype.renderDocument = async function ()
 {
-//  1、变量赋值
+//  1、变量赋值-------------------------------------------------------------------
     for (var x in dataCaryon.layers)
     {
         if (dataCaryon.layers[x].position != undefined)
         {
             _doAssign(dataCaryon.layers[x], "position")
         }
-
-
     }
 
     function _doAssign(layer, propertyName)
     {
-        if (layer[position].assignment != undefined)
+        if (layer[propertyName].assignment != undefined)
         {
-            for (var n in layer[position].assignment)
+            for (var n in layer[propertyName].assignment)
             {
-                if(varSystem.vars[layer[position].assignment[n]] != undefined)
-
-                    if( layer[position][n] != undefined)
+                if (layer[propertyName][n] != undefined)
+                {
+                    if (varSystem.isFormula(layer[propertyName][n]))
                     {
+                        var getValue = varSystem.evalVar(layer[propertyName][n]);
+                    } else
+                    {
+                        var getValue = layer[propertyName][n];
+                    }
 
+                    var _varNames = layer[propertyName].assignment[n].split((/[,，]/));//-----多个赋值："xx,ddd，cc"
+                    for (var i = 0; i < _varNames.length; i++)
+                    {
+                        if (varSystem.vars[_varNames[i]] != undefined)
+                        {
+                            varSystem.vars[_varNames[i]] = getValue;
+                        }
 
                     }
+                }
 
             }
 
         }
-
     }
+//  1、ExtendScript 端渲染-------------------------------------------------------------------
+
+    enzymes.DNAExpress(dataCaryon.layers, varSystem.vars)
+
 
 
 }

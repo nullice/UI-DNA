@@ -759,34 +759,34 @@ EnzJSX.evalEnhancer = function (enhancer, thisId)
 }
 
 
-// EnzJSX.DNAExpress = function (DNAData, vars)
-// {
-//     var layers = JSON.parse(DNAData)
-//     var vars = JSON.parse(vars)
-//
-//     function _func()
-//     {
-//
-//         //图层信息查询缓存
-//         var queryCache = {};
-//
-//
-//         //【首轮循环】----------------------------
-//         for (var x in layers)
-//         {
-//             if (layers[x].position != undefined)
-//             {
-//                 if (layers[x].position.assignment != undefined)
-//                 {
-//
-//                 }
-//             }
-//
-//         }
-//
-//
-//     }
-// }
+EnzJSX.DNAExpress = function (DNAData, vars)
+{
+    var layers = JSON.parse(DNAData)
+    var vars = JSON.parse(vars)
+
+    function _func()
+    {
+
+        //图层信息查询缓存
+        var queryCache = {};
+
+
+        //【首轮循环】----------------------------
+        for (var x in layers)
+        {
+            if (layers[x].position != undefined)
+            {
+                if (layers[x].position.assignment != undefined)
+                {
+
+                }
+            }
+
+        }
+
+
+    }
+}
 
 
 
