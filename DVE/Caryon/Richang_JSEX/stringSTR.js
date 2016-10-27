@@ -86,4 +86,4 @@ var stringSTR = {
 }
 
 
-export  default stringSTR
+export  default stringSTR;

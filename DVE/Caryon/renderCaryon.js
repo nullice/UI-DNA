@@ -64,16 +64,21 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
  */
 RenderCaryon.prototype.renderDocument = async function ()
 {
+
+    console.log("START【renderDocument】----------------")
 //  1、变量赋值-------------------------------------------------------------------
+    console.log("1、变量赋值------------:")
     for (var x in dataCaryon.layers)
     {
         if (dataCaryon.layers[x].position != undefined)
         {
-            _doAssign(dataCaryon.layers[x], "position")
+          await _doAssign(dataCaryon.layers[x], "position")
         }
     }
 
-    function _doAssign(layer, propertyName)
+    console.log(varSystem.vars)
+
+    async function _doAssign(layer, propertyName)
     {
         if (layer[propertyName].assignment != undefined)
         {
@@ -83,7 +88,7 @@ RenderCaryon.prototype.renderDocument = async function ()
                 {
                     if (varSystem.isFormula(layer[propertyName][n]))
                     {
-                        var getValue = varSystem.evalVar(layer[propertyName][n]);
+                        var getValue = await varSystem.evalVar(layer[propertyName][n]);
                     } else
                     {
                         var getValue = layer[propertyName][n];
@@ -94,7 +99,7 @@ RenderCaryon.prototype.renderDocument = async function ()
                     {
                         if (varSystem.vars[_varNames[i]] != undefined)
                         {
-                            varSystem.vars[_varNames[i]] = getValue;
+                            varSystem.vars[_varNames[i]].setVar(getValue);
                         }
 
                     }

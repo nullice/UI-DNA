@@ -2,8 +2,8 @@
  * Created by bgllj on 2016/9/8.
  */
 
-import ARR from "Richang_JSEX/arrayARR.js"
-import STR from "Richang_JSEX/stringSTR.js"
+import ARR from "./Richang_JSEX/arrayARR.js"
+import STR from "./Richang_JSEX/stringSTR.js"
 
 /**
  * 变量基本数据类型，主要封装 evalVar()

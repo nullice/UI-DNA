@@ -776,6 +776,7 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
 
                 if (_do_position)
                 {
+                    EnzJSX.selectLayer_byID(layerId);
                     EnzJSX.setLayerInfo_position_byId(_info_position,layerId)
                 }
             }

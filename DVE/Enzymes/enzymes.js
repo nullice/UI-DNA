@@ -467,6 +467,31 @@ Enzymes.prototype.evalEnhancer = async function (enhancer, thisId)
 
 
 /**
+ * 表达 DNA 数据，渲染文档
+ * @param mRNA_Layers
+ * @param vars
+ * @returns {Promise}
+ * @constructor
+ */
+Enzymes.prototype.DNAExpress = function (mRNA_Layers, vars)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.DNAExpress(${JSON.stringify(mRNA_Layers)},${JSON.stringify(vars)})`
+            ,
+            (r)=> {resolve(r);}
+        )
+    })
+    
+    
+}
+
+
+
+
+
+/**
  * 把字符串的中的引号转义处理，换行符转换为 \n
  * @param str
  * @returns {*}
@@ -490,29 +515,6 @@ Enzymes.prototype._unEscape = function (str)
     return str;
 }
 
-
-Enzymes.prototype.wait = function (asyncFunc, arg0, arg1, arg2, arg3, arg4)
-{
-
-    var _done = false;
-    var value = null;
-
-    async function _do_()
-    {
-        value = await asyncFunc(arg0, arg1, arg2, arg3, arg4);
-        _done = true;
-    }
-
-    _do_();
-
-    for (var i = 0; _done == false; i++)
-    {
-
-    }
-
-    return value
-
-}
 
 
 //------------------------------------------------------------------------
