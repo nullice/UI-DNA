@@ -152,11 +152,13 @@ async function asyncTask()
     console.log("ssss1")
     var a = await  doAsync();
     console.log("ssss2" + a)
+
+    return 2016
 }
 
 
-asyncTask()
-console.log("sss_end")
+var __result =  asyncTask()
+console.log("sss_end" +__result)
 
 // if (typeof window.__adobe_cep__ !== "undefined")
 // {

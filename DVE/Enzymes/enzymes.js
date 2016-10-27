@@ -3,6 +3,12 @@
  */
 
 
+// Enzymes 酶
+//--------------------------
+// By nullice ui@nullice.com
+// nullice.com
+// license: LGPL
+
 
 // layerObjcet={
 //     position:{
@@ -483,6 +489,31 @@ Enzymes.prototype._unEscape = function (str)
     str = str.replace(/\\\\/g, "\\")
     return str;
 }
+
+
+Enzymes.prototype.wait = function (asyncFunc, arg0, arg1, arg2, arg3, arg4)
+{
+
+    var _done = false;
+    var value = null;
+
+    async function _do_()
+    {
+        value = await asyncFunc(arg0, arg1, arg2, arg3, arg4);
+        _done = true;
+    }
+
+    _do_();
+
+    for (var i = 0; _done == false; i++)
+    {
+
+    }
+
+    return value
+
+}
+
 
 //------------------------------------------------------------------------
 

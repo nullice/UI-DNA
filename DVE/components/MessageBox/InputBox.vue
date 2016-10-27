@@ -114,7 +114,7 @@
 </style>
 <script>
 
-    import ARR  from "../../Caryon/arrayARR.js"
+    import ARR  from "../../Caryon/Richang_JSEX/arrayARR.js"
     import BubbleBox from "./BubbleBox.vue"
 
     export default{

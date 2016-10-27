@@ -2,6 +2,31 @@
  * Created by bgllj on 2016/10/10.
  */
 
+
+//      ___                       ___           ___           ___           ___           ___
+//     /\  \                     /\__\         /\  \         /\  \         /\  \         /\__\
+//    /::\  \       ___         /:/  /         \:\  \       /::\  \        \:\  \       /:/ _/_
+//   /:/\:\__\     /\__\       /:/  /           \:\  \     /:/\:\  \        \:\  \     /:/ /\  \
+//  /:/ /:/  /    /:/__/      /:/  /  ___   ___ /::\  \   /:/ /::\  \   _____\:\  \   /:/ /::\  \
+// /:/_/:/__/___ /::\  \     /:/__/  /\__\ /\  /:/\:\__\ /:/_/:/\:\__\ /::::::::\__\ /:/__\/\:\__\
+// \:\/:::::/  / \/\:\  \__  \:\  \ /:/  / \:\/:/  \/__/ \:\/:/  \/__/ \:\~~\~~\/__/ \:\  \ /:/  /
+//  \::/~~/~~~~   ~~\:\/\__\  \:\  /:/  /   \::/__/       \::/__/       \:\  \        \:\  /:/  /
+//   \:\~~\          \::/  /   \:\/:/  /     \:\  \        \:\  \        \:\  \        \:\/:/  /
+//    \:\__\         /:/  /     \::/  /       \:\__\        \:\__\        \:\__\        \::/  /
+//     \/__/         \/__/       \/__/         \/__/         \/__/         \/__/         \/__/
+//
+//
+//                日常
+//        +-------------------+
+//        |   Richang  JSEX   |
+//        +-------------------+
+//             · arrayARR ·
+//
+//       By nullice ui@nullice.com
+//             nullice.com
+//            license: LGPL
+
+
 /**
  * 数组相关功能模块
  * @type {{}}
@@ -11,8 +36,8 @@ var arrayARR = {
     /**
      * 对称差。（不支持对象数组）---
      * a:[1,2,3] b:[1,2,4]  a△b => [3,4]
-     * @param a
-     * @param b
+     * @param {Array} a
+     * @param {Array} b
      * @returns {Array}
      */
     symDifference: function (a, b)
@@ -49,8 +74,8 @@ var arrayARR = {
     /**
      * 差集。（不支持对象数组）
      * a:[1,2,3] b:[1,2,4]   a-b => [3]
-     * @param a
-     * @param b
+     * @param {Array} a
+     * @param {Array} b
      * @returns {Array}
      */
     difference: function (a, b)
@@ -83,8 +108,8 @@ var arrayARR = {
     /**
      * 并集。（不支持对象数组）
      * a:[1,2,3] b:[1,2,4]   a∪b => [1,2,3,4]
-     * @param a
-     * @param b
+     * @param {Array} a
+     * @param {Array} b
      * @returns {Array}
      */
     union: function (a, b)
@@ -151,14 +176,13 @@ var arrayARR = {
 
     /**
      * 从数组中移除元素，默认是非变异的。
-     * @param arr
-     * @param removeRule 可以给定值或者一个判断函数 function(x){ return x>3;}
-     * @param isMutator
+     * @param {Array} arr
+     * @param {Function} removeRule 可以给定值或者一个判断函数 function(x){ return x>3;}
+     * @param {Boolean} isMutator 变异模式，为真会改变原数组
      * @returns {*}
      */
     remove: function (arr, removeRule, isMutator)
     {
-
         if (isMutator)
         {
 
@@ -193,12 +217,47 @@ var arrayARR = {
 
 
     /**
-     * 从对象数组中提取一个对象，根据对象的一个属性值。
+     * 数组是否拥有指定成员
+     * arr:["A","B","C"] => hasMember(arr, "C") => true
+     * @param {Array} arr
+     * @param memberValue 指定成员值
+     * @param equalFunc 比较函数，boolean equalFunc( arr[i], memberValue)。可空。
+     * @returns {boolean}
+     */
+    hasMember: function (arr, memberValue, equalFunc)
+    {
+        if (equalFunc == undefined)
+        {
+            for (var i = 0; i < arr.length; i++)
+            {
+                if (arr[i] == memberValue)
+                {
+                    return true;
+                }
+            }
+            return false;
+        } else
+        {
+            for (var i = 0; i < arr.length; i++)
+            {
+                if (equalFunc(arr[i], memberValue))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+    },
+
+
+    /**
+     * 对象数组查找
+     * 从对象数组中提取出一个对象，根据对象的一个属性值。
      * arr: [{name:a},{name:b}] getByKey(arr,"name","b") => return {name:b}
-     * @param objectArr
-     * @param key
-     * @param keyValue
-     * @param equalRule
+     * @param {[Object]} objectArr 对象数组
+     * @param {String} key 关键属性
+     * @param keyValue 欲提取的关键属性值
+     * @param equalRule 值比较函数，可空
      * @returns {*}
      */
     getByKey: function (objectArr, key, keyValue, equalRule)

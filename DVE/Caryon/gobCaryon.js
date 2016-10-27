@@ -1,7 +1,7 @@
 /**
  * Created by bgllj on 2016/9/7.
  */
-import ARR from "./arrayARR.js"
+import ARR from "Richang_JSEX/arrayARR.js"
 
 
 var GobCaryon = function ()

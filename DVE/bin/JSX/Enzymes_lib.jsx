@@ -581,6 +581,8 @@ EnzJSX.EnhancerKeys = {
  */
 EnzJSX.evalEnhancer = function (enhancer, thisId)
 {
+
+
     if (enhancer == undefined)
     {
         return;
@@ -598,6 +600,9 @@ EnzJSX.evalEnhancer = function (enhancer, thisId)
 
         if (nodeList.length > 0)
         {
+            var _inArray = EnzJSX._inArray;
+
+
             //parent-------------------------------------------------
             if (_inArray(nodeList[0], keys.parent))
             {
@@ -732,60 +737,81 @@ EnzJSX.evalEnhancer = function (enhancer, thisId)
     }
 
     return "";
-    
-    function _inArray(name, array, prefix)
-    {
-        for (var x in array)
-        {
-            if (prefix)
-            {
-                if (name.slice(0, array[x].length) == array[x])
-                {
-                    return name.slice(array[x].length);
-                }
-
-            } else
-            {
-                if (name == array[x])
-                {
-                    return true;
-                }
-            }
 
 
-        }
-        return false;
-    }
 }
 
 
-EnzJSX.DNAExpress = function (DNAData, vars)
+EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
 {
-    var layers = JSON.parse(DNAData)
-    var vars = JSON.parse(vars)
+    var layers = JSON.parse(mRNA_Layers_json)
+    var vars = JSON.parse(vars_json)
 
     function _func()
     {
+        var save = EnzJSX.selectSave();
 
         //图层信息查询缓存
         var queryCache = {};
 
 
         //【首轮循环】----------------------------
-        for (var x in layers)
+        var _inArray = EnzJSX._inArray;
+        for (var layerId in layers)
         {
-            if (layers[x].position != undefined)
+            //position------------------------------------------
+            if (layers[layerId].position != undefined)
             {
-                if (layers[x].position.assignment != undefined)
-                {
 
+                var _info_position = {};
+                var _do_position = false;
+                for (var _x in layers[layerId].position)
+                {
+                    if (_inArray(_x, ["x", "y", "h", "w"]))
+                    {
+                        _info_position[_x] = layers[layerId].position[_x];
+                        _do_position = true;
+                    }
+                }
+
+                if (_do_position)
+                {
+                    EnzJSX.setLayerInfo_position_byId(_info_position,layerId)
                 }
             }
 
+
+
+
+
+        }
+
+        EnzJSX.selectLoad(save);
+    }
+}
+
+EnzJSX._inArray = function (name, array, prefix)
+{
+    for (var x in array)
+    {
+        if (prefix)
+        {
+            if (name.slice(0, array[x].length) == array[x])
+            {
+                return name.slice(array[x].length);
+            }
+
+        } else
+        {
+            if (name == array[x])
+            {
+                return true;
+            }
         }
 
 
     }
+    return false;
 }
 
 

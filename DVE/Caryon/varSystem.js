@@ -2,8 +2,8 @@
  * Created by bgllj on 2016/9/8.
  */
 
-import ARR from "./arrayARR.js"
-import STR from "./stringSTR.js"
+import ARR from "Richang_JSEX/arrayARR.js"
+import STR from "Richang_JSEX/stringSTR.js"
 
 /**
  * 变量基本数据类型，主要封装 evalVar()
@@ -88,11 +88,11 @@ VarType.prototype.updateRelatives = function (newFormula)
 
 
 /**
- * 解析变量。计算变量把变量变成具体值。
+ * 解析变量。计算变量把变量变成具体值。*异步*
  */
-VarType.prototype.evalVar = function ()
+VarType.prototype.evalVar = async function ()
 {
-    return VarSystem.prototype.evalVar(this.value)
+    return await VarSystem.prototype.evalVar(this.value)
 }
 
 
@@ -222,7 +222,7 @@ VarSystem.prototype.layerSample = {
  * 解析变量。计算变量把变量变成具体值。
  *
  **/
-VarSystem.prototype.evalVar = function (varValue, thisId)
+VarSystem.prototype.evalVar = async function (varValue, thisId)
 {
     var inVar = varValue;
     var varList = [];
@@ -238,10 +238,10 @@ VarSystem.prototype.evalVar = function (varValue, thisId)
             // console.log(varList[i].index + increment + "-" + varList[i].name.length)
             if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
             {
-                var getValue = enzymes.evalEnhancer(_this_var.value,thisId);
+                var getValue =  await enzymes.evalEnhancer(_this_var.value,thisId);
             } else//                                                            ---普通变量
             {
-                var getValue = this.evalVar(_this_var.value);
+                var getValue = await this.evalVar(_this_var.value);
             }
 
             inVar = STR.insert(inVar,

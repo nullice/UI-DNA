@@ -3,6 +3,8 @@
  */
 
 
+import ARR from "./Richang_JSEX/arrayARR.js"
+
 
 var RenderCaryon = function ()
 {
@@ -102,10 +104,57 @@ RenderCaryon.prototype.renderDocument = async function ()
 
         }
     }
-//  1、ExtendScript 端渲染-------------------------------------------------------------------
 
-    enzymes.DNAExpress(dataCaryon.layers, varSystem.vars)
+//  2、表达式解析-------------------------------------------------------------------
+    var mRNA_DataLayers = {}
 
+
+    var lastId = null;
+
+    for (var layerId in dataCaryon.layers)
+    {
+        mRNA_DataLayers[layerId] = {};
+        await  _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
+    }
+
+    async function _copyValue(object, layerId, toObject)
+    {
+        for (var x in object)
+        {
+            if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
+            {
+                if (ARR.hasMember(["name", "id", "index"], x))
+                {
+                    toObject[x] = object[x];
+                } else
+                {
+                    if (object[x].constructor === Object)
+                    {
+                        toObject[x] = {};
+                        await _copyValue(object[x], layerId, toObject[x]);
+                    }
+                    else
+                    {
+
+                        if (varSystem.isFormula(object[x]))
+                        {
+                            toObject[x] = await varSystem.evalVar(object[x]);
+                        } else
+                        {
+                            toObject[x] = object[x];
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+    
+
+//  3、ExtendScript 端渲染-------------------------------------------------------------------
+
+    await enzymes.DNAExpress(dataCaryon.layers, varSystem.vars)
 
 
 }
