@@ -1,4 +1,4 @@
-/**
+﻿/**
  * Created by bgllj on 2016/7/10.
  */
 
@@ -5426,7 +5426,7 @@ Kinase.prototype.layer.selectMultLayers_byID = function (layerIDArray, repick)
     {
         return "err";
     }
-
+    
     layerIDArray = layerIDArray.sort();
     if (repick)
     {

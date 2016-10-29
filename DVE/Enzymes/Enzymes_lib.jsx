@@ -746,10 +746,12 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
 {
     var layers = JSON.parse(mRNA_Layers_json)
     var vars = JSON.parse(vars_json)
+    _func();
+
 
     function _func()
     {
-        var save = EnzJSX.selectSave();
+        var save = EnzJSX.selectSave(true);
 
         //图层信息查询缓存
         var queryCache = {};
@@ -776,7 +778,7 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
 
                 if (_do_position)
                 {
-                    EnzJSX.selectLayer_byID(layerId);
+                    ki.layer.selectLayer_byID(layerId);
                     EnzJSX.setLayerInfo_position_byId(_info_position,layerId)
                 }
             }

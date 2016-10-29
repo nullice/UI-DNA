@@ -58,21 +58,51 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
 }
 
+RenderCaryon.prototype.__getLayerData_cache = {rootName: null, layerId: null, cache: null}
+
+RenderCaryon.prototype._getLayerData = async function (rootName, name, layerId)
+{
+
+    console.log("_getLayerData:", rootName, name, layerId)
+    //调用缓存：
+    if ((this.__getLayerData_cache.rootName == rootName) && (this.__getLayerData_cache.layerId == layerId))
+    {
+        return this.__getLayerData_cache.cache[name];
+    }
+
+
+    if (rootName == "position")
+    {
+        console.log("_getLayerData:getLayerInfo_position_byId")
+        var position = await enzymes.getLayerInfo_position_byId(layerId)
+
+        this.__getLayerData_cache.rootName = rootName;
+        this.__getLayerData_cache.layerId = layerId;
+        this.__getLayerData_cache.cache = position;
+
+        return position[name];
+    }
+
+}
+
 
 /**
  * 渲染当前文档
  */
 RenderCaryon.prototype.renderDocument = async function ()
 {
+    var _this = this;
 
     console.log("START【renderDocument】----------------")
 //  1、变量赋值-------------------------------------------------------------------
-    console.log("1、变量赋值------------:")
-    for (var x in dataCaryon.layers)
+    console.log("1、变量赋值2------------:")
+    this.__getLayerData_cache.layerId = null;
+
+    for (var layerId in dataCaryon.layers)
     {
-        if (dataCaryon.layers[x].position != undefined)
+        if (dataCaryon.layers[layerId].position != undefined)
         {
-          await _doAssign(dataCaryon.layers[x], "position")
+            await _doAssign(dataCaryon.layers[layerId], "position")
         }
     }
 
@@ -80,35 +110,44 @@ RenderCaryon.prototype.renderDocument = async function ()
 
     async function _doAssign(layer, propertyName)
     {
+
         if (layer[propertyName].assignment != undefined)
         {
+            console.log("_doAssign: assignment：", layer[propertyName].assignment)
             for (var n in layer[propertyName].assignment)
             {
-                if (layer[propertyName][n] != undefined)
+                if ((layer[propertyName].enableAssigns != undefined ) && (layer[propertyName].enableAssigns[n] == true))
                 {
-                    if (varSystem.isFormula(layer[propertyName][n]))
+                    if (layer[propertyName][n] != undefined)
                     {
-                        var getValue = await varSystem.evalVar(layer[propertyName][n]);
+                        if (varSystem.isFormula(layer[propertyName][n]))
+                        {
+                            var getValue = await varSystem.evalVar(layer[propertyName][n]);
+                        } else
+                        {
+                            var getValue = layer[propertyName][n];
+                        }
                     } else
                     {
-                        var getValue = layer[propertyName][n];
+                        var getValue = await _this._getLayerData(propertyName, n, layer.id);
                     }
-
                     var _varNames = layer[propertyName].assignment[n].split((/[,，]/));//-----多个赋值："xx,ddd，cc"
                     for (var i = 0; i < _varNames.length; i++)
                     {
                         if (varSystem.vars[_varNames[i]] != undefined)
                         {
-                            varSystem.vars[_varNames[i]].setVar(getValue);
+                            console.log("_doAssign: setVarr:"+_varNames[i]+"=" + getValue)
+                            varSystem.vars[_varNames[i]].value = getValue;
                         }
 
                     }
-                }
 
+                }
             }
 
         }
     }
+
 
 //  2、表达式解析-------------------------------------------------------------------
     var mRNA_DataLayers = {}
@@ -121,6 +160,7 @@ RenderCaryon.prototype.renderDocument = async function ()
         mRNA_DataLayers[layerId] = {};
         await  _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
     }
+
 
     async function _copyValue(object, layerId, toObject)
     {
@@ -155,11 +195,13 @@ RenderCaryon.prototype.renderDocument = async function ()
 
 
     }
-    
 
+
+    console.log("mRNA_DataLayers",mRNA_DataLayers)
+    
 //  3、ExtendScript 端渲染-------------------------------------------------------------------
 
-    await enzymes.DNAExpress(dataCaryon.layers, varSystem.vars)
+    await enzymes.DNAExpress(mRNA_DataLayers, varSystem.vars)
 
 
 }

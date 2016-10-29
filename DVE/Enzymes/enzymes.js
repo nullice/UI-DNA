@@ -477,8 +477,10 @@ Enzymes.prototype.DNAExpress = function (mRNA_Layers, vars)
 {
     return new Promise(function (resolve, reject)
     {
+        
+        console.log( `EnzJSX.DNAExpress('${JSON.stringify(mRNA_Layers)}','${JSON.stringify(vars)})'`)
         evalScript(
-            `EnzJSX.DNAExpress(${JSON.stringify(mRNA_Layers)},${JSON.stringify(vars)})`
+            `EnzJSX.DNAExpress('${JSON.stringify(mRNA_Layers)}','${JSON.stringify(vars)}')`
             ,
             (r)=> {resolve(r);}
         )
