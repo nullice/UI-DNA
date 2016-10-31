@@ -2,8 +2,6 @@
  * Created by bgllj on 2016/9/7.
  */
 
-
-
 var DataCaryon = function ()
 {
 
@@ -74,7 +72,7 @@ DataCaryon.prototype.load = async function ()
 {
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
     var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
-
+    console.log("【DataCaryon.load】",dataJson)
     this.layers = JSON.parse(dataJson)
 
 }
@@ -88,8 +86,14 @@ DataCaryon.prototype.switchDocment = async function ()
 
     if (docId != undefined)
     {
-        console.log("【switchDocment】："+docId)
+        console.log("【switchDocment】：" + docId)
         this.nowDoucmentId = docId;
+
+
+        if (this.layers == undefined)
+        {
+            this.load();
+        }
     }
 }
 

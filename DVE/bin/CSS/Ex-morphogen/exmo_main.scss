@@ -138,7 +138,7 @@ $color_button_background: #fdfdfd;
 //按钮高亮颜色
 $color_button_highlight: #2480E8;
 //按钮按下颜色
-$color_button_active: rgba(255, 255, 255, 0.51);
+$color_button_active: rgba(0, 0, 0, 0.01);
 
 //按钮_警告_边框颜色
 $color_button_warning_border: rgb(239, 152, 141);
@@ -202,7 +202,7 @@ $color_button_ghost_read: #5C5C5C;
 //按钮高亮颜色
 $color_button_ghost_highlight: #f0f2fd;
 //按钮按下颜色
-$color_button_ghost_active: rgba(255, 255, 255, 0.51);
+$color_button_ghost_active: rgba(0, 0, 0, 0.01);
 
 .exmo_button_ghost {
     @extend .exmo_button;

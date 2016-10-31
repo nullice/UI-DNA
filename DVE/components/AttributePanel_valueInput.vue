@@ -1,6 +1,6 @@
 <template>
 
-    <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign}">
+    <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign, mini:mini}">
         <div class="exmo_box_name">{{name|lang}}</div>
         <input type="text" class="exmo_input_text edit_input"
                v-model:value="o_edit"
@@ -9,8 +9,8 @@
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked
                v-model:value="enable_assign">
-        <label class="exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i
-                class="icon-layer-visible"></i></label>
+        <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i
+                class="icon-carousel-right"></i></label>
 
         <input type="text" class="exmo_input_text out_input"
                v-model:value="o_out"
@@ -20,33 +20,105 @@
 </template>
 <style lang="scss">
 
+    .exmo_inbox.value_input_box.mini {
+        width: 128px;
+        overflow: hidden;
+
+        .edit_input {
+            width: 85px;
+        }
+
+        &:not(.press_out)
+        {
+            .edit_input {
+                width: 85px;
+                transition: all 0.3s;
+            }
+
+            &:hover .edit_input {
+                width: 60px;
+            }
+        }
+
+        &.press_out {
+            .edit_input {
+                width: 23px;
+                transition: all 0.3s;
+            }
+
+            .out_input {
+                width: 23px;
+                transition: all 0.3s;
+
+            }
+        }
+
+
+    }
+
+    label.attr_value_set.exmo_button_icon {
+        opacity: 0;
+        display: none;
+    }
+    .value_input_box:hover  label.attr_value_set.exmo_button_icon
+    {
+        opacity: 1;
+        display: inline-block;
+    }
+
+    .exmo_icon_cheackbox:checked + label.attr_value_set.exmo_button_icon
+    {
+        opacity: 1;
+        display: inline-block;
+    }
+
+
     .value_input_box .exmo_box_name {
         width: 24px;
+        transition: all 0.3s;
     }
 
     .exmo_inbox.value_input_box {
-        width: 240px;
+        width: 260px;
+        overflow: hidden;
+        transition: all 0.3s;
+        white-space: nowrap;
     }
 
-    .edit_input {
-        width: 150px;
-        transition: all 0.5s;
+    .value_input_box:not(.press_out)
+    {
+
+        .edit_input {
+            width: 217px;
+            transition: all 0.3s;
+        }
+
+        &:hover .edit_input {
+            width: 190px;
+        }
+
     }
+
+
 
     .out_input {
         width: 0px;
         min-width: 0px;
-        transition: all 0.5s;
+        transition: all 0.3s;
+
         /*display: none;*/
     }
 
     .press_out {
         .edit_input {
-            width: 75px;
+            width: 97px;
+            transition: all 0.3s;
         }
 
         .out_input {
-            width: 75px;
+            width: 97px;
+            transition: all 0.3s;
+
             /*display: inline-block;*/
         }
     }
@@ -59,7 +131,7 @@
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "out_value", 'name', "value_type", "enable_assign"],
+        props: ['edit_value', "out_value", 'name', "value_type", "enable_assign", "mini"],
         data(){
             return {
                 o_edit: "",

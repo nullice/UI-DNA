@@ -4,23 +4,34 @@
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position" name="group1" id="option1" autocomplete="off" checked>
             <label class="btn btn_primary" for="option1" title="{{'位置' |lang}}">
-                <span>{{'位置' |lang}}</span>
+                <span><i class="icon-enlarge icon_position "></i></span>
             </label>
 
             <input type="checkbox" v-model="tagsActive.shape" name="group1" id="option2" autocomplete="off">
-            <label class="btn btn_primary " for="option2">
-                <span><i class="icon-xor-intersect"></i></span>
+            <label class="btn btn_primary " for="option2" title="{{'形状' |lang}}">
+                <span><i class="icon-sampler-graphics icon_shape"></i></span>
             </label>
 
             <input type="checkbox" name="group1" id="option3" autocomplete="off">
-            <label class="btn btn_primary " for="option3">
-                <span><i class="icon-xor-difference"></i></span>
+            <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}" >
+                <span><i class="icon-sampler-charStyle"></i></span>
             </label>
 
             <input type="checkbox" id="option4" autocomplete="off">
-            <label class="btn btn_primary" for="option4">
-                <span><i class="icon-glyph"></i></span>
+            <label class="btn btn_primary" for="option4"  title="{{'智能对象' |lang}}">
+                <span><i class="icon-layer-smartobject"></i></span>
             </label>
+
+            <input type="checkbox" id="option5" autocomplete="off">
+            <label class="btn btn_primary" for="option5"  title="{{'图层样式' |lang}}">
+                <span><i class="icon-libraries-addLayerStyle"></i></span>
+            </label>
+
+            <input type="checkbox" id="option6" autocomplete="off">
+            <label class="btn btn_primary" for="option6"  title="{{'自定义' |lang}}">
+                <span><i class="icon-cog"></i></span>
+            </label>
+
         </div>
 
         <div class="tag-box tag-position" v-show="tagsActive.position" v-bind:class="{active:tagsActive.position}"
@@ -28,16 +39,22 @@
             <h3> {{'位置' |lang}} </h3>
             <value-input name="X" v-bind:edit_value.sync="Gob.position.x"
                          v-bind:out_value.sync="Gob.position.assignment.x"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.x"></value-input>
+                         v-bind:enable_assign.sync="Gob.position.enableAssigns.x"
+                         mini="true"></value-input>
+
             <value-input name="Y" v-bind:edit_value.sync="Gob.position.y"
                          v-bind:out_value.sync="Gob.position.assignment.y"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
+                         v-bind:enable_assign.sync="Gob.position.enableAssigns.y"
+                         mini="true"></value-input>
+
             <value-input name="W" v-bind:edit_value.sync="Gob.position.w"
                          v-bind:out_value.sync="Gob.position.assignment.w"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.w"></value-input>
+                         v-bind:enable_assign.sync="Gob.position.enableAssigns.w"
+                         mini="true"></value-input>
             <value-input name="H" v-bind:edit_value.sync="Gob.position.h"
                          v-bind:out_value.sync="Gob.position.assignment.h"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.h"></value-input>
+                         v-bind:enable_assign.sync="Gob.position.enableAssigns.h"
+                         mini="true"></value-input>
             <!--<comp-a></comp-a>-->
         </div>
 
@@ -61,7 +78,7 @@
     </a-area>
 </template>
 
-<style>
+<style lang="scss">
 
     /*.exmo_area .tag-box{*/
     /*!*display: none;*!*/
@@ -73,6 +90,24 @@
     /*opacity: 1;*/
     /*transition: all .5s;*/
     /*}*/
+
+    i.icon_position {
+        font-size: 11px !important;
+        vertical-align: top !important;
+        transform: rotate(45deg) !important;
+        margin-top: 7px !important;
+        display: inline-block !important;
+    }
+    i.icon_shape {
+        margin-bottom: 1px!important;
+        display: inline-block!important;
+    }
+
+
+    .tag-position.trans-fade-transition {
+        height: 90px;
+
+    }
 
     .trans-fade-transition {
         transition: all .3s ease;
