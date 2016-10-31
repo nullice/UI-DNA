@@ -9,7 +9,7 @@
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked
                v-model:value="enable_assign">
-        <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i
+        <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name|lowercase}}" title="{{'赋值到:' |lang}}"><i
                 class="icon-carousel-right"></i></label>
 
         <input type="text" class="exmo_input_text out_input"
@@ -122,6 +122,11 @@
             /*display: inline-block;*/
         }
     }
+
+
+
+
+
 </style>
 
 <script>

@@ -72,7 +72,7 @@ i.adobe {
     color: #2480E8; }
   .exmo_button:disabled, .exmo_button_ghost:disabled, .exmo_btn_group .btn_primary:disabled {
     opacity: .6; }
-  .exmo_button:active, .exmo_button_ghost:active, .exmo_btn_group .btn_primary:active {
+  .exmo_button:active:not(:disabled), .exmo_button_ghost:active:not(:disabled), .exmo_btn_group .btn_primary:active:not(:disabled) {
     background-color: rgba(0, 0, 0, 0.01); }
   .exmo_button.warning, .warning.exmo_button_ghost, .exmo_btn_group .warning.btn_primary {
     border-color: #ef988d;
@@ -80,7 +80,7 @@ i.adobe {
     background-color: #ffeaea; }
     .exmo_button.warning:hover:not(:disabled), .warning.exmo_button_ghost:hover:not(:disabled), .exmo_btn_group .warning.btn_primary:hover:not(:disabled) {
       color: #FF0200; }
-    .exmo_button.warning:active, .warning.exmo_button_ghost:active, .exmo_btn_group .warning.btn_primary:active {
+    .exmo_button.warning:active:not(:disabled), .warning.exmo_button_ghost:active:not(:disabled), .exmo_btn_group .warning.btn_primary:active:not(:disabled) {
       background-color: #fddddd; }
 
 .exmo_button_ghost {

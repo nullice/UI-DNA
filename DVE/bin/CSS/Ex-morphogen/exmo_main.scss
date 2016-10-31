@@ -171,12 +171,11 @@ $color_button_warning_active: rgba(253, 221, 221, 1);
         opacity: .6;
     }
 
-    &:active {
+    &:active:not(:disabled) {
         background-color: $color_button_active
     }
 
     &.warning {
-
         border-color: $color_button_warning_border;
         color: $color_button_warning_read;
         background-color: $color_button_warning_background;
@@ -185,7 +184,7 @@ $color_button_warning_active: rgba(253, 221, 221, 1);
             color: $color_button_warning_highlight;
         }
 
-        &:active {
+        &:active:not(:disabled) {
             background-color: $color_button_warning_active;
         }
 

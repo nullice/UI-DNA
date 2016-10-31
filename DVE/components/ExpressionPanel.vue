@@ -19,13 +19,16 @@
                     class="icon-spinner9"></i></label>
         </div>
 
-        <button v-on:click="doDNAExpression" class="express_but exmo_button ">{{"渲染"|lang}}</button>
+        <button v-on:click="doDNAExpression" class="express_but exmo_button ">
+            <span>{{"渲染" | lang}}</span>
+            <express-effect></express-effect>
+        </button>
 
         <div class="dataCaryonSave">
-            <button class="exmo_button_icon mini">
-                <i class="icon-floppy-disk"></i>
+            <button v-on:click="doDataSave" class="exmo_button_icon mini">
+                <i v-bind:class="{eff_animation_flip:o_data_status.saving}" class="icon-floppy-disk"></i>
             </button>
-            <div class="data_saved_icon"><i class="icon-checkmark"></i></div>
+            <div v-show="o_dataSaved" class="data_saved_icon"><i class="icon-checkmark"></i></div>
 
             <!--<div class="more_option">-->
             <!--<label class="express_auto_save exmo_checkbox">-->
@@ -35,6 +38,8 @@
             <!--</label>-->
             <!--</div>-->
         </div>
+
+
     </div>
 
 
@@ -49,6 +54,7 @@
         bottom: 0;
         background: inherit;
         border-top: 2px solid rgba(0, 0, 0, 0.08);
+        overflow: hidden;
 
         .more_option {
             position: absolute;
@@ -68,6 +74,17 @@
             width: 128px;
             height: 30px;
             margin: auto;
+            overflow: hidden;
+
+            span{
+                z-index: 3;
+                position: relative;
+            }
+
+            .express_effect.socket {
+                transform: scale(.6);
+                opacity: .31;
+            }
         }
 
         .auto_express {
@@ -138,26 +155,64 @@
         height: 50px;
     }
 
+    .eff_animation_flip {
+        animation: flip .7s infinite;
+    }
+
+    @keyframes flip {
+        0% {
+            transform: rotate(0deg);
+        }
+
+        25% {
+            transform: rotateY(45deg);
+        }
+
+        50% {
+            transform: rotateY(90deg);
+        }
+
+        75% {
+            transform: rotateY(135deg);
+        }
+
+        100% {
+            transform: rotateY(180deg);
+        }
+    }
+
+
+
+
 
 </style>
 <script>
+
+    import expressEffect from "./ExpressionPanel_expressEffect.vue"
 
     export default{
         data(){
             return {
                 msg: 'hello vue',
-                o_dataSaved: false,
-
+                o_data_status: dataCaryon.status,
             }
         },
+
         methods: {
             doDNAExpression: function ()
             {
                 renderCaryon.renderDocument();
+            },
+            doDataSave: function ()
+            {
+                dataCaryon.save();
             }
 
 
         },
-        components: {}
+        components: {
+
+            "express-effect":expressEffect
+        }
     }
 </script>

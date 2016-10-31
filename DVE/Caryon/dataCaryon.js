@@ -6,7 +6,8 @@ var DataCaryon = function ()
 {
 
     this._layers = {
-        "test": {999: DataCaryon.prototype.layerSample}
+        // "test": {999: DataCaryon.prototype.layerSample}
+
     }
     this.layers = this._layers.test;
     this._nowDoucmentId = null;
@@ -38,6 +39,7 @@ var DataCaryon = function ()
 
 
     this.selectLayers = [];
+    this.status = {saved: false, saving: false}
     this.switchDocment()
     return this;
 }
@@ -64,7 +66,12 @@ DataCaryon.prototype.addLayer = function (layerListItem)
 
 DataCaryon.prototype.save = async function ()
 {
+    this.status.saving = true;
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
+
+
+    this.status.saved = true;
+    this.status.saving = false;
 }
 
 
@@ -72,7 +79,7 @@ DataCaryon.prototype.load = async function ()
 {
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
     var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
-    console.log("【DataCaryon.load】",dataJson)
+    console.log("【DataCaryon.load】", dataJson)
     this.layers = JSON.parse(dataJson)
 
 }
