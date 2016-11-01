@@ -33,7 +33,7 @@ var GobCaryon = function ()
     );
 
 
-    this.selectList = [{id: 999}];
+    this.selectList = [];
     this.position = {
         x: null,
         y: null,
@@ -106,6 +106,9 @@ GobCaryon.prototype._setData = async function (names, value)
 
 
     var isFormula = false;
+    var doDocumentRender = false;
+    var varUpdatelist = [];
+
 
     //-------- 1. 值写入实际存储的属性 this._XXX;
     var change = _valueToObject(this, names, 0, value, true);
@@ -135,6 +138,8 @@ GobCaryon.prototype._setData = async function (names, value)
 
     for (var i = 0; i < this.selectList.length; i++)
     {
+        dataCaryon.status.saved = false;
+
         var change_i = false;
         if (isFormula)
         {
@@ -144,7 +149,7 @@ GobCaryon.prototype._setData = async function (names, value)
             }
             change_i = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
-        //即时修改------------
+        //即时修改-------------------------------------------------------------------------------------------
         // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
 
         // console.log(change_i, change, isFormula)
@@ -154,20 +159,56 @@ GobCaryon.prototype._setData = async function (names, value)
         {
             if (value != Gob.MULT)
             {
-                if (change_i || ((isFormula == false) & change))
+                if (change_i || change)
                 {
-                    console.log("【START】renderPatch--------" + names + "=>" + value)
-                    console.log(this.selectList[i].id, names, value)
-                    rendered = true;
-                    await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
-                    // await  sleep(800)
-                    console.log("【END】renderPatch------" + names + "=>" + value)
+                    if (names[1] != "enableAssigns" && names[1] != "assignment")
+                    {
+                        console.log("【START】renderPatch--------" + names + "=>" + value)
+                        console.log(this.selectList[i].id, names, value)
+                        rendered = true;
+
+
+                        if (isFormula)
+                        {
+                            value = await varSystem.evalVar(value, this.selectList[i].id)
+                        }
+                        await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
+
+                        // await  sleep(800)
+                        console.log("【END】renderPatch------" + names + "=>" + value)
+                    } else
+                    {
+                        if (names[1] != "assignment")
+                        {
+
+                        }
+                    }
+
+
                 }
             }
         }
+
     }
 
+    if (setSystem.autoRender && (value != Gob.MULT) && (change_i || change))
+    {
+        console.log("autoRender", this[names[0]]["enableAssigns"][names[names.length - 1]])
+        if (this[names[0]]["enableAssigns"][names[names.length - 1]])
+        {
+            var _assign = this[names[0]]["assignment"][names[names.length - 1]];
+            if (_assign != undefined)
+            {
+                varUpdatelist = _assign.split((/[,，]/));
+                console.log("varUpdatelist", varUpdatelist)
+                if (varUpdatelist.length > 0)
+                {
+                    renderCaryon.renderDocument(true, varUpdatelist)
+                }
+            }
+        }
 
+    }
 
 
     if (this.selectList.length > 1)
@@ -183,7 +224,6 @@ GobCaryon.prototype._setData = async function (names, value)
     }
     // console.log("[--]" + names, "   " + Gob._asyncSetCounter)
     Gob._asyncSetCounter--;
-
 
 
     // alert("set:" + names + "=" + value)
@@ -257,6 +297,7 @@ GobCaryon.prototype.updateGob = async function ()
             enableAssigns: {x: null, y: null, w: null, h: null}
         }
     }
+
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
     {
@@ -384,7 +425,7 @@ GobCaryon.prototype.updateGob = async function ()
         {
             if (object[x] != undefined && object[x].constructor == Object)
             {
-                _objectToObject_asyncSetCounter(object[x], sameObject[x], checkMUTI, ignoreNull,asyncCounter)
+                _objectToObject_asyncSetCounter(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
             } else
             {
                 if (asyncCounter)
@@ -398,7 +439,7 @@ GobCaryon.prototype.updateGob = async function ()
             }
         }
 
-        if(_temp>0)
+        if (_temp > 0)
         {
             // console.log("[++]" +_temp)
             Gob._asyncSetCounter += _temp;

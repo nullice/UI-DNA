@@ -8,9 +8,12 @@ import ARR from "./Richang_JSEX/arrayARR.js"
 
 var RenderCaryon = function ()
 {
-    
-    
-    
+
+    this.status = {
+        rendering: false,
+
+    }
+
     return this;
 }
 
@@ -35,12 +38,16 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
+    this.status.rendering = true;
+    
     var item = names[names.length - 1];
     if (names[0] === "position")
     {
         if ((names.length == 2 ) && _inArray(item, ["x", "y", "w", "h"]))
         {
             var ob = {};
+            
+            
             ob[item] = value;
 
             Gob.disableSelectEvent = true;
@@ -58,7 +65,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
         }
     }
 
-
+    this.status.rendering = false;
 }
 
 RenderCaryon.prototype.__getLayerData_cache = {rootName: null, layerId: null, cache: null}
@@ -92,8 +99,9 @@ RenderCaryon.prototype._getLayerData = async function (rootName, name, layerId)
 /**
  * 渲染当前文档
  */
-RenderCaryon.prototype.renderDocument = async function ()
+RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdateList)
 {
+    this.status.rendering = true;
     var _this = this;
 
     console.log("START【renderDocument】----------------")
@@ -139,7 +147,7 @@ RenderCaryon.prototype.renderDocument = async function ()
                     {
                         if (varSystem.vars[_varNames[i]] != undefined)
                         {
-                            console.log("_doAssign: setVarr:"+_varNames[i]+"=" + getValue)
+                            console.log("_doAssign: setVarr:" + _varNames[i] + "=" + getValue)
                             varSystem.vars[_varNames[i]].value = getValue;
                         }
 
@@ -200,13 +208,14 @@ RenderCaryon.prototype.renderDocument = async function ()
     }
 
 
-    console.log("mRNA_DataLayers",mRNA_DataLayers)
-    
+    console.log("mRNA_DataLayers", mRNA_DataLayers)
+
 //  3、ExtendScript 端渲染-------------------------------------------------------------------
 
     await enzymes.DNAExpress(mRNA_DataLayers, varSystem.vars)
 
 
+    this.status.rendering = false;
 }
 
 

@@ -14,21 +14,21 @@
 
 
         <div class="auto_express">
-            <input type="checkbox" class="exmo_icon_cheackbox" id="auto_express_check_btn2" autocomplete="off" checked>
+            <input v-model:value="o_setting.autoRender" type="checkbox" class="exmo_icon_cheackbox" id="auto_express_check_btn2" autocomplete="off" >
             <label class="exmo_button_icon mini" for="auto_express_check_btn2" title="{{'自动渲染'|lang}}"><i
                     class="icon-spinner9"></i></label>
         </div>
 
         <button v-on:click="doDNAExpression" class="express_but exmo_button ">
             <span>{{"渲染" | lang}}</span>
-            <express-effect></express-effect>
+            <express-effect v-show="o_render_status.rendering"></express-effect>
         </button>
 
         <div class="dataCaryonSave">
             <button v-on:click="doDataSave" class="exmo_button_icon mini">
-                <i v-bind:class="{eff_animation_flip:o_data_status.saving}" class="icon-floppy-disk"></i>
+                <i v-bind:class="{eff_animation_flip:o_data_status.status.saving}" class="icon-floppy-disk"></i>
             </button>
-            <div v-show="o_dataSaved" class="data_saved_icon"><i class="icon-checkmark"></i></div>
+            <div v-show="o_data_status.status.saved" class="data_saved_icon"><i class="icon-checkmark"></i></div>
 
             <!--<div class="more_option">-->
             <!--<label class="express_auto_save exmo_checkbox">-->
@@ -38,9 +38,8 @@
             <!--</label>-->
             <!--</div>-->
         </div>
-
-
     </div>
+
 
 
 </template>
@@ -76,7 +75,7 @@
             margin: auto;
             overflow: hidden;
 
-            span{
+            span {
                 z-index: 3;
                 position: relative;
             }
@@ -113,6 +112,7 @@
             right: 10%;
             margin: auto;
             height: 24px;
+            margin-top: 10px;
 
             .express_auto_save.exmo_checkbox {
                 vertical-align: middle;
@@ -182,9 +182,6 @@
     }
 
 
-
-
-
 </style>
 <script>
 
@@ -194,8 +191,12 @@
         data(){
             return {
                 msg: 'hello vue',
-                o_data_status: dataCaryon.status,
-            }
+                o_data_status: dataCaryon.info,
+                o_render_status: renderCaryon.status,
+                o_setting: setSystem,
+
+
+        }
         },
 
         methods: {
@@ -212,7 +213,7 @@
         },
         components: {
 
-            "express-effect":expressEffect
+            "express-effect": expressEffect
         }
     }
 </script>

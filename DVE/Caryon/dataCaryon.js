@@ -2,14 +2,16 @@
  * Created by bgllj on 2016/9/7.
  */
 
+import OBJ from "./Richang_JSEX/objectOBJ"
+
 var DataCaryon = function ()
 {
 
     this._layers = {
         // "test": {999: DataCaryon.prototype.layerSample}
-
     }
-    this.layers = this._layers.test;
+
+    this.layers = null;
     this._nowDoucmentId = null;
     Object.defineProperty(this, "nowDoucmentId",
         {
@@ -39,7 +41,12 @@ var DataCaryon = function ()
 
 
     this.selectLayers = [];
-    this.status = {saved: false, saving: false}
+
+    this.info = {};
+    this.info._status = {_default: {saved: false, saving: false, _id: "default"}};
+    this.info.status = this.info._status._default;
+
+
     this.switchDocment()
     return this;
 }
@@ -66,12 +73,12 @@ DataCaryon.prototype.addLayer = function (layerListItem)
 
 DataCaryon.prototype.save = async function ()
 {
-    this.status.saving = true;
+    this.info.status.saving = true;
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
 
 
-    this.status.saved = true;
-    this.status.saving = false;
+    this.info.status.saved = true;
+    this.info.status.saving = false;
 }
 
 
@@ -94,14 +101,33 @@ DataCaryon.prototype.switchDocment = async function ()
     if (docId != undefined)
     {
         console.log("【switchDocment】：" + docId)
-        this.nowDoucmentId = docId;
+        this.nowDoucmentId = docId; //切换当前 layers
 
 
-        if (this.layers == undefined)
+        console.log(this.layers)
+        if (this.layers == undefined || OBJ.isEmptyObject(this.layers))
         {
+            console.log("load");
             this.load();
         }
+
+
+        if (this.info._status[docId] == undefined)
+        {
+
+            Vue.set(this.info._status, docId, {saved: false, saving: false, _id: docId})
+            console.log({saved: false, saving: false}, docId, this.info._status[docId])
+
+            this.info.status = this.info._status[docId];
+
+        } else
+        {
+            this.info.status = this.info._status[docId];
+        }
+
+
     }
+    Gob.updateSelect();
 }
 
 

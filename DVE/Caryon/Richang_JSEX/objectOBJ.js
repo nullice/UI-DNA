@@ -29,6 +29,21 @@
 var objectOBJ = {
 
     /**
+     * 对象是否为空
+     * @param obj
+     * @returns {boolean}
+     */
+    isEmptyObject: function( obj ) {
+        for ( var name in obj ) {
+            return false;
+        }
+        return true;
+    }
+
+
+    ,
+
+    /**
      * 复制对象。可控制要复制的属性，复制后的属性名，处理新属性值
      * @param ob1 源对象
      * @param ob2 目标对象

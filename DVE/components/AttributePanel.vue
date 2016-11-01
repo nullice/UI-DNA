@@ -12,7 +12,7 @@
                 <span><i class="icon-sampler-graphics icon_shape"></i></span>
             </label>
 
-            <input type="checkbox" name="group1" id="option3" autocomplete="off">
+            <input type="checkbox" v-model="tagsActive.text" name="group1" id="option3" autocomplete="off">
             <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}" >
                 <span><i class="icon-sampler-charStyle"></i></span>
             </label>
@@ -29,7 +29,7 @@
 
             <input type="checkbox" id="option6" autocomplete="off">
             <label class="btn btn_primary" for="option6"  title="{{'自定义' |lang}}">
-                <span><i class="icon-cog"></i></span>
+                <span><i class="icon-cog icon_more"></i></span>
             </label>
 
         </div>
@@ -75,6 +75,18 @@
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.h"></value-input>
             <!--<comp-a></comp-a>-->
         </div>
+
+
+        <div class="tag-box tag-text" v-show="tagsActive.text" v-bind:class="{active:tagsActive.text}"
+             transition="trans-fade">
+            <h3> {{'文本' |lang}} </h3>
+            <value-input name="内容" v-bind:edit_value.sync="Gob.position.x"
+                         v-bind:out_value.sync="Gob.position.assignment.x"
+                         v-bind:enable_assign.sync="Gob.position.enableAssigns.x"></value-input>
+
+        </div>
+
+
     </a-area>
 </template>
 
@@ -102,6 +114,15 @@
         margin-bottom: 1px!important;
         display: inline-block!important;
     }
+
+    i.icon_more {
+        margin-bottom: 1px;
+        display: inline-block;
+    }
+
+
+
+
 
 
     .tag-position.trans-fade-transition {

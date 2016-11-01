@@ -201,6 +201,22 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
 }
 
 
+
+
+EventCaryon.prototype.extensionStart =function ()
+{
+
+}
+
+
+EventCaryon.prototype.extensionStart =function ()
+{
+
+}
+
+
+
+
 function CSEvent(type, scope, appId, extensionId)
 {
     this.type = type;
