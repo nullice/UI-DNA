@@ -72,6 +72,45 @@ var arrayARR = {
 
 
     /**
+     * 对称差。对象数组。
+     *  a:[{key:1}, {key:2}]  b:[{key:2}, {key:3}]  a△b => [{key:1},{key:3}]
+     * @param a
+     * @param b
+     * @param key 对象关键属性
+     * @returns {Array}
+     */
+    symDifference_ObjectArray: function (a, b, key)
+    {
+        var ob = {};
+        for (var i = 0; i < a.length; i++)
+        {
+            ob[a[i][key]] = {is: true, ob: a[i]};
+        }
+
+        for (var i = 0; i < b.length; i++)
+        {
+            if (ob[b[i][key]] == undefined)
+            {
+                ob[b[i][key]] = {is: true, ob: b[i]};
+            } else
+            {
+                ob[b[i][key]] = {is: false};
+            }
+        }
+
+        var arr = [];
+        for (var x in ob)
+        {
+            if (ob[x].is != false)
+            {
+                arr.push(ob[x].ob);
+            }
+        }
+        return arr;
+    },
+
+
+    /**
      * 差集。（不支持对象数组）
      * a:[1,2,3] b:[1,2,4]   a-b => [3]
      * @param {Array} a

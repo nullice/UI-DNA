@@ -6,6 +6,14 @@ import ARR from "./Richang_JSEX/arrayARR.js"
 
 var GobCaryon = function ()
 {
+
+
+    this.selectRender = false; //选择图层后渲染
+    this.selectRenderVarList = false; //渲染改变的变量列表
+    this.selectChanged = false;
+    this.selectUpdateing = false;
+
+
     this.nowSwitching = false;//是否在切换选中图层中
     this.disableSelectEvent = false;//不触发选择图层事件
 
@@ -23,6 +31,21 @@ var GobCaryon = function ()
                     console.log("【this.nowSwitching = false】")
                     this.nowSwitching = false;
                     this._asyncSetSwitch = false;
+
+                    //----------------更新图层后渲染
+                    console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
+                        " renderCaryon.status.rendering:", renderCaryon.status.rendering,
+                    )
+                    console.log("this.selectRenderVarList:", this.selectRenderVarList)
+                    if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
+                    {
+                        if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
+                        {
+                            console.log("更新图层后渲染")
+                            renderCaryon.renderDocument(true, this.selectRenderVarList)
+                        }
+                    }
+
                 }
             },
             get: function ()
@@ -138,7 +161,7 @@ GobCaryon.prototype._setData = async function (names, value)
 
     for (var i = 0; i < this.selectList.length; i++)
     {
-        dataCaryon.status.saved = false;
+        dataCaryon.info.status.saved = false;
 
         var change_i = false;
         if (isFormula)
@@ -147,20 +170,22 @@ GobCaryon.prototype._setData = async function (names, value)
             {
                 dataCaryon.addLayer(this.selectList[i]);
             }
+            // console.log("_valueToObject:",this.selectList[i].id,">",dataCaryon.layers[this.selectList[i].id], names, 0, value)
             change_i = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
         //即时修改-------------------------------------------------------------------------------------------
         // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
-
         // console.log(change_i, change, isFormula)
-
         // console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
+
+
         if (this.nowSwitching == false)
         {
             if (value != Gob.MULT)
             {
-                if (change_i || change)
+                if (change_i || (change))
                 {
+                    doDocumentRender = true;
                     if (names[1] != "enableAssigns" && names[1] != "assignment")
                     {
                         console.log("【START】renderPatch--------" + names + "=>" + value)
@@ -170,12 +195,12 @@ GobCaryon.prototype._setData = async function (names, value)
 
                         if (isFormula)
                         {
-                            value = await varSystem.evalVar(value, this.selectList[i].id)
+                            var finValue =await varSystem.evalVar(value, this.selectList[i].id)
                         }
-                        await renderCaryon.renderPatch(this.selectList[i].id, names, value, true)
+                        await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
 
                         // await  sleep(800)
-                        console.log("【END】renderPatch------" + names + "=>" + value)
+                        console.log("【END】renderPatch------" + names + "=>" + finValue)
                     } else
                     {
                         if (names[1] != "assignment")
@@ -191,22 +216,36 @@ GobCaryon.prototype._setData = async function (names, value)
 
     }
 
-    if (setSystem.autoRender && (value != Gob.MULT) && (change_i || change))
+    if (setSystem.autoRender)
     {
-        console.log("autoRender", this[names[0]]["enableAssigns"][names[names.length - 1]])
         if (this[names[0]]["enableAssigns"][names[names.length - 1]])
         {
-            var _assign = this[names[0]]["assignment"][names[names.length - 1]];
-            if (_assign != undefined)
+            console.log("autoRender", (change_i || change), this[names[0]]["enableAssigns"][names[names.length - 1]], names)
+            if (value != Gob.MULT && (change_i || change))
             {
-                varUpdatelist = _assign.split((/[,，]/));
-                console.log("varUpdatelist", varUpdatelist)
-                if (varUpdatelist.length > 0)
+                var _assign = this[names[0]]["assignment"][names[names.length - 1]];
+
+                console.log("_assign:", _assign)
+                if (_assign != undefined)
                 {
-                    renderCaryon.renderDocument(true, varUpdatelist)
+                    varUpdatelist = _assign.split((/[,，]/));
+                    console.log("varUpdatelist", varUpdatelist)
+                    if (varUpdatelist.length > 0)
+                    {
+                        if (doDocumentRender)
+                        {
+                            renderCaryon.renderDocument(true, varUpdatelist)
+                        } else
+                        {
+                            this.selectRender = true;
+                            this.selectRenderVarList = this.selectRenderVarList.concat(varUpdatelist);
+
+                        }
+                    }
                 }
             }
         }
+
 
     }
 
@@ -267,11 +306,28 @@ GobCaryon.prototype.updateSelect = async function ()
         return;
     }
 
-    this.nowSwitching = true;
-    console.log("【this.nowSwitching = true】")
-    this.selectList = (await enzymes.getSelectLayerArray()).reverse();
-    this.updateGob();
+    if (this.selectUpdateing)
+    {
+        return;
+    }
 
+    this.selectUpdateing = true;
+
+
+    this.nowSwitching = true;
+    this.selectRender = false;
+    this.selectRenderVarList = [];
+    console.log("【this.nowSwitching = true】")
+
+    var newList = (await enzymes.getSelectLayerArray()).reverse();
+    this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
+    console.log("selectChanged:", this.selectChanged);
+
+    this.selectList = newList;
+    await this.updateGob();
+
+    this.selectUpdateing = false;
+    console.log("selectUpdateing = END")
 }
 
 

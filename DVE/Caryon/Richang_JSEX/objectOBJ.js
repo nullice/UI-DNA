@@ -28,6 +28,10 @@
 
 var objectOBJ = {
 
+    
+    
+    
+    
     /**
      * 对象是否为空
      * @param obj
@@ -38,10 +42,7 @@ var objectOBJ = {
             return false;
         }
         return true;
-    }
-
-
-    ,
+    },
 
     /**
      * 复制对象。可控制要复制的属性，复制后的属性名，处理新属性值

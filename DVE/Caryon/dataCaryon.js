@@ -87,7 +87,14 @@ DataCaryon.prototype.load = async function ()
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
     var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
     console.log("【DataCaryon.load】", dataJson)
-    this.layers = JSON.parse(dataJson)
+
+    var ob = JSON.parse(dataJson);
+    if (ob != undefined)
+    {
+        this.layers = ob;
+        this.info.status.saved = true;
+    }
+
 
 }
 
