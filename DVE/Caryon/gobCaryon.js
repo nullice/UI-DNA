@@ -62,6 +62,7 @@ var GobCaryon = function ()
         y: null,
         w: null,
         h: null,
+        
         assignment: {x: null, y: null, w: null, h: null},
         enableAssigns: {x: null, y: null, w: null, h: null}
     };
