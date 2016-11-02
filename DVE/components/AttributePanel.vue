@@ -13,22 +13,22 @@
             </label>
 
             <input type="checkbox" v-model="tagsActive.text" name="group1" id="option3" autocomplete="off">
-            <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}" >
+            <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}">
                 <span><i class="icon-sampler-charStyle"></i></span>
             </label>
 
             <input type="checkbox" id="option4" autocomplete="off">
-            <label class="btn btn_primary" for="option4"  title="{{'智能对象' |lang}}">
+            <label class="btn btn_primary" for="option4" title="{{'智能对象' |lang}}">
                 <span><i class="icon-layer-smartobject"></i></span>
             </label>
 
             <input type="checkbox" id="option5" autocomplete="off">
-            <label class="btn btn_primary" for="option5"  title="{{'图层样式' |lang}}">
+            <label class="btn btn_primary" for="option5" title="{{'图层样式' |lang}}">
                 <span><i class="icon-libraries-addLayerStyle"></i></span>
             </label>
 
             <input type="checkbox" id="option6" autocomplete="off">
-            <label class="btn btn_primary" for="option6"  title="{{'自定义' |lang}}">
+            <label class="btn btn_primary" for="option6" title="{{'自定义' |lang}}">
                 <span><i class="icon-cog icon_more"></i></span>
             </label>
 
@@ -88,6 +88,16 @@
 
 
     </a-area>
+
+
+    <attr-select block="true" default_value="0"
+                 v-bind:value.sync="Gob.position.$anchor"
+                 v-bind:select_style="{width:'24px'}"
+                 v-bind:options="o_positon_anchor_options"
+
+    >
+
+    </attr-select>
 </template>
 
 <style lang="scss">
@@ -110,20 +120,16 @@
         margin-top: 7px !important;
         display: inline-block !important;
     }
+
     i.icon_shape {
-        margin-bottom: 1px!important;
-        display: inline-block!important;
+        margin-bottom: 1px !important;
+        display: inline-block !important;
     }
 
     i.icon_more {
         margin-bottom: 1px;
         display: inline-block;
     }
-
-
-
-
-
 
     .tag-position.trans-fade-transition {
         height: 90px;
@@ -150,6 +156,7 @@
 
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import Area from '../components/area.vue';
+    import AttrSelect from "./AttributePanel_select.vue"
     //import CompA from '../components/A.vue'
 
     export default {
@@ -157,13 +164,71 @@
             return {
                 Gob: Gob,
                 tagsActive: setSystem.attArea.tagsActive,
+                o_value: "",
+                o_positon_anchor_options: [
+                    {
+                        value: '0',
+                        label_html: '<i class="icon-reference-tl" style="font-size: 21px;">',
+                        label: "",
+                        selected: true,
+                    },
+                    {
+                        value: '1',
+                        label_html: '<i class="icon-reference-tm" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '2',
+                        label_html: '<i class="icon-reference-tr" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        hr: true,
+                    },
+                    {
+                        value: '3',
+                        label_html: '<i class="icon-reference-cl " style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '4',
+                        label_html: '<i class="icon-reference-cm" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '5',
+                        label_html: '<i class="icon-reference-cr" style="font-size: 21px;">',
+                        label: ''
+                    }, {
+
+                        hr: true,
+                    },
+                    {
+                        value: '6',
+                        label_html: '<i class="icon-reference-bl" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '7',
+                        label_html: '<i class="icon-reference-bm" style="font-size: 21px;">',
+                        label: ''
+                    }
+                    ,
+                    {
+                        value: '8',
+                        label_html: '<i class="icon-reference-br" style="font-size: 21px;">',
+                        label: ''
+                    }
+
+                ]
 
 
             }
         },
         components: {
             "value-input": ValueInput,
-            "a-area": Area
+            "a-area": Area,
+            "attr-select": AttrSelect
 //        "comp-a":ValueInput
         }
     };

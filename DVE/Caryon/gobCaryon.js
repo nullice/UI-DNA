@@ -62,9 +62,10 @@ var GobCaryon = function ()
         y: null,
         w: null,
         h: null,
-        
-        assignment: {x: null, y: null, w: null, h: null},
-        enableAssigns: {x: null, y: null, w: null, h: null}
+        $anchor: null,
+
+        assignment: {x: null, y: null, w: null, h: null, $anchor: null},
+        enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
     };
 
     //------------注册 getter 和 setter
@@ -150,6 +151,9 @@ GobCaryon.prototype._setData = async function (names, value)
         }
     }
 
+    var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));
+    console.log(names[names.length - 1][0], names[names.length - 1], isExvar, value)
+
     //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
 
 
@@ -165,7 +169,7 @@ GobCaryon.prototype._setData = async function (names, value)
         dataCaryon.info.status.saved = false;
 
         var change_i = false;
-        if (isFormula)
+        if (isFormula || isExvar)
         {
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
@@ -196,7 +200,7 @@ GobCaryon.prototype._setData = async function (names, value)
 
                         if (isFormula)
                         {
-                            var finValue =await varSystem.evalVar(value, this.selectList[i].id)
+                            var finValue = await varSystem.evalVar(value, this.selectList[i].id)
                         }
                         await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
 
@@ -350,8 +354,9 @@ GobCaryon.prototype.updateGob = async function ()
             y: null,
             w: null,
             h: null,
-            assignment: {x: null, y: null, w: null, h: null},
-            enableAssigns: {x: null, y: null, w: null, h: null}
+            $anchor: null,
+            assignment: {x: null, y: null, w: null, h: null, $anchor: "null"},
+            enableAssigns: {x: null, y: null, w: null, h: null, $anchor: "null"}
         }
     }
 
