@@ -271,6 +271,26 @@ Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
 
 
 /**
+ * 获取图层文本信息。{x,y,w,h}
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.getLayerInfo_position_byId(${layerID})`
+            ,
+            (r)=> {resolve(JSON.parse(r))})
+    })
+
+}
+
+
+
+
+/**
  * 设置图层位置、尺寸信息。
  * @param boundsInfo {x:新的 X 坐标, y：新的 Y 坐标, w：新的宽度, h：新的高度，centerState：锚点位置（默认左上角，8为中心）}
  * @param doSelect 设置前是否先选中指定图层。当确定当前图层就是指定图层时可设为 false 加快速度。

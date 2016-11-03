@@ -1,6 +1,6 @@
 <template>
 
-    <div v-if="!hr" v-on:click="doSelect"   class="attr_option {{class}} {{(selected_value==value)?'selected':''}}" >
+    <div v-if="!hr" v-on:click="doSelect"   class="attr_option {{in_class}} {{(selected_value==value)?'selected':''}}" >
         {{{label_html}}} {{label}}
     </div>
 
@@ -31,7 +31,7 @@
 
     export default{
 
-        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "hr","class"],
+        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "hr","in_class"],
         methods: {
             doSelect: function ()
             {
@@ -46,9 +46,6 @@
         },
         data(){
             return {
-                value: "_value",
-                label: "_label",
-
             }
         },
         components: {}

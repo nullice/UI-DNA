@@ -2,32 +2,38 @@
 
     <a-area area_title="UI-DNA 属性" area_id="attr_panel">
         <div class="exmo_btn_group" data-toggle="buttons">
-            <input type="checkbox" v-model="tagsActive.position" name="group1" id="option1" autocomplete="off" checked>
-            <label class="btn btn_primary" for="option1" title="{{'位置' |lang}}">
+            <input type="checkbox" v-model="tagsActive.position"
+                   name="group1" id="option1" autocomplete="off" checked>
+            <label class="btn btn_primary" for="option1" title="{{'位置' |lang}}"
+                   v-on:contextmenu.prevent="onlySelect('position')">
                 <span><i class="icon-enlarge icon_position "></i></span>
             </label>
 
-            <input type="checkbox" v-model="tagsActive.shape" name="group1" id="option2" autocomplete="off">
-            <label class="btn btn_primary " for="option2" title="{{'形状' |lang}}">
+            <input type="checkbox" v-model="tagsActive.shape"
+                   name="group1" id="option2" autocomplete="off">
+            <label class="btn btn_primary " for="option2" title="{{'形状' |lang}}"
+                   v-on:contextmenu.prevent="onlySelect('shape')">
                 <span><i class="icon-sampler-graphics icon_shape"></i></span>
             </label>
 
-            <input type="checkbox" v-model="tagsActive.text" name="group1" id="option3" autocomplete="off">
-            <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}">
+            <input type="checkbox" v-model="tagsActive.text"
+                   name="group1" id="option3" autocomplete="off">
+            <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}"
+                   v-on:contextmenu.prevent="onlySelect('text')">
                 <span><i class="icon-sampler-charStyle"></i></span>
             </label>
 
-            <input type="checkbox" id="option4" autocomplete="off">
+            <input type="checkbox" v-model="tagsActive.smartobject" id="option4" autocomplete="off">
             <label class="btn btn_primary" for="option4" title="{{'智能对象' |lang}}">
                 <span><i class="icon-layer-smartobject"></i></span>
             </label>
 
-            <input type="checkbox" id="option5" autocomplete="off">
+            <input type="checkbox" v-model="tagsActive.style" id="option5" autocomplete="off">
             <label class="btn btn_primary" for="option5" title="{{'图层样式' |lang}}">
                 <span><i class="icon-libraries-addLayerStyle"></i></span>
             </label>
 
-            <input type="checkbox" id="option6" autocomplete="off">
+            <input type="checkbox" v-model="tagsActive.more" id="option6" autocomplete="off">
             <label class="btn btn_primary" for="option6" title="{{'自定义' |lang}}">
                 <span><i class="icon-cog icon_more"></i></span>
             </label>
@@ -55,6 +61,15 @@
                          v-bind:out_value.sync="Gob.position.assignment.h"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.h"
                          mini="true"></value-input>
+
+            <select-input block="true" default_value="0"
+                          v-bind:value.sync="Gob.position.$anchor"
+                          v-bind:select_style="{width:'24px'}"
+                          v-bind:options="o_positon_anchor_options"
+                          in_class="position_anchor"
+
+            >
+            </select-input>
             <!--<comp-a></comp-a>-->
         </div>
 
@@ -80,7 +95,10 @@
         <div class="tag-box tag-text" v-show="tagsActive.text" v-bind:class="{active:tagsActive.text}"
              transition="trans-fade">
             <h3> {{'文本' |lang}} </h3>
-            <value-input name="内容" v-bind:edit_value.sync="Gob.position.x"
+
+
+
+            <value-input name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.position.x"
                          v-bind:out_value.sync="Gob.position.assignment.x"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.x"></value-input>
 
@@ -88,16 +106,6 @@
 
 
     </a-area>
-
-
-    <attr-select block="true" default_value="0"
-                 v-bind:value.sync="Gob.position.$anchor"
-                 v-bind:select_style="{width:'24px'}"
-                 v-bind:options="o_positon_anchor_options"
-
-    >
-
-    </attr-select>
 </template>
 
 <style lang="scss">
@@ -132,8 +140,16 @@
     }
 
     .tag-position.trans-fade-transition {
-        height: 90px;
+        height: 130px;
 
+    }
+
+    .attr_select.position_anchor {
+        margin-left: 161px;
+    }
+
+    .option_list.position_anchor {
+        margin-left: -63px;
     }
 
     .trans-fade-transition {
@@ -157,9 +173,31 @@
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import Area from '../components/area.vue';
     import AttrSelect from "./AttributePanel_select.vue"
+    import SelectInput from "./AttributePanel_selectInput.vue"
     //import CompA from '../components/A.vue'
 
     export default {
+
+
+        methods: {
+            onlySelect: function (tagName)
+            {
+                for (var x in this.tagsActive)
+                {
+
+                    if (x == tagName)
+                    {
+                        this.tagsActive[x] = true;
+                    } else
+                    {
+                        this.tagsActive[x] = false;
+                    }
+
+                }
+                return false;
+            }
+
+        },
         data(){
             return {
                 Gob: Gob,
@@ -228,7 +266,8 @@
         components: {
             "value-input": ValueInput,
             "a-area": Area,
-            "attr-select": AttrSelect
+            "attr-select": AttrSelect,
+            "select-input": SelectInput
 //        "comp-a":ValueInput
         }
     };

@@ -1,7 +1,7 @@
 <template>
 
     <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign, mini:mini}">
-        <div class="exmo_box_name">{{name|lang}}</div>
+        <div class="exmo_box_name">{{name|lang}} {{{name_html}}}</div>
         <input type="text" class="exmo_input_text edit_input"
                v-model:value="o_edit"
                debounce="800"
@@ -136,7 +136,7 @@
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "out_value", 'name', "value_type", "enable_assign", "mini"],
+        props: ['edit_value', "out_value", 'name','name_html', "value_type", "enable_assign", "mini"],
         data(){
             return {
                 o_edit: "",

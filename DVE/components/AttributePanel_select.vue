@@ -1,6 +1,6 @@
 <template>
-    <div class="attr_select">
-        <div v-bind:style="select_style" class="select_input">
+    <div class="attr_select {{in_class}}">
+        <div v-bind:style="select_style" class="select_input {{in_class}}">
             <div class="select_input_label">
                 {{{label_html}}} {{label}}
             </div>
@@ -8,7 +8,7 @@
             <i class=" select_triangle_icon icon-play3"></i>
         </div>
 
-        <div v-show="show_list" class="option_list">
+        <div v-show="show_list" class="option_list {{in_class}}">
             <attr-option v-for="item in options"
                          v-bind:value="item.value"
                          v-bind:hr="item.hr"
@@ -16,9 +16,8 @@
                          v-bind:label_html="item.label_html"
                          v-bind:selected_func="selected_func"
                          v-bind:selected_value.sync="value"
-                         v-bind:class="block?'inline_block':''"
-
-                         class="attr_option">
+                         v-bind:in_class="block?'inline_block':''"
+                         >
             </attr-option>
         </div>
     </div>
@@ -26,8 +25,9 @@
 <style lang="scss">
 
     .attr_select {
+
         position: relative;
-        padding: 4px 2px;
+        /*display: inline-block;*/
 
         .inline_block {
             display: inline-block;
@@ -71,6 +71,7 @@
 
             .select_input_label {
                 overflow: hidden;
+                color: rgb(84, 84, 84);
 
             }
 
@@ -131,7 +132,7 @@
             }
         },
 
-        props: ['value', 'block', 'select_style', 'options', 'default_value', "ss"],
+        props: ['value', 'block', 'select_style', 'options', 'default_value', "in_class"],
         methods: {
             getLable: function ()
             {

@@ -558,6 +558,19 @@ EnzJSX.setLayerInfo_position_byId = function (boundsInfo, id, doSelect)
 }
 
 
+
+
+
+EnzJSX.getLayerInfo_text_byId = function (id)
+{
+    return JSON.stringify(ki.layer.getLayerTextInfo(Kinase.REF_LayerID, id))
+}
+
+
+
+
+
+
 //
 EnzJSX.EnhancerKeys = {
     keys: {
@@ -773,18 +786,18 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
                     {
                         _info_position[_x] = layers[layerId].position[_x];
                         _do_position = true;
+                    } else if (_x == "$anchor")
+                    {
+                        _info_position["centerState"] = layers[layerId].position[_x];
+                        _do_position = true;
                     }
                 }
-
                 if (_do_position)
                 {
                     ki.layer.selectLayer_byID(layerId);
-                    EnzJSX.setLayerInfo_position_byId(_info_position,layerId)
+                    EnzJSX.setLayerInfo_position_byId(_info_position, layerId)
                 }
             }
-
-
-
 
 
         }

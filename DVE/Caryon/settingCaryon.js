@@ -10,6 +10,9 @@ var SetSystem = function (settingFile)
     this.attArea = {};
     this.attArea.tagsActive = {};
     this.attArea.tagsActive.position = true;
+    this.attArea.tagsActive.shape = false;
+    this.attArea.tagsActive.text= false;
+
     this.autoRender = false;
 
 

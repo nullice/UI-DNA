@@ -6,12 +6,11 @@ import ARR from "./Richang_JSEX/arrayARR.js"
 
 var GobCaryon = function ()
 {
-
-
     this.selectRender = false; //选择图层后渲染
     this.selectRenderVarList = false; //渲染改变的变量列表
     this.selectChanged = false;
     this.selectUpdateing = false;
+    this.disableRender = false //不渲染
 
 
     this.nowSwitching = false;//是否在切换选中图层中
@@ -57,20 +56,28 @@ var GobCaryon = function ()
 
 
     this.selectList = [];
-    this.position = {
-        x: null,
-        y: null,
-        w: null,
-        h: null,
-        $anchor: null,
 
-        assignment: {x: null, y: null, w: null, h: null, $anchor: null},
-        enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
-    };
+    console.log("GobCaryon.__new_position()", GobCaryon.prototype.__new_position())
+
+    this.position = GobCaryon.prototype.__new_position();
+    this.text = GobCaryon.prototype.__new_text();
+    
+    // this.position = {
+    //     x: null,
+    //     y: null,
+    //     w: null,
+    //     h: null,
+    //     $anchor: null,
+    //
+    //     assignment: {x: null, y: null, w: null, h: null, $anchor: null},
+    //     enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
+    // };
 
     //------------注册 getter 和 setter
     var root = this;
     giveSetter(this.position, ["position"], 1);
+    giveSetter(this.text, ["text"], 1);
+    
     function giveSetter(object, names, index)
     {
         for (var z in object)
@@ -124,6 +131,28 @@ var GobCaryon = function ()
 }
 
 
+GobCaryon.prototype.__new_position = function ()
+{
+    return {
+        x: null,
+        y: null,
+        w: null,
+        h: null,
+        $anchor: null,
+        assignment: {x: null, y: null, w: null, h: null, $anchor: "null"},
+        enableAssigns: {x: null, y: null, w: null, h: null, $anchor: "null"}
+    }
+}
+GobCaryon.prototype.__new_text = function ()
+{
+    return {
+        content: null,
+        assignment: {content: "null"},
+        enableAssigns: {content: "null"}
+    }
+}
+
+
 GobCaryon.prototype._setData = async function (names, value)
 {
     // console.log("_setData()----------------")
@@ -140,9 +169,12 @@ GobCaryon.prototype._setData = async function (names, value)
 
 
     //-------- 2. 判断是否应该写入 dataCaryon ;
+
+    var isVoidValue = false
     if (value === "")//删除
     {
         isFormula = true;
+        isVoidValue = true;
     } else
     {
         if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
@@ -152,7 +184,7 @@ GobCaryon.prototype._setData = async function (names, value)
     }
 
     var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));
-    console.log(names[names.length - 1][0], names[names.length - 1], isExvar, value)
+    // console.log(names[names.length - 1][0], names[names.length - 1], isExvar, value)
 
     //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
 
@@ -191,7 +223,7 @@ GobCaryon.prototype._setData = async function (names, value)
                 if (change_i || (change))
                 {
                     doDocumentRender = true;
-                    if (names[1] != "enableAssigns" && names[1] != "assignment")
+                    if (names[1] != "enableAssigns" && names[1] != "assignment" && isVoidValue != true && this.disableRender != true)
                     {
                         console.log("【START】renderPatch--------" + names + "=>" + value)
                         console.log(this.selectList[i].id, names, value)
@@ -202,6 +234,7 @@ GobCaryon.prototype._setData = async function (names, value)
                         {
                             var finValue = await varSystem.evalVar(value, this.selectList[i].id)
                         }
+
                         await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
 
                         // await  sleep(800)
@@ -221,7 +254,7 @@ GobCaryon.prototype._setData = async function (names, value)
 
     }
 
-    if (setSystem.autoRender)
+    if (setSystem.autoRender && this.disableRender != true)
     {
         if (this[names[0]]["enableAssigns"][names[names.length - 1]])
         {
@@ -278,7 +311,6 @@ GobCaryon.prototype._setData = async function (names, value)
 
 GobCaryon.prototype._getData = function (names)
 {
-
     function _valueFromObject(fromObject, names, nameIndex, prefix)
     {
         var isLastName = nameIndex == names.length - 1
@@ -340,25 +372,21 @@ GobCaryon.prototype.updateSelect = async function ()
  * 更新选中图层对象的数据。
  * 会从实际图层（通过 enzymes）和 DataCaryon 拉取图层数据保存到选中图层对象。
  */
-GobCaryon.prototype.updateGob = async function ()
+GobCaryon.prototype.updateGob = async function (disableRender)
 {
 
+    console.log("this.disableRender = ", disableRender)
+    this.disableRender = disableRender || false;
     //----------1. 要拉取的数据：
     var temp = {};
-    temp.position = new_position();
 
-    function new_position()
-    {
-        return {
-            x: null,
-            y: null,
-            w: null,
-            h: null,
-            $anchor: null,
-            assignment: {x: null, y: null, w: null, h: null, $anchor: "null"},
-            enableAssigns: {x: null, y: null, w: null, h: null, $anchor: "null"}
-        }
-    }
+
+    var new_position = GobCaryon.prototype.__new_position;
+    var new_text = GobCaryon.prototype.__new_text;
+    temp.position = new_position();
+    temp.text = new_text();
+    
+
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
@@ -372,6 +400,11 @@ GobCaryon.prototype.updateGob = async function ()
         item_position.h = position.h
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
         _objectToObject(item_position, temp.position, true, !(i == 0));
+
+        //[text]---------------------------------------------------------------
+        var item_position = new_text();
+        var text = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
+        
 
     }
     // console.log("temp.position", temp.position)
@@ -509,6 +542,9 @@ GobCaryon.prototype.updateGob = async function ()
 
 
     }
+
+    this.disableRender = false;
+    console.log("this.disableRender = ", false)
 }
 
 
@@ -554,7 +590,9 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
                 if (toObject[objectNames[nameIndex]] != undefined)
                 {
                     delete  toObject[objectNames[nameIndex]];
-                    Gob.updateGob();
+
+                    console.log("delete to Gob.updateGob")
+                    Gob.updateGob(true);
                 }
 
                 return true;
