@@ -270,25 +270,6 @@ Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
 }
 
 
-/**
- * 获取图层文本信息。{x,y,w,h}
- * @param layerID
- * @returns {Promise}
- */
-Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
-{
-    return new Promise(function (resolve, reject)
-    {
-        evalScript(
-            `EnzJSX.getLayerInfo_position_byId(${layerID})`
-            ,
-            (r)=> {resolve(JSON.parse(r))})
-    })
-
-}
-
-
-
 
 /**
  * 设置图层位置、尺寸信息。
@@ -308,6 +289,41 @@ Enzymes.prototype.setLayerInfo_position_byId = async function (boundsInfo, layer
         }
     )
 }
+
+/**
+ * 获取图层文本信息。
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.getLayerInfo_text_byId = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        evalScript(
+            `EnzJSX.getLayerInfo_text_byId(${layerID})`
+            ,
+            (r)=> {resolve(JSON.parse(r))})
+    })
+
+}
+
+Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID, doSelect)
+{
+    return new Promise(function (resolve, reject)
+        {
+            var doSelect = doSelect || false;
+            var obJson = JSON.stringify(textInfo)
+            evalScript(
+                `EnzJSX.setLayerInfo_position_byId(${obJson} ,${layerID},${doSelect} )`,
+                (r)=> {resolve(r)})
+        }
+    )
+}
+
+
+
+
+
 
 
 /**

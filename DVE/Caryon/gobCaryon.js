@@ -57,11 +57,9 @@ var GobCaryon = function ()
 
     this.selectList = [];
 
-    console.log("GobCaryon.__new_position()", GobCaryon.prototype.__new_position())
-
     this.position = GobCaryon.prototype.__new_position();
     this.text = GobCaryon.prototype.__new_text();
-    
+
     // this.position = {
     //     x: null,
     //     y: null,
@@ -77,7 +75,7 @@ var GobCaryon = function ()
     var root = this;
     giveSetter(this.position, ["position"], 1);
     giveSetter(this.text, ["text"], 1);
-    
+
     function giveSetter(object, names, index)
     {
         for (var z in object)
@@ -146,9 +144,10 @@ GobCaryon.prototype.__new_position = function ()
 GobCaryon.prototype.__new_text = function ()
 {
     return {
-        content: null,
-        assignment: {content: "null"},
-        enableAssigns: {content: "null"}
+        text: null,
+        color: null,
+        assignment: {text: "null"},
+        enableAssigns: {text: "null"}
     }
 }
 
@@ -385,8 +384,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     var new_text = GobCaryon.prototype.__new_text;
     temp.position = new_position();
     temp.text = new_text();
-    
-
+    console.log("new_text()-> temp.text ", temp.text)
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
@@ -402,15 +400,26 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         _objectToObject(item_position, temp.position, true, !(i == 0));
 
         //[text]---------------------------------------------------------------
-        var item_position = new_text();
-        var text = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
-        
+        var item_text = new_text();
+        var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
+        item_text.text = text.text;
+        item_text.color = text.color;
+        console.log("temp.text2 " + i, temp.text)
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
+        console.log("[[[[[[[[[[[temp.text3 " + i, temp.text)
+         _objectToObject(item_text, temp.text, true, !(i == 0));
+
+        console.log("[[[[[[[[[[[[temp.text", temp.text)
 
     }
     // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
+    console.log("1_objectToObject_asyncSetCounter   temp.text, this.text")
+    _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
+    console.log("2_objectToObject_asyncSetCounter   temp.text, this.text")
     Gob._asyncSetSwitch = true
     _objectToObject(temp.position, this.position, false, false, true);
+    _objectToObject(temp.text, this.text, false, false, true);
 
 
     function _setValue(oldValue, value, ignoreNull)
@@ -484,11 +493,25 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
     {
+
         for (var x in object)
         {
-            if (object[x] != undefined && object[x].constructor == Object)
+            console.log(" x in object：", x)
+            if ((object[x] != undefined) && (object[x].constructor == Object))
             {
-                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull)
+                if (sameObject[x] == undefined)
+                {
+                    sameObject[x] = {};
+                }
+
+                console.log(
+                    "【_objectToObject-2】:", object[x], sameObject[x], {
+                        x: x,
+                        "object[x]": object[x],
+                        "sameObject[x]": sameObject[x]
+                    }
+                )
+                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
             } else
             {
                 // if (asyncCounter)
@@ -520,6 +543,10 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         {
             if (object[x] != undefined && object[x].constructor == Object)
             {
+                if (sameObject[x] == undefined)
+                {
+                    sameObject[x] = {};
+                }
                 _objectToObject_asyncSetCounter(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
             } else
             {

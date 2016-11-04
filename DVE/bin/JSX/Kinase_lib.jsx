@@ -18,6 +18,14 @@ try
 }
 
 
+if (this.log == undefined)
+{
+    this.log = function (x)
+    {
+        return x;
+    }
+}
+
 var Kinase = function ()
 {
     return this;
@@ -564,9 +572,22 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
         textInfo.boundingBox = Kinase._rltb2xywh(textKey_raw.value.boundingBox.value);
         textInfo.bounds = Kinase._rltb2xywh(textKey_raw.value.bounds.value);
         textInfo.antiAlias = textKey_raw.value.antiAlias.value.enumerationValue;
-        textInfo.color.r = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.red.value;
-        textInfo.color.g = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.grain.value;
-        textInfo.color.b = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.blue.value;
+
+        if (textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color != undefined)
+        {
+            textInfo.color.r = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.red.value;
+            textInfo.color.g = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.grain.value;
+            textInfo.color.b = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.blue.value;
+        }
+        else
+        {
+            textInfo.color.r = 0;
+            textInfo.color.g = 0;
+            textInfo.color.b = 0;
+
+        }
+
+
         try
         {
             textInfo.size = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.size.value.doubleValue;
@@ -5426,7 +5447,7 @@ Kinase.prototype.layer.selectMultLayers_byID = function (layerIDArray, repick)
     {
         return "err";
     }
-    
+
     layerIDArray = layerIDArray.sort();
     if (repick)
     {
@@ -5614,8 +5635,6 @@ Kinase.prototype.layer.getParentLayerId_byItemIndex = function (itemIndex)
     return parentItemIndex;
 
 }
-
-
 
 
 /**

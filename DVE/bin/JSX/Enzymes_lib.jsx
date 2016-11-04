@@ -559,8 +559,6 @@ EnzJSX.setLayerInfo_position_byId = function (boundsInfo, id, doSelect)
 
 
 
-
-
 EnzJSX.getLayerInfo_text_byId = function (id)
 {
     return JSON.stringify(ki.layer.getLayerTextInfo(Kinase.REF_LayerID, id))
@@ -568,7 +566,14 @@ EnzJSX.getLayerInfo_text_byId = function (id)
 
 
 
-
+EnzJSX.setLayerInfo_text_byId = function (textInfo, id, doSelect)
+{
+    if (doSelect)
+    {
+        ki.layer.selectLayer_byID(id)
+    }
+    return ki.layer.setLayerTextInfo(textInfo, Kinase.REF_LayerID, id)
+}
 
 
 //
