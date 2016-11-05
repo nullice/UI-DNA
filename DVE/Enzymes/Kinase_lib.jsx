@@ -573,18 +573,21 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
         textInfo.bounds = Kinase._rltb2xywh(textKey_raw.value.bounds.value);
         textInfo.antiAlias = textKey_raw.value.antiAlias.value.enumerationValue;
 
-        if (textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color != undefined)
-        {
-            textInfo.color.r = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.red.value;
-            textInfo.color.g = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.grain.value;
-            textInfo.color.b = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.blue.value;
-        }
-        else
-        {
-            textInfo.color.r = 0;
-            textInfo.color.g = 0;
-            textInfo.color.b = 0;
 
+
+
+
+        textInfo.color.r = 0;
+        textInfo.color.g = 0;
+        textInfo.color.b = 0;
+        if(textKey_raw.value.textStyleRange.value[0]!= undefined)
+        {
+            if (textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color != undefined)
+            {
+                textInfo.color.r = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.red.value;
+                textInfo.color.g = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.grain.value;
+                textInfo.color.b = textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color.value.blue.value;
+            }
         }
 
 
