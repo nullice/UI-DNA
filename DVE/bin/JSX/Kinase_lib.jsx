@@ -574,13 +574,10 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
         textInfo.antiAlias = textKey_raw.value.antiAlias.value.enumerationValue;
 
 
-
-
-
         textInfo.color.r = 0;
         textInfo.color.g = 0;
         textInfo.color.b = 0;
-        if(textKey_raw.value.textStyleRange.value[0]!= undefined)
+        if (textKey_raw.value.textStyleRange.value[0] != undefined)
         {
             if (textKey_raw.value.textStyleRange.value[0].value.textStyle.value.color != undefined)
             {
@@ -2009,12 +2006,21 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
         var boundsInfo_raw = boundsInfo_raw[classStr];
     }
 
+
     boundsInfo.x = boundsInfo_raw.value.left.value.doubleValue
     boundsInfo.y = boundsInfo_raw.value.top.value.doubleValue
-    boundsInfo.w = boundsInfo_raw.value.width.value.doubleValue
-    boundsInfo.h = boundsInfo_raw.value.height.value.doubleValue
     boundsInfo.right = boundsInfo_raw.value.right.value.doubleValue
     boundsInfo.bottom = boundsInfo_raw.value.bottom.value.doubleValue
+
+    if (boundsInfo_raw.value.width == undefined)
+    {
+        boundsInfo.w = boundsInfo.right - boundsInfo.x;
+        boundsInfo.h = boundsInfo.bottom - boundsInfo.y;
+    } else
+    {
+        boundsInfo.w = boundsInfo_raw.value.width.value.doubleValue
+        boundsInfo.h = boundsInfo_raw.value.height.value.doubleValue
+    }
 
 
     //画板修正

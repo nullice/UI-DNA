@@ -1,231 +1,34 @@
 {
   "value": {
-    "textKey": {
-      "value": "",
-      "type": "DescValueType.STRINGTYPE"
-    },
-    "warp": {
+    "top": {
       "value": {
-        "warpStyle": {
-          "value": {
-            "enumerationType": "warpStyle",
-            "enumerationValue": "warpNone"
-          },
-          "type": "DescValueType.ENUMERATEDTYPE"
-        },
-        "warpValue": {
-          "value": 0,
-          "type": "DescValueType.DOUBLETYPE"
-        },
-        "warpPerspective": {
-          "value": 0,
-          "type": "DescValueType.DOUBLETYPE"
-        },
-        "warpPerspectiveOther": {
-          "value": 0,
-          "type": "DescValueType.DOUBLETYPE"
-        },
-        "warpRotate": {
-          "value": {
-            "enumerationType": "orientation",
-            "enumerationValue": "horizontal"
-          },
-          "type": "DescValueType.ENUMERATEDTYPE"
-        }
+        "doubleType": "pixelsUnit",
+        "doubleValue": 0
       },
-      "type": "DescValueType.OBJECTTYPE",
-      "objectType": "warp"
+      "type": "DescValueType.UNITDOUBLE"
     },
-    "textClickPoint": {
+    "left": {
       "value": {
-        "horizontal": {
-          "value": {
-            "doubleType": "percentUnit",
-            "doubleValue": 29
-          },
-          "type": "DescValueType.UNITDOUBLE"
-        },
-        "vertical": {
-          "value": {
-            "doubleType": "percentUnit",
-            "doubleValue": 29.8
-          },
-          "type": "DescValueType.UNITDOUBLE"
-        }
+        "doubleType": "pixelsUnit",
+        "doubleValue": 0
       },
-      "type": "DescValueType.OBJECTTYPE",
-      "objectType": "paint"
+      "type": "DescValueType.UNITDOUBLE"
     },
-    "textGridding": {
+    "bottom": {
       "value": {
-        "enumerationType": "textGridding",
-        "enumerationValue": "none"
+        "doubleType": "pixelsUnit",
+        "doubleValue": 100
       },
-      "type": "DescValueType.ENUMERATEDTYPE"
+      "type": "DescValueType.UNITDOUBLE"
     },
-    "orientation": {
+    "right": {
       "value": {
-        "enumerationType": "orientation",
-        "enumerationValue": "horizontal"
+        "doubleType": "pixelsUnit",
+        "doubleValue": 200
       },
-      "type": "DescValueType.ENUMERATEDTYPE"
-    },
-    "antiAlias": {
-      "value": {
-        "enumerationType": "antiAliasType",
-        "enumerationValue": "antiAliasSmooth"
-      },
-      "type": "DescValueType.ENUMERATEDTYPE"
-    },
-    "bounds": {
-      "value": {
-        "left": 0,
-        "top": -0.93621826171875,
-        "right": 97,
-        "bottom": 64
-      },
-      "type": "DescValueType.OBJECTTYPE",
-      "objectType": "bounds"
-    },
-    "boundingBox": {
-      "value": {
-        "left": 0,
-        "top": 0,
-        "right": 0,
-        "bottom": -1
-      },
-      "type": "DescValueType.OBJECTTYPE",
-      "objectType": "boundingBox"
-    },
-    "textShape": {
-      "value": {
-        "0": {
-          "value": {
-            "char": {
-              "value": {
-                "enumerationType": "char",
-                "enumerationValue": "box"
-              },
-              "type": "DescValueType.ENUMERATEDTYPE"
-            },
-            "orientation": {
-              "value": {
-                "enumerationType": "orientation",
-                "enumerationValue": "horizontal"
-              },
-              "type": "DescValueType.ENUMERATEDTYPE"
-            },
-            "transform": {
-              "value": {
-                "xx": {
-                  "value": 1,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "xy": {
-                  "value": 0,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "yx": {
-                  "value": 0,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "yy": {
-                  "value": 1,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "tx": {
-                  "value": 0,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "ty": {
-                  "value": 0,
-                  "type": "DescValueType.DOUBLETYPE"
-                }
-              },
-              "type": "DescValueType.OBJECTTYPE",
-              "objectType": "transform"
-            },
-            "rowCount": {
-              "value": 1,
-              "type": "DescValueType.INTEGERTYPE"
-            },
-            "columnCount": {
-              "value": 1,
-              "type": "DescValueType.INTEGERTYPE"
-            },
-            "rowMajorOrder": {
-              "value": true,
-              "type": "DescValueType.BOOLEANTYPE"
-            },
-            "rowGutter": {
-              "value": {
-                "doubleType": "pointsUnit",
-                "doubleValue": 0
-              },
-              "type": "DescValueType.UNITDOUBLE"
-            },
-            "columnGutter": {
-              "value": {
-                "doubleType": "pointsUnit",
-                "doubleValue": 0
-              },
-              "type": "DescValueType.UNITDOUBLE"
-            },
-            "spacing": {
-              "value": {
-                "doubleType": "pointsUnit",
-                "doubleValue": 0
-              },
-              "type": "DescValueType.UNITDOUBLE"
-            },
-            "frameBaselineAlignment": {
-              "value": {
-                "enumerationType": "frameBaselineAlignment",
-                "enumerationValue": "alignByAscent"
-              },
-              "type": "DescValueType.ENUMERATEDTYPE"
-            },
-            "firstBaselineMinimum": {
-              "value": {
-                "doubleType": "pointsUnit",
-                "doubleValue": 0
-              },
-              "type": "DescValueType.UNITDOUBLE"
-            },
-            "bounds": {
-              "value": {
-                "top": {
-                  "value": 0,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "left": {
-                  "value": 0,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "bottom": {
-                  "value": 64,
-                  "type": "DescValueType.DOUBLETYPE"
-                },
-                "right": {
-                  "value": 97,
-                  "type": "DescValueType.DOUBLETYPE"
-                }
-              },
-              "type": "DescValueType.OBJECTTYPE",
-              "objectType": "rectangle"
-            }
-          },
-          "type": "DescValueType.OBJECTTYPE",
-          "objectType": "textShape"
-        }
-      },
-      "type": "DescValueType.LISTTYPE"
-    },
-    "textStyleRange": {
-      "value": {},
-      "type": "DescValueType.LISTTYPE"
+      "type": "DescValueType.UNITDOUBLE"
     }
   },
   "type": "DescValueType.OBJECTTYPE",
-  "objectType": "textLayer"
+  "objectType": "rectangle"
 }

@@ -2,8 +2,5 @@
 $.evalFile("E:/Work/GitHub/UI-DNA/DVE/bin/JSX/json3.js")
 $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Enzymes/Enzymes_lib.jsx")
 
-     var ref = new ActionReference();
-     ref.putEnumerated( charIDToTypeID('Dcmn'), charIDToTypeID('Ordn'), charIDToTypeID('Trgt') );
-     var desc = executeActionGet(ref);
+EnzJSX.getLayerInfo_position_byId(1)
 
-log(json(  mu._ad2Ob (desc)))
