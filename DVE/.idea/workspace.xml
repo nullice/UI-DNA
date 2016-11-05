@@ -38,14 +38,33 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AttributePanel_valueInput.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AttributePanel_valueInput.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="135" column="36" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
+            <state relative-caret-position="0">
+              <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
               <folding>
-                <element signature="n#style#0;n#!!top" expanded="false" />
+                <element signature="e#949#1544#0" expanded="false" />
+                <element signature="e#1588#1638#0" expanded="false" />
+                <element signature="e#1709#1767#0" expanded="false" />
+                <element signature="e#1846#1904#0" expanded="false" />
+                <element signature="e#1943#2001#0" expanded="false" />
+                <element signature="e#2035#2149#0" expanded="false" />
+                <element signature="e#2192#2360#0" expanded="false" />
+                <element signature="e#2379#2488#0" expanded="false" />
+                <element signature="e#2505#2734#0" expanded="false" />
+                <element signature="e#4381#5401#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AttributePanel_textarea.vue" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/components/AttributePanel_textarea.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -53,20 +72,21 @@
       <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-210">
-              <caret line="102" column="14" selection-start-line="102" selection-start-column="14" selection-end-line="102" selection-end-column="14" />
+            <state relative-caret-position="438">
+              <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
               <folding>
-                <element signature="e#6717#6786#0" expanded="true" />
-                <element signature="e#7667#9769#0" expanded="false" />
-                <marker date="1478353728243" expanded="true" signature="7800:7816" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="8050:8066" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="8259:8275" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="8548:8564" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="8757:8773" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="8966:8982" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="9235:9251" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="9444:9460" ph="..." />
-                <marker date="1478353728243" expanded="true" signature="9674:9690" ph="..." />
+                <element signature="n#style#0;n#!!top" expanded="false" />
+                <element signature="e#6729#6798#0" expanded="true" />
+                <element signature="e#7738#9840#0" expanded="false" />
+                <marker date="1478357257423" expanded="true" signature="7871:7887" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="8121:8137" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="8330:8346" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="8619:8635" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="8828:8844" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="9037:9053" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="9306:9322" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="9515:9531" ph="..." />
+                <marker date="1478357257423" expanded="true" signature="9745:9761" ph="..." />
               </folding>
             </state>
           </provider>
@@ -89,16 +109,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="63">
               <caret line="3" column="6" selection-start-line="3" selection-start-column="6" selection-end-line="3" selection-end-column="6" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="renderCaryon.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4452">
-              <caret line="214" column="40" selection-start-line="214" selection-start-column="40" selection-end-line="214" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -142,7 +152,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="dataCaryon.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="dataCaryon.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="501">
@@ -206,7 +216,6 @@
         <option value="$PROJECT_DIR$/Caryon/Richang_JSEX/arrayARR.js" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.js" />
         <option value="$PROJECT_DIR$/components/AttributePanel_selectInput.vue" />
-        <option value="$PROJECT_DIR$/components/AttributePanel_textarea.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel_option.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel_select.vue" />
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
@@ -216,9 +225,10 @@
         <option value="$PROJECT_DIR$/Enzymes/Enzymes.js" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/dataCaryon.js" />
+        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
+        <option value="$PROJECT_DIR$/components/AttributePanel_textarea.vue" />
       </list>
     </option>
   </component>
@@ -559,12 +569,12 @@
       <workItem from="1477623472104" duration="35807000" />
       <workItem from="1477915197048" duration="38636000" />
       <workItem from="1478048605006" duration="49981000" />
-      <workItem from="1478311664418" duration="8457000" />
+      <workItem from="1478311664418" duration="10367000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1296364000" />
+    <option name="totallyTimeSpent" value="1298274000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -576,7 +586,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19546892" sideWeight="0.44312027" order="1" side_tool="true" content_ui="combo" />
@@ -800,6 +810,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="23" column="40" selection-start-line="23" selection-start-column="40" selection-end-line="23" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -808,13 +819,6 @@
         <state relative-caret-position="3338">
           <caret line="228" column="16" selection-start-line="228" selection-start-column="16" selection-end-line="228" selection-end-column="16" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_textarea.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="12" column="25" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
         </state>
       </provider>
     </entry>
@@ -978,36 +982,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="135" column="36" selection-start-line="135" selection-start-column="36" selection-end-line="135" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-210">
-          <caret line="102" column="14" selection-start-line="102" selection-start-column="14" selection-end-line="102" selection-end-column="14" />
-          <folding>
-            <element signature="e#6717#6786#0" expanded="true" />
-            <element signature="e#7667#9769#0" expanded="false" />
-            <marker date="1478353728243" expanded="true" signature="7800:7816" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="8050:8066" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="8259:8275" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="8548:8564" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="8757:8773" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="8966:8982" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="9235:9251" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="9444:9460" ph="..." />
-            <marker date="1478353728243" expanded="true" signature="9674:9690" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/eventCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="424">
@@ -1041,6 +1015,54 @@
         <state relative-caret-position="501">
           <caret line="153" column="20" selection-start-line="153" selection-start-column="20" selection-end-line="153" selection-end-column="20" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="438">
+          <caret line="103" column="0" selection-start-line="103" selection-start-column="0" selection-end-line="103" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <element signature="e#6729#6798#0" expanded="true" />
+            <element signature="e#7738#9840#0" expanded="false" />
+            <marker date="1478357257423" expanded="true" signature="7871:7887" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="8121:8137" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="8330:8346" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="8619:8635" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="8828:8844" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="9037:9053" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="9306:9322" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="9515:9531" ph="..." />
+            <marker date="1478357257423" expanded="true" signature="9745:9761" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_textarea.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="15" column="36" selection-start-line="15" selection-start-column="36" selection-end-line="15" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="10" selection-start-line="0" selection-start-column="10" selection-end-line="0" selection-end-column="10" />
+          <folding>
+            <element signature="e#949#1544#0" expanded="false" />
+            <element signature="e#1588#1638#0" expanded="false" />
+            <element signature="e#1709#1767#0" expanded="false" />
+            <element signature="e#1846#1904#0" expanded="false" />
+            <element signature="e#1943#2001#0" expanded="false" />
+            <element signature="e#2035#2149#0" expanded="false" />
+            <element signature="e#2192#2360#0" expanded="false" />
+            <element signature="e#2379#2488#0" expanded="false" />
+            <element signature="e#2505#2734#0" expanded="false" />
+            <element signature="e#4381#5401#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

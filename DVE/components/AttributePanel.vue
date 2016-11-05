@@ -17,7 +17,7 @@
             </label>
 
             <input type="checkbox" v-model="tagsActive.text"
-                   name="group1" id="option3" autocomplete="off">
+                   name="group1" id="option3" autocomplete="off" checked>
             <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}"
                    v-on:contextmenu.prevent="onlySelect('text')">
                 <span><i class="icon-sampler-charStyle"></i></span>
@@ -96,9 +96,9 @@
             <h3> {{'文本' |lang}} </h3>
 
 
-            <value-input name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
+            <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                          v-bind:out_value.sync="Gob.text.assignment.text"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.text"></value-input>
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.text"></attr-textarea>
 
         </div>
 
@@ -172,11 +172,10 @@
     import Area from '../components/area.vue';
     import AttrSelect from "./AttributePanel_select.vue"
     import SelectInput from "./AttributePanel_selectInput.vue"
+    import AttrTextarea from "./AttributePanel_textarea.vue"
     //import CompA from '../components/A.vue'
 
     export default {
-
-
         methods: {
             onlySelect: function (tagName)
             {
@@ -265,7 +264,8 @@
             "value-input": ValueInput,
             "a-area": Area,
             "attr-select": AttrSelect,
-            "select-input": SelectInput
+            "select-input": SelectInput,
+            "attr-textarea":AttrTextarea
 //        "comp-a":ValueInput
         }
     };
