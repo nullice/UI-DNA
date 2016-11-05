@@ -143,12 +143,18 @@ var Layer = function (layerListItem)
     this.name = null;
     this.id = null;
     this.index = null;
+
     this.position = {
-        x: null, y: null, w: null, h: null,
+        x: null, y: null, w: null, h: null, $anchor: null,
         assignment: {x: null, y: null, w: null, h: null},
         enableAssigns: {x: false, y: false, w: false, h: false}
     }
-
+    this.text = {
+        text: null,
+        color: null,
+        assignment: {text: null},
+        enableAssigns: {text:false}
+    }
 
     // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
 

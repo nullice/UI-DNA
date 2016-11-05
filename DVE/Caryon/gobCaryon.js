@@ -137,8 +137,8 @@ GobCaryon.prototype.__new_position = function ()
         w: null,
         h: null,
         $anchor: null,
-        assignment: {x: null, y: null, w: null, h: null, $anchor: "null"},
-        enableAssigns: {x: null, y: null, w: null, h: null, $anchor: "null"}
+        assignment: {x: null, y: null, w: null, h: null, $anchor: null},
+        enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
     }
 }
 GobCaryon.prototype.__new_text = function ()
@@ -146,8 +146,8 @@ GobCaryon.prototype.__new_text = function ()
     return {
         text: null,
         color: null,
-        assignment: {text: "null"},
-        enableAssigns: {text: "null"}
+        assignment: {text: null},
+        enableAssigns: {text: null}
     }
 }
 

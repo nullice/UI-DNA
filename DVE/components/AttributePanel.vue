@@ -67,7 +67,6 @@
                           v-bind:select_style="{width:'24px'}"
                           v-bind:options="o_positon_anchor_options"
                           in_class="position_anchor"
-
             >
             </select-input>
             <!--<comp-a></comp-a>-->
@@ -95,7 +94,6 @@
         <div class="tag-box tag-text" v-show="tagsActive.text" v-bind:class="{active:tagsActive.text}"
              transition="trans-fade">
             <h3> {{'文本' |lang}} </h3>
-
 
 
             <value-input name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
