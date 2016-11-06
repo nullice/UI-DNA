@@ -17,3 +17,6 @@ UI 设计构建工具 - Photoshop 扩展 - Windows/MacOS
 Build 后的代码生成在 `/DEV/bin` 中， `bin` 文件夹可直接放入 Photoshop 的扩展目录中运行（由于未签名所以需要打开 Photoshop 的调试模式）
 
 
+## License
+[LGPL](http://www.fsf.org/licensing/licenses/lgpl.html)
+
