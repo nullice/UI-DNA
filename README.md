@@ -1,6 +1,7 @@
 # UI-DNA
 
-UI 设计构建工具
+UI 设计构建工具 - Photoshop 扩展 - Windows/MacOS
+
 
 正在开发中...
 
