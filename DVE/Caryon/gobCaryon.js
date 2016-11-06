@@ -170,6 +170,7 @@ GobCaryon.prototype._setData = async function (names, value)
     //-------- 2. 判断是否应该写入 dataCaryon ;
 
     var isVoidValue = false
+    var isText = false
     if (value === "")//删除
     {
         isFormula = true;
@@ -180,6 +181,11 @@ GobCaryon.prototype._setData = async function (names, value)
         {
             isFormula = true;
         }
+        if (names[names.length - 1] == "text" && value != Gob.MULT) //只写入公式变量
+        {
+            isText = true;
+        }
+
     }
 
     var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));
@@ -200,7 +206,7 @@ GobCaryon.prototype._setData = async function (names, value)
         dataCaryon.info.status.saved = false;
 
         var change_i = false;
-        if (isFormula || isExvar)
+        if (isFormula || isExvar || isText)
         {
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
@@ -404,19 +410,14 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
         item_text.text = text.text;
         item_text.color = text.color;
-        console.log("temp.text2 " + i, temp.text)
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
-        console.log("[[[[[[[[[[[temp.text3 " + i, temp.text)
-         _objectToObject(item_text, temp.text, true, !(i == 0));
+        _objectToObject(item_text, temp.text, true, !(i == 0));
 
-        console.log("[[[[[[[[[[[[temp.text", temp.text)
 
     }
     // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
-    console.log("1_objectToObject_asyncSetCounter   temp.text, this.text")
     _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
-    console.log("2_objectToObject_asyncSetCounter   temp.text, this.text")
     Gob._asyncSetSwitch = true
     _objectToObject(temp.position, this.position, false, false, true);
     _objectToObject(temp.text, this.text, false, false, true);
@@ -496,7 +497,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
         for (var x in object)
         {
-            console.log(" x in object：", x)
+            // console.log(" x in object：", x)
             if ((object[x] != undefined) && (object[x].constructor == Object))
             {
                 if (sameObject[x] == undefined)
@@ -504,13 +505,13 @@ GobCaryon.prototype.updateGob = async function (disableRender)
                     sameObject[x] = {};
                 }
 
-                console.log(
-                    "【_objectToObject-2】:", object[x], sameObject[x], {
-                        x: x,
-                        "object[x]": object[x],
-                        "sameObject[x]": sameObject[x]
-                    }
-                )
+                // console.log(
+                //     "【_objectToObject-2】:", object[x], sameObject[x], {
+                //         x: x,
+                //         "object[x]": object[x],
+                //         "sameObject[x]": sameObject[x]
+                //     }
+                // )
                 _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
             } else
             {

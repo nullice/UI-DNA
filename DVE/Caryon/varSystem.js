@@ -255,9 +255,14 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
     }
 
 
+
+
     //修正 JavaScript 精度问题
     return math.format(math.eval(inVar), {precision: 14})
 }
+
+
+
 
 /**
  * 判断是否是公式变量
@@ -279,7 +284,6 @@ VarSystem.prototype.isFormula = function (varValue)
  */
 VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 {
-
     // CJK统一汉字的20902汉字	0x4E00-0x9FA5
     // CJK统一汉字扩充A的6582汉字	0x3400-0x4DB5
     // CJK统一汉字扩充B的42711汉字	0x20000-0x2A6D6
@@ -287,7 +291,6 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
     // 韩文字母：1100-11FF
     // 日文平假名：3040-309F
     // 日文片假名：30A0-30FF
-
 
     var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
     var varList = [];
@@ -310,6 +313,70 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 
     return varList;
 }
+
+
+/**
+ * 
+ * @param formula
+ * @param flat
+ * @returns {Array}
+ */
+VarSystem.prototype.scanFormulasInText = function (formula, flat)
+{
+    
+    var re = /{{.*}}/g;
+    var varList = [];
+    var resullt;
+
+    if (formula == undefined)
+    {
+        return varList;
+    }
+    while ((resullt = re.exec(formula)) !== null)
+    {
+        if (flat == true)
+        {
+            varList.push(resullt[0]);
+        } else
+        {
+            varList.push({name: resullt[0], index: resullt.index})
+        }
+    }
+
+    return varList;
+}
+
+
+VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
+{
+    var text = varText;
+    var formulasList = [];
+    formulasList = VarSystem.prototype.scanFormulasInText(text);
+
+    var increment = 0;
+    for (let i = 0; i < formulasList.length; i++)
+    {
+        var  thisFormulas =  formulasList[i].name.slice(2, formulasList[i].name.length -2);
+        var isFormula = this.isFormula(formulasList[i].name);
+
+        if (isFormula)
+        {
+            var getValue = await this.evalVar(thisFormulas);
+            text = STR.insert(text,
+                formulasList[i].index + increment,
+                formulasList[i].name.toString().length,
+                getValue
+            );
+            increment += getValue.toString().length - formulasList[i].name.toString().length;
+
+        }
+    }
+
+    //修正 JavaScript 精度问题
+    return text;
+}
+
+
 
 
 // //---------------
