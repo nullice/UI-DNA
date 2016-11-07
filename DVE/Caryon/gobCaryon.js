@@ -146,9 +146,9 @@ GobCaryon.prototype.__new_text = function ()
     return {
         text: null,
         color: null,
-        $enableFormula:null,
-        assignment: {text: null,  $enableFormula:null},
-        enableAssigns: {text: null, $enableFormula:null }
+        $enableFormula: null,
+        assignment: {text: null, $enableFormula: null},
+        enableAssigns: {text: null, $enableFormula: null}
     }
 }
 
@@ -156,8 +156,6 @@ GobCaryon.prototype.__new_text = function ()
 GobCaryon.prototype._setData = async function (names, value)
 {
     // console.log("_setData()----------------")
-    // console.log(names, value)
-
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -184,7 +182,8 @@ GobCaryon.prototype._setData = async function (names, value)
         }
         if (names[names.length - 1] == "text" && value != Gob.MULT) //
         {
-            if(value.constructor = String)
+        
+            if (value.constructor == String)
             {
                 isText = true;
                 if (varSystem.isFormulaInText(value))
@@ -195,9 +194,15 @@ GobCaryon.prototype._setData = async function (names, value)
         }
 
     }
+    if (names[names.length - 2] == "assignment" && names[names.length - 2] == "enableAssigns")
+    {
+        isExvar = true;
+    }
 
-    var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));
-    // console.log(names[names.length - 1][0], names[names.length - 1], isExvar, value)
+    var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));// $开头的属性一定写入 dataCaryon
+
+
+    // console.log(names[names.length - 1], names[names.length - 1], isExvar, value)
 
     //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
 
@@ -214,7 +219,7 @@ GobCaryon.prototype._setData = async function (names, value)
         dataCaryon.info.status.saved = false;
 
         var change_i = false;
-        if (isFormula || isExvar )
+        if (isFormula || isExvar)
         {
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {

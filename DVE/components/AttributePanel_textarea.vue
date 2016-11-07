@@ -80,8 +80,8 @@
 
             .press_out {
 
-                .out_input {
-                    width: 100px;
+                .out_input  {
+                    width: 97px;
                     transition: all 0.3s;
                 }
             }
