@@ -278,6 +278,24 @@ VarSystem.prototype.isFormula = function (varValue)
     return false;
 }
 
+
+/**
+ * 判断是否是附带公式变量的文本
+ * @param varValue
+ */
+VarSystem.prototype.isFormulaInText = function (varValue)
+{
+    var varList = VarSystem.prototype.scanFormulasInText(varValue);
+    if (varList.length > 0)
+    {
+        return true;
+    }
+    return false;
+}
+
+
+
+
 /**
  * 提取公式中的变量
  * @param formula
@@ -368,7 +386,6 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
                 getValue
             );
             increment += getValue.toString().length - formulasList[i].name.toString().length;
-
         }
     }
 

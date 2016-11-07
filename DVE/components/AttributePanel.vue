@@ -97,8 +97,11 @@
 
 
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
-                         v-bind:out_value.sync="Gob.text.assignment.text"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.text"></attr-textarea>
+                           v-bind:out_value.sync="Gob.text.assignment.text"
+                           v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
+                           v-bind:enable_formula.sync="Gob.text.$enableFormula"
+
+            ></attr-textarea>
 
         </div>
 
@@ -265,7 +268,7 @@
             "a-area": Area,
             "attr-select": AttrSelect,
             "select-input": SelectInput,
-            "attr-textarea":AttrTextarea
+            "attr-textarea": AttrTextarea
 //        "comp-a":ValueInput
         }
     };

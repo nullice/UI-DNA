@@ -146,8 +146,9 @@ GobCaryon.prototype.__new_text = function ()
     return {
         text: null,
         color: null,
-        assignment: {text: null},
-        enableAssigns: {text: null}
+        $enableFormula:null,
+        assignment: {text: null,  $enableFormula:null},
+        enableAssigns: {text: null, $enableFormula:null }
     }
 }
 
@@ -181,9 +182,16 @@ GobCaryon.prototype._setData = async function (names, value)
         {
             isFormula = true;
         }
-        if (names[names.length - 1] == "text" && value != Gob.MULT) //只写入公式变量
+        if (names[names.length - 1] == "text" && value != Gob.MULT) //
         {
-            isText = true;
+            if(value.constructor = String)
+            {
+                isText = true;
+                if (varSystem.isFormulaInText(value))
+                {
+                    isFormula = true;
+                }
+            }
         }
 
     }
@@ -206,7 +214,7 @@ GobCaryon.prototype._setData = async function (names, value)
         dataCaryon.info.status.saved = false;
 
         var change_i = false;
-        if (isFormula || isExvar || isText)
+        if (isFormula || isExvar )
         {
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {

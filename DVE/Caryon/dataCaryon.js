@@ -152,8 +152,9 @@ var Layer = function (layerListItem)
     this.text = {
         text: null,
         color: null,
-        assignment: {text: null},
-        enableAssigns: {text:false}
+        $enableFormula: null,
+        assignment: {text: null, color: null, $enableFormula: null},
+        enableAssigns: {text: false, color: false, $enableFormula: false}
     }
 
     // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
