@@ -62,6 +62,11 @@
 
     export default{
         props: ['in_value', 'range_title', 'value_type'],
+
+        ready: function ()
+        {
+            this.ramge_thumb_update();
+        },
         data(){
             return {
                 msg: 'hello vue',
@@ -75,18 +80,22 @@
         methods: {
             range_select: function (e)
             {
+                if (e.target.className != "range-bar")
+                {
+                    return false;
+                }
 
                 console.log("layerX", e.layerX, " e.layery", e.layerY)
-
+                console.log(e)
                 var offsetX = e.layerX
                 var width = e.target.offsetWidth
                 this.width = width
 
-                if (offsetX < 10)
+                if (offsetX < 4)
                 {
                     offsetX = 0;
                 }
-                if (offsetX > width - 10)
+                if (offsetX > width - 4)
                 {
                     offsetX = width;
                 }
@@ -94,7 +103,6 @@
 
                 if (this.value_type == "hsl.h")
                 {
-
                     this.in_value = ( offsetX / width) * 360
                 }
                 this.ramge_thumb_update();
@@ -102,18 +110,19 @@
             },
             ramge_thumb_update: function ()
             {
-
                 var offsetX = this.in_value * this.width / 360
-                console.log("offsetX",offsetX)
                 if (offsetX > this.width - 5)
                 {
                     this.rangeThumbStyle.left = offsetX - 5 + "px";
+                }
+                else if (offsetX < 4)
+                {
+                    this.rangeThumbStyle.left = 1 + "px";
                 }
                 else
                 {
                     this.rangeThumbStyle.left = offsetX + "px";
                 }
-
             }
 
 
