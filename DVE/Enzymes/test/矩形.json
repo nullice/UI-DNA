@@ -1,35 +1,49 @@
 {
-  "null": {
+  "new": {
+    "value": 1130917484,
+    "type": "DescValueType.CLASSTYPE"
+  },
+  "using": {
     "value": {
-      "container": {
-        "container": {
-        }
+      "to": {
+        "value": {
+          "container": {
+            "container": {
+              "container": {}
+            },
+            "form": "ReferenceFormType.ENUMERATED",
+            "desiredClass": "layer",
+            "enumeratedType": "ordinal",
+            "enumeratedValue": "merged"
+          },
+          "form": "ReferenceFormType.ENUMERATED",
+          "desiredClass": "channel",
+          "enumeratedType": "channel",
+          "enumeratedValue": "red"
+        },
+        "type": "DescValueType.REFERENCETYPE"
       },
-      "form": "ReferenceFormType.ENUMERATED",
-      "desiredClass": "layer",
-      "enumeratedType": "ordinal",
-      "enumeratedValue": "targetEnum"
-    },
-    "type": "DescValueType.REFERENCETYPE"
-  },
-  "to": {
-    "value": {
-      "container": {
-        "container": {
-        }
+      "calculation": {
+        "value": {
+          "enumerationType": "calculationType",
+          "enumerationValue": "multiply"
+        },
+        "type": "DescValueType.ENUMERATEDTYPE"
       },
-      "form": "ReferenceFormType.INDEX",
-      "desiredClass": "layer",
-      "index": 2
+      "source2": {
+        "value": {
+          "container": {
+            "container": {}
+          },
+          "form": "ReferenceFormType.ENUMERATED",
+          "desiredClass": "channel",
+          "enumeratedType": "channel",
+          "enumeratedValue": "red"
+        },
+        "type": "DescValueType.REFERENCETYPE"
+      }
     },
-    "type": "DescValueType.REFERENCETYPE"
-  },
-  "adjustment": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "version": {
-    "value": 5,
-    "type": "DescValueType.INTEGERTYPE"
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "calculation"
   }
 }

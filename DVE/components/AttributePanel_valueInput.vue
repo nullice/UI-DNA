@@ -136,7 +136,7 @@
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "out_value", 'name','name_html', "value_type", "enable_assign", "mini"],
+        props: ['edit_value', "out_value", 'name','name_html', "value_type", "enable_assign", "mini", "mode_color"],
         data(){
             return {
                 o_edit: "",

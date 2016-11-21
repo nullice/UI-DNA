@@ -54,6 +54,14 @@ if (typeof window.__adobe_cep__ !== "undefined")
     var enzymes = new Enzymes();
     window.enzymes = enzymes;
 }
+//数据结构--------------------------------------------
+import  IchiColor  from "./Caryon/IchiColor/ichi-color.js";
+window.IchiColor = IchiColor;
+
+import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
+window.ColorRNA = ColorRNA;
+
+
 
 //渲染系统-------------------------------------
 import  RenderCaryon  from "./Caryon/renderCaryon";
@@ -121,7 +129,7 @@ var mainVue = new Vue({
     }
 })
 
-window.mainVue = mainVue;
+window.mainVue = mainVue
 
 
 async function doAsync()

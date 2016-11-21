@@ -95,12 +95,11 @@
              transition="trans-fade">
             <h3> {{'文本' |lang}} </h3>
 
-
+            <vue-color-cylinder></vue-color-cylinder>
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
                            v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
                            v-bind:enable_formula.sync="Gob.text.$enableFormula"
-
             ></attr-textarea>
 
         </div>
@@ -176,6 +175,7 @@
     import AttrSelect from "./AttributePanel_select.vue"
     import SelectInput from "./AttributePanel_selectInput.vue"
     import AttrTextarea from "./AttributePanel_textarea.vue"
+    import VueColorCylinder from "./vue-color-cylinder/vue-color-cylinder.vue"
     //import CompA from '../components/A.vue'
 
     export default {
@@ -268,7 +268,8 @@
             "a-area": Area,
             "attr-select": AttrSelect,
             "select-input": SelectInput,
-            "attr-textarea": AttrTextarea
+            "attr-textarea": AttrTextarea,
+            "vue-color-cylinder": VueColorCylinder
 //        "comp-a":ValueInput
         }
     };

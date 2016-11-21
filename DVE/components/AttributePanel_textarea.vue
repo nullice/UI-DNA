@@ -12,6 +12,10 @@
         <div class="value_input_textarea_sub"
              v-bind:class="{press_out:enable_assign, mini:mini}">
 
+            <input type="checkbox" class="exmo_icon_cheackbox" id="check_text_minisize" autocomplete="off" checked="">
+            <label class="exmo_button_icon mini" for="check_text_minisize"><i class="icon-shrink" title="最小化文本框"></i></label>
+
+
             <div class="checkbox">
                 <label class="exmo_checkbox">
                     <input type="checkbox"
