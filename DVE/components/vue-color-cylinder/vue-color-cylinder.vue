@@ -5,11 +5,12 @@
         <div class="color-hsl">
             <div class="saturation-lighteness-picker-board"></div>
             <div class="hue-picker">
-                <color-range v-bind:in_value.sync="color1.hsl.h" range_title="H" value_type="hsl.h"> </color-range>
+                <color-range v-bind:in_value.sync="color1.hsl.h" range_title="H" value_type="hsl.h" v-bind:edit_color="color1" > </color-range>
+                <color-range v-bind:in_value.sync="color1.hsl.s" range_title="S" value_type="hsl.s"  v-bind:edit_color="color1" > </color-range>
             </div>
         </div>
 
-        <div class="color-rgb"></div>
+        <div class="color-rgb" style="background:{{color1.hex}}">{{color1.hex}}</div>
 
         <!--<pre> {{color1|json 4}}</pre>-->
     </div>
