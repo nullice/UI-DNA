@@ -62,7 +62,6 @@ import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
 window.ColorRNA = ColorRNA;
 
 
-
 //渲染系统-------------------------------------
 import  RenderCaryon  from "./Caryon/renderCaryon";
 var renderCaryon = new RenderCaryon();
@@ -165,8 +164,8 @@ async function asyncTask()
 }
 
 
-var __result =  asyncTask()
-console.log("sss_end" +__result)
+var __result = asyncTask()
+console.log("sss_end" + __result)
 
 // if (typeof window.__adobe_cep__ !== "undefined")
 // {

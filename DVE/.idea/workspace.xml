@@ -53,7 +53,7 @@
       <file leaf-file-name="AttributePanel_valueInput.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-89">
+            <state relative-caret-position="231">
               <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
               <folding>
                 <element signature="n#style#0;n#!!top" expanded="false" />
@@ -73,10 +73,10 @@
       <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="79">
-              <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+            <state relative-caret-position="252">
+              <caret line="12" column="135" selection-start-line="12" selection-start-column="135" selection-end-line="12" selection-end-column="135" />
               <folding>
-                <element signature="e#1047#1112#0" expanded="true" />
+                <element signature="e#3300#3365#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -85,9 +85,11 @@
       <file leaf-file-name="color-range.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="244" column="36" selection-start-line="244" selection-start-column="36" selection-end-line="244" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="412">
+              <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+              <folding>
+                <element signature="n#style#0;n#!!top" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -95,7 +97,7 @@
       <file leaf-file-name="area.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/area.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
+            <state relative-caret-position="-357">
               <caret line="15" column="18" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="18" />
               <folding />
             </state>
@@ -158,8 +160,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="159">
-              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="16" />
+            <state relative-caret-position="504">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -604,12 +606,12 @@
       <workItem from="1478048605006" duration="49981000" />
       <workItem from="1478311664418" duration="50499000" />
       <workItem from="1479380010064" duration="4258000" />
-      <workItem from="1479692594003" duration="48906000" />
+      <workItem from="1479692594003" duration="75042000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1391570000" />
+    <option name="totallyTimeSpent" value="1417706000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1034,27 +1036,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="16" />
+        <state relative-caret-position="504">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
+    <entry file="file://$PROJECT_DIR$/components/area.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-89">
-          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <element signature="e#1588#1638#0" expanded="false" />
-            <element signature="e#1709#1767#0" expanded="false" />
-            <element signature="e#1846#1904#0" expanded="false" />
-            <element signature="e#1943#2001#0" expanded="false" />
-            <element signature="e#2035#2149#0" expanded="false" />
-            <element signature="e#2192#2360#0" expanded="false" />
-            <element signature="e#2505#2734#0" expanded="false" />
-            <element signature="e#4395#5415#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="-357">
+          <caret line="15" column="18" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="18" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1077,28 +1069,40 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/area.vue">
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="14" selection-end-line="15" selection-end-column="18" />
-          <folding />
+        <state relative-caret-position="412">
+          <caret line="230" column="0" selection-start-line="230" selection-start-column="0" selection-end-line="230" selection-end-column="0" />
+          <folding>
+            <element signature="n#style#0;n#!!top" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="244" column="36" selection-start-line="244" selection-start-column="36" selection-end-line="244" selection-end-column="36" />
-          <folding />
+        <state relative-caret-position="231">
+          <caret line="11" column="50" selection-start-line="11" selection-start-column="50" selection-end-line="11" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <element signature="e#1588#1638#0" expanded="false" />
+            <element signature="e#1709#1767#0" expanded="false" />
+            <element signature="e#1846#1904#0" expanded="false" />
+            <element signature="e#1943#2001#0" expanded="false" />
+            <element signature="e#2035#2149#0" expanded="false" />
+            <element signature="e#2192#2360#0" expanded="false" />
+            <element signature="e#2505#2734#0" expanded="false" />
+            <element signature="e#4395#5415#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="79">
-          <caret line="5" column="66" selection-start-line="5" selection-start-column="66" selection-end-line="5" selection-end-column="66" />
+        <state relative-caret-position="252">
+          <caret line="12" column="135" selection-start-line="12" selection-start-column="135" selection-end-line="12" selection-end-column="135" />
           <folding>
-            <element signature="e#1047#1112#0" expanded="true" />
+            <element signature="e#3300#3365#0" expanded="true" />
           </folding>
         </state>
       </provider>
