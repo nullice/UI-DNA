@@ -17,6 +17,7 @@
                 <color-range v-bind:in_value="color1.hsv.s" range_title="S" value_type="hsv.s"  v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsv.v" range_title="V" value_type="hsv.v"  v-bind:edit_color="color1" > </color-range>
 
+
                 <color-range v-bind:in_value="color1.hwb.h" range_title="H" value_type="hwb.h" v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hwb.w" range_title="W" value_type="hwb.w"  v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hwb.b" range_title="B" value_type="hwb.b"  v-bind:edit_color="color1" > </color-range>
