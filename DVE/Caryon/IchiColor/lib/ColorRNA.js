@@ -1237,6 +1237,10 @@ ColorRNA.prototype._HSL_to_RGB = function (HSL)
         s = this._normaliz(HSL[1], 0, 100, 1),
         l = this._normaliz(HSL[2], 0, 100, 1);
 
+    if (h == 360)
+    {
+        h = 0;
+    }
 
     if (h == undefined)
     {

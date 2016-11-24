@@ -45,6 +45,10 @@ var IchiColor = function (in_color)
         if (this.__initialized === false)
         {
             this.initSetterGetter();
+            if (this.__extensionInit != undefined && typeof this.__extensionInit === "function")
+            {
+                this.__extensionInit();
+            }
             this.__initialized = true;
         }
 
@@ -364,11 +368,9 @@ IchiColor.prototype._setFromRgba = function (x)
         this.__pauseUpdate = false;
         this.__undateValue()
     }
-    
-    
-    
-}
 
+
+}
 
 
 IchiColor.prototype._setFromHsv = function (HSV)
@@ -790,7 +792,7 @@ IchiColor.prototype.set = function (args)
                 }
 
 
-            }else if(arguments[0][0] === "r") //rgba
+            } else if (arguments[0][0] === "r") //rgba
             {
                 this._setFromRgba(arguments[0])
             }
@@ -1410,6 +1412,11 @@ IchiColor.prototype.__undateValue = function ()
     if (this.__use_rgba)
     {
         this.__undatePart_Rgba();
+    }
+
+    if (this.__extensionSettingEvent!=undefined)
+    {
+        this.__extensionSettingEvent();
     }
 
 }
