@@ -1,24 +1,35 @@
 <template>
     <div class="color-range" v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h') }">
-        <div class="range-bar">
-            <div class="range-thumb" v-bind:style="rangeThumbStyle"
-                 v-on:mousedown="thumb_mousedown($event)"
-                 v-on:mouseup="thumb_mouseup($event)"
-            ></div>
 
-            <div class="range-bar-background" v-on:click="range_select($event)"
-                 v-bind:style="rangeBarStyle"></div>
-
+        <div v-if="value_type=='hsl.sl'" class="picker-map" v-on:click="map_select($event)">
+            <div class="picker-map-background-s"
+                 v-bind:style="pickerMapStyle_s"></div>
+            <div class="picker-map-background-l"
+                 v-bind:style="pickerMapStyle_l"></div>
+            <div class="picker-map-background-h"
+                 v-bind:style="pickerMapStyle_h"></div>
         </div>
-        <div class="range-title">{{range_title}}</div>
-        <div class="range-input">
-            <input type="text" v-model="in_value"
-                   v-on:mousewheel="mousewheel($event)">
-            <div class="spin-button">
-                <div v-on:click="in_value++" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
-                <div v-on:click="in_value--" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
+
+        <template v-else>
+            <div class="range-bar">
+                <div class="range-thumb" v-bind:style="rangeThumbStyle"
+                     v-on:mousedown="thumb_mousedown($event)"
+                     v-on:mouseup="thumb_mouseup($event)"
+                ></div>
+
+                <div class="range-bar-background" v-on:click="range_select($event)"
+                     v-bind:style="rangeBarStyle"></div>
             </div>
-        </div>
+            <div class="range-title">{{range_title}}</div>
+            <div class="range-input">
+                <input type="text" v-model="in_value"
+                       v-on:mousewheel="mousewheel($event)">
+                <div class="spin-button">
+                    <div v-on:click="in_value++" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
+                    <div v-on:click="in_value--" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
+                </div>
+            </div>
+        </template>
     </div>
 
 </template>
@@ -35,6 +46,8 @@
         background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
 
     }
+
+
 
     .color-range {
         white-space: nowrap;
@@ -119,6 +132,7 @@
                     color: #3c72e1;
                 }
 
+
             }
 
             input {
@@ -140,12 +154,47 @@
                 }
             }
         }
+
+        .picker-map {
+
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            top: 0;
+            right: 0;
+            border-radius: 4px 4px 0 0;
+
+            .picker-map-background-h ,.picker-map-background-s, .picker-map-background-l
+            {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+            }
+            .picker-map-background-h
+            {
+                background: #ff944a;
+                z-index: 1;
+            }
+
+            .picker-map-background-s
+            {
+                background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0));
+                z-index: 2;
+            }
+
+            .picker-map-background-l
+            {
+                background: linear-gradient(0deg,#000,transparent);
+                z-index: 3;
+            }
+
+        }
     }
 </style>
 <script>
 
     export default{
-        props: ['in_value', 'range_title', 'value_type', 'edit_color'],
+        props: ['in_value', 'in_value2', 'range_title', 'value_type', 'edit_color'],
         watch: {
             'in_value': function (val)
             {
@@ -170,7 +219,7 @@
                     if (this.o_set_once)
                     {
                         this.o_set_once = false;
-                        if (this.value_type == "hsl.s")
+                        if (this.value_type == "hsl.h")
                         {
                             this.edit_color.hsl.h = this.in_value;
                         }
@@ -442,7 +491,7 @@
             update_refer_color: function ()
             {
 
-                if (this.value_type == "hsl.h"||this.value_type == "hsv.h"||this.value_type == "hwb.h")
+                if (this.value_type == "hsl.h" || this.value_type == "hsv.h" || this.value_type == "hwb.h")
                 {
                     this.o_temp_color.hsl.h = this.in_value;
                     this.o_temp_color.hsl.s = this.edit_color.hsl.s;
@@ -578,8 +627,8 @@
                     var colorHex1 = this.o_temp_color.hex;
 
                     this.o_temp_color.hwb.h = this.edit_color.hwb.h;
-                    this.o_temp_color.hwb.w =this.in_value;
-                    this.o_temp_color.hwb.b =  this.edit_color.hwb.b;
+                    this.o_temp_color.hwb.w = this.in_value;
+                    this.o_temp_color.hwb.b = this.edit_color.hwb.b;
                     this.rangeThumbStyle.background = this.o_temp_color.hex;
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
@@ -594,8 +643,8 @@
                     var colorHex1 = this.o_temp_color.hex;
 
                     this.o_temp_color.hwb.h = this.edit_color.hwb.h;
-                    this.o_temp_color.hwb.w =this.edit_color.hwb.w;
-                    this.o_temp_color.hwb.b =  this.in_value;
+                    this.o_temp_color.hwb.w = this.edit_color.hwb.w;
+                    this.o_temp_color.hwb.b = this.in_value;
                     this.rangeThumbStyle.background = this.o_temp_color.hex;
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;

@@ -5,6 +5,9 @@
         <div class="color-hsl">
             <div class="saturation-lighteness-picker-board"></div>
             <div class="hue-picker">
+
+
+                <color-range v-bind:in_value="color1.hsl.s" v-bind:in_value2="color1.hsl.l" range_title="H" value_type="hsl.sl" v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.h" range_title="H" value_type="hsl.h" v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.s" range_title="S" value_type="hsl.s"  v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.l" range_title="L" value_type="hsl.l"  v-bind:edit_color="color1" > </color-range>
