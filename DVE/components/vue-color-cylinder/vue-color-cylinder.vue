@@ -6,8 +6,8 @@
             <div class="saturation-lighteness-picker-board"></div>
             <div class="hue-picker">
 
+                <color-map v-bind:in_value="color1.hsl.s" v-bind:in_value="color1.hsl.l" value_type="hsl" v-bind:edit_color="color1" > </color-map>
 
-                <color-range v-bind:in_value="color1.hsl.s" v-bind:in_value2="color1.hsl.l" range_title="H" value_type="hsl.sl" v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.h" range_title="H" value_type="hsl.h" v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.s" range_title="S" value_type="hsl.s"  v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.l" range_title="L" value_type="hsl.l"  v-bind:edit_color="color1" > </color-range>
@@ -66,7 +66,7 @@
     import  IchiColor  from "./../../Caryon/IchiColor/ichi-color.js";
     import  ColorRNA  from  "./../../Caryon/IchiColor/lib/ColorRNA.js";
     import  ColorRange from "./lib/color-range.vue"
-
+    import  ColorMap from "./lib/color-map.vue"
 
     export default{
         props: ['in_color',],
@@ -77,7 +77,8 @@
             }
         },
         components: {
-            "color-range": ColorRange
+            "color-range": ColorRange,
+            "color-map":ColorMap
         }
     }
 </script>

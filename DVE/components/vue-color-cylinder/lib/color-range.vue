@@ -1,16 +1,6 @@
 <template>
     <div class="color-range" v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h') }">
 
-        <div v-if="value_type=='hsl.sl'" class="picker-map" v-on:click="map_select($event)">
-            <div class="picker-map-background-s"
-                 v-bind:style="pickerMapStyle_s"></div>
-            <div class="picker-map-background-l"
-                 v-bind:style="pickerMapStyle_l"></div>
-            <div class="picker-map-background-h"
-                 v-bind:style="pickerMapStyle_h"></div>
-        </div>
-
-        <template v-else>
             <div class="range-bar">
                 <div class="range-thumb" v-bind:style="rangeThumbStyle"
                      v-on:mousedown="thumb_mousedown($event)"
@@ -29,7 +19,6 @@
                     <div v-on:click="in_value--" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
                 </div>
             </div>
-        </template>
     </div>
 
 </template>
@@ -46,8 +35,6 @@
         background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
 
     }
-
-
 
     .color-range {
         white-space: nowrap;
@@ -132,7 +119,6 @@
                     color: #3c72e1;
                 }
 
-
             }
 
             input {
@@ -155,40 +141,7 @@
             }
         }
 
-        .picker-map {
 
-            position: absolute;
-            width: 100%;
-            height: 60px;
-            top: 0;
-            right: 0;
-            border-radius: 4px 4px 0 0;
-
-            .picker-map-background-h ,.picker-map-background-s, .picker-map-background-l
-            {
-                position: absolute;
-                width: 100%;
-                height: 100%;
-            }
-            .picker-map-background-h
-            {
-                background: #ff944a;
-                z-index: 1;
-            }
-
-            .picker-map-background-s
-            {
-                background: linear-gradient(90deg,#fff,hsla(0,0%,100%,0));
-                z-index: 2;
-            }
-
-            .picker-map-background-l
-            {
-                background: linear-gradient(0deg,#000,transparent);
-                z-index: 3;
-            }
-
-        }
     }
 </style>
 <script>
@@ -329,6 +282,10 @@
                 offset: 0,
                 mouse_offset: 0,
                 mouse_start: 0,
+                offsetX: 0,
+                offsetY: 0,
+                mouse_startX: 0,
+                mouse_startY: 0,
                 rangeThumbStyle: {
                     left: "0px",
                     transition: "none",//"0.1s all"
@@ -337,6 +294,10 @@
                 rangeBarStyle: {
                     "-webkit-filter": "none",
                     background: ""
+                },
+                rangeThumbMapStyle: {
+                    left: "0px",
+                    right:"0px"
                 },
                 o_mouseIsDown: false,
                 o_set_once: false,
@@ -399,7 +360,7 @@
                 z = Math.floor(z)
                 this.set_color();
                 this.in_value = z;
-                console.log("offset2value" + this.value_type, z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
+//                console.log("offset2value" + this.value_type, z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
             },
 
             range_thumb_value2offset: function ()
@@ -437,8 +398,10 @@
                 }
 
 
-                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
+//                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
             },
+
+
             thumb_mousedown: function (e)
             {
                 this.o_mouseIsDown = true;
@@ -461,12 +424,40 @@
                 this.range_thumb_offset2value(this.mouse_start + moveOffset, this.width);
 //                console.log("thumb_hold_mouse", moveOffset, e);
             },
+
             thumb_hold_mouse_end: function (e)
             {
 //                console.log("thumb_hold_mouse_end", e)
                 window.removeEventListener('mousemove', this.thumb_hold_mouse)
                 window.removeEventListener('mouseup', this.thumb_hold_mouse_end)
             },
+
+
+            //          map ------------------------------
+            thumb_map_mousedown: function (e)
+            {
+                this.mouse_offset_mpaX = e.pageX;
+                this.mouse_offset_mpaY = e.pageY;
+                this.mouse_startX = this.offsetX;
+                this.mouse_startY = this.offsetY;
+
+                console.log("map_mousedown", e)
+                window.addEventListener('mousemove', this.thumb_map_hold_mouse)
+                window.addEventListener('mouseup', this.thumb_hold_mouse_end)
+            },
+
+            thumb_map_hold_mouse: function (e)
+            {
+                var moveOffsetX = e.pageX - this.mouse_offsetX;
+                var moveOffsetY = e.pageY - this.mouse_offsetY;
+
+                this.range_thumb_offset2value(this.mouse_start + moveOffset, this.width);
+//                console.log("thumb_hold_mouse", moveOffset, e);
+            },
+
+
+
+
             mousewheel: function (e)
             {
 //                console.log(e)
