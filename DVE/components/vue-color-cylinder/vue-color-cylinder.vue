@@ -6,37 +6,50 @@
             <div class="saturation-lighteness-picker-board"></div>
             <div class="hue-picker">
 
-                <color-map v-bind:in_value="color1.hsl.s" v-bind:in_value2="color1.hsl.l" value_type="hsl" v-bind:edit_color="color1" > </color-map>
+                <color-map v-bind:in_value="color1.hsl.s" v-bind:in_value2="color1.hsl.l" value_type="hsl"
+                           v-bind:edit_color="color1"></color-map>
 
-                <color-range v-bind:in_value="color1.hsl.h" range_title="H" value_type="hsl.h" v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.hsl.s" range_title="S" value_type="hsl.s"  v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.hsl.l" range_title="L" value_type="hsl.l"  v-bind:edit_color="color1" > </color-range>
+                <color-range v-bind:in_value="color1.hsl.h" range_title="H" value_type="hsl.h"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.hsl.s" range_title="S" value_type="hsl.s"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.hsl.l" range_title="L" value_type="hsl.l"
+                             v-bind:edit_color="color1"></color-range>
 
-                <color-range v-bind:in_value="color1.r" range_title="R" value_type="rgb.r"  v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.g" range_title="G" value_type="rgb.g"  v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.b" range_title="B" value_type="rgb.b"  v-bind:edit_color="color1" > </color-range>
+                <color-range v-bind:in_value="color1.r" range_title="R" value_type="rgb.r"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.g" range_title="G" value_type="rgb.g"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.b" range_title="B" value_type="rgb.b"
+                             v-bind:edit_color="color1"></color-range>
 
-                <color-range v-bind:in_value="color1.hsv.h" range_title="H" value_type="hsv.h" v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.hsv.s" range_title="S" value_type="hsv.s"  v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.hsv.v" range_title="V" value_type="hsv.v"  v-bind:edit_color="color1" > </color-range>
+                <color-range v-bind:in_value="color1.hsv.h" range_title="H" value_type="hsv.h"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.hsv.s" range_title="S" value_type="hsv.s"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.hsv.v" range_title="V" value_type="hsv.v"
+                             v-bind:edit_color="color1"></color-range>
 
 
-                <color-range v-bind:in_value="color1.hwb.h" range_title="H" value_type="hwb.h" v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.hwb.w" range_title="W" value_type="hwb.w"  v-bind:edit_color="color1" > </color-range>
-                <color-range v-bind:in_value="color1.hwb.b" range_title="B" value_type="hwb.b"  v-bind:edit_color="color1" > </color-range>
+                <color-range v-bind:in_value="color1.ex.labPs.l" range_title="L" value_type="labPs.l"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.ex.labPs.a" range_title="a" value_type="labPs.a"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.ex.labPs.b" range_title="b" value_type="labPs.b"
+                             v-bind:edit_color="color1"></color-range>
 
 
-                H:<input  max="360" min="0"  v-model="color1.hsl.h" type="range" class="exmo_range" >{{color1.hsl.h}}
-                <br>
-                S:<input  max="100" min="0"  v-model="color1.hsl.s" type="range" class="exmo_range" >{{color1.hsl.s}}
-                <br>
-                L:<input  max="100" min="0"  v-model="color1.hsl.l" type="range" class="exmo_range" >{{color1.hsl.l}}
-                <br>
-                R:<input  max="255" min="0"  v-model="color1.r" type="range" class="exmo_range" >{{color1.r}}
-                <br>
-                G:<input  max="255" min="0"  v-model="color1.g" type="range" class="exmo_range" >{{color1.g}}
-                <br>
-                B:<input  max="255" min="0"  v-model="color1.b" type="range" class="exmo_range" >{{color1.b}}
+                <!--H:<input  max="360" min="0"  v-model="color1.hsl.h" type="range" class="exmo_range" >{{color1.hsl.h}}-->
+                <!--<br>-->
+                <!--S:<input  max="100" min="0"  v-model="color1.hsl.s" type="range" class="exmo_range" >{{color1.hsl.s}}-->
+                <!--<br>-->
+                <!--L:<input  max="100" min="0"  v-model="color1.hsl.l" type="range" class="exmo_range" >{{color1.hsl.l}}-->
+                <!--<br>-->
+                <!--R:<input  max="255" min="0"  v-model="color1.r" type="range" class="exmo_range" >{{color1.r}}-->
+                <!--<br>-->
+                <!--G:<input  max="255" min="0"  v-model="color1.g" type="range" class="exmo_range" >{{color1.g}}-->
+                <!--<br>-->
+                <!--B:<input  max="255" min="0"  v-model="color1.b" type="range" class="exmo_range" >{{color1.b}}-->
             </div>
         </div>
 
@@ -64,10 +77,12 @@
 
 </style>
 <script>
-    import  IchiColor  from "./../../Caryon/IchiColor/ichi-color.js";
+    import  IchiColor_base  from "./../../Caryon/IchiColor/ichi-color.js";
+    import  IchiColor_ex  from "./../../Caryon/IchiColor/ichi-color-extension";
     import  ColorRNA  from  "./../../Caryon/IchiColor/lib/ColorRNA.js";
     import  ColorRange from "./lib/color-range.vue"
     import  ColorMap from "./lib/color-map.vue"
+    var IchiColor = IchiColor_ex(IchiColor_base);
 
     export default{
         props: ['in_color',],
@@ -79,7 +94,7 @@
         },
         components: {
             "color-range": ColorRange,
-            "color-map":ColorMap
+            "color-map": ColorMap
         }
     }
 </script>

@@ -1,24 +1,24 @@
 <template>
     <div class="color-range" v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h') }">
 
-            <div class="range-bar">
-                <div class="range-thumb" v-bind:style="rangeThumbStyle"
-                     v-on:mousedown="thumb_mousedown($event)"
-                     v-on:mouseup="thumb_mouseup($event)"
-                ></div>
+        <div class="range-bar">
+            <div class="range-thumb" v-bind:style="rangeThumbStyle"
+                 v-on:mousedown="thumb_mousedown($event)"
+                 v-on:mouseup="thumb_mouseup($event)"
+            ></div>
 
-                <div class="range-bar-background" v-on:click="range_select($event)"
-                     v-bind:style="rangeBarStyle"></div>
+            <div class="range-bar-background" v-on:click="range_select($event)"
+                 v-bind:style="rangeBarStyle"></div>
+        </div>
+        <div class="range-title">{{range_title}}</div>
+        <div class="range-input">
+            <input type="text" v-model="in_value"
+                   v-on:mousewheel="mousewheel($event)">
+            <div class="spin-button">
+                <div v-on:click="in_value++" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
+                <div v-on:click="in_value--" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
             </div>
-            <div class="range-title">{{range_title}}</div>
-            <div class="range-input">
-                <input type="text" v-model="in_value"
-                       v-on:mousewheel="mousewheel($event)">
-                <div class="spin-button">
-                    <div v-on:click="in_value++" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
-                    <div v-on:click="in_value--" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
-                </div>
-            </div>
+        </div>
     </div>
 
 </template>
@@ -141,7 +141,6 @@
             }
         }
 
-
     }
 </style>
 <script>
@@ -188,7 +187,8 @@
 
                 }
                 else if (this.value_type == "hsl.s" || this.value_type == "hsl.l" || this.value_type == "hsv.s" || this.value_type == "hsv.v"
-                        || this.value_type == "hwb.w" || this.value_type == "hwb.b")
+                        || this.value_type == "hwb.w" || this.value_type == "hwb.b"
+                )
                 {
                     if (val > 100)
                     {
@@ -226,7 +226,10 @@
                         {
                             this.edit_color.hwb.b = this.in_value;
                         }
-
+                        else if (this.value_type == "labPs.l")
+                        {
+                            this.edit_color.ex.labPs.l = this.in_value;
+                        }
                     }
                 }
                 else if (this.value_type[0] == 'r')
@@ -256,6 +259,31 @@
                         }
                     }
                 }
+                else if ( this.value_type[0] == "labPs.a" || this.value_type[0] == "labPs.b")
+                {
+                    if (val > 127)
+                    {
+                        this.in_value = 127;
+                    }
+                    if (val < -128)
+                    {
+                        this.in_value =-128;
+                    }
+
+                    if (this.o_set_once)
+                    {
+                        this.o_set_once = false;
+                        if (this.value_type == "labPs.a")
+                        {
+                            this.edit_color.ex.labPs.a = this.in_value;
+                        }
+                        if (this.value_type == "labPs.b")
+                        {
+                            this.edit_color.ex.labPs.b = this.in_value;
+                        }
+                    }
+                }
+
 
 
                 this.range_thumb_value2offset();
@@ -294,7 +322,7 @@
                 },
                 rangeThumbMapStyle: {
                     left: "0px",
-                    right:"0px"
+                    right: "0px"
                 },
                 o_mouseIsDown: false,
                 o_set_once: false,
@@ -344,6 +372,7 @@
                 }
                 else if (this.value_type == "hsl.s" || this.value_type == "hsl.l" || this.value_type == "hsv.v"
                         || this.value_type == "hsv.s" || this.value_type == "hwb.w" || this.value_type == "hwb.b"
+                        || this.value_type == "labPs.l"
                 )
                 {
                     var z = ( offsetX / width) * 100;
@@ -351,6 +380,10 @@
                 else if (this.value_type[0] == "r")
                 {
                     var z = ( offsetX / width) * 255;
+                }
+                else if (this.value_type[0] == "labPs.a" || this.value_type[0] == "labPs.b")
+                {
+                    var z = ( offsetX / width) * 255 - 128;
                 }
 
 
@@ -368,13 +401,18 @@
                     var offsetX = this.in_value * this.width / 360;
                 }
                 else if (this.value_type == "hsl.s" || this.value_type == "hsl.l" || this.value_type == "hsv.s"
-                        || this.value_type == "hsv.v" || this.value_type == "hwb.w" || this.value_type == "hwb.b")
+                        || this.value_type == "hsv.v" || this.value_type == "hwb.w" || this.value_type == "hwb.b"
+                        || this.value_type == "labPs.l")
                 {
                     var offsetX = this.in_value * this.width / 100;
                 }
                 else if (this.value_type[0] == "r")
                 {
                     var offsetX = this.in_value * this.width / 255;
+                }
+                else if (this.value_type[0] == "labPs.a" || this.value_type[0] == "labPs.b")
+                {
+                    var offsetX = (this.in_value + 128) * this.width / 255;
                 }
 
 
@@ -451,8 +489,6 @@
                 this.range_thumb_offset2value(this.mouse_start + moveOffset, this.width);
 //                console.log("thumb_hold_mouse", moveOffset, e);
             },
-
-
 
 
             mousewheel: function (e)
