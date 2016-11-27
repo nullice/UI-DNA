@@ -151,7 +151,7 @@
         watch: {
             'in_value': function (val)
             {
-                console.log("watch:in_value:", val, Number.isNaN(val))
+//                console.log("watch:in_value:", val, Number.isNaN(val))
                 if (typeof val != 'number' || Number.isNaN(val))
                 {
                     val = +val;
@@ -263,9 +263,6 @@
 
             'edit_color.int': function (val)
             {
-
-                console.log('edit_color', this.value_type, val, "edit_color:", this.edit_color.rgba)
-
                 this.update_refer_color();
             }
 
@@ -315,8 +312,8 @@
 
                 this.rangeThumbStyle.transition = "0.1s all";
 
-                console.log("layerX", e.layerX, " e.layery", e.layerY)
-                console.log(e)
+//                console.log("layerX", e.layerX, " e.layery", e.layerY)
+//                console.log(e)
                 var offsetX = e.layerX
                 var width = e.target.offsetWidth
                 this.width = width
@@ -365,7 +362,7 @@
 
             range_thumb_value2offset: function ()
             {
-                console.log(this.value_type, this.edit_color.rgba)
+//                console.log(this.value_type, this.edit_color.rgba)
                 if (this.value_type == "hsl.h" || this.value_type == "hsv.h" || this.value_type == "hwb.h")
                 {
                     var offsetX = this.in_value * this.width / 360;
@@ -478,6 +475,7 @@
                 }
                 this.set_color();
                 this.in_value += offset;
+                e.preventDefault();
             },
             update_refer_color: function ()
             {

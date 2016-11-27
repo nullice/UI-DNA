@@ -6,7 +6,7 @@
             <div class="saturation-lighteness-picker-board"></div>
             <div class="hue-picker">
 
-                <color-map v-bind:in_value="color1.hsl.s" v-bind:in_value="color1.hsl.l" value_type="hsl" v-bind:edit_color="color1" > </color-map>
+                <color-map v-bind:in_value="color1.hsl.s" v-bind:in_value2="color1.hsl.l" value_type="hsl" v-bind:edit_color="color1" > </color-map>
 
                 <color-range v-bind:in_value="color1.hsl.h" range_title="H" value_type="hsl.h" v-bind:edit_color="color1" > </color-range>
                 <color-range v-bind:in_value="color1.hsl.s" range_title="S" value_type="hsl.s"  v-bind:edit_color="color1" > </color-range>
@@ -26,17 +26,17 @@
                 <color-range v-bind:in_value="color1.hwb.b" range_title="B" value_type="hwb.b"  v-bind:edit_color="color1" > </color-range>
 
 
-                <!--H:<input  max="360" min="0"  v-model="color1.hsl.h" type="range" class="exmo_range" >{{color1.hsl.h}}-->
-                <!--<br>-->
-                <!--S:<input  max="100" min="0"  v-model="color1.hsl.s" type="range" class="exmo_range" >{{color1.hsl.s}}-->
-                <!--<br>-->
-                <!--L:<input  max="100" min="0"  v-model="color1.hsl.l" type="range" class="exmo_range" >{{color1.hsl.l}}-->
-                <!--<br>-->
-                <!--R:<input  max="255" min="0"  v-model="color1.r" type="range" class="exmo_range" >{{color1.r}}-->
-                <!--<br>-->
-                <!--G:<input  max="255" min="0"  v-model="color1.g" type="range" class="exmo_range" >{{color1.g}}-->
-                <!--<br>-->
-                <!--B:<input  max="255" min="0"  v-model="color1.b" type="range" class="exmo_range" >{{color1.b}}-->
+                H:<input  max="360" min="0"  v-model="color1.hsl.h" type="range" class="exmo_range" >{{color1.hsl.h}}
+                <br>
+                S:<input  max="100" min="0"  v-model="color1.hsl.s" type="range" class="exmo_range" >{{color1.hsl.s}}
+                <br>
+                L:<input  max="100" min="0"  v-model="color1.hsl.l" type="range" class="exmo_range" >{{color1.hsl.l}}
+                <br>
+                R:<input  max="255" min="0"  v-model="color1.r" type="range" class="exmo_range" >{{color1.r}}
+                <br>
+                G:<input  max="255" min="0"  v-model="color1.g" type="range" class="exmo_range" >{{color1.g}}
+                <br>
+                B:<input  max="255" min="0"  v-model="color1.b" type="range" class="exmo_range" >{{color1.b}}
             </div>
         </div>
 
@@ -58,6 +58,7 @@
         box-shadow: 0 8px 12px rgba(0, 0, 0, 0.12), 0 2px 4px rgba(0, 0, 0, 0.08);
         padding: 10px 15px;
         box-sizing: border-box;
+        padding-top: 64px;
     }
 
 
