@@ -39,6 +39,14 @@
                              v-bind:edit_color="color1"></color-range>
 
 
+                <color-range v-bind:in_value="color1.ex.XYZ.X" range_title="X" value_type="XYZ.X"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.ex.XYZ.Y" range_title="Y" value_type="XYZ.Y"
+                             v-bind:edit_color="color1"></color-range>
+                <color-range v-bind:in_value="color1.ex.XYZ.Z" range_title="Z" value_type="XYZ.Z"
+                             v-bind:edit_color="color1"></color-range>
+
+
                 <!--H:<input  max="360" min="0"  v-model="color1.hsl.h" type="range" class="exmo_range" >{{color1.hsl.h}}-->
                 <!--<br>-->
                 <!--S:<input  max="100" min="0"  v-model="color1.hsl.s" type="range" class="exmo_range" >{{color1.hsl.s}}-->
@@ -90,6 +98,35 @@
             return {
                 msg: 'hello vue',
                 color1: IchiColor("#f00")
+
+                ,color_bullets:{
+                    rgb:{
+                        active:false,
+                        r:true,
+                        g:true,
+                        b:true,
+                    },
+                    hsl:{
+                        active:false,
+                        h:true,
+                        s:true,
+                        l:true
+                    },
+                    hsv:{
+                        active:false,
+                        h:true,
+                        s:true,
+                        v:true
+                    },
+                    labPs:{
+                        active:false,
+                        l:true,
+                        a:true,
+                        b:true
+                    },
+
+                }
+
             }
         },
         components: {

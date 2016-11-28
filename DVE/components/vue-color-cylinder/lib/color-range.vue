@@ -187,7 +187,7 @@
 
                 }
                 else if (this.value_type == "hsl.s" || this.value_type == "hsl.l" || this.value_type == "hsv.s" || this.value_type == "hsv.v"
-                        || this.value_type == "hwb.w" || this.value_type == "hwb.b"
+                        || this.value_type == "hwb.w" || this.value_type == "hwb.b"|| this.value_type == "labPs.l"
                 )
                 {
                     if (val > 100)
@@ -259,8 +259,10 @@
                         }
                     }
                 }
-                else if ( this.value_type[0] == "labPs.a" || this.value_type[0] == "labPs.b")
+                else if ( this.value_type== "labPs.a" || this.value_type== "labPs.b")
                 {
+                    console.log( this.in_value,val)
+
                     if (val > 127)
                     {
                         this.in_value = 127;
@@ -381,12 +383,14 @@
                 {
                     var z = ( offsetX / width) * 255;
                 }
-                else if (this.value_type[0] == "labPs.a" || this.value_type[0] == "labPs.b")
+                else if (this.value_type== "labPs.a" || this.value_type == "labPs.b")
                 {
                     var z = ( offsetX / width) * 255 - 128;
                 }
-
-
+                else if (this.value_type == "XYZ.X" || this.value_type == "XYZ.Y"|| this.value_type == "XYZ.Z")
+                {
+                    var z =( offsetX / width) * 1.5;
+                }
                 z = Math.floor(z)
                 this.set_color();
                 this.in_value = z;
@@ -410,9 +414,13 @@
                 {
                     var offsetX = this.in_value * this.width / 255;
                 }
-                else if (this.value_type[0] == "labPs.a" || this.value_type[0] == "labPs.b")
+                else if (this.value_type == "labPs.a" || this.value_type == "labPs.b")
                 {
                     var offsetX = (this.in_value + 128) * this.width / 255;
+                }
+                else if (this.value_type == "XYZ.X" || this.value_type == "XYZ.Y"|| this.value_type == "XYZ.Z")
+                {
+                    var offsetX = this.in_value * this.width / 1.5;
                 }
 
 
@@ -674,6 +682,62 @@
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
+                else if (this.value_type == "labPs.l")
+                {
+                    this.o_temp_color.ex.labPs.l = 100;
+                    this.o_temp_color.ex.labPs.a  = this.edit_color.ex.labPs.a
+                    this.o_temp_color.ex.labPs.b  = this.edit_color.ex.labPs.b
+                    var colorHex0 = this.o_temp_color.hex;
+                    this.o_temp_color.ex.labPs.l  = 75;
+                    var colorHex1 = this.o_temp_color.hex;
+                    this.o_temp_color.ex.labPs.l  = 50;
+                    var colorHex2 = this.o_temp_color.hex;
+                    this.o_temp_color.ex.labPs.l  = 25;
+                    var colorHex3 = this.o_temp_color.hex;
+                    this.o_temp_color.ex.labPs.l  = 0;
+                    var colorHex4 = this.o_temp_color.hex;
+
+                    this.o_temp_color.ex.labPs.l = this.in_value;
+                    this.o_temp_color.ex.labPs.a = this.edit_color.ex.labPs.a ;
+                    this.o_temp_color.ex.labPs.b = this.edit_color.ex.labPs.b;
+                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+
+                    this.rangeBarStyle.background = `linear-gradient(-90deg, ${colorHex0} 0, ${colorHex1} 25%, ${colorHex2} 50%, ${colorHex3} 75%, ${colorHex4} 100%)`;
+                }
+                else if (this.value_type == "labPs.a")
+                {
+                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l;
+                    this.o_temp_color.ex.labPs.a  = -128;
+                    this.o_temp_color.ex.labPs.b  = this.edit_color.ex.labPs.b
+                    var colorHex0 = this.o_temp_color.hex;
+                    this.o_temp_color.ex.labPs.a  = 127;
+                    var colorHex1 = this.o_temp_color.hex;
+
+                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l ;
+                    this.o_temp_color.ex.labPs.a = this.in_value;
+                    this.o_temp_color.ex.labPs.b = this.edit_color.ex.labPs.b;
+                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+
+                    this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
+                }
+                else if (this.value_type == "labPs.b")
+                {
+                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l;
+                    this.o_temp_color.ex.labPs.a  = this.edit_color.ex.labPs.b;
+                    this.o_temp_color.ex.labPs.b  = -128;
+                    var colorHex0 = this.o_temp_color.hex;
+                    this.o_temp_color.ex.labPs.b = 127;
+                    var colorHex1 = this.o_temp_color.hex;
+
+                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l ;
+                    this.o_temp_color.ex.labPs.a = this.edit_color.ex.labPs.b;
+                    this.o_temp_color.ex.labPs.b = this.in_value;
+                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+
+                    this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
+                }
+
+
             }
             ,
             set_color: function ()
