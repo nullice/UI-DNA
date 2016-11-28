@@ -39,11 +39,11 @@
                              v-bind:edit_color="color1"></color-range>
 
 
-                <color-range v-bind:in_value="color1.ex.XYZ.X" range_title="X" value_type="XYZ.X"
+                <color-range v-bind:in_value="color1.ex.xyz.x" range_title="X" value_type="xyz.x"
                              v-bind:edit_color="color1"></color-range>
-                <color-range v-bind:in_value="color1.ex.XYZ.Y" range_title="Y" value_type="XYZ.Y"
+                <color-range v-bind:in_value="color1.ex.xyz.y" range_title="Y" value_type="xyz.y"
                              v-bind:edit_color="color1"></color-range>
-                <color-range v-bind:in_value="color1.ex.XYZ.Z" range_title="Z" value_type="XYZ.Z"
+                <color-range v-bind:in_value="color1.ex.xyz.z" range_title="Z" value_type="xyz.z"
                              v-bind:edit_color="color1"></color-range>
 
 

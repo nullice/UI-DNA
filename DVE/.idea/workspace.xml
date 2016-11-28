@@ -28,16 +28,6 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="585" column="115" selection-start-line="585" selection-start-column="111" selection-end-line="585" selection-end-column="115" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="AttributePanel_valueInput.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
           <provider selected="true" editor-type-id="text-editor">
@@ -61,8 +51,8 @@
       <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="310">
-              <caret line="43" column="59" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="59" />
+            <state relative-caret-position="142">
+              <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
               <folding>
                 <element signature="e#4349#4419#0" expanded="true" />
               </folding>
@@ -156,8 +146,8 @@
       <file leaf-file-name="color-range.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2830">
-              <caret line="391" column="51" selection-start-line="391" selection-start-column="51" selection-end-line="391" selection-end-column="51" />
+            <state relative-caret-position="322">
+              <caret line="819" column="36" selection-start-line="819" selection-start-column="36" selection-end-line="819" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -485,12 +475,12 @@
       <workItem from="1478048605006" duration="49981000" />
       <workItem from="1478311664418" duration="50499000" />
       <workItem from="1479380010064" duration="4258000" />
-      <workItem from="1479692594003" duration="127646000" />
+      <workItem from="1479692594003" duration="130068000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1470310000" />
+    <option name="totallyTimeSpent" value="1472732000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -863,14 +853,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/IchiColor/lib/ColorRNA.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-59621">
-          <caret line="14" column="39" selection-start-line="14" selection-start-column="39" selection-end-line="14" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -915,6 +897,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1050">
+          <caret line="159" column="50" selection-start-line="159" selection-start-column="50" selection-end-line="159" selection-end-column="50" />
+          <folding>
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <element signature="e#1588#1638#0" expanded="false" />
+            <element signature="e#1709#1767#0" expanded="false" />
+            <element signature="e#1846#1904#0" expanded="false" />
+            <element signature="e#1943#2001#0" expanded="false" />
+            <element signature="e#2035#2149#0" expanded="false" />
+            <element signature="e#2192#2360#0" expanded="false" />
+            <element signature="e#2505#2734#0" expanded="false" />
+            <element signature="e#4395#5415#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/IchiColor/lib/ColorRNA.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="2855" column="55" selection-start-line="2855" selection-start-column="55" selection-end-line="2855" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/area.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-357">
@@ -942,20 +950,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1050">
-          <caret line="159" column="50" selection-start-line="159" selection-start-column="50" selection-end-line="159" selection-end-column="50" />
+        <state relative-caret-position="142">
+          <caret line="40" column="0" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <element signature="e#1588#1638#0" expanded="false" />
-            <element signature="e#1709#1767#0" expanded="false" />
-            <element signature="e#1846#1904#0" expanded="false" />
-            <element signature="e#1943#2001#0" expanded="false" />
-            <element signature="e#2035#2149#0" expanded="false" />
-            <element signature="e#2192#2360#0" expanded="false" />
-            <element signature="e#2505#2734#0" expanded="false" />
-            <element signature="e#4395#5415#0" expanded="false" />
+            <element signature="e#4349#4419#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -968,20 +968,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="310">
-          <caret line="43" column="59" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="59" />
-          <folding>
-            <element signature="e#4349#4419#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2830">
-          <caret line="391" column="51" selection-start-line="391" selection-start-column="51" selection-end-line="391" selection-end-column="51" />
+        <state relative-caret-position="322">
+          <caret line="819" column="36" selection-start-line="819" selection-start-column="36" selection-end-line="819" selection-end-column="36" />
           <folding />
         </state>
       </provider>
