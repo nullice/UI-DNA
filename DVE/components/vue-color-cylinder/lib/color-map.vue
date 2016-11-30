@@ -1,5 +1,5 @@
 <template>
-    <div class="color-map" v-bind:class="{'hsl':(value_type=='hsl') }">
+    <div class="color-map" v-bind:class="{'hsv':(value_type=='hsv') }">
         <div class="picker-map-box" v-on:click="map_select($event)">
             <div class="map-thumb" v-bind:style="mapThumbMapStyle"
                  v-on:mousedown="thumb_mousedown($event)"
@@ -7,8 +7,8 @@
 
             <div class="picker-map-background-s"
                  v-bind:style="pickerMapStyle_s"></div>
-            <div class="picker-map-background-l"
-                 v-bind:style="pickerMapStyle_l"></div>
+            <div class="picker-map-background-v"
+                 v-bind:style="pickerMapStyle_v"></div>
             <div class="picker-map-background-h"
                  v-bind:style="pickerMapStyle_h"></div>
         </div>
@@ -19,7 +19,7 @@
 <style lang="scss">
     .color-map {
         cursor: default;
-        &.hsl {
+        &.hsv {
             .picker-map-box {
                 position: absolute;
                 width: 100%;
@@ -45,7 +45,7 @@
                     cursor: default;
                 }
 
-                .picker-map-background-h, .picker-map-background-s, .picker-map-background-l {
+                .picker-map-background-h, .picker-map-background-s, .picker-map-background-v {
                     position: absolute;
                     width: 100%;
                     height: 100%;
@@ -61,7 +61,7 @@
                     z-index: 2;
                 }
 
-                .picker-map-background-l {
+                .picker-map-background-v {
                     background: linear-gradient(0deg, #000, transparent);
                     z-index: 3;
                 }
@@ -83,14 +83,14 @@
             this.update_refer_color();
         },
         watch: {
-            'edit_color.hsl.h': function (val)
+            'edit_color.hsv.v': function (val)
             {
                 this.update_refer_color();
             },
             'in_value': function (val)
             {
 
-                if (this.value_type == "hsl")
+                if (this.value_type == "hsv")
                 {
                     if (val > 100)
                     {
@@ -104,9 +104,9 @@
                     if (this.o_set_once)
                     {
                         this.o_set_once = false;
-                        if (this.value_type == "hsl")
+                        if (this.value_type == "hsv")
                         {
-                            this.edit_color.hsl.s = this.in_value;
+                            this.edit_color.hsv.s = this.in_value;
 
                         }
                     }
@@ -117,7 +117,7 @@
             'in_value2': function (val)
             {
 
-                if (this.value_type == "hsl")
+                if (this.value_type == "hsv")
                 {
                     if (val > 100)
                     {
@@ -131,9 +131,9 @@
                     if (this.o_set_once2)
                     {
                         this.o_set_once2 = false;
-                        if (this.value_type == "hsl")
+                        if (this.value_type == "hsv")
                         {
-                            this.edit_color.hsl.l = this.in_value2;
+                            this.edit_color.hsv.v = this.in_value2;
                         }
                     }
 
@@ -167,7 +167,7 @@
                 pickerMapStyle_s: {
                     background: ""
                 },
-                pickerMapStyle_l: {
+                pickerMapStyle_v: {
                     background: ""
                 },
 
@@ -181,7 +181,7 @@
             map_thumb_value2offset: function ()
             {
 //                console.log(this.value_type, this.edit_color.rgba)
-                if (this.value_type == "hsl")
+                if (this.value_type == "hsv")
                 {
                     var offsetX = this.in_value * this.width / 100;
                     var offsetY = this.in_value2 * this.height / 100
@@ -193,19 +193,18 @@
                 this.offsetX = offsetX;
                 this.offsetY = offsetY;
 
-//                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
+               console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offsetX", offsetX, "edit_color", this.edit_color.rgba)
             },
             map_thumb_offset2value: function (offsetX, width, offsetY, height)
             {
 
 
-                if (this.value_type == "hsl")
+                if (this.value_type == "hsv")
                 {
-                    var z1 = ( offsetX / width) * 100;
-                    var z2 = 100 - ( offsetY / height) * 100;
+                    var z1 = ( offsetX / width) * 100; //s
+                    var z2 = 100 - ( offsetY / height) * 100; //l
 
-
-                    if (z1 < 0)
+                     if (z1 < 0)
                     {
                         z1 = 0;
                     }
@@ -277,11 +276,11 @@
 
             update_refer_color: function ()
             {
-                if (this.value_type == "hsl")
+                if (this.value_type == "hsv")
                 {
-                    this.o_temp_color.hsl.h = this.edit_color.hsl.h;
-                    this.o_temp_color.hsl.s = 100;
-                    this.o_temp_color.hsl.l = 50;
+                    this.o_temp_color.hsv.h = this.edit_color.hsv.h;
+                    this.o_temp_color.hsv.s = 100;
+                    this.o_temp_color.hsv.v = 100;
                     this.pickerMapStyle_h.background = this.o_temp_color.hex;
 
                 }

@@ -1,0 +1,246 @@
+<template>
+    <div class="menu_box {{in_class}}">
+        <div v-bind:style="select_style" class="select_input {{in_class}}">
+            <div class="select_input_label">
+                {{{label_html}}} {{label}}
+            </div>
+
+            <i class=" select_triangle_icon icon-play3"></i>
+        </div>
+
+        <div v-show="show_list" class=" menu option_list {{in_class}}">
+
+
+            <attr-option v-for="item in menu_data"
+                         v-bind:value="item.value"
+                         v-bind:state.sync="item.state"
+                         v-bind:hr="item.hr"
+                         v-bind:label="item.name"
+                         v-bind:label_html="item.label_html"
+                         v-bind:selected_func="selected_func"
+                         v-bind:selected_value.sync="value"
+                         v-bind:in_class="block?'inline_block':''"
+            >
+
+
+                <div class="checked_sign_shadow"></div>
+                <div class="checked_sign"><i v-show="item.state" class="icon-checkmark"></i>
+                </div>
+
+
+            </attr-option>
+
+
+        </div>
+
+    </div>
+</template>
+<style lang="scss">
+
+    .menu_box {
+
+        position: relative;
+        /*display: inline-block;*/
+
+        .inline_block {
+            display: inline-block;
+        }
+
+        .option_list.menu {
+            position: absolute;
+            max-height: 0;
+            overflow: hidden;
+            transition: .3s all;
+            opacity: 0;
+            z-index: 33;
+            background: rgb(245, 245, 245);
+
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.11), 0px 5px 6px rgba(34, 34, 34, 0.15);
+            border-radius: 2px;
+            padding: 0;
+
+            .option_hr {
+                border-top: 1px solid rgba(17, 17, 17, 0.12);
+                border-bottom: 1px solid rgba(102, 102, 102, 0.05);
+            }
+
+            .attr_option.selected:not(:hover) {
+                background: rgba(192, 192, 192, 0.15);
+            }
+
+            .attr_option {
+                position: relative;
+            }
+
+
+            .checked_sign_shadow {
+                width: 30px;
+                display: inline-block;
+            }
+            .checked_sign {
+                display: inline-block;
+                position: absolute;
+                right: 10px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                text-align: right;
+                i {
+                    line-height: 30px;
+                }
+            }
+
+        }
+
+        &:hover .option_list, .option_list:hover {
+            max-height: 9999px;
+            opacity: 1;
+            transition: .3s all;
+        }
+
+        .select_input {
+            outline: none;
+            -webkit-user-select: none;
+            border: none;
+            border-bottom: 1px solid #adadad;
+            color: #292929;
+            background: rgba(255, 255, 255, 0);
+            padding: 4px 0px;
+            margin: 4px 6px;
+            min-width: 10px;
+            font-size: 14px;
+            white-space: nowrap;
+            position: relative;
+            padding-right: 16px;
+
+            .select_input_label {
+                overflow: hidden;
+                color: rgb(84, 84, 84);
+
+            }
+
+            i.select_triangle_icon.icon-play3 {
+                font-size: 9px !important;
+                color: #666 !important;
+                transform: rotate(270deg);
+                display: inline-block;
+                transition: .3s all;
+                position: absolute;
+                right: 0;
+                width: 8px;
+                height: 8px;
+                bottom: 0;
+                top: 0;
+                margin: auto;
+
+            }
+
+        }
+
+        &:hover i.select_triangle_icon.icon-play3 {
+            transform: rotate(90deg);
+        }
+
+    }
+
+
+</style>
+<script>
+
+    import attrOption from "./AttributePanel_option.vue"
+    import ARR from "../Caryon/Richang_JSEX/arrayARR.js"
+
+    export default{
+        ready: function ()
+        {
+            if (this.default_value != undefined)
+            {
+                if (this.value == undefined)
+                {
+                    this.value = this.default_value;
+                }
+            }
+        },
+
+
+        watch: {
+            'value': function (newVal, oldVal)
+            {
+                if (this.default_value != undefined)
+                {
+                    if (newVal == undefined)
+                    {
+                        this.value = this.default_value;
+                    }
+                }
+            }
+        },
+
+        props: ['value', 'block', 'select_style', 'menu_data', 'default_value', "in_class"],
+        methods: {
+            getLable: function ()
+            {
+
+            },
+
+            selected_func: function ()
+            {
+                this.show_list = false;
+                var _this = this;
+                setTimeout(function ()
+                {
+                    _this.show_list = true;
+                }, 200)
+            }
+
+
+        },
+        name: 'menu-box',
+        data(){
+
+            return {
+                show_list: true,
+            }
+        },
+        computed: {
+            label: function ()
+            {
+                var ob = ARR.getByKey(this.options, "value", this.value);
+                if (ob != undefined)
+                {
+                    if (ob.label != undefined)
+                    {
+                        return ob.label;
+                    }
+
+                } else
+                {
+                    return ""
+                }
+            },
+
+            label_html: function ()
+            {
+                var ob = ARR.getByKey(this.options, "value", this.value);
+                if (ob != undefined)
+                {
+                    if (ob.label_html != undefined)
+                    {
+                        return ob.label_html;
+                    }
+
+                } else
+                {
+                    return ""
+                }
+            },
+
+        },
+
+
+        components: {
+            "attr-option": attrOption,
+        }
+    }
+
+</script>

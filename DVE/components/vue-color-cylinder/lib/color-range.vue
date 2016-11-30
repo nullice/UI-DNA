@@ -15,8 +15,8 @@
             <input type="text" v-model="in_value"
                    v-on:mousewheel="mousewheel($event)">
             <div class="spin-button">
-                <div v-on:click="in_value++" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
-                <div v-on:click="in_value--" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
+                <div v-on:click="click_up" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
+                <div v-on:click="click_down" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
             </div>
         </div>
     </div>
@@ -426,7 +426,8 @@
                 }
                 this.set_color();
                 this.in_value = z;
-//                console.log("offset2value" + this.value_type, z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
+
+                console.log("offset2value" + this.value_type, "offset:", offsetX, "width:", width, "z:", z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
             },
 
             range_thumb_value2offset: function ()
@@ -473,7 +474,7 @@
                 }
 
 
-//                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
+                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
             },
 
 
@@ -483,7 +484,7 @@
                 this.mouse_offset = e.pageX;
                 this.mouse_start = this.offset;
 
-//                console.log("mouseDown", e)
+                console.log("mouseDown", e, "e.pageX:", e.pageX, "this.offset：", this.offset)
                 window.addEventListener('mousemove', this.thumb_hold_mouse)
                 window.addEventListener('mouseup', this.thumb_hold_mouse_end)
             },
@@ -497,7 +498,7 @@
                 var moveOffset = e.pageX - this.mouse_offset;
 
                 this.range_thumb_offset2value(this.mouse_start + moveOffset, this.width);
-//                console.log("thumb_hold_mouse", moveOffset, e);
+                console.log("thumb_hold_mouse of2va：", "mouse_start:", this.mouse_start, "moveOffset:", moveOffset, e);
             },
 
             thumb_hold_mouse_end: function (e)
@@ -553,6 +554,33 @@
                 this.in_value += offset;
                 e.preventDefault();
             },
+            click_up: function (e)
+            {
+                this.set_color();
+                if (this.value_type[0] == "x")
+                {
+                    this.in_value += 0.01;
+                }
+                else
+                {
+                    this.in_value++;
+                }
+
+            },
+            click_down: function (e)
+            {
+                this.set_color();
+                if (this.value_type[0] == "x")
+                {
+                    this.in_value += 0.01;
+                }
+                else
+                {
+                    this.in_value--;
+                }
+
+            },
+
             update_refer_color: function ()
             {
 
@@ -589,10 +617,7 @@
                 }
                 else if (this.value_type == "hsl.l")
                 {
-                    this.o_temp_color.hsl.h = this.edit_color.hsl.h;
-                    this.o_temp_color.hsl.s = this.edit_color.hsl.s;
-                    this.o_temp_color.hsl.l = this.in_value;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+
 
                     this.o_temp_color.hsl.h = this.edit_color.hsl.h;
                     this.o_temp_color.hsl.s = this.edit_color.hsl.s;
@@ -603,6 +628,7 @@
                     this.o_temp_color.hsl.l = 100;
                     var colorHex2 = this.o_temp_color.hex;
 
+                    this.rangeThumbStyle.background = this.edit_color.hex;
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 50%,${colorHex2} 100% )`;
                 }
                 else if (this.value_type == "rgb.r")
@@ -615,10 +641,7 @@
                     var colorHex1 = this.o_temp_color.hex;
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
 
-                    this.o_temp_color.r = this.in_value;
-                    this.o_temp_color.g = this.edit_color.g;
-                    this.o_temp_color.b = this.edit_color.b;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = "rgba(0,0,0,0)";
                 }
                 else if (this.value_type == "rgb.g")
                 {
@@ -630,10 +653,7 @@
                     var colorHex1 = this.o_temp_color.hex;
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
 
-                    this.o_temp_color.r = this.edit_color.g;
-                    this.o_temp_color.g = this.in_value;
-                    this.o_temp_color.b = this.edit_color.b;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = "rgba(0,0,0,0)";
                 }
                 else if (this.value_type == "rgb.b")
                 {
@@ -645,10 +665,7 @@
                     var colorHex1 = this.o_temp_color.hex;
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
 
-                    this.o_temp_color.r = this.edit_color.b;
-                    this.o_temp_color.g = this.edit_color.g;
-                    this.o_temp_color.b = this.in_value;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = "rgba(0,0,0,0)";
                 }
                 else if (this.value_type == "hsv.s")
                 {
@@ -659,10 +676,7 @@
                     this.o_temp_color.hsv.s = 100;
                     var colorHex1 = this.o_temp_color.hex;
 
-                    this.o_temp_color.hsv.h = this.edit_color.hsv.h;
-                    this.o_temp_color.hsv.s = this.in_value;
-                    this.o_temp_color.hsv.v = this.edit_color.hsv.v;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = this.edit_color.hex;
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
@@ -675,10 +689,7 @@
                     this.o_temp_color.hsv.v = 100;
                     var colorHex1 = this.o_temp_color.hex;
 
-                    this.o_temp_color.hsv.h = this.edit_color.hsv.h;
-                    this.o_temp_color.hsv.s = this.edit_color.hsv.s;
-                    this.o_temp_color.hsv.v = this.in_value;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = this.edit_color.hex;
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
@@ -688,13 +699,10 @@
                     this.o_temp_color.hwb.w = 0;
                     this.o_temp_color.hwb.b = this.edit_color.hwb.b;
                     var colorHex0 = this.o_temp_color.hex;
-                    this.o_temp_color.hwb.w = 100;
+                    this.o_temp_color.hwb.w = 99;
                     var colorHex1 = this.o_temp_color.hex;
 
-                    this.o_temp_color.hwb.h = this.edit_color.hwb.h;
-                    this.o_temp_color.hwb.w = this.in_value;
-                    this.o_temp_color.hwb.b = this.edit_color.hwb.b;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = this.edit_color.hex;
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
@@ -704,15 +712,21 @@
                     this.o_temp_color.hwb.w = this.edit_color.hwb.w;
                     this.o_temp_color.hwb.b = 0;
                     var colorHex0 = this.o_temp_color.hex;
-                    this.o_temp_color.hwb.b = 100;
+                    this.o_temp_color.hwb.b = 25;
                     var colorHex1 = this.o_temp_color.hex;
+                    this.o_temp_color.hwb.b = 50;
+                    var colorHex2 = this.o_temp_color.hex;
+                    this.o_temp_color.hwb.b = 75;
+                    var colorHex3 = this.o_temp_color.hex;
+                    this.o_temp_color.hwb.b = 95;
+                    var colorHex4 = this.o_temp_color.hex;
+                    this.o_temp_color.hwb.b = 100;
+                    var colorHex5 = this.o_temp_color.hex;
 
-                    this.o_temp_color.hwb.h = this.edit_color.hwb.h;
-                    this.o_temp_color.hwb.w = this.edit_color.hwb.w;
-                    this.o_temp_color.hwb.b = this.in_value;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
 
-                    this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
+                    this.rangeThumbStyle.background = this.edit_color.hex;
+
+                    this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 25%, ${colorHex2} 50%, ${colorHex3} 75%, ${colorHex4} 95%, ${colorHex5} 100%)`;
                 }
                 else if (this.value_type == "labPs.l")
                 {
@@ -729,7 +743,7 @@
                     this.o_temp_color.ex.labPs.l = 0;
                     var colorHex4 = this.o_temp_color.hex;
 
-                    this.o_temp_color.ex.labPs.l = this.in_value;
+                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l;
                     this.o_temp_color.ex.labPs.a = this.edit_color.ex.labPs.a;
                     this.o_temp_color.ex.labPs.b = this.edit_color.ex.labPs.b;
                     this.rangeThumbStyle.background = this.o_temp_color.hex;
@@ -745,26 +759,22 @@
                     this.o_temp_color.ex.labPs.a = 127;
                     var colorHex1 = this.o_temp_color.hex;
 
-                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l;
-                    this.o_temp_color.ex.labPs.a = this.in_value;
-                    this.o_temp_color.ex.labPs.b = this.edit_color.ex.labPs.b;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+
+                    this.rangeThumbStyle.background = "rgba(0,0,0,0)";
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
                 else if (this.value_type == "labPs.b")
                 {
                     this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l;
-                    this.o_temp_color.ex.labPs.a = this.edit_color.ex.labPs.b;
+                    this.o_temp_color.ex.labPs.a = this.edit_color.ex.labPs.a;
                     this.o_temp_color.ex.labPs.b = -128;
                     var colorHex0 = this.o_temp_color.hex;
                     this.o_temp_color.ex.labPs.b = 127;
                     var colorHex1 = this.o_temp_color.hex;
 
-                    this.o_temp_color.ex.labPs.l = this.edit_color.ex.labPs.l;
-                    this.o_temp_color.ex.labPs.a = this.edit_color.ex.labPs.b;
-                    this.o_temp_color.ex.labPs.b = this.in_value;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+
+                    this.rangeThumbStyle.background = "rgba(0,0,0,0)";
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
@@ -774,13 +784,13 @@
                     this.o_temp_color.ex.xyz.y = this.edit_color.ex.xyz.y;
                     this.o_temp_color.ex.xyz.z = this.edit_color.ex.xyz.z;
                     var colorHex0 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.x = 1.2*(1/4)
+                    this.o_temp_color.ex.xyz.x = 1.2 * (1 / 4)
                     var colorHex1 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.x =  1.2*(2/4)
+                    this.o_temp_color.ex.xyz.x = 1.2 * (2 / 4)
                     var colorHex2 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.x =  1.2*(3/4)
+                    this.o_temp_color.ex.xyz.x = 1.2 * (3 / 4)
                     var colorHex3 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.x =  1.2*(4/4)
+                    this.o_temp_color.ex.xyz.x = 1.2 * (4 / 4)
                     var colorHex4 = this.o_temp_color.hex;
 
                     this.rangeThumbStyle.background = this.edit_color.hex;
@@ -792,13 +802,13 @@
                     this.o_temp_color.ex.xyz.y = 0
                     this.o_temp_color.ex.xyz.z = this.edit_color.ex.xyz.z;
                     var colorHex0 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.y = 1.2*(1/4)
+                    this.o_temp_color.ex.xyz.y = 1.2 * (1 / 4)
                     var colorHex1 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.y =  1.2*(2/4)
+                    this.o_temp_color.ex.xyz.y = 1.2 * (2 / 4)
                     var colorHex2 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.y =  1.2*(3/4)
+                    this.o_temp_color.ex.xyz.y = 1.2 * (3 / 4)
                     var colorHex3 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.y =  1.2*(4/4)
+                    this.o_temp_color.ex.xyz.y = 1.2 * (4 / 4)
                     var colorHex4 = this.o_temp_color.hex;
 
                     this.rangeThumbStyle.background = this.edit_color.hex;
@@ -810,13 +820,13 @@
                     this.o_temp_color.ex.xyz.y = this.edit_color.ex.xyz.y;
                     this.o_temp_color.ex.xyz.z = 0
                     var colorHex0 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.z = 1.2*(1/4)
+                    this.o_temp_color.ex.xyz.z = 1.2 * (1 / 4)
                     var colorHex1 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.z =  1.2*(2/4)
+                    this.o_temp_color.ex.xyz.z = 1.2 * (2 / 4)
                     var colorHex2 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.z =  1.2*(3/4)
+                    this.o_temp_color.ex.xyz.z = 1.2 * (3 / 4)
                     var colorHex3 = this.o_temp_color.hex;
-                    this.o_temp_color.ex.xyz.z =  1.2*(4/4)
+                    this.o_temp_color.ex.xyz.z = 1.2 * (4 / 4)
                     var colorHex4 = this.o_temp_color.hex;
 
                     this.rangeThumbStyle.background = this.edit_color.hex;
