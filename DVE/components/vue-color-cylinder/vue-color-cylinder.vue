@@ -7,29 +7,13 @@
 
         <menu-box
                 v-bind:menu_data="o_menu"
+                in_class="color-setting-button"
         >
+            <button class="exmo_button_icon mini"> <i class="icon-settings"></i></button>
+
         </menu-box>
 
-        <div class="setting_panel">
-            <div class="color-model">
-                <div class="model-title">RGB</div>
-                <label class="exmo_checkbox">
-                    <input type="checkbox" v-model="o_menu.rgb.child.r">
-                    <div class="exmo_checkbox_shadow"></div>
-                    R
-                </label>
-                <label class="exmo_checkbox">
-                    <input type="checkbox" v-model="o_menu.rgb.child.g">
-                    <div class="exmo_checkbox_shadow"></div>
-                    G
-                </label>
-                <label class="exmo_checkbox">
-                    <input type="checkbox" v-model="o_menu.rgb.child.b">
-                    <div class="exmo_checkbox_shadow"></div>
-                    B
-                </label>
-            </div>
-
+        <div class="setting_panel" v-if="o_menu.setting.state">
             <div class="color-model">
                 <div class="model-title">HSL</div>
                 <label class="exmo_checkbox">
@@ -44,6 +28,43 @@
                 </label>
                 <label class="exmo_checkbox">
                     <input type="checkbox" v-model="o_menu.hsl.child.l">
+                    <div class="exmo_checkbox_shadow"></div>
+                    L
+                </label>
+            </div>
+            <div class="color-model">
+                <div class="model-title">HSL (255)</div>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hsl255.child.h">
+                    <div class="exmo_checkbox_shadow"></div>
+                    H
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hsl255.child.s">
+                    <div class="exmo_checkbox_shadow"></div>
+                    S
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hsl255.child.l">
+                    <div class="exmo_checkbox_shadow"></div>
+                    L
+                </label>
+            </div>
+
+            <div class="color-model">
+                <div class="model-title">HSL (240)</div>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hsl240.child.h">
+                    <div class="exmo_checkbox_shadow"></div>
+                    H
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hsl240.child.s">
+                    <div class="exmo_checkbox_shadow"></div>
+                    S
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hsl240.child.l">
                     <div class="exmo_checkbox_shadow"></div>
                     L
                 </label>
@@ -67,6 +88,46 @@
                     B
                 </label>
             </div>
+
+            <div class="color-model">
+                <div class="model-title">RGB</div>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.rgb.child.r">
+                    <div class="exmo_checkbox_shadow"></div>
+                    R
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.rgb.child.g">
+                    <div class="exmo_checkbox_shadow"></div>
+                    G
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.rgb.child.b">
+                    <div class="exmo_checkbox_shadow"></div>
+                    B
+                </label>
+            </div>
+
+            <div class="color-model">
+                <div class="model-title">HWB</div>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hwb.child.h">
+                    <div class="exmo_checkbox_shadow"></div>
+                    H
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hwb.child.w">
+                    <div class="exmo_checkbox_shadow"></div>
+                    W
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.hwb.child.b">
+                    <div class="exmo_checkbox_shadow"></div>
+                    B
+                </label>
+            </div>
+
+
 
             <div class="color-model">
                 <div class="model-title">Lab</div>
@@ -108,7 +169,7 @@
 
 
             <div class="button_box">
-                <button class="exmo_button"> 确定</button>
+                <button class="exmo_button" v-on:click="o_menu.setting.state=false"> 确定</button>
             </div>
         </div>
 
@@ -116,62 +177,109 @@
             <div class="color-picker hsl" transition="expand"
                  v-if="o_menu.hsl.state">
                 <color-range v-bind:in_value="color1.hsl.h" range_title="H" value_type="hsl.h"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl.child.h"></color-range>
                 <color-range v-bind:in_value="color1.hsl.s" range_title="S" value_type="hsl.s"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl.child.s"></color-range>
                 <color-range v-bind:in_value="color1.hsl.l" range_title="L" value_type="hsl.l"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl.child.l"></color-range>
             </div>
+
+            <div class="color-picker hsl" transition="expand"
+                 v-if="o_menu.hsl255.state">
+                <div class="sub_title">HSL (255)</div>
+                <color-range v-bind:in_value="color1.ex.hsl255.h" range_title="H" value_type="hsl255.h"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl255.child.h"></color-range>
+                <color-range v-bind:in_value="color1.ex.hsl255.s" range_title="S" value_type="hsl255.s"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl255.child.s"></color-range>
+                <color-range v-bind:in_value="color1.ex.hsl255.l" range_title="L" value_type="hsl255.l"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl255.child.l"></color-range>
+            </div>
+
+            <div class="color-picker hsl" transition="expand"
+                 v-if="o_menu.hsl240.state">
+                <div class="sub_title">HSL (240)</div>
+                <color-range v-bind:in_value="color1.ex.hsl240.h" range_title="H" value_type="hsl240.h"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl240.child.h"></color-range>
+                <color-range v-bind:in_value="color1.ex.hsl240.s" range_title="S" value_type="hsl240.s"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl240.child.s"></color-range>
+                <color-range v-bind:in_value="color1.ex.hsl240.l" range_title="L" value_type="hsl240.l"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsl240.child.l"></color-range>
+            </div>
+
 
             <div class="color-picker hsv" transition="expand"
                  v-if="o_menu.hsv.state">
                 <color-range v-bind:in_value="color1.hsv.h" range_title="H" value_type="hsv.h"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsv.child.h" ></color-range>
                 <color-range v-bind:in_value="color1.hsv.s" range_title="S" value_type="hsv.s"
-                             v-bind:edit_color="color1"></color-range>
-                <color-range v-bind:in_value="color1.hsv.v" range_title="V" value_type="hsv.v"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsv.child.s"></color-range>
+                <color-range v-bind:in_value="color1.hsv.v" range_title="B" value_type="hsv.v"
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hsv.child.v"></color-range>
             </div>
 
             <div class="color-picker hwb" transition="expand"
                  v-if="o_menu.hwb.state">
                 <color-range v-bind:in_value="color1.hwb.h" range_title="H" value_type="hwb.h"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hwb.child.h"></color-range>
                 <color-range v-bind:in_value="color1.hwb.w" range_title="W" value_type="hwb.w"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hwb.child.w"></color-range>
                 <color-range v-bind:in_value="color1.hwb.b" range_title="B" value_type="hwb.b"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.hwb.child.b"></color-range>
             </div>
 
             <div class="color-picker rgb"
                  v-if="o_menu.rgb.state">
                 <color-range v-bind:in_value="color1.r" range_title="R" value_type="rgb.r"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.rgb.child.r"></color-range>
                 <color-range v-bind:in_value="color1.g" range_title="G" value_type="rgb.g"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.rgb.child.g"></color-range>
                 <color-range v-bind:in_value="color1.b" range_title="B" value_type="rgb.b"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.rgb.child.b"></color-range>
             </div>
 
             <div class="color-picker labps"
                  v-if="o_menu.labPs.state">
                 <color-range v-bind:in_value="color1.ex.labPs.l" range_title="L" value_type="labPs.l"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.labPs.child.l"></color-range>
                 <color-range v-bind:in_value="color1.ex.labPs.a" range_title="a" value_type="labPs.a"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.labPs.child.a"></color-range>
                 <color-range v-bind:in_value="color1.ex.labPs.b" range_title="b" value_type="labPs.b"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.labPs.child.b"></color-range>
             </div>
 
 
             <div class="color-picker xyz"
                  v-if="o_menu.xyz.state">
                 <color-range v-bind:in_value="color1.ex.xyz.x" range_title="X" value_type="xyz.x"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.xyz.child.x"></color-range>
                 <color-range v-bind:in_value="color1.ex.xyz.y" range_title="Y" value_type="xyz.y"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.xyz.child.y"></color-range>
                 <color-range v-bind:in_value="color1.ex.xyz.z" range_title="Z" value_type="xyz.z"
-                             v-bind:edit_color="color1"></color-range>
+                             v-bind:edit_color="color1"
+                             v-if="o_menu.xyz.child.z"></color-range>
 
             </div>
             <input type="color"/>
@@ -209,6 +317,10 @@
         box-sizing: border-box;
         padding-top: 64px;
 
+        .color-setting-button{
+            
+        }
+
         .setting_panel {
             position: absolute;
             background: #F9F9F9;
@@ -216,8 +328,7 @@
             left: 0;
             right: 0;
             margin: auto;
-
-            padding: 10px 20px;
+            padding: 15px 20px 6px 20px;
             z-index: 33;
             box-shadow: 0 1px 4px rgba(34, 34, 34, 0.36);
             border-radius: 2px;
@@ -225,12 +336,18 @@
             .model-title {
                 font-size: 12px;
                 margin-bottom: 8px;
+                color: #898989;
+                font-weight: 600;
             }
 
             .color-model {
                 margin: 10px 0;
+                label.exmo_checkbox {
+                    padding: 0 6px;
+                    color: #5E5E5E;
+                }
             }
-            .button_box{
+            .button_box {
                 text-align: center;
             }
         }
@@ -239,6 +356,16 @@
     .color-picker {
         padding: 5px 20px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+
+        .sub_title {
+            font-size: 10px;
+            color: #BEBEBE;
+            border-radius: 4px;
+            padding: 4px 0 0 0;
+            text-align: right;
+            -webkit-user-select: none;
+            cursor: default;
+        }
 
     }
 
@@ -285,60 +412,80 @@
                         name: "HSL",
                         type: "multi_select",
                         state: true,
-                        child:{
-                            h:true,
-                            s:true,
-                            l :true,
+                        child: {
+                            h: true,
+                            s: true,
+                            l: true,
                         }
                     },
-                    rgb: {
-                        name: "RGB",
+                    hsl255: {
+                        name: "HSL 255",
                         type: "multi_select",
                         state: true,
-                        child:{
-                            r:true,
-                            g:true,
-                            b :true,
+                        child: {
+                            h: true,
+                            s: true,
+                            l: true,
+                        }
+                    },
+                    hsl240: {
+                        name: "HSL 240",
+                        type: "multi_select",
+                        state: true,
+                        child: {
+                            h: true,
+                            s: true,
+                            l: true,
                         }
                     },
                     hsv: {
                         name: "HSB",
                         type: "multi_select",
                         state: true,
-                        child:{
-                            h:true,
-                            s:true,
-                            v :true,
+                        child: {
+                            h: true,
+                            s: true,
+                            v: true,
                         }
                     },
                     hwb: {
                         name: "HWB",
                         type: "multi_select",
                         state: true,
-                        child:{
-                            h:true,
-                            w:true,
-                            b :true,
+                        child: {
+                            h: true,
+                            w: true,
+                            b: true,
+                        }
+                    },
+                    rgb: {
+                        name: "RGB",
+                        type: "multi_select",
+                        state: true,
+                        child: {
+                            r: true,
+                            g: true,
+                            b: true,
                         }
                     },
                     labPs: {
                         name: "Lab",
                         type: "multi_select",
                         state: true,
-                        child:{
-                            l:true,
-                            a:true,
-                            b :true,
+                        child: {
+                            l: true,
+                            a: true,
+                            b: true,
                         }
                     },
                     xyz: {
                         name: "XYZ",
                         type: "multi_select",
                         state: true,
-                        child:{
-                            x:true,
-                            y:true,
-                            z :true,
+                        child: {
+                            x: true,
+                            y: true,
+                            z: true,
                         }
                     },
                     hr: {
@@ -347,10 +494,11 @@
                         state: true,
                         hr: true,
                     },
-                    ccc: {
+                    setting: {
                         name: "更多设置",
-                        type: "multi_select",
-                        state: true,
+                        type: "select",
+                        state: false,
+
                     },
                 }
 

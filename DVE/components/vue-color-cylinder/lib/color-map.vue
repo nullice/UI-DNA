@@ -83,7 +83,7 @@
             this.update_refer_color();
         },
         watch: {
-            'edit_color.hsv.v': function (val)
+            'edit_color.int': function (val)
             {
                 this.update_refer_color();
             },

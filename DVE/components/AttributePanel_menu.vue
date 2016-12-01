@@ -1,13 +1,12 @@
 <template>
+    <!--v-show="menu_active"-->
     <div class="menu_box {{in_class}}">
-        <div v-bind:style="select_style" class="select_input {{in_class}}">
-            <div class="select_input_label">
+        <div v-bind:style="menu_style" class="menu_input {{in_class}}">
+            <div class="menu_input_label">
                 {{{label_html}}} {{label}}
+                <slot></slot>
             </div>
-
-            <i class=" select_triangle_icon icon-play3"></i>
         </div>
-
         <div v-show="show_list" class=" menu option_list {{in_class}}">
 
 
@@ -22,9 +21,8 @@
                          v-bind:in_class="block?'inline_block':''"
             >
 
-
-                <div class="checked_sign_shadow"></div>
-                <div class="checked_sign"><i v-show="item.state" class="icon-checkmark"></i>
+                <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
+                <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state" class="icon-checkmark"></i>
                 </div>
 
 
@@ -32,7 +30,6 @@
 
 
         </div>
-
     </div>
 </template>
 <style lang="scss">
@@ -97,50 +94,6 @@
             opacity: 1;
             transition: .3s all;
         }
-
-        .select_input {
-            outline: none;
-            -webkit-user-select: none;
-            border: none;
-            border-bottom: 1px solid #adadad;
-            color: #292929;
-            background: rgba(255, 255, 255, 0);
-            padding: 4px 0px;
-            margin: 4px 6px;
-            min-width: 10px;
-            font-size: 14px;
-            white-space: nowrap;
-            position: relative;
-            padding-right: 16px;
-
-            .select_input_label {
-                overflow: hidden;
-                color: rgb(84, 84, 84);
-
-            }
-
-            i.select_triangle_icon.icon-play3 {
-                font-size: 9px !important;
-                color: #666 !important;
-                transform: rotate(270deg);
-                display: inline-block;
-                transition: .3s all;
-                position: absolute;
-                right: 0;
-                width: 8px;
-                height: 8px;
-                bottom: 0;
-                top: 0;
-                margin: auto;
-
-            }
-
-        }
-
-        &:hover i.select_triangle_icon.icon-play3 {
-            transform: rotate(90deg);
-        }
-
     }
 
 
@@ -176,7 +129,7 @@
             }
         },
 
-        props: ['value', 'block', 'select_style', 'menu_data', 'default_value', "in_class"],
+        props: ['menu_active', 'value', 'block', 'menu_style', 'menu_data', 'default_value', "in_class"],
         methods: {
             getLable: function ()
             {

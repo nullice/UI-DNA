@@ -1,5 +1,5 @@
 <template>
-    <div class="color-range" v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h') }">
+    <div class="color-range" v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h'||value_type=='hsl255.h'||value_type=='hsl240.h') }">
 
         <div class="range-bar">
             <div class="range-thumb" v-bind:style="rangeThumbStyle"
@@ -232,7 +232,7 @@
                         }
                     }
                 }
-                else if (this.value_type[0] == 'r')
+                else if (this.value_type[0] == 'r' || this.value_type[this.value_type.length - 3] == '5')
                 {
                     if (val > 255)
                     {
@@ -256,6 +256,18 @@
                         else if (this.value_type == "rgb.b")
                         {
                             this.edit_color.b = this.in_value;
+                        }
+                        else if (this.value_type == "hsl255.h")
+                        {
+                            this.edit_color.ex.hsl255.h = this.in_value;
+                        }
+                        else if (this.value_type == "hsl255.s")
+                        {
+                            this.edit_color.ex.hsl255.s = this.in_value;
+                        }
+                        else if (this.value_type == "hsl255.l")
+                        {
+                            this.edit_color.ex.hsl255.l = this.in_value;
                         }
                     }
                 }
@@ -311,10 +323,54 @@
                         }
                     }
                 }
+                else if (this.value_type == "hsl240.h")
+                {
+
+                    if (val > 239)
+                    {
+                        this.in_value = 239;
+                    }
+                    if (val < 0)
+                    {
+                        this.in_value = 0;
+                    }
+
+                    if (this.o_set_once)
+                    {
+                        this.o_set_once = false;
+                        this.edit_color.ex.hsl240.h = this.in_value;
+                    }
+                }
+                else if (this.value_type == "hsl240.s" || this.value_type == "hsl240.l")
+                {
+
+                    if (val > 240)
+                    {
+                        this.in_value = 240;
+                    }
+                    if (val < 0)
+                    {
+                        this.in_value = 0;
+                    }
+
+                    if (this.o_set_once)
+                    {
+                        this.o_set_once = false;
+                        if (this.value_type == "hsl240.s")
+                        {
+                            this.edit_color.ex.hsl240.s = this.in_value;
+                        }
+                        if (this.value_type == "hsl240.l")
+                        {
+                            this.edit_color.ex.hsl240.l = this.in_value;
+                        }
+                    }
+                }
 
 
                 this.range_thumb_value2offset();
             },
+
 
             'edit_color.int': function (val)
             {
@@ -405,13 +461,21 @@
                 {
                     var z = ( offsetX / width) * 100;
                 }
-                else if (this.value_type[0] == "r")
+                else if (this.value_type[0] == "r" || this.value_type[this.value_type.length - 3] == '5')
                 {
                     var z = ( offsetX / width) * 255;
                 }
                 else if (this.value_type == "labPs.a" || this.value_type == "labPs.b")
                 {
                     var z = ( offsetX / width) * 255 - 128;
+                }
+                else if (this.value_type == "hsl240.s" || this.value_type == "hsl240.l")
+                {
+                    var z = ( offsetX / width) * 240;
+                }
+                else if (this.value_type == "hsl240.h")
+                {
+                    var z = ( offsetX / width) * 239;
                 }
                 else if (this.value_type == "xyz.x" || this.value_type == "xyz.y" || this.value_type == "xyz.z")
                 {
@@ -427,6 +491,7 @@
                 this.set_color();
                 this.in_value = z;
 
+                console.log(this.value_type[this.value_type.length - 3] )
                 console.log("offset2value" + this.value_type, "offset:", offsetX, "width:", width, "z:", z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
             },
 
@@ -443,7 +508,7 @@
                 {
                     var offsetX = this.in_value * this.width / 100;
                 }
-                else if (this.value_type[0] == "r")
+                else if (this.value_type[0] == "r" || this.value_type[this.value_type.length - 3] == '5')
                 {
                     var offsetX = this.in_value * this.width / 255;
                 }
@@ -454,6 +519,14 @@
                 else if (this.value_type == "xyz.x" || this.value_type == "xyz.y" || this.value_type == "xyz.z")
                 {
                     var offsetX = this.in_value * this.width / 1.2;
+                }
+                else if (this.value_type == "hsl240.s" || this.value_type == "hsl240.l")
+                {
+                    var offsetX = this.in_value * this.width / 240;
+                }
+                else if (this.value_type == "hsl240.h")
+                {
+                    var offsetX = this.in_value * this.width / 239;
                 }
 
 
@@ -584,47 +657,42 @@
             update_refer_color: function ()
             {
 
-                if (this.value_type == "hsl.h" || this.value_type == "hsv.h" || this.value_type == "hwb.h")
+                if (this.value_type == "hsl.h" || this.value_type == "hsv.h" || this.value_type == "hwb.h"
+                        || this.value_type == "hsl255.h"|| this.value_type == "hsl240.h")
                 {
-                    this.o_temp_color.hsl.h = this.in_value;
-                    this.o_temp_color.hsl.s = this.edit_color.hsl.s;
-                    this.o_temp_color.hsl.l = this.edit_color.hsl.l;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    var brightness = (this.edit_color.hsl.l / 50);
+                    var saturation = (this.edit_color.hsl.s / 100);
 
-
-                    var brightness = (this.o_temp_color.hsl.l / 50);
-                    var saturation = (this.o_temp_color.hsl.s / 100);
+                    this.rangeThumbStyle.background = this.edit_color.hex;
                     this.rangeBarStyle["-webkit-filter"] = `brightness(${brightness}) saturate(${saturation})`
 
 //                    console.log(' update_refer_color : hsl.h)', this.rangeThumbStyle.background)
 
                 }
-                else if (this.value_type == "hsl.s")
+                else if (this.value_type == "hsl.s" ||this.value_type == "hsl255.s"||this.value_type == "hsl240.s" )
                 {
                     this.o_temp_color.hsl.h = this.edit_color.hsl.h;
                     this.o_temp_color.hsl.s = 0;
                     this.o_temp_color.hsl.l = this.edit_color.hsl.l;
                     var colorHex0 = this.o_temp_color.hex;
+
                     this.o_temp_color.hsl.s = 100;
                     var colorHex1 = this.o_temp_color.hex;
 
-                    this.o_temp_color.hsl.h = this.edit_color.hsl.h;
-                    this.o_temp_color.hsl.s = this.in_value;
-                    this.o_temp_color.hsl.l = this.edit_color.hsl.l;
-                    this.rangeThumbStyle.background = this.o_temp_color.hex;
+                    this.rangeThumbStyle.background = this.edit_color.hex;
 
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
                 }
-                else if (this.value_type == "hsl.l")
+                else if (this.value_type == "hsl.l" || this.value_type == "hsl255.l" || this.value_type == "hsl240.l")
                 {
-
-
                     this.o_temp_color.hsl.h = this.edit_color.hsl.h;
                     this.o_temp_color.hsl.s = this.edit_color.hsl.s;
                     this.o_temp_color.hsl.l = 0;
                     var colorHex0 = this.o_temp_color.hex;
+
                     this.o_temp_color.hsl.l = 50;
                     var colorHex1 = this.o_temp_color.hex;
+
                     this.o_temp_color.hsl.l = 100;
                     var colorHex2 = this.o_temp_color.hex;
 
