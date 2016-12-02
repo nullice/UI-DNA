@@ -69,7 +69,7 @@
                 background: rgba(255, 255, 255, 0);
                 -webkit-user-select: none;
                 margin-left: -3px;
-                z-index: 2;
+                z-index: 1;
             }
         }
 

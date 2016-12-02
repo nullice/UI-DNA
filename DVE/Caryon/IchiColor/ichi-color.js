@@ -368,9 +368,8 @@ IchiColor.prototype._setFromRgba = function (x)
         this.__pauseUpdate = false;
         this.__undateValue()
     }
-
-
 }
+
 
 
 IchiColor.prototype._setFromHsv = function (HSV)
@@ -924,6 +923,7 @@ IchiColor.prototype.initSetterGetter = function ()
 {
     this._alpha = 1;
     this._rgba = "rgba(0, 0, 0, 1)";
+    this._rgb = "rgba(0, 0, 0)";
     this._r = 0;
     this._r_intPart = 0;
     this._r_hexChar = "00";
@@ -1056,6 +1056,31 @@ IchiColor.prototype.initSetterGetter = function ()
             get: function ()
             {
                 return this._rgbHex;
+            }
+        }
+    );
+
+    //RGB
+    this.__use_rgb = false;
+    this.__freshly_rgb = false;
+    Object.defineProperty(this, "rgb",
+        {
+            set: function (x)
+            {
+                this._setFromRgba(x)
+            }
+            ,
+            get: function ()
+            {
+                if (this.__use_rgb != true)
+                {
+                    this.__use_rgb = true;
+                }
+                if (this.__freshly_rgb != true)
+                {
+                    this.__undatePart_Rgb();
+                }
+                return this._rgb;
             }
         }
     );
@@ -1459,6 +1484,11 @@ IchiColor.prototype.__undatePart_Rgba = function ()
     this.__freshly_rgba = true;
 }
 
+IchiColor.prototype.__undatePart_Rgb = function ()
+{
+    this._rgb = "rgb(" + this._r + ", " + this._g + ", " + this._b +")";
+    this.__freshly_rgb = true;
+}
 
 IchiColor.prototype.__colorValueRange = function (value, min, max)
 {

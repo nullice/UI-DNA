@@ -317,8 +317,25 @@
         box-sizing: border-box;
         padding-top: 64px;
 
-        .color-setting-button{
-            
+        .menu_box.color-setting-button {
+            position: absolute;
+            font-size: 10px;
+            right: 0px;
+            margin-top: -4px;
+            z-index: 2;
+
+            .exmo_button_icon.mini i {
+                font-size: 12px;
+            }
+
+            .menu.option_list {
+                position: absolute;
+                right: 10px;
+                width: 140px;
+                z-index: 11;
+                box-sizing: border-box;
+            }
+
         }
 
         .setting_panel {
