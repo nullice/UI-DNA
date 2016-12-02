@@ -22,7 +22,8 @@
             >
 
                 <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
-                <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state" class="icon-checkmark"></i>
+                <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state"
+                                                                               class="icon-checkmark"></i>
                 </div>
 
 
@@ -68,7 +69,6 @@
             .attr_option {
                 position: relative;
             }
-
 
             .checked_sign_shadow {
                 width: 30px;
@@ -158,34 +158,44 @@
         computed: {
             label: function ()
             {
-                var ob = ARR.getByKey(this.options, "value", this.value);
-                if (ob != undefined)
+                if (this.options != undefined)
                 {
-                    if (ob.label != undefined)
-                    {
-                        return ob.label;
-                    }
 
-                } else
-                {
-                    return ""
+
+                    var ob = ARR.getByKey(this.options, "value", this.value);
+                    if (ob != undefined)
+                    {
+                        if (ob.label != undefined)
+                        {
+                            return ob.label;
+                        }
+
+                    } else
+                    {
+                        return ""
+                    }
                 }
+
             },
 
             label_html: function ()
             {
-                var ob = ARR.getByKey(this.options, "value", this.value);
-                if (ob != undefined)
+                if (this.options != undefined)
                 {
-                    if (ob.label_html != undefined)
+                    var ob = ARR.getByKey(this.options, "value", this.value);
+                    if (ob != undefined)
                     {
-                        return ob.label_html;
-                    }
+                        if (ob.label_html != undefined)
+                        {
+                            return ob.label_html;
+                        }
 
-                } else
-                {
-                    return ""
+                    } else
+                    {
+                        return ""
+                    }
                 }
+
             },
 
         },

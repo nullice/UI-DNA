@@ -9,7 +9,7 @@
                 v-bind:menu_data="o_menu"
                 in_class="color-setting-button"
         >
-            <button class="exmo_button_icon mini"> <i class="icon-settings"></i></button>
+            <button class="exmo_button_icon mini"><i class="icon-settings"></i></button>
 
         </menu-box>
 
@@ -128,7 +128,6 @@
             </div>
 
 
-
             <div class="color-model">
                 <div class="model-title">Lab</div>
                 <label class="exmo_checkbox">
@@ -220,7 +219,7 @@
                  v-if="o_menu.hsv.state">
                 <color-range v-bind:in_value="color1.hsv.h" range_title="H" value_type="hsv.h"
                              v-bind:edit_color="color1"
-                             v-if="o_menu.hsv.child.h" ></color-range>
+                             v-if="o_menu.hsv.child.h"></color-range>
                 <color-range v-bind:in_value="color1.hsv.s" range_title="S" value_type="hsv.s"
                              v-bind:edit_color="color1"
                              v-if="o_menu.hsv.child.s"></color-range>
@@ -282,8 +281,6 @@
                              v-if="o_menu.xyz.child.z"></color-range>
 
             </div>
-            <input type="color"/>
-
             <!--H:<input  max="360" min="0"  v-model="color1.hsl.h" type="range" class="exmo_range" >{{color1.hsl.h}}-->
             <!--<br>-->
             <!--S:<input  max="100" min="0"  v-model="color1.hsl.s" type="range" class="exmo_range" >{{color1.hsl.s}}-->
@@ -298,7 +295,31 @@
 
         </div>
 
-        <div class="color-rgb" style="background:{{color1.hex}}">{{color1.rgba}}</div>
+
+        <div class="color-input-box" spellcheck="false">
+            <div class="color-block-box">
+                <div class="color-block main-color" style="background:{{color1.hex}}"></div>
+            </div>
+
+
+            <div class="color-input rgba">
+                <span class="title">RGBA: </span> <input v-model="color1.rgba" type="text" class="exmo_input_text">
+            </div>
+            <div class="color-input rgb">
+                <span class="title">RGB: </span> <input v-model="color1.rgb" type="text" class="exmo_input_text">
+            </div>
+            <div class="color-input hex">
+                <span class="title">HEX:</span> <input v-model="color1.hex" type="text" class="exmo_input_text">
+            </div>
+            <div class="color-input hex">
+                <span class="title">INT:</span> <input v-model="color1.int" type="text" class="exmo_input_text">
+            </div>
+
+            <div class="color-info">
+                <span class="sub_title">WCAG Luma:</span>  {{color1.ex.theLuma_WCAG}} <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
+            </div>
+        </div>
+
 
         <!--<pre> {{color1|json 4}}</pre>-->
     </div>
@@ -338,6 +359,43 @@
 
         }
 
+        .color-input-box {
+            padding: 0 10px 0 55px;
+
+            .color-block-box {
+                position: absolute;
+                padding-top: 15px;
+                width: 52px;
+                left: 0px;
+                text-align: center;
+
+                .color-block {
+                    width: 20px;
+                    height: 20px;
+                    display: inline-block;
+
+                }
+            }
+
+            .color-input {
+                position: relative;
+                .title {
+                    font-size: 10px;
+                    color: #898983;
+                    position: absolute;
+                    line-height: 39px;
+                }
+                input.exmo_input_text {
+                    margin-left: 38px;
+                }
+
+                &.rgba input.exmo_input_text {
+                    width: 125px;
+                }
+
+            }
+
+        }
         .setting_panel {
             position: absolute;
             background: #F9F9F9;
@@ -438,7 +496,7 @@
                     hsl255: {
                         name: "HSL 255",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             h: true,
                             s: true,
@@ -448,7 +506,7 @@
                     hsl240: {
                         name: "HSL 240",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             h: true,
                             s: true,
@@ -458,7 +516,7 @@
                     hsv: {
                         name: "HSB",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             h: true,
                             s: true,
@@ -468,7 +526,7 @@
                     hwb: {
                         name: "HWB",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             h: true,
                             w: true,
@@ -488,7 +546,7 @@
                     labPs: {
                         name: "Lab",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             l: true,
                             a: true,
@@ -498,7 +556,7 @@
                     xyz: {
                         name: "XYZ",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             x: true,
                             y: true,
@@ -518,8 +576,6 @@
 
                     },
                 }
-
-
             }
         },
         components: {

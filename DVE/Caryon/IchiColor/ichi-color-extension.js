@@ -7,12 +7,6 @@ import ColorRNA from "./lib/ColorRNA.js"
 
 function expandIchiColor(IchiColor)
 {
-
-    window.maxu=0
-    window.maxv=0
-    window.minu=0
-    window.minv=0
-
     IchiColor.prototype.__extensionInit = function ()
     {
         this.ex = {};
@@ -30,6 +24,16 @@ function expandIchiColor(IchiColor)
         obSelf.__pauseUpdate_ex_xyz = false;
         obSelf.__pauseUpdate_ex_xyY = false;
         obSelf.__pauseUpdate_ex_luv = false;
+
+
+        obSelf.ex.getWCAGcontrastThan = function (color)
+        {
+            obSelf.ex.colorRNA.rgb(obSelf.r, obSelf.g, obSelf.b);
+
+            var color2 = new ColorRNA([color.r, color.g, color.b]);
+           return (obSelf.ex.colorRNA.getWCAGcontrastThan(color2)).toFixed(1);
+        }
+
 
         //LabPs-----------------------------------
         obSelf.ex.labPs = {
@@ -567,6 +571,50 @@ function expandIchiColor(IchiColor)
             }
         );
 
+        //[ReadOnly] wavelength-----------------------------------
+
+        obSelf.ex._theWavelength = 0;
+        Object.defineProperty(obSelf.ex, "theWavelength",
+            {
+                set: function (x)
+                {
+
+                },
+                get: function ()
+                {
+                    return this._theWavelength;
+                }
+            }
+        );
+        //[ReadOnly] Luma-----------------------------------
+        obSelf.ex._theLuma_Rec709 = 0;
+        Object.defineProperty(obSelf.ex, "theLuma_Rec709",
+            {
+                set: function (x)
+                {
+
+                },
+                get: function ()
+                {
+                    return this._theLuma_Rec709;
+                }
+            }
+        );
+
+        obSelf.ex._theLuma_WCAG = 0;
+        Object.defineProperty(obSelf.ex, "theLuma_WCAG",
+            {
+                set: function (x)
+                {
+
+                },
+                get: function ()
+                {
+                    return this._theLuma_WCAG;
+                }
+            }
+        );
+
 
         function verifyNumber(x)
         {
@@ -598,81 +646,69 @@ function expandIchiColor(IchiColor)
     {
         if (this.__ex_enable)
         {
+            this.ex.colorRNA.rgb(this.r, this.g, this.b);
+
             if (this.__pauseUpdate_ex_labPs != true)
             {
-                var labPs = this.ex.colorRNA.rgb(this.r, this.g, this.b).LabPS();
+                var labPs = this.ex.colorRNA.LabPS();
                 this.ex.labPs._l = labPs[0];
                 this.ex.labPs._a = labPs[1];
                 this.ex.labPs._b = labPs[2];
             }
             if (this.__pauseUpdate_ex_lab != true)
             {
-                var lab = this.ex.colorRNA.rgb(this.r, this.g, this.b).Lab();
+                var lab = this.ex.colorRNA.Lab();
                 this.ex.lab._l = lab[0];
                 this.ex.lab._a = lab[1];
                 this.ex.lab._b = lab[2];
             }
             if (this.__pauseUpdate_ex_LCHab != true)
             {
-                var LCHab = this.ex.colorRNA.rgb(this.r, this.g, this.b).LCHab();
+                var LCHab = this.ex.colorRNA.LCHab();
                 this.ex.LCHab._l = LCHab[0];
                 this.ex.LCHab._c = LCHab[1];
                 this.ex.LCHab._h = LCHab[2];
             }
             if (this.__pauseUpdate_ex_hsl255 != true)
             {
-                var hsl255 = this.ex.colorRNA.rgb(this.r, this.g, this.b).HSL255();
+                var hsl255 = this.ex.colorRNA.HSL255();
                 this.ex.hsl255._h = hsl255[0];
                 this.ex.hsl255._s = hsl255[1];
                 this.ex.hsl255._l = hsl255[2];
             }
             if (this.__pauseUpdate_ex_hsl240 != true)
             {
-                var hsl240 = this.ex.colorRNA.rgb(this.r, this.g, this.b).HSL240();
+                var hsl240 = this.ex.colorRNA.HSL240();
                 this.ex.hsl240._h = hsl240[0];
                 this.ex.hsl240._s = hsl240[1];
                 this.ex.hsl240._l = hsl240[2];
             }
             if (this.__pauseUpdate_ex_xyz != true)
             {
-                var xyz = this.ex.colorRNA.rgb(this.r, this.g, this.b).XYZ();
+                var xyz = this.ex.colorRNA.XYZ();
                 this.ex.xyz._x = xyz[0];
                 this.ex.xyz._y = xyz[1];
                 this.ex.xyz._z = xyz[2];
             }
             if (this.__pauseUpdate_ex_xyY != true)
             {
-                var xyY = this.ex.colorRNA.rgb(this.r, this.g, this.b).xyY();
+                var xyY = this.ex.colorRNA.xyY();
                 this.ex.xyY._x = xyY[0];
                 this.ex.xyY._y = xyY[1];
                 this.ex.xyY._Y = xyY[2];
             }
             if (this.__pauseUpdate_ex_luv != true)
             {
-                var luv = this.ex.colorRNA.rgb(this.r, this.g, this.b).Luv();
+                var luv = this.ex.colorRNA.Luv();
                 this.ex.luv._l = luv[0];
                 this.ex.luv._u = luv[1];
                 this.ex.luv._v = luv[2];
 
-                if (luv[1] > window.maxu)
-                {
-                    window.maxu =luv[1]
-                }
-                if (luv[1] <window.minu)
-                {
-                    window.minu =luv[1]
-                }
-                if (luv[2] > window.maxv)
-                {
-                    window.maxv =luv[2]
-                }
-                if (luv[2] <window.minv)
-                {
-                    window.minv =luv[2]
-                }
-
-
             }
+
+            this.ex._theLuma_Rec709 = this.ex.colorRNA.getLuma("709").toFixed(3);
+            this.ex._theLuma_WCAG = this.ex.colorRNA.getWCAGluma().toFixed(3);
+            this.ex._theWavelength = this.ex.colorRNA.getWavelength().toFixed(1);
 
         }
 
