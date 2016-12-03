@@ -309,14 +309,18 @@
                 <span class="title">RGB: </span> <input v-model="color1.rgb" type="text" class="exmo_input_text">
             </div>
             <div class="color-input hex">
-                <span class="title">HEX:</span> <input v-model="color1.hex" type="text" class="exmo_input_text">
+                <span class="title" v-on:click="o_uppercase=!o_uppercase" title="点击切换大小写">HEX:</span> <input v-model="color1.hex" type="text" style="{{o_uppercase?'text-transform:uppercase;':''}}" class="exmo_input_text">
             </div>
             <div class="color-input hex">
                 <span class="title">INT:</span> <input v-model="color1.int" type="text" class="exmo_input_text">
             </div>
 
             <div class="color-info">
-                <span class="sub_title">WCAG Luma:</span>  {{color1.ex.theLuma_WCAG}} <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
+
+                <span class="sub_title">WCAG Luma:</span> {{color1.ex.theLuma_WCAG}}
+                <br>
+                <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
+
             </div>
         </div>
 
@@ -370,9 +374,10 @@
                 text-align: center;
 
                 .color-block {
-                    width: 20px;
-                    height: 20px;
+                    width: 22px;
+                    height: 22px;
                     display: inline-block;
+                    border-bottom: 1px solid rgba(0, 0, 0, 0.13);
 
                 }
             }
@@ -384,15 +389,24 @@
                     color: #898983;
                     position: absolute;
                     line-height: 39px;
+                    cursor: default;
                 }
                 input.exmo_input_text {
                     margin-left: 38px;
                 }
 
                 &.rgba input.exmo_input_text {
-                    width: 125px;
+                    width: 132px;
                 }
 
+            }
+
+            .color-info {
+                font-size: 10px;
+                padding-top: 4px;
+                color: #898983;
+                line-height: 28px;
+                -webkit-user-select: text;
             }
 
         }
@@ -413,6 +427,7 @@
                 margin-bottom: 8px;
                 color: #898989;
                 font-weight: 600;
+                cursor: default;
             }
 
             .color-model {
@@ -575,7 +590,8 @@
                         state: false,
 
                     },
-                }
+                },
+                o_uppercase:false
             }
         },
         components: {
