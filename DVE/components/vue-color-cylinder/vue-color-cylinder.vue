@@ -300,7 +300,10 @@
             <color-range v-bind:in_value="color1.alpha" range_title="" value_type="alpha"
                          v-bind:edit_color="color1"></color-range>
             <div class="color-block-box">
-                <div class="color-block main-color" style="background:{{color1.rgba}}"></div>
+
+                <div class="color-background color-block">
+                    <div class="color-block main-color" style="background:{{color1.rgba}}"></div>
+                </div>
             </div>
 
 
@@ -311,7 +314,9 @@
                 <span class="title">RGB: </span> <input v-model="color1.rgb" type="text" class="exmo_input_text">
             </div>
             <div class="color-input hex">
-                <span class="title" v-on:click="o_uppercase=!o_uppercase" title="点击切换大小写">HEX:</span> <input v-model="color1.hex" type="text" style="{{o_uppercase?'text-transform:uppercase;':''}}" class="exmo_input_text">
+                <span class="title" v-on:click="o_uppercase=!o_uppercase" title="点击切换大小写">HEX:</span> <input
+                    v-model="color1.hex" type="text" style="{{o_uppercase?'text-transform:uppercase;':''}}"
+                    class="exmo_input_text">
             </div>
             <div class="color-input hex">
                 <span class="title">INT:</span> <input v-model="color1.int" type="text" class="exmo_input_text">
@@ -375,12 +380,19 @@
                 left: 0px;
                 text-align: center;
 
+                .color-background {
+                    background-color: white;
+                    background-size: 10px 10px;
+                    background-position: 0px 0px, 5px 5px;
+                    background-image: -webkit-linear-gradient(45deg, #d2d2d2 25%, #d2d2d2 25%, transparent 25%, transparent 75%, #d2d2d2 75%, #d2d2d2 75%), -webkit-linear-gradient(-135deg, #d2d2d2 25%, #d2d2d2 25%, transparent 25%, transparent 75%, #d2d2d2 75%, #d2d2d2 75%);
+
+                }
+
                 .color-block {
                     width: 22px;
                     height: 22px;
                     display: inline-block;
                     border-bottom: 1px solid rgba(0, 0, 0, 0.13);
-
                 }
             }
 
@@ -593,7 +605,7 @@
 
                     },
                 },
-                o_uppercase:false
+                o_uppercase: false
             }
         },
         components: {

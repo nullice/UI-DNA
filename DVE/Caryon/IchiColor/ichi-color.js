@@ -371,7 +371,6 @@ IchiColor.prototype._setFromRgba = function (x)
 }
 
 
-
 IchiColor.prototype._setFromHsv = function (HSV)
 {
     // console.log("_setFromHsv()", HSV)
@@ -1406,7 +1405,8 @@ IchiColor.prototype.__undateValue = function ()
     this.__freshly_hsl = false;
     this.__freshly_hsv = false;
     this.__freshly_hwb = false;
-
+    this.__freshly_rgb = false;
+    this.__freshly_rgba = false;
 
     if (this.__use_hsv)
     {
@@ -1439,7 +1439,7 @@ IchiColor.prototype.__undateValue = function ()
         this.__undatePart_Rgba();
     }
 
-    if (this.__extensionSettingEvent!=undefined)
+    if (this.__extensionSettingEvent != undefined)
     {
         this.__extensionSettingEvent();
     }
@@ -1486,8 +1486,9 @@ IchiColor.prototype.__undatePart_Rgba = function ()
 
 IchiColor.prototype.__undatePart_Rgb = function ()
 {
-    this._rgb = "rgb(" + this._r + ", " + this._g + ", " + this._b +")";
+    this._rgb = "rgb(" + this._r + ", " + this._g + ", " + this._b + ")";
     this.__freshly_rgb = true;
+
 }
 
 IchiColor.prototype.__colorValueRange = function (value, min, max)
