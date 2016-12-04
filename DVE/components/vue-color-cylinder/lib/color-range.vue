@@ -1,5 +1,6 @@
 <template>
-    <div class="color-range" v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h'||value_type=='hsl255.h'||value_type=='hsl240.h') }">
+    <div class="color-range"
+         v-bind:class="{'hue':(value_type=='hsl.h'||value_type=='hsv.h'||value_type=='hwb.h'||value_type=='hsl255.h'||value_type=='hsl240.h'),alpha:(value_type=='alpha') }">
 
         <div class="range-bar">
             <div class="range-thumb" v-bind:style="rangeThumbStyle"
@@ -11,7 +12,7 @@
                  v-bind:style="rangeBarStyle"></div>
         </div>
         <div class="range-title">{{range_title}}</div>
-        <div class="range-input">
+        <div v-if="!(value_type=='alpha')" class="range-input">
             <input type="text" v-model="in_value"
                    v-on:mousewheel="mousewheel($event)">
             <div class="spin-button">
@@ -34,6 +35,24 @@
     .color-range.hue .range-bar-background {
         background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
 
+    }
+
+    .color-range.alpha {
+        .range-bar {
+            position: absolute;
+            border-radius: 0px;
+            left: 0;
+            right: 0;
+            background: none;
+            background-color: white;
+            background-size: 10px 10px;
+            background-position: 0px 0px, 5px 5px;
+            background-image: -webkit-linear-gradient(45deg, #d2d2d2 25%, #d2d2d2 25%, transparent 25%, transparent 75%, #d2d2d2 75%, #d2d2d2 75%), -webkit-linear-gradient(-135deg, #d2d2d2 25%, #d2d2d2 25%, transparent 25%, transparent 75%, #d2d2d2 75%, #d2d2d2 75%);
+        }
+
+        .range-bar-background {
+            border-radius: 0px;
+        }
     }
 
     .color-range {
@@ -156,6 +175,7 @@
                     val = +val;
                     this.in_value = val;
                 }
+
 
                 if (this.value_type == "hsl.h" || this.value_type == "hsv.h" || this.value_type == "hwb.h")
                 {
@@ -366,6 +386,23 @@
                         }
                     }
                 }
+                else if (this.value_type == "alpha")
+                {
+
+                    if (val > 1)
+                    {
+                        this.in_value = 1;
+                    }
+                    if (val < 0)
+                    {
+                        this.in_value = 0;
+                    }
+
+                    if (this.o_set_once)
+                    {
+                        this.edit_color.alpha = this.in_value;
+                    }
+                }
 
 
                 this.range_thumb_value2offset();
@@ -380,8 +417,15 @@
         },
         ready: function ()
         {
+            if (this.value_type == "alpha")
+            {
+                this.width = 260;
+            }
+
             this.range_thumb_value2offset();
             this.update_refer_color();
+
+
         },
         data(){
             return {
@@ -482,6 +526,23 @@
                     var z = ( offsetX / width) * 1.2;
                     isFloat = true;
                 }
+                else if (this.value_type == "alpha")
+                {
+                    var z = ( offsetX / width) * 1;
+
+                    if(z>0.94)
+                    {
+                        z=1;
+                    }
+                    if(z<0.06)
+                    {
+                        z=0;
+                    }
+
+
+                    z = z.toFixed(2)
+                    isFloat = true;
+                }
 
 
                 if (isFloat != true)
@@ -491,7 +552,7 @@
                 this.set_color();
                 this.in_value = z;
 
-                console.log(this.value_type[this.value_type.length - 3] )
+                console.log(this.value_type[this.value_type.length - 3])
                 console.log("offset2value" + this.value_type, "offset:", offsetX, "width:", width, "z:", z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
             },
 
@@ -527,6 +588,10 @@
                 else if (this.value_type == "hsl240.h")
                 {
                     var offsetX = this.in_value * this.width / 239;
+                }
+                else if (this.value_type == "alpha")
+                {
+                    var offsetX = this.in_value * this.width / 1;
                 }
 
 
@@ -658,7 +723,7 @@
             {
 
                 if (this.value_type == "hsl.h" || this.value_type == "hsv.h" || this.value_type == "hwb.h"
-                        || this.value_type == "hsl255.h"|| this.value_type == "hsl240.h")
+                        || this.value_type == "hsl255.h" || this.value_type == "hsl240.h")
                 {
                     var brightness = (this.edit_color.hsl.l / 50);
                     var saturation = (this.edit_color.hsl.s / 100);
@@ -669,7 +734,7 @@
 //                    console.log(' update_refer_color : hsl.h)', this.rangeThumbStyle.background)
 
                 }
-                else if (this.value_type == "hsl.s" ||this.value_type == "hsl255.s"||this.value_type == "hsl240.s" )
+                else if (this.value_type == "hsl.s" || this.value_type == "hsl255.s" || this.value_type == "hsl240.s")
                 {
                     this.o_temp_color.hsl.h = this.edit_color.hsl.h;
                     this.o_temp_color.hsl.s = 0;
@@ -900,6 +965,29 @@
                     this.rangeThumbStyle.background = this.edit_color.hex;
                     this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 25%, ${colorHex2} 50%, ${colorHex3} 75%, ${colorHex4} 100%)`;
                 }
+                else if (this.value_type == "alpha")
+                {
+                    this.o_temp_color.int = this.edit_color.int
+                    this.o_temp_color.alpha = 0
+                    var colorHex0 = this.o_temp_color.rgba;
+                    this.o_temp_color.alpha = 1
+                    var colorHex1 = this.o_temp_color.rgba;
+//                    this.o_temp_color.ex.xyz.y = this.edit_color.ex.xyz.y;
+//                    this.o_temp_color.ex.xyz.z = 0
+//                    var colorHex0 = this.o_temp_color.hex;
+//                    this.o_temp_color.ex.xyz.z = 1.2 * (1 / 4)
+//                    var colorHex1 = this.o_temp_color.hex;
+//                    this.o_temp_color.ex.xyz.z = 1.2 * (2 / 4)
+//                    var colorHex2 = this.o_temp_color.hex;
+//                    this.o_temp_color.ex.xyz.z = 1.2 * (3 / 4)
+//                    var colorHex3 = this.o_temp_color.hex;
+//                    this.o_temp_color.ex.xyz.z = 1.2 * (4 / 4)
+//                    var colorHex4 = this.o_temp_color.hex;
+
+                    this.rangeThumbStyle.background = "rgba(0,0,0,0)";
+                    this.rangeBarStyle.background = `linear-gradient(90deg, ${colorHex0} 0, ${colorHex1} 100%)`;
+                }
+
 
             }
             ,

@@ -297,8 +297,10 @@
 
 
         <div class="color-input-box" spellcheck="false">
+            <color-range v-bind:in_value="color1.alpha" range_title="" value_type="alpha"
+                         v-bind:edit_color="color1"></color-range>
             <div class="color-block-box">
-                <div class="color-block main-color" style="background:{{color1.hex}}"></div>
+                <div class="color-block main-color" style="background:{{color1.rgba}}"></div>
             </div>
 
 
