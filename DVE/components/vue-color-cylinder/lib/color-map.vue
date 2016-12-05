@@ -1,5 +1,5 @@
 <template>
-    <div class="color-map" v-bind:class="{'hsv':(value_type=='hsv') }">
+    <div class="color-map" v-bind:class="{'sv':(value_type=='sv'),'hue':(value_type=='hue') }">
         <div class="picker-map-box" v-on:click="map_select($event)">
             <div class="map-thumb" v-bind:style="mapThumbMapStyle"
                  v-on:mousedown="thumb_mousedown($event)"
@@ -19,55 +19,81 @@
 <style lang="scss">
     .color-map {
         cursor: default;
-        &.hsv {
-            .picker-map-box {
+        .picker-map-box {
+            position: absolute;
+            width: 100%;
+            height: 60px;
+            top: 0;
+            right: 0;
+            border-radius: 4px 4px 0 0;
+            overflow: hidden;
+
+            .map-thumb {
+                width: 5px;
+                height: 5px;
+                position: absolute;
+                background: rgba(0, 0, 0, 0);
+                z-index: 4;
+                bottom: 0px;
+                left: 0px;
+                border-radius: 10px;
+                border: 2px solid #fff;
+                box-shadow: 0 1px 4px rgba(0, 0, 0, 0.39);
+                margin-bottom: -3px;
+                margin-left: -3px;
+                cursor: default;
+            }
+
+            .picker-map-background-h, .picker-map-background-s, .picker-map-background-v {
                 position: absolute;
                 width: 100%;
-                height: 60px;
-                top: 0;
-                right: 0;
-                border-radius: 4px 4px 0 0;
-                overflow: hidden;
-
-                .map-thumb {
-                    width: 5px;
-                    height: 5px;
-                    position: absolute;
-                    background: rgba(0, 0, 0, 0);
-                    z-index: 4;
-                    bottom: 0px;
-                    left: 0px;
-                    border-radius: 10px;
-                    border: 2px solid #fff;
-                    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.39);
-                    margin-bottom: -3px;
-                    margin-left: -3px;
-                    cursor: default;
-                }
-
-                .picker-map-background-h, .picker-map-background-s, .picker-map-background-v {
-                    position: absolute;
-                    width: 100%;
-                    height: 100%;
-
-                }
-                .picker-map-background-h {
-                    background: #ff944a;
-                    z-index: 1;
-                }
-
-                .picker-map-background-s {
-                    background: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));
-                    z-index: 2;
-                }
-
-                .picker-map-background-v {
-                    background: linear-gradient(0deg, #000, transparent);
-                    z-index: 3;
-                }
+                height: 100%;
 
             }
 
+            .picker-map-background-h {
+                z-index: 1;
+            }
+
+            .picker-map-background-s {
+                z-index: 2;
+            }
+
+            .picker-map-background-v {
+                z-index: 3;
+            }
+        }
+
+        &.sv {
+            .picker-map-background-h {
+                background: #ff944a;
+                z-index: 1;
+            }
+
+            .picker-map-background-s {
+                background: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));
+                z-index: 2;
+            }
+
+            .picker-map-background-v {
+                background: linear-gradient(0deg, #000, transparent);
+                z-index: 3;
+            }
+        }
+
+        &.hue {
+            .picker-map-background-h {
+                background: linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);
+                z-index: 1;
+            }
+
+            .picker-map-background-s {
+                background: linear-gradient(0deg, #fff, rgba(255, 255, 255, 0));
+                z-index: 2;
+            }
+            .picker-map-background-v {
+                z-index: 3;
+            }
         }
 
     }
@@ -87,63 +113,93 @@
             {
                 this.update_refer_color();
             },
-            'in_value': function (val)
+
+
+            "value_type": function (val)
+            {
+                if (val == 'sv')
+                {
+                    this.pickerMapStyle_s.background = "background: linear-gradient(90deg, #fff, hsla(0, 0%, 100%, 0));"
+                    this.pickerMapStyle_v.background = "linear-gradient(0deg, #000, transparent);"
+                    this.pickerMapStyle_h.background = ""
+                }
+                if (val == 'hue')
+                {
+                    this.pickerMapStyle_h.background = "linear-gradient(90deg, red 0, #ff0 17%, #0f0 33%, #0ff 50%, #00f 67%, #f0f 83%, red);"
+                    this.pickerMapStyle_s.background = "linear-gradient(0deg, #fff, rgba(255, 255, 255, 0));"
+                    this.pickerMapStyle_v.background = ""
+                }
+
+                this.map_thumb_value2offset();
+                this.update_refer_color();
+
+            },
+
+
+            'in_value': function (val) // S
             {
 
-                if (this.value_type == "hsv")
+
+                if (val > 100)
                 {
-                    if (val > 100)
-                    {
-                        this.in_value = 100;
-                    }
-                    if (val < 0)
-                    {
-                        this.in_value = 0;
-                    }
+                    this.in_value = 100;
+                }
+                if (val < 0)
+                {
+                    this.in_value = 0;
+                }
 
-                    if (this.o_set_once)
-                    {
-                        this.o_set_once = false;
-                        if (this.value_type == "hsv")
-                        {
-                            this.edit_color.hsv.s = this.in_value;
+                if (this.o_set_once)
+                {
+                    this.o_set_once = false;
 
-                        }
-                    }
+                    this.edit_color.hsv.s = this.in_value;
                 }
 
                 this.map_thumb_value2offset();
             },
-            'in_value2': function (val)
+            'in_value2': function (val) // V
             {
-
-                if (this.value_type == "hsv")
+                if (val > 100)
                 {
-                    if (val > 100)
-                    {
-                        this.in_value2 = 100;
-                    }
-                    if (val < 0)
-                    {
-                        this.in_value2 = 0;
-                    }
+                    this.in_value2 = 100;
+                }
+                if (val < 0)
+                {
+                    this.in_value2 = 0;
+                }
 
-                    if (this.o_set_once2)
-                    {
-                        this.o_set_once2 = false;
-                        if (this.value_type == "hsv")
-                        {
-                            this.edit_color.hsv.v = this.in_value2;
-                        }
-                    }
-
+                if (this.o_set_once2)
+                {
+                    this.o_set_once2 = false;
+                    this.edit_color.hsv.v = this.in_value2;
                 }
 
                 this.map_thumb_value2offset();
+            },
+            'in_value3': function (val) // H
+            {
+                if (val > 360)
+                {
+                    this.in_value3 = 360;
+                }
+                if (val < 0)
+                {
+                    this.in_value3 = 0;
+                }
 
-            }
+                if (this.o_set_once)
+                {
+                    this.o_set_once = false;
+
+                    this.edit_color.hsv.h = this.in_value3;
+                }
+                this.map_thumb_value2offset();
+            },
+
+
         },
-        props: ['in_value', 'in_value2', 'value_type', 'edit_color'],
+        props: ['in_value', 'in_value2', 'in_value3', 'value_type', 'edit_color'],
         data(){
             return {
                 width: 260,
@@ -170,7 +226,6 @@
                 pickerMapStyle_v: {
                     background: ""
                 },
-
                 pickerMapStyle_h: {
                     background: ""
                 }
@@ -181,30 +236,38 @@
             map_thumb_value2offset: function ()
             {
 //                console.log(this.value_type, this.edit_color.rgba)
-                if (this.value_type == "hsv")
+                if (this.value_type == "sv")
                 {
                     var offsetX = this.in_value * this.width / 100;
                     var offsetY = this.in_value2 * this.height / 100
+                    this.mapThumbMapStyle.left = offsetX + "px";
+                    this.mapThumbMapStyle.bottom = offsetY + "px";
+                }
+
+                if (this.value_type == "hue")
+                {
+                    var offsetX = this.in_value3 * this.width / 360;
+                    var offsetY = this.in_value * this.height / 100
+                    this.mapThumbMapStyle.left = offsetX + "px";
+                    this.mapThumbMapStyle.bottom = offsetY + "px";
                 }
 
 
-                this.mapThumbMapStyle.left = offsetX + "px";
-                this.mapThumbMapStyle.bottom = offsetY + "px";
                 this.offsetX = offsetX;
                 this.offsetY = offsetY;
 
-               console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offsetX", offsetX, "edit_color", this.edit_color.rgba)
+//                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offsetX", offsetX, "edit_color", this.edit_color.rgba)
             },
             map_thumb_offset2value: function (offsetX, width, offsetY, height)
             {
 
 
-                if (this.value_type == "hsv")
+                if (this.value_type == "sv")
                 {
                     var z1 = ( offsetX / width) * 100; //s
                     var z2 = 100 - ( offsetY / height) * 100; //l
 
-                     if (z1 < 0)
+                    if (z1 < 0)
                     {
                         z1 = 0;
                     }
@@ -221,15 +284,48 @@
                         z2 = 100;
                     }
                 }
+                if (this.value_type == "hue")
+                {
+                    var z1 = ( offsetX / width) * 360;
+                    var z2 = 100 - ( offsetY / height) * 100; //l
+
+                    if (z1 < 0)
+                    {
+                        z1 = 0;
+                    }
+                    if (z2 < 0)
+                    {
+                        z2 = 0;
+                    }
+                    if (z1 > 360)
+                    {
+                        z1 = 360;
+                    }
+                    if (z2 > 100)
+                    {
+                        z2 = 100;
+                    }
+                }
 
 
                 z1 = Math.floor(z1);
                 z2 = Math.floor(z2);
-                this.in_value = z1;
-                this.in_value2 = z2;
+
+
+                if (this.value_type == "sv")
+                {
+                    this.in_value = z1;
+                    this.in_value2 = z2;
+                }
+                else if (this.value_type == "hue")
+                {
+                    this.in_value3 = z1;
+                    this.in_value = z2;
+                }
+
                 this.o_set_once = true;
                 this.o_set_once2 = true;
-                console.log("s:" + z1, "l:" + z2)
+//                console.log("s:" + z1, "l:" + z2)
             },
             map_select: function (e)
             {
@@ -276,15 +372,27 @@
 
             update_refer_color: function ()
             {
-                if (this.value_type == "hsv")
+                if (this.value_type == "sv")
                 {
                     this.o_temp_color.hsv.h = this.edit_color.hsv.h;
                     this.o_temp_color.hsv.s = 100;
                     this.o_temp_color.hsv.v = 100;
                     this.pickerMapStyle_h.background = this.o_temp_color.hex;
-
+                    this.pickerMapStyle_v.background ="";
                 }
+
+                if (this.value_type == "hue")
+                {
+                    this.o_temp_color.hsv.h = this.edit_color.hsv.h;
+                    this.o_temp_color.hsv.s = 100;
+                    this.o_temp_color.hsv.v = 100;
+                    this.pickerMapStyle_h.background =""
+
+                    this.pickerMapStyle_v.background = "rgba(0,0,0," + (1 - this.edit_color.hsv.v / 100) + ")"
+                }
+
             }
+
 
         }
     }

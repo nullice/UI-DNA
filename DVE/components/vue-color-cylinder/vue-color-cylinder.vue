@@ -2,7 +2,7 @@
 
     <div class="vue-color-cylinder-main-box">
         <!--<div class="saturation-lighteness-picker-board"></div>-->
-        <color-map v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v" value_type="hsv"
+        <color-map  v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v"  v-bind:in_value3="color1.hsv.h" v-bind:value_type="o_menu.hue.state?'hue':'sv'"
                    v-bind:edit_color="color1"></color-map>
 
         <menu-box
@@ -10,7 +10,6 @@
                 in_class="color-setting-button"
         >
             <button class="exmo_button_icon mini"><i class="icon-settings"></i></button>
-
         </menu-box>
 
         <div class="setting_panel" v-if="o_menu.setting.state">
@@ -410,7 +409,7 @@
                 }
 
                 &.rgba input.exmo_input_text {
-                    width: 132px;
+                    width: 151px;
                 }
 
             }
@@ -512,6 +511,17 @@
                 color1: IchiColor("#f00")
                 ,
                 o_menu: {
+                   hue : {
+                        name: "Hue",
+                        type: "multi_select",
+                        state: true,
+                    },
+                    hr: {
+                        name: "12",
+                        type: "multi_select",
+                        state: true,
+                        hr: true,
+                    },
                     hsl: {
                         name: "HSL",
                         type: "multi_select",
