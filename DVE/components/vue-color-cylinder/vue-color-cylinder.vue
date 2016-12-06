@@ -105,6 +105,7 @@
                     <div class="exmo_checkbox_shadow"></div>
                     B
                 </label>
+                <br>
             </div>
 
             <div class="color-model">
@@ -164,7 +165,35 @@
                     Z
                 </label>
             </div>
+            <div class="color-model">
+                <div class="model-title">输入框</div>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.more.child.rgba">
+                    <div class="exmo_checkbox_shadow"></div>
+                    RGBA
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.more.child.rgb">
+                    <div class="exmo_checkbox_shadow"></div>
+                    RGB
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.more.child.hex">
+                    <div class="exmo_checkbox_shadow"></div>
+                    HEX
+                </label>
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.more.child.int">
+                    <div class="exmo_checkbox_shadow"></div>
+                    INT
+                </label>
 
+                <label class="exmo_checkbox">
+                    <input type="checkbox" v-model="o_menu.more.child.info">
+                    <div class="exmo_checkbox_shadow"></div>
+                    INFO
+                </label>
+            </div>
 
             <div class="button_box">
                 <button class="exmo_button" v-on:click="o_menu.setting.state=false"> 确定</button>
@@ -306,27 +335,27 @@
             </div>
 
 
-            <div class="color-input rgba">
+            <div v-if="o_menu.more.child.rgba" class="color-input rgba">
                 <span class="title">RGBA: </span> <input v-model="color1.rgba" type="text" class="exmo_input_text">
             </div>
-            <div class="color-input rgb">
+
+            <div v-if="o_menu.more.child.rgb" class="color-input rgb">
                 <span class="title">RGB: </span> <input v-model="color1.rgb" type="text" class="exmo_input_text">
             </div>
-            <div class="color-input hex">
+
+            <div v-if="o_menu.more.child.hex" class="color-input hex">
                 <span class="title" v-on:click="o_uppercase=!o_uppercase" title="点击切换大小写">HEX:</span> <input
                     v-model="color1.hex" type="text" style="{{o_uppercase?'text-transform:uppercase;':''}}"
                     class="exmo_input_text">
             </div>
-            <div class="color-input hex">
+            <div v-if="o_menu.more.child.int" class="color-input int">
                 <span class="title">INT:</span> <input v-model="color1.int" type="text" class="exmo_input_text">
             </div>
 
-            <div class="color-info">
-
+            <div v-if="o_menu.more.child.info" class="color-info">
                 <span class="sub_title">WCAG Luma:</span> {{color1.ex.theLuma_WCAG}}
                 <br>
                 <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
-
             </div>
         </div>
 
@@ -357,6 +386,7 @@
 
             .exmo_button_icon.mini i {
                 font-size: 12px;
+                    color: #B6B6B6;
             }
 
             .menu.option_list {
@@ -409,9 +439,11 @@
                 }
 
                 &.rgba input.exmo_input_text {
-                    width: 151px;
+                    width: 150px;
                 }
-
+                &.rgb input.exmo_input_text {
+                    width: 150px;
+                }
             }
 
             .color-info {
@@ -426,6 +458,7 @@
         .setting_panel {
             position: absolute;
             background: #F9F9F9;
+            opacity: .95;
             width: 80%;
             left: 0;
             right: 0;
@@ -602,11 +635,18 @@
                             z: true,
                         }
                     },
-                    hr: {
-                        name: "12",
+                    more: {
+                        name: "more",
                         type: "multi_select",
                         state: true,
                         hr: true,
+                        child:{
+                            rgba:true,
+                            rgb:false,
+                            hex:true,
+                            int:false,
+
+                        }
                     },
                     setting: {
                         name: "更多设置",
