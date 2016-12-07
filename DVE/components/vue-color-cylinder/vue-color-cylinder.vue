@@ -533,8 +533,8 @@
         watch: {
             "color_bullets": function (val)
             {
-                console.log("------------------")
-                console.log(val)
+//                console.log("------------------")
+//                console.log(val)
             }
 
         },

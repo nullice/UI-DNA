@@ -552,8 +552,8 @@
                 this.set_color();
                 this.in_value = z;
 
-                console.log(this.value_type[this.value_type.length - 3])
-                console.log("offset2value" + this.value_type, "offset:", offsetX, "width:", width, "z:", z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
+//                console.log(this.value_type[this.value_type.length - 3])
+//                console.log("offset2value" + this.value_type, "offset:", offsetX, "width:", width, "z:", z, "in_value:", this.in_value, "edit_color", this.edit_color.rgba)
             },
 
             range_thumb_value2offset: function ()
@@ -612,7 +612,7 @@
                 }
 
 
-                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
+//                console.log("value2offset" + this.value_type, "in_value:", this.in_value, "offset", offsetX, "edit_color", this.edit_color.rgba)
             },
 
 
@@ -622,7 +622,7 @@
                 this.mouse_offset = e.pageX;
                 this.mouse_start = this.offset;
 
-                console.log("mouseDown", e, "e.pageX:", e.pageX, "this.offset：", this.offset)
+//                console.log("mouseDown", e, "e.pageX:", e.pageX, "this.offset：", this.offset)
                 window.addEventListener('mousemove', this.thumb_hold_mouse)
                 window.addEventListener('mouseup', this.thumb_hold_mouse_end)
             },
@@ -636,7 +636,7 @@
                 var moveOffset = e.pageX - this.mouse_offset;
 
                 this.range_thumb_offset2value(this.mouse_start + moveOffset, this.width);
-                console.log("thumb_hold_mouse of2va：", "mouse_start:", this.mouse_start, "moveOffset:", moveOffset, e);
+//                console.log("thumb_hold_mouse of2va：", "mouse_start:", this.mouse_start, "moveOffset:", moveOffset, e);
             },
 
             thumb_hold_mouse_end: function (e)
@@ -655,7 +655,7 @@
                 this.mouse_startX = this.offsetX;
                 this.mouse_startY = this.offsetY;
 
-                console.log("map_mousedown", e)
+//                console.log("map_mousedown", e)
                 window.addEventListener('mousemove', this.thumb_map_hold_mouse)
                 window.addEventListener('mouseup', this.thumb_hold_mouse_end)
             },
