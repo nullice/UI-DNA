@@ -1,6 +1,8 @@
 <template>
     <div class="color-map" v-bind:class="{'sv':(value_type=='sv'),'hue':(value_type=='hue') }">
-        <div class="picker-map-box" v-on:click="map_select($event)">
+        <div class="picker-map-box" v-on:click="map_select($event)"
+             v-on:mousewheel="mousewheel($event)"
+        >
             <div class="map-thumb" v-bind:style="mapThumbMapStyle"
                  v-on:mousedown="thumb_mousedown($event)"
             ></div>
@@ -378,7 +380,7 @@
                     this.o_temp_color.hsv.s = 100;
                     this.o_temp_color.hsv.v = 100;
                     this.pickerMapStyle_h.background = this.o_temp_color.hex;
-                    this.pickerMapStyle_v.background ="";
+                    this.pickerMapStyle_v.background = "";
                 }
 
                 if (this.value_type == "hue")
@@ -386,11 +388,39 @@
                     this.o_temp_color.hsv.h = this.edit_color.hsv.h;
                     this.o_temp_color.hsv.s = 100;
                     this.o_temp_color.hsv.v = 100;
-                    this.pickerMapStyle_h.background =""
+                    this.pickerMapStyle_h.background = ""
 
                     this.pickerMapStyle_v.background = "rgba(0,0,0," + (1 - this.edit_color.hsv.v / 100) + ")"
                 }
 
+            },
+            mousewheel: function (e)
+            {
+                var offset = (e.wheelDelta / 120) / 5;
+
+                if (offset < 1 && offset > 0)
+                {
+                    offset = 1;
+                }
+                if (offset > -1 && offset < 0)
+                {
+                    offset = -1;
+                }
+                if (e.altKey)
+                {
+                    offset = offset * 5;
+                }
+
+                if (this.value_type == "hue")
+                {
+                    offset = offset * 1.7;
+                    this.edit_color.hsv.v += offset;
+                }
+                else if (this.value_type == "sv")
+                {
+                    offset = offset * 3.5;
+                    this.edit_color.hsv.h += offset;
+                }
             }
 
 
