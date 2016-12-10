@@ -95,7 +95,8 @@
              transition="trans-fade">
             <h3> {{'文本' |lang}} </h3>
 
-            <vue-color-cylinder></vue-color-cylinder>
+            <!--<vue-color-cylinder></vue-color-cylinder>-->
+
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
                            v-bind:enable_assign.sync="Gob.text.enableAssigns.text"

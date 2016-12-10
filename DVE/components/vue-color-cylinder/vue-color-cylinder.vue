@@ -332,6 +332,8 @@
                 <div class="color-background color-block">
                     <div class="color-block main-color" style="background:{{color1.rgba}}"></div>
                 </div>
+
+                <slot></slot>
             </div>
 
 

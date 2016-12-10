@@ -182,7 +182,7 @@ GobCaryon.prototype._setData = async function (names, value)
         }
         if (names[names.length - 1] == "text" && value != Gob.MULT) //
         {
-        
+
             if (value.constructor == String)
             {
                 isText = true;
@@ -251,8 +251,12 @@ GobCaryon.prototype._setData = async function (names, value)
                         if (isFormula)
                         {
                             var finValue = await varSystem.evalVar(value, this.selectList[i].id)
+                        } else
+                        {
+                            var finValue = value;
                         }
 
+                        console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
                         await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
 
                         // await  sleep(800)

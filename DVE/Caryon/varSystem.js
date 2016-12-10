@@ -238,7 +238,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
             // console.log(varList[i].index + increment + "-" + varList[i].name.length)
             if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
             {
-                var getValue =  await enzymes.evalEnhancer(_this_var.value,thisId);
+                var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
             } else//                                                            ---普通变量
             {
                 var getValue = await this.evalVar(_this_var.value);
@@ -255,13 +255,19 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
     }
 
 
-
-
     //修正 JavaScript 精度问题
-    return math.format(math.eval(inVar), {precision: 14})
+
+
+    try
+    {
+        return math.format(math.eval(inVar), {precision: 14})
+    } catch (e)
+    {
+        console.error("math.eval(inVar)",e)
+        return inVar
+    }
+
 }
-
-
 
 
 /**
@@ -292,8 +298,6 @@ VarSystem.prototype.isFormulaInText = function (varValue)
     }
     return false;
 }
-
-
 
 
 /**
@@ -334,14 +338,14 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 
 
 /**
- * 
+ *
  * @param formula
  * @param flat
  * @returns {Array}
  */
 VarSystem.prototype.scanFormulasInText = function (formula, flat)
 {
-    
+
     var re = /{{.*}}/g;
     var varList = [];
     var resullt;
@@ -374,7 +378,7 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
     var increment = 0;
     for (let i = 0; i < formulasList.length; i++)
     {
-        var  thisFormulas =  formulasList[i].name.slice(2, formulasList[i].name.length -2);
+        var thisFormulas = formulasList[i].name.slice(2, formulasList[i].name.length - 2);
         var isFormula = this.isFormula(formulasList[i].name);
 
         if (isFormula)
@@ -392,8 +396,6 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
     //修正 JavaScript 精度问题
     return text;
 }
-
-
 
 
 // //---------------

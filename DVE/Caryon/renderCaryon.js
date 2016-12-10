@@ -39,15 +39,15 @@ RenderCaryon.prototype.test = async function (x)
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
     this.status.rendering = true;
-    
+
     var item = names[names.length - 1];
     if (names[0] === "position")
     {
         if ((names.length == 2 ) && _inArray(item, ["x", "y", "w", "h"]))
         {
             var ob = {};
-            
-            
+
+
             ob[item] = value;
 
             Gob.disableSelectEvent = true;
@@ -68,6 +68,12 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     this.status.rendering = false;
 }
 
+
+/**
+ * renderDocument() 变量赋值阶段使用的图层查询·缓存
+ * @type {{rootName: null, layerId: null, cache: null}}
+ * @private
+ */
 RenderCaryon.prototype.__getLayerData_cache = {rootName: null, layerId: null, cache: null}
 
 RenderCaryon.prototype._getLayerData = async function (rootName, name, layerId)
@@ -106,7 +112,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     console.log("START【renderDocument】----------------")
 //  1、变量赋值-------------------------------------------------------------------
-    console.log("1、变量赋值2------------:")
+    console.log("1、变量赋值------------:")
     this.__getLayerData_cache.layerId = null;
 
     for (var layerId in dataCaryon.layers)
@@ -161,6 +167,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
 
 //  2、表达式解析-------------------------------------------------------------------
+    console.log("2、表达式解析------------:")
     var mRNA_DataLayers = {}
 
 
@@ -169,12 +176,22 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     for (var layerId in dataCaryon.layers)
     {
         mRNA_DataLayers[layerId] = {};
-        await  _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
+        console.log(layerId)
+        var temp  = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
+        console.log("END" + layerId,temp)
     }
 
 
+    /**
+     * 拷贝对象指定属性属性到另一个对象
+     * @param object
+     * @param layerId
+     * @param toObject
+     * @private
+     */
     async function _copyValue(object, layerId, toObject)
     {
+        // console.log("_copyValue:", object, layerId, toObject)
         for (var x in object)
         {
             if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
@@ -194,7 +211,9 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
                         if (varSystem.isFormula(object[x]))
                         {
+                            console.log("varSystem.evalVar(object[x]):",x, object[x])
                             toObject[x] = await varSystem.evalVar(object[x]);
+                            console.log(" toObject[x] ", toObject[x] )
                         } else
                         {
                             toObject[x] = object[x];
@@ -204,17 +223,17 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
             }
         }
 
-
+        console.log("mRNA_DataLayers:", mRNA_DataLayers)
+        console.log("toObject:", toObject)
+        return;
     }
 
 
     console.log("mRNA_DataLayers", mRNA_DataLayers)
 
 //  3、ExtendScript 端渲染-------------------------------------------------------------------
-
+    console.log("3、ExtendScript 端渲染")
     await enzymes.DNAExpress(mRNA_DataLayers, varSystem.vars)
-
-
     this.status.rendering = false;
 }
 
