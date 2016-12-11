@@ -1,7 +1,7 @@
 <template>
 
 
-    <div class="value_input_textarea_box">
+    <div class="value_input_textarea_box" spellcheck="false">
         <textarea class="exmo_inbox value_input_box"
                   v-model:value="o_edit"
                   debounce="800"
@@ -29,6 +29,7 @@
             <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off"
                    checked
                    v-model:value="enable_assign">
+
             <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name|lowercase}}"
                    title="{{'赋值到:' |lang}}"><i
                     class="icon-carousel-right"></i></label>

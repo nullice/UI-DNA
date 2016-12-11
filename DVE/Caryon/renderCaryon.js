@@ -46,12 +46,10 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
         if ((names.length == 2 ) && _inArray(item, ["x", "y", "w", "h"]))
         {
             var ob = {};
-
-
             ob[item] = value;
 
             Gob.disableSelectEvent = true;
-            console.log("----[start" + layerId + "]---")
+            console.log("----[start:position:" + layerId + "]---")
 
             await enzymes.selectLayer_byID(layerId);
 
@@ -64,7 +62,27 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
         }
     }
+    if (names[0] === "text")
+    {
+        if ((names.length == 2 ) && _inArray(item, ["text"]))
+        {
+            var ob = {};
+            ob[item] = value;
 
+            Gob.disableSelectEvent = true;
+            console.log("----[start:text:" + layerId + "]---")
+
+            await enzymes.selectLayer_byID(layerId);
+
+            console.log(`enzymes.setLayerInfo_text_byId(${JSON.stringify(ob)}, ${layerId})`)
+            await enzymes.setLayerInfo_text_byId(ob, layerId)
+
+            console.log("----[end" + layerId + "]---")
+            Gob.disableSelectEvent = false;
+
+
+        }
+    }
     this.status.rendering = false;
 }
 
@@ -190,11 +208,10 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
      */
     async function _copyValue(object, layerId, toObject)
     {
-        console.log("_copyValue:", object, layerId, toObject)
+        // console.log("_copyValue:", object, layerId, toObject)
         for (var x in object)
         {
-            console.log("x:", x)
-            if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
+               if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
             {
                 if (ARR.hasMember(["name", "id", "index"], x))
                 {
@@ -204,9 +221,9 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                     if (TYP.type(object[x]) === "object")
                     {
                         toObject[x] = {};
-                        console.log(`_copyValue(${object[x]}, ${layerId}, ${toObject[x]})`)
+                        // console.log(`_copyValue(${object[x]}, ${layerId}, ${toObject[x]})`)
                         await _copyValue(object[x], layerId, toObject[x])
-                        console.log(22)
+
                     }
                     else
                     {
@@ -232,12 +249,11 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                 }
             }
         }
-
-        console.log("mRNA_DataLayers:", mRNA_DataLayers)
-        console.log("toObject:", toObject)
-        return;
+        //
+        // // console.log("mRNA_DataLayers:", mRNA_DataLayers)
+        // // console.log("toObject:", toObject)
+        // return;
     }
-
 
     console.log("mRNA_DataLayers", mRNA_DataLayers)
 

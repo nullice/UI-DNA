@@ -320,13 +320,20 @@ Enzymes.prototype.getLayerInfo_text_byId = async function (layerID)
 
 }
 
+/**
+ * 设置文本图层信息
+ * @param textInfo
+ * @param layerID
+ * @param doSelect
+ * @returns {Promise}
+ */
 Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID, doSelect)
 {
     return new Promise(function (resolve, reject)
         {
             var doSelect = doSelect || false;
             var obJson = JSON.stringify(textInfo);
-            var _jsxCode = `EnzJSX.setLayerInfo_position_byId(${obJson} ,${layerID},${doSelect} )`
+            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID},${doSelect} )`
             evalScript(
                 _jsxCode,
                 (r)=> {resolve(jsxBackCheck(r,_jsxCode))})

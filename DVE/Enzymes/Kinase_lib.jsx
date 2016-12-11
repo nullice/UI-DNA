@@ -815,7 +815,7 @@ Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, 
 Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 {
     /*    textInfo{
-     text: null, /!*文本内容*!/
+     text: null, /!*文本内容，\r 表示换行*!/
      bounds: {x: null, y: null, w: null, h: null}, /!*文本框边界(在图层边界内的位置)*!/
      boundingBox: {x: null, y: null, w: null, h: null}, /!*文本框最小边界(在图层边界内的位置)*!/
      color: {r: null, g: null, b: null}, /!*字体颜色*!/
@@ -1374,8 +1374,9 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
     if (textInfo.text != undefined)
     {
+        // \r 表示换行符。
         adOb.to.value.textKey = {
-            "value": textInfo.text,
+            "value": textInfo.text.replace("\n", "\r") ,
             "type": "DescValueType.STRINGTYPE"
         }
     }

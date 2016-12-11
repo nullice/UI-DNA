@@ -1,5 +1,7 @@
 <template>
 
+    <debug-microscope>测试用</debug-microscope>
+
     <a-area area_title="UI-DNA 属性" area_id="attr_panel">
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position"
@@ -177,6 +179,8 @@
     import SelectInput from "./AttributePanel_selectInput.vue"
     import AttrTextarea from "./AttributePanel_textarea.vue"
     import VueColorCylinder from "./vue-color-cylinder/vue-color-cylinder.vue"
+    import DebugPanel from "./DebugPanel.vue"
+
     //import CompA from '../components/A.vue'
 
     export default {
@@ -270,7 +274,8 @@
             "attr-select": AttrSelect,
             "select-input": SelectInput,
             "attr-textarea": AttrTextarea,
-            "vue-color-cylinder": VueColorCylinder
+            "vue-color-cylinder": VueColorCylinder,
+            "debug-microscope":DebugPanel
 //        "comp-a":ValueInput
         }
     };

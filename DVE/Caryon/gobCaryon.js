@@ -2,7 +2,7 @@
  * Created by bgllj on 2016/9/7.
  */
 import ARR from "./Richang_JSEX/arrayARR.js"
-
+import TYP from "./Richang_JSEX/typeTYP.js"
 
 var GobCaryon = function ()
 {
@@ -155,7 +155,7 @@ GobCaryon.prototype.__new_text = function ()
 
 GobCaryon.prototype._setData = async function (names, value)
 {
-    // console.log("_setData()----------------")
+    console.log(`-------_setData(${names}, ${value})`)
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -176,20 +176,32 @@ GobCaryon.prototype._setData = async function (names, value)
         isVoidValue = true;
     } else
     {
-        if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
-        {
-            isFormula = true;
-        }
-        if (names[names.length - 1] == "text" && value != Gob.MULT) //
-        {
 
-            if (value.constructor == String)
+        if (names[names.length - 1] == "text" && value != Gob.MULT) //写文本
+        {
+            if (TYP.type(value) == "string")
             {
                 isText = true;
-                if (varSystem.isFormulaInText(value))
+                console.log("this.text.$enableFormula", this.text.$enableFormula)
+                if (this.text.$enableFormula == true)
                 {
                     isFormula = true;
                 }
+            }
+
+        }
+        else if (names[names.length - 1] == "$enableFormula" && value != Gob.MULT)
+        {
+            var temp = this.text.text;
+            this.text.text=" "
+            this.text.text =temp
+        }
+        else
+        {
+
+            if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
+            {
+                isFormula = true;
             }
         }
 
