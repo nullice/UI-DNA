@@ -224,6 +224,8 @@ VarSystem.prototype.layerSample = {
  **/
 VarSystem.prototype.evalVar = async function (varValue, thisId)
 {
+    console.log("evalVar("+varValue+")",thisId)
+    
     var inVar = varValue;
     var varList = [];
     varList = VarSystem.prototype.scanVarsInFormula(varValue);

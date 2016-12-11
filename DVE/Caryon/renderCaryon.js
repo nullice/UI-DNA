@@ -4,7 +4,7 @@
 
 
 import ARR from "./Richang_JSEX/arrayARR.js"
-
+import TYP from "./Richang_JSEX/typeTYP.js"
 
 var RenderCaryon = function ()
 {
@@ -127,7 +127,6 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     async function _doAssign(layer, propertyName)
     {
-
         if (layer[propertyName].assignment != undefined)
         {
             console.log("_doAssign: assignment：", layer[propertyName].assignment)
@@ -175,10 +174,10 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     for (var layerId in dataCaryon.layers)
     {
+        console.info("start _ id" + layerId)
         mRNA_DataLayers[layerId] = {};
-        console.log(layerId)
-        var temp  = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
-        console.log("END" + layerId,temp)
+        var temp = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
+        console.info("end _ id" + layerId)
     }
 
 
@@ -191,9 +190,10 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
      */
     async function _copyValue(object, layerId, toObject)
     {
-        // console.log("_copyValue:", object, layerId, toObject)
+        console.log("_copyValue:", object, layerId, toObject)
         for (var x in object)
         {
+            console.log("x:", x)
             if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
             {
                 if (ARR.hasMember(["name", "id", "index"], x))
@@ -201,19 +201,29 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                     toObject[x] = object[x];
                 } else
                 {
-                    if (object[x].constructor === Object)
+                    if (TYP.type(object[x]) === "object")
                     {
                         toObject[x] = {};
-                        await _copyValue(object[x], layerId, toObject[x]);
+                        console.log(`_copyValue(${object[x]}, ${layerId}, ${toObject[x]})`)
+                        await _copyValue(object[x], layerId, toObject[x])
+                        console.log(22)
                     }
                     else
                     {
-
-                        if (varSystem.isFormula(object[x]))
+                        if (x === "text")
                         {
-                            console.log("varSystem.evalVar(object[x]):",x, object[x])
+                            if (object["$enableFormula"])
+                            {
+                                var enableFormulaEval = true;
+                            }
+                        }
+                        else
+                        {
+                            var enableFormulaEval = varSystem.isFormula(object[x]);
+                        }
+                        if (enableFormulaEval)
+                        {
                             toObject[x] = await varSystem.evalVar(object[x]);
-                            console.log(" toObject[x] ", toObject[x] )
                         } else
                         {
                             toObject[x] = object[x];

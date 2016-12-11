@@ -759,12 +759,17 @@ EnzJSX.evalEnhancer = function (enhancer, thisId)
 
 }
 
-
+/**
+ * 执行文档渲染渲染
+ * @param mRNA_Layers_json
+ * @param vars_json
+ * @constructor
+ */
 EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
 {
     var layers = JSON.parse(mRNA_Layers_json)
     var vars = JSON.parse(vars_json)
-    _func();
+    _func(); //封装功能代码，以便只产生一个 Photoshop 的历史记录
 
 
     function _func()
@@ -803,7 +808,7 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
                     EnzJSX.setLayerInfo_position_byId(_info_position, layerId)
                 }
             }
-
+            //text------------------------------------------
 
         }
 
