@@ -55,8 +55,12 @@ if (typeof window.__adobe_cep__ !== "undefined")
     window.enzymes = enzymes;
 }
 //数据结构--------------------------------------------
-import  IchiColor  from "./Caryon/IchiColor/ichi-color.js";
+import  IchiColor_base  from "./Caryon/IchiColor/ichi-color.js";
+import  IchiColor_ex  from "./Caryon/IchiColor/ichi-color-extension";
+var IchiColor = IchiColor_ex(IchiColor_base);
 window.IchiColor = IchiColor;
+
+
 
 import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
 window.ColorRNA = ColorRNA;
@@ -93,6 +97,8 @@ var eventCaryon = new EventCaryon("默认测试");
 window.eventCaryon = eventCaryon
 
 
+
+//测试相关 -----------------------------------
 window.tests = {};
 import  test_task_Enzymes from "./test/test_Enzymes_JS";
 window.tests.task_Enzymes = test_task_Enzymes;
@@ -192,11 +198,11 @@ console.log("sss_end" + __result)
 //         {
 //             if (result.err == "repe")
 //             {
-//                 UI_action.message_bubble("input_box", "", Lang.from("名称已存在"), "red");
+//                 UI_action.show_message_bubble("input_box", "", Lang.from("名称已存在"), "red");
 //                 e.srcElement.classList.add("illegal_value")
 //             } else if (result.err == "Illegal_name")
 //             {
-//                 UI_action.message_bubble("input_box", "", Lang.from("变量名称不合法"), "red");
+//                 UI_action.show_message_bubble("input_box", "", Lang.from("变量名称不合法"), "red");
 //                 e.srcElement.classList.add("illegal_value")
 //             }
 //         }
@@ -222,5 +228,5 @@ console.log("sss_end" + __result)
 //     console.log(x)
 // }
 //
-// UI_action.message_input("var_panel", "新建变量", data, func_)
+// UI_action.show_message_input("var_panel", "新建变量", data, func_)
 

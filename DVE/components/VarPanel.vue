@@ -189,16 +189,16 @@
                     this.in_value = result.name
                     if (result.err == undefined)
                     {
-                        UI_action.message_bubble("var_panel", "", Lang.from("重命名完成"), "none", -500)
+                        UI_action.show_message_bubble("var_panel", "", Lang.from("重命名完成"), "none", -500)
                     } else
                     {
                         if (result.err == "repe")
                         {
-                            //UI_action.message_bubble("var_panel","","手及水电费撒打发")
-                            UI_action.message_bubble("var_panel", "", Lang.from("名称已存在"), "red")
+                            //UI_action.show_message_bubble("var_panel","","手及水电费撒打发")
+                            UI_action.show_message_bubble("var_panel", "", Lang.from("名称已存在"), "red")
                         } else if (result.err == "Illegal_name")
                         {
-                            UI_action.message_bubble("var_panel", "", Lang.from("变量名称不合法"), "red")
+                            UI_action.show_message_bubble("var_panel", "", Lang.from("变量名称不合法"), "red")
                         }
                     }
 
@@ -227,7 +227,7 @@
                     {
                         if (result.err == "repe")
                         {
-                            UI_action.message_bubble("input_box", "", Lang.from("名称已存在"), "red");
+                            UI_action.show_message_bubble("input_box", "", Lang.from("名称已存在"), "red");
                             if (e != undefined)
                             {
                                 e.srcElement.classList.add("illegal_value")
@@ -235,7 +235,7 @@
                             return false;
                         } else if (result.err == "Illegal_name")
                         {
-                            UI_action.message_bubble("input_box", "", Lang.from("变量名称不合法"), "red");
+                            UI_action.show_message_bubble("input_box", "", Lang.from("变量名称不合法"), "red");
                             if (e != undefined)
                             {
                                 e.srcElement.classList.add("illegal_value")
@@ -267,7 +267,7 @@
                     }
                 }
 
-                UI_action.message_input("var_panel", "新建变量", data, ok_func)
+                UI_action.show_message_input("var_panel", "新建变量", data, ok_func)
             },
             delete_a_var: function (name)
             {
@@ -289,10 +289,10 @@
                     {
                         var text = `这些变量引用了 ${name}：<p class="p_var_list">${varSystem.vars[name].relatives.toString()}</p>如果删除  ${name} 会使这些变量无效 <p>确认要删除 ${name} ？</p>`
 //                        var text = "这些变量引用了" + name+varSystem.vars[name].relatives.toString()+"如果删除" +name+"会使这些变量无效"
-                        UI_action.message_input("var_panel", "删除变量 " + name, data, ok_func, text)
+                        UI_action.show_message_input("var_panel", "删除变量 " + name, data, ok_func, text)
                     } else
                     {
-                        UI_action.message_input("var_panel", "删除变量 " + name, data, ok_func, `确认要删除 ${name} ？`)
+                        UI_action.show_message_input("var_panel", "删除变量 " + name, data, ok_func, `确认要删除 ${name} ？`)
                     }
 
 

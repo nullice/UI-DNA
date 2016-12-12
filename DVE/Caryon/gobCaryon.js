@@ -145,10 +145,10 @@ GobCaryon.prototype.__new_text = function ()
 {
     return {
         text: null,
-        color: null,
+        color: {r: null, g: null, b: null},
         $enableFormula: null,
-        assignment: {text: null, $enableFormula: null},
-        enableAssigns: {text: null, $enableFormula: null}
+        assignment: {text: null, $enableFormula: null,  color: {r: null, g: null, b: null}},
+        enableAssigns: {text: null, $enableFormula: null, color:null}
     }
 }
 
@@ -193,8 +193,8 @@ GobCaryon.prototype._setData = async function (names, value)
         else if (names[names.length - 1] == "$enableFormula" && value != Gob.MULT)
         {
             var temp = this.text.text;
-            this.text.text=" "
-            this.text.text =temp
+            this.text.text = " "
+            this.text.text = temp
         }
         else
         {

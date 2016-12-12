@@ -2,7 +2,8 @@
 
     <div class="vue-color-cylinder-main-box">
         <!--<div class="saturation-lighteness-picker-board"></div>-->
-        <color-map  v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v"  v-bind:in_value3="color1.hsv.h" v-bind:value_type="o_menu.hue.state?'hue':'sv'"
+        <color-map v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v" v-bind:in_value3="color1.hsv.h"
+                   v-bind:value_type="o_menu.hue.state?'hue':'sv'"
                    v-bind:edit_color="color1"></color-map>
 
         <menu-box
@@ -360,6 +361,13 @@
                 <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
             </div>
         </div>
+        <div v-if="confirm_mode='true'" class="confirm-box">
+            <div class="button-box">
+                <button v-on:click="callback_reject()">返回</button>
+                <button v-on:click="callback_confirm(ichi_color)" class="ok">确定</button>
+            </div>
+
+        </div>
 
 
         <!--<pre> {{color1|json 4}}</pre>-->
@@ -388,7 +396,7 @@
 
             .exmo_button_icon.mini i {
                 font-size: 12px;
-                    color: #B6B6B6;
+                color: #B6B6B6;
             }
 
             .menu.option_list {
@@ -489,6 +497,46 @@
                 text-align: center;
             }
         }
+
+        .confirm-box {
+            height: 30px;
+
+            .button-box {
+                text-align: center;
+                position: absolute;
+                bottom: 0;
+                overflow: hidden;
+                border-radius: 0 0 4px 4px;
+                width: 100%;
+                white-space: nowrap;
+
+                button {
+                    border: none;
+                    background: rgba(166, 88, 88, 0);
+                    color: #6B6B6B;
+                    font-family: inherit;
+                    padding: 9px 52px;
+                    margin: 0;
+                    transition: all .3s ;
+                    outline: none;
+
+
+                    &.ok{
+                        margin-left: -4px;
+                    }
+
+                    &:hover{
+                        background: #5EB4F2;
+                        color: #FFFFFF;
+                    }
+
+                    &:active{
+                        background: #2F88C8;
+                        color: #FFFFFF;
+                    }
+                }
+            }
+        }
     }
 
     .color-picker {
@@ -531,22 +579,21 @@
     var IchiColor = IchiColor_ex(IchiColor_base);
 
     export default{
-        props: ['in_color',],
+        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject'],
         watch: {
             "color_bullets": function (val)
             {
 //                console.log("------------------")
 //                console.log(val)
-            }
-
+            },
         },
         data(){
             return {
                 msg: 'hello vue',
-                color1: IchiColor("#f00")
+                color1: this.ichi_color
                 ,
                 o_menu: {
-                   hue : {
+                    hue: {
                         name: "Hue",
                         type: "multi_select",
                         state: true,
@@ -642,11 +689,11 @@
                         type: "multi_select",
                         state: true,
                         hr: true,
-                        child:{
-                            rgba:true,
-                            rgb:false,
-                            hex:true,
-                            int:false,
+                        child: {
+                            rgba: true,
+                            rgb: false,
+                            hex: true,
+                            int: false,
 
                         }
                     },

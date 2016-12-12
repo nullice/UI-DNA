@@ -1,9 +1,9 @@
 <template>
-    <div>
-        <header-component/>
-        <div>this is template body</div>
-        <other-component/>
-    </div>
+    <value-input name="H" v-bind:edit_value.sync="Gob.position.h"
+                 v-bind:out_value.sync="Gob.position.assignment.h"
+                 v-bind:enable_assign.sync="Gob.position.enableAssigns.h"></value-input>
+
+
 </template>
 <style>
     body{
@@ -11,17 +11,17 @@
     }
 </style>
 <script>
-    import HeaderComponent from './components/header.vue'
-    import OtherComponent from './components/other.vue'
+    import ValueInput from '../components/AttributePanel_valueInput.vue';
     export default{
+        props: ['edit_value', "out_value", 'name','name_html', "value_type", "enable_assign", "mini", "mode_color"],
         data(){
+
             return{
                 msg:'hello vue'
             }
         },
         components:{
-            'other-component':OtherComponent,
-            HeaderComponent,
+            "value-input": ValueInput,
         }
     }
 </script>

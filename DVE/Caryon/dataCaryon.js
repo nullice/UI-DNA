@@ -151,9 +151,9 @@ var Layer = function (layerListItem)
     }
     this.text = {
         text: null,
-        color: null,
+        color: {r: null, g: null, b: null},
         $enableFormula: null,
-        assignment: {text: null, color: null, $enableFormula: null},
+        assignment: {text: null, color: {r: null, g: null, b: null}, $enableFormula: null},
         enableAssigns: {text: false, color: false, $enableFormula: false}
     }
 

@@ -2,7 +2,9 @@
  * Created by bgllj on 2016/10/12.
  */
 
-
+import  IchiColor_base  from "./../../Caryon/IchiColor/ichi-color.js";
+import  IchiColor_ex  from "./../../Caryon/IchiColor/ichi-color-extension";
+var IchiColor = IchiColor_ex(IchiColor_base);
 
 var UI_model = {
 
@@ -12,6 +14,19 @@ var UI_model = {
     },
     msg_input: {
         var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}}
+    },
+    msg_color_picker: {
+        color1: {
+            show: false,
+            position: {x: 0, y: 0},
+            color: IchiColor(),
+            callback: function () {return 0},
+            callback_reject: function ()
+            {
+                UI_model.msg_color_picker.color1.show = false;
+            }
+        }
+
     }
 
 
@@ -26,7 +41,7 @@ var UI_action = {
      * @param color 提示框颜色
      * @param time 额外显示时间（毫秒）
      */
-    message_bubble: function (panel, title, msg, color, time)
+    show_message_bubble: function (panel, title, msg, color, time)
     {
         var time = time || 0;
         var color = color || "none";
@@ -43,7 +58,7 @@ var UI_action = {
         }, 1000 * 2.5 + 1000 * ((msg + title).length / 5) + time)
     },
 
-    message_input: function (panel, title, data, callback,msg)
+    show_message_input: function (panel, title, callback)
     {
         UI_model.msg_input[panel].show = false;
         UI_model.msg_input[panel].title = title;
@@ -52,7 +67,14 @@ var UI_action = {
         UI_model.msg_input[panel].msg = msg;
         UI_model.msg_input[panel]._illegal = false;
         UI_model.msg_input[panel].show = true;
-        
+    },
+
+    show_message_color_picker: function (panel, color_hex, callback, )
+    {
+        UI_model.msg_color_picker[panel].show = false;
+        UI_model.msg_color_picker[panel].color.hex = color_hex||"#f00";
+        UI_model.msg_color_picker[panel].callback = callback;
+        UI_model.msg_color_picker[panel].show = true;
     }
 
 

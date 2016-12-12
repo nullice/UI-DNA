@@ -1,6 +1,14 @@
 <template>
 
     <debug-microscope>测试用</debug-microscope>
+    <!---->
+    <input type="text" v-model="UI_model.msg_color_picker.color1.color.hex">
+    <vue-color-cylinder v-show="UI_model.msg_color_picker.color1.show"
+                        v-bind:ichi_color.sync="UI_model.msg_color_picker.color1.color" confirm="true"
+                        v-bind:callback_confirm="UI_model.msg_color_picker.color1.callback"
+                        v-bind:callback_reject="UI_model.msg_color_picker.color1.callback_reject"
+
+    ></vue-color-cylinder>
 
     <a-area area_title="UI-DNA 属性" area_id="attr_panel">
         <div class="exmo_btn_group" data-toggle="buttons">
@@ -105,6 +113,9 @@
                            v-bind:enable_formula.sync="Gob.text.$enableFormula"
             ></attr-textarea>
 
+            <!--<color-input name="Lang.from('颜色')" v-bind:rgb.sync="Gob.text.color"-->
+            <!--v-bind:out_value.sync="Gob.text.assignment.color"-->
+            <!--v-bind:enable_assign.sync="Gob.text.enableAssigns.color"></color-input>-->
         </div>
 
 
@@ -179,6 +190,7 @@
     import SelectInput from "./AttributePanel_selectInput.vue"
     import AttrTextarea from "./AttributePanel_textarea.vue"
     import VueColorCylinder from "./vue-color-cylinder/vue-color-cylinder.vue"
+    import ColorInput from '../components/AttributePanel_color.vue';
     import DebugPanel from "./DebugPanel.vue"
 
     //import CompA from '../components/A.vue'
@@ -207,6 +219,7 @@
             return {
                 Gob: Gob,
                 tagsActive: setSystem.attArea.tagsActive,
+                UI_model: UI_model,
                 o_value: "",
                 o_positon_anchor_options: [
                     {
@@ -275,7 +288,8 @@
             "select-input": SelectInput,
             "attr-textarea": AttrTextarea,
             "vue-color-cylinder": VueColorCylinder,
-            "debug-microscope":DebugPanel
+            "color-input": ColorInput,
+            "debug-microscope": DebugPanel
 //        "comp-a":ValueInput
         }
     };
