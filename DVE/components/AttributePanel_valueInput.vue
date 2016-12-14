@@ -2,6 +2,7 @@
 
     <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign, mini:mini}">
         <div class="exmo_box_name">{{name|lang}} {{{name_html}}}</div>
+        <slot></slot>
         <input type="text" class="exmo_input_text edit_input"
                v-model:value="o_edit"
                debounce="800"

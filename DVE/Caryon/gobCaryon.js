@@ -147,7 +147,7 @@ GobCaryon.prototype.__new_text = function ()
         text: null,
         color: {r: null, g: null, b: null},
         $enableFormula: null,
-        assignment: {text: null, $enableFormula: null,  color: {r: null, g: null, b: null}},
+        assignment: {text: null, $enableFormula: null,  color: null},
         enableAssigns: {text: null, $enableFormula: null, color:null}
     }
 }

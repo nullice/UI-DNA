@@ -1,6 +1,6 @@
 <template>
 
-    <div class="vue-color-cylinder-main-box">
+    <div class="vue-color-cylinder-main-box" v-bind:style="positon_style">
         <!--<div class="saturation-lighteness-picker-board"></div>-->
         <color-map v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v" v-bind:in_value3="color1.hsv.h"
                    v-bind:value_type="o_menu.hue.state?'hue':'sv'"
@@ -361,10 +361,10 @@
                 <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
             </div>
         </div>
-        <div v-if="confirm_mode='true'" class="confirm-box">
+        <div v-if="cofirm_mode='true'" class="confirm-box">
             <div class="button-box">
-                <button v-on:click="callback_reject()">返回</button>
-                <button v-on:click="callback_confirm(ichi_color)" class="ok">确定</button>
+                <button v-on:click="click_cancel">返回</button>
+                <button v-on:click="click_ok" class="ok">确定</button>
             </div>
 
         </div>
@@ -517,20 +517,19 @@
                     font-family: inherit;
                     padding: 9px 52px;
                     margin: 0;
-                    transition: all .3s ;
+                    transition: all .3s;
                     outline: none;
 
-
-                    &.ok{
+                    &.ok {
                         margin-left: -4px;
                     }
 
-                    &:hover{
+                    &:hover {
                         background: #5EB4F2;
                         color: #FFFFFF;
                     }
 
-                    &:active{
+                    &:active {
                         background: #2F88C8;
                         color: #FFFFFF;
                     }
@@ -579,19 +578,31 @@
     var IchiColor = IchiColor_ex(IchiColor_base);
 
     export default{
-        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject'],
+        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject', "end_func"],
         watch: {
             "color_bullets": function (val)
             {
 //                console.log("------------------")
 //                console.log(val)
             },
+            "color1.int": function (val)
+            {
+                if (this.callback_confirm != undefined)
+                {
+                    var now = (new Date()).getTime();
+                    if (now - this.o_time_defer > 500)
+                    {
+                        this.callback_confirm(this.ichi_color);
+                        this.o_time_defer = now;
+                    }
+                }
+
+            }
         },
         data(){
             return {
                 msg: 'hello vue',
-                color1: this.ichi_color
-                ,
+                color1: this.ichi_color,
                 o_menu: {
                     hue: {
                         name: "Hue",
@@ -704,7 +715,22 @@
 
                     },
                 },
-                o_uppercase: false
+                o_uppercase: false,
+                o_time_defer: 0,
+                positon_style: {right: "10%", left: ""},
+
+            }
+        },
+        methods: {
+            click_ok: function ()
+            {
+                this.callback_confirm(this.ichi_color);
+                this.end_func();
+            },
+            click_cancel: function ()
+            {
+                this.callback_reject();
+                this.end_func();
             }
         },
         components: {

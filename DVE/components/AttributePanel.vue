@@ -7,6 +7,8 @@
                         v-bind:ichi_color.sync="UI_model.msg_color_picker.color1.color" confirm="true"
                         v-bind:callback_confirm="UI_model.msg_color_picker.color1.callback"
                         v-bind:callback_reject="UI_model.msg_color_picker.color1.callback_reject"
+                        v-bind:end_func="UI_model.msg_color_picker.color1.end_func"
+
 
     ></vue-color-cylinder>
 
@@ -113,9 +115,18 @@
                            v-bind:enable_formula.sync="Gob.text.$enableFormula"
             ></attr-textarea>
 
-            <!--<color-input name="Lang.from('颜色')" v-bind:rgb.sync="Gob.text.color"-->
-            <!--v-bind:out_value.sync="Gob.text.assignment.color"-->
-            <!--v-bind:enable_assign.sync="Gob.text.enableAssigns.color"></color-input>-->
+            <color-input  v-bind:name="Lang.from('颜色')"
+                         v-bind:out_value.sync="Gob.text.assignment.color"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
+                         v-bind:color.sync="Gob.text.color"
+                          mini="true"
+            ></color-input>
+            <color-input  v-bind:name="Lang.from('描边')"
+                          v-bind:out_value.sync="Gob.text.assignment.color"
+                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
+                          v-bind:color.sync="Gob.text.color"
+                          mini="true"
+            ></color-input>
         </div>
 
 
@@ -220,6 +231,7 @@
                 Gob: Gob,
                 tagsActive: setSystem.attArea.tagsActive,
                 UI_model: UI_model,
+                Lang:Lang,
                 o_value: "",
                 o_positon_anchor_options: [
                     {

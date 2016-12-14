@@ -20,8 +20,10 @@ var UI_model = {
             show: false,
             position: {x: 0, y: 0},
             color: IchiColor(),
-            callback: function () {return 0},
-            callback_reject: function ()
+            old_color_hex: "#000",
+            callback: function () {},
+            callback_reject: function () {},
+            end_func:function ()
             {
                 UI_model.msg_color_picker.color1.show = false;
             }
@@ -69,14 +71,14 @@ var UI_action = {
         UI_model.msg_input[panel].show = true;
     },
 
-    show_message_color_picker: function (panel, color_hex, callback, )
+    show_message_color_picker: function (panel, color_hex, callback)
     {
         UI_model.msg_color_picker[panel].show = false;
-        UI_model.msg_color_picker[panel].color.hex = color_hex||"#f00";
+        UI_model.msg_color_picker[panel].color.hex = color_hex;
+        UI_model.msg_color_picker[panel].old_color_hex = color_hex;
         UI_model.msg_color_picker[panel].callback = callback;
         UI_model.msg_color_picker[panel].show = true;
     }
-
 
 }
 
