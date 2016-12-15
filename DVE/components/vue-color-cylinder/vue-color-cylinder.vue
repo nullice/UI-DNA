@@ -1,6 +1,6 @@
 <template>
 
-    <div class="vue-color-cylinder-main-box" v-bind:style="positon_style">
+    <div class="vue-color-cylinder-main-box" v-bind:style="positon_style" v-on:mousedown="main_box_mousedown($event)">
         <!--<div class="saturation-lighteness-picker-board"></div>-->
         <color-map v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v" v-bind:in_value3="color1.hsv.h"
                    v-bind:value_type="o_menu.hue.state?'hue':'sv'"
@@ -575,6 +575,7 @@
     import  ColorRange from "./lib/color-range.vue"
     import  ColorMap from "./lib/color-map.vue"
     import  Menu from "./../AttributePanel_menu.vue"
+    import  ARR from "./../../Caryon/Richang_JSEX/arrayARR"
     var IchiColor = IchiColor_ex(IchiColor_base);
 
     export default{
@@ -717,7 +718,12 @@
                 },
                 o_uppercase: false,
                 o_time_defer: 0,
-                positon_style: {right: "10%", left: ""},
+                positon_style: {"top": "0", "left": "0"},
+                positon_style_int: {"top": 0, "left": 0},
+                mouse_start_X: 0,
+                mouse_start_Y: 0,
+                o_window_X: 0,
+                o_window_Y: 0,
 
             }
         },
@@ -731,7 +737,44 @@
             {
                 this.callback_reject();
                 this.end_func();
+            },
+            main_box_mousedown: function (e)
+            {
+                console.log("main_box_mousedown",
+                        ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box")
+                        , e.target.classList)
+                if (ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box"))
+                {
+                    this.o_mouseIsDown = true;
+                    this.mouse_start_X = e.pageX;
+                    this.mouse_start_Y = e.pageY;
+                    this.o_window_X = this.positon_style_int["left"]
+                    this.o_window_Y = this.positon_style_int["top"]
+
+                    window.addEventListener('mousemove', this.main_box_hold_mouse)
+                    window.addEventListener('mouseup', this.main_box_hold_mouse_end)
+
+
+                }
+            },
+            main_box_hold_mouse: function (e)
+            {
+                var moveOffsetX = e.pageX - this.mouse_start_X;
+                var moveOffsetY = e.pageY - this.mouse_start_Y;
+
+                this.positon_style_int["top"] = this.o_window_Y + moveOffsetY;
+                this.positon_style_int["left"] = this.o_window_X + moveOffsetX;
+                this.positon_style["top"] = this.positon_style_int["top"] + "px";
+                this.positon_style["left"] = this.positon_style_int["left"] + "px";
+
+                console.log("moveOffsetX", moveOffsetX, "moveOffsetY", moveOffsetY)
+            },
+            main_box_hold_mouse_end: function (e)
+            {
+                window.removeEventListener('mousemove', this.main_box_hold_mouse)
+                window.removeEventListener('mouseup', this.main_box_hold_mouse_end)
             }
+
         },
         components: {
             "color-range": ColorRange,
