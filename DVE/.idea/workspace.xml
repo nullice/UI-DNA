@@ -28,11 +28,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="AttributePanel_color.vue" pinned="false" current-in-tab="false">
+      <file leaf-file-name="AttributePanel_color.vue" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/components/AttributePanel_color.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1953">
-              <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
+            <state relative-caret-position="273">
+              <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
               <folding>
                 <element signature="e#1381#1450#0" expanded="true" />
               </folding>
@@ -50,11 +50,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="true">
+      <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="588" column="13" selection-start-line="588" selection-start-column="13" selection-end-line="588" selection-end-column="13" />
+            <state relative-caret-position="240">
+              <caret line="589" column="45" selection-start-line="588" selection-start-column="13" selection-end-line="589" selection-end-column="45" />
               <folding>
                 <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
                 <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
@@ -82,20 +82,20 @@
       <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="5" column="23" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="23" />
+            <state relative-caret-position="244">
+              <caret line="125" column="59" selection-start-line="125" selection-start-column="45" selection-end-line="125" selection-end-column="59" />
               <folding>
                 <element signature="n#style#0;n#!!top" expanded="false" />
-                <element signature="e#8180#8249#0" expanded="true" />
-                <marker date="1481722535098" expanded="true" signature="9580:9596" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="9830:9846" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="10039:10055" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="10328:10344" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="10537:10553" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="10746:10762" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="11015:11031" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="11224:11240" ph="..." />
-                <marker date="1481722535098" expanded="true" signature="11454:11470" ph="..." />
+                <element signature="e#8179#8248#0" expanded="true" />
+                <marker date="1481765385083" expanded="true" signature="9579:9595" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="9829:9845" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="10038:10054" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="10327:10343" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="10536:10552" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="10745:10761" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="11014:11030" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="11223:11239" ph="..." />
+                <marker date="1481765385083" expanded="true" signature="11453:11469" ph="..." />
               </folding>
             </state>
           </provider>
@@ -221,10 +221,10 @@
         <option value="$PROJECT_DIR$/Caryon/dataCaryon.js" />
         <option value="$PROJECT_DIR$/components/DebugPanel.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
-        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
         <option value="$PROJECT_DIR$/components/UI_model/UI_model.js" />
-        <option value="$PROJECT_DIR$/components/AttributePanel_color.vue" />
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue" />
+        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
+        <option value="$PROJECT_DIR$/components/AttributePanel_color.vue" />
       </list>
     </option>
   </component>
@@ -239,8 +239,8 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1936" />
-    <option name="height" value="1056" />
+    <option name="width" value="1382" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -650,12 +650,12 @@
       <workItem from="1479692594003" duration="140485000" />
       <workItem from="1480422258593" duration="105624000" />
       <workItem from="1481031555605" duration="4316000" />
-      <workItem from="1481292989859" duration="72486000" />
+      <workItem from="1481292989859" duration="73259000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1665575000" />
+    <option name="totallyTimeSpent" value="1666348000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -667,18 +667,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
-    <editor active="false" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14805058" sideWeight="0.46478873" order="1" side_tool="true" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20907739" sideWeight="0.4680851" order="1" side_tool="true" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5438787" sideWeight="0.5022921" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3261105" sideWeight="0.48213166" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.15595363" sideWeight="0.45612136" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.14805058" sideWeight="0.53521127" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24377032" sideWeight="0.44793713" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20907739" sideWeight="0.5319149" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15548281" sideWeight="0.44793713" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28199404" sideWeight="0.45335516" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1024,7 +1024,7 @@
         <state relative-caret-position="298">
           <caret line="1835" column="10337" selection-start-line="1835" selection-start-column="10337" selection-end-line="1835" selection-end-column="10337" />
           <folding>
-            <marker date="1481724989408" expanded="true" signature="975139:975280" ph="//..." />
+            <marker date="1481765748030" expanded="true" signature="975139:975280" ph="//..." />
           </folding>
         </state>
       </provider>
@@ -1117,26 +1117,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="23" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="23" />
-          <folding>
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <element signature="e#8180#8249#0" expanded="true" />
-            <marker date="1481722535098" expanded="true" signature="9580:9596" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="9830:9846" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="10039:10055" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="10328:10344" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="10537:10553" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="10746:10762" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="11015:11031" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="11224:11240" ph="..." />
-            <marker date="1481722535098" expanded="true" signature="11454:11470" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/UI_model/UI_model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="417">
@@ -1156,20 +1136,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_color.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1953">
-          <caret line="93" column="17" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="17" />
-          <folding>
-            <element signature="e#1381#1450#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="588" column="13" selection-start-line="588" selection-start-column="13" selection-end-line="588" selection-end-column="13" />
+        <state relative-caret-position="240">
+          <caret line="589" column="45" selection-start-line="588" selection-start-column="13" selection-end-line="589" selection-end-column="45" />
           <folding>
             <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
             <element signature="n#div#2;n#div#0;n#template#0;n#!!top" expanded="false" />
@@ -1177,6 +1147,36 @@
             <element signature="e#22573#22914#0" expanded="false" />
             <element signature="e#23212#23282#0" expanded="true" />
             <element signature="e#24509#28238#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="125" column="59" selection-start-line="125" selection-start-column="45" selection-end-line="125" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <element signature="e#8179#8248#0" expanded="true" />
+            <marker date="1481765385083" expanded="true" signature="9579:9595" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="9829:9845" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="10038:10054" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="10327:10343" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="10536:10552" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="10745:10761" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="11014:11030" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="11223:11239" ph="..." />
+            <marker date="1481765385083" expanded="true" signature="11453:11469" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_color.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="273">
+          <caret line="73" column="25" selection-start-line="73" selection-start-column="25" selection-end-line="73" selection-end-column="25" />
+          <folding>
+            <element signature="e#1381#1450#0" expanded="true" />
           </folding>
         </state>
       </provider>

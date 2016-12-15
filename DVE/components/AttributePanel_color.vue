@@ -60,7 +60,6 @@
             {
 //                console.log("------------------")
 //                console.log(val)
-
                 this.ichi_color.set(val);
                 this.color.r = this.ichi_color.r;
                 this.color.g = this.ichi_color.g;
@@ -68,11 +67,18 @@
 
                 this.color_style.background=this.ichi_color.hex;
             },
-            "color": function (val)
+            "color.r": function (val)
             {
-                this.ichi_color.set(val);
-                this.o_color = this.ichi_color.hex;
-            }
+                this.color_update();
+            },
+            "color.g": function (val)
+            {
+                this.color_update();
+            },
+            "color.b": function (val)
+            {
+                this.color_update();
+            },
 
         },
         data(){
@@ -96,6 +102,11 @@
 
                 }
                 UI_action.show_message_color_picker("color1", this.ichi_color.hex,set_color_callback)
+            },
+            color_update:function ()
+            {
+                this.ichi_color.set(this.color);
+                this.o_color = this.ichi_color.hex;
             }
 
         }

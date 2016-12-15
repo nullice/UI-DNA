@@ -9,7 +9,6 @@
                         v-bind:callback_reject="UI_model.msg_color_picker.color1.callback_reject"
                         v-bind:end_func="UI_model.msg_color_picker.color1.end_func"
 
-
     ></vue-color-cylinder>
 
     <a-area area_title="UI-DNA 属性" area_id="attr_panel">
