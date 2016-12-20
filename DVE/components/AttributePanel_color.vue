@@ -5,6 +5,8 @@
                      v-bind:out_value.sync="edit_value"
                      v-bind:enable_assign.sync="out_value"
                      v-bind:mini="mini"
+                     v-bind:enable_uppercase="true"
+
         >
             <div class="color-bottom" v-bind:style="color_style" v-on:click="picker_color">
 
@@ -23,29 +25,39 @@
         vertical-align: middle;
     }
 
+    .color_input {
+        margin-left: 8px;
+    }
     .color_input .input.exmo_input_text.edit_input {
         margin-left: 0;
     }
+
     .color_input .color-bottom:hover {
-        box-shadow: 0 2px 4px rgba(17, 34, 34, 0.21);
+        border: 1px solid #fff;
+        box-shadow: 0 0px 1px 1px rgba(0, 0, 0, 0.2);
     }
 
-    .color_input  .exmo_inbox.value_input_box.mini{
-        width: 225px;
+    .color_input .exmo_inbox.value_input_box.mini {
+        width: 250px;
     }
 
-    .color_input  .exmo_inbox.value_input_box.mini:not(.press_out) .edit_input {
-        width: 100px;
+    .color_input .exmo_inbox.value_input_box.mini:not(.press_out) .edit_input {
+        width: 150px;
     }
+
     .color_input .exmo_inbox.value_input_box.mini:not(.press_out):hover .edit_input {
-        width: 100px;
+        width: 150px;
     }
+
     .color_input .exmo_inbox.value_input_box.mini.press_out .edit_input {
-        width: 45px;
+        width: 65px;
 
     }
+    .exmo_inbox.value_input_box.mini.press_out .out_input {
+        width: 52px;
+    }
 
-    .color_input  .value_input_box .exmo_box_name {
+    .color_input .value_input_box .exmo_box_name {
         margin-right: 3px;
     }
 
@@ -65,7 +77,7 @@
                 this.color.g = this.ichi_color.g;
                 this.color.b = this.ichi_color.b;
 
-                this.color_style.background=this.ichi_color.hex;
+                this.color_style.background = this.ichi_color.hex;
             },
             "color.r": function (val)
             {
@@ -88,22 +100,21 @@
                 o_color_out: '',
                 ichi_color: IchiColor(),
                 Gob: Gob,
-                color_style:{background:"#000"},
+                color_style: {background: "#000"},
             }
         },
-        methods:
-        {
-            picker_color:function ()
+        methods: {
+            picker_color: function ()
             {
-                var self =  this;
+                var self = this;
                 var set_color_callback = function (e)
                 {
                     self.o_color = e.hex;
 
                 }
-                UI_action.show_message_color_picker("color1", this.ichi_color.hex,set_color_callback)
+                UI_action.show_message_color_picker("color1", this.ichi_color.hex, set_color_callback)
             },
-            color_update:function ()
+            color_update: function ()
             {
                 this.ichi_color.set(this.color);
                 this.o_color = this.ichi_color.hex;

@@ -377,7 +377,7 @@
 <style lang="scss">
 
     .vue-color-cylinder-main-box {
-        position: absolute;
+        position: fixed;
         width: 260px;
         background: #fff;
         z-index: 22;
@@ -386,6 +386,7 @@
         padding: 10px 0;
         box-sizing: border-box;
         padding-top: 64px;
+        cursor: default;
 
         .menu_box.color-setting-button {
             position: absolute;
@@ -718,8 +719,8 @@
                 },
                 o_uppercase: false,
                 o_time_defer: 0,
-                positon_style: {"top": "0", "left": "0"},
-                positon_style_int: {"top": 0, "left": 0},
+                positon_style: {"top": "10px", "left": "20px"},
+                positon_style_int: {"top": 10, "left": 20},
                 mouse_start_X: 0,
                 mouse_start_Y: 0,
                 o_window_X: 0,
@@ -767,7 +768,7 @@
                 this.positon_style["top"] = this.positon_style_int["top"] + "px";
                 this.positon_style["left"] = this.positon_style_int["left"] + "px";
 
-                console.log("moveOffsetX", moveOffsetX, "moveOffsetY", moveOffsetY)
+//                console.log("moveOffsetX", moveOffsetX, "moveOffsetY", moveOffsetY)
             },
             main_box_hold_mouse_end: function (e)
             {

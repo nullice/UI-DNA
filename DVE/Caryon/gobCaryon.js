@@ -437,6 +437,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         //[text]---------------------------------------------------------------
         var item_text = new_text();
         var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
+        console.info("getLayerInfo_text_byId",text)
         item_text.text = text.text;
         item_text.color = text.color;
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")

@@ -107,6 +107,12 @@
             <h3> {{'文本' |lang}} </h3>
 
             <!--<vue-color-cylinder></vue-color-cylinder>-->
+            <color-input  v-bind:name="Lang.from('颜色')"
+                          v-bind:out_value.sync="Gob.text.assignment.color"
+                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
+                          v-bind:color.sync="Gob.text.color"
+                          mini="true"
+            ></color-input>
 
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
@@ -114,18 +120,8 @@
                            v-bind:enable_formula.sync="Gob.text.$enableFormula"
             ></attr-textarea>
 
-            <color-input  v-bind:name="Lang.from('颜色')"
-                         v-bind:out_value.sync="Gob.text.assignment.color"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
-                         v-bind:color.sync="Gob.text.color"
-                          mini="true"
-            ></color-input>
-            <color-input  v-bind:name="Lang.from('描边')"
-                          v-bind:out_value.sync="Gob.text.assignment.color"
-                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
-                          v-bind:color.sync="Gob.text.color"
-                          mini="true"
-            ></color-input>
+
+
         </div>
 
 

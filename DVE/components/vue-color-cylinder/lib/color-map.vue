@@ -421,6 +421,8 @@
                     offset = offset * 3.5;
                     this.edit_color.hsv.h += offset;
                 }
+                e.preventDefault()
+
             }
 
 

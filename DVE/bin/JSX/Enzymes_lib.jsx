@@ -565,7 +565,29 @@ EnzJSX.getLayerInfo_text_byId = function (id)
 }
 
 
-
+/**设置图层文本信息
+ *   textInfo{
+     text: null, /!*文本内容，\r 表示换行*!/
+     bounds: {x: null, y: null, w: null, h: null}, /!*文本框边界(在图层边界内的位置)*!/
+     boundingBox: {x: null, y: null, w: null, h: null}, /!*文本框最小边界(在图层边界内的位置)*!/
+     color: {r: null, g: null, b: null}, /!*字体颜色*!/
+     size: null, /!*字体尺寸*!/
+     fontPostScriptName: null, /!*字体*!/
+     bold: null, /!*仿粗体*!/
+     italic: null, /!*仿斜体*!/
+     antiAlias: null, /!*消除锯齿方式*!/
+     underline: null, /!*下划线类型 underlineOnLeftInVertical:下划线,underlineOff:无，*!/
+     justification: null, /!*段落对齐方式*!/
+     leading: null, /!*行距*!/
+     tracking: null, /!*字符间距*!/
+     baselineShift: null, /!*基线偏移*!/
+     horizontalScale: null, /!*水平缩放*!/
+     verticalScale: null, /!*垂直缩放*!/
+     }
+ * @param textInfo
+ * @param id
+ * @param doSelect
+ */
 EnzJSX.setLayerInfo_text_byId = function (textInfo, id, doSelect)
 {
     if (doSelect)

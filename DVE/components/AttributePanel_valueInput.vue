@@ -1,12 +1,13 @@
 <template>
 
     <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign, mini:mini}">
-        <div class="exmo_box_name">{{name|lang}} {{{name_html}}}</div>
+        <div class="exmo_box_name" v-on:click="click_uppercase">{{name|lang}} {{{name_html}}}</div>
         <slot></slot>
-        <input type="text" class="exmo_input_text edit_input"
+        <input type="text" class="exmo_input_text edit_input "
                v-model:value="o_edit"
                debounce="800"
-               v-bind:placeholder="o_edit_placeholder">
+               v-bind:placeholder="o_edit_placeholder"
+               v-bind:class="{'uppercase':o_uppercase}">
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked
                v-model:value="enable_assign">
@@ -29,8 +30,7 @@
             width: 85px;
         }
 
-        &:not(.press_out)
-        {
+        &:not(.press_out) {
             .edit_input {
                 width: 85px;
                 transition: all 0.3s;
@@ -54,25 +54,22 @@
             }
         }
 
-
     }
 
     label.attr_value_set.exmo_button_icon {
         opacity: 0;
         display: none;
     }
-    .value_input_box:hover  label.attr_value_set.exmo_button_icon
-    {
+
+    .value_input_box:hover label.attr_value_set.exmo_button_icon {
         opacity: 1;
         display: inline-block;
     }
 
-    .exmo_icon_cheackbox:checked + label.attr_value_set.exmo_button_icon
-    {
+    .exmo_icon_cheackbox:checked + label.attr_value_set.exmo_button_icon {
         opacity: 1;
         display: inline-block;
     }
-
 
     .value_input_box .exmo_box_name {
         width: 24px;
@@ -86,8 +83,7 @@
         white-space: nowrap;
     }
 
-    .value_input_box:not(.press_out)
-    {
+    .value_input_box:not(.press_out) {
 
         .edit_input {
             width: 217px;
@@ -99,8 +95,6 @@
         }
 
     }
-
-
 
     .out_input {
         width: 0px;
@@ -124,8 +118,9 @@
         }
     }
 
-
-
+    .uppercase {
+        text-transform: uppercase;
+    }
 
 
 </style>
@@ -137,7 +132,7 @@
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "out_value", 'name','name_html', "value_type", "enable_assign", "mini", "mode_color"],
+        props: ['edit_value', "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color","enable_uppercase"],
         data(){
             return {
                 o_edit: "",
@@ -146,7 +141,7 @@
                 o_out: "",
                 o_out_placeholder: "赋值",
                 o_out_isMult: false,
-
+                o_uppercase: false,
 //                pressOut_input: pressOut_input,
             }
         },
@@ -214,6 +209,19 @@
                 }
             }
 
+        },
+        methods: {
+            click_uppercase: function ()
+            {
+                if(this.enable_uppercase)
+                {
+                    this.o_uppercase = !this.o_uppercase
+                    console.log("click_uppercase")
+
+                }
+
+            }
         }
+
     }
 </script>
