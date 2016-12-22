@@ -15,8 +15,7 @@ import STR from "./Richang_JSEX/stringSTR.js"
  * @constructor
  */
 var VarType = function (value, name, type, isFormula, relatives)
-{
-    //----赋予 value getter，用来在设置值时可以更新依赖表 relatives
+{       //----赋予 value getter，用来在设置值时可以更新依赖表 relatives
     this._value = null;
     this.value = null;
     Object.defineProperty(this, "value",
@@ -79,8 +78,11 @@ VarType.prototype.updateRelatives = function (newFormula)
         var addArr = ARR.difference(newRelatives, oldRelatives);
         for (var i = 0; i < addArr.length; i++)
         {
-            varSystem.vars[addArr[i]].relatives.push(this.name)
-        }
+            if( varSystem.vars[addArr[i]]!=undefined)
+            {
+                varSystem.vars[addArr[i]].relatives.push(this.name)
+            }
+                }
 
     }
 
@@ -119,7 +121,8 @@ var VarSystem = function ()
         'zero': new VarType({name: 'zero', value: 12, type: null, isFormula: false, relatives: []}),
         'a': new VarType({name: 'a', value: 123, type: null, isFormula: false, relatives: ['x']}),
         'b': new VarType({name: 'b', value: 1000, type: null, isFormula: false, relatives: ['x']}),
-        'x': new VarType({name: 'x', value: "a*b", type: null, isFormula: true, relatives: []})
+        'x': new VarType({name: 'x', value: "a*b", type: null, isFormula: true, relatives: []}),
+        't': new VarType({name: 't', value: "true", type: null, isFormula: true, relatives: []}),
     };
 
     return this;

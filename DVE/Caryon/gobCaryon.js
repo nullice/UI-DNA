@@ -146,9 +146,53 @@ GobCaryon.prototype.__new_text = function ()
     return {
         text: null,
         color: {r: null, g: null, b: null},
+        size: null, /*字体尺寸*/
+        fontPostScriptName: null, /*字体*/
+        bold: null, /*仿粗体*/
+        italic: null, /*仿斜体*/
+        antiAlias: null, /*消除锯齿方式*/
+        underline: null, /*下划线类型*/
+        justification: null, /*段落对齐方式*/
+        leading: null, /*行距*/
+        tracking: null, /*字符间距*/
+        baselineShift: null, /*基线偏移*/
+        horizontalScale: null, /*水平缩放*/
+        verticalScale: null, /*垂直缩放*/
         $enableFormula: null,
-        assignment: {text: null, $enableFormula: null,  color: null},
-        enableAssigns: {text: null, $enableFormula: null, color:null}
+        assignment: {
+            text: null,
+            $enableFormula: null,
+            color: null,
+            size: null, /*字体尺寸*/
+            fontPostScriptName: null, /*字体*/
+            bold: null, /*仿粗体*/
+            italic: null, /*仿斜体*/
+            antiAlias: null, /*消除锯齿方式*/
+            underline: null, /*下划线类型*/
+            justification: null, /*段落对齐方式*/
+            leading: null, /*行距*/
+            tracking: null, /*字符间距*/
+            baselineShift: null, /*基线偏移*/
+            horizontalScale: null, /*水平缩放*/
+            verticalScale: null, /*垂直缩放*/
+            $enableFormula: null,
+        },
+        enableAssigns: {
+            text: null,
+            $enableFormula: null,
+            color: null, size: null, /*字体尺寸*/
+            fontPostScriptName: null, /*字体*/
+            bold: null, /*仿粗体*/
+            italic: null, /*仿斜体*/
+            antiAlias: null, /*消除锯齿方式*/
+            underline: null, /*下划线类型*/
+            justification: null, /*段落对齐方式*/
+            leading: null, /*行距*/
+            tracking: null, /*字符间距*/
+            baselineShift: null, /*基线偏移*/
+            horizontalScale: null, /*水平缩放*/
+            verticalScale: null, /*垂直缩放*/
+        }
     }
 }
 
@@ -198,11 +242,65 @@ GobCaryon.prototype._setData = async function (names, value)
         }
         else
         {
-
-            if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
+            var finish = false;
+            //类型判断-------------------------
+            var isBoolean = ARR.hasMember(["bold", "italic"], names[names.length - 1]);
+            if (isBoolean)
             {
-                isFormula = true;
+                if (value == "true" || value == "false")
+                {
+                    isFormula = false;
+                    finish = true;
+                }
             }
+            //------------------------------------
+            var isUnderline = (names[names.length - 1] == "underline")
+            if (isUnderline)
+            {
+                if (value == "underlineOff" || value == "underlineOnLeftInVertical"
+                    || value == "underlineOnRightInVertical" || value == "verticalUnderlineLeft"
+                    || value == "verticalUnderlineRight"
+                )
+                {
+                    isFormula = false;
+                    finish = true;
+                }
+            }
+            //------------------------------------
+            var isJustification = (names[names.length - 1] == "justification")
+            if (isJustification)
+            {
+                if (value == "center" || value == "right"
+                    || value == "left" || value == "justifyAll"
+                    || value == "justifyLeft" || value == "justifyRight"
+                )
+                {
+                    isFormula = false;
+                    finish = true;
+                }
+            }
+            //------------------------------------
+            var isAntiAlias = (names[names.length - 1] == "antiAlias")
+            if (isAntiAlias)
+            {
+                if (value.slice(0, 9) == "antiAlias")
+                {
+                    isFormula = false;
+                    finish = true;
+                }
+            }
+            //------------------------------------
+
+            
+
+            if (!finish)
+            {
+                if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
+                {
+                    isFormula = true;
+                }
+            }
+
         }
 
     }
@@ -217,8 +315,6 @@ GobCaryon.prototype._setData = async function (names, value)
     // console.log(names[names.length - 1], names[names.length - 1], isExvar, value)
 
     //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
-
-
     var rendered = false;
     if (this.selectList.length > 1)
     {
@@ -317,8 +413,6 @@ GobCaryon.prototype._setData = async function (names, value)
                 }
             }
         }
-
-
     }
 
 
@@ -437,13 +531,23 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         //[text]---------------------------------------------------------------
         var item_text = new_text();
         var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
-        console.info("getLayerInfo_text_byId",text)
+        console.info("getLayerInfo_text_byId(" + this.selectList[i].id + ")", text)
         item_text.text = text.text;
         item_text.color = text.color;
+        item_text.size = text.size;
+        item_text.fontPostScriptName = text.fontPostScriptName;
+        item_text.bold = text.bold;
+        item_text.italic = text.italic;
+        item_text.antiAlias = text.antiAlias;
+        item_text.underline = text.underline;
+        item_text.justification = text.justification;
+        item_text.leading = text.leading;
+        item_text.tracking = text.tracking;
+        item_text.baselineShift = text.baselineShift;
+        item_text.horizontalScale = text.horizontalScale;
+        item_text.verticalScale = text.verticalScale;
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
         _objectToObject(item_text, temp.text, true, !(i == 0));
-
-
     }
     // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);

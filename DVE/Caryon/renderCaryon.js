@@ -49,14 +49,14 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             ob[item] = value;
 
             Gob.disableSelectEvent = true;
-            console.log("----[start:position:" + layerId + "]---")
+            console.log("----[start:RenderCaryon：position:" + layerId + "]---")
 
             await enzymes.selectLayer_byID(layerId);
 
             console.log(`enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)
             await enzymes.setLayerInfo_position_byId(ob, layerId)
 
-            console.log("----[end" + layerId + "]---")
+            console.log("----[end：RenderCaryon：" + layerId + "]---")
             Gob.disableSelectEvent = false;
 
 
@@ -64,20 +64,26 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     }
     if (names[0] === "text")
     {
-        if ((names.length == 2 ) && _inArray(item, ["text"]))
+        if ((names.length == 2 ) && !_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))
         {
             var ob = {};
+
+            if (item == "bold" || item == "italic")
+            {
+                value = (value == "true")
+            }
             ob[item] = value;
 
+
             Gob.disableSelectEvent = true;
-            console.log("----[start:text:" + layerId + "]---")
+            console.log("----[start:RenderCaryon：text:" + layerId + "]---")
 
             await enzymes.selectLayer_byID(layerId);
 
             console.log(`enzymes.setLayerInfo_text_byId(${JSON.stringify(ob)}, ${layerId})`)
             await enzymes.setLayerInfo_text_byId(ob, layerId)
 
-            console.log("----[end" + layerId + "]---")
+            console.log("----[end：RenderCaryon：" + layerId + "]---")
             Gob.disableSelectEvent = false;
 
 
@@ -138,6 +144,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
         if (dataCaryon.layers[layerId].position != undefined)
         {
             await _doAssign(dataCaryon.layers[layerId], "position")
+            await _doAssign(dataCaryon.layers[layerId], "text")
         }
     }
 
@@ -211,7 +218,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
         // console.log("_copyValue:", object, layerId, toObject)
         for (var x in object)
         {
-               if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
+            if (ARR.hasMember(["assignment", "enableAssigns"], x) === false)
             {
                 if (ARR.hasMember(["name", "id", "index"], x))
                 {

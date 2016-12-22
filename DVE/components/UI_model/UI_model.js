@@ -60,13 +60,13 @@ var UI_action = {
         }, 1000 * 2.5 + 1000 * ((msg + title).length / 5) + time)
     },
 
-    show_message_input: function (panel, title, callback)
+    show_message_input: function (panel, title,data, callback)
     {
         UI_model.msg_input[panel].show = false;
         UI_model.msg_input[panel].title = title;
         UI_model.msg_input[panel].data = data;
         UI_model.msg_input[panel].callback = callback;
-        UI_model.msg_input[panel].msg = msg;
+        // UI_model.msg_input[panel].msg = msg;
         UI_model.msg_input[panel]._illegal = false;
         UI_model.msg_input[panel].show = true;
     },

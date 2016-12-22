@@ -17,7 +17,7 @@
                          v-bind:selected_func="selected_func"
                          v-bind:selected_value.sync="value"
                          v-bind:in_class="block?'inline_block':''"
-                         >
+            >
             </attr-option>
         </div>
     </div>
@@ -215,7 +215,7 @@
         computed: {
             label: function ()
             {
-                var ob = ARR.getByKey(this.options, "value", this.value);
+                var ob = ARR.getByKey(this.options, "value",this.value );
                 if (ob != undefined)
                 {
                     if (ob.label != undefined)
@@ -225,7 +225,7 @@
 
                 } else
                 {
-                    return ""
+                    return this.value
                 }
             },
 

@@ -75,7 +75,7 @@
 
             <select-input block="true" default_value="0"
                           v-bind:value.sync="Gob.position.$anchor"
-                          v-bind:select_style="{width:'24px'}"
+                          v-bind:select_style="{width:'69px'}"
                           v-bind:options="o_positon_anchor_options"
                           in_class="position_anchor"
             >
@@ -107,19 +107,115 @@
             <h3> {{'文本' |lang}} </h3>
 
             <!--<vue-color-cylinder></vue-color-cylinder>-->
-            <color-input  v-bind:name="Lang.from('颜色')"
-                          v-bind:out_value.sync="Gob.text.assignment.color"
-                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
-                          v-bind:color.sync="Gob.text.color"
-                          mini="true"
+            <color-input v-bind:name="Lang.from('颜色')"
+                         v-bind:out_value.sync="Gob.text.assignment.color"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
+                         v-bind:color.sync="Gob.text.color"
+                         mini="true"
             ></color-input>
+
+            <value-input v-bind:name="Lang.from('字体')" v-bind:edit_value.sync="Gob.text.fontPostScriptName"
+                         v-bind:out_value.sync="Gob.text.assignment.fontPostScriptName"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.fontPostScriptName"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('仿粗体')" v-bind:edit_value.sync="Gob.text.bold"
+                         v-bind:out_value.sync="Gob.text.assignment.bold"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.bold"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('仿斜体')" v-bind:edit_value.sync="Gob.text.italic"
+                         v-bind:out_value.sync="Gob.text.assignment.italic"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.italic"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('字体尺寸')" v-bind:edit_value.sync="Gob.text.size"
+                         v-bind:out_value.sync="Gob.text.assignment.size"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
+                         mini="true"></value-input>
+
+
+            <select-input v-bind:block="false" default_value="0"
+                          v-bind:name="Lang.from('锯齿')"
+                          v-bind:value.sync="Gob.text.antiAlias"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:options="o_text_antiAlias_options"
+                          in_class="text_antiAlias"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.text.antiAlias"
+                             v-bind:out_value.sync="Gob.text.assignment.antiAlias"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.antiAlias"
+                             mini="true"></value-input>
+            </select-input>
+
+
+            <select-input v-bind:block="false" default_value="0"
+                          v-bind:name="Lang.from('下划线')"
+                          v-bind:value.sync="Gob.text.underline"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:options="o_text_underline_options"
+                          in_class="text_underline"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.text.underline"
+                             v-bind:out_value.sync="Gob.text.assignment.underline"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.underline"
+                             mini="true"></value-input>
+            </select-input>
+
+
+            <value-input v-bind:name="Lang.from('段落对齐方式')"
+                         v-bind:edit_value.sync="Gob.text.justification"
+                         v-bind:out_value.sync="Gob.text.assignment.justification"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('行距')"
+                         v-bind:edit_value.sync="Gob.text.leading"
+                         v-bind:out_value.sync="Gob.text.assignment.leading"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.leading"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('字符间距')"
+                         v-bind:edit_value.sync="Gob.text.tracking"
+                         v-bind:out_value.sync="Gob.text.assignment.tracking"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.tracking"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('基线偏移')"
+                         v-bind:edit_value.sync="Gob.text.baselineShift"
+                         v-bind:out_value.sync="Gob.text.assignment.baselineShift"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('水平缩放')"
+                         v-bind:edit_value.sync="Gob.text.horizontalScale"
+                         v-bind:out_value.sync="Gob.text.assignment.horizontalScale"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.horizontalScale"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('垂直缩放')"
+                         v-bind:edit_value.sync="Gob.text.verticalScale"
+                         v-bind:out_value.sync="Gob.text.assignment.verticalScale"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.verticalScale"
+                         mini="true"></value-input>
+
+
+            <!--<value-input  -bind:name="Lang.from('仿斜体')" v-bind:edit_value.sync="Gob.position.x"-->
+            <!--v-bind:out_value.sync="Gob.position.assignment.x"-->
+            <!--v-bind:enable_assign.sync="Gob.position.enableAssigns.x"-->
+            <!--mini="true"></value-input>-->
+            <!--<value-input  -bind:name="Lang.from('仿斜体')" v-bind:edit_value.sync="Gob.position.x"-->
+            <!--v-bind:out_value.sync="Gob.position.assignment.x"-->
+            <!--v-bind:enable_assign.sync="Gob.position.enableAssigns.x"-->
+            <!--mini="true"></value-input>-->
 
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
                            v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
                            v-bind:enable_formula.sync="Gob.text.$enableFormula"
             ></attr-textarea>
-
 
 
         </div>
@@ -170,6 +266,11 @@
 
     .option_list.position_anchor {
         margin-left: -63px;
+    }
+
+    .tag-text.trans-fade-transition {
+        height: 400px;
+
     }
 
     .trans-fade-transition {
@@ -226,7 +327,7 @@
                 Gob: Gob,
                 tagsActive: setSystem.attArea.tagsActive,
                 UI_model: UI_model,
-                Lang:Lang,
+                Lang: Lang,
                 o_value: "",
                 o_positon_anchor_options: [
                     {
@@ -246,7 +347,7 @@
                         label: ''
                     },
                     {
-                        hr: true,
+                        br: true,
                     },
                     {
                         value: '3',
@@ -264,7 +365,7 @@
                         label: ''
                     }, {
 
-                        hr: true,
+                        br: true,
                     },
                     {
                         value: '6',
@@ -283,10 +384,25 @@
                         label: ''
                     }
 
+                ],
+                o_text_antiAlias_options: [
+                    {value: 'antiAliasNone', label: Lang.from('无')},
+                    {value: 'antiAliasSharp', label: Lang.from('锐利')},
+                    {value: 'antiAliasCrisp', label: Lang.from('犀利')},
+                    {value: 'antiAliasStrong', label: Lang.from('浑厚')},
+                    {value: 'antiAliasSmooth', label: Lang.from('平滑')},
+                    {hr: true},
+                    {value: 'antiAliasPlatformLCD', label: Lang.from('Win LCD')},
+                    {value: 'antiAliasPlatformGray', label: Lang.from('Windows')},
+                ],
+
+                o_text_underline_options: [
+                    {value: 'underlineOff', label: Lang.from('无')},
+                    {value: 'underlineOnLeftInVertical', label: Lang.from('左')},
+                    {value: 'underlineOnRightInVertical', label: Lang.from('右')},
+
                 ]
-
-
-            }
+        }
         },
         components: {
             "value-input": ValueInput,

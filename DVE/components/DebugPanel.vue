@@ -9,20 +9,20 @@
             <!--</pre>-->
 
 
-            <!--<div class="title">dataCaryon</div>-->
-            <!--<pre>-->
-                <!--{{dataCaryon |json}}-->
-            <!--</pre>-->
+            <div class="title">dataCaryon</div>
+            <pre>
+                {{dataCaryon |json}}
+            </pre>
 
             <!--<div class="title">Gob</div>-->
             <!--<pre>-->
                <!--{{Gob |json}}-->
             <!--</pre>-->
 
-            <div class="Gob.text">Gob</div>
-            <pre>
-            {{Gob.text.color |json}}
-            </pre>
+            <!--<div class="Gob.text">Gob</div>-->
+            <!--<pre>-->
+            <!--{{Gob.text.color |json}}-->
+            <!--</pre>-->
         </a-area>
     </div>
 

@@ -1,10 +1,13 @@
 <template>
 
-    <div v-if="!hr" v-on:click="doSelect" class="attr_option {{in_class}} {{(selected_value==value)?'selected':''}}">
-        {{{label_html}}} {{label}} <slot></slot>
+    <div v-if="value!=undefind" v-on:click="doSelect"
+         class="attr_option {{in_class}} {{(selected_value==value)?'selected':''}}">
+        {{{label_html}}} {{label}}
+        <slot></slot>
     </div>
 
     <div v-if="hr" class="option_hr"></div>
+    <div v-if="br" class="option_br"></div>
 
 </template>
 <style>
@@ -25,12 +28,15 @@
         transition: .4s all;
     }
 
+    .option_hr {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
 </style>
 <script>
 
     export default{
 
-        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "state", "hr", "in_class"],
+        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "state", "hr", "br", "in_class"],
         methods: {
             doSelect: function ()
             {
