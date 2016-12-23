@@ -11,7 +11,7 @@
 
 
             <attr-option v-for="item in menu_data"
-                         v-bind:value="item.value"
+                         v-bind:value="item.value||item.name"
                          v-bind:state.sync="item.state"
                          v-bind:hr="item.hr"
                          v-bind:label="item.name"
@@ -58,8 +58,8 @@
             padding: 0;
 
             .option_hr {
-                border-top: 1px solid rgba(17, 17, 17, 0.12);
-                border-bottom: 1px solid rgba(102, 102, 102, 0.05);
+                border-top: 1px solid rgba(0, 0, 0, 0.09);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.45);
             }
 
             .attr_option.selected:not(:hover) {
@@ -113,6 +113,7 @@
                     this.value = this.default_value;
                 }
             }
+
         },
 
 

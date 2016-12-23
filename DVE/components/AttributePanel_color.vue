@@ -25,9 +25,7 @@
         vertical-align: middle;
     }
 
-    .color_input {
-        margin-left: 8px;
-    }
+
     .color_input .input.exmo_input_text.edit_input {
         margin-left: 0;
     }

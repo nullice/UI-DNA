@@ -8,10 +8,14 @@
             <i class=" select_triangle_icon icon-play3"></i>
         </div>
 
-        <div v-show="show_list" class="option_list {{in_class}}">
+        <div v-bind:style="list_style"
+             v-show="show_list"
+             class="option_list  {{in_class}}"
+             >
             <attr-option v-for="item in options"
-                         v-bind:value="item.value"
+                         v-bind:value="item.value||'none'"
                          v-bind:hr="item.hr"
+                         v-bind:br="item.br"
                          v-bind:label="item.label"
                          v-bind:label_html="item.label_html"
                          v-bind:selected_func="selected_func"
@@ -31,10 +35,12 @@
 
         .inline_block {
             display: inline-block;
+            white-space: nowrap;
         }
 
         .option_list {
             position: absolute;
+            font-size: 0;
             max-height: 0;
             overflow: hidden;
             transition: .3s all;
@@ -46,6 +52,10 @@
             border-radius: 2px;
             padding: 0;
 
+
+            div{
+                font-size: 14px;
+            }
         }
 
         &:hover .option_list, .option_list:hover {
@@ -132,7 +142,7 @@
             }
         },
 
-        props: ['value', 'block', 'select_style', 'options', 'default_value', "in_class"],
+        props: ['value', 'block', 'select_style','list_style', 'options', 'default_value', "in_class"],
         methods: {
             getLable: function ()
             {

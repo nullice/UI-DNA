@@ -612,7 +612,6 @@
                         state: true,
                     },
                     hr: {
-                        name: "12",
                         type: "multi_select",
                         state: true,
                         hr: true,
@@ -690,6 +689,7 @@
                     xyz: {
                         name: "XYZ",
                         type: "multi_select",
+
                         state: false,
                         child: {
                             x: true,

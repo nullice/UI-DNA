@@ -1,12 +1,17 @@
 <template>
     <div class="select_input">
-        <div class="exmo_box_name" v-if="(name!=undefinde)||(name_html!=undefinde)">{{name|lang}} {{{name_html}}}</div>
+        <div class="exmo_box_name" v-if="(name!=undefinde)||(name_html!=undefinde)"
+        v-bind:title="title"
+        >
+
+            {{name|lang}} {{{name_html}}}</div>
         <attr-select
                 v-bind:block="block"
                 v-bind:in_class="in_class"
                 v-bind:default_value="default_value"
                 v-bind:value.sync="value"
                 v-bind:select_style="select_style"
+                v-bind:list_style="list_style"
                 v-bind:options="options"
         >
         </attr-select>
@@ -55,7 +60,7 @@
 
     export default{
 
-        props: ['name', 'name_html', 'value', 'block', 'select_style', 'options', 'default_value', 'in_class'],
+        props: ['name','title', 'name_html', 'value', 'block', 'select_style','list_style', 'options', 'default_value', 'in_class'],
         data(){
             return {
                 msg: 'hello vue'

@@ -108,6 +108,7 @@
 
             <!--<vue-color-cylinder></vue-color-cylinder>-->
             <color-input v-bind:name="Lang.from('颜色')"
+                         v-bind:title="Lang.from('颜色')"
                          v-bind:out_value.sync="Gob.text.assignment.color"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
                          v-bind:color.sync="Gob.text.color"
@@ -134,9 +135,16 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
                          mini="true"></value-input>
 
+            <value-input v-bind:name="Lang.from('基线')"
+                         v-bind:title="Lang.from('基线偏移')"
+                         v-bind:edit_value.sync="Gob.text.baselineShift"
+                         v-bind:out_value.sync="Gob.text.assignment.baselineShift"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
+                         mini="true"></value-input>
 
             <select-input v-bind:block="false" default_value="0"
                           v-bind:name="Lang.from('锯齿')"
+                          v-bind:title="Lang.from('下划线')"
                           v-bind:value.sync="Gob.text.antiAlias"
                           v-bind:select_style="{width:'64px'}"
                           v-bind:options="o_text_antiAlias_options"
@@ -150,8 +158,9 @@
             </select-input>
 
 
-            <select-input v-bind:block="false" default_value="0"
-                          v-bind:name="Lang.from('下划线')"
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('划线')"
+                          v-bind:title="Lang.from('下划线')"
                           v-bind:value.sync="Gob.text.underline"
                           v-bind:select_style="{width:'64px'}"
                           v-bind:options="o_text_underline_options"
@@ -165,37 +174,51 @@
             </select-input>
 
 
-            <value-input v-bind:name="Lang.from('段落对齐方式')"
-                         v-bind:edit_value.sync="Gob.text.justification"
-                         v-bind:out_value.sync="Gob.text.assignment.justification"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
-                         mini="true"></value-input>
+            <select-input v-bind:block="true" default_value=""
+                          v-bind:name="Lang.from('对齐')"
+                          v-bind:title="Lang.from('段落对齐')"
+                          v-bind:value.sync="Gob.text.justification"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:list_style="{width:'132px'}"
+                          v-bind:options="o_text_justification_options"
+                          in_class="text_justification"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.text.justification"
+                             v-bind:out_value.sync="Gob.text.assignment.justification"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
+                             mini="true"></value-input>
+
+
+            </select-input>
+
+
 
             <value-input v-bind:name="Lang.from('行距')"
+                         v-bind:title="Lang.from('行距')"
                          v-bind:edit_value.sync="Gob.text.leading"
                          v-bind:out_value.sync="Gob.text.assignment.leading"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.leading"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('字符间距')"
+            <value-input v-bind:name="Lang.from('字距')"
+                         v-bind:title="Lang.from('字符间距')"
                          v-bind:edit_value.sync="Gob.text.tracking"
                          v-bind:out_value.sync="Gob.text.assignment.tracking"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.tracking"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('基线偏移')"
-                         v-bind:edit_value.sync="Gob.text.baselineShift"
-                         v-bind:out_value.sync="Gob.text.assignment.baselineShift"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
-                         mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('水平缩放')"
+
+            <value-input v-bind:name="Lang.from('水平')"
+                         v-bind:title="Lang.from('水平缩放')"
                          v-bind:edit_value.sync="Gob.text.horizontalScale"
                          v-bind:out_value.sync="Gob.text.assignment.horizontalScale"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.horizontalScale"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('垂直缩放')"
+            <value-input v-bind:name="Lang.from('垂直')"
+                         v-bind:name="Lang.from('垂直缩放')"
                          v-bind:edit_value.sync="Gob.text.verticalScale"
                          v-bind:out_value.sync="Gob.text.assignment.verticalScale"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.verticalScale"
@@ -286,6 +309,12 @@
         height: 0;
         opacity: 0;
     }
+
+    /*-----*/
+    .attr_select.text_justification i{
+        font-size: 16px!important;
+    }
+
 </style>
 
 
@@ -398,9 +427,17 @@
 
                 o_text_underline_options: [
                     {value: 'underlineOff', label: Lang.from('无')},
-                    {value: 'underlineOnLeftInVertical', label: Lang.from('左')},
+                    {value: 'underlineOnLeftInVertical', label: Lang.from('下')},
                     {value: 'underlineOnRightInVertical', label: Lang.from('右')},
-
+                ],
+                o_text_justification_options:[
+                    {value: 'left', label_html: "<i class='icon-text-left'>"},
+                    {value: 'center', label_html: "<i class='icon-text-center'>"},
+                    {value: 'right', label_html: "<i class='icon-text-right'>"},
+                    {br: true},
+                    {value: 'justifyLeft', label_html: "<i class='icon-text-justified-left'>"},
+                    {value: 'justifyAll', label_html: "<i class='icon-text-justified'>"},
+                    {value: 'justifyRight', label_html: "<i class='icon-text-justified-right'>"},
                 ]
         }
         },
