@@ -341,6 +341,46 @@ Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID, do
     )
 }
 
+/**
+ * 获取图层形状信息。
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.getLayerInfo_shape_byId = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `EnzJSX.getLayerInfo_shape_byId(${layerID})`
+        evalScript(
+            _jsxCode
+            ,
+            (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+    })
+
+}
+
+
+/**
+ * 设置图层形状信息。会导致选中指定图层。
+ * @param textInfo
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID)
+{
+    return new Promise(function (resolve, reject)
+        {
+            var obJson = JSON.stringify(textInfo);
+            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID}} )`
+            evalScript(
+                _jsxCode,
+                (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+        }
+    )
+}
+
+
+
 
 /**
  * 保存当前各图层选中状态，把返回值用作 Enzymes.selectLoad() 的参数，能再现当前各图层选中状态

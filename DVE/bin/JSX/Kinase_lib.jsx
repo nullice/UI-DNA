@@ -1471,7 +1471,13 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
 }
 
-
+/**
+ * 获取形状图层描边信息
+ * @param targetReference
+ * @param target
+ * @param returnKeyOriginType
+ * @returns {{strokeColor: {r: null, g: null, b: null, enabled: null}, fillColor: {r: null, g: null, b: null, enabled: null}, lineWidth: null, dashSet: null, lineAlignment: null, lineCapType: null, lineJoinType: null}}
+ */
 Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
 {
     var strokeStyle = {
@@ -1912,7 +1918,7 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
 }
 
 /**
- * 设置
+ * 设置图层圆角信息
  * @param radianInfo
  */
 Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)

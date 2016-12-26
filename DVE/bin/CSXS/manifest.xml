@@ -20,7 +20,7 @@
     </ExecutionEnvironment>
 
     <DispatchInfoList>
-        <Extension Id="UI-DNA"> <!-- 为 new_panel_0 设置属性-->
+        <Extension Id="UI-DNA"> <!-- 为 UI-DNA 设置属性-->
             <DispatchInfo>
                 <Resources>
 
@@ -67,5 +67,5 @@
     </DispatchInfoList>
 
     <Author>nullice</Author> <!-- 作者信息-->
-    <Abstract>一个空白的扩展.</Abstract> <!-- 扩展描述-->
+    <Abstract>UI-DNA, nullice.com</Abstract> <!-- 扩展描述-->
 </ExtensionManifest>

@@ -76,6 +76,7 @@
             <select-input block="true" default_value="0"
                           v-bind:value.sync="Gob.position.$anchor"
                           v-bind:select_style="{width:'69px'}"
+                          v-bind:list_style="{width:'147px'}"
                           v-bind:options="o_positon_anchor_options"
                           in_class="position_anchor"
             >
@@ -115,22 +116,30 @@
                          mini="true"
             ></color-input>
 
-            <value-input v-bind:name="Lang.from('字体')" v-bind:edit_value.sync="Gob.text.fontPostScriptName"
+            <value-input v-bind:name="Lang.from('字体')"
+                         v-bind:title="Lang.from('字体')"
+                         v-bind:edit_value.sync="Gob.text.fontPostScriptName"
                          v-bind:out_value.sync="Gob.text.assignment.fontPostScriptName"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.fontPostScriptName"
             ></value-input>
 
-            <value-input v-bind:name="Lang.from('仿粗体')" v-bind:edit_value.sync="Gob.text.bold"
+            <value-input v-bind:name="Lang.from('粗体')"
+                         v-bind:title="Lang.from('仿粗体')"
+                         v-bind:edit_value.sync="Gob.text.bold"
                          v-bind:out_value.sync="Gob.text.assignment.bold"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.bold"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('仿斜体')" v-bind:edit_value.sync="Gob.text.italic"
+            <value-input v-bind:name="Lang.from('斜体')"
+                         v-bind:title="Lang.from('仿斜体')"
+                         v-bind:edit_value.sync="Gob.text.italic"
                          v-bind:out_value.sync="Gob.text.assignment.italic"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.italic"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('字体尺寸')" v-bind:edit_value.sync="Gob.text.size"
+            <value-input v-bind:name="Lang.from('尺寸')"
+                         v-bind:title="Lang.from('字体尺寸')"
+                         v-bind:edit_value.sync="Gob.text.size"
                          v-bind:out_value.sync="Gob.text.assignment.size"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
                          mini="true"></value-input>
@@ -292,7 +301,7 @@
     }
 
     .tag-text.trans-fade-transition {
-        height: 400px;
+        height: 450px;
 
     }
 

@@ -558,7 +558,6 @@ EnzJSX.setLayerInfo_position_byId = function (boundsInfo, id, doSelect)
 }
 
 
-
 EnzJSX.getLayerInfo_text_byId = function (id)
 {
     return JSON.stringify(ki.layer.getLayerTextInfo(Kinase.REF_LayerID, id))
@@ -598,6 +597,149 @@ EnzJSX.setLayerInfo_text_byId = function (textInfo, id, doSelect)
 }
 
 
+/**
+ * 获取图层形状信息
+ *
+ * @param id
+ */
+EnzJSX.getLayerInfo_shape_byId = function (id)
+{
+    // {
+    //     strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
+    //     strokeColorEnabled: null, /*启用描边*/
+    //     fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+    //     fillColorEnabled: null, /*启用填充*/
+    //     lineWidth: null, /*边线宽度*/
+    //     dashSet: null, /*虚线设置*/
+    //     lineAlignment: null, /*描边选项-对齐*/
+    //     lineCapType: null, /*描边选项-端点*/
+    //     lineJoinType: null, /*描边选项-角点*/
+    //     shapeSize: {x, y, h, w}, /*形状尺寸*/
+    //     radian: {/*圆角*/
+    //         topRight: null,
+    //             topLeft: null,
+    //             bottomRight: null,
+    //             bottomLeft: null,
+    //     }
+    // }
+
+    var strokeStyle = ki.layer.getStrokeStyle(Kinase.REF_LayerID, id)
+    //  strokeStyle = {
+    //     strokeColor: {r: null, g: null, b: null, enabled: null}, /*描边颜色*/
+    //     fillColor: {r: null, g: null, b: null, enabled: null}, /*填充颜色*/
+    //     lineWidth: null, /*边线宽度*/
+    //     dashSet: null, /*虚线设置*/
+    //     lineAlignment: null, /*描边选项-对齐*/
+    //     lineCapType: null, /*描边选项-端点*/
+    //     lineJoinType: null, /*描边选项-角点*/
+    // };
+
+
+    var radian = ki.layer.getLayerRadian(Kinase.REF_LayerID, id)
+    // radian = {
+    //     topRight: null,
+    //     topLeft: null,
+    //     bottomRight: null,
+    //     bottomLeft: null,
+    // }
+
+    var shapeSize = ki.layer.getLayerShapeSize(Kinase.REF_LayerID, id)
+    // shapeSize = {x, y, h, w}
+
+
+    var shapeInfo = {
+        strokeColor: /*描边颜色*/
+        {
+            r: strokeStyle.strokeColor.r,
+            g: strokeStyle.strokeColor.g,
+            b: strokeStyle.strokeColor.b,
+        },
+        strokeColorEnabled: strokeStyle.strokeColor.enabled, /*启用描边*/
+        fillColor: /*填充颜色*/
+        {
+            r: strokeStyle.fillColor.r,
+            g: strokeStyle.fillColor.g,
+            b: strokeStyle.fillColor.b,
+        },
+        fillColorEnabled: strokeStyle.fillColor.enabled, /*启用填充*/
+        lineWidth: strokeStyle.lineWidth, /*边线宽度*/
+        dashSet: strokeStyle.dashSet, /*虚线设置*/
+        lineAlignment: strokeStyle.lineAlignment, /*描边选项-对齐*/
+        lineCapType: strokeStyle.lineCapType, /*描边选项-端点*/
+        lineJoinType: strokeStyle.lineJoinType, /*描边选项-角点*/
+        shapeSize: shapeSize, /*形状尺寸  {x, y, h, w}*/
+        radian: radian  /*圆角*/
+        /* {topRight: null, topLeft: null,
+         bottomRight: null, bottomLeft: null}*/
+    }
+    return JSON.stringify(shapeInfo)
+}
+
+
+/**
+ * 设置形状图层属性。会导致选中指定图层。
+ * @param shapeInfo
+ * @param id
+ */
+EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
+{
+
+    ki.layer.selectLayer_byID(id)
+
+    try
+    {
+        var strokeStyle = {
+            strokeColor: {
+                r: shapeInfo.strokeColor.r,
+                g: shapeInfo.strokeColor.g,
+                b: shapeInfo.strokeColor.b,
+                enabled: shapeInfo.strokeColorEnabled
+            }, /*描边颜色*/
+            fillColor: {
+                r: shapeInfo.fillColor.r,
+                g: shapeInfo.fillColor.g,
+                b: shapeInfo.fillColor.b,
+                enabled: shapeInfo.fillColorEnabled
+            }, /*填充颜色*/
+            lineWidth: shapeInfo.lineWidth, /*边线宽度*/
+            dashSet: shapeInfo.dashSet, /*虚线设置*/
+            lineAlignment: shapeInfo.lineAlignment, /*描边选项-对齐*/
+            lineCapType: shapeInfo.lineCapType, /*描边选项-端点*/
+            lineJoinType: shapeInfo.lineJoinType, /*描边选项-角点*/
+        };
+
+        ki.layer.setStrokeStyle_byActive(strokeStyle)
+
+    } catch (e)
+    {
+        console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, ` ki.layer.setStrokeStyle_byActive(${strokeStyle})`)
+    }
+
+    try
+    {
+        var radian = shapeInfo.radian
+        ki.layer.setStrokeStyle_byActive(strokeStyle)
+
+    } catch (e)
+    {
+        console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, `ki.layer.setStrokeStyle_byActive(${radian})`)
+    }
+
+    try
+    {
+        var shapeSize = shapeInfo.shapeSize
+        ki.layer.setLayerShapeSize_byActive(shapeSize)
+
+    } catch (e)
+    {
+        console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, `ki.layer.setLayerShapeSize_byActive(${shapeSize})`)
+    }
+
+
+    return
+}
+
+
 //
 EnzJSX.EnhancerKeys = {
     keys: {
@@ -613,6 +755,7 @@ EnzJSX.EnhancerKeys = {
         w: ["x", "宽"],
     }
 }
+
 
 /**
  *

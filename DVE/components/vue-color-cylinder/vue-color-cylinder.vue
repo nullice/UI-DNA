@@ -693,12 +693,11 @@
                         state: false,
                         child: {
                             x: true,
-                            y: true,
+                            y:                       true,
                             z: true,
                         }
                     },
                     more: {
-                        name: "more",
                         type: "multi_select",
                         state: true,
                         hr: true,
