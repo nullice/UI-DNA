@@ -36,6 +36,20 @@ function initEnzymes(in_extendPath)
 
 var EnzJSX = {};
 
+EnzJSX.try = function (func)
+{
+    try
+    {
+        func();
+        return 0;
+    }
+    catch (e)
+    {
+        return e;
+    }
+}
+
+
 /**
  * 删除图层
  * @param layerName
@@ -599,29 +613,28 @@ EnzJSX.setLayerInfo_text_byId = function (textInfo, id, doSelect)
 
 /**
  * 获取图层形状信息
- *
+ * {
+        strokeColor: {r: null, g: null, b: null}, /!*描边颜色*!/
+        strokeColorEnabled: null, /!*启用描边*!/
+        fillColor: {r: null, g: null, b: null}, /!*填充颜色*!/
+        fillColorEnabled: null, /!*启用填充*!/
+        lineWidth: null, /!*边线宽度*!/
+        dashSet: null, /!*虚线设置*!/
+        lineAlignment: null, /!*描边选项-对齐*!/
+        lineCapType: null, /!*描边选项-端点*!/
+        lineJoinType: null, /!*描边选项-角点*!/
+        shapeSize: {x, y, h, w}, /!*形状尺寸*!/
+        radian: {/!*圆角*!/
+            topRight: null,
+            topLeft: null,
+            bottomRight: null,
+            bottomLeft: null,
+        }
+    }
  * @param id
  */
 EnzJSX.getLayerInfo_shape_byId = function (id)
 {
-    // {
-    //     strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
-    //     strokeColorEnabled: null, /*启用描边*/
-    //     fillColor: {r: null, g: null, b: null}, /*填充颜色*/
-    //     fillColorEnabled: null, /*启用填充*/
-    //     lineWidth: null, /*边线宽度*/
-    //     dashSet: null, /*虚线设置*/
-    //     lineAlignment: null, /*描边选项-对齐*/
-    //     lineCapType: null, /*描边选项-端点*/
-    //     lineJoinType: null, /*描边选项-角点*/
-    //     shapeSize: {x, y, h, w}, /*形状尺寸*/
-    //     radian: {/*圆角*/
-    //         topRight: null,
-    //             topLeft: null,
-    //             bottomRight: null,
-    //             bottomLeft: null,
-    //     }
-    // }
 
     var strokeStyle = ki.layer.getStrokeStyle(Kinase.REF_LayerID, id)
     //  strokeStyle = {
@@ -712,7 +725,8 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
 
     } catch (e)
     {
-        console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, ` ki.layer.setStrokeStyle_byActive(${strokeStyle})`)
+        return
+        // console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, ` ki.layer.setStrokeStyle_byActive(${strokeStyle})`)
     }
 
     try
@@ -722,7 +736,7 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
 
     } catch (e)
     {
-        console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, `ki.layer.setStrokeStyle_byActive(${radian})`)
+        return
     }
 
     try
@@ -732,11 +746,9 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
 
     } catch (e)
     {
-        console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, `ki.layer.setLayerShapeSize_byActive(${shapeSize})`)
+        return
     }
 
-
-    return
 }
 
 

@@ -59,7 +59,7 @@ var GobCaryon = function ()
 
     this.position = GobCaryon.prototype.__new_position();
     this.text = GobCaryon.prototype.__new_text();
-
+    this.shape = GobCaryon.prototype.__new_shape();
     // this.position = {
     //     x: null,
     //     y: null,
@@ -197,6 +197,56 @@ GobCaryon.prototype.__new_text = function ()
 }
 
 
+GobCaryon.prototype.__new_shape = function ()
+{
+    return {
+        strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
+        strokeColorEnabled: null, /*启用描边*/
+        fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+        fillColorEnabled: null, /*启用填充*/
+        lineWidth: null, /*边线宽度*/
+        dashSet: null, /*虚线设置*/
+        lineAlignment: null, /*描边选项-对齐*/
+        lineCapType: null, /*描边选项-端点*/
+        lineJoinType: null, /*描边选项-角点*/
+        shapeSize: {x: null, y: null, h: null, w: null}, /*形状尺寸*/
+        radian: {
+            /*圆角*/
+            topRight: null,
+            topLeft: null,
+            bottomRight: null,
+            bottomLeft: null,
+        },
+        assignment: {
+            strokeColor: null,
+            strokeColorEnabled: null,
+            fillColor: null,
+            fillColorEnabled: null, /*启用填充*/
+            lineWidth: null, /*边线宽度*/
+            dashSet: null, /*虚线设置*/
+            lineAlignment: null, /*描边选项-对齐*/
+            lineCapType: null, /*描边选项-端点*/
+            lineJoinType: null, /*描边选项-角点*/
+            shapeSize: null,
+            radian: null
+        },
+        enableAssigns: {
+            strokeColor: null,
+            strokeColorEnabled: null,
+            fillColor: null,
+            fillColorEnabled: null, /*启用填充*/
+            lineWidth: null, /*边线宽度*/
+            dashSet: null, /*虚线设置*/
+            lineAlignment: null, /*描边选项-对齐*/
+            lineCapType: null, /*描边选项-端点*/
+            lineJoinType: null, /*描边选项-角点*/
+            shapeSize: null,
+            radian: null
+        }
+    }
+}
+
+
 GobCaryon.prototype._setData = async function (names, value)
 {
     console.log(`-------_setData(${names}, ${value})`)
@@ -291,7 +341,6 @@ GobCaryon.prototype._setData = async function (names, value)
             }
             //------------------------------------
 
-            
 
             if (!finish)
             {
@@ -511,6 +560,9 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     var new_position = GobCaryon.prototype.__new_position;
     var new_text = GobCaryon.prototype.__new_text;
+    var new_shape = GobCaryon.prototype.__new_shape;
+
+
     temp.position = new_position();
     temp.text = new_text();
     console.log("new_text()-> temp.text ", temp.text)
@@ -531,7 +583,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         //[text]---------------------------------------------------------------
         var item_text = new_text();
         var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
-        console.info("getLayerInfo_text_byId(" + this.selectList[i].id + ")", text)
         item_text.text = text.text;
         item_text.color = text.color;
         item_text.size = text.size;
@@ -548,14 +599,32 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         item_text.verticalScale = text.verticalScale;
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
         _objectToObject(item_text, temp.text, true, !(i == 0));
+
+        // [shape]---------------------------------------------------------------
+        var item_shape = new_shape();
+        var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
+        console.info("getLayerInfo_shape_byId(" + this.selectList[i].id + ")", shape);
+        item_shape.text = shape.strokeColor;
+        item_shape.strokeColorEnabled = shape.strokeColorEnabled;
+        item_shape.fillColor = shape.fillColor;
+        item_shape.fillColorEnabled = shape.fillColorEnabled;
+        item_shape.lineWidth = shape.lineWidth;
+        item_shape.dashSet = shape.dashSet;
+        item_shape.lineAlignment = shape.lineAlignment;
+        item_shape.lineCapType = shape.lineCapType;
+        item_shape.lineJoinType = shape.lineJoinType;
+        item_shape.shapeSize = shape.shapeSize;
+        item_shape.radian = shape.radian;
+
     }
     // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
     _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
+    _objectToObject_asyncSetCounter(temp.shape, this.shape, false, false, true);
     Gob._asyncSetSwitch = true
     _objectToObject(temp.position, this.position, false, false, true);
     _objectToObject(temp.text, this.text, false, false, true);
-
+    _objectToObject(temp.shape, this.shape, false, false, true);
 
     function _setValue(oldValue, value, ignoreNull)
     {

@@ -333,7 +333,7 @@ Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID, do
         {
             var doSelect = doSelect || false;
             var obJson = JSON.stringify(textInfo);
-            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID},${doSelect} )`
+            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson}, ${layerID}, ${doSelect})`
             evalScript(
                 _jsxCode,
                 (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
@@ -371,7 +371,7 @@ Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID)
     return new Promise(function (resolve, reject)
         {
             var obJson = JSON.stringify(textInfo);
-            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID}} )`
+            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID} )`
             evalScript(
                 _jsxCode,
                 (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
@@ -626,7 +626,7 @@ function jsxBackCheck(returnValue, jsxCode)
     if (returnValue == "EvalScript error.")
     {
         console.error(returnValue);
-        console.log(jsxCode)
+        console.error(jsxCode)
         return ""
     }
     else

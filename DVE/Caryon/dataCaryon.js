@@ -201,8 +201,54 @@ var Layer = function (layerListItem)
         }
     }
 
-    // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
+    this.shape =
+    {
+        strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
+        strokeColorEnabled: null, /*启用描边*/
+        fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+        fillColorEnabled: null, /*启用填充*/
+        lineWidth: null, /*边线宽度*/
+        dashSet: null, /*虚线设置*/
+        lineAlignment: null, /*描边选项-对齐*/
+        lineCapType: null, /*描边选项-端点*/
+        lineJoinType: null, /*描边选项-角点*/
+        shapeSize: {x: null, y: null, h: null, w: null}, /*形状尺寸*/
+        radian: {
+            /*圆角*/
+            topRight: null,
+            topLeft: null,
+            bottomRight: null,
+            bottomLeft: null,
+        },
+        assignment: {
+            strokeColor: null,
+            strokeColorEnabled: null,
+            fillColor: null,
+            fillColorEnabled: null, /*启用填充*/
+            lineWidth: null, /*边线宽度*/
+            dashSet: null, /*虚线设置*/
+            lineAlignment: null, /*描边选项-对齐*/
+            lineCapType: null, /*描边选项-端点*/
+            lineJoinType: null, /*描边选项-角点*/
+            shapeSize: null,
+            radian: null
+        },
+        enableAssigns: {
+            strokeColor: false,
+            strokeColorEnabled: false,
+            fillColor: false,
+            fillColorEnabled: false, /*启用填充*/
+            lineWidth: false, /*边线宽度*/
+            dashSet: false, /*虚线设置*/
+            lineAlignment: false, /*描边选项-对齐*/
+            lineCapType: false, /*描边选项-端点*/
+            lineJoinType: false, /*描边选项-角点*/
+            shapeSize: false,
+            radian: false
+        }
+    }
 
+    // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
     return this;
 }
 

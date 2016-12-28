@@ -2,7 +2,6 @@
 
     <debug-microscope>测试用</debug-microscope>
     <!---->
-    <input type="text" v-model="UI_model.msg_color_picker.color1.color.hex">
     <vue-color-cylinder v-show="UI_model.msg_color_picker.color1.show"
                         v-bind:ichi_color.sync="UI_model.msg_color_picker.color1.color" confirm="true"
                         v-bind:callback_confirm="UI_model.msg_color_picker.color1.callback"

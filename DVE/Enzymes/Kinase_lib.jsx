@@ -374,11 +374,18 @@ Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, tar
  */
 Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
 {
-    var ref = new ActionReference();
-    ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID("AGMStrokeStyleInfo"));
-    targetReference(ref, target, "contentLayer");
-    var layerDesc = executeActionGet(ref);
-    return mu.actionDescriptorToObject(layerDesc);
+    try
+    {
+        var ref = new ActionReference();
+        ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID("AGMStrokeStyleInfo"));
+        targetReference(ref, target, "contentLayer");
+        var layerDesc = executeActionGet(ref);
+        return mu.actionDescriptorToObject(layerDesc);
+    } catch (e)
+    {
+        return null;
+    }
+
 }
 
 
@@ -1376,7 +1383,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
     {
         // \r 表示换行符。
         adOb.to.value.textKey = {
-            "value": textInfo.text.replace("\n", "\r") ,
+            "value": textInfo.text.replace("\n", "\r"),
             "type": "DescValueType.STRINGTYPE"
         }
     }
