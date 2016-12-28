@@ -86,19 +86,17 @@
         <div class="tag-box tag-shape" v-show="tagsActive.shape" v-bind:class="{active:tagsActive.shape}"
              transition="trans-fade">
             <h3> {{'形状' |lang}} </h3>
-            <value-input name="X" v-bind:edit_value.sync="Gob.position.x"
-                         v-bind:out_value.sync="Gob.position.assignment.x"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.x"></value-input>
-            <value-input name="Y" v-bind:edit_value.sync="Gob.position.y"
-                         v-bind:out_value.sync="Gob.position.assignment.y"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.y"></value-input>
-            <value-input name="W" v-bind:edit_value.sync="Gob.position.w"
-                         v-bind:out_value.sync="Gob.position.assignment.w"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.w"></value-input>
-            <value-input name="H" v-bind:edit_value.sync="Gob.position.h"
-                         v-bind:out_value.sync="Gob.position.assignment.h"
-                         v-bind:enable_assign.sync="Gob.position.enableAssigns.h"></value-input>
-            <!--<comp-a></comp-a>-->
+            <!--<color-input v-bind:name="Lang.from('颜色')"-->
+                         <!--v-bind:title="Lang.from('颜色')"-->
+                         <!--v-bind:out_value.sync="Gob.shape.assignment.fillColor"-->
+                         <!--v-bind:enable_assign.sync="Gob.shape.enableAssigns.fillColor"-->
+                         <!--v-bind:color.sync="Gob.shape.fillColor"-->
+
+
+                         <!--mini="true"-->
+            <!--&gt;</color-input>-->
+
+
         </div>
 
 
@@ -201,7 +199,6 @@
             </select-input>
 
 
-
             <value-input v-bind:name="Lang.from('行距')"
                          v-bind:title="Lang.from('行距')"
                          v-bind:edit_value.sync="Gob.text.leading"
@@ -215,8 +212,6 @@
                          v-bind:out_value.sync="Gob.text.assignment.tracking"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.tracking"
                          mini="true"></value-input>
-
-
 
             <value-input v-bind:name="Lang.from('水平')"
                          v-bind:title="Lang.from('水平缩放')"
@@ -232,23 +227,11 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.verticalScale"
                          mini="true"></value-input>
 
-
-            <!--<value-input  -bind:name="Lang.from('仿斜体')" v-bind:edit_value.sync="Gob.position.x"-->
-            <!--v-bind:out_value.sync="Gob.position.assignment.x"-->
-            <!--v-bind:enable_assign.sync="Gob.position.enableAssigns.x"-->
-            <!--mini="true"></value-input>-->
-            <!--<value-input  -bind:name="Lang.from('仿斜体')" v-bind:edit_value.sync="Gob.position.x"-->
-            <!--v-bind:out_value.sync="Gob.position.assignment.x"-->
-            <!--v-bind:enable_assign.sync="Gob.position.enableAssigns.x"-->
-            <!--mini="true"></value-input>-->
-
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
                            v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
                            v-bind:enable_formula.sync="Gob.text.$enableFormula"
             ></attr-textarea>
-
-
         </div>
 
 

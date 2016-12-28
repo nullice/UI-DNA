@@ -86,7 +86,7 @@ Enzymes.prototype.createLayer = async function (layerName)
     {
         var _jsxCode = `EnzJSX.creatLayer(${'"' + layerName + '"' || ""})`;
         evalScript(_jsxCode,
-            (r)=> {resolve(Number(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(Number(jsxBackCheck(r, _jsxCode)))})
     })
 }
 
@@ -102,7 +102,7 @@ Enzymes.prototype.deleteLayer = async function (id)
 
         var _jsxCode = `EnzJSX.deletLayer(${JSON.stringify(id)})`
         evalScript(_jsxCode,
-            (r)=> {resolve(Number(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(Number(jsxBackCheck(r, _jsxCode)))})
     })
 }
 
@@ -123,25 +123,25 @@ Enzymes.prototype.getAllLayerArray = async function (getType)
         {
             var _jsxCode = `EnzJSX.getAllLayersID()`
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
 
         } else if (getType == "itemIndex" || getType == 1)
         {
             var _jsxCode = `EnzJSX.getAllLayersItemIndex()`
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
 
         } else if (getType == "name" || getType == 2)
         {
             var _jsxCode = `EnzJSX.getAllLayersName()`
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
 
         } else
         {// [{name ,id ,itemIndex}]
             var _jsxCode = `EnzJSX.getAllLayersList()`
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
         }
     })
 
@@ -157,19 +157,19 @@ Enzymes.prototype.getSelectLayerArray = async function (getType)
         {
             var _jsxCode = `EnzJSX.getSelectLayerID()`
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
 
         } else if (getType == "itemIndex" || getType == 1)
         {
             var _jsxCode = `EnzJSX.getSelectLayerItemIndex()`
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
 
         } else if (getType == "name" || getType == 2)
         {
             var _jsxCode = `EnzJSX.getSelectLayerName()`;
             evalScript(_jsxCode,
-                (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+                (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
 
         } else
         {// [{name ,id ,itemIndex}]
@@ -177,7 +177,7 @@ Enzymes.prototype.getSelectLayerArray = async function (getType)
             evalScript(_jsxCode,
                 (r)=>
                 {
-                    resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))
+                    resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))
                 })
         }
     })
@@ -206,7 +206,7 @@ Enzymes.prototype.checkLayerExist = async function (layerHandle, handleType, sca
             evalScript(_jsxCode,
                 (r)=>
                 {
-                    var result = JSON.parse(jsxBackCheck(r,_jsxCode))
+                    var result = JSON.parse(jsxBackCheck(r, _jsxCode))
                     if (result != undefined)
                     {
                         var len = result.length;
@@ -242,7 +242,7 @@ Enzymes.prototype.getLayerName_byID = async function (layerID)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+            (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
     })
 }
 
@@ -260,7 +260,7 @@ Enzymes.prototype.selectLayer_byID = async function (layerID)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+            (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
     })
 }
 
@@ -277,7 +277,7 @@ Enzymes.prototype.getLayerInfo_position_byId = async function (layerID)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
     })
 
 }
@@ -315,7 +315,7 @@ Enzymes.prototype.getLayerInfo_text_byId = async function (layerID)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
     })
 
 }
@@ -336,7 +336,7 @@ Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID, do
             var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson}, ${layerID}, ${doSelect})`
             evalScript(
                 _jsxCode,
-                (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+                (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
         }
     )
 }
@@ -354,7 +354,7 @@ Enzymes.prototype.getLayerInfo_shape_byId = async function (layerID)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
     })
 
 }
@@ -374,7 +374,7 @@ Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID)
             var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID} )`
             evalScript(
                 _jsxCode,
-                (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+                (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
         }
     )
 }
@@ -395,7 +395,7 @@ Enzymes.prototype.selectSave = async function (layerID)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(JSON.parse(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
     })
 }
 
@@ -413,7 +413,7 @@ Enzymes.prototype.selectLoad = async function (layerIDs)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+            (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
     })
 }
 
@@ -437,7 +437,7 @@ Enzymes.prototype.writeJSON = async function (rootName, itemName, json)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+            (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
     })
 }
 
@@ -456,7 +456,7 @@ Enzymes.prototype.readJSON = async function (rootName, itemName)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(Enzymes.prototype._unEscape(jsxBackCheck(r,_jsxCode)))})
+            (r)=> {resolve(Enzymes.prototype._unEscape(jsxBackCheck(r, _jsxCode)))})
     })
 }
 
@@ -499,13 +499,13 @@ Enzymes.prototype.getTypeID = function (inValue, inType)
             var _jsxCode = `charIDToTypeID("${inValue}")`
             evalScript(
                 _jsxCode
-                , (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+                , (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
         } else
         {
             var _jsxCode = `stringIDToTypeID("${inValue}")`
             evalScript(
                 _jsxCode
-                , (r)=> {resolve(jsxBackCheck(r,_jsxCode))})
+                , (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
         }
 
 
@@ -533,7 +533,7 @@ Enzymes.prototype.getActiveDocumentId = async function ()
 
                 if (+(0 + r) == +r)
                 {
-                    resolve(jsxBackCheck(r,_jsxCode))
+                    resolve(jsxBackCheck(r, _jsxCode))
                 }
                 else
                 {
@@ -560,7 +560,7 @@ Enzymes.prototype.evalEnhancer = async function (enhancer, thisId)
             ,
             (r)=>
             {
-                resolve(jsxBackCheck(r,_jsxCode));
+                resolve(jsxBackCheck(r, _jsxCode));
             }
         )
     })
@@ -585,7 +585,7 @@ Enzymes.prototype.DNAExpress = function (mRNA_Layers, vars)
         evalScript(
             _jsxCode
             ,
-            (r)=> {resolve(jsxBackCheck(r,_jsxCode));}
+            (r)=> {resolve(jsxBackCheck(r, _jsxCode));}
         )
     })
 

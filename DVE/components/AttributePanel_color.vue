@@ -10,6 +10,7 @@
         >
             <div class="color-bottom" v-bind:style="color_style" v-on:click="picker_color">
 
+
             </div>
         </value-input>
     </div>
@@ -24,7 +25,6 @@
         border-radius: 3px;
         vertical-align: middle;
     }
-
 
     .color_input .input.exmo_input_text.edit_input {
         margin-left: 0;
@@ -51,6 +51,7 @@
         width: 65px;
 
     }
+
     .exmo_inbox.value_input_box.mini.press_out .out_input {
         width: 52px;
     }
@@ -64,18 +65,30 @@
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import IchiColor  from "./../Caryon/IchiColor/ichi-color.js";
     export default{
-        props: ['color', 'edit_value', "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color"],
+        props: ['color', 'edit_value', "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color", "type_none"],
         watch: {
             "o_color": function (val)
             {
+
 //                console.log("------------------")
 //                console.log(val)
-                this.ichi_color.set(val);
-                this.color.r = this.ichi_color.r;
-                this.color.g = this.ichi_color.g;
-                this.color.b = this.ichi_color.b;
 
-                this.color_style.background = this.ichi_color.hex;
+
+                if (val == "#" || val == "#none")
+                {
+                    this.type_none = true;
+                    this.color_style.background = "linear-gradient( 45deg, rgba(255, 255, 255, 0.49), rgba(255, 255, 255, 0.49) 45%, #5C5C5C 45%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 100% )";
+                }
+                else
+                {
+                    this.type_none = false;
+                    this.color.r = this.ichi_color.r;
+                    this.color.g = this.ichi_color.g;
+                    this.color.b = this.ichi_color.b;
+                    this.color_style.background = this.ichi_color.hex;
+                }
+
+
             },
             "color.r": function (val)
             {
