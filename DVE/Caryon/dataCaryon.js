@@ -230,8 +230,14 @@ var Layer = function (layerListItem)
             lineAlignment: null, /*描边选项-对齐*/
             lineCapType: null, /*描边选项-端点*/
             lineJoinType: null, /*描边选项-角点*/
-            shapeSize: null,
-            radian: null
+            shapeSize: {x: null, y: null, h: null, w: null},
+            radian: {
+                /*圆角*/
+                topRight: null,
+                topLeft: null,
+                bottomRight: null,
+                bottomLeft: null,
+            }
         },
         enableAssigns: {
             strokeColor: false,
@@ -243,8 +249,14 @@ var Layer = function (layerListItem)
             lineAlignment: false, /*描边选项-对齐*/
             lineCapType: false, /*描边选项-端点*/
             lineJoinType: false, /*描边选项-角点*/
-            shapeSize: false,
-            radian: false
+            shapeSize: {x: false, y: false, h: false, w: false},
+            radian: {
+                /*圆角*/
+                topRight: false,
+                topLeft: false,
+                bottomRight: false,
+                bottomLeft: false,
+            }
         }
     }
 

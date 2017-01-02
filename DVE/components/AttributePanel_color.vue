@@ -77,7 +77,8 @@
     import IchiColor  from "./../Caryon/IchiColor/ichi-color.js";
     export default{
         props: ['color', 'edit_value', "out_value", 'name', 'name_html',
-            "value_type", "enable_assign", "mini", "mode_color", "type_none"],
+            "value_type", "enable_assign", "mini", "mode_color", "type_none"
+            ,"color_enable"],
         watch: {
             "o_color": function (val)
             {
@@ -92,18 +93,24 @@
                 }
                 else if (this.type_none != true)
                 {
-                    this.type_none = ture;
+                    this.type_none = true;
                 }
 
 
             },
             "type_none": function (val)
             {
+
                 if (val)
                 {
 //                    this.color_style.background = "linear-gradient( 45deg, rgba(255, 255, 255, 0.49), rgba(255, 255, 255, 0.49) 45%, #5C5C5C 45%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 100% )";
                     this.o_color = "#"
                 }
+                this.color_enable =!val
+            },
+            "color_enable":function (val)
+            {
+                this.type_none =!val
             },
             "color.r": function (val)
             {

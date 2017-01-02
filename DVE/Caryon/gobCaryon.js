@@ -227,8 +227,14 @@ GobCaryon.prototype.__new_shape = function ()
             lineAlignment: null, /*描边选项-对齐*/
             lineCapType: null, /*描边选项-端点*/
             lineJoinType: null, /*描边选项-角点*/
-            shapeSize: null,
-            radian: null
+            shapeSize: {x: null, y: null, h: null, w: null},
+            radian:  {
+                /*圆角*/
+                topRight: null,
+                topLeft: null,
+                bottomRight: null,
+                bottomLeft: null,
+            }
         },
         enableAssigns: {
             strokeColor: null,
@@ -240,8 +246,14 @@ GobCaryon.prototype.__new_shape = function ()
             lineAlignment: null, /*描边选项-对齐*/
             lineCapType: null, /*描边选项-端点*/
             lineJoinType: null, /*描边选项-角点*/
-            shapeSize: null,
-            radian: null
+            shapeSize: {x: null, y: null, h: null, w: null},
+            radian:  {
+                /*圆角*/
+                topRight: null,
+                topLeft: null,
+                bottomRight: null,
+                bottomLeft: null,
+            }
         }
     }
 }
@@ -605,7 +617,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         var item_shape = new_shape();
         var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
         console.info("getLayerInfo_shape_byId(" + this.selectList[i].id + ")", shape);
-        item_shape.shape = shape.strokeColor;
+        item_shape.strokeColor = shape.strokeColor;
         item_shape.strokeColorEnabled = shape.strokeColorEnabled;
         item_shape.fillColor = shape.fillColor;
         item_shape.fillColorEnabled = shape.fillColorEnabled;
