@@ -86,15 +86,122 @@
         <div class="tag-box tag-shape" v-show="tagsActive.shape" v-bind:class="{active:tagsActive.shape}"
              transition="trans-fade">
             <h3> {{'形状' |lang}} </h3>
-            <!--<color-input v-bind:name="Lang.from('颜色')"-->
-                         <!--v-bind:title="Lang.from('颜色')"-->
-                         <!--v-bind:out_value.sync="Gob.shape.assignment.fillColor"-->
-                         <!--v-bind:enable_assign.sync="Gob.shape.enableAssigns.fillColor"-->
-                         <!--v-bind:color.sync="Gob.shape.fillColor"-->
+            <color-input v-bind:name="Lang.from('填充')"
+                         v-bind:title="Lang.from('填充')"
+                         v-bind:out_value.sync="Gob.shape.assignment.fillColor"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.fillColor"
+                         v-bind:color.sync="Gob.shape.fillColor"
+                         v-bind:type_none.sync="!Gob.shape.fillColorEnabled"
+
+                         mini="true"
+            ></color-input>
+            <color-input v-bind:name="Lang.from('描边')"
+                         v-bind:title="Lang.from('描边')"
+                         v-bind:out_value.sync="Gob.shape.assignment.strokeColor"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.strokeColor"
+                         v-bind:color.sync="Gob.shape.strokeColor"
+                         v-bind:type_none.sync="!Gob.shape.strokeColorEnabled"
+
+                         mini="true"
+            ></color-input>
+
+            <value-input v-bind:name="Lang.from('lineWidth')"
+                         v-bind:title="Lang.from('lineWidth')"
+                         v-bind:edit_value.sync="Gob.shape.lineWidth"
+                         v-bind:out_value.sync="Gob.shape.assignment.lineWidth"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineWidth"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('dashSet')"
+                         v-bind:title="Lang.from('dashSet')"
+                         v-bind:edit_value.sync="Gob.shape.dashSet"
+                         v-bind:out_value.sync="Gob.shape.assignment.dashSet"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.dashSet"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('lineAlignment')"
+                         v-bind:title="Lang.from('lineAlignment')"
+                         v-bind:edit_value.sync="Gob.shape.lineAlignment"
+                         v-bind:out_value.sync="Gob.shape.assignment.lineAlignment"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineAlignment"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('lineCapType')"
+                         v-bind:title="Lang.from('lineCapType')"
+                         v-bind:edit_value.sync="Gob.shape.lineCapType"
+                         v-bind:out_value.sync="Gob.shape.assignment.lineCapType"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineCapType"
+                         mini="true"></value-input>
 
 
-                         <!--mini="true"-->
-            <!--&gt;</color-input>-->
+            <value-input v-bind:name="Lang.from('lineJoinType')"
+                         v-bind:title="Lang.from('lineJoinType')"
+                         v-bind:edit_value.sync="Gob.shape.lineJoinType"
+                         v-bind:out_value.sync="Gob.shape.assignment.lineJoinType"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineJoinType"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('X')"
+                         v-bind:title="Lang.from('X')"
+                         v-bind:edit_value.sync="Gob.shape.shapeSize.x"
+                         v-bind:out_value.sync="Gob.shape.assignment.shapeSize.x"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.x"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('Y')"
+                         v-bind:title="Lang.from('Y')"
+                         v-bind:edit_value.sync="Gob.shape.shapeSize.y"
+                         v-bind:out_value.sync="Gob.shape.assignment.shapeSize.y"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.y"
+                         mini="true"></value-input>
+
+
+            <value-input v-bind:name="Lang.from('H')"
+                         v-bind:title="Lang.from('H')"
+                         v-bind:edit_value.sync="Gob.shape.shapeSize.h"
+                         v-bind:out_value.sync="Gob.shape.assignment.shapeSize.h"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.h"
+                         mini="true"></value-input>
+
+
+            <value-input v-bind:name="Lang.from('W')"
+                         v-bind:title="Lang.from('W')"
+                         v-bind:edit_value.sync="Gob.shape.shapeSize.w"
+                         v-bind:out_value.sync="Gob.shape.assignment.shapeSize.w"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.w"
+                         mini="true"></value-input>
+
+
+            <value-input v-bind:name="Lang.from('右上')"
+                         v-bind:title="Lang.from('右上')"
+                         v-bind:edit_value.sync="Gob.shape.radian.topRight"
+                         v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('左上')"
+                         v-bind:title="Lang.from('左上')"
+                         v-bind:edit_value.sync="Gob.shape.radian.topLeft"
+                         v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('右下')"
+                         v-bind:title="Lang.from('右下')"
+                         v-bind:edit_value.sync="Gob.shape.radian.bottomRight"
+                         v-bind:out_value.sync="Gob.shape.assignment.radian.bottomRight"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomRight"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('左下')"
+                         v-bind:title="Lang.from('左下')"
+                         v-bind:edit_value.sync="Gob.shape.radian.bottomLeft"
+                         v-bind:out_value.sync="Gob.shape.assignment.radian.bottomLeft"
+                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomLeft"
+                         mini="true"></value-input>
+
+            <!--"-->
+            {{Gob.shape.fillColorEnabled}}
 
 
         </div>
@@ -286,7 +393,10 @@
         height: 450px;
 
     }
+    .tag-shape.trans-fade-transition {
+        height: 450px;
 
+    }
     .trans-fade-transition {
         transition: all .3s ease;
         height: 150px;

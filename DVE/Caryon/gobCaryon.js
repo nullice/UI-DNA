@@ -565,7 +565,8 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     temp.position = new_position();
     temp.text = new_text();
-    console.log("new_text()-> temp.text ", temp.text)
+    temp.shape = new_shape();
+
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
@@ -604,7 +605,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         var item_shape = new_shape();
         var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
         console.info("getLayerInfo_shape_byId(" + this.selectList[i].id + ")", shape);
-        item_shape.text = shape.strokeColor;
+        item_shape.shape = shape.strokeColor;
         item_shape.strokeColorEnabled = shape.strokeColorEnabled;
         item_shape.fillColor = shape.fillColor;
         item_shape.fillColorEnabled = shape.fillColorEnabled;
@@ -615,7 +616,8 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         item_shape.lineJoinType = shape.lineJoinType;
         item_shape.shapeSize = shape.shapeSize;
         item_shape.radian = shape.radian;
-
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "text")
+        _objectToObject(item_shape, temp.shape, true, !(i == 0));
     }
     // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);

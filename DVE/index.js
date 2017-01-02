@@ -61,7 +61,6 @@ var IchiColor = IchiColor_ex(IchiColor_base);
 window.IchiColor = IchiColor;
 
 
-
 import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
 window.ColorRNA = ColorRNA;
 
@@ -97,7 +96,6 @@ var eventCaryon = new EventCaryon("默认测试");
 window.eventCaryon = eventCaryon
 
 
-
 //测试相关 -----------------------------------
 window.tests = {};
 import  test_task_Enzymes from "./test/test_Enzymes_JS";
@@ -120,6 +118,7 @@ import AttrPanel from "./components/AttributePanel.vue";
 import LayerSelectors from "./components/LayerSelectors.vue";
 import VarPanel from "./components/VarPanel.vue";
 import ExpressionPanel from  "./components/ExpressionPanel.vue"
+
 
 var mainVue = new Vue({
     el: 'body',
@@ -230,3 +229,111 @@ console.log("sss_end" + __result)
 //
 // UI_action.show_message_input("var_panel", "新建变量", data, func_)
 
+
+var verifySimpleStigmata = function (uniqueId, droitCode, inDict,successCallback, rejectCallback)
+{
+    try
+    {
+        var signCode = getSimpleStigmata(uniqueId,inDict);
+        if (signCode == droitCode)
+        {
+            if (successCallback != undefined)
+            {
+                successCallback();
+            }
+            return true;
+        } else
+        {
+            if (rejectCallback != undefined)
+            {
+                rejectCallback(e);
+            }
+            return false;
+        }
+    }
+
+
+    catch (e)
+    {
+        if (rejectCallback != undefined)
+        {
+            rejectCallback(e);
+        }
+        return false;
+    }
+}
+
+var getSimpleStigmata = function (uniqueId, inDict)
+{
+
+    var idArray = uniqueId.split("");
+    var intArray = _mapStrArray(idArray, [3, 2, 22, 11, 7, 22, 10, 20, 5]);
+
+    var dict = inDict||"a2b3c4d4ef5gm0lakjshdfgh6ijkq7we8rtyu8i1opzx9cvbn"
+
+    var signCode = "";
+
+
+    var step = 0;
+
+
+    for (var i = 0; i < intArray.length; i++)
+    {
+        var d = intArray[i] - intArray[intArray.length - i - 1];
+        if (d < 0)
+        {
+            d = -d;
+        }
+        d = d % 8;
+
+        step = step + d;
+        if (step > dict.length)
+        {
+            step = 0;
+        }
+
+        if (i % 2 == 0)
+        {
+            signCode = signCode + dict[d + step];
+
+        }
+
+    }
+
+    return signCode;
+
+
+    function _mapStrArray(array, mapIntArray)
+    {
+        var befor = 0;
+        var sum = _sum(array);
+        var sumString = sum.toString()
+        var z = 0;
+        for (var i = 0; i < array.length; i++)
+        {
+            var num = array[i].charCodeAt();
+            var remainder = (num + befor) % 7;
+            var offset = mapIntArray[remainder] || 0;
+            array[i] = num + offset;
+            befor = num + sumString[z];
+            z++;
+            if (z > (sumString.length - 1))
+            {
+                z = 0;
+            }
+
+        }
+
+        return array;
+    }
+
+    function _sum(array)
+    {
+        var sum = 0;
+        for (var i = 0; i < array.length; i++)
+        {
+            sum += +array[i];
+        }
+        return sum;
+    }
+}

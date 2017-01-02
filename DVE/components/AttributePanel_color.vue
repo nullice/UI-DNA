@@ -8,10 +8,12 @@
                      v-bind:enable_uppercase="true"
 
         >
-            <div class="color-bottom" v-bind:style="color_style" v-on:click="picker_color">
+            <div class="color-bottom" v-bind:style="color_style"
+                 v-bind:class="{'type_none':type_none}" v-on:click="picker_color">
 
 
             </div>
+            <!--[{{type_none}}]-->
         </value-input>
     </div>
 </template>
@@ -25,6 +27,15 @@
         border-radius: 3px;
         vertical-align: middle;
     }
+
+    .color-bottom.type_none {
+        border: 1px solid rgba(90, 90, 90, 0.53);
+        background: linear-gradient(45deg, rgba(195, 195, 195, 0.490196), rgba(208, 208, 208, 0.490196) 45%, rgb(169, 169, 169) 45%, rgba(92, 92, 92, 0.64) 55%, rgba(205, 205, 205, 0.490196) 55%, rgba(211, 211, 211, 0.490196))!important;
+
+    }
+
+
+
 
     .color_input .input.exmo_input_text.edit_input {
         margin-left: 0;
@@ -65,30 +76,34 @@
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import IchiColor  from "./../Caryon/IchiColor/ichi-color.js";
     export default{
-        props: ['color', 'edit_value', "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color", "type_none"],
+        props: ['color', 'edit_value', "out_value", 'name', 'name_html',
+            "value_type", "enable_assign", "mini", "mode_color", "type_none"],
         watch: {
             "o_color": function (val)
             {
 
-//                console.log("------------------")
-//                console.log(val)
-
-
-                if (val == "#" || val == "#none")
+                if (val != "#")
                 {
-                    this.type_none = true;
-                    this.color_style.background = "linear-gradient( 45deg, rgba(255, 255, 255, 0.49), rgba(255, 255, 255, 0.49) 45%, #5C5C5C 45%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 100% )";
-                }
-                else
-                {
-                    this.type_none = false;
                     this.color.r = this.ichi_color.r;
                     this.color.g = this.ichi_color.g;
                     this.color.b = this.ichi_color.b;
                     this.color_style.background = this.ichi_color.hex;
+                    this.type_none = false;
+                }
+                else if (this.type_none != true)
+                {
+                    this.type_none = ture;
                 }
 
 
+            },
+            "type_none": function (val)
+            {
+                if (val)
+                {
+//                    this.color_style.background = "linear-gradient( 45deg, rgba(255, 255, 255, 0.49), rgba(255, 255, 255, 0.49) 45%, #5C5C5C 45%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 100% )";
+                    this.o_color = "#"
+                }
             },
             "color.r": function (val)
             {
@@ -102,13 +117,13 @@
             {
                 this.color_update();
             },
-
         },
         data(){
 
             return {
                 o_color: "",
                 o_color_out: '',
+                o_set_type_none: false,
                 ichi_color: IchiColor(),
                 Gob: Gob,
                 color_style: {background: "#000"},
