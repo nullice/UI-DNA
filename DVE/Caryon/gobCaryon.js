@@ -57,6 +57,7 @@ var GobCaryon = function ()
 
     this.selectList = [];
 
+    //属性注册[1/8]
     this.position = GobCaryon.prototype.__new_position();
     this.text = GobCaryon.prototype.__new_text();
     this.shape = GobCaryon.prototype.__new_shape();
@@ -71,10 +72,12 @@ var GobCaryon = function ()
     //     enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
     // };
 
+    //属性注册[2/8]
     //------------注册 getter 和 setter
     var root = this;
     giveSetter(this.position, ["position"], 1);
     giveSetter(this.text, ["text"], 1);
+    giveSetter(this.shape, ["shape"], 1);
 
     function giveSetter(object, names, index)
     {
@@ -128,7 +131,7 @@ var GobCaryon = function ()
     return this;
 }
 
-
+//属性注册[3/8]
 GobCaryon.prototype.__new_position = function ()
 {
     return {
@@ -269,9 +272,13 @@ GobCaryon.prototype._setData = async function (names, value)
 
 
     //-------- 1. 值写入实际存储的属性 this._XXX;
+
     var change = _valueToObject(this, names, 0, value, true);
 
 
+
+    // console.log(`-------_setData_【change】：`,change)
+    //属性注册[4/8]
     //-------- 2. 判断是否应该写入 dataCaryon ;
 
     var isVoidValue = false
@@ -351,7 +358,42 @@ GobCaryon.prototype._setData = async function (names, value)
                     finish = true;
                 }
             }
-            //------------------------------------
+            // //------------------------------------
+            // var isLineAlignment = (names[names.length - 1] == "lineAlignment")
+            // if (isLineAlignment)
+            // {
+            //     if (value == "strokeStyleAlignInside" || value == "strokeStyleAlignCenter"
+            //         || value == "strokeStyleAlignOutside"
+            //     )
+            //     {
+            //         isFormula = false;
+            //         finish = true;
+            //     }
+            // }
+            // //------------------------------------
+            // var isLineCapType = (names[names.length - 1] == "lineCapType")
+            // if (isLineCapType)
+            // {
+            //     if (value == "strokeStyleButtCap" || value == "strokeStyleRoundCap"
+            //         || value == "strokeStyleSquareCap"
+            //     )
+            //     {
+            //         isFormula = false;
+            //         finish = true;
+            //     }
+            // }
+            // //------------------------------------
+            // var isLineJoinType = (names[names.length - 1] == "lineJoinType")
+            // if (isLineJoinType)
+            // {
+            //     if (value == "strokeStyleMiterJoin" || value == "strokeStyleRoundJoin"
+            //         || value == "strokeStyleBevelJoin"
+            //     )
+            //     {
+            //         isFormula = false;
+            //         finish = true;
+            //     }
+            // }
 
 
             if (!finish)
@@ -397,10 +439,10 @@ GobCaryon.prototype._setData = async function (names, value)
             // console.log("_valueToObject:",this.selectList[i].id,">",dataCaryon.layers[this.selectList[i].id], names, 0, value)
             change_i = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
-        //即时修改-------------------------------------------------------------------------------------------
-        // console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
-        // console.log(change_i, change, isFormula)
-        // console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
+        // 即时修改-------------------------------------------------------------------------------------------
+        console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
+        console.log(change_i, change, isFormula)
+        console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
 
 
         if (this.nowSwitching == false)
@@ -569,12 +611,12 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     //----------1. 要拉取的数据：
     var temp = {};
 
-
+    //属性注册[5/8`]
     var new_position = GobCaryon.prototype.__new_position;
     var new_text = GobCaryon.prototype.__new_text;
     var new_shape = GobCaryon.prototype.__new_shape;
 
-
+    //属性注册[6/8]
     temp.position = new_position();
     temp.text = new_text();
     temp.shape = new_shape();
@@ -583,6 +625,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
     {
+        //属性注册[7/8]
         //[position]---------------------------------------------------------------
         var item_position = new_position();
         var position = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
@@ -628,9 +671,11 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         item_shape.lineJoinType = shape.lineJoinType;
         item_shape.shapeSize = shape.shapeSize;
         item_shape.radian = shape.radian;
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "text")
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
         _objectToObject(item_shape, temp.shape, true, !(i == 0));
     }
+
+    //属性注册[8/8]
     // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
     _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);

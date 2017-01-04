@@ -11,8 +11,9 @@ var RenderCaryon = function ()
 
     this.status = {
         rendering: false,
-
     }
+
+    this._temp = {colorTemp: {}};
 
     return this;
 }
@@ -38,6 +39,8 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
+
+    console.log("renderPatch:",layerId, names, value)
     this.status.rendering = true;
 
     var item = names[names.length - 1];
@@ -85,11 +88,56 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
             console.log("----[end：RenderCaryon：" + layerId + "]---")
             Gob.disableSelectEvent = false;
+        }
+
+        if ((names.length == 3 ) && !_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))
+        {
+
+
+        }
+
+    }
+    if (names[0] === "shape")
+    {
+        if ((names.length == 2 ) && !_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))
+        {
+            var ob = {};
+            ob[item] = value;
+
+
+            Gob.disableSelectEvent = true;
+            console.log("----[start:RenderCaryon：shape:" + layerId + "]---")
+
+            await enzymes.selectLayer_byID(layerId);
+
+            console.log(`enzymes.setLayerInfo_shape_byId(${JSON.stringify(ob)}, ${layerId})`)
+            await enzymes.setLayerInfo_shape_byId(ob, layerId)
+
+            console.log("----[end：RenderCaryon：" + layerId + "]---")
+            Gob.disableSelectEvent = false;
 
 
         }
     }
+
     this.status.rendering = false;
+
+
+    function renderTypeColor(item, names, value)
+    {
+
+        var nameIndex = names[names.length - 3] + names[names.length - 2] + names[names.length - 1]
+        if (item == "r" || item == "g")
+        {
+            if (this._temp.colorTemp[nameIndex] == undefined)
+            {
+                this._temp.colorTemp[nameIndex] = {}
+            }
+            this._temp.colorTemp[nameIndex][item] = value
+            this._temp.colorTemp[nameIndex]["change"] = true;
+        }
+
+    }
 }
 
 

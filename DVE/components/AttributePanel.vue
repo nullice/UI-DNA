@@ -122,27 +122,67 @@
                          v-bind:enable_assign.sync="Gob.shape.enableAssigns.dashSet"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('对齐')"
-                         v-bind:title="Lang.from('描边对齐')"
-                         v-bind:edit_value.sync="Gob.shape.lineAlignment"
-                         v-bind:out_value.sync="Gob.shape.assignment.lineAlignment"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineAlignment"
-                         mini="true"></value-input>
-
-            <value-input v-bind:name="Lang.from('端点')"
-                         v-bind:title="Lang.from('描边端点')"
-                         v-bind:edit_value.sync="Gob.shape.lineCapType"
-                         v-bind:out_value.sync="Gob.shape.assignment.lineCapType"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineCapType"
-                         mini="true"></value-input>
 
 
-            <value-input v-bind:name="Lang.from('角点')"
-                         v-bind:title="Lang.from('描边角点')"
-                         v-bind:edit_value.sync="Gob.shape.lineJoinType"
-                         v-bind:out_value.sync="Gob.shape.assignment.lineJoinType"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineJoinType"
-                         mini="true"></value-input>
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('对齐')"
+                          v-bind:title="Lang.from('描边对齐')"
+                          v-bind:value.sync="Gob.shape.lineAlignment"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:list_style="{width:'132px'}"
+                          v-bind:options="o_shape_lineAlignment_options"
+                          in_class="text_line_alignment"
+            >
+                <value-input v-bind:name=""
+                             v-bind:title=""
+                             v-bind:edit_value.sync="Gob.shape.lineAlignment"
+                             v-bind:out_value.sync="Gob.shape.assignment.lineAlignment"
+                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineAlignment"
+                             mini="true"></value-input>
+
+            </select-input>
+
+
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('端点')"
+                          v-bind:title="Lang.from('描边端点')  "
+                          v-bind:value.sync="Gob.shape.lineCapType"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:list_style="{width:'132px'}"
+                          v-bind:options="o_shape_lineCapType_options"
+                          in_class="text_line_cap_type"
+            >
+                <value-input v-bind:name=""
+                             v-bind:title=""
+                             v-bind:edit_value.sync="Gob.shape.lineCapType"
+                             v-bind:out_value.sync="Gob.shape.assignment.lineCapType"
+                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineCapType"
+                             mini="true"></value-input>
+            </select-input>
+
+
+
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('角点')"
+                          v-bind:title="Lang.from('描边角点')  "
+                          v-bind:value.sync="Gob.shape.lineJoinType"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:list_style="{width:'132px'}"
+                          v-bind:options="o_shape_lineJoinType_options"
+                          in_class="text_line_cap_type"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:title="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.shape.lineJoinType"
+                             v-bind:out_value.sync="Gob.shape.assignment.lineJoinType"
+                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineJoinType"
+                             mini="true">
+                </value-input>
+            </select-input>
+
+
 
 
             <div>
@@ -227,12 +267,13 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
                          v-bind:color.sync="Gob.text.color"
                          mini="true"
-            ></color-input>
+            > </color-input>
+            {{Gob.text.color|json}}
 
             <value-input v-bind:name="Lang.from('字体')"
                          v-bind:title="Lang.from('字体')"
                          v-bind:edit_value.sync="Gob.text.fontPostScriptName"
-                         v-bind:out_value.sync="Gob.text.assignment.fontPostScriptName"
+                         v-bind:out_v                                       alue.sync="Gob.text.assignment.fontPostScriptName"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.fontPostScriptName"
             ></value-input>
 
@@ -264,7 +305,7 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
                          mini="true"></value-input>
 
-            <select-input v-bind:block="false" default_value="0"
+            <select-input v-bind:block="false" default_value=""
                           v-bind:name="Lang.from('锯齿')"
                           v-bind:title="Lang.from('下划线')"
                           v-bind:value.sync="Gob.text.antiAlias"
@@ -548,7 +589,26 @@
                     {value: 'justifyLeft', label_html: "<i class='icon-text-justified-left'>"},
                     {value: 'justifyAll', label_html: "<i class='icon-text-justified'>"},
                     {value: 'justifyRight', label_html: "<i class='icon-text-justified-right'>"},
-                ]
+                ],
+
+                o_shape_lineAlignment_options:[
+                    {value: 'strokeStyleAlignInside', label: Lang.from('内部')},
+                    {value: 'strokeStyleAlignCenter', label: Lang.from('中间')},
+                    {value: 'strokeStyleAlignOutside', label: Lang.from('外部')},
+                ],
+                o_shape_lineCapType_options:[
+                    {value: 'strokeStyleButtCap', label: Lang.from('断面')},
+                    {value: 'strokeStyleRoundCap', label: Lang.from('圆端')},
+                    {value: 'strokeStyleSquareCap', label: Lang.from('平端')},
+                ],
+                o_shape_lineJoinType_options:[
+                    {value: 'strokeStyleMiterJoin', label: Lang.from('直角')},
+                    {value: 'strokeStyleRoundJoin', label: Lang.from('圆角')},
+                    {value: 'strokeStyleBevelJoin', label: Lang.from('斜削')},
+                ],
+
+
+
         }
         },
         components: {

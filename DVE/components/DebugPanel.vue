@@ -9,15 +9,15 @@
             <!--</pre>-->
 
 
-            <div class="title">Gob.shape</div>
-            <pre>
-                {{Gob.shape |json}}
-            </pre>
+            <!--<div class="title">Gob.shape</div>-->
+            <!--<pre>-->
+                <!--{{Gob.shape |json}}-->
+            <!--</pre>-->
 
-            <div class="title">dataCaryon</div>
-            <pre>
-                {{dataCaryon |json}}
-            </pre>
+            <!--<div class="title">dataCaryon</div>-->
+            <!--<pre>-->
+                <!--{{dataCaryon |json}}-->
+            <!--</pre>-->
             <!--<div class="title">Gob</div>-->
             <!--<pre>-->
                <!--{{Gob |json}}-->

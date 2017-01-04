@@ -212,14 +212,14 @@ var Layer = function (layerListItem)
         lineAlignment: null, /*描边选项-对齐*/
         lineCapType: null, /*描边选项-端点*/
         lineJoinType: null, /*描边选项-角点*/
-        shapeSize: {x: null, y: null, h: null, w: null}, /*形状尺寸*/
-        radian: {
-            /*圆角*/
-            topRight: null,
-            topLeft: null,
-            bottomRight: null,
-            bottomLeft: null,
-        },
+        // shapeSize: {x: null, y: null, h: null, w: null}, /*形状尺寸*/
+        // radian: {
+        //     /*圆角*/
+        //     topRight: null,
+        //     topLeft: null,
+        //     bottomRight: null,
+        //     bottomLeft: null,
+        // },
         assignment: {
             strokeColor: null,
             strokeColorEnabled: null,

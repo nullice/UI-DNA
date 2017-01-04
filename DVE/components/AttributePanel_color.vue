@@ -8,6 +8,7 @@
                      v-bind:enable_uppercase="true"
 
         >
+
             <div class="color-bottom" v-bind:style="color_style"
                  v-bind:class="{'type_none':type_none}" v-on:click="picker_color">
 
@@ -82,9 +83,9 @@
         watch: {
             "o_color": function (val)
             {
-
                 if (val != "#")
                 {
+                    this.ichi_color.hex = val;
                     this.color.r = this.ichi_color.r;
                     this.color.g = this.ichi_color.g;
                     this.color.b = this.ichi_color.b;
@@ -143,7 +144,6 @@
                 var set_color_callback = function (e)
                 {
                     self.o_color = e.hex;
-
                 }
                 UI_action.show_message_color_picker("color1", this.ichi_color.hex, set_color_callback)
             },
