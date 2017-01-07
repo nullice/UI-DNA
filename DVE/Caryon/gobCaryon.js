@@ -203,7 +203,7 @@ GobCaryon.prototype.__new_text = function ()
 GobCaryon.prototype.__new_shape = function ()
 {
     return {
-        strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
+        strokeColor: {r: null, g: null, b: null, hex: null}, /*描边颜色*/
         strokeColorEnabled: null, /*启用描边*/
         fillColor: {r: null, g: null, b: null}, /*填充颜色*/
         fillColorEnabled: null, /*启用填充*/
@@ -231,7 +231,7 @@ GobCaryon.prototype.__new_shape = function ()
             lineCapType: null, /*描边选项-端点*/
             lineJoinType: null, /*描边选项-角点*/
             shapeSize: {x: null, y: null, h: null, w: null},
-            radian:  {
+            radian: {
                 /*圆角*/
                 topRight: null,
                 topLeft: null,
@@ -250,7 +250,7 @@ GobCaryon.prototype.__new_shape = function ()
             lineCapType: null, /*描边选项-端点*/
             lineJoinType: null, /*描边选项-角点*/
             shapeSize: {x: null, y: null, h: null, w: null},
-            radian:  {
+            radian: {
                 /*圆角*/
                 topRight: null,
                 topLeft: null,
@@ -274,7 +274,6 @@ GobCaryon.prototype._setData = async function (names, value)
     //-------- 1. 值写入实际存储的属性 this._XXX;
 
     var change = _valueToObject(this, names, 0, value, true);
-
 
 
     // console.log(`-------_setData_【change】：`,change)
@@ -440,9 +439,9 @@ GobCaryon.prototype._setData = async function (names, value)
             change_i = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
         // 即时修改-------------------------------------------------------------------------------------------
-        console.log("isFormula :" + isFormula+"  change:"+change+"  change_i:"+change_i)
+        console.log("isFormula :" + isFormula + "  change:" + change + "  change_i:" + change_i)
         console.log(change_i, change, isFormula)
-        console.log("this.nowSwitching =" +this.nowSwitching +"    "+ names + "=>" + value)
+        console.log("this.nowSwitching =" + this.nowSwitching + "    " + names + "=>" + value)
 
 
         if (this.nowSwitching == false)
