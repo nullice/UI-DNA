@@ -148,7 +148,7 @@ GobCaryon.prototype.__new_text = function ()
 {
     return {
         text: null,
-        color: {r: null, g: null, b: null},
+        color: {r: null, g: null, b: null, $hex: null},
         size: null, /*字体尺寸*/
         fontPostScriptName: null, /*字体*/
         bold: null, /*仿粗体*/
@@ -203,9 +203,9 @@ GobCaryon.prototype.__new_text = function ()
 GobCaryon.prototype.__new_shape = function ()
 {
     return {
-        strokeColor: {r: null, g: null, b: null, hex: null}, /*描边颜色*/
+        strokeColor: {r: null, g: null, b: null, $hex: null}, /*描边颜色*/
         strokeColorEnabled: null, /*启用描边*/
-        fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+        fillColor: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
         fillColorEnabled: null, /*启用填充*/
         lineWidth: null, /*边线宽度*/
         dashSet: null, /*虚线设置*/
@@ -639,7 +639,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         var item_text = new_text();
         var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
         item_text.text = text.text;
-        item_text.color = text.color;
+        _setTypeColor(item_text.color, text.color)
         item_text.size = text.size;
         item_text.fontPostScriptName = text.fontPostScriptName;
         item_text.bold = text.bold;
@@ -659,9 +659,9 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         var item_shape = new_shape();
         var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
         console.info("getLayerInfo_shape_byId(" + this.selectList[i].id + ")", shape);
-        item_shape.strokeColor = shape.strokeColor;
+        _setTypeColor(item_shape.strokeColor, shape.strokeColor);
         item_shape.strokeColorEnabled = shape.strokeColorEnabled;
-        item_shape.fillColor = shape.fillColor;
+        _setTypeColor(item_shape.fillColor, shape.fillColor);
         item_shape.fillColorEnabled = shape.fillColorEnabled;
         item_shape.lineWidth = shape.lineWidth;
         item_shape.dashSet = shape.dashSet;
@@ -683,6 +683,18 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     _objectToObject(temp.position, this.position, false, false, true);
     _objectToObject(temp.text, this.text, false, false, true);
     _objectToObject(temp.shape, this.shape, false, false, true);
+
+
+    function _setTypeColor(color, typeColor)
+    {
+        typeColor.r = color.r
+        typeColor.g = color.g
+        typeColor.b = color.b
+
+        ichiColor.set(color);
+        typeColor.$hex = ichiColor.hex;
+
+    }
 
     function _setValue(oldValue, value, ignoreNull)
     {

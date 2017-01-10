@@ -151,51 +151,51 @@ var Layer = function (layerListItem)
     }
     this.text = {
         text: null,
-        color: {r: null, g: null, b: null},
-        size:null, /*字体尺寸*/
-        fontPostScriptName:null, /*字体*/
-        bold:null,/*仿粗体*/
-        italic:null,/*仿斜体*/
-        antiAlias:null,/*消除锯齿方式*/
-        underline:null,/*下划线类型*/
-        justification:null,/*段落对齐方式*/
-        leading:null,/*行距*/
-        tracking:null,/*字符间距*/
+        color: {r: null, g: null, b: null, $hex: null},
+        size: null, /*字体尺寸*/
+        fontPostScriptName: null, /*字体*/
+        bold: null, /*仿粗体*/
+        italic: null, /*仿斜体*/
+        antiAlias: null, /*消除锯齿方式*/
+        underline: null, /*下划线类型*/
+        justification: null, /*段落对齐方式*/
+        leading: null, /*行距*/
+        tracking: null, /*字符间距*/
         baselineShift: null, /*基线偏移*/
-        horizontalScale:null,/*水平缩放*/
+        horizontalScale: null, /*水平缩放*/
         verticalScale: null, /*垂直缩放*/
         $enableFormula: null,
         assignment: {
-            text: null, 
+            text: null,
             color: null,
-            size:null, /*字体尺寸*/
-            fontPostScriptName:null, /*字体*/
-            bold:null,/*仿粗体*/
-            italic:null,/*仿斜体*/
-            antiAlias:null,/*消除锯齿方式*/
-            underline:null,/*下划线类型*/
-            justification:null,/*段落对齐方式*/
-            leading:null,/*行距*/
-            tracking:null,/*字符间距*/
+            size: null, /*字体尺寸*/
+            fontPostScriptName: null, /*字体*/
+            bold: null, /*仿粗体*/
+            italic: null, /*仿斜体*/
+            antiAlias: null, /*消除锯齿方式*/
+            underline: null, /*下划线类型*/
+            justification: null, /*段落对齐方式*/
+            leading: null, /*行距*/
+            tracking: null, /*字符间距*/
             baselineShift: null, /*基线偏移*/
-            horizontalScale:null,/*水平缩放*/
+            horizontalScale: null, /*水平缩放*/
             verticalScale: null, /*垂直缩放*/
             $enableFormula: null,
         },
         enableAssigns: {
             text: false,
             color: false,
-            size:false, /*字体尺寸*/
-            fontPostScriptName:false, /*字体*/
-            bold:false,/*仿粗体*/
-            italic:false,/*仿斜体*/
-            antiAlias:false,/*消除锯齿方式*/
-            underline:false,/*下划线类型*/
-            justification:false,/*段落对齐方式*/
-            leading:false,/*行距*/
-            tracking:false,/*字符间距*/
+            size: false, /*字体尺寸*/
+            fontPostScriptName: false, /*字体*/
+            bold: false, /*仿粗体*/
+            italic: false, /*仿斜体*/
+            antiAlias: false, /*消除锯齿方式*/
+            underline: false, /*下划线类型*/
+            justification: false, /*段落对齐方式*/
+            leading: false, /*行距*/
+            tracking: false, /*字符间距*/
             baselineShift: false, /*基线偏移*/
-            horizontalScale:false,/*水平缩放*/
+            horizontalScale: false, /*水平缩放*/
             verticalScale: false, /*垂直缩放*/
             $enableFormula: false,
         }
@@ -203,9 +203,9 @@ var Layer = function (layerListItem)
 
     this.shape =
     {
-        strokeColor: {r: null, g: null, b: null}, /*描边颜色*/
+        strokeColor: {r: null, g: null, b: null, $hex:null}, /*描边颜色*/
         strokeColorEnabled: null, /*启用描边*/
-        fillColor: {r: null, g: null, b: null}, /*填充颜色*/
+        fillColor: {r: null, g: null, b: null, $hex:null}, /*填充颜色*/
         fillColorEnabled: null, /*启用填充*/
         lineWidth: null, /*边线宽度*/
         dashSet: null, /*虚线设置*/

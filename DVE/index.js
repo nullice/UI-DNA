@@ -59,7 +59,7 @@ import  IchiColor_base  from "./Caryon/IchiColor/ichi-color.js";
 import  IchiColor_ex  from "./Caryon/IchiColor/ichi-color-extension";
 var IchiColor = IchiColor_ex(IchiColor_base);
 window.IchiColor = IchiColor;
-
+window.ichiColor = new IchiColor();
 
 import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
 window.ColorRNA = ColorRNA;
@@ -230,11 +230,11 @@ console.log("sss_end" + __result)
 // UI_action.show_message_input("var_panel", "新建变量", data, func_)
 
 
-var verifySimpleStigmata = function (uniqueId, droitCode, inDict,successCallback, rejectCallback)
+var verifySimpleStigmata = function (uniqueId, droitCode, inDict, successCallback, rejectCallback)
 {
     try
     {
-        var signCode = getSimpleStigmata(uniqueId,inDict);
+        var signCode = getSimpleStigmata(uniqueId, inDict);
         if (signCode == droitCode)
         {
             if (successCallback != undefined)
@@ -269,7 +269,7 @@ var getSimpleStigmata = function (uniqueId, inDict)
     var idArray = uniqueId.split("");
     var intArray = _mapStrArray(idArray, [3, 2, 22, 11, 7, 22, 10, 20, 5]);
 
-    var dict = inDict||"a2b3c4d4ef5gm0lakjshdfgh6ijkq7we8rtyu8i1opzx9cvbn"
+    var dict = inDict || "a2b3c4d4ef5gm0lakjshdfgh6ijkq7we8rtyu8i1opzx9cvbn"
 
     var signCode = "";
 
