@@ -4,13 +4,23 @@
 
 import OBJ from "./Richang_JSEX/objectOBJ"
 
+
+/**
+ * 数据存储核心
+ * dataCaryon.layers 图层数据
+ * dataCaryon.doc 文档数据
+ * @returns {DataCaryon}
+ * @constructor
+ */
 var DataCaryon = function ()
 {
 
-    this._layers = {
-        // "test": {999: DataCaryon.prototype.layerSample}
-    }
 
+    //实际存储属性
+    this._layers = {}
+    this._doc = {}
+
+    //直接获取属性，文档切换时，通过 this.switchDocment() ，映射到不同的实际存储
     this.layers = null;
     this._nowDoucmentId = null;
     Object.defineProperty(this, "nowDoucmentId",
@@ -46,7 +56,6 @@ var DataCaryon = function ()
     this.info._status = {_default: {saved: false, saving: false, _id: "default"}};
     this.info.status = this.info._status._default;
 
-
     this.switchDocment()
     return this;
 }
@@ -74,7 +83,14 @@ DataCaryon.prototype.addLayer = function (layerListItem)
 DataCaryon.prototype.save = async function ()
 {
     this.info.status.saving = true;
-    await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
+
+
+   var  dataOb  ={
+       layers:this.layers,
+       doc:this.doc
+   }
+
+    await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(dataOb));
 
 
     this.info.status.saved = true;
@@ -91,7 +107,16 @@ DataCaryon.prototype.load = async function ()
     var ob = JSON.parse(dataJson);
     if (ob != undefined)
     {
-        this.layers = ob;
+        if(ob.layers != undefined)
+        {
+            this.layers = ob.layers;
+        }
+
+        if(ob.doc != undefined)
+        {
+            this.doc = ob.doc;
+        }
+
         this.info.status.saved = true;
     }
 

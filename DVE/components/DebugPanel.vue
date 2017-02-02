@@ -1,32 +1,36 @@
 <template>
 
     <div class="debug-microscope">
-        <a-area area_title="debug-microscope">
+        <a-area area_title="debug-microscope" area_hight="40">
+            <pre>dataCaryon._nowDoucmentId：{{dataCaryon._nowDoucmentId}}
+                dataCaryon.info.status：{{dataCaryon.info.status|json}}
+                <pre>
+
 
             <!--<div class="title">UI_model.msg_color_picker.color1</div>-->
-            <!--<pre>-->
-                <!--{{UI_model.msg_color_picker.color1 |json}}-->
-            <!--</pre>-->
+                    <!--<pre>-->
+                    <!--{{UI_model.msg_color_picker.color1 |json}}-->
+                    <!--</pre>-->
 
 
-            <!--<div class="title">Gob.shape</div>-->
-            <!--<pre>-->
-                <!--{{Gob.shape |json}}-->
-            <!--</pre>-->
+                    <!--<div class="title">Gob.shape</div>-->
+                    <!--<pre>-->
+                    <!--{{Gob.shape |json}}-->
+                    <!--</pre>-->
 
-            <!--<div class="title">dataCaryon</div>-->
-            <!--<pre>-->
-                <!--{{dataCaryon |json}}-->
-            <!--</pre>-->
-            <!--<div class="title">Gob</div>-->
-            <!--<pre>-->
-               <!--{{Gob |json}}-->
-            <!--</pre>-->
+                    <!--<div class="title">dataCaryon</div>-->
+                    <!--<pre>-->
+                    <!--{{dataCaryon |json}}-->
+                    <!--</pre>-->
+                    <!--<div class="title">Gob</div>-->
+                    <!--<pre>-->
+                    <!--{{Gob |json}}-->
+                    <!--</pre>-->
 
-            <!--<div class="Gob.text">Gob</div>-->
-            <!--<pre>-->
-            <!--{{Gob.text.color |json}}-->
-            <!--</pre>-->
+                    <!--<div class="Gob.text">Gob</div>-->
+                    <!--<pre>-->
+                    <!--{{Gob.text.color |json}}-->
+                    <!--</pre>-->
         </a-area>
     </div>
 
@@ -39,9 +43,11 @@
         padding: 2px 0;
     }
 
+
 </style>
 <script>
     import Area from '../components/area.vue';
+
 
     export default{
         data(){
@@ -55,4 +61,5 @@
             "a-area": Area,
         }
     }
+
 </script>

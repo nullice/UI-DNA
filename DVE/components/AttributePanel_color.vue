@@ -74,6 +74,8 @@
 
 </style>
 <script>
+
+
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import IchiColor  from "./../Caryon/IchiColor/ichi-color.js";
     export default{
@@ -160,4 +162,7 @@
             "value-input": ValueInput,
         }
     }
+
+
+
 </script>

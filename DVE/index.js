@@ -38,6 +38,13 @@ import App from "./components/area.vue";
 //                 +--------------------------+
 
 
+
+
+//日志记录系统 -------------------------------------
+import  LoggerCaryon  from "./Caryon/loggerCaryon.js";
+var logger = new LoggerCaryon();
+window.logger = logger;
+
 //CEP 库-------------------------------------
 if (typeof window.__adobe_cep__ !== "undefined")
 {
@@ -47,7 +54,7 @@ if (typeof window.__adobe_cep__ !== "undefined")
     console.info("running without CEP!")
 }
 
-//PhotoShop 接口库-------------------------------------
+//PhotoShop 接口操作库-------------------------------------
 import  Enzymes  from "./Enzymes/Enzymes";
 if (typeof window.__adobe_cep__ !== "undefined")
 {
@@ -108,7 +115,8 @@ window.Lang = Lang;
 
 Vue.config.debug = true;//开启错误提示
 
-//-------------------------
+//UI -------------------------
+
 import {UI_model, UI_action} from "./components/UI_model/UI_model.js"
 window.UI_model = UI_model;
 window.UI_action = UI_action;
@@ -136,6 +144,7 @@ var mainVue = new Vue({
 window.mainVue = mainVue
 
 
+//测试 ----------------------
 async function doAsync()
 {
     return new Promise(function (resolve, reject)

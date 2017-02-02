@@ -14,13 +14,25 @@
     <div draggable="true" v-if="o_fixed_height" v-on:dragstart="drag_heigth_start($event)"
          v-on:dragend="drag_heigth_end($event)"
          v-on:drag="drag_heigth($event)"
+
+
          class="exmo_drag"></div>
 </template>
 
 <script>
 
     export default {
-        props: ['area_title', "area_id"],
+        props: ['area_title', "area_id", "area_hight"],
+
+        ready: function ()
+        {
+            if (this["area_hight"] != undefined)
+            {
+                this.o_height = +this.area_hight;
+                this.o_fixed_height = true;
+            }
+        },
+
         data(){
             return {
                 o_fixed_height: false,
@@ -83,6 +95,8 @@
         }
 
     }
+
+
 </script>
 
 <style lang="scss">
@@ -100,22 +114,21 @@
 
     .exmo_area {
         position: relative;
-        /*transition: all .5s;*/
 
-        &.mod_fixed_height {
-            /*height: 200px;*/
-            overflow: scroll;
-            overflow-x: hidden;
+    /*transition: all .5s;*/
 
-        }
+    &
+    .mod_fixed_height {
+        /*height: 200px;*/
+        overflow: scroll;
+        overflow-x: hidden;
+    }
 
     }
 
-    .exmo_area:hover .area_tool
-    {
+    .exmo_area:hover .area_tool {
         display: block;
     }
-
 
     .area_tool {
         position: absolute;
@@ -123,23 +136,22 @@
         right: 10px;
         display: none;
 
-        .exmo_button_icon i {
-            color: #ABABAB;
+    .exmo_button_icon i {
+        color: #ABABAB;
 
-            font-size: 11px;
-        }
+        font-size: 11px;
+    }
 
-        .exmo_icon_cheackbox:checked + .exmo_button_icon {
-            border: none;
-            background: rgba(80, 80, 80, 0.09);
-            margin-right: -2px;
-        }
-        .exmo_button_icon.mini {
-            padding: 0 4px;
-            padding-bottom: 2px;
-        }
+    .exmo_icon_cheackbox:checked + .exmo_button_icon {
+        border: none;
+        background: rgba(80, 80, 80, 0.09);
+        margin-right: -2px;
+    }
 
-
+    .exmo_button_icon.mini {
+        padding: 0 4px;
+        padding-bottom: 2px;
+    }
 
     }
 </style>
