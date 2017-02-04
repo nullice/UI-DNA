@@ -505,7 +505,7 @@
         data(){
             return {
                 Gob: Gob,
-                tagsActive: setSystem.attArea.tagsActive,
+                tagsActive: setSystem.ui.panel.main.tagsActive,
                 UI_model: UI_model,
                 Lang: Lang,
                 o_value: "",

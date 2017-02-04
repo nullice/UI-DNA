@@ -14,7 +14,7 @@ module.exports = {
         path: './bin/JS',
         filename: 'main.js'
     },
-    target: 'web',
+    target: 'node',
 
     module:{
         loaders:[

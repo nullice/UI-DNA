@@ -3,7 +3,11 @@
  */
 
 
-
+/** 事件处理核心
+ *
+ * @returns {EventCaryon}
+ * @constructor
+ */
 var EventCaryon = function ()
 {
     if (window.cs == undefined) //检查 cs 属性是否存在
@@ -19,17 +23,16 @@ var EventCaryon = function ()
     }
 
     EventCaryon.prototype.initEvent();
-
     return this;
 }
+
+
 
 /**
  * 初始化事件
  */
 EventCaryon.prototype.initEvent = async function ()
 {
-
-
     function _alertEvent(event)
     {
         // alert(JSON.stringify(event))
@@ -59,7 +62,8 @@ EventCaryon.prototype.initEvent = async function ()
     {
         return (_eventSelctRef(event) == "document")
     }
-    function _isMoveTool(event)
+
+    function _isMoveTool(event)//判断是移动工具
     {
         if( event.eventData["state"]["_value"] == "exit")//工具使用结束
         {
@@ -202,21 +206,6 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
 
 
 
-
-EventCaryon.prototype.extensionStart =function ()
-{
-
-}
-
-
-EventCaryon.prototype.extensionStart =function ()
-{
-
-}
-
-
-
-
 function CSEvent(type, scope, appId, extensionId)
 {
     this.type = type;
@@ -224,7 +213,6 @@ function CSEvent(type, scope, appId, extensionId)
     this.appId = appId;
     this.extensionId = extensionId;
 }
-
 
 //----------------------
 

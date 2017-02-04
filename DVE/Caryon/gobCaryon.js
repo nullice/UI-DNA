@@ -4,8 +4,18 @@
 import ARR from "./Richang_JSEX/arrayARR.js"
 import TYP from "./Richang_JSEX/typeTYP.js"
 
+
+/**
+ * Gob，选中图层。接管对选中图层的操作，把对 Gob 的操作分发给每个选中图层
+ * 每当有选中图层方式变化，会执行 Gob.updateSelect
+ *
+ * @returns {GobCaryon}
+ * @constructor
+ */
 var GobCaryon = function ()
 {
+    this.selectList = [];
+
     this.selectRender = false; //选择图层后渲染
     this.selectRenderVarList = false; //渲染改变的变量列表
     this.selectChanged = false;
@@ -23,7 +33,7 @@ var GobCaryon = function ()
         {
             set: function (x)
             {
-                if (x < 0)x = 0;
+                if (x < 0) x = 0;
                 this.__asyncSetCounter = x;
                 if (x == 0 && this._asyncSetSwitch)
                 {
@@ -55,22 +65,10 @@ var GobCaryon = function ()
     );
 
 
-    this.selectList = [];
-
     //属性注册[1/8]
-    this.position = GobCaryon.prototype.__new_position();
-    this.text = GobCaryon.prototype.__new_text();
-    this.shape = GobCaryon.prototype.__new_shape();
-    // this.position = {
-    //     x: null,
-    //     y: null,
-    //     w: null,
-    //     h: null,
-    //     $anchor: null,
-    //
-    //     assignment: {x: null, y: null, w: null, h: null, $anchor: null},
-    //     enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
-    // };
+    this.position = this.__new_position();
+    this.text = this.__new_text();
+    this.shape = this.__new_shape();
 
     //属性注册[2/8]
     //------------注册 getter 和 setter
@@ -78,7 +76,10 @@ var GobCaryon = function ()
     giveSetter(this.position, ["position"], 1);
     giveSetter(this.text, ["text"], 1);
     giveSetter(this.shape, ["shape"], 1);
+    return this;
 
+
+    // END
     function giveSetter(object, names, index)
     {
         for (var z in object)
@@ -127,8 +128,6 @@ var GobCaryon = function ()
 
     }
 
-    // setData(dataCaryon.layers[id][objectName], names, 0, x)
-    return this;
 }
 
 //属性注册[3/8]
@@ -198,8 +197,6 @@ GobCaryon.prototype.__new_text = function ()
         }
     }
 }
-
-
 GobCaryon.prototype.__new_shape = function ()
 {
     return {
@@ -262,9 +259,18 @@ GobCaryon.prototype.__new_shape = function ()
 }
 
 
+/** setter , 设置 Gob 属性值
+ *
+ * @param names
+ * @param value
+ * @returns {Promise.<void>}
+ * @private
+ */
 GobCaryon.prototype._setData = async function (names, value)
 {
     console.log(`-------_setData(${names}, ${value})`)
+
+
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -272,23 +278,19 @@ GobCaryon.prototype._setData = async function (names, value)
 
 
     //-------- 1. 值写入实际存储的属性 this._XXX;
-
     var change = _valueToObject(this, names, 0, value, true);
 
 
-    // console.log(`-------_setData_【change】：`,change)
     //属性注册[4/8]
-    //-------- 2. 判断是否应该写入 dataCaryon ;
+    //-------- 2. 判断是否应该写入 dataCaryon ; 变量、表达式、自定义属性将写入dataCaryon
+    var isVoidValue = false//是否是空值
+    var isText = false//是否是文本类型的值
 
-    var isVoidValue = false
-    var isText = false
-    if (value === "")//删除
+    if (value === "") //判断是否是空值
     {
-        isFormula = true;
         isVoidValue = true;
     } else
     {
-
         if (names[names.length - 1] == "text" && value != Gob.MULT) //写文本
         {
             if (TYP.type(value) == "string")
@@ -357,43 +359,6 @@ GobCaryon.prototype._setData = async function (names, value)
                     finish = true;
                 }
             }
-            // //------------------------------------
-            // var isLineAlignment = (names[names.length - 1] == "lineAlignment")
-            // if (isLineAlignment)
-            // {
-            //     if (value == "strokeStyleAlignInside" || value == "strokeStyleAlignCenter"
-            //         || value == "strokeStyleAlignOutside"
-            //     )
-            //     {
-            //         isFormula = false;
-            //         finish = true;
-            //     }
-            // }
-            // //------------------------------------
-            // var isLineCapType = (names[names.length - 1] == "lineCapType")
-            // if (isLineCapType)
-            // {
-            //     if (value == "strokeStyleButtCap" || value == "strokeStyleRoundCap"
-            //         || value == "strokeStyleSquareCap"
-            //     )
-            //     {
-            //         isFormula = false;
-            //         finish = true;
-            //     }
-            // }
-            // //------------------------------------
-            // var isLineJoinType = (names[names.length - 1] == "lineJoinType")
-            // if (isLineJoinType)
-            // {
-            //     if (value == "strokeStyleMiterJoin" || value == "strokeStyleRoundJoin"
-            //         || value == "strokeStyleBevelJoin"
-            //     )
-            //     {
-            //         isFormula = false;
-            //         finish = true;
-            //     }
-            // }
-
 
             if (!finish)
             {
@@ -406,6 +371,7 @@ GobCaryon.prototype._setData = async function (names, value)
         }
 
     }
+
     if (names[names.length - 2] == "assignment" && names[names.length - 2] == "enableAssigns")
     {
         isExvar = true;
@@ -413,8 +379,6 @@ GobCaryon.prototype._setData = async function (names, value)
 
     var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));// $开头的属性一定写入 dataCaryon
 
-
-    // console.log(names[names.length - 1], names[names.length - 1], isExvar, value)
 
     //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
     var rendered = false;
@@ -539,6 +503,12 @@ GobCaryon.prototype._setData = async function (names, value)
 }
 
 
+/**
+ *  getter ，获取 Gob 属性值
+ * @param names
+ * @returns {*}
+ * @private
+ */
 GobCaryon.prototype._getData = function (names)
 {
     function _valueFromObject(fromObject, names, nameIndex, prefix)
@@ -599,21 +569,30 @@ GobCaryon.prototype.updateSelect = async function ()
 
 
 /**
- * 更新选中图层对象的数据。
- * 会从实际图层（通过 enzymes）和 DataCaryon 拉取图层数据保存到选中图层对象。
+ * 。
+ *
+ */
+
+
+/**
+ * 更新选中图层对象的数据。会从“实际图层”和 DataCaryon 拉取图层数据到 Gob。
+ * 默认情况下会触发渲染
+ * @param disableRender 禁止 Gob 更新期间渲染图层
+ * @returns {Promise.<void>}
  */
 GobCaryon.prototype.updateGob = async function (disableRender)
 {
-
-    console.log("this.disableRender = ", disableRender)
     this.disableRender = disableRender || false;
+    logger.pin("Gob", "GobCaryon.prototype.updateGo",
+        `updateGob [START]`, "disableRender:" + this.disableRender)
+
     //----------1. 要拉取的数据：
     var temp = {};
 
     //属性注册[5/8`]
-    var new_position = GobCaryon.prototype.__new_position;
-    var new_text = GobCaryon.prototype.__new_text;
-    var new_shape = GobCaryon.prototype.__new_shape;
+    var new_position = this.__new_position;
+    var new_text = this.__new_text;
+    var new_shape = this.__new_shape;
 
     //属性注册[6/8]
     temp.position = new_position();
@@ -658,7 +637,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         // [shape]---------------------------------------------------------------
         var item_shape = new_shape();
         var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
-        console.info("getLayerInfo_shape_byId(" + this.selectList[i].id + ")", shape);
         _setTypeColor(item_shape.strokeColor, shape.strokeColor);
         item_shape.strokeColorEnabled = shape.strokeColorEnabled;
         _setTypeColor(item_shape.fillColor, shape.fillColor);
@@ -675,7 +653,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
 
     //属性注册[8/8]
-    // console.log("temp.position", temp.position)
     _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
     _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
     _objectToObject_asyncSetCounter(temp.shape, this.shape, false, false, true);
@@ -685,6 +662,9 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     _objectToObject(temp.shape, this.shape, false, false, true);
 
 
+    this.disableRender = false;//恢复默认值；
+
+    //[END]-----------------
     function _setTypeColor(color, typeColor)
     {
         typeColor.r = color.r
@@ -829,7 +809,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
                     if (sameObject[x] != object[x])
                     {
                         _temp++;
-                        // console.log("[+]" + x, "   " +  object[x])
                     }
                 }
             }
@@ -837,15 +816,11 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
         if (_temp > 0)
         {
-            // console.log("[++]" +_temp)
             Gob._asyncSetCounter += _temp;
         }
-
-
     }
 
-    this.disableRender = false;
-    console.log("this.disableRender = ", false)
+
 }
 
 

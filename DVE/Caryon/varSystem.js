@@ -26,7 +26,6 @@ var VarType = function (value, name, type, isFormula, relatives)
             },
             set: function (x)
             {
-                console.log(x)
                 this.updateRelatives(x);
                 this._value = x;
                 this.isFormula = VarSystem.prototype.isFormula(x);
@@ -38,7 +37,6 @@ var VarType = function (value, name, type, isFormula, relatives)
     if (value instanceof Object && arguments.length == 1)
     {
         this.name = value.name;
-        // this.updateRelatives(value.value);
         this.value = value.value;
         this.type = value.type;
         this.isFormula = value.isFormula;
@@ -47,26 +45,25 @@ var VarType = function (value, name, type, isFormula, relatives)
     } else
     {
         this.name = name;
-        // this.updateRelatives(value);
         this.value = value;
         this.type = type;
         this.isFormula = isFormula;
         this.relatives = relatives;
-
     }
-
 
     return this;
 }
 
+
+/**
+ * 更新依赖表
+ * @param newFormula
+ */
 VarType.prototype.updateRelatives = function (newFormula)
 {
     var oldRelatives = VarSystem.prototype.scanVarsInFormula(this._value, true);
     var newRelatives = VarSystem.prototype.scanVarsInFormula(newFormula, true);
-    // console.log("1111111111111111111111");
-    // console.log(this._value, oldRelatives, newFormula, newRelatives)
-    // console.log(window.varSystem != undefined);
-    // console.log("22222222222222222");
+
     if (window.varSystem != undefined)
     {
         var removeArr = ARR.difference(oldRelatives, newRelatives);
@@ -78,14 +75,13 @@ VarType.prototype.updateRelatives = function (newFormula)
         var addArr = ARR.difference(newRelatives, oldRelatives);
         for (var i = 0; i < addArr.length; i++)
         {
-            if( varSystem.vars[addArr[i]]!=undefined)
+            if (varSystem.vars[addArr[i]] != undefined)
             {
                 varSystem.vars[addArr[i]].relatives.push(this.name)
             }
-                }
+        }
 
     }
-
 }
 
 
@@ -227,8 +223,8 @@ VarSystem.prototype.layerSample = {
  **/
 VarSystem.prototype.evalVar = async function (varValue, thisId)
 {
-    console.log("evalVar("+varValue+")",thisId)
-    
+    console.log("evalVar(" + varValue + ")", thisId)
+
     var inVar = varValue;
     var varList = [];
     varList = VarSystem.prototype.scanVarsInFormula(varValue);
@@ -268,7 +264,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
         return math.format(math.eval(inVar), {precision: 14})
     } catch (e)
     {
-        console.error("math.eval(inVar)",e)
+        console.error("math.eval(inVar)", e)
         return inVar
     }
 
