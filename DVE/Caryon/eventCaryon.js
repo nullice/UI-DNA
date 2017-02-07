@@ -86,7 +86,7 @@ EventCaryon.prototype.initEvent = async function ()
     var func_SelectDocument = {func: dataCaryon.switchDocment, inThis: dataCaryon, agrs: null, sendEvent: false,verify:_isSelectDocument}
 
 
-    //2、在这里列出用事件 ID 和执行的方法-----------------------------------------------------------------------------
+    //2、在这里列出用事件 ID 和执行的函数-----------------------------------------------------------------------------
     //（选中事件）
     this.ID_slct = await enzymes.getTypeID("slct", "charID");
     this.FUNCS_slct = [func_updateSelect,func_SelectDocument]

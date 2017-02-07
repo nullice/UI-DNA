@@ -39,8 +39,8 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
-
-    console.log("renderPatch:",layerId, names, value)
+    logger.group(·`renderPatch:", ${layerId}, ${names}, ${value}`)
+    logger.group("renderPatch:", layerId, names, value)
     this.status.rendering = true;
 
     var item = names[names.length - 1];
@@ -122,7 +122,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
     this.status.rendering = false;
 
-
+    logger.groupEnd();
     function renderTypeColor(item, names, value)
     {
 

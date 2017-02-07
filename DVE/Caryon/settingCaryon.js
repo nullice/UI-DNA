@@ -51,9 +51,23 @@ SetSystem.prototype.init = function ()
     _checkDir(appDir);
     this._path_appDir = appDir;
 
+    var logDir = path.join(appDir, "log")
+    _checkDir(logDir);
+    this._path_logDir = logDir;
+
     var userDataDir = path.join(appDir, "UserData")
     _checkDir(userDataDir);
     this._path_userDataDir = userDataDir;
+
+    var userTempDir = path.join(appDir, "temp")
+    _checkDir(userTempDir);
+    this._path_userTempDir = userTempDir;
+
+    var userExDir = path.join(appDir, "Capsules")
+    _checkDir(userExDir);
+    this._path_userExDir = userExDir;
+
+
 
     logger.pin("setting", "settingCaryon.js:SetSystem.prototype.init",
        "初始化目录", {"seriesDir": seriesDir, "appDir": appDir, "userDataDir": userDataDir})

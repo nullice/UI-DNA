@@ -189,7 +189,7 @@ var Layer = function (layerListItem)
         baselineShift: null, /*基线偏移*/
         horizontalScale: null, /*水平缩放*/
         verticalScale: null, /*垂直缩放*/
-        $enableFormula: null,
+        $enableTextFormula: null,
         assignment: {
             text: null,
             color: null,
@@ -205,7 +205,7 @@ var Layer = function (layerListItem)
             baselineShift: null, /*基线偏移*/
             horizontalScale: null, /*水平缩放*/
             verticalScale: null, /*垂直缩放*/
-            $enableFormula: null,
+            $enableTextFormula: null,
         },
         enableAssigns: {
             text: false,
@@ -222,7 +222,7 @@ var Layer = function (layerListItem)
             baselineShift: false, /*基线偏移*/
             horizontalScale: false, /*水平缩放*/
             verticalScale: false, /*垂直缩放*/
-            $enableFormula: false,
+            $enableTextFormula: false,
         }
     }
 

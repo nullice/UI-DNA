@@ -16,6 +16,9 @@ var GobCaryon = function ()
 {
     this.selectList = [];
 
+
+
+    this._neverUpdate =true;//未更新过
     this.selectRender = false; //选择图层后渲染
     this.selectRenderVarList = false; //渲染改变的变量列表
     this.selectChanged = false;
@@ -24,7 +27,7 @@ var GobCaryon = function ()
 
 
     this.nowSwitching = false;//是否在切换选中图层中
-    this.disableSelectEvent = false;//不触发选择图层事件
+    this.stopSelectEvent = false;//不触发选择图层事件
 
     //----异步赋值计数器
     this.__asyncSetCounter = 0;
@@ -37,6 +40,7 @@ var GobCaryon = function ()
                 this.__asyncSetCounter = x;
                 if (x == 0 && this._asyncSetSwitch)
                 {
+                    console.group("__asyncSetCounter")
                     console.log("【this.nowSwitching = false】")
                     this.nowSwitching = false;
                     this._asyncSetSwitch = false;
@@ -51,10 +55,10 @@ var GobCaryon = function ()
                         if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
                         {
                             console.log("更新图层后渲染")
-                            renderCaryon.renderDocument(true, this.selectRenderVarList)
+                            // renderCaryon.renderDocument(true, this.selectRenderVarList)
                         }
                     }
-
+                    console.groupEnd();
                 }
             },
             get: function ()
@@ -160,10 +164,10 @@ GobCaryon.prototype.__new_text = function ()
         baselineShift: null, /*基线偏移*/
         horizontalScale: null, /*水平缩放*/
         verticalScale: null, /*垂直缩放*/
-        $enableFormula: null,
+        $enableTextFormula: null,
         assignment: {
             text: null,
-            $enableFormula: null,
+            $enableTextFormula: null,
             color: null,
             size: null, /*字体尺寸*/
             fontPostScriptName: null, /*字体*/
@@ -181,7 +185,7 @@ GobCaryon.prototype.__new_text = function ()
         },
         enableAssigns: {
             text: null,
-            $enableFormula: null,
+            $enableTextFormula: null,
             color: null, size: null, /*字体尺寸*/
             fontPostScriptName: null, /*字体*/
             bold: null, /*仿粗体*/
@@ -261,201 +265,244 @@ GobCaryon.prototype.__new_shape = function ()
 
 /** setter , 设置 Gob 属性值
  *
- * @param names
- * @param value
+ * @param names 属性名路径列表，如 [position,enableAssigns,y]
+ * @param value 要设置的值
  * @returns {Promise.<void>}
  * @private
  */
 GobCaryon.prototype._setData = async function (names, value)
 {
-    console.log(`-------_setData(${names}, ${value})`)
 
-
+    console.log(`_setData(${names}, ${value}):`)
 
     var isFormula = false;
     var doDocumentRender = false;
     var varUpdatelist = [];
 
 
-    //-------- 1. 值写入实际存储的属性 this._XXX;
-    var change = _valueToObject(this, names, 0, value, true);
+    //-------- 【1】. 值写入实际存储的属性 this._XXX;
+    var changeValue_Gob = _valueToObject(this, names, 0, value, true);
 
 
     //属性注册[4/8]
+
     //-------- 2. 判断是否应该写入 dataCaryon ; 变量、表达式、自定义属性将写入dataCaryon
+    /* 写入 dataCaryon 的情况：
+     *  1. 属性值含有表达式
+     *  2. 内置属性（$开头的属性）
+     * */
+
+
+    var flag_writeDataCaryon = false;//是否应该写入 dataCaryon
     var isVoidValue = false//是否是空值
+    var isTypeText = false//是否是类型文本
+    var isAssignment = false// 是否是“变量赋值命令”属性
+
+
+    var _typeText_typeName = null//类型文本的类型
+
     var isText = false//是否是文本类型的值
+    var _lastName = names[names.length - 1] //最终要设置的属性名称
+    var _lastButOneName = names[names.length - 2] //最终属性前一个属性名称（倒数第二个属性名）
 
     if (value === "") //判断是否是空值
     {
         isVoidValue = true;
     } else
     {
-        if (names[names.length - 1] == "text" && value != Gob.MULT) //写文本
+        if (value != Gob.MULT)
         {
-            if (TYP.type(value) == "string")
+            //0. 变量赋值属性
+            if (_lastButOneName == "assignment" && _lastButOneName == "enableAssigns")
             {
-                isText = true;
-                console.log("this.text.$enableFormula", this.text.$enableFormula)
-                if (this.text.$enableFormula == true)
-                {
-                    isFormula = true;
-                }
+                isAssignment = true;
+                /************************/
+                flag_writeDataCaryon = true;
+                /************************/
             }
 
-        }
-        else if (names[names.length - 1] == "$enableFormula" && value != Gob.MULT)
-        {
-            var temp = this.text.text;
-            this.text.text = " "
-            this.text.text = temp
-        }
-        else
-        {
-            var finish = false;
-            //类型判断-------------------------
-            var isBoolean = ARR.hasMember(["bold", "italic"], names[names.length - 1]);
-            if (isBoolean)
-            {
-                if (value == "true" || value == "false")
-                {
-                    isFormula = false;
-                    finish = true;
-                }
-            }
-            //------------------------------------
-            var isUnderline = (names[names.length - 1] == "underline")
-            if (isUnderline)
-            {
-                if (value == "underlineOff" || value == "underlineOnLeftInVertical"
-                    || value == "underlineOnRightInVertical" || value == "verticalUnderlineLeft"
-                    || value == "verticalUnderlineRight"
-                )
-                {
-                    isFormula = false;
-                    finish = true;
-                }
-            }
-            //------------------------------------
-            var isJustification = (names[names.length - 1] == "justification")
-            if (isJustification)
-            {
-                if (value == "center" || value == "right"
-                    || value == "left" || value == "justifyAll"
-                    || value == "justifyLeft" || value == "justifyRight"
-                )
-                {
-                    isFormula = false;
-                    finish = true;
-                }
-            }
-            //------------------------------------
-            var isAntiAlias = (names[names.length - 1] == "antiAlias")
-            if (isAntiAlias)
-            {
-                if (value.slice(0, 9) == "antiAlias")
-                {
-                    isFormula = false;
-                    finish = true;
-                }
-            }
 
-            if (!finish)
+            //1. 文本值-------------------------------------------------
+            if (_lastName == "text") //文本
             {
-                if (varSystem.isFormula(value) == true && value != Gob.MULT) //只写入公式变量
+                if (TYP.type(value) == "string")
                 {
-                    isFormula = true;
+
+                    if (_getObjectValueByNames(this, names, 1).$enableTextFormula)//检查是否启用了文本表达式
+                    {
+                        var _enableTextFormula = true
+                    } else
+                    {
+                        var _enableTextFormula = false
+                    }
+
+                    if (_enableTextFormula)//文本表达式
+                    {
+                        /************************/
+                        flag_writeDataCaryon = true;
+                        /************************/
+                    }
                 }
             }
+            //2. 内置属性------------------------------------------------
+            else if (_lastName[0] === "$")
+            {
+                if (_lastName == "$enableTextFormula")
+                {
+                    var temp = this.text.text;
+                    this.text.text = " "
+                    this.text.text = temp
+                }
+            }
+            else
+            {
+                //3. 类型文本------------------------------------------------
+                __checkTypeText(_typeDefine)
 
+                //  -------------定义数据和方法：
+                var _typeDefine = {
+                    boolean: {
+                        type: "boolean",//属性名称
+                        nameList: ["bold", "italic"], //这些名字的属性使用这一类型
+                        valueEnum: ["true", "false"], //当值为这些时被判定为类型文本
+                        judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
+                    },
+                    underline: {
+                        type: "underline",
+                        nameList: ["underline"],
+                        valueEnum: ["underlineOff", "underlineOnLeftInVertical", "underlineOnRightInVertical",
+                            "verticalUnderlineLeft", "verticalUnderlineRight"]
+                    },
+                    justification: {
+                        type: "justification",
+                        nameList: ["justification"],
+                        valueEnum: ["center", "right", "left",
+                            "justifyAll", "justifyLeft", "justifyRight"]
+                    },
+                    antiAlias: {
+                        type: "antiAlias",
+                        nameList: ["antiAlias"],
+                        valueEnum: null,
+                        judgementFunc: function (value)
+                        {
+                            if (value.slice(0, 9) == "antiAlias")
+                            {
+                                return true;
+                            } else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                }
+
+                function __checkTypeText(_typeDefine)
+                {
+                    for (var i in _typeDefine)
+                    {
+                        var isType = ARR.hasMember(_typeDefine[i].nameList, _lastName);
+                        if (isType)
+                        {
+                            isTypeText = true;
+                            _typeText_typeName = _typeDefine[i].type
+                        }
+                    }
+                }
+
+                //  END类型文本-------------------------------------------------
+
+                //4. 变量表达式------------------------------------------------
+                if (isTypeText == false)
+                {
+                    if (varSystem.isFormula(value)) //只写入公式变量
+                    {
+                        isFormula = true;
+                        /************************/
+                        flag_writeDataCaryon = true;
+                        /************************/
+                    }
+                }
+                //5. 值------------------------------------------------
+                /**/
+
+
+            }
         }
 
     }
 
-    if (names[names.length - 2] == "assignment" && names[names.length - 2] == "enableAssigns")
-    {
-        isExvar = true;
-    }
 
-    var isExvar = ((names[names.length - 1][0] == "$") && (value != Gob.MULT));// $开头的属性一定写入 dataCaryon
-
-
-    //-------- 3. 把值分发到每个选中图层的 dataCaryon ;
+    //-------- 【3】. 把值分发到每个选中图层的 dataCaryon ，;
     var rendered = false;
+
+
+    //1.保存选中图层状态
     if (this.selectList.length > 1)
     {
         var save = await enzymes.selectSave();
     }
 
-
+    //2.每个图层执行一次分发操作：
     for (var i = 0; i < this.selectList.length; i++)
     {
         dataCaryon.info.status.saved = false;
 
-        var change_i = false;
-        if (isFormula || isExvar)
+        var changeValue_dataCaryon = false;// 是否改变了 dataCaryon 里原有的值
+        //写入 dataCaryon
+        if (flag_writeDataCaryon)
         {
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);
             }
-            // console.log("_valueToObject:",this.selectList[i].id,">",dataCaryon.layers[this.selectList[i].id], names, 0, value)
-            change_i = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+            changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
         }
+
+
         // 即时修改-------------------------------------------------------------------------------------------
-        console.log("isFormula :" + isFormula + "  change:" + change + "  change_i:" + change_i)
-        console.log(change_i, change, isFormula)
-        console.log("this.nowSwitching =" + this.nowSwitching + "    " + names + "=>" + value)
+        // console.log("isFormula :" + isFormula + "  change:" + changeValue_Gob + "  change_i:" + changeValue_dataCaryon)
+        // console.log(changeValue_dataCaryon, changeValue_Gob, isFormula)
+        // console.log("this.nowSwitching =" + this.nowSwitching + "    " + names + "=>" + value)
 
 
-        if (this.nowSwitching == false)
+        if ((this.nowSwitching == false) && (this.disableRender != true) && (value != Gob.MULT))
         {
-            if (value != Gob.MULT)
+            if (changeValue_dataCaryon || changeValue_Gob)
             {
-                if (change_i || (change))
+                doDocumentRender = true;
+                if ((isAssignment != true) && (isVoidValue != true))
                 {
-                    doDocumentRender = true;
-                    if (names[1] != "enableAssigns" && names[1] != "assignment" && isVoidValue != true && this.disableRender != true)
+                    console.log("【START】renderPatch--------" + names + "=>" + value)
+                    console.log(this.selectList[i].id, names, value)
+
+                    rendered = true;
+
+                    if (isFormula) //如果是变量表达式先解析"普通变量"
                     {
-                        console.log("【START】renderPatch--------" + names + "=>" + value)
-                        console.log(this.selectList[i].id, names, value)
-                        rendered = true;
-
-
-                        if (isFormula)
-                        {
-                            var finValue = await varSystem.evalVar(value, this.selectList[i].id)
-                        } else
-                        {
-                            var finValue = value;
-                        }
-
-                        console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
-                        await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
-
-                        // await  sleep(800)
-                        console.log("【END】renderPatch------" + names + "=>" + finValue)
+                        var finValue = await varSystem.evalVar(value, this.selectList[i].id)
                     } else
                     {
-                        if (names[1] != "assignment")
-                        {
-
-                        }
+                        var finValue = value;
                     }
 
+                    console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
+                    await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
 
+                    console.log("【END】renderPatch------" + names + "=>" + finValue)
                 }
+
             }
         }
-
     }
 
+
+//3.自动渲染文档:
     if (setSystem.autoRender && this.disableRender != true)
     {
         if (this[names[0]]["enableAssigns"][names[names.length - 1]])
         {
-            console.log("autoRender", (change_i || change), this[names[0]]["enableAssigns"][names[names.length - 1]], names)
-            if (value != Gob.MULT && (change_i || change))
+            console.log("autoRender", (changeValue_dataCaryon || changeValue_Gob), this[names[0]]["enableAssigns"][names[names.length - 1]], names)
+            if (value != Gob.MULT && (changeValue_dataCaryon || changeValue_Gob))
             {
                 var _assign = this[names[0]]["assignment"][names[names.length - 1]];
 
@@ -482,6 +529,7 @@ GobCaryon.prototype._setData = async function (names, value)
     }
 
 
+//4.恢复选中图层状态
     if (this.selectList.length > 1)
     {
         if (rendered)
@@ -493,13 +541,7 @@ GobCaryon.prototype._setData = async function (names, value)
             }
         }
     }
-    // console.log("[--]" + names, "   " + Gob._asyncSetCounter)
     Gob._asyncSetCounter--;
-
-
-    // alert("set:" + names + "=" + value)
-
-    // GobCaryon.prototype._valueToObject(dataCaryon.layers[id][names[0]], names, 1, value)
 }
 
 
@@ -538,40 +580,42 @@ GobCaryon.prototype._getData = function (names)
  */
 GobCaryon.prototype.updateSelect = async function ()
 {
-    if (this.disableSelectEvent)
+
+    if (this.stopSelectEvent)// 如果设置了停止选择更新开关则返回
     {
         return;
     }
 
-    if (this.selectUpdateing)
+    if (this.selectUpdateing)// 如果另外的更新未结束则返回。
     {
         return;
     }
 
-    this.selectUpdateing = true;
+
+    logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【开始】选中图层周期 [updateSelect]--------------------")
+    logger.group("%c[updateSelect]", "color:#09ae9d;")
 
 
-    this.nowSwitching = true;
+    this.selectUpdateing = true; //标志正在更新选中图层
+    this.nowSwitching = true;     //标志切换
     this.selectRender = false;
     this.selectRenderVarList = [];
     console.log("【this.nowSwitching = true】")
 
+    //判断选中图层是否有改变
     var newList = (await enzymes.getSelectLayerArray()).reverse();
     this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
-    console.log("selectChanged:", this.selectChanged);
+    logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
 
     this.selectList = newList;
+    //******************
     await this.updateGob();
-
+    //******************
     this.selectUpdateing = false;
-    console.log("selectUpdateing = END")
+    console.log("selectUpdateing:false")
+    logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【结束】选中图层周期 [updateSelect]--------------------")
+    console.groupEnd()
 }
-
-
-/**
- * 。
- *
- */
 
 
 /**
@@ -582,6 +626,8 @@ GobCaryon.prototype.updateSelect = async function ()
  */
 GobCaryon.prototype.updateGob = async function (disableRender)
 {
+    logger.group("[updateGob]")
+
     this.disableRender = disableRender || false;
     logger.pin("Gob", "GobCaryon.prototype.updateGo",
         `updateGob [START]`, "disableRender:" + this.disableRender)
@@ -663,7 +709,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
 
     this.disableRender = false;//恢复默认值；
-
+    logger.groupEnd()
     //[END]-----------------
     function _setTypeColor(color, typeColor)
     {
@@ -829,6 +875,7 @@ GobCaryon.prototype.MULT = "%$*/Gob-MUTIPLE/*$%";
 
 /**
  * 把值赋予指定对象指定路径成员
+ *
  * @param toObject 欲赋值目标对象
  * @param objectNames 对象成员的路径，即名称数组（数字如 a.b.c 为 ["a","b","c"] ）
  * @param nameIndex 路径起始位置，通常从 0 开始
@@ -867,7 +914,7 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
                 {
                     delete  toObject[objectNames[nameIndex]];
 
-                    console.log("delete to Gob.updateGob")
+                    console.log("delete to Gob.updateGob.")
                     Gob.updateGob(true);
                 }
 
@@ -880,6 +927,35 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
 
     }
 }
+
+
+/**
+ * 根据属性名路径列表（names）获取对象属性的值
+ * @param object 对象
+ * @param names 属性名路径列表，如 [position,enableAssigns,y]
+ * @param aheadEndTime 提取结束个数，如设置为 1 则是获取倒数第 2 个属性的值，
+ * @returns {*}
+ * @private
+ */
+function _getObjectValueByNames(object, names, aheadEndTime)
+{
+    var nowValue;
+    for (var i = 0; i < (names.length - (aheadEndTime || 0)); i++)
+    {
+
+        if (i == 0)
+        {
+            nowValue = object[names[i]];
+        } else
+        {
+            nowValue = nowValue[names[i]];
+        }
+
+    }
+
+    return nowValue
+}
+
 
 function _inArray(name, array)
 {

@@ -387,7 +387,7 @@
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
                            v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
-                           v-bind:enable_formula.sync="Gob.text.$enableFormula"
+                           v-bind:enable_formula.sync="Gob.text.$enableTextFormula"
             ></attr-textarea>
         </div>
 

@@ -302,7 +302,7 @@ VarSystem.prototype.isFormulaInText = function (varValue)
 
 
 /**
- * 提取公式中的变量
+ * 提取公式中的变量，只判断形式
  * @param formula
  */
 VarSystem.prototype.scanVarsInFormula = function (formula, flat)
@@ -321,7 +321,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 
     if (formula == undefined)
     {
-        return varList;
+        return [];
     }
     while ((resullt = re.exec(formula)) !== null)
     {

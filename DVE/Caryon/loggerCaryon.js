@@ -1,7 +1,7 @@
 /**
  * Created by bgllj on 2017/2/2.
  */
-
+var path = require("path")
 
 
 
@@ -134,5 +134,41 @@ LoggerCaryon.prototype.pin = function (pinTag, pinPosition, log)
     }
 }
 
+
+LoggerCaryon.prototype.group = function ()
+{
+    var msgs = Array.from(arguments);//参数转换为数组
+    this._logMeta("group", msgs);
+    if (this.hideAll == false && this.hideErr == false)
+    {
+        console.group.apply(console, msgs)
+    }
+}
+
+LoggerCaryon.prototype.groupEnd= function ()
+{
+    var msgs = Array.from(arguments);//参数转换为数组
+    this._logMeta("groupEnd", msgs);
+    if (this.hideAll == false && this.hideErr == false)
+    {
+        console.groupEnd.apply(console, msgs)
+    }
+}
+
+
+//----------------
+
+LoggerCaryon.prototype.saveToFile = function (fileName)
+{
+    var data =  JSON.stringify(this.logs)
+    var result = window.cep.fs.writeFile( path.join( setSystem._path_logDir,fileName||"0.log"), data);
+    if (0 == result.err) {
+        // 成功·
+    }
+    else {
+        // 失败
+    }
+
+}
 
 export default LoggerCaryon;
