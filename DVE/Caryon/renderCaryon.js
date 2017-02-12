@@ -39,9 +39,8 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
-    logger.group(·`renderPatch:", ${layerId}, ${names}, ${value}`)
-    logger.group("renderPatch:", layerId, names, value)
-    this.status.rendering = true;
+    logger.group(`renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
+    this.status.rendering = true;// 标记渲染状态，会触发渲染按钮动画
 
     var item = names[names.length - 1];
     if (names[0] === "position")
@@ -51,16 +50,20 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             var ob = {};
             ob[item] = value;
 
-            Gob.disableSelectEvent = true;
+
+
+            Gob.stopSelectEvent = true;//渲染开始，关闭图层选中事件监听
+
             console.log("----[start:RenderCaryon：position:" + layerId + "]---")
-
+            logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【开始】选中图层周期 [updateSelect]--------------------")
             await enzymes.selectLayer_byID(layerId);
-
             console.log(`enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)
+            /*****************************************************/
             await enzymes.setLayerInfo_position_byId(ob, layerId)
+            /*****************************************************/
 
             console.log("----[end：RenderCaryon：" + layerId + "]---")
-            Gob.disableSelectEvent = false;
+            Gob.stopSelectEvent = false;//渲染结束，关闭图层选中事件监听
 
 
         }
@@ -120,9 +123,11 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
         }
     }
 
-    this.status.rendering = false;
+    this.status.rendering = false;// 标记渲染状态结束，停止渲染按钮动画
 
     logger.groupEnd();
+
+    //END-------------------
     function renderTypeColor(item, names, value)
     {
 

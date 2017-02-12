@@ -17,8 +17,7 @@ var GobCaryon = function ()
     this.selectList = [];
 
 
-
-    this._neverUpdate =true;//未更新过
+    this._neverUpdate = true;//未更新过
     this.selectRender = false; //选择图层后渲染
     this.selectRenderVarList = false; //渲染改变的变量列表
     this.selectChanged = false;
@@ -347,6 +346,10 @@ GobCaryon.prototype._setData = async function (names, value)
             //2. 内置属性------------------------------------------------
             else if (_lastName[0] === "$")
             {
+                /************************/
+                flag_writeDataCaryon = true;
+                /************************/
+
                 if (_lastName == "$enableTextFormula")
                 {
                     var temp = this.text.text;
@@ -473,21 +476,23 @@ GobCaryon.prototype._setData = async function (names, value)
                 if ((isAssignment != true) && (isVoidValue != true))
                 {
                     console.log("【START】renderPatch--------" + names + "=>" + value)
-                    console.log(this.selectList[i].id, names, value)
-
                     rendered = true;
 
                     if (isFormula) //如果是变量表达式先解析"普通变量"
                     {
                         var finValue = await varSystem.evalVar(value, this.selectList[i].id)
-                    } else
+
+                    } else if (_enableTextFormula)
+                    {
+                        var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
+                    }
+                    else
                     {
                         var finValue = value;
                     }
 
-                    console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
+                    // console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
                     await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
-
                     console.log("【END】renderPatch------" + names + "=>" + finValue)
                 }
 
@@ -709,6 +714,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
 
     this.disableRender = false;//恢复默认值；
+    this._neverUpdate = false //未更新过 = false
     logger.groupEnd()
     //[END]-----------------
     function _setTypeColor(color, typeColor)

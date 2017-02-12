@@ -2,8 +2,6 @@
  * Created by bgllj on 2016/9/20.
  */
 
-
-
 var TEST = function (testName)
 {
     this.name = testName || "一只测试";

@@ -362,16 +362,16 @@ Enzymes.prototype.getLayerInfo_shape_byId = async function (layerID)
 
 /**
  * 设置图层形状信息。会导致选中指定图层。
- * @param textInfo
+ * @param shapeInfo
  * @param layerID
  * @returns {Promise}
  */
-Enzymes.prototype.setLayerInfo_text_byId = async function (textInfo, layerID)
+Enzymes.prototype.setLayerInfo_shape_byId = async function (shape, layerID)
 {
     return new Promise(function (resolve, reject)
         {
-            var obJson = JSON.stringify(textInfo);
-            var _jsxCode = `EnzJSX.setLayerInfo_text_byId(${obJson} ,${layerID} )`
+            var obJson = JSON.stringify(shape);
+            var _jsxCode = `EnzJSX.setLayerInfo_shape_byId(${obJson} ,${layerID} )`
             evalScript(
                 _jsxCode,
                 (r)=> {resolve(jsxBackCheck(r, _jsxCode))})
