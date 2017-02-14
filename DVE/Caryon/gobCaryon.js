@@ -307,6 +307,10 @@ GobCaryon.prototype._setData = async function (names, value)
     if (value === "") //判断是否是空值
     {
         isVoidValue = true;
+        /************************/
+        flag_writeDataCaryon = true;
+        /************************/
+
     } else
     {
         if (value != Gob.MULT)
@@ -324,9 +328,11 @@ GobCaryon.prototype._setData = async function (names, value)
             //1. 文本值-------------------------------------------------
             if (_lastName == "text") //文本
             {
+                console.info("text", TYP.type(value))
+
                 if (TYP.type(value) == "string")
                 {
-
+                    console.info("_getObjectValueByNames(this, names, 1).$enableTextFormula", _getObjectValueByNames(this, names, 1).$enableTextFormula)
                     if (_getObjectValueByNames(this, names, 1).$enableTextFormula)//检查是否启用了文本表达式
                     {
                         var _enableTextFormula = true
@@ -352,10 +358,22 @@ GobCaryon.prototype._setData = async function (names, value)
 
                 if (_lastName == "$enableTextFormula")
                 {
-                    var temp = this.text.text;
-                    this.text.text = " "
-                    this.text.text = temp
+                    if(value == true)
+                    {
+                        var temp = this.text.text;
+                        this.text.text = ""
+                        this.text.text = temp
+                    }
+                    else
+                    {
+                        this.text.text = ""
+                    }
+
                 }
+
+
+
+
             }
             else
             {
@@ -454,11 +472,13 @@ GobCaryon.prototype._setData = async function (names, value)
         //写入 dataCaryon
         if (flag_writeDataCaryon)
         {
+
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);
             }
             changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+
         }
 
 
@@ -484,6 +504,7 @@ GobCaryon.prototype._setData = async function (names, value)
 
                     } else if (_enableTextFormula)
                     {
+                        console.info("_enableTextFormula", _enableTextFormula)
                         var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
                     }
                     else
@@ -547,6 +568,8 @@ GobCaryon.prototype._setData = async function (names, value)
         }
     }
     Gob._asyncSetCounter--;
+
+
 }
 
 

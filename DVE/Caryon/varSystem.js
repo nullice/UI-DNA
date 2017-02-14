@@ -339,7 +339,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 
 
 /**
- *
+ * 搜索文本中的变量。使用双括号括包围的 ：{{变量}}
  * @param formula
  * @param flat
  * @returns {Array}
@@ -347,7 +347,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 VarSystem.prototype.scanFormulasInText = function (formula, flat)
 {
 
-    var re = /{{.*}}/g;
+    var re = /{{\s*[\w\.]+\s*}}/g;
     var varList = [];
     var resullt;
 
@@ -375,6 +375,8 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
     var text = varText;
     var formulasList = [];
     formulasList = VarSystem.prototype.scanFormulasInText(text);
+    // formulasList = VarSystem.prototype.scanVarsInFormula(text);
+    console.log("formulasList",formulasList)
 
     var increment = 0;
     for (let i = 0; i < formulasList.length; i++)
@@ -395,6 +397,8 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
     }
 
     //修正 JavaScript 精度问题
+    console.log("evalFormulasInText:",text)
+
     return text;
 }
 
