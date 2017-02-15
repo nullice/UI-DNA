@@ -2,11 +2,11 @@
 
     <div class="debug-microscope">
         <a-area area_title="debug-microscope" area_hight="40">
-            <pre>dataCaryon._nowDoucmentId：{{dataCaryon._nowDoucmentId}}
-                dataCaryon.info.status：{{dataCaryon.info.status|json}}
-                <pre>
-
-
+            <!--<pre>dataCaryon._nowDoucmentId：{{dataCaryon._nowDoucmentId}}-->
+                <!--dataCaryon.info.status：{{dataCaryon.info.status|json}}-->
+                <!--<pre>-->
+  <pre> Gob.text.color:
+      {{Gob.text.color|json}}</pre>
             <!--<div class="title">UI_model.msg_color_picker.color1</div>-->
                     <!--<pre>-->
                     <!--{{UI_model.msg_color_picker.color1 |json}}-->

@@ -352,13 +352,22 @@ GobCaryon.prototype._setData = async function (names, value)
             //2. 内置属性------------------------------------------------
             else if (_lastName[0] === "$")
             {
-                /************************/
-                flag_writeDataCaryon = true;
-                /************************/
+                var _writeData = true;
+
+                if (_lastName == "$hex") //$hex 属性不写入 dataCaryon，只作为颜色改变的触发属性
+                {
+
+                    _writeData = false
+                    if (value[0] != "#")
+                    {
+                        _writeData = true;
+                        isFormula = true
+                    }
+                }
 
                 if (_lastName == "$enableTextFormula")
                 {
-                    if(value == true)
+                    if (value == true)
                     {
                         var temp = this.text.text;
                         this.text.text = ""
@@ -372,7 +381,12 @@ GobCaryon.prototype._setData = async function (names, value)
                 }
 
 
-
+                if (_writeData)
+                {
+                    /************************/
+                    flag_writeDataCaryon = true;
+                    /************************/
+                }
 
             }
             else
@@ -478,6 +492,13 @@ GobCaryon.prototype._setData = async function (names, value)
                 dataCaryon.addLayer(this.selectList[i]);
             }
             changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+        }
+        else//删除 dataCaryon 值
+        {
+            if (dataCaryon.layers[this.selectList[i].id] != undefined)
+            {
+                changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, "", null, true)
+            }
 
         }
 
@@ -498,11 +519,13 @@ GobCaryon.prototype._setData = async function (names, value)
                     console.log("【START】renderPatch--------" + names + "=>" + value)
                     rendered = true;
 
+                    //-----------------------------------------------------------------
                     if (isFormula) //如果是变量表达式先解析"普通变量"
                     {
                         var finValue = await varSystem.evalVar(value, this.selectList[i].id)
 
-                    } else if (_enableTextFormula)
+                    }
+                    else if (_enableTextFormula)
                     {
                         console.info("_enableTextFormula", _enableTextFormula)
                         var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
@@ -511,6 +534,7 @@ GobCaryon.prototype._setData = async function (names, value)
                     {
                         var finValue = value;
                     }
+                    //-----------------------------------------------------------------
 
                     // console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
                     await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
@@ -740,15 +764,22 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     this._neverUpdate = false //未更新过 = false
     logger.groupEnd()
     //[END]-----------------
-    function _setTypeColor(color, typeColor)
+    function _setTypeColor(typeColor, color)
     {
         typeColor.r = color.r
         typeColor.g = color.g
         typeColor.b = color.b
 
-        ichiColor.set(color);
-        typeColor.$hex = ichiColor.hex;
+        if (color.r == undefined || color.g == undefined || color.b == undefined)
+        {
 
+            typeColor.$hex = null;
+
+        } else
+        {
+            ichiColor.set(color);
+            typeColor.$hex = ichiColor.hex;
+        }
     }
 
     function _setValue(oldValue, value, ignoreNull)
@@ -910,9 +941,10 @@ GobCaryon.prototype.MULT = "%$*/Gob-MUTIPLE/*$%";
  * @param nameIndex 路径起始位置，通常从 0 开始
  * @param value 要设置的值
  * @param prefix 是否设置前缀"_",为真的话，会赋值到带前缀的成员，（如指定路径 a.b.c 会赋值到 a.b._c）
+ * @param deleteNOTupdateGob 当 value 为 "" 删除原值时，不更新 Gob
  * @private
  */
-function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
+function _valueToObject(toObject, objectNames, nameIndex, value, prefix, deleteNOTupdateGob)
 {
     var isLastName = nameIndex == objectNames.length - 1
 
@@ -923,7 +955,7 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
 
     if (isLastName != true)
     {
-        return _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix)
+        return _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix, deleteNOTupdateGob)
     } else
     {
 
@@ -943,8 +975,14 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix)
                 {
                     delete  toObject[objectNames[nameIndex]];
 
-                    console.log("delete to Gob.updateGob.")
-                    Gob.updateGob(true);
+
+                    if (deleteNOTupdateGob != true)
+                    {
+                        console.log("delete to Gob.updateGob.")
+                        Gob.updateGob(true);
+                    }
+
+
                 }
 
                 return true;

@@ -268,7 +268,7 @@
                          v-bind:color.sync="Gob.text.color"
                          mini="true"
             > </color-input>
-            {{Gob.text.color|json}}
+
 
             <value-input v-bind:name="Lang.from('字体')"
                          v-bind:title="Lang.from('字体')"
@@ -440,7 +440,7 @@
     }
 
     .tag-text.trans-fade-transition {
-        height: 450px;
+        height: 600px;
 
     }
     .tag-shape.trans-fade-transition {

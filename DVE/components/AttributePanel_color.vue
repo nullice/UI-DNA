@@ -12,7 +12,6 @@
             <div class="color-bottom" v-bind:style="color_style"
                  v-bind:class="{'type_none':type_none}" v-on:click="picker_color">
 
-
             </div>
             <!--[{{type_none}}]-->
         </value-input>
@@ -31,12 +30,9 @@
 
     .color-bottom.type_none {
         border: 1px solid rgba(90, 90, 90, 0.53);
-        background: linear-gradient(45deg, rgba(195, 195, 195, 0.490196), rgba(208, 208, 208, 0.490196) 45%, rgb(169, 169, 169) 45%, rgba(92, 92, 92, 0.64) 55%, rgba(205, 205, 205, 0.490196) 55%, rgba(211, 211, 211, 0.490196))!important;
+        background: linear-gradient(45deg, rgba(195, 195, 195, 0.490196), rgba(208, 208, 208, 0.490196) 45%, rgb(169, 169, 169) 45%, rgba(92, 92, 92, 0.64) 55%, rgba(205, 205, 205, 0.490196) 55%, rgba(211, 211, 211, 0.490196)) !important;
 
     }
-
-
-
 
     .color_input .input.exmo_input_text.edit_input {
         margin-left: 0;
@@ -81,18 +77,41 @@
     export default{
         props: ['color', 'edit_value', "out_value", 'name', 'name_html',
             "value_type", "enable_assign", "mini", "mode_color", "type_none"
-            ,"color_enable"],
+            , "color_enable"],
         watch: {
             "o_color": function (val)
             {
                 if (val != "#")
                 {
-                    this.ichi_color.hex = val;
-                    this.color.r = this.ichi_color.r;
-                    this.color.g = this.ichi_color.g;
-                    this.color.b = this.ichi_color.b;
-                    this.color_style.background = this.ichi_color.hex;
-                    this.type_none = false;
+
+                    if (val[0] != "#")
+                    {
+                        this.color.$hex = val;
+                        _setColorFromVar();
+                        async function _setColorFromVar()
+                        {
+                            var finValue = await varSystem.evalVar(val)
+                            console.info("finValue", finValue, "val", val)
+                            this.ichi_color.hex = finValue;
+                            console.info("this.ichi_color", this.ichi_color)
+                            this.color.r = this.ichi_color.r;
+                            this.color.g = this.ichi_color.g;
+                            this.color.b = this.ichi_color.b;
+                            this.color_style.background = this.ichi_color.hex;
+                            this.type_none = false;
+                        }
+                    }
+                    else
+                    {
+                        this.ichi_color.hex = val;
+                        this.color.r = this.ichi_color.r;
+                        this.color.g = this.ichi_color.g;
+                        this.color.b = this.ichi_color.b;
+                        this.color.$hex = this.ichi_color.hex;
+                        this.color_style.background = this.ichi_color.hex;
+                        this.type_none = false;
+                    }
+
                 }
                 else if (this.type_none != true)
                 {
@@ -109,11 +128,11 @@
 //                    this.color_style.background = "linear-gradient( 45deg, rgba(255, 255, 255, 0.49), rgba(255, 255, 255, 0.49) 45%, #5C5C5C 45%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 100% )";
                     this.o_color = "#"
                 }
-                this.color_enable =!val
+                this.color_enable = !val
             },
-            "color_enable":function (val)
+            "color_enable": function (val)
             {
-                this.type_none =!val
+                this.type_none = !val
             },
             "color.r": function (val)
             {
@@ -151,8 +170,19 @@
             },
             color_update: function ()
             {
-                this.ichi_color.set(this.color);
-                this.o_color = this.ichi_color.hex;
+//                this.ichi_color.set(this.color);
+//                this.o_color = this.ichi_color.hex;
+////
+////
+                this.o_color = this.color.$hex||"";
+                _setColorFrom$hex();
+                async function _setColorFrom$hex()
+                {
+                    var finValue = await varSystem.evalVar(this.color.$hex)
+                    this.ichi_color.set(finValue);
+                }
+
+
             }
 
         }
@@ -162,7 +192,6 @@
             "value-input": ValueInput,
         }
     }
-
 
 
 </script>

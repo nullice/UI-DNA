@@ -66,19 +66,30 @@ VarType.prototype.updateRelatives = function (newFormula)
 
     if (window.varSystem != undefined)
     {
-        var removeArr = ARR.difference(oldRelatives, newRelatives);
-        for (var i = 0; i < removeArr.length; i++)
+        try
         {
-            ARR.remove(varSystem.vars[removeArr[i]].relatives, this.name, true)
-        }
-
-        var addArr = ARR.difference(newRelatives, oldRelatives);
-        for (var i = 0; i < addArr.length; i++)
-        {
-            if (varSystem.vars[addArr[i]] != undefined)
+            var removeArr = ARR.difference(oldRelatives, newRelatives);
+            for (var i = 0; i < removeArr.length; i++)
             {
-                varSystem.vars[addArr[i]].relatives.push(this.name)
+                if(varSystem.vars[removeArr[i]]!=undefined)
+                {
+                    ARR.remove(varSystem.vars[removeArr[i]].relatives, this.name, true)
+                }
+
             }
+
+            var addArr = ARR.difference(newRelatives, oldRelatives);
+            for (var i = 0; i < addArr.length; i++)
+            {
+                if (varSystem.vars[addArr[i]] != undefined)
+                {
+                    varSystem.vars[addArr[i]].relatives.push(this.name)
+                }
+            }
+        }
+        catch (e)
+        {
+            console.error(e)
         }
 
     }
@@ -119,6 +130,7 @@ var VarSystem = function ()
         'b': new VarType({name: 'b', value: 1000, type: null, isFormula: false, relatives: ['x']}),
         'x': new VarType({name: 'x', value: "a*b", type: null, isFormula: true, relatives: []}),
         't': new VarType({name: 't', value: "true", type: null, isFormula: true, relatives: []}),
+        'cc': new VarType({name: 'cc', value: "#f01", type: null, isFormula: true, relatives: []}),
     };
 
     return this;
@@ -233,7 +245,6 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
     for (let i = 0; i < varList.length; i++)
     {
         var _this_var = this.vars[varList[i].name];
-
         if (_this_var !== undefined)
         {
             // console.log(varList[i].index + increment + "-" + varList[i].name.length)
@@ -245,12 +256,14 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
                 var getValue = await this.evalVar(_this_var.value);
             }
 
+
             inVar = STR.insert(inVar,
                 varList[i].index + increment,
                 varList[i].name.toString().length,
                 getValue
             );
             increment += getValue.toString().length - varList[i].name.toString().length;
+
 
         }
     }
@@ -261,6 +274,11 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
 
     try
     {
+        if (inVar[0] == "#")
+        {
+            return inVar
+        }
+
         return math.format(math.eval(inVar), {precision: 14})
     } catch (e)
     {
@@ -376,7 +394,7 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
     var formulasList = [];
     formulasList = VarSystem.prototype.scanFormulasInText(text);
     // formulasList = VarSystem.prototype.scanVarsInFormula(text);
-    console.log("formulasList",formulasList)
+    console.log("formulasList", formulasList)
 
     var increment = 0;
     for (let i = 0; i < formulasList.length; i++)
@@ -397,7 +415,7 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
     }
 
     //修正 JavaScript 精度问题
-    console.log("evalFormulasInText:",text)
+    console.log("evalFormulasInText:", text)
 
     return text;
 }

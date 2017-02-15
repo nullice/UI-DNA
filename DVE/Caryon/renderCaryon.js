@@ -43,105 +43,127 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     this.status.rendering = true;// 标记渲染状态，会触发渲染按钮动画
 
     var item = names[names.length - 1];
-    if (names[0] === "position")
+    var _lastButOneName = names[names.length - 2] //最终属性前一个属性名称（倒数第二个属性名）
+    var namesLen = names.length;
+
+    //-------------------------------------------------
+    var ignore = false // 是否忽略本次渲染
+
+    if (_lastButOneName == "color")//忽略 color.r/g/b 的渲染，使用 $hex 来触发渲染
     {
-        if ((names.length == 2 ) && _inArray(item, ["x", "y", "w", "h"]))
+        if (item != "$hex")
         {
-            var ob = {};
-            ob[item] = value;
-
-
-
-            Gob.stopSelectEvent = true;//渲染开始，关闭图层选中事件监听
-
-            console.log("----[start:RenderCaryon：position:" + layerId + "]---")
-            logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【开始】选中图层周期 [updateSelect]--------------------")
-            await enzymes.selectLayer_byID(layerId);
-            console.log(`enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)
-            /*****************************************************/
-            await enzymes.setLayerInfo_position_byId(ob, layerId)
-            /*****************************************************/
-
-            console.log("----[end：RenderCaryon：" + layerId + "]---")
-            Gob.stopSelectEvent = false;//渲染结束，关闭图层选中事件监听
-
-
+            ignore = true;
         }
     }
-    if (names[0] === "text")
-    {
-        if ((names.length == 2 ) && !_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))
-        {
-            var ob = {};
 
-            if (item == "bold" || item == "italic")
+    if (_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))//忽略 color.r/g/b
+    {
+        ignore = true;
+    }
+
+
+    //-------------------------------------------------
+
+
+    if (ignore) //忽略本次渲染
+    {
+        console.log("----[ignore: renderPatch]----")
+    }
+    else //执行本次渲染
+    {
+        if (names[0] === "position")
+        {
+            logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[start:RenderCaryon：position:" + layerId + "]---")
+            if ((namesLen == 2 ) && _inArray(item, ["x", "y", "w", "h"]))
             {
-                value = (value == "true")
+                var ob = {};
+                ob[item] = value;
+
+                Gob.stopSelectEvent = true;//渲染开始，关闭图层选中事件监听
+                await enzymes.selectLayer_byID(layerId);
+                logger.pin("enzymes", "RenderCaryon.prototype.renderPatch ", `enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)
+                /*****************************************************/
+                await enzymes.setLayerInfo_position_byId(ob, layerId)
+                /*****************************************************/
+                Gob.stopSelectEvent = false;//渲染结束，关闭图层选中事件监听
+
             }
-            ob[item] = value;
-
-
-            Gob.disableSelectEvent = true;
+        }
+        if (names[0] === "text")
+        {
             console.log("----[start:RenderCaryon：text:" + layerId + "]---")
+            if (namesLen == 2)
+            {
+                var ob = {};
 
+                if (item == "bold" || item == "italic")
+                {
+                    value = (value == "true")
+                }
+                ob[item] = value;
+            }
+
+            if (namesLen == 3)
+            {
+                if (_lastButOneName = "color")
+                {
+                    var ob = hexToColorOb(value);
+                }
+
+            }
+
+            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
             await enzymes.selectLayer_byID(layerId);
-
             console.log(`enzymes.setLayerInfo_text_byId(${JSON.stringify(ob)}, ${layerId})`)
+            /************************************************/
             await enzymes.setLayerInfo_text_byId(ob, layerId)
-
-            console.log("----[end：RenderCaryon：" + layerId + "]---")
-            Gob.disableSelectEvent = false;
-        }
-
-        if ((names.length == 3 ) && !_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))
-        {
+            /************************************************/
+            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
 
 
         }
-
-    }
-    if (names[0] === "shape")
-    {
-        if ((names.length == 2 ) && !_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))
+        if (names[0] === "shape")
         {
-            var ob = {};
-            ob[item] = value;
-
-
-            Gob.disableSelectEvent = true;
             console.log("----[start:RenderCaryon：shape:" + layerId + "]---")
+            if (names.length == 2)
+            {
+                var ob = {};
+                ob[item] = value;
+            }
 
+            if (namesLen == 3)
+            {
+                if (_lastButOneName = "color")
+                {
+                    var ob = hexToColorOb(value);
+                }
+            }
+
+            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
             await enzymes.selectLayer_byID(layerId);
-
             console.log(`enzymes.setLayerInfo_shape_byId(${JSON.stringify(ob)}, ${layerId})`)
+            /************************************************/
             await enzymes.setLayerInfo_shape_byId(ob, layerId)
-
-            console.log("----[end：RenderCaryon：" + layerId + "]---")
-            Gob.disableSelectEvent = false;
+            /************************************************/
+            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
 
 
         }
+
+        logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---")
     }
 
     this.status.rendering = false;// 标记渲染状态结束，停止渲染按钮动画
 
     logger.groupEnd();
 
-    //END-------------------
-    function renderTypeColor(item, names, value)
+//END-------------------
+    function hexToColorOb(hex)
     {
-
-        var nameIndex = names[names.length - 3] + names[names.length - 2] + names[names.length - 1]
-        if (item == "r" || item == "g")
-        {
-            if (this._temp.colorTemp[nameIndex] == undefined)
-            {
-                this._temp.colorTemp[nameIndex] = {}
-            }
-            this._temp.colorTemp[nameIndex][item] = value
-            this._temp.colorTemp[nameIndex]["change"] = true;
-        }
-
+        ichiColor.set(hex);
+        var ob = {color: {"r": ichiColor.r, "g": ichiColor.g, "b": ichiColor.b}}
+        return ob
     }
 }
 
