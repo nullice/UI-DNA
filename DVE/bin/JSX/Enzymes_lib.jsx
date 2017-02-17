@@ -703,50 +703,71 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
     {
         var strokeStyle = {
             strokeColor: {
-                r: shapeInfo.strokeColor.r,
-                g: shapeInfo.strokeColor.g,
-                b: shapeInfo.strokeColor.b,
-                enabled: shapeInfo.strokeColorEnabled
+                r: null,
+                g: null,
+                b: null,
+                enabled: shapeInfo.strokeColorEnabled||null
             }, /*描边颜色*/
             fillColor: {
-                r: shapeInfo.fillColor.r,
-                g: shapeInfo.fillColor.g,
-                b: shapeInfo.fillColor.b,
-                enabled: shapeInfo.fillColorEnabled
+                r: null,
+                g: null,
+                b: null,
+                enabled: shapeInfo.fillColorEnabled||null
             }, /*填充颜色*/
-            lineWidth: shapeInfo.lineWidth, /*边线宽度*/
-            dashSet: shapeInfo.dashSet, /*虚线设置*/
-            lineAlignment: shapeInfo.lineAlignment, /*描边选项-对齐*/
-            lineCapType: shapeInfo.lineCapType, /*描边选项-端点*/
-            lineJoinType: shapeInfo.lineJoinType, /*描边选项-角点*/
+            lineWidth: shapeInfo.lineWidth||null, /*边线宽度*/
+            dashSet: shapeInfo.dashSet||null, /*虚线设置*/
+            lineAlignment: shapeInfo.lineAlignment||null, /*描边选项-对齐*/
+            lineCapType: shapeInfo.lineCapType||null, /*描边选项-端点*/
+            lineJoinType: shapeInfo.lineJoinType||null, /*描边选项-角点*/
         };
 
+        if(shapeInfo.strokeColor!=undefined)
+        {
+            strokeStyle.strokeColor.r =shapeInfo.strokeColor.r||null
+            strokeStyle.strokeColor.g =shapeInfo.strokeColor.g||null
+            strokeStyle.strokeColor.b =shapeInfo.strokeColor.b||null
+        }
+        if(shapeInfo.fillColor!=undefined)
+        {
+            strokeStyle.fillColor.r =shapeInfo.fillColor.r||null
+            strokeStyle.fillColor.g =shapeInfo.fillColor.g||null
+            strokeStyle.fillColor.b =shapeInfo.fillColor.b||null
+        }
+        //todo：判定是否都为 null 值，减少无效99渲染次数
         ki.layer.setStrokeStyle_byActive(strokeStyle)
 
     } catch (e)
     {
-        return
+
+
+        return e
         // console.error(`EnzJSX.setLayerInfo_shape_byId(${shapeInfo},${ id})`, ` ki.layer.setStrokeStyle_byActive(${strokeStyle})`)
     }
 
     try
     {
-        var radian = shapeInfo.radian
-        ki.layer.setStrokeStyle_byActive(strokeStyle)
+        if(shapeInfo.radian!=undefined)
+        {
+            var radian = shapeInfo.radian
+            ki.layer.setLayerRadian_byActive(radian)
+        }
 
     } catch (e)
     {
-        return
+        return e
     }
 
     try
     {
-        var shapeSize = shapeInfo.shapeSize
-        ki.layer.setLayerShapeSize_byActive(shapeSize)
+        if(shapeInfo.shapeSize!=undefined)
+        {
+            var shapeSize = shapeInfo.shapeSize
+            ki.layer.setLayerShapeSize_byActive(shapeSize)
+        }
 
     } catch (e)
     {
-        return
+        return e
     }
 
 }

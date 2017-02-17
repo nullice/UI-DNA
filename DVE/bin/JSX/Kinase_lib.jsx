@@ -717,7 +717,7 @@ Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, tar
 
     var ref = new ActionReference();
 
-    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
     targetReference(ref, target || null, "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
@@ -777,32 +777,32 @@ Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, 
     adOb.to.value.textShape = textKey_raw.value.textShape;
     adOb.to.value.textShape.value[0].value.char.value.enumerationValue = "box";
     adOb.to.value.textShape.value[0].value.bounds =
-    {
-        "value": {
-            "top": {
-                "value": newBounds.top,
-                "type": "DescValueType.DOUBLETYPE"
+        {
+            "value": {
+                "top": {
+                    "value": newBounds.top,
+                    "type": "DescValueType.DOUBLETYPE"
+                },
+                "left": {
+                    "value": newBounds.left,
+                    "type": "DescValueType.DOUBLETYPE"
+                },
+                "bottom": {
+                    "value": newBounds.bottom,
+                    "type": "DescValueType.DOUBLETYPE"
+                },
+                "right": {
+                    "value": newBounds.right,
+                    "type": "DescValueType.DOUBLETYPE"
+                }
             },
-            "left": {
-                "value": newBounds.left,
-                "type": "DescValueType.DOUBLETYPE"
-            },
-            "bottom": {
-                "value": newBounds.bottom,
-                "type": "DescValueType.DOUBLETYPE"
-            },
-            "right": {
-                "value": newBounds.right,
-                "type": "DescValueType.DOUBLETYPE"
-            }
-        },
-        "type": "DescValueType.OBJECTTYPE",
-        "objectType": "rectangle"
-    }
+            "type": "DescValueType.OBJECTTYPE",
+            "objectType": "rectangle"
+        }
 
 
     var ref = new ActionReference();
-    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
     targetReference(ref, target || null, "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
@@ -891,7 +891,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -931,7 +931,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -978,7 +978,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1026,7 +1026,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1078,7 +1078,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1126,7 +1126,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1209,7 +1209,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1244,7 +1244,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1280,7 +1280,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1314,7 +1314,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1349,7 +1349,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
@@ -1397,10 +1397,10 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
             right: textKey_raw.value.textShape.value[0].value.bounds.value.right.value
         })
 
-        if (textInfo.bounds.x == undefined)textInfo.bounds.x = oldBounds.x;
-        if (textInfo.bounds.y == undefined)textInfo.bounds.y = oldBounds.y;
-        if (textInfo.bounds.h == undefined)textInfo.bounds.h = oldBounds.h;
-        if (textInfo.bounds.w == undefined)textInfo.bounds.w = oldBounds.w;
+        if (textInfo.bounds.x == undefined) textInfo.bounds.x = oldBounds.x;
+        if (textInfo.bounds.y == undefined) textInfo.bounds.y = oldBounds.y;
+        if (textInfo.bounds.h == undefined) textInfo.bounds.h = oldBounds.h;
+        if (textInfo.bounds.w == undefined) textInfo.bounds.w = oldBounds.w;
         //--------------------------------------------------------------------undefined
         var tempBounds = Kinase._xywh2rltb(textInfo.bounds);
 
@@ -1409,28 +1409,28 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
         adOb.to.value.textShape.value[0].value.char.value.enumerationValue = "box";
         adOb.to.value.textShape.value[0].value.bounds =
-        {
-            "value": {
-                "top": {
-                    "value": tempBounds.top,
-                    "type": "DescValueType.DOUBLETYPE"
+            {
+                "value": {
+                    "top": {
+                        "value": tempBounds.top,
+                        "type": "DescValueType.DOUBLETYPE"
+                    },
+                    "left": {
+                        "value": tempBounds.left,
+                        "type": "DescValueType.DOUBLETYPE"
+                    },
+                    "bottom": {
+                        "value": tempBounds.bottom,
+                        "type": "DescValueType.DOUBLETYPE"
+                    },
+                    "right": {
+                        "value": tempBounds.right,
+                        "type": "DescValueType.DOUBLETYPE"
+                    }
                 },
-                "left": {
-                    "value": tempBounds.left,
-                    "type": "DescValueType.DOUBLETYPE"
-                },
-                "bottom": {
-                    "value": tempBounds.bottom,
-                    "type": "DescValueType.DOUBLETYPE"
-                },
-                "right": {
-                    "value": tempBounds.right,
-                    "type": "DescValueType.DOUBLETYPE"
-                }
-            },
-            "type": "DescValueType.OBJECTTYPE",
-            "objectType": "rectangle"
-        }
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "rectangle"
+            }
     }
 
     if (textInfo.antiAlias != undefined)
@@ -1468,7 +1468,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
 
 
     var ref = new ActionReference();
-    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
     targetReference(ref, target || null, "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
@@ -1892,14 +1892,25 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
         var keyOriginType = keyOriginType_raw.keyOriginType;
     }
 
+
     for (var i in keyOriginType.value)
     {
         try
         {
-            var _topRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.topRight.value.doubleValue;
-            var _topLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.topLeft.value.doubleValue;
-            var _bottomRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomRight.value.doubleValue;
-            var _bottomLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomLeft.value.doubleValue;
+            if (keyOriginType.value[i].value.keyOriginRRectRadii != undefined)
+            {
+                var _topRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.topRight.value.doubleValue;
+                var _topLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.topLeft.value.doubleValue;
+                var _bottomRight = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomRight.value.doubleValue;
+                var _bottomLeft = keyOriginType.value[i].value.keyOriginRRectRadii.value.bottomLeft.value.doubleValue;
+            } else
+            {
+                var _topRight = null
+                var _topLeft = null
+                var _bottomRight = null
+                var _bottomLeft = null
+
+            }
 
             radianInfo.topRight = _topRight;
             radianInfo.topLeft = _topLeft;
@@ -1907,8 +1918,8 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
             radianInfo.bottomLeft = _bottomLeft;
         } catch (e)
         {
-        }
-        ;
+
+        };
 
         break;//暂定一次
     }
@@ -1937,6 +1948,7 @@ Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
     if (radianInfo.bottomLeft == undefined) radianInfo.bottomLeft = oldRadianInfo.bottomLeft;
 
 
+    $.writeln(JSON.stringify(radianInfo))
     var adOb = {
         "keyOriginType": {
             "value": 1,
@@ -1951,42 +1963,34 @@ Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
                 "topRight": {
                     "value": {
                         "doubleType": "pixelsUnit",
-                        "doubleValue": radianInfo.topRight
+                        "doubleValue": +radianInfo.topRight
                     },
                     "type": "DescValueType.UNITDOUBLE"
                 },
                 "topLeft": {
                     "value": {
                         "doubleType": "pixelsUnit",
-                        "doubleValue": radianInfo.topLeft
+                        "doubleValue": +radianInfo.topLeft
                     },
                     "type": "DescValueType.UNITDOUBLE"
                 },
                 "bottomLeft": {
                     "value": {
                         "doubleType": "pixelsUnit",
-                        "doubleValue": radianInfo.bottomLeft
+                        "doubleValue": +radianInfo.bottomLeft
                     },
                     "type": "DescValueType.UNITDOUBLE"
                 },
                 "bottomRight": {
                     "value": {
                         "doubleType": "pixelsUnit",
-                        "doubleValue": radianInfo.bottomRight
+                        "doubleValue": +radianInfo.bottomRight
                     },
                     "type": "DescValueType.UNITDOUBLE"
                 }
             },
             "type": "DescValueType.OBJECTTYPE",
             "objectType": "radii"
-        },
-        "keyActionRadiiSource": {
-            "value": 1,
-            "type": "DescValueType.INTEGERTYPE"
-        },
-        "keyActionChangeAllCorners": {
-            "value": false,
-            "type": "DescValueType.BOOLEANTYPE"
         }
     }
 
@@ -2128,7 +2132,7 @@ Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, t
     }
     var ref = new ActionReference();
 
-    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
     targetReference(ref, target || null)
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
@@ -2202,7 +2206,7 @@ Kinase._rltb2xywh = function (boundsInfo)
 
     for (var i in boundsInfo)
     {
-        if (boundsInfo[i].value != undefined)boundsInfo[i] = boundsInfo[i].value.doubleValue;
+        if (boundsInfo[i].value != undefined) boundsInfo[i] = boundsInfo[i].value.doubleValue;
     }
 
 
@@ -2222,7 +2226,7 @@ Kinase._xywh2rltb = function (boundsInfo)
 
     for (var i in boundsInfo)
     {
-        if (boundsInfo[i].value != undefined)boundsInfo[i] = boundsInfo[i].value.doubleValue;
+        if (boundsInfo[i].value != undefined) boundsInfo[i] = boundsInfo[i].value.doubleValue;
     }
 
 
@@ -2432,6 +2436,7 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 
     if (sizeInfo.scale !== undefined && sizeInfo.scale == true)
     {
+        $.writeln("scale")
         if (sizeInfo.w == undefined) sizeInfo.w = 1;
         if (sizeInfo.h == undefined) sizeInfo.h = 1;
         if (sizeInfo.y == undefined) sizeInfo.y = 1;
@@ -2444,12 +2449,12 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
     }
     else
     {
+        $.writeln("not")
         if (sizeInfo.w == undefined) sizeInfo.w = oldSizeInfo.w;
         if (sizeInfo.h == undefined) sizeInfo.h = oldSizeInfo.h;
         if (sizeInfo.y == undefined) sizeInfo.y = oldSizeInfo.y;
         if (sizeInfo.x == undefined) sizeInfo.x = oldSizeInfo.x;
     }
-
 
     var scaleW, scaleH;
     scaleW = sizeInfo.w / oldSizeInfo.w;
@@ -2462,13 +2467,13 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
         var top = oldSizeInfo.y + (oldSizeInfo.h - sizeInfo.h) / 2
     } else
     {
-        var left = sizeInfo.x;
-        var top = sizeInfo.y;
+        var left = +sizeInfo.x;
+        var top = +sizeInfo.y;
     }
 
 
-    var right = left + sizeInfo.w;
-    var bottom = sizeInfo.h + top;
+    var right = left + +sizeInfo.w;
+    var bottom = top + +sizeInfo.h;
 
 
     // log(json({left: left, top: top}))
@@ -2603,7 +2608,7 @@ Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "layer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value[0].value = refOb;
@@ -2674,7 +2679,7 @@ Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "layer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value = refOb;
@@ -2715,7 +2720,7 @@ Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, t
         }
 
         var ref = new ActionReference();
-        if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+        if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, target || null, "layer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value = refOb;
@@ -2766,7 +2771,7 @@ Kinase.prototype.layer.setLayerEffectsObject = function (effectsObejct, targetRe
     }
 
     var ref = new ActionReference();
-    if (targetReference == undefined)targetReference = Kinase.REF_ActiveLayer;
+    if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
     targetReference(ref, target || null, "layer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value.container = refOb;
