@@ -134,9 +134,14 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
             if (namesLen == 3)
             {
-                if (_lastButOneName = "color")
+                if (_lastButOneName == "color")
                 {
                     var ob = hexToColorOb(value);
+                } else
+                {
+                    var ob = {}
+                    ob[_lastButOneName] = {}
+                    ob[_lastButOneName][item] = value;
                 }
             }
 

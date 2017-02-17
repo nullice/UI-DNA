@@ -1,34 +1,59 @@
 {
-  "value": {
-    "top": {
-      "value": {
-        "doubleType": "pixelsUnit",
-        "doubleValue": 0
-      },
-      "type": "DescValueType.UNITDOUBLE"
-    },
-    "left": {
-      "value": {
-        "doubleType": "pixelsUnit",
-        "doubleValue": 0
-      },
-      "type": "DescValueType.UNITDOUBLE"
-    },
-    "bottom": {
-      "value": {
-        "doubleType": "pixelsUnit",
-        "doubleValue": 100
-      },
-      "type": "DescValueType.UNITDOUBLE"
-    },
-    "right": {
-      "value": {
-        "doubleType": "pixelsUnit",
-        "doubleValue": 200
-      },
-      "type": "DescValueType.UNITDOUBLE"
-    }
-  },
-  "type": "DescValueType.OBJECTTYPE",
-  "objectType": "rectangle"
+  "topLeft": "1",
+  "topRight": 1,
+  "bottomRight": 3.19940770910175,
+  "bottomLeft": 10
 }
+{
+  "keyOriginType": {
+    "value": 1,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "keyOriginRRectRadii": {
+    "value": {
+      "unitValueQuadVersion": {
+        "value": 1,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "topRight": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 1
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "topLeft": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 1
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "bottomLeft": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 10
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      },
+      "bottomRight": {
+        "value": {
+          "doubleType": "pixelsUnit",
+          "doubleValue": 3.19940770910175
+        },
+        "type": "DescValueType.UNITDOUBLE"
+      }
+    },
+    "type": "DescValueType.OBJECTTYPE",
+    "objectType": "radii"
+  },
+  "keyActionRadiiSource": {
+    "value": 0,
+    "type": "DescValueType.INTEGERTYPE"
+  },
+  "keyActionChangeAllCorners": {
+    "value": false,
+    "type": "DescValueType.BOOLEANTYPE"
+  }
+}
+
