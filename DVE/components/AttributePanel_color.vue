@@ -83,7 +83,6 @@
             {
                 if (val != "#")
                 {
-
                     if (val[0] != "#")
                     {
                         this.color.$hex = val;

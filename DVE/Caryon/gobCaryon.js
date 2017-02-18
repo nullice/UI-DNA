@@ -398,7 +398,7 @@ GobCaryon.prototype._setData = async function (names, value)
                 var _typeDefine = {
                     boolean: {
                         type: "boolean",//属性名称
-                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled"], //这些名字的属性使用这一类型
+                        nameList: ["bold", "italic","strokeColorEnabled","fillColorEnabled"], //这些名字的属性使用这一类型
                         valueEnum: ["true", "false"], //当值为这些时被判定为类型文本
                         judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
                     },
@@ -430,18 +430,20 @@ GobCaryon.prototype._setData = async function (names, value)
                             }
                         }
                     }
-
+                    
                 }
 
                 function __checkTypeText(_typeDefine)
                 {
                     for (var i in _typeDefine)
                     {
-                        var isType = ARR.hasMember(_typeDefine[i].valueEnum, _lastName);
+                        var isType = ARR.hasMember(_typeDefine[i].nameList, _lastName);
                         if (isType)
                         {
-                            if (_typeDefine[i].judgementFunc != undefined)
+
+                            if(_typeDefine[i].judgementFunc!=undefined)
                             {
+
                                 if(_typeDefine[i].judgementFunc(value))
                                 {
                                     isTypeText = true;
@@ -450,12 +452,14 @@ GobCaryon.prototype._setData = async function (names, value)
                             }
                             else
                             {
-                                if( ARR.hasMember(_typeDefine[i].nameList, value))
+                                if(ARR.hasMember(_typeDefine[i].nameList, value))
                                 {
                                     isTypeText = true;
                                     _typeText_typeName = _typeDefine[i].type
+
                                 }
                             }
+
                         }
                     }
                 }
