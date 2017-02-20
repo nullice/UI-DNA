@@ -693,7 +693,7 @@
                         state: false,
                         child: {
                             x: true,
-                            y:                       true,
+                            y:true,
                             z: true,
                         }
                     },
@@ -743,6 +743,7 @@
                 console.log("main_box_mousedown",
                         ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box")
                         , e.target.classList)
+
                 if (ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box"))
                 {
                     this.o_mouseIsDown = true;

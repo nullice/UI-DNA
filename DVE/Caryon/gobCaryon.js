@@ -28,44 +28,46 @@ var GobCaryon = function ()
     this.nowSwitching = false;//是否在切换选中图层中
     this.stopSelectEvent = false;//不触发选择图层事件
 
-    //----异步赋值计数器
-    this.__asyncSetCounter = 0;
-    this._asyncSetSwitch = false;
-    Object.defineProperty(this, "_asyncSetCounter",
-        {
-            set: function (x)
-            {
-                if (x < 0) x = 0;
-                this.__asyncSetCounter = x;
-                if (x == 0 && this._asyncSetSwitch)
-                {
-                    console.group("__asyncSetCounter")
-                    console.log("【this.nowSwitching = false】")
-                    this.nowSwitching = false;
-                    this._asyncSetSwitch = false;
-
-                    //----------------更新图层后渲染
-                    console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
-                        " renderCaryon.status.rendering:", renderCaryon.status.rendering,
-                    )
-                    console.log("this.selectRenderVarList:", this.selectRenderVarList)
-                    if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
-                    {
-                        if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
-                        {
-                            console.log("更新图层后渲染")
-                            // renderCaryon.renderDocument(true, this.selectRenderVarList)
-                        }
-                    }
-                    console.groupEnd();
-                }
-            },
-            get: function ()
-            {
-                return this.__asyncSetCounter;
-            }
-        }
-    );
+    // //----异步赋值计数器
+    // this.__asyncSetCounter = 0;
+    // this._asyncSetSwitch = false;
+    // Object.defineProperty(this, "_asyncSetCounter",
+    //     {
+    //
+    //         set: function (x)
+    //         {
+    //             if (x < 0) x = 0;
+    //             this.__asyncSetCounter = x;
+    //             // console.info("_asyncSetCounter:", this.__asyncSetCounter)
+    //             if (x == 0 && this._asyncSetSwitch)
+    //             {
+    //                console.group("__asyncSetCounter")
+    // console.log("【this.nowSwitching = false】")
+    // this.nowSwitching = false;
+    // this._asyncSetSwitch = false;
+    //
+    // //----------------更新图层后渲染
+    // console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
+    //     " renderCaryon.status.rendering:", renderCaryon.status.rendering,
+    // )
+    // console.log("this.selectRenderVarList:", this.selectRenderVarList)
+    // if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
+    // {
+    //     if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
+    //     {
+    //         console.log("更新图层后渲染")
+    //         // renderCaryon.renderDocument(true, this.selectRenderVarList)
+    //     }
+    // }
+    // console.groupEnd();
+    //             }
+    //         },
+    //         get: function ()
+    //         {
+    //             return this.__asyncSetCounter;
+    //         }
+    //     }
+    // );
 
 
     //属性注册[1/8]
@@ -141,7 +143,7 @@ GobCaryon.prototype.__new_position = function ()
         y: null,
         w: null,
         h: null,
-        $anchor: null,
+        $anchor: 0,
         assignment: {x: null, y: null, w: null, h: null, $anchor: null},
         enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
     }
@@ -272,7 +274,7 @@ GobCaryon.prototype.__new_shape = function ()
 GobCaryon.prototype._setData = async function (names, value)
 {
 
-    console.log(`_setData(${names}, ${value}):`)
+    console.log(`_setData([${names}], ${value}):`)
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -358,11 +360,20 @@ GobCaryon.prototype._setData = async function (names, value)
                 {
 
                     _writeData = false
-                    if (value[0] != "#")
+                    if (value == undefined)
                     {
                         _writeData = true;
-                        isFormula = true
+
+                    } else
+                    {
+                        if (value[0] != "#")
+                        {
+                            _writeData = true;
+                            isFormula = true
+                        }
                     }
+
+
                 }
 
                 if (_lastName == "$enableTextFormula")
@@ -392,14 +403,11 @@ GobCaryon.prototype._setData = async function (names, value)
             else
             {
                 //3. 类型文本------------------------------------------------
-                __checkTypeText(_typeDefine)
-
-                //  -------------定义数据和方法：
                 var _typeDefine = {
                     boolean: {
                         type: "boolean",//属性名称
-                        nameList: ["bold", "italic","strokeColorEnabled","fillColorEnabled"], //这些名字的属性使用这一类型
-                        valueEnum: ["true", "false"], //当值为这些时被判定为类型文本
+                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled"], //这些名字的属性使用这一类型
+                        valueEnum: ["true", "false", true, false], //当值为这些时被判定为类型文本
                         judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
                     },
                     underline: {
@@ -421,45 +429,52 @@ GobCaryon.prototype._setData = async function (names, value)
                         valueEnum: null,
                         judgementFunc: function (value)
                         {
-                            if (value.slice(0, 9) == "antiAlias")
+                            if (value != undefined)
                             {
-                                return true;
-                            } else
-                            {
-                                return false;
+                                if (value.slice(0, 9) == "antiAlias")
+                                {
+                                    return true;
+                                } else
+                                {
+                                    return false;
+                                }
+
                             }
                         }
                     }
-                    
                 }
+                __checkTypeText(_typeDefine)
 
+                //  -------------定义数据和方法：
                 function __checkTypeText(_typeDefine)
                 {
+
                     for (var i in _typeDefine)
                     {
                         var isType = ARR.hasMember(_typeDefine[i].nameList, _lastName);
                         if (isType)
                         {
 
-                            if(_typeDefine[i].judgementFunc!=undefined)
+                            if (_typeDefine[i].judgementFunc != undefined)
                             {
-
-                                if(_typeDefine[i].judgementFunc(value))
+                                if (_typeDefine[i].judgementFunc(value))
                                 {
                                     isTypeText = true;
                                     _typeText_typeName = _typeDefine[i].type
+                                    break;
                                 }
                             }
                             else
                             {
-                                if(ARR.hasMember(_typeDefine[i].nameList, value))
+
+                                if (ARR.hasMember(_typeDefine[i].valueEnum, value))
                                 {
                                     isTypeText = true;
                                     _typeText_typeName = _typeDefine[i].type
+                                    break;
 
                                 }
                             }
-
                         }
                     }
                 }
@@ -653,6 +668,7 @@ GobCaryon.prototype._getData = function (names)
 GobCaryon.prototype.updateSelect = async function ()
 {
 
+
     if (this.stopSelectEvent)// 如果设置了停止选择更新开关则返回
     {
         return;
@@ -755,10 +771,13 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         // [shape]---------------------------------------------------------------
         var item_shape = new_shape();
         var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
-        _setTypeColor(item_shape.strokeColor, shape.strokeColor);
         item_shape.strokeColorEnabled = shape.strokeColorEnabled;
-        _setTypeColor(item_shape.fillColor, shape.fillColor);
+        console.info(" shape", shape)
+        console.info("  item_shape.strokeColorEnabled", item_shape.strokeColorEnabled)
+        _setTypeColor(item_shape.strokeColor, shape.strokeColor);
         item_shape.fillColorEnabled = shape.fillColorEnabled;
+        console.info("  item_shape.fillColorEnabled", item_shape.fillColorEnabled)
+        _setTypeColor(item_shape.fillColor, shape.fillColor);
         item_shape.lineWidth = shape.lineWidth;
         item_shape.dashSet = shape.dashSet;
         item_shape.lineAlignment = shape.lineAlignment;
@@ -771,17 +790,61 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
 
     //属性注册[8/8]
-    _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
-    _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
-    _objectToObject_asyncSetCounter(temp.shape, this.shape, false, false, true);
-    Gob._asyncSetSwitch = true
-    _objectToObject(temp.position, this.position, false, false, true);
-    _objectToObject(temp.text, this.text, false, false, true);
-    _objectToObject(temp.shape, this.shape, false, false, true);
+    // _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
+    // _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
+    // _objectToObject_asyncSetCounter(temp.shape, this.shape, false, false, true);
+    //*********** 为内置的 $ 开头的属性添加异步计数：
+    // this._asyncSetCounter += 5
+    //***********
+    // Gob._asyncSetSwitch = true
+    // _objectToObject(temp.position, this.position, false, false, true);
+    // _objectToObject(temp.text, this.text, false, false, true);
+    // _objectToObject(temp.shape, this.shape, false, false, true);
 
+    console.group("====_objectToObject_async====================================================")
+
+    console.group("--position--------------------------", temp.position)
+    await _objectToGob_async(temp.position, ["position"], this)
+    console.groupEnd()
+
+    console.group("--text--------------------------", temp.text,)
+    await _objectToGob_async(temp.text, ["text"], this)
+    console.groupEnd()
+
+    console.group("--shape--------------------------", temp.shape,)
+    await _objectToGob_async(temp.shape, ["shape"], this)
+    console.groupEnd()
+
+
+    console.info("============")
+    console.groupEnd()
 
     this.disableRender = false;//恢复默认值；
     this._neverUpdate = false //未更新过 = false
+    this.nowSwitching = false
+
+
+    console.group("__asyncSetCounter")
+    console.log("【this.nowSwitching = false】")
+    this.nowSwitching = false;
+    this._asyncSetSwitch = false;
+
+    //----------------更新图层后渲染
+    console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
+        " renderCaryon.status.rendering:", renderCaryon.status.rendering,
+    )
+    console.log("this.selectRenderVarList:", this.selectRenderVarList)
+    if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
+    {
+        if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
+        {
+            console.log("更新图层后渲染")
+            // renderCaryon.renderDocument(true, this.selectRenderVarList)
+        }
+    }
+    console.groupEnd();
+
+
     logger.groupEnd()
     //[END]-----------------
     function _setTypeColor(typeColor, color)
@@ -871,6 +934,32 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
 
 
+    async function _objectToGob_async(srcObject, names, gobThis)
+    {
+
+        if (names == undefined)
+        {
+            names = [];
+        }
+
+        for (var x in srcObject)
+        {
+            var nowNames = names.slice(0)
+            nowNames.push(x);
+
+            // console.log("names:", names, "nowNames:", nowNames)
+            if ((srcObject[x] != undefined) && (srcObject[x].constructor == Object))
+            {
+                await _objectToGob_async(srcObject[x], nowNames.slice(0), gobThis)
+            } else
+            {
+                await gobThis._setData(nowNames, srcObject[x])
+            }
+        }
+
+    }
+
+
     function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
     {
 
@@ -943,6 +1032,8 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         if (_temp > 0)
         {
             Gob._asyncSetCounter += _temp;
+
+            console.log("ob._asyncSetCounter +=", _temp, JSON.stringify(object))
         }
     }
 

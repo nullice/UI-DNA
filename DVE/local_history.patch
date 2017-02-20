@@ -1,0 +1,16 @@
+Index: Caryon/gobCaryon.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- Caryon/gobCaryon.js	(revision )
++++ Caryon/gobCaryon.js	(revision )
+@@ -879,7 +879,7 @@
+     }
+ 
+ 
+-     function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
++    async function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
+     {
+ 
+         for (var x in object)

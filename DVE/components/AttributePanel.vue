@@ -483,6 +483,11 @@
     //import CompA from '../components/A.vue'
 
     export default {
+
+        ready: function ()
+        {
+          console.log("--------------readyreadyreadyready--------------------")
+        },
         methods: {
             onlySelect: function (tagName)
             {

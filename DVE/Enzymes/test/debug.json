@@ -1,59 +1,19 @@
 {
-  "topLeft": "1",
-  "topRight": 1,
-  "bottomRight": 3.19940770910175,
-  "bottomLeft": 10
+  "strokeColor": {
+    "r": 157.000005841255,
+    "g": 157.000005841255,
+    "b": 157.000005841255,
+    "enabled": true
+  },
+  "fillColor": {
+    "r": 190.000003874302,
+    "g": 190.000003874302,
+    "b": 190.000003874302,
+    "enabled": true
+  },
+  "lineWidth": null,
+  "dashSet": null,
+  "lineAlignment": null,
+  "lineCapType": null,
+  "lineJoinType": null
 }
-{
-  "keyOriginType": {
-    "value": 1,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "keyOriginRRectRadii": {
-    "value": {
-      "unitValueQuadVersion": {
-        "value": 1,
-        "type": "DescValueType.INTEGERTYPE"
-      },
-      "topRight": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "topLeft": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "bottomLeft": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 10
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "bottomRight": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 3.19940770910175
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "radii"
-  },
-  "keyActionRadiiSource": {
-    "value": 0,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "keyActionChangeAllCorners": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  }
-}
-

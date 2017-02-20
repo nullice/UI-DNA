@@ -10,7 +10,7 @@
 // license: LGPL
 
 //todo:仅测试时用，（使用前确保载入了 JSON 库, 如 https://bestiejs.github.io/json3）：
- //$.evalFile("C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/com.nullice.pschen.fonTags/jsx/json2.js");
+// $.evalFile("C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/com.nullice.pschen.fonTags/jsx/json2.js");
 
 /**
  *

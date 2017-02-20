@@ -81,6 +81,10 @@
         watch: {
             "o_color": function (val)
             {
+                var _outsideOperate = this.o_outsideOperate;
+                this.o_outsideOperate = false;
+//                console.info("set#", "_outsideOperate", _outsideOperate)
+//                console.info("set#", "val", val)
                 if (val != "#")
                 {
                     if (val[0] != "#")
@@ -90,14 +94,15 @@
                         async function _setColorFromVar()
                         {
                             var finValue = await varSystem.evalVar(val)
-                            console.info("finValue", finValue, "val", val)
                             this.ichi_color.hex = finValue;
-                            console.info("this.ichi_color", this.ichi_color)
                             this.color.r = this.ichi_color.r;
                             this.color.g = this.ichi_color.g;
                             this.color.b = this.ichi_color.b;
                             this.color_style.background = this.ichi_color.hex;
-                            this.type_none = false;
+                            if (_outsideOperate != true)
+                            {
+                                this.type_none = false;
+                            }
                         }
                     }
                     else
@@ -108,20 +113,25 @@
                         this.color.b = this.ichi_color.b;
                         this.color.$hex = this.ichi_color.hex;
                         this.color_style.background = this.ichi_color.hex;
-                        this.type_none = false;
+                        if (_outsideOperate != true)
+                        {
+                            this.type_none = false;
+                        }
                     }
 
                 }
                 else if (this.type_none != true)
                 {
-                    this.type_none = true;
-                }
 
+                    if (_outsideOperate != true)
+                    {
+                        this.type_none = true;
+                    }
+                }
 
             },
             "type_none": function (val)
             {
-
                 if (val)
                 {
 //                    this.color_style.background = "linear-gradient( 45deg, rgba(255, 255, 255, 0.49), rgba(255, 255, 255, 0.49) 45%, #5C5C5C 45%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 55%, rgba(255, 255, 255, 0.49) 100% )";
@@ -132,17 +142,24 @@
             "color_enable": function (val)
             {
                 this.type_none = !val
+                this.o_outsideOperate = true
+                this.color_update();
+
             },
             "color.r": function (val)
             {
+                this.o_outsideOperate = true
                 this.color_update();
             },
             "color.g": function (val)
             {
+                this.o_outsideOperate = true
                 this.color_update();
             },
             "color.b": function (val)
             {
+                this.o_outsideOperate = true
+
                 this.color_update();
             },
         },
@@ -151,6 +168,7 @@
             return {
                 o_color: "",
                 o_color_out: '',
+                o_outsideOperate: false,
                 o_set_type_none: false,
                 ichi_color: IchiColor(),
                 Gob: Gob,
@@ -169,20 +187,24 @@
             },
             color_update: function ()
             {
-//                this.ichi_color.set(this.color);
-//                this.o_color = this.ichi_color.hex;
-////
-////
-                this.o_color = this.color.$hex||"";
+
+                if (this.color_enable != true)
+                {
+                    this.o_color = "#";
+                } else
+                {
+                    this.o_color = this.color.$hex || "";
+                }
+
                 _setColorFrom$hex();
+
                 async function _setColorFrom$hex()
                 {
                     var finValue = await varSystem.evalVar(this.color.$hex)
                     this.ichi_color.set(finValue);
                 }
+            },
 
-
-            }
 
         }
 

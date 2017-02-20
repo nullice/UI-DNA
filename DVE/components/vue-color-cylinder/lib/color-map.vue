@@ -336,13 +336,26 @@
                     return false;
                 }
 
-                var offsetX = e.layerX
+
+                var mouseX = e.pageX ;
+                var mouseY = e.pageY ;
+                var rect =    e.srcElement.getBoundingClientRect()
+                var positionX = rect.left + window.pageXOffset ;
+                var positionY = rect.top + window.pageYOffset ;
+
+                var offsetX = mouseX - positionX ;
+                var offsetY = mouseY - positionY ;
+
+
                 var width = e.target.offsetWidth
                 this.width = width
 
-                var offsetY = e.layerY
                 var height = e.target.offsetHeight
                 this.height = height
+
+
+                console.info("=======map_select-e",e.srcElement.getBoundingClientRect())
+                console.info("=======map_select-offsetX, width, offsetY, height",offsetX, width, offsetY, height)
                 this.map_thumb_offset2value(offsetX, width, offsetY, height)
             },
 
@@ -354,6 +367,7 @@
                 this.mouse_startX = this.offsetX;
                 this.mouse_offsetY = e.pageY;
                 this.mouse_startY = this.height - this.offsetY;
+
 
                 window.addEventListener('mousemove', this.thumb_hold_mouse)
                 window.addEventListener('mouseup', this.thumb_hold_mouse_end)

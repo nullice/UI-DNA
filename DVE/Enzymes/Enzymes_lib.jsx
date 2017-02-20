@@ -706,13 +706,13 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
                 r: null,
                 g: null,
                 b: null,
-                enabled: shapeInfo.strokeColorEnabled||null
+                enabled:null
             }, /*描边颜色*/
             fillColor: {
                 r: null,
                 g: null,
                 b: null,
-                enabled: shapeInfo.fillColorEnabled||null
+                enabled: null
             }, /*填充颜色*/
             lineWidth: shapeInfo.lineWidth||null, /*边线宽度*/
             dashSet: shapeInfo.dashSet||null, /*虚线设置*/
@@ -720,6 +720,17 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
             lineCapType: shapeInfo.lineCapType||null, /*描边选项-端点*/
             lineJoinType: shapeInfo.lineJoinType||null, /*描边选项-角点*/
         };
+
+        if( shapeInfo.strokeColorEnabled!=undefined)
+        {
+            strokeStyle.strokeColor.enabled = shapeInfo.strokeColorEnabled
+        }
+
+        if( shapeInfo.fillColorEnabled!=undefined)
+        {
+            strokeStyle.fillColor.enabled = shapeInfo.fillColorEnabled
+        }
+
 
         if(shapeInfo.strokeColor!=undefined)
         {
@@ -734,6 +745,8 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
             strokeStyle.fillColor.b =shapeInfo.fillColor.b||null
         }
         //todo：判定是否都为 null 值，减少无效99渲染次数
+
+        $.writeln(JSON.stringify(shapeInfo.fillColorEnabled))
         ki.layer.setStrokeStyle_byActive(strokeStyle)
 
     } catch (e)

@@ -32,9 +32,27 @@ var Kinase = function ()
 }
 
 
-Kinase.prototype.document = {};
+// Kinase.app
+// 宿主应用相关功能 ----------------------------------------------
+Kinase.prototype.app = {};
+
+/**
+ * 复制文本到剪贴板。
+ * @param text 文本
+ */
+Kinase.prototype.app.clipboardCopyText = function (text)
+{
+    var ad = new ActionDescriptor();
+    ad.putString(charIDToTypeID('TxtD'), text);
+    executeAction(stringIDToTypeID("textToClipboard"), ad, DialogModes.NO);
+}
+
+
+
 // Kinase.document
-// 文档相关功能 ----------------------------------------------
+// 文档相关功能 ====================================================================================================
+Kinase.prototype.document = {};
+
 
 /**
  *  获取当前文档详细信息对象
@@ -82,10 +100,10 @@ Kinase.prototype.document.hasArtBoard = function (returnArtBoard)
 }
 
 
-Kinase.prototype.layer = {};
-
 // Kinase.layer
-// 图层相关功能 ----------------------------------------------
+// 图层相关功能  ====================================================================================================
+
+Kinase.prototype.layer = {};
 
 
 /**
@@ -1651,6 +1669,7 @@ Kinase.prototype.layer.setStrokeStyle_byActive = function (strokeStyle)
             }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
         }
     }
+
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb_fillColor)
 
     //描边宽度-------------------------------------------------------------------
@@ -1919,7 +1938,8 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
         } catch (e)
         {
 
-        };
+        }
+        ;
 
         break;//暂定一次
     }
