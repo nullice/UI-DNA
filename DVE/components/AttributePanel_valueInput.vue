@@ -21,7 +21,7 @@
     </div>
 
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     .exmo_inbox.value_input_box.mini {
         width: 128px;

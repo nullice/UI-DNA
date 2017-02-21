@@ -46,7 +46,7 @@
     </div>
 
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     .value_input_textarea_box {
         textarea.exmo_inbox.value_input_box {

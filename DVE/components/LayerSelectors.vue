@@ -2,19 +2,24 @@
     <a-area area_title="选中图层" area_id="layer_selectors">
         <div class="mini_info">
             <!--<input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked-->
-                   <!--v-model:value="enable_assign">-->
+            <!--v-model:value="enable_assign">-->
             <!--<label class="exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i-->
-                    <!--class="icon-layer-visible"></i></label>-->
+            <!--class="icon-layer-visible"></i></label>-->
         </div>
 
-        <div class="layers_list" >
-            <div class="layer-item"  v-for="layer in Gob.selectList"> <span class="id">{{layer.id}}</span> <span class="name">{{layer.name}}</span> <span class="index">{{layer.itemIndex}}</span></div>
+        <div class="layers_list">
+            <div class="layer-item" v-for="layer in Gob.selectList">
+                <span class="type">{{layer.type.typeName}}</span>
+                <span class="id" title="ID">{{layer.id}}</span>
+                <span class="name">{{layer.name}}</span>
+                <span class="index" title="item index">{{layer.itemIndex}}</span>
+            </div>
 
         </div>
     </a-area>
 </template>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss" >
 
     .layer-item {
         font-size: 11px;
@@ -23,30 +28,42 @@
         padding-bottom: 6px;
 
 
-        &:not(:nth-last-of-type(1)){
+        &:not(:nth-last-of-type(1)) {
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
 
-
-          span.index {
+        span.index {
             float: right;
             color: #C0C0C0;
             font-style: italic;
+            cursor: default;
+            user-select: text;
         }
 
-           span.id {
+        span.id {
             background: #C0C0C0;
             color: #fff;
             border-radius: 3px;
             padding: 1px 6px;
             margin-right: 8px;
             font-size: 10px;
+            cursor: default;
+            user-select: text;
         }
+
+        span.type {
+            font-size: 10px;
+            cursor: default;
+            user-select: text;
+        }
+
+        span.name {
+            font-size: 11px;
+            cursor: default;
+            user-select: text;
+        }
+
     }
-
-
-
-
 
     .trans-fade-transition {
         transition: all .3s ease;
@@ -77,7 +94,7 @@
         },
         components: {
             "value-input": ValueInput,
-            "a-area":Area
+            "a-area": Area
         }
     };
 

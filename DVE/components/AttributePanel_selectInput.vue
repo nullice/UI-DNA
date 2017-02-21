@@ -22,7 +22,7 @@
     </div>
 
 </template>
-<style lang='scss'>
+<style lang='scss' rel="stylesheet/scss">
 
     .select_input {
         .more-edit{

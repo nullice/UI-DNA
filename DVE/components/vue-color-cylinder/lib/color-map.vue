@@ -18,7 +18,7 @@
 
 
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
     .color-map {
         cursor: default;
         .picker-map-box {

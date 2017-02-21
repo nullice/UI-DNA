@@ -1,6 +1,7 @@
 <template>
 
-    <div v-if="value!=undefind" v-on:click="doSelect"
+
+    <div v-if="value!=undefind && value != 'none'" v-on:click="doSelect"
          class="attr_option {{in_class}} {{(selected_value==value)?'selected':''}}">
         {{{label_html}}} {{label}}
         <slot></slot>

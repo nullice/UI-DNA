@@ -48,7 +48,6 @@ Kinase.app.clipboardCopyText = function (text)
 }
 
 
-
 // Kinase.document
 // 文档相关功能 ====================================================================================================
 Kinase.document = {};
@@ -105,6 +104,66 @@ Kinase.document.hasArtBoard = function (returnArtBoard)
 
 Kinase.layer = {};
 
+Kinase.layer.getLayerType = function (targetReference, target)
+{
+
+
+    //todo:补充图层类型
+    /*
+     * bitmap: 像素图层 layerKind:1
+     * text: 文本图层 layerKind:3
+     * shape: 形状 layerKind:4
+     * smartObject: 智能对象 layerKind:5
+     * layerSet: 图层组（包括画板）layerKind:7
+     *
+     * */
+    var layerType = {
+        typeName: "other",/*图层类型名称 （Kinase 内部名称）*/
+        layerKind: null, /*Photoshop 内部属性值*/
+        isLayerSet: Kinase.layer.isLayerSet(targetReference, target),/*是否是图层组*/
+        isArtBoard: Kinase.layer.isArtBoard(targetReference, target)/*是否是画板*/
+    }
+
+    var ob = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind")
+
+    if (ob["layerKind"] != undefined)
+    {
+        var layerKind = ob["layerKind"]["value"]
+
+        layerType.layerKind = layerKind;
+
+        if (layerKind == 1)
+        {
+            layerType.typeName = "bitmap";
+            return layerType
+        }
+        else if (layerKind == 3)
+        {
+            layerType.typeName = "text";
+            return layerType
+        }
+        else if (layerKind == 4)
+        {
+            layerType.typeName = "shape";
+            return layerType
+        }
+        else if (layerKind == 5)
+        {
+            layerType.typeName = "smartObject";
+            return layerType
+        }
+        else if (layerKind == 7)
+        {
+            layerType.typeName = "layerSet";
+            return layerType
+        }
+
+    }
+
+
+    return layerType
+}
+
 
 /**
  * 获取图层详细信息对象，目标图层由一个 ActionReference 参数决定
@@ -117,7 +176,6 @@ Kinase.layer.getLayerInfoObject_byReference = function (ref)
     var ad = executeActionGet(ref);
     var ob = mu.actionDescriptorToObject(ad);
     return ob;
-
 }
 
 

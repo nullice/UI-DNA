@@ -11,6 +11,8 @@ var VueLang =
     currentLANG: null,
     fiterFunc: function (value, postfix)
     {
+        VueLang.LANG_DEBUG[value] = postfix;
+
         if (VueLang.currentLANG == undefined)
         {
             //当 currentLANG 为 LANG_Chiness 时返回原文
@@ -39,6 +41,9 @@ var VueLang =
 
 }
 
+VueLang.LANG_DEBUG ={
+
+}
 
 VueLang.LANG_Chiness2English = {
 

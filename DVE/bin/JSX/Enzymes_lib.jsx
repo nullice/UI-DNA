@@ -29,7 +29,7 @@ function initEnzymes(in_extendPath)
     $.global.Muclease = Muclease;
     // Muclease = Muclease;
     mu = new Muclease();
-    ki =  Kinase;
+    ki = Kinase;
 
 }
 
@@ -85,7 +85,16 @@ EnzJSX.getLayerId_byName = function (layerName)
 {
     _jsx("ki.layer.getAllLayersItemIndex();")
 
+}
 
+/**
+ * 根据图层 ID 获取图层类型
+ * @param layerId
+ */
+EnzJSX.getLayerType_byID = function (layerId)
+{
+    var type = ki.layer.getLayerType(Kinase.REF_LayerID, layerId)
+    return JSON.stringify(type);
 }
 
 
@@ -355,7 +364,8 @@ EnzJSX.getSelectLayerArray = function (debarDataLayer)
         var layer = {
             name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
             id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
-            itemIndex: itemIndexs[i]
+            itemIndex: itemIndexs[i],
+            type: ki.layer.getLayerType(Kinase.REF_ItemIndex, itemIndexs[i]),
         }
 
         if (layer.name === "__UI-DNA__" || layer.name === "_DNA_DATA_" || layer.name === "_ui-dna.nullice.com_")
@@ -661,18 +671,18 @@ EnzJSX.getLayerInfo_shape_byId = function (id)
 
     var shapeInfo = {
         strokeColor: /*描边颜色*/
-        {
-            r: strokeStyle.strokeColor.r,
-            g: strokeStyle.strokeColor.g,
-            b: strokeStyle.strokeColor.b,
-        },
+            {
+                r: strokeStyle.strokeColor.r,
+                g: strokeStyle.strokeColor.g,
+                b: strokeStyle.strokeColor.b,
+            },
         strokeColorEnabled: strokeStyle.strokeColor.enabled, /*启用描边*/
         fillColor: /*填充颜色*/
-        {
-            r: strokeStyle.fillColor.r,
-            g: strokeStyle.fillColor.g,
-            b: strokeStyle.fillColor.b,
-        },
+            {
+                r: strokeStyle.fillColor.r,
+                g: strokeStyle.fillColor.g,
+                b: strokeStyle.fillColor.b,
+            },
         fillColorEnabled: strokeStyle.fillColor.enabled, /*启用填充*/
         lineWidth: strokeStyle.lineWidth, /*边线宽度*/
         dashSet: strokeStyle.dashSet, /*虚线设置*/
@@ -705,7 +715,7 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
                 r: null,
                 g: null,
                 b: null,
-                enabled:null
+                enabled: null
             }, /*描边颜色*/
             fillColor: {
                 r: null,
@@ -713,35 +723,35 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
                 b: null,
                 enabled: null
             }, /*填充颜色*/
-            lineWidth: shapeInfo.lineWidth||null, /*边线宽度*/
-            dashSet: shapeInfo.dashSet||null, /*虚线设置*/
-            lineAlignment: shapeInfo.lineAlignment||null, /*描边选项-对齐*/
-            lineCapType: shapeInfo.lineCapType||null, /*描边选项-端点*/
-            lineJoinType: shapeInfo.lineJoinType||null, /*描边选项-角点*/
+            lineWidth: shapeInfo.lineWidth || null, /*边线宽度*/
+            dashSet: shapeInfo.dashSet || null, /*虚线设置*/
+            lineAlignment: shapeInfo.lineAlignment || null, /*描边选项-对齐*/
+            lineCapType: shapeInfo.lineCapType || null, /*描边选项-端点*/
+            lineJoinType: shapeInfo.lineJoinType || null, /*描边选项-角点*/
         };
 
-        if( shapeInfo.strokeColorEnabled!=undefined)
+        if (shapeInfo.strokeColorEnabled != undefined)
         {
             strokeStyle.strokeColor.enabled = shapeInfo.strokeColorEnabled
         }
 
-        if( shapeInfo.fillColorEnabled!=undefined)
+        if (shapeInfo.fillColorEnabled != undefined)
         {
             strokeStyle.fillColor.enabled = shapeInfo.fillColorEnabled
         }
 
 
-        if(shapeInfo.strokeColor!=undefined)
+        if (shapeInfo.strokeColor != undefined)
         {
-            strokeStyle.strokeColor.r =shapeInfo.strokeColor.r||null
-            strokeStyle.strokeColor.g =shapeInfo.strokeColor.g||null
-            strokeStyle.strokeColor.b =shapeInfo.strokeColor.b||null
+            strokeStyle.strokeColor.r = shapeInfo.strokeColor.r || null
+            strokeStyle.strokeColor.g = shapeInfo.strokeColor.g || null
+            strokeStyle.strokeColor.b = shapeInfo.strokeColor.b || null
         }
-        if(shapeInfo.fillColor!=undefined)
+        if (shapeInfo.fillColor != undefined)
         {
-            strokeStyle.fillColor.r =shapeInfo.fillColor.r||null
-            strokeStyle.fillColor.g =shapeInfo.fillColor.g||null
-            strokeStyle.fillColor.b =shapeInfo.fillColor.b||null
+            strokeStyle.fillColor.r = shapeInfo.fillColor.r || null
+            strokeStyle.fillColor.g = shapeInfo.fillColor.g || null
+            strokeStyle.fillColor.b = shapeInfo.fillColor.b || null
         }
         //todo：判定是否都为 null 值，减少无效99渲染次数
 
@@ -758,7 +768,7 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
 
     try
     {
-        if(shapeInfo.radian!=undefined)
+        if (shapeInfo.radian != undefined)
         {
             var radian = shapeInfo.radian
             ki.layer.setLayerRadian_byActive(radian)
@@ -771,7 +781,7 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
 
     try
     {
-        if(shapeInfo.shapeSize!=undefined)
+        if (shapeInfo.shapeSize != undefined)
         {
             var shapeSize = shapeInfo.shapeSize
             ki.layer.setLayerShapeSize_byActive(shapeSize)
@@ -783,6 +793,22 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
     }
 
 }
+
+
+/**
+ * 获取图层智能对象信息
+ * @param id
+ */
+EnzJSX.getLayerInfo_smartObject_byId = function (id)
+{
+   var  smartInfo  = Kinase.layer.getLayerSmartInfo(Kinase.REF_LayerID, id)
+    return JSON.stringify(smartInfo)
+}
+
+
+
+
+
 
 
 //

@@ -38,7 +38,7 @@
 </template>
 
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     .message-box-input {
         position: fixed;

@@ -43,7 +43,7 @@
 
 
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
 
     .express_pad {

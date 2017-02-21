@@ -395,7 +395,7 @@
     </a-area>
 </template>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     /*.exmo_area .tag-box{*/
     /*!*display: none;*!*/

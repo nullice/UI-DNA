@@ -23,7 +23,7 @@
     </div>
 
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
 
     .color-range .range-bar-background {

@@ -54,7 +54,7 @@
     </a-area>
 </template>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     .var_item {
         margin: 0 0;

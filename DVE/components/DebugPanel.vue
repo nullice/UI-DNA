@@ -5,10 +5,10 @@
             <!--<pre>dataCaryon._nowDoucmentId：{{dataCaryon._nowDoucmentId}}-->
                 <!--dataCaryon.info.status：{{dataCaryon.info.status|json}}-->
                 <!--<pre>-->
-  <pre> Gob.shape.fillColor:{{Gob.shape.fillColorEnabled}}
-      {{Gob.shape.fillColor|json}}
-      Gob.shape.strokeColor:{{Gob.shape.strokeColorEnabled}}
-       {{Gob.shape.strokeColor|json}}
+  <!--<pre> Gob.shape.fillColor:{{Gob.shape.fillColorEnabled}}-->
+      <!--{{Gob.shape.fillColor|json}}-->
+      <!--Gob.shape.strokeColor:{{Gob.shape.strokeColorEnabled}}-->
+       <!--{{Gob.shape.strokeColor|json}}-->
 
   </pre>
             <!--<div class="title">UI_model.msg_color_picker.color1</div>-->

@@ -22,11 +22,12 @@
                          v-bind:selected_value.sync="value"
                          v-bind:in_class="block?'inline_block':''"
             >
+
             </attr-option>
         </div>
     </div>
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     .attr_select {
 
@@ -235,6 +236,11 @@
 
                 } else
                 {
+
+                    if(this.value==Gob.MULT)
+                    {
+                        return Lang.from("多值")
+                    }
                     return this.value
                 }
             },

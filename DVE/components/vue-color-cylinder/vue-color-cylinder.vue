@@ -374,7 +374,7 @@
     </div>
 
 </template>
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
     .vue-color-cylinder-main-box {
         position: fixed;
