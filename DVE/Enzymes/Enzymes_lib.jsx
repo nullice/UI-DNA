@@ -29,10 +29,9 @@ function initEnzymes(in_extendPath)
     $.global.Muclease = Muclease;
     // Muclease = Muclease;
     mu = new Muclease();
-    ki = new Kinase();
+    ki =  Kinase;
 
 }
-
 
 var EnzJSX = {};
 

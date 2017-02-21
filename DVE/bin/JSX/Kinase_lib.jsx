@@ -34,13 +34,13 @@ var Kinase = function ()
 
 // Kinase.app
 // 宿主应用相关功能 ----------------------------------------------
-Kinase.prototype.app = {};
+Kinase.app = {};
 
 /**
  * 复制文本到剪贴板。
  * @param text 文本
  */
-Kinase.prototype.app.clipboardCopyText = function (text)
+Kinase.app.clipboardCopyText = function (text)
 {
     var ad = new ActionDescriptor();
     ad.putString(charIDToTypeID('TxtD'), text);
@@ -51,14 +51,14 @@ Kinase.prototype.app.clipboardCopyText = function (text)
 
 // Kinase.document
 // 文档相关功能 ====================================================================================================
-Kinase.prototype.document = {};
+Kinase.document = {};
 
 
 /**
  *  获取当前文档详细信息对象
  * @returns {{}}
  */
-Kinase.prototype.document.getDocumentInfoObject_byActive = function ()
+Kinase.document.getDocumentInfoObject_byActive = function ()
 {
     var ref = new ActionReference();
     ref.putEnumerated(charIDToTypeID('Dcmn'), charIDToTypeID('Ordn'), charIDToTypeID('Trgt'));
@@ -72,12 +72,12 @@ Kinase.prototype.document.getDocumentInfoObject_byActive = function ()
  * @param returnArtBoard 为真返回值会是个对象，会包含最先找到的画板 id：{hasArtBoard: true, aArtBoardId: id}
  * @returns {*}
  */
-Kinase.prototype.document.hasArtBoard = function (returnArtBoard)
+Kinase.document.hasArtBoard = function (returnArtBoard)
 {
 
     for (var i = 0; i < activeDocument.layers.length; i++)
     {
-        if (Kinase.prototype.layer.isArtBoard(Kinase.REF_LayerID, activeDocument.layers[i].id))
+        if (Kinase.layer.isArtBoard(Kinase.REF_LayerID, activeDocument.layers[i].id))
         {
             if (returnArtBoard)
             {
@@ -103,7 +103,7 @@ Kinase.prototype.document.hasArtBoard = function (returnArtBoard)
 // Kinase.layer
 // 图层相关功能  ====================================================================================================
 
-Kinase.prototype.layer = {};
+Kinase.layer = {};
 
 
 /**
@@ -112,7 +112,7 @@ Kinase.prototype.layer = {};
  * @param ref
  * @returns {{}}
  */
-Kinase.prototype.layer.getLayerInfoObject_byReference = function (ref)
+Kinase.layer.getLayerInfoObject_byReference = function (ref)
 {
     var ad = executeActionGet(ref);
     var ob = mu.actionDescriptorToObject(ad);
@@ -126,12 +126,12 @@ Kinase.prototype.layer.getLayerInfoObject_byReference = function (ref)
  * @param layerID
  * @returns {{}}
  */
-Kinase.prototype.layer.getLayerInfoObject_byID = function (layerID)
+Kinase.layer.getLayerInfoObject_byID = function (layerID)
 {
     var ref = new ActionReference();
     ref.putIdentifier(charIDToTypeID('Lyr '), layerID);
 
-    return Kinase.prototype.layer.getLayerInfoObject_byReference(ref);
+    return Kinase.layer.getLayerInfoObject_byReference(ref);
 }
 
 
@@ -140,12 +140,12 @@ Kinase.prototype.layer.getLayerInfoObject_byID = function (layerID)
  * @param itemIndex
  * @returns {{}}
  */
-Kinase.prototype.layer.getLayerInfoObject_byItemIndex = function (itemIndex)
+Kinase.layer.getLayerInfoObject_byItemIndex = function (itemIndex)
 {
     var ref = new ActionReference();
     ref.putIndex(charIDToTypeID('Lyr '), itemIndex + Kinase.BKOffset());
 
-    return Kinase.prototype.layer.getLayerInfoObject_byReference(ref);
+    return Kinase.layer.getLayerInfoObject_byReference(ref);
 }
 
 
@@ -153,7 +153,7 @@ Kinase.prototype.layer.getLayerInfoObject_byItemIndex = function (itemIndex)
  * 获取当前选中图层的详细信息对象
  * @returns {{}}
  */
-Kinase.prototype.layer.getLayerInfoObject_byActiveLayer = function ()
+Kinase.layer.getLayerInfoObject_byActiveLayer = function ()
 {
     //-------------------------------------------------
     // 更直观但速度慢一些
@@ -171,7 +171,7 @@ Kinase.prototype.layer.getLayerInfoObject_byActiveLayer = function ()
     var ref = new ActionReference();
     ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
 
-    return Kinase.prototype.layer.getLayerInfoObject_byReference(ref);
+    return Kinase.layer.getLayerInfoObject_byReference(ref);
 }
 
 /**
@@ -179,7 +179,7 @@ Kinase.prototype.layer.getLayerInfoObject_byActiveLayer = function ()
  * @param itemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerIdByActive = function ()
+Kinase.layer.getLayerIdByActive = function ()
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('layerID'));
@@ -194,7 +194,7 @@ Kinase.prototype.layer.getLayerIdByActive = function ()
  * @param itemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerIdByItemIndex = function (itemIndex)
+Kinase.layer.getLayerIdByItemIndex = function (itemIndex)
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID('layerID'));
@@ -212,7 +212,7 @@ Kinase.prototype.layer.getLayerIdByItemIndex = function (itemIndex)
  * @param layerID
  * @returns {*}
  */
-Kinase.prototype.layer.getItemIndexBylayerID = function (layerID)
+Kinase.layer.getItemIndexBylayerID = function (layerID)
 {
 
     var ref = new ActionReference();
@@ -229,12 +229,12 @@ Kinase.prototype.layer.getItemIndexBylayerID = function (layerID)
  * @param itemIndexArray
  * @returns {Array}
  */
-Kinase.prototype.layer.itemIndexArray_ToLayerIdArray = function (itemIndexArray)
+Kinase.layer.itemIndexArray_ToLayerIdArray = function (itemIndexArray)
 {
     var layerIdArray = []
     for (var i = 0; i < itemIndexArray.length; i++)
     {
-        layerIdArray.push(Kinase.prototype.layer.getLayerIdByItemIndex(itemIndexArray[i]))
+        layerIdArray.push(Kinase.layer.getLayerIdByItemIndex(itemIndexArray[i]))
     }
     return layerIdArray;
 }
@@ -245,12 +245,12 @@ Kinase.prototype.layer.itemIndexArray_ToLayerIdArray = function (itemIndexArray)
  * @param layerIdArray
  * @returns {Array}
  */
-Kinase.prototype.layer.layerIdArray_ToItemIndexArray = function (layerIdArray)
+Kinase.layer.layerIdArray_ToItemIndexArray = function (layerIdArray)
 {
     var itemIndexArray = []
     for (var i = 0; i < layerIdArray.length; i++)
     {
-        itemIndexArray.push(Kinase.prototype.layer.getItemIndexBylayerID(layerIdArray[i]))
+        itemIndexArray.push(Kinase.layer.getItemIndexBylayerID(layerIdArray[i]))
     }
     return itemIndexArray;
 }
@@ -260,7 +260,7 @@ Kinase.prototype.layer.layerIdArray_ToItemIndexArray = function (layerIdArray)
  * 获取所有选中图层的图层序号（ItemIndex），返回数组
  * @returns {Array}
  */
-Kinase.prototype.layer.getTargetLayersItemIndex = function ()
+Kinase.layer.getTargetLayersItemIndex = function ()
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID('Prpr'), stringIDToTypeID("targetLayers"));
@@ -285,7 +285,7 @@ Kinase.prototype.layer.getTargetLayersItemIndex = function ()
  * 获取所有选中图层的图层 ID，返回数组
  * @returns {Array}
  */
-Kinase.prototype.layer.getTargetLayersID = function ()
+Kinase.layer.getTargetLayersID = function ()
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID('Prpr'), stringIDToTypeID("targetLayers"));
@@ -300,7 +300,7 @@ Kinase.prototype.layer.getTargetLayersID = function ()
     var arr = [];
     for (var i in ob.targetLayers)
     {
-        arr.push(Kinase.prototype.layer.getLayerIdByItemIndex(ob.targetLayers[i].index + 1))
+        arr.push(Kinase.layer.getLayerIdByItemIndex(ob.targetLayers[i].index + 1))
     }
     return arr;
 }
@@ -310,7 +310,7 @@ Kinase.prototype.layer.getTargetLayersID = function ()
  * 返回包含全部图层的图层索引（ItemIndex）的数组
  * @returns {Array}
  */
-Kinase.prototype.layer.getAllLayersItemIndex = function ()
+Kinase.layer.getAllLayersItemIndex = function ()
 {
     var doc = app.activeDocument.layers;
     var indexArray = [];
@@ -336,7 +336,7 @@ Kinase.prototype.layer.getAllLayersItemIndex = function ()
  * 返回包含全部图层的 layerList [{id,name,itemIndex}]数组
  * @returns {Array}
  */
-Kinase.prototype.layer.getAllLayerList = function ()
+Kinase.layer.getAllLayerList = function ()
 {
     var doc = app.activeDocument.layers;
     var layerList = [];
@@ -372,7 +372,7 @@ Kinase.prototype.layer.getAllLayerList = function ()
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {{}}
  */
-Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, target)
+Kinase.layer.get_keyOriginType_Objcet = function (targetReference, target)
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID("keyOriginType"));
@@ -390,7 +390,7 @@ Kinase.prototype.layer.get_keyOriginType_Objcet = function (targetReference, tar
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {{}}
  */
-Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
+Kinase.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
 {
     try
     {
@@ -414,7 +414,7 @@ Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference
  * @param xxx - 属性名称
  * @returns {{}}
  */
-Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
+Kinase.layer.get_XXX_Objcet = function (targetReference, target, xxx)
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID(xxx));
@@ -430,7 +430,7 @@ Kinase.prototype.layer.get_XXX_Objcet = function (targetReference, target, xxx)
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {{fillOpacity: null, opacity: null, visible: null}}
  */
-Kinase.prototype.layer.getAppearance = function (targetReference, target)
+Kinase.layer.getAppearance = function (targetReference, target)
 {
     var appearanceInfo = {
         fillOpacity: null, /*填充不透明度 0-255*/
@@ -442,7 +442,7 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
         // vectorMaskFeather: null, /*矢量蒙版-羽化*/
     };
 
-    var fillOpacity_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "fillOpacity")
+    var fillOpacity_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "fillOpacity")
     if (fillOpacity_raw.fillOpacity != undefined)
     {
         appearanceInfo.fillOpacity = fillOpacity_raw.fillOpacity.value;
@@ -450,7 +450,7 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
         appearanceInfo.fillOpacity = appearanceInfo.fillOpacity.toFixed();
     }
 
-    var opacity_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "opacity")
+    var opacity_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "opacity")
     if (opacity_raw.opacity != undefined)
     {
         appearanceInfo.opacity = opacity_raw.opacity.value;
@@ -458,7 +458,7 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
         appearanceInfo.opacity = appearanceInfo.opacity.toFixed();
     }
 
-    var visible_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "visible")
+    var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "visible")
     if (visible_raw.visible != undefined)
     {
         appearanceInfo.visible = visible_raw.visible.value;
@@ -469,9 +469,9 @@ Kinase.prototype.layer.getAppearance = function (targetReference, target)
 }
 
 
-Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
+Kinase.layer.setAppearance_byActive = function (appearanceInfo)
 {
-    var oldAppearanceInfo = Kinase.prototype.layer.getAppearance(Kinase.REF_ActiveLayer, null);
+    var oldAppearanceInfo = Kinase.layer.getAppearance(Kinase.REF_ActiveLayer, null);
 
     if (appearanceInfo.opacity != undefined)
     {
@@ -564,7 +564,7 @@ Kinase.prototype.layer.setAppearance_byActive = function (appearanceInfo)
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {{text: null, bounds: {x: null, y: null, w: null, h: null}, boundingBox: {x: null, y: null, w: null, h: null}, color: {r: null, g: null, b: null}, size: null, fontPostScriptName: null, bold: null, italic: null, antiAlias: null, underline: null, justification: null, leading: null, tracking: null, baselineShift: null, horizontalScale: null, verticalScale: null}}
  */
-Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
+Kinase.layer.getLayerTextInfo = function (targetReference, target)
 {
     var textInfo = {
         text: null, /*文本内容*/
@@ -586,11 +586,11 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
     }
 
 
-    var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    var layerKind = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     // log("layerKind :" + layerKind.layerKind.value)
     if (layerKind.layerKind.value == 3)
     {
-        var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
+        var textKey_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "textKey");
         textKey_raw = textKey_raw.textKey;
 
         textInfo.text = textKey_raw.value.textKey.value;
@@ -704,7 +704,7 @@ Kinase.prototype.layer.getLayerTextInfo = function (targetReference, target)
  * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  */
-Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, target)
+Kinase.layer.setLayerText_Quick = function (text, targetReference, target)
 {
     var adOb = {
         "null": {
@@ -749,15 +749,15 @@ Kinase.prototype.layer.setLayerText_Quick = function (text, targetReference, tar
  * @param targetReference
  * @param target
  */
-Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
+Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
 {
-    var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    var layerKind = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     if (layerKind.layerKind.value != 3)
     {
         return;
     }
 
-    var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
+    var textKey_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "textKey");
     textKey_raw = textKey_raw.textKey;
 
     var adOb = {
@@ -837,7 +837,7 @@ Kinase.prototype.layer.setLayerTextMinBounds_Quick = function (targetReference, 
  * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  */
-Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, target)
+Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 {
     /*    textInfo{
      text: null, /!*文本内容，\r 表示换行*!/
@@ -858,7 +858,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
      verticalScale: null, /!*垂直缩放*!/
      }*/
 
-    var layerKind = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    var layerKind = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     if (layerKind.layerKind.value != 3)
     {
         return;
@@ -1374,7 +1374,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
     }
 //--------------------------------------------------
-    var textKey_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "textKey");
+    var textKey_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "textKey");
     textKey_raw = textKey_raw.textKey;
 
     var adOb = {
@@ -1503,7 +1503,7 @@ Kinase.prototype.layer.setLayerTextInfo = function (textInfo, targetReference, t
  * @param returnKeyOriginType
  * @returns {{strokeColor: {r: null, g: null, b: null, enabled: null}, fillColor: {r: null, g: null, b: null, enabled: null}, lineWidth: null, dashSet: null, lineAlignment: null, lineCapType: null, lineJoinType: null}}
  */
-Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
+Kinase.layer.getStrokeStyle = function (targetReference, target, returnKeyOriginType)
 {
     var strokeStyle = {
         strokeColor: {r: null, g: null, b: null, enabled: null}, /*描边颜色*/
@@ -1514,8 +1514,8 @@ Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, retur
         lineCapType: null, /*描边选项-端点*/
         lineJoinType: null, /*描边选项-角点*/
     };
-    var AGMStrokeStyleInfo_raw = Kinase.prototype.layer.get_AGMStrokeStyleInfo_Objcet(targetReference, target);
-    var adjustment_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "adjustment")
+    var AGMStrokeStyleInfo_raw = Kinase.layer.get_AGMStrokeStyleInfo_Objcet(targetReference, target);
+    var adjustment_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "adjustment")
 
 
     if (isEmptyObject(AGMStrokeStyleInfo_raw) || AGMStrokeStyleInfo_raw.AGMStrokeStyleInfo == undefined)
@@ -1582,9 +1582,9 @@ Kinase.prototype.layer.getStrokeStyle = function (targetReference, target, retur
     return strokeStyle;
 }
 
-Kinase.prototype.layer.setStrokeStyle_byActive = function (strokeStyle)
+Kinase.layer.setStrokeStyle_byActive = function (strokeStyle)
 {
-    var oldStrokeStyle = Kinase.prototype.layer.getStrokeStyle(Kinase.REF_ActiveLayer, null);
+    var oldStrokeStyle = Kinase.layer.getStrokeStyle(Kinase.REF_ActiveLayer, null);
 
     //颜色-------------------------------------------------------------------
     if (strokeStyle.strokeColor.enabled == undefined) strokeStyle.strokeColor.enabled = oldStrokeStyle.strokeColor.enabled;
@@ -1896,10 +1896,10 @@ Kinase.prototype.layer.setStrokeStyle_byActive = function (strokeStyle)
  * @param returnKeyOriginType - 在返回值中包含 keyOriginType
  * @returns {{topRight: null, topLeft: null, bottomLeft: null, bottomRight: null}}
  */
-Kinase.prototype.layer.getLayerRadian = function (targetReference, target, returnKeyOriginType)
+Kinase.layer.getLayerRadian = function (targetReference, target, returnKeyOriginType)
 {
     var radianInfo = {topRight: null, topLeft: null, bottomLeft: null, bottomRight: null};
-    var keyOriginType_raw = Kinase.prototype.layer.get_keyOriginType_Objcet(targetReference, target);
+    var keyOriginType_raw = Kinase.layer.get_keyOriginType_Objcet(targetReference, target);
 
     if (isEmptyObject(keyOriginType_raw) || keyOriginType_raw.keyOriginType == undefined)
     {
@@ -1959,9 +1959,9 @@ Kinase.prototype.layer.getLayerRadian = function (targetReference, target, retur
  * 设置图层圆角信息
  * @param radianInfo
  */
-Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
+Kinase.layer.setLayerRadian_byActive = function (radianInfo)
 {
-    var oldRadianInfo = Kinase.prototype.layer.getLayerRadian(Kinase.REF_ActiveLayer, null);
+    var oldRadianInfo = Kinase.layer.getLayerRadian(Kinase.REF_ActiveLayer, null);
     if (radianInfo.topRight == undefined) radianInfo.topRight = oldRadianInfo.topRight;
     if (radianInfo.topLeft == undefined) radianInfo.topLeft = oldRadianInfo.topLeft;
     if (radianInfo.bottomRight == undefined) radianInfo.bottomRight = oldRadianInfo.bottomRight;
@@ -2027,11 +2027,11 @@ Kinase.prototype.layer.setLayerRadian_byActive = function (radianInfo)
  * @param getType
  * @returns {{x: null, y: null, w: null, h: null, right: null, bottom: null}}
  */
-Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getType)
+Kinase.layer.getLayerBounds = function (targetReference, target, getType)
 {
     var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}
     var classStr = getType || "boundsNoEffects";//"bounds"、"boundsNoMask"
-    var boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
+    var boundsInfo_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
 
 
     if (isEmptyObject(boundsInfo_raw) || boundsInfo_raw[classStr] == undefined)
@@ -2062,14 +2062,14 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
 
 
     //画板修正
-    var itemIndex_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "itemIndex", "Lyr ");
+    var itemIndex_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "itemIndex", "Lyr ");
     var parentLayerItemIndex = ki.layer.getParentLayerItemIndex_byItemIndex(itemIndex_raw.itemIndex.value);
     if (parentLayerItemIndex > -1)
     {
-        var artBoard_raw = Kinase.prototype.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "artboardEnabled", "Lyr ");
+        var artBoard_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "artboardEnabled", "Lyr ");
         if (artBoard_raw.artboardEnabled.value == true)
         {
-            var artBoard_boundsInfo_raw = Kinase.prototype.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "boundsNoEffects", "Lyr ");
+            var artBoard_boundsInfo_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "boundsNoEffects", "Lyr ");
             artBoard_boundsInfo_raw = artBoard_boundsInfo_raw.boundsNoEffects;
 
             boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
@@ -2085,7 +2085,7 @@ Kinase.prototype.layer.getLayerBounds = function (targetReference, target, getTy
 }
 
 
-Kinase.prototype.layer.setLayerBounds_byActive = function (boundsInfo)
+Kinase.layer.setLayerBounds_byActive = function (boundsInfo)
 {
     return ki.layer.setLayerBounds(boundsInfo, Kinase.REF_ActiveLayer, null);
 }
@@ -2097,10 +2097,10 @@ Kinase.prototype.layer.setLayerBounds_byActive = function (boundsInfo)
  * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  */
-Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, target, doVerify)
+Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doVerify)
 {
     // {x: null, y: null, w: null, h: null,centerStatea,}
-    var oldradianInfo = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
+    var oldradianInfo = Kinase.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
 
     var adOb = {
         "null": {
@@ -2203,14 +2203,14 @@ Kinase.prototype.layer.setLayerBounds = function (boundsInfo, targetReference, t
 
     if (doVerify)
     {
-        var oldradianInfo2 = Kinase.prototype.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
+        var oldradianInfo2 = Kinase.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
         if (boundsInfo.x != oldradianInfo2.x ||
             boundsInfo.y != oldradianInfo2.y ||
             boundsInfo.h != oldradianInfo2.h ||
             boundsInfo.w != oldradianInfo2.w
         )
         {
-            Kinase.prototype.layer.setLayerBounds(boundsInfo, targetReference, target)
+            Kinase.layer.setLayerBounds(boundsInfo, targetReference, target)
         }
 
     }
@@ -2333,7 +2333,7 @@ Kinase._boundsAnchor = function (boundsInfo, centerStatea)
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @param offsets - 偏移值对象 {x,y}
  */
-Kinase.prototype.layer.moveLayerXY = function (targetReference, target, offsets)
+Kinase.layer.moveLayerXY = function (targetReference, target, offsets)
 {
 
     var desc = new ActionDescriptor();
@@ -2355,10 +2355,10 @@ Kinase.prototype.layer.moveLayerXY = function (targetReference, target, offsets)
  * @param returnKeyOriginType - 在返回值中包含 keyOriginType
  * @returns {{x: null, y: null, w: null, h: null}}
  */
-Kinase.prototype.layer.getLayerShapeSize = function (targetReference, target, returnKeyOriginType)
+Kinase.layer.getLayerShapeSize = function (targetReference, target, returnKeyOriginType)
 {
     var sizeInfo = {x: null, y: null, w: null, h: null};
-    var keyOriginType_raw = Kinase.prototype.layer.get_keyOriginType_Objcet(targetReference, target);
+    var keyOriginType_raw = Kinase.layer.get_keyOriginType_Objcet(targetReference, target);
 
 
     if (isEmptyObject(keyOriginType_raw) || keyOriginType_raw.keyOriginType == undefined)
@@ -2436,11 +2436,11 @@ Kinase.prototype.layer.getLayerShapeSize = function (targetReference, target, re
  * @param sizeInfo - 尺寸信息对象，{x,y,w,h,scale,centr}
  * @returns {string}
  */
-Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
+Kinase.layer.setLayerShapeSize_byActive = function (sizeInfo)
 {
 
 
-    var oldSizeInfo = Kinase.prototype.layer.getLayerShapeSize(Kinase.REF_ActiveLayer, null, true);
+    var oldSizeInfo = Kinase.layer.getLayerShapeSize(Kinase.REF_ActiveLayer, null, true);
     var keyOriginType_raw = oldSizeInfo.keyOriginType;
     // log(json(oldSizeInfo))
 
@@ -2555,7 +2555,7 @@ Kinase.prototype.layer.setLayerShapeSize_byActive = function (sizeInfo)
 
 
 //获取图层编辑信息：可视、锁定、备注颜色、图层类型、是否为画板
-Kinase.prototype.layer.getLayerEditInfo = function (targetReference, target)
+Kinase.layer.getLayerEditInfo = function (targetReference, target)
 {
     var editInfo = {
         visible: null, /*可视*/
@@ -2571,23 +2571,23 @@ Kinase.prototype.layer.getLayerEditInfo = function (targetReference, target)
         isArtboard: null,
     }
 
-    var kind_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerKind");
+    var kind_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     kind_raw = kind_raw.layerKind;
     editInfo.kind = kind_raw.value;
 
-    var artboardEnabled_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled");
+    var artboardEnabled_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled");
     artboardEnabled_raw = artboardEnabled_raw.artboardEnabled;
     editInfo.isArtboard = artboardEnabled_raw.value;
 
-    var color_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "color");
+    var color_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "color");
     color_raw = color_raw.color;
     editInfo.color = color_raw.value.enumerationValue;
 
-    var visible_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "visible");
+    var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "visible");
     visible_raw = visible_raw.visible;
     editInfo.visible = visible_raw.value;
 
-    var layerLocking_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerLocking");
+    var layerLocking_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerLocking");
     layerLocking_raw = layerLocking_raw.layerLocking;
     editInfo.lock.transparency = layerLocking_raw.value.protectTransparency.value;
     editInfo.lock.all = layerLocking_raw.value.protectAll.value;
@@ -2605,7 +2605,7 @@ Kinase.prototype.layer.getLayerEditInfo = function (targetReference, target)
 /*要取消所有图层锁定，要设置每一个 lock 项都为 false： ki.layer.setLayerEditInfo( {lock:{all:false,artboardAutonest:false,position:false, composite:false}},Kinase.REF_ItemIndex,2);*/
 /*色彩设置只可对当前图层设置（参数 targetReference == Kinase.REF_ActiveLayer）*/
 
-Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, target)
+Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 {
     if (editInfo.visible != undefined)
     {
@@ -2647,7 +2647,7 @@ Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, t
         var lockItems = ["all", "artboardAutonest", "composite", "position", "transparency"];
         var lockOrgName = ["protectAll", "protectArtboardAutonest", "protectComposite", "protectPosition", "protectTransparency"];
 
-        var oldEditInfo = Kinase.prototype.layer.getLayerEditInfo(targetReference, target);
+        var oldEditInfo = Kinase.layer.getLayerEditInfo(targetReference, target);
 
 
         var adOb = {
@@ -2754,9 +2754,9 @@ Kinase.prototype.layer.setLayerEditInfo = function (editInfo, targetReference, t
 
 //==============================[图层样式]======================
 
-Kinase.prototype.layer.getLayerEffectsObject = function (targetReference, target)
+Kinase.layer.getLayerEffectsObject = function (targetReference, target)
 {
-    var layerEffects_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
+    var layerEffects_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
     layerEffects_raw = layerEffects_raw.layerEffects;
 
     if (layerEffects_raw == undefined)
@@ -2768,7 +2768,7 @@ Kinase.prototype.layer.getLayerEffectsObject = function (targetReference, target
 
 }
 
-Kinase.prototype.layer.setLayerEffectsObject = function (effectsObejct, targetReference, target)
+Kinase.layer.setLayerEffectsObject = function (effectsObejct, targetReference, target)
 {
     var adOb = {
         "null": {
@@ -2804,7 +2804,7 @@ Kinase.prototype.layer.setLayerEffectsObject = function (effectsObejct, targetRe
 
 //----
 
-Kinase.prototype.layer.getEffectsList_dropShadow = function (layerEffects_raw, onlyEnabled)
+Kinase.layer.getEffectsList_dropShadow = function (layerEffects_raw, onlyEnabled)
 {
     var dropShadowInfo = [];
     if (layerEffects_raw.value.dropShadowMulti != undefined)
@@ -2872,7 +2872,7 @@ Kinase.prototype.layer.getEffectsList_dropShadow = function (layerEffects_raw, o
     }
 }
 
-Kinase.prototype.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowList)
+Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowList)
 {
     var ob = {
         enabled: null, /*启用*/
@@ -3214,14 +3214,14 @@ Kinase.prototype.layer.putEffectsList_dropShadow = function (layerEffects_raw, d
     }
 }
 
-Kinase.prototype.layer.getEffectsList_universal = function (layerEffects_raw, effectName, onlyEnabled)
+Kinase.layer.getEffectsList_universal = function (layerEffects_raw, effectName, onlyEnabled)
 {
     var effectInfo = [];
     if (layerEffects_raw.value[effectName + "Multi"] != undefined)
     {
         for (var i in layerEffects_raw.value[effectName + "Multi"].value)
         {
-            var info = Kinase.prototype.layer._effectUniverAnalyse(layerEffects_raw.value[effectName + "Multi"].value[i], onlyEnabled)
+            var info = Kinase.layer._effectUniverAnalyse(layerEffects_raw.value[effectName + "Multi"].value[i], onlyEnabled)
             if (info != undefined)
             {
                 effectInfo.push(info)
@@ -3230,14 +3230,14 @@ Kinase.prototype.layer.getEffectsList_universal = function (layerEffects_raw, ef
     }
     else
     {
-        var info = Kinase.prototype.layer._effectUniverAnalyse(layerEffects_raw.value[effectName], onlyEnabled);
+        var info = Kinase.layer._effectUniverAnalyse(layerEffects_raw.value[effectName], onlyEnabled);
         effectInfo.push(info);
     }
     return effectInfo;
 
 }
 
-Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, effectName, list)
+Kinase.layer.putEffectsList_universal = function (layerEffects_raw, effectName, list)
 {
     // log(json(list))
 
@@ -4624,7 +4624,7 @@ Kinase.prototype.layer.putEffectsList_universal = function (layerEffects_raw, ef
 
 }
 
-Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnabled)
+Kinase.layer._effectUniverAnalyse = function (effectObject, onlyEnabled)
 {
     var ob = {};
     _scanEffct(effectObject, ob);
@@ -4679,9 +4679,9 @@ Kinase.prototype.layer._effectUniverAnalyse = function (effectObject, onlyEnable
 
 
 /*
- Kinase.prototype.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list, Kinase.REF_ActiveLayer, null)
+ Kinase.layer.setLayerEffects_ByList(ki.layer.putEffectsList_dropShadow, list, Kinase.REF_ActiveLayer, null)
  */
-Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, targetReference, target, effectName)
+Kinase.layer.setLayerEffects_ByList = function (listFunction, list, targetReference, target, effectName)
 {
 
     var eOb = ki.layer.getLayerEffectsObject(targetReference, target)
@@ -4707,7 +4707,7 @@ Kinase.prototype.layer.setLayerEffects_ByList = function (listFunction, list, ta
 
 
 /*转换图层到智能对象*/
-Kinase.prototype.layer.setLayerToSmart_ByActive = function ()
+Kinase.layer.setLayerToSmart_ByActive = function ()
 {
     var idnewPlacedLayer = stringIDToTypeID("newPlacedLayer");
     executeAction(idnewPlacedLayer, undefined, DialogModes.NO);
@@ -4715,9 +4715,9 @@ Kinase.prototype.layer.setLayerToSmart_ByActive = function ()
 
 
 /*获取智能对象信息*/
-Kinase.prototype.layer.getLayerSmartInfo = function (targetReference, target)
+Kinase.layer.getLayerSmartInfo = function (targetReference, target)
 {
-    var smart_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "smartObject")
+    var smart_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "smartObject")
     if (smart_raw.smartObject == undefined)
     {
         return null;
@@ -4765,7 +4765,7 @@ Kinase.prototype.layer.getLayerSmartInfo = function (targetReference, target)
 
 
 /*通过拷贝创建新智能对象，新的智能对象会成为当前选中图层*/
-Kinase.prototype.layer.newSmartFromCopy_ByActive = function ()
+Kinase.layer.newSmartFromCopy_ByActive = function ()
 {
     var ob = executeAction(stringIDToTypeID("placedLayerMakeCopy"), undefined, DialogModes.NO);
     // log(ki.layer.getLayerName_byActive())
@@ -4773,7 +4773,7 @@ Kinase.prototype.layer.newSmartFromCopy_ByActive = function ()
 
 
 /*重新链接到文件*/
-Kinase.prototype.layer.smartRelinkToFile_ByActive = function (fileName)
+Kinase.layer.smartRelinkToFile_ByActive = function (fileName)
 {
     var ad = new ActionDescriptor();
     ad.putPath(charIDToTypeID("null"), new File(fileName));
@@ -4786,7 +4786,7 @@ Kinase.prototype.layer.smartRelinkToFile_ByActive = function (fileName)
 // ===========================[拾色器]========================
 
 /*创建拾色器*/
-Kinase.prototype.layer.creatNewColorSampler = function (x, y)
+Kinase.layer.creatNewColorSampler = function (x, y)
 {
     var adOb = {
         "null": {
@@ -4833,7 +4833,7 @@ Kinase.prototype.layer.creatNewColorSampler = function (x, y)
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {boolean}
  */
-Kinase.prototype.layer.isLayerSet = function (targetReference, target)
+Kinase.layer.isLayerSet = function (targetReference, target)
 {
     var layerSection = ki.layer.get_XXX_Objcet(targetReference, target, "layerSection").layerSection.value.enumerationValue;
 
@@ -4851,9 +4851,9 @@ Kinase.prototype.layer.isLayerSet = function (targetReference, target)
  * @param target
  * @returns {boolean}
  */
-Kinase.prototype.layer.isArtBoard = function (targetReference, target)
+Kinase.layer.isArtBoard = function (targetReference, target)
 {
-    var artBoard_raw = Kinase.prototype.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled", "Lyr ");
+    var artBoard_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled", "Lyr ");
 
     if (artBoard_raw.artboardEnabled.value == true)
     {
@@ -4869,7 +4869,7 @@ Kinase.prototype.layer.isArtBoard = function (targetReference, target)
  * 创建新图层
  * @param name
  */
-Kinase.prototype.layer.creatNewLayer_ByActive = function (name)
+Kinase.layer.creatNewLayer_ByActive = function (name)
 {
 
     var ad = new ActionDescriptor();
@@ -4880,7 +4880,7 @@ Kinase.prototype.layer.creatNewLayer_ByActive = function (name)
 
     if (name != undefined)
     {
-        Kinase.prototype.layer.setLayerName_byActive("");
+        Kinase.layer.setLayerName_byActive("");
     }
 }
 
@@ -4888,7 +4888,7 @@ Kinase.prototype.layer.creatNewLayer_ByActive = function (name)
  * 创建新图层组
  * @param name
  */
-Kinase.prototype.layer.creatNewLayerSet_ByActive = function (name)
+Kinase.layer.creatNewLayerSet_ByActive = function (name)
 {
     adOb = {
         "null": {
@@ -4906,7 +4906,7 @@ Kinase.prototype.layer.creatNewLayerSet_ByActive = function (name)
 
     if (name != undefined)
     {
-        Kinase.prototype.layer.setLayerName_byActive(name);
+        Kinase.layer.setLayerName_byActive(name);
     }
 }
 
@@ -4918,7 +4918,7 @@ Kinase.prototype.layer.creatNewLayerSet_ByActive = function (name)
  * @param h
  * @param text
  */
-Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
+Kinase.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
 {
 
     var ad = new ActionDescriptor();
@@ -5235,12 +5235,12 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
 
     if (text != undefined)
     {
-        Kinase.prototype.layer.setLayerText_Quick(text, Kinase.REF_ActiveLayer, null);
+        Kinase.layer.setLayerText_Quick(text, Kinase.REF_ActiveLayer, null);
     }
 
     if (name != undefined)
     {
-        Kinase.prototype.layer.setLayerName_byActive(name);
+        Kinase.layer.setLayerName_byActive(name);
     }
 
     function _setEnglish()
@@ -5279,7 +5279,7 @@ Kinase.prototype.layer.creatNewTextLayer_ByActive = function (name, w, h, text, 
 /**
  * 删除选中图层
  */
-Kinase.prototype.layer.deleteLayer_ByActive = function ()
+Kinase.layer.deleteLayer_ByActive = function ()
 {
     var adOb = {
         "null": {
@@ -5325,7 +5325,7 @@ Kinase.prototype.layer.deleteLayer_ByActive = function ()
 
 
 /*移动图层排序*/
-Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
+Kinase.layer.moveActiveLayerOrder = function (itemIndex)
 {
 
     var adOb = {
@@ -5367,7 +5367,7 @@ Kinase.prototype.layer.moveActiveLayerOrder = function (itemIndex)
 /**
  * 关闭展开的图层组。图层组内必须有 2 个及以上成员图层（可以添加临时图层来给关闭只有一个图层的图层组）。会丢失图层组蒙版属性。
  */
-Kinase.prototype.layer.closeLayerSet_byActive = function ()
+Kinase.layer.closeLayerSet_byActive = function ()
 {
     var layerSet = activeDocument.activeLayer;
     var oldName = layerSet.name;
@@ -5377,8 +5377,8 @@ Kinase.prototype.layer.closeLayerSet_byActive = function ()
     var oldLinkedLayers = layerSet.linkedLayers;
 
 
-    Kinase.prototype.layer.ungroupLayers_byActive();
-    Kinase.prototype.layer.groupLayers_byActive(oldName);
+    Kinase.layer.ungroupLayers_byActive();
+    Kinase.layer.groupLayers_byActive(oldName);
 
 
     var newLyaerSet = activeDocument.activeLayer;
@@ -5397,7 +5397,7 @@ Kinase.prototype.layer.closeLayerSet_byActive = function ()
 /**
  * 取消当前选中图层图层组，
  */
-Kinase.prototype.layer.ungroupLayers_byActive = function ()
+Kinase.layer.ungroupLayers_byActive = function ()
 {
     var ad = new ActionDescriptor();
     var ref = new ActionReference();
@@ -5415,7 +5415,7 @@ Kinase.prototype.layer.ungroupLayers_byActive = function ()
 }
 
 
-Kinase.prototype.layer.groupLayers_byActive = function (name)
+Kinase.layer.groupLayers_byActive = function (name)
 {
     var ad = new ActionDescriptor();
     var ref = new ActionReference();
@@ -5435,9 +5435,9 @@ Kinase.prototype.layer.groupLayers_byActive = function (name)
  * 保存当前各图层选中状态，把返回值用作 Kinase.layer.selectLoad() 的参数，能再现当前各图层选中状态
  * @returns {Array} layerIDArray
  */
-Kinase.prototype.layer.selectSave = function ()
+Kinase.layer.selectSave = function ()
 {
-    return Kinase.prototype.layer.getTargetLayersID()
+    return Kinase.layer.getTargetLayersID()
 }
 
 
@@ -5445,9 +5445,9 @@ Kinase.prototype.layer.selectSave = function ()
  * 再现各图层选中状态。参数为使用 Kinase.layer.selectSave() 的返回值。
  * @param layerIDArray
  */
-Kinase.prototype.layer.selectLoad = function (layerIDArray)
+Kinase.layer.selectLoad = function (layerIDArray)
 {
-    Kinase.prototype.layer.selectMultLayers_byID(layerIDArray, true);
+    Kinase.layer.selectMultLayers_byID(layerIDArray, true);
 }
 
 
@@ -5455,7 +5455,7 @@ Kinase.prototype.layer.selectLoad = function (layerIDArray)
  * 根据图层 ID 单选图层
  * @param layerID
  */
-Kinase.prototype.layer.selectLayer_byID = function (layerID)
+Kinase.layer.selectLayer_byID = function (layerID)
 {
     if (layerID == undefined)
     {
@@ -5472,7 +5472,7 @@ Kinase.prototype.layer.selectLayer_byID = function (layerID)
  * 根据图层 ItemIndex 单选图层
  * @param ItemIndex
  */
-Kinase.prototype.layer.selectLayer_byItemIndex = function (ItemIndex)
+Kinase.layer.selectLayer_byItemIndex = function (ItemIndex)
 {
     var ref = new ActionReference();
     ref.putIndex(charIDToTypeID("Lyr "), ItemIndex + Kinase.BKOffset());
@@ -5488,7 +5488,7 @@ Kinase.prototype.layer.selectLayer_byItemIndex = function (ItemIndex)
  * @param repick - 为真会取消之前的已选图层重新选择。
  * @returns {string}
  */
-Kinase.prototype.layer.selectMultLayers_byID = function (layerIDArray, repick)
+Kinase.layer.selectMultLayers_byID = function (layerIDArray, repick)
 {
 
     if (layerIDArray == undefined)
@@ -5499,7 +5499,7 @@ Kinase.prototype.layer.selectMultLayers_byID = function (layerIDArray, repick)
     layerIDArray = layerIDArray.sort();
     if (repick)
     {
-        Kinase.prototype.layer.selectLayer_byID(layerIDArray[0]);
+        Kinase.layer.selectLayer_byID(layerIDArray[0]);
     }
     for (var i = 0; i < layerIDArray.length; i++)
     {
@@ -5522,7 +5522,7 @@ Kinase.prototype.layer.selectMultLayers_byID = function (layerIDArray, repick)
  * @param repick - 为真会取消之前的已选图层重新选择。
  * @returns {string}
  */
-Kinase.prototype.layer.selectMultLayers_byItemIndex = function (itemIndexArray, repick)
+Kinase.layer.selectMultLayers_byItemIndex = function (itemIndexArray, repick)
 {
 
     if (itemIndexArray == undefined)
@@ -5532,7 +5532,7 @@ Kinase.prototype.layer.selectMultLayers_byItemIndex = function (itemIndexArray, 
 
     if (repick)
     {
-        Kinase.prototype.layer.selectLayer_byItemIndex(itemIndexArray[0]);
+        Kinase.layer.selectLayer_byItemIndex(itemIndexArray[0]);
     }
 
     for (var i = 0; i < itemIndexArray.length; i++)
@@ -5556,7 +5556,7 @@ Kinase.prototype.layer.selectMultLayers_byItemIndex = function (itemIndexArray, 
  * @param layerID
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerName_byActive = function ()
+Kinase.layer.getLayerName_byActive = function ()
 {
     var ref = new ActionReference();
     ref.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
@@ -5575,7 +5575,7 @@ Kinase.prototype.layer.getLayerName_byActive = function ()
  * @param layerID
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerName_byID = function (layerID)
+Kinase.layer.getLayerName_byID = function (layerID)
 {
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID("Prpr"), charIDToTypeID("Nm  "));
@@ -5595,7 +5595,7 @@ Kinase.prototype.layer.getLayerName_byID = function (layerID)
  * @param ItemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
+Kinase.layer.getLayerName_byItemIndex = function (ItemIndex)
 {
 
 
@@ -5615,10 +5615,10 @@ Kinase.prototype.layer.getLayerName_byItemIndex = function (ItemIndex)
  * 设置当前图层名称
  * @param name
  */
-Kinase.prototype.layer.setLayerName_byActive = function (name)
+Kinase.layer.setLayerName_byActive = function (name)
 {
 
-    var isLayerSet = Kinase.prototype.layer.isLayerSet(Kinase.REF_ActiveLayer, null)
+    var isLayerSet = Kinase.layer.isLayerSet(Kinase.REF_ActiveLayer, null)
 
     var ad = new ActionDescriptor();
     var ref = new ActionReference();
@@ -5648,7 +5648,7 @@ Kinase.prototype.layer.setLayerName_byActive = function (name)
  * @param itemIndex
  * @returns {number}
  */
-Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
+Kinase.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex)
 {
 
     var parentItemIndex = -1;
@@ -5669,7 +5669,7 @@ Kinase.prototype.layer.getParentLayerItemIndex_byItemIndex = function (itemIndex
  * @param itemIndex
  * @returns {number}
  */
-Kinase.prototype.layer.getParentLayerId_byItemIndex = function (itemIndex)
+Kinase.layer.getParentLayerId_byItemIndex = function (itemIndex)
 {
 
     var parentItemIndex = -1;
@@ -5691,10 +5691,10 @@ Kinase.prototype.layer.getParentLayerId_byItemIndex = function (itemIndex)
  * @param getLayerList
  * @returns {*}
  */
-Kinase.prototype.layer.getChildLayerID_byItemIndex = function (itemIndex, getLayerList)
+Kinase.layer.getChildLayerID_byItemIndex = function (itemIndex, getLayerList)
 {
     var ids = [];
-    var childs = Kinase.prototype.layer.getChildLayerDOM_byItemIndex(itemIndex)
+    var childs = Kinase.layer.getChildLayerDOM_byItemIndex(itemIndex)
     if (childs != undefined)
     {
         for (var i = 0; i < childs.length; i++)
@@ -5724,9 +5724,9 @@ Kinase.prototype.layer.getChildLayerID_byItemIndex = function (itemIndex, getLay
  * @param itemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getChildLayerList_byItemIndex = function (itemIndex)
+Kinase.layer.getChildLayerList_byItemIndex = function (itemIndex)
 {
-    return Kinase.prototype.layer.getChildLayerID_byItemIndex(itemIndex, true);
+    return Kinase.layer.getChildLayerID_byItemIndex(itemIndex, true);
 }
 
 
@@ -5735,9 +5735,9 @@ Kinase.prototype.layer.getChildLayerList_byItemIndex = function (itemIndex)
  * @param itemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getChildLayerDOM_byItemIndex = function (itemIndex)
+Kinase.layer.getChildLayerDOM_byItemIndex = function (itemIndex)
 {
-    var rootLayer = Kinase.prototype.layer.getLayerDOMObject_byItemIndex(itemIndex)
+    var rootLayer = Kinase.layer.getLayerDOMObject_byItemIndex(itemIndex)
     var childs = []
 
     if (rootLayer.typename == "LayerSet")
@@ -5773,7 +5773,7 @@ Kinase.prototype.layer.getChildLayerDOM_byItemIndex = function (itemIndex)
  * @param itemIndex
  * @returns {*}
  */
-Kinase.prototype.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
+Kinase.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
 {
 
     return _scanLayers(app.activeDocument.layers)
