@@ -285,6 +285,17 @@ var Layer = function (layerListItem)
         }
     }
 
+    this.smartObject =
+        {
+            linked: null, /*是否为链接对象*/
+            link: null, /*链接地址*/
+            fileReference: null, /*链接文件名*/
+            assignment: {linked: null, link: null, fileReference: null},
+            enableAssigns: {linked: false, link: false, fileReference: false}
+        }
+
+
+
     // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
     return this;
 }

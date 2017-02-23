@@ -250,9 +250,6 @@
                          mini="true"></value-input>
 
             <!--"-->
-
-
-
         </div>
 
 
@@ -390,6 +387,131 @@
                            v-bind:enable_formula.sync="Gob.text.$enableTextFormula"
             ></attr-textarea>
         </div>
+
+
+
+
+        <div class="tag-box tag-smartobject" v-show="tagsActive.smartobject" v-bind:class="{active:tagsActive.smartobject}"
+             transition="trans-fade">
+            <h3> {{'智能对象' |lang}} </h3>
+
+
+
+
+
+
+
+            <!--<vue-color-cylinder></vue-color-cylinder>-->
+            <color-input v-bind:name="Lang.from('颜色')"
+                         v-bind:title="Lang.from('颜色')"
+                         v-bind:out_value.sync="Gob.text.assignment.color"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
+                         v-bind:color.sync="Gob.text.color"
+                         mini="true"
+            > </color-input>
+
+
+            <value-input v-bind:name="Lang.from('字体')"
+                         v-bind:title="Lang.from('字体')"
+                         v-bind:edit_value.sync="Gob.text.fontPostScriptName"
+                         v-bind:out_v                                       alue.sync="Gob.text.assignment.fontPostScriptName"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.fontPostScriptName"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('粗体')"
+                         v-bind:title="Lang.from('仿粗体')"
+                         v-bind:edit_value.sync="Gob.text.bold"
+                         v-bind:out_value.sync="Gob.text.assignment.bold"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.bold"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('斜体')"
+                         v-bind:title="Lang.from('仿斜体')"
+                         v-bind:edit_value.sync="Gob.text.italic"
+                         v-bind:out_value.sync="Gob.text.assignment.italic"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.italic"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('尺寸')"
+                         v-bind:title="Lang.from('字体尺寸')"
+                         v-bind:edit_value.sync="Gob.text.size"
+                         v-bind:out_value.sync="Gob.text.assignment.size"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
+                         mini="true"></value-input>
+
+            <value-input v-bind:name="Lang.from('基线')"
+                         v-bind:title="Lang.from('基线偏移')"
+                         v-bind:edit_value.sync="Gob.text.baselineShift"
+                         v-bind:out_value.sync="Gob.text.assignment.baselineShift"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
+                         mini="true"></value-input>
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('锯齿')"
+                          v-bind:title="Lang.from('下划线')"
+                          v-bind:value.sync="Gob.text.antiAlias"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:options="o_text_antiAlias_options"
+                          in_class="text_antiAlias"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.text.antiAlias"
+                             v-bind:out_value.sync="Gob.text.assignment.antiAlias"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.antiAlias"
+                             mini="true"></value-input>
+            </select-input>
+
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('划线')"
+                          v-bind:title="Lang.from('下划线')"
+                          v-bind:value.sync="Gob.text.underline"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:options="o_text_underline_options"
+                          in_class="text_underline"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.text.underline"
+                             v-bind:out_value.sync="Gob.text.assignment.underline"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.underline"
+                             mini="true"></value-input>
+            </select-input>
+
+
+            <select-input v-bind:block="true" default_value=""
+                          v-bind:name="Lang.from('对齐')"
+                          v-bind:title="Lang.from('段落对齐')"
+                          v-bind:value.sync="Gob.text.justification"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:list_style="{width:'132px'}"
+                          v-bind:options="o_text_justification_options"
+                          in_class="text_justification"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:edit_value.sync="Gob.text.justification"
+                             v-bind:out_value.sync="Gob.text.assignment.justification"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
+                             mini="true"></value-input>
+
+
+            </select-input>
+
+
+            <value-input v-bind:name="Lang.from('行距')"
+                         v-bind:title="Lang.from('行距')"
+                         v-bind:edit_value.sync="Gob.text.leading"
+                         v-bind:out_value.sync="Gob.text.assignment.leading"
+                         v-bind:enable_assign.sync="Gob.text.enableAssigns.leading"
+                         mini="true"></value-input>
+
+            <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
+                           v-bind:out_value.sync="Gob.text.assignment.text"
+                           v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
+                           v-bind:enable_formula.sync="Gob.text.$enableTextFormula"
+            ></attr-textarea>
+        </div>
+
+
 
 
     </a-area>

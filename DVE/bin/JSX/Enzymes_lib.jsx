@@ -703,10 +703,14 @@ EnzJSX.getLayerInfo_shape_byId = function (id)
  * @param shapeInfo
  * @param id
  */
-EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id)
+EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
 {
 
-    ki.layer.selectLayer_byID(id)
+    if (doSelect)
+    {
+        ki.layer.selectLayer_byID(id)
+    }
+
 
     try
     {
@@ -806,6 +810,27 @@ EnzJSX.getLayerInfo_smartObject_byId = function (id)
 }
 
 
+/**
+ * 设置图层智能对象信息
+ * @param smartObject
+ * @param id
+ * @param doSelect
+ */
+EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
+{
+    if (doSelect)
+    {
+        ki.layer.selectLayer_byID(id)
+    }
+    //    smartInfo = {
+    //       linked: null, /!*是否为链接对象*!/
+    //       link: null, /!*链接地址*!/
+    //       fileReference: null, /!*链接文件名*!/
+    //    }
+
+    var  smartInfo  = Kinase.layer.getLayerSmartInfo(Kinase.REF_LayerID, id)
+    return JSON.stringify(smartInfo)
+}
 
 
 

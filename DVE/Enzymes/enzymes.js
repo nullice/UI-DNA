@@ -438,6 +438,34 @@ Enzymes.prototype.getLayerInfo_smartObject_byId = async function (layerID)
     })
 }
 
+/**
+ * 设置图层智能对象
+ * @param smartObject
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, layerID)
+{
+
+//     * smartInfo = {
+//     linked: null, /!*是否为链接对象*!/
+//     link: null, /!*链接地址*!/
+//     fileReference: null, /!*链接文件名*!/
+// }
+
+    return new Promise(function (resolve, reject)
+        {
+            var obJson = JSON.stringify(smartObject);
+            var _jsxCode = `EnzJSX.setLayerInfo_smartObject_byId(${obJson} ,${layerID} )`
+            evalScript(
+                _jsxCode,
+                (r) => {resolve(jsxBackCheck(r, _jsxCode))})
+        }
+    )
+}
+
+
+
 
 
 

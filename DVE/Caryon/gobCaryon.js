@@ -74,6 +74,8 @@ var GobCaryon = function ()
     this.position = this.__new_position();
     this.text = this.__new_text();
     this.shape = this.__new_shape();
+    this.smartObject = this.__new_smartObject();
+
 
     //属性注册[2/8]
     //------------注册 getter 和 setter
@@ -81,6 +83,7 @@ var GobCaryon = function ()
     giveSetter(this.position, ["position"], 1);
     giveSetter(this.text, ["text"], 1);
     giveSetter(this.shape, ["shape"], 1);
+    giveSetter(this.smartObject, ["smartObject"], 1);
     return this;
 
 
@@ -264,6 +267,18 @@ GobCaryon.prototype.__new_shape = function ()
 }
 
 
+GobCaryon.prototype.__new_smartObject = function ()
+{
+    return {
+        linked: null, /*是否为链接对象*/
+        link: null, /*链接地址*/
+        fileReference: null, /*链接文件名*/
+        assignment: {linked: null, link: null, fileReference: null},
+        enableAssigns: {linked: null, link: null, fileReference: null}
+    }
+}
+
+
 /** setter , 设置 Gob 属性值
  *
  * @param names 属性名路径列表，如 [position,enableAssigns,y]
@@ -330,8 +345,6 @@ GobCaryon.prototype._setData = async function (names, value)
             //1. 文本值-------------------------------------------------
             if (_lastName == "text") //文本
             {
-                console.info("text", TYP.type(value))
-
                 if (TYP.type(value) == "string")
                 {
                     console.info("_getObjectValueByNames(this, names, 1).$enableTextFormula", _getObjectValueByNames(this, names, 1).$enableTextFormula)
@@ -439,6 +452,24 @@ GobCaryon.prototype._setData = async function (names, value)
                                     return false;
                                 }
 
+                            }
+                        }
+                    },
+                    pathText: {
+                        type: "pathText",
+                        nameList: ["link", "fileReference"],
+                        valueEnum: null,
+                        judgementFunc: function (value)
+                        {
+                            if (value != undefined)
+                            {
+                                if (value[0] == ">")//>开头的路径要要经过变量处理
+                                {
+                                    return false;
+                                } else
+                                {
+                                    return true;
+                                }
                             }
                         }
                     }
@@ -706,6 +737,84 @@ GobCaryon.prototype.updateSelect = async function ()
 }
 
 
+
+GobCaryon.prototype.getLayerInfoObejct_position= async function (layerId)
+{
+    //[position]---------------------------------------------------------------
+    var item_position = this.__new_position();
+    var position = await enzymes.getLayerInfo_position_byId(layerId)
+    item_position.x = position.x
+    item_position.y = position.y
+    item_position.w = position.w
+    item_position.h = position.h
+
+    return item_position
+}
+
+
+GobCaryon.prototype.getLayerInfoObejct_text= async function (layerId)
+{
+    //[text]---------------------------------------------------------------
+    var item_text = this.__new_text();
+    var text = await enzymes.getLayerInfo_text_byId(layerId);
+    item_text.text = text.text;
+    this._setTypeColor(item_text.color, text.color)
+    item_text.size = text.size;
+    item_text.fontPostScriptName = text.fontPostScriptName;
+    item_text.bold = text.bold;
+    item_text.italic = text.italic;
+    item_text.antiAlias = text.antiAlias;
+    item_text.underline = text.underline;
+    item_text.justification = text.justification;
+    item_text.leading = text.leading;
+    item_text.tracking = text.tracking;
+    item_text.baselineShift = text.baselineShift;
+    item_text.horizontalScale = text.horizontalScale;
+    item_text.verticalScale = text.verticalScale;
+
+    return item_text
+}
+
+
+GobCaryon.prototype.getLayerInfoObejct_shape= async function (layerId)
+{
+    // [shape]---------------------------------------------------------------
+    var item_shape = this.__new_shape();
+    var shape = await enzymes.getLayerInfo_shape_byId(layerId);
+    item_shape.strokeColorEnabled = shape.strokeColorEnabled;
+    this._setTypeColor(item_shape.strokeColor, shape.strokeColor);
+    item_shape.fillColorEnabled = shape.fillColorEnabled;
+    this._setTypeColor(item_shape.fillColor, shape.fillColor);
+    item_shape.lineWidth = shape.lineWidth;
+    item_shape.dashSet = shape.dashSet;
+    item_shape.lineAlignment = shape.lineAlignment;
+    item_shape.lineCapType = shape.lineCapType;
+    item_shape.lineJoinType = shape.lineJoinType;
+    item_shape.shapeSize = shape.shapeSize;
+    item_shape.radian = shape.radian;
+
+    return item_shape
+}
+
+    GobCaryon.prototype._setTypeColor =  function (typeColor, color)
+{
+    typeColor.r = color.r
+    typeColor.g = color.g
+    typeColor.b = color.b
+
+    if (color.r == undefined || color.g == undefined || color.b == undefined)
+    {
+
+        typeColor.$hex = null;
+
+    } else
+    {
+        ichiColor.set(color);
+        typeColor.$hex = ichiColor.hex;
+    }
+}
+
+
 /**
  * 更新选中图层对象的数据。会从“实际图层”和 DataCaryon 拉取图层数据到 Gob。
  * 默认情况下会触发渲染
@@ -739,67 +848,22 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     {
         //属性注册[7/8]
         //[position]---------------------------------------------------------------
-        var item_position = new_position();
-        var position = await enzymes.getLayerInfo_position_byId(this.selectList[i].id)
-        item_position.x = position.x
-        item_position.y = position.y
-        item_position.w = position.w
-        item_position.h = position.h
+        var item_position =  await this.getLayerInfoObejct_position(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
         _objectToObject(item_position, temp.position, true, !(i == 0));
 
         //[text]---------------------------------------------------------------
-        var item_text = new_text();
-        var text = await enzymes.getLayerInfo_text_byId(this.selectList[i].id);
-        item_text.text = text.text;
-        _setTypeColor(item_text.color, text.color)
-        item_text.size = text.size;
-        item_text.fontPostScriptName = text.fontPostScriptName;
-        item_text.bold = text.bold;
-        item_text.italic = text.italic;
-        item_text.antiAlias = text.antiAlias;
-        item_text.underline = text.underline;
-        item_text.justification = text.justification;
-        item_text.leading = text.leading;
-        item_text.tracking = text.tracking;
-        item_text.baselineShift = text.baselineShift;
-        item_text.horizontalScale = text.horizontalScale;
-        item_text.verticalScale = text.verticalScale;
+        var item_text = await this.getLayerInfoObejct_text(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
         _objectToObject(item_text, temp.text, true, !(i == 0));
 
         // [shape]---------------------------------------------------------------
-        var item_shape = new_shape();
-        var shape = await enzymes.getLayerInfo_shape_byId(this.selectList[i].id);
-        item_shape.strokeColorEnabled = shape.strokeColorEnabled;
-        console.info(" shape", shape)
-        console.info("  item_shape.strokeColorEnabled", item_shape.strokeColorEnabled)
-        _setTypeColor(item_shape.strokeColor, shape.strokeColor);
-        item_shape.fillColorEnabled = shape.fillColorEnabled;
-        console.info("  item_shape.fillColorEnabled", item_shape.fillColorEnabled)
-        _setTypeColor(item_shape.fillColor, shape.fillColor);
-        item_shape.lineWidth = shape.lineWidth;
-        item_shape.dashSet = shape.dashSet;
-        item_shape.lineAlignment = shape.lineAlignment;
-        item_shape.lineCapType = shape.lineCapType;
-        item_shape.lineJoinType = shape.lineJoinType;
-        item_shape.shapeSize = shape.shapeSize;
-        item_shape.radian = shape.radian;
+        var item_shape =  await this.getLayerInfoObejct_shape(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
         _objectToObject(item_shape, temp.shape, true, !(i == 0));
     }
 
     //属性注册[8/8]
-    // _objectToObject_asyncSetCounter(temp.position, this.position, false, false, true);
-    // _objectToObject_asyncSetCounter(temp.text, this.text, false, false, true);
-    // _objectToObject_asyncSetCounter(temp.shape, this.shape, false, false, true);
-    //*********** 为内置的 $ 开头的属性添加异步计数：
-    // this._asyncSetCounter += 5
-    //***********
-    // Gob._asyncSetSwitch = true
-    // _objectToObject(temp.position, this.position, false, false, true);
-    // _objectToObject(temp.text, this.text, false, false, true);
-    // _objectToObject(temp.shape, this.shape, false, false, true);
 
     console.group("====_objectToObject_async====================================================")
 
@@ -847,23 +911,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     logger.groupEnd()
     //[END]-----------------
-    function _setTypeColor(typeColor, color)
-    {
-        typeColor.r = color.r
-        typeColor.g = color.g
-        typeColor.b = color.b
 
-        if (color.r == undefined || color.g == undefined || color.b == undefined)
-        {
-
-            typeColor.$hex = null;
-
-        } else
-        {
-            ichiColor.set(color);
-            typeColor.$hex = ichiColor.hex;
-        }
-    }
 
     function _setValue(oldValue, value, ignoreNull)
     {
