@@ -828,7 +828,7 @@ EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
     //       fileReference: null, /!*链接文件名*!/
     //    }
 
-    var  smartInfo  = Kinase.layer.getLayerSmartInfo(Kinase.REF_LayerID, id)
+    var  smartInfo  = Kinase.layer.setLayerSmartInfo_ByActive( smartObject)
     return JSON.stringify(smartInfo)
 }
 

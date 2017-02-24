@@ -118,9 +118,9 @@ Kinase.layer.getLayerType = function (targetReference, target)
      *
      * */
     var layerType = {
-        typeName: "other",/*图层类型名称 （Kinase 内部名称）*/
+        typeName: "other", /*图层类型名称 （Kinase 内部名称）*/
         layerKind: null, /*Photoshop 内部属性值*/
-        isLayerSet: Kinase.layer.isLayerSet(targetReference, target),/*是否是图层组*/
+        isLayerSet: Kinase.layer.isLayerSet(targetReference, target), /*是否是图层组*/
         isArtBoard: Kinase.layer.isArtBoard(targetReference, target)/*是否是画板*/
     }
 
@@ -474,10 +474,19 @@ Kinase.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
  */
 Kinase.layer.get_XXX_Objcet = function (targetReference, target, xxx)
 {
-    var ref = new ActionReference();
-    ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID(xxx));
-    targetReference(ref, target, "layer");//"contentLayer"
-    var layerDesc = executeActionGet(ref);
+
+    try
+    {
+        var ref = new ActionReference();
+        ref.putProperty(charIDToTypeID("Prpr"), stringIDToTypeID(xxx));
+        targetReference(ref, target, "layer");//"contentLayer"
+        var layerDesc = executeActionGet(ref);
+    }
+    catch (e)
+    {
+        $.writeln(e)
+    }
+
 
     return mu.actionDescriptorToObject(layerDesc);
 }
@@ -4775,20 +4784,20 @@ Kinase.layer.setLayerToSmart_ByActive = function ()
 /*获取智能对象信息*/
 Kinase.layer.getLayerSmartInfo = function (targetReference, target)
 {
-    var smart_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "smartObject")
-    if (smart_raw.smartObject == undefined)
-    {
-        return null;
-    }
-
-    smart_raw = smart_raw.smartObject;
-
-
     var smartInfo = {
         linked: null, /*是否为链接对象*/
         link: null, /*链接地址*/
         fileReference: null, /*链接文件名*/
     }
+
+    var smart_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "smartObject")
+    if (smart_raw == undefined || smart_raw.smartObject == undefined)
+    {
+        return smartInfo;
+    }
+
+    smart_raw = smart_raw.smartObject;
+
 
     if (smart_raw.value.linked != undefined)
     {
@@ -4821,6 +4830,35 @@ Kinase.layer.getLayerSmartInfo = function (targetReference, target)
     return smartInfo
 }
 
+Kinase.layer.setLayerSmartInfo_ByActive = function (smartInfo)
+{
+    if (smartInfo == undefined)
+    {
+        return null;
+    }
+
+    var oldSmartInfo = Kinase.layer.getLayerSmartInfo(Kinase.REF_ActiveLayer, null)
+
+    if (smartInfo.linked != undefined && smartInfo.linked == false)
+    {
+        if (oldSmartInfo.linked == true)
+        {
+            Kinase.layer.embedSmartLink_ByActive()
+            return
+        }
+    }
+
+
+    if (smartInfo.link != undefined && smartInfo.link != "")
+    {
+        if (smartInfo.link != oldSmartInfo.link)
+        {
+            Kinase.layer.smartRelinkToFile_ByActive(smartInfo.link)
+        }
+    }
+
+}
+
 
 /*通过拷贝创建新智能对象，新的智能对象会成为当前选中图层*/
 Kinase.layer.newSmartFromCopy_ByActive = function ()
@@ -4833,9 +4871,17 @@ Kinase.layer.newSmartFromCopy_ByActive = function ()
 /*重新链接到文件*/
 Kinase.layer.smartRelinkToFile_ByActive = function (fileName)
 {
+
     var ad = new ActionDescriptor();
     ad.putPath(charIDToTypeID("null"), new File(fileName));
     executeAction(stringIDToTypeID("placedLayerRelinkToFile"), ad, DialogModes.NO);
+}
+
+/* 把链接智能对象转化为嵌入智能对象*/
+Kinase.layer.embedSmartLink_ByActive = function ()
+{
+    executeAction(stringIDToTypeID("placedLayerConvertToEmbedded"), undefined, DialogModes.NO);
+
 }
 
 

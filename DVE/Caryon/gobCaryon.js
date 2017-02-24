@@ -289,7 +289,7 @@ GobCaryon.prototype.__new_smartObject = function ()
 GobCaryon.prototype._setData = async function (names, value)
 {
 
-    console.log(`_setData([${names}], ${value}):`)
+    // console.log(`_setData([${names}], ${value}):`)
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -419,7 +419,7 @@ GobCaryon.prototype._setData = async function (names, value)
                 var _typeDefine = {
                     boolean: {
                         type: "boolean",//属性名称
-                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled"], //这些名字的属性使用这一类型
+                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked"], //这些名字的属性使用这一类型
                         valueEnum: ["true", "false", true, false], //当值为这些时被判定为类型文本
                         judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
                     },
@@ -435,7 +435,21 @@ GobCaryon.prototype._setData = async function (names, value)
                         valueEnum: ["center", "right", "left",
                             "justifyAll", "justifyLeft", "justifyRight"]
                     },
-
+                    lineJoinType: {
+                        type: "lineJoinType",
+                        nameList: ["lineJoinType"],
+                        valueEnum: ["strokeStyleMiterJoin", "strokeStyleRoundJoin", "strokeStyleBevelJoin"]
+                    },
+                    lineCapType: {
+                        type: "lineCapType",
+                        nameList: ["lineCapType"],
+                        valueEnum: ["strokeStyleButtCap", "strokeStyleRoundCap", "strokeStyleSquareCap"]
+                    },
+                    lineAlignment: {
+                        type: "lineAlignment",
+                        nameList: ["lineAlignment"],
+                        valueEnum: ["strokeStyleAlignInside", "strokeStyleAlignCenter", "strokeStyleAlignOutside"]
+                    },
                     antiAlias: {
                         type: "antiAlias",
                         nameList: ["antiAlias"],
@@ -550,9 +564,9 @@ GobCaryon.prototype._setData = async function (names, value)
 
         var changeValue_dataCaryon = false;// 是否改变了 dataCaryon 里原有的值
         //写入 dataCaryon
-        if (flag_writeDataCaryon)
+        if (flag_writeDataCaryon && value != undefined)
         {
-
+            console.info("[[[writeDataCaryon]]]]]:", names, value)
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);
@@ -577,36 +591,39 @@ GobCaryon.prototype._setData = async function (names, value)
 
         if ((this.nowSwitching == false) && (this.disableRender != true) && (value != Gob.MULT))
         {
-            if (changeValue_dataCaryon || changeValue_Gob)
+            if (names[1] != "assignment" && names[1] != "enableAssigns")
             {
-                doDocumentRender = true;
-                if ((isAssignment != true) && (isVoidValue != true))
+                if (changeValue_dataCaryon || changeValue_Gob)
                 {
-                    console.log("【START】renderPatch--------" + names + "=>" + value)
-                    rendered = true;
-
-                    //-----------------------------------------------------------------
-                    if (isFormula) //如果是变量表达式先解析"普通变量"
+                    doDocumentRender = true;
+                    if ((isAssignment != true) && (isVoidValue != true))
                     {
-                        var finValue = await varSystem.evalVar(value, this.selectList[i].id)
+                        console.log("【START】renderPatch--------" + names + "=>" + value)
+                        rendered = true;
 
-                    }
-                    else if (_enableTextFormula)
-                    {
-                        console.info("_enableTextFormula", _enableTextFormula)
-                        var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
-                    }
-                    else
-                    {
-                        var finValue = value;
-                    }
-                    //-----------------------------------------------------------------
+                        //-----------------------------------------------------------------
+                        if (isFormula) //如果是变量表达式先解析"普通变量"
+                        {
+                            var finValue = await varSystem.evalVar(value, this.selectList[i].id)
 
-                    // console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
-                    await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
-                    console.log("【END】renderPatch------" + names + "=>" + finValue)
+                        }
+                        else if (_enableTextFormula)
+                        {
+                            console.info("_enableTextFormula", _enableTextFormula)
+                            var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
+                        }
+                        else
+                        {
+                            var finValue = value;
+                        }
+                        //-----------------------------------------------------------------
+
+                        // console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
+                        await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
+                        console.log("【END】renderPatch------" + names + "=>" + finValue)
+                    }
+
                 }
-
             }
         }
     }
@@ -737,8 +754,10 @@ GobCaryon.prototype.updateSelect = async function ()
 }
 
 
+/*------------------------------------------------------------------*/
 
-GobCaryon.prototype.getLayerInfoObejct_position= async function (layerId)
+
+GobCaryon.prototype.getLayerInfoObejct_position = async function (layerId)
 {
     //[position]---------------------------------------------------------------
     var item_position = this.__new_position();
@@ -752,7 +771,7 @@ GobCaryon.prototype.getLayerInfoObejct_position= async function (layerId)
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_text= async function (layerId)
+GobCaryon.prototype.getLayerInfoObejct_text = async function (layerId)
 {
     //[text]---------------------------------------------------------------
     var item_text = this.__new_text();
@@ -776,7 +795,7 @@ GobCaryon.prototype.getLayerInfoObejct_text= async function (layerId)
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_shape= async function (layerId)
+GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
 {
     // [shape]---------------------------------------------------------------
     var item_shape = this.__new_shape();
@@ -796,7 +815,19 @@ GobCaryon.prototype.getLayerInfoObejct_shape= async function (layerId)
     return item_shape
 }
 
-    GobCaryon.prototype._setTypeColor =  function (typeColor, color)
+GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
+{
+    // [martObject]---------------------------------------------------------------
+    var item_smartObject = this.__new_smartObject();
+    var smartObject = await enzymes.getLayerInfo_smartObject_byId(layerId);
+    item_smartObject.link = smartObject.link;
+    item_smartObject.linked = smartObject.linked;
+    item_smartObject.fileReference = smartObject.fileReference;
+    return item_smartObject
+}
+
+
+GobCaryon.prototype._setTypeColor = function (typeColor, color)
 {
     typeColor.r = color.r
     typeColor.g = color.g
@@ -836,19 +867,21 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     var new_position = this.__new_position;
     var new_text = this.__new_text;
     var new_shape = this.__new_shape;
+    var new_smartObject = this.__new_smartObject;
+
 
     //属性注册[6/8]
     temp.position = new_position();
     temp.text = new_text();
     temp.shape = new_shape();
-
+    temp.smartObject = new_smartObject();
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
     {
         //属性注册[7/8]
         //[position]---------------------------------------------------------------
-        var item_position =  await this.getLayerInfoObejct_position(this.selectList[i].id);
+        var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
         _objectToObject(item_position, temp.position, true, !(i == 0));
 
@@ -858,9 +891,15 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         _objectToObject(item_text, temp.text, true, !(i == 0));
 
         // [shape]---------------------------------------------------------------
-        var item_shape =  await this.getLayerInfoObejct_shape(this.selectList[i].id);
+        var item_shape = await this.getLayerInfoObejct_shape(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
         _objectToObject(item_shape, temp.shape, true, !(i == 0));
+
+        // [smartObject]---------------------------------------------------------------
+        var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
+        _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
+
     }
 
     //属性注册[8/8]
@@ -877,6 +916,10 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     console.group("--shape--------------------------", temp.shape,)
     await _objectToGob_async(temp.shape, ["shape"], this)
+    console.groupEnd()
+
+    console.group("--smartObject--------------------------", temp.smartObject,)
+    await _objectToGob_async(temp.smartObject, ["smartObject"], this)
     console.groupEnd()
 
 
@@ -1117,8 +1160,6 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix, deleteN
         return _valueToObject(toObject[objectNames[nameIndex]], objectNames, nameIndex + 1, value, prefix, deleteNOTupdateGob)
     } else
     {
-
-
         if (prefix)
         {
             var change = (toObject["_" + objectNames[nameIndex]] != value);

@@ -155,9 +155,38 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
 
         }
+        if (names[0] === "smartObject")
+        {
+            console.log("----[start:RenderCaryon：smartObject:" + layerId + "]---")
+            if (names.length == 2)
+            {
+                var ob = {};
+                ob[item] = value;
+            }
+
+            if(item=="link")
+            {
+                ob.linked = true
+            }
+
+            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
+            await enzymes.selectLayer_byID(layerId);
+            console.log(`enzymes.setLayerInfo_smartObject_byId(${JSON.stringify(ob)}, ${layerId})`)
+            /************************************************/
+            await enzymes.setLayerInfo_smartObject_byId(ob, layerId)
+            /************************************************/
+            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
+
+            Gob.updateGob(true);
+
+        }
 
         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---")
     }
+
+
+
+
 
     this.status.rendering = false;// 标记渲染状态结束，停止渲染按钮动画
 

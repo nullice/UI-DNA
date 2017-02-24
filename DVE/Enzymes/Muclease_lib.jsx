@@ -129,6 +129,15 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
  */
 Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_outSimple)
 {
+    if(actionDescriptor==undefined)
+    {
+        return null;
+
+
+    }
+
+
+
     var out_ob = {};
     _scanAD(actionDescriptor, out_ob, false, in_outSimple)
 
