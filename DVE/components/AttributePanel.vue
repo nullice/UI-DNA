@@ -137,12 +137,14 @@
                           v-bind:options="o_shape_lineAlignment_options"
                           in_class="text_line_alignment"
             >
-                <value-input v-bind:name=""
-                             v-bind:title=""
+
+                <value-input v-bind:name="Lang.from('对齐')"
+                             v-bind:title="Lang.from('描边对齐')"
                              v-bind:edit_value.sync="Gob.shape.lineAlignment"
                              v-bind:out_value.sync="Gob.shape.assignment.lineAlignment"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineAlignment"
-                             mini="true"></value-input>
+                             mini="true"
+                             ></value-input>
 
             </select-input>
 
@@ -150,19 +152,20 @@
 
             <select-input v-bind:block="false" default_value=""
                           v-bind:name="Lang.from('端点')"
-                          v-bind:title="Lang.from('描边端点')  "
+                          v-bind:title="Lang.from('描边端点')"
                           v-bind:value.sync="Gob.shape.lineCapType"
                           v-bind:select_style="{width:'64px'}"
                           v-bind:list_style="{width:'132px'}"
                           v-bind:options="o_shape_lineCapType_options"
                           in_class="text_line_cap_type"
             >
-                <value-input v-bind:name=""
-                             v-bind:title=""
+                <value-input v-bind:name="Lang.from('端点')"
+                             v-bind:title="Lang.from('描边端点')"
                              v-bind:edit_value.sync="Gob.shape.lineCapType"
                              v-bind:out_value.sync="Gob.shape.assignment.lineCapType"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineCapType"
-                             mini="true"></value-input>
+                             mini="true"
+                             ></value-input>
             </select-input>
 
 
@@ -177,14 +180,18 @@
                           v-bind:options="o_shape_lineJoinType_options"
                           in_class="text_line_cap_type"
             >
-                <value-input v-bind:name="Lang.from('')"
-                             v-bind:title="Lang.from('')"
+                <value-input v-bind:name="Lang.from(Lang.from('角点'))"
+                             v-bind:title="Lang.from('描边角点')"
                              v-bind:edit_value.sync="Gob.shape.lineJoinType"
                              v-bind:out_value.sync="Gob.shape.assignment.lineJoinType"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineJoinType"
-                             mini="true">
+                             mini="true"
+                             >
                 </value-input>
             </select-input>
+
+
+
 
 
 
@@ -196,14 +203,14 @@
                              v-bind:edit_value.sync="Gob.shape.shapeSize.x"
                              v-bind:out_value.sync="Gob.shape.assignment.shapeSize.x"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.x"
-                             mini="true"></value-input>
+                             v-bind:mini="true"></value-input>
 
                 <value-input v-bind:name="Lang.from('Y')"
                              v-bind:title="Lang.from('Y')"
                              v-bind:edit_value.sync="Gob.shape.shapeSize.y"
                              v-bind:out_value.sync="Gob.shape.assignment.shapeSize.y"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.y"
-                             mini="true"></value-input>
+                             v-bind:mini="true"></value-input>
 
 
                 <value-input v-bind:name="Lang.from('H')"
@@ -211,7 +218,7 @@
                              v-bind:edit_value.sync="Gob.shape.shapeSize.h"
                              v-bind:out_value.sync="Gob.shape.assignment.shapeSize.h"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.h"
-                             mini="true"></value-input>
+                             v-bind:mini="true"></value-input>
 
 
                 <value-input v-bind:name="Lang.from('W')"
@@ -219,7 +226,7 @@
                              v-bind:edit_value.sync="Gob.shape.shapeSize.w"
                              v-bind:out_value.sync="Gob.shape.assignment.shapeSize.w"
                              v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.w"
-                             mini="true"></value-input>
+                             v-bind:mini="true"></value-input>
 
             </div>
 
@@ -314,7 +321,7 @@
                           v-bind:options="o_text_antiAlias_options"
                           in_class="text_antiAlias"
             >
-                <value-input v-bind:name="Lang.from('')"
+                <value-input v-bind:name="Lang.from('锯齿')"
                              v-bind:edit_value.sync="Gob.text.antiAlias"
                              v-bind:out_value.sync="Gob.text.assignment.antiAlias"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.antiAlias"
@@ -330,7 +337,7 @@
                           v-bind:options="o_text_underline_options"
                           in_class="text_underline"
             >
-                <value-input v-bind:name="Lang.from('')"
+                <value-input v-bind:name="Lang.from('划线')"
                              v-bind:edit_value.sync="Gob.text.underline"
                              v-bind:out_value.sync="Gob.text.assignment.underline"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.underline"
@@ -347,7 +354,7 @@
                           v-bind:options="o_text_justification_options"
                           in_class="text_justification"
             >
-                <value-input v-bind:name="Lang.from('')"
+                <value-input v-bind:name="Lang.from('对齐')"
                              v-bind:edit_value.sync="Gob.text.justification"
                              v-bind:out_value.sync="Gob.text.assignment.justification"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
@@ -415,7 +422,15 @@
                          v-bind:enable_assign.sync="Gob.smartObject.enableAssigns.link"
             ></value-input>
 
-           <code>{{Gob.smartObject|json}}</code>
+            <value-input v-bind:name="Lang.from('名称')"
+                         v-bind:readonly="true"
+                         v-bind:title="Lang.from('链接对象名称（只读）')"
+                         v-bind:edit_value="Gob.smartObject.fileReference"
+                         v-bind:out_value.sync="Gob.smartObject.assignment.fileReference"
+                         v-bind:enable_assign.sync="Gob.smartObject.enableAssigns.fileReference"
+            ></value-input>
+
+           <!--<code>{{Gob.smartObject|json}}</code>-->
         </div>
 
 
