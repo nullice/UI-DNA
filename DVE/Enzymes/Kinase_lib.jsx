@@ -2621,7 +2621,13 @@ Kinase.layer.setLayerShapeSize_byActive = function (sizeInfo)
 }
 
 
-//获取图层编辑信息：可视、锁定、备注颜色、图层类型、是否为画板
+/**
+ * 获取图层编辑信息
+ * 获取图层编辑信息：可视、锁定、备注颜色、图层类型、是否为画板
+ * @param targetReference
+ * @param target
+ * @returns {{visible: null, color: null, lock: {all: null, artboardAutonest: null, composite: null, position: null, transparency: null}, kind: null, isArtboard: null}}
+ */
 Kinase.layer.getLayerEditInfo = function (targetReference, target)
 {
     var editInfo = {
@@ -2643,8 +2649,12 @@ Kinase.layer.getLayerEditInfo = function (targetReference, target)
     editInfo.kind = kind_raw.value;
 
     var artboardEnabled_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled");
-    artboardEnabled_raw = artboardEnabled_raw.artboardEnabled;
-    editInfo.isArtboard = artboardEnabled_raw.value;
+    if(artboardEnabled_raw!=undefined)
+    {
+        artboardEnabled_raw = artboardEnabled_raw.artboardEnabled;
+        editInfo.isArtboard = artboardEnabled_raw.value;
+    }
+
 
     var color_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "color");
     color_raw = color_raw.color;
@@ -2669,9 +2679,15 @@ Kinase.layer.getLayerEditInfo = function (targetReference, target)
 }
 
 
-/*要取消所有图层锁定，要设置每一个 lock 项都为 false： ki.layer.setLayerEditInfo( {lock:{all:false,artboardAutonest:false,position:false, composite:false}},Kinase.REF_ItemIndex,2);*/
-/*色彩设置只可对当前图层设置（参数 targetReference == Kinase.REF_ActiveLayer）*/
 
+/**
+ * 设置图层编辑信息（可视，备注颜色，锁定）
+ * 色彩设置只可对当前图层设置（参数 targetReference == Kinase.REF_ActiveLayer）
+ * 要取消所有图层锁定，要设置每一个 lock 项都为 false： ki.layer.setLayerEditInfo( {lock:{all:false,artboardAutonest:false,position:false, composite:false}},Kinase.REF_ItemIndex,2);
+ * @param editInfo
+ * @param targetReference
+ * @param target
+ */
 Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 {
     if (editInfo.visible != undefined)
@@ -2821,20 +2837,36 @@ Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 
 //==============================[图层样式]======================
 
+
+/**
+ * 获取图层样式对象
+ * @param targetReference
+ * @param target
+ * @returns {*}
+ */
 Kinase.layer.getLayerEffectsObject = function (targetReference, target)
 {
     var layerEffects_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
+    if(layerEffects_raw == undefined){
+        return null
+    }
+
     layerEffects_raw = layerEffects_raw.layerEffects;
 
     if (layerEffects_raw == undefined)
     {
-        layerEffects_raw = {noEffects: true}
+        return null
     }
     return layerEffects_raw;
-
-
 }
 
+
+/**
+ * 设置图层样式对象
+ * @param effectsObejct 通过 Kinase.layer.getLayerEffectsObject 获取的
+ * @param targetReference
+ * @param target
+ */
 Kinase.layer.setLayerEffectsObject = function (effectsObejct, targetReference, target)
 {
     var adOb = {
@@ -2865,8 +2897,6 @@ Kinase.layer.setLayerEffectsObject = function (effectsObejct, targetReference, t
 
     // log(json(adOb))
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
-
-
 }
 
 //----
@@ -3281,6 +3311,13 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
     }
 }
 
+/**
+ * 获取图层样式项
+ * @param layerEffects_raw 通过 Kinase.layer.getLayerEffectsObject() 获取的图层样式对象
+ * @param effectName 样式项名称，如"dropShadow"
+ * @param onlyEnabled 只获取激活的样式
+ * @returns {Array}
+ */
 Kinase.layer.getEffectsList_universal = function (layerEffects_raw, effectName, onlyEnabled)
 {
     var effectInfo = [];
@@ -3304,6 +3341,13 @@ Kinase.layer.getEffectsList_universal = function (layerEffects_raw, effectName, 
 
 }
 
+/**
+ * 设置图层样式项
+ * @param layerEffects_raw
+ * @param effectName
+ * @param list
+ * @returns {*}
+ */
 Kinase.layer.putEffectsList_universal = function (layerEffects_raw, effectName, list)
 {
     // log(json(list))

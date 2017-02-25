@@ -5,10 +5,13 @@
              v-bind:title="title">{{name|lang}} {{{name_html}}}</div>
         <slot></slot>
         <input type="text" class="exmo_input_text edit_input "
+               v-bind:type="readonly?'readonly':'text'"
                v-model:value="o_edit"
                debounce="800"
                v-bind:placeholder="o_edit_placeholder"
-               v-bind:class="{'uppercase':o_uppercase}">
+               v-bind:class="{'uppercase':o_uppercase}"
+
+        >
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked
                v-model:value="enable_assign">
@@ -22,6 +25,11 @@
 
 </template>
 <style lang="scss" rel="stylesheet/scss">
+
+
+    input.edit_input[type="readonly"] {
+        color: rgb(173, 173, 173);
+    }
 
     .exmo_inbox.value_input_box.mini {
         width: 128px;
@@ -133,7 +141,7 @@
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "title","out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color","enable_uppercase"],
+        props: ['edit_value', "title","out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color","enable_uppercase", 'readonly'],
         data(){
             return {
                 o_edit: "",

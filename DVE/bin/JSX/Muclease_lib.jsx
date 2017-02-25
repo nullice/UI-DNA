@@ -132,8 +132,6 @@ Muclease.prototype.actionDescriptorToObject = function (actionDescriptor, in_out
     if(actionDescriptor==undefined)
     {
         return null;
-
-
     }
 
 

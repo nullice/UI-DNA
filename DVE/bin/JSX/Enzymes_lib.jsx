@@ -805,7 +805,7 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
  */
 EnzJSX.getLayerInfo_smartObject_byId = function (id)
 {
-   var  smartInfo  = Kinase.layer.getLayerSmartInfo(Kinase.REF_LayerID, id)
+    var smartInfo = Kinase.layer.getLayerSmartInfo(Kinase.REF_LayerID, id)
     return JSON.stringify(smartInfo)
 }
 
@@ -828,12 +828,115 @@ EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
     //       fileReference: null, /!*链接文件名*!/
     //    }
 
-    var  smartInfo  = Kinase.layer.setLayerSmartInfo_ByActive( smartObject)
+    var smartInfo = Kinase.layer.setLayerSmartInfo_ByActive(smartObject)
     return JSON.stringify(smartInfo)
 }
 
 
+/**
+ * 获取快捷图层样式信息
+ * @param id
+ */
+EnzJSX.getLayerInfo_quickEffect_byId = function (id)
+{
+    var effectInfo =
+        {
+            dropShadow: {
+                enable: null,
+                color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                opacity: null, /*透明度*/
+                x: null,
+                y: null,
+                blur: null, /*大小*/
+                spread: null, /*扩展*/
+            },
+            raw: null,
+        }
 
+    var effectOb = Kinase.layer.getLayerEffectsObject(Kinase.REF_LayerID, id)
+    if (effectOb != undefined)
+    {
+
+        effectInfo.raw = effectOb
+        var dropShadow = Kinase.layer.getEffectsList_universal(effectOb,"dropShadow")
+        if (dropShadow != undefined)
+        {
+            if (dropShadow.length > 0)
+            {
+
+                dropShadow = dropShadow[0]
+
+                $.writeln(JSON.stringify(dropShadow))
+                var cssShadow = _psShadow2CssShadow(dropShadow.localLightingAngle, dropShadow.distance,
+                    dropShadow.blur, dropShadow.chokeMatte)
+
+
+                effectInfo.dropShadow.x = cssShadow.x;
+                effectInfo.dropShadow.y = cssShadow.y;
+                effectInfo.dropShadow.blur = cssShadow.blur;
+                effectInfo.dropShadow.spread = cssShadow.spread;
+                effectInfo.dropShadow.enable = dropShadow.enabled
+
+                effectInfo.dropShadow.color.r =dropShadow.color.red;
+                effectInfo.dropShadow.color.g =dropShadow.color.grain;
+                effectInfo.dropShadow.color.b =dropShadow.color.blue;
+
+            } else
+            {
+                effectInfo.dropShadow.enabled
+            }
+        }
+    }
+
+
+
+    return JSON.stringify(effectInfo)
+
+    function _psShadow2CssShadow(lightingAngle, distance, blur, chokeMatte)
+    {
+
+
+
+        var css = {
+            x: 0,
+            y: 0,
+            blur: 0,
+            spread: 0,
+        }
+        var angle = lightingAngle * (Math.PI / 180.0)
+
+        css.x = floatClean(-Math.cos(angle) * distance);
+        css.y = floatClean(Math.sin(angle) * distance);
+        css.blur = blur
+        css.spread = chokeMatte
+
+        // return css;
+        function floatClean(x) { return Math.round(x * 1000) / 1000; }
+
+        return css;
+    }
+
+
+    function _psCssShadow2Shadow(x, y, blur, spread)
+    {
+        /*
+         * -x/y = cos(angle)/sin(angle)  => -y/x=tan(angle)
+         * */
+        var angle = Math.atan(-y / x)
+        var lightingAngle = angle / (Math.PI / 180.0)
+        var distance = y / Math.sin(angle)
+
+        var psShadow = {
+            lightingAngle: Math.round(lightingAngle),
+            distance: Math.round(distance),
+            blur: blur,
+            chokeMatte: spread
+        }
+
+        return psShadow
+    }
+
+}
 
 
 //

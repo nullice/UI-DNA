@@ -32,7 +32,9 @@
             transition: all .3s;
             .exmo_box_name {
                 width: 0px;
+                display: none;
             }
+
         }
 
         &:hover .more-edit{

@@ -75,7 +75,7 @@ var GobCaryon = function ()
     this.text = this.__new_text();
     this.shape = this.__new_shape();
     this.smartObject = this.__new_smartObject();
-
+    this.quickEffect = this.__new_quickEffect();
 
     //属性注册[2/8]
     //------------注册 getter 和 setter
@@ -84,6 +84,8 @@ var GobCaryon = function ()
     giveSetter(this.text, ["text"], 1);
     giveSetter(this.shape, ["shape"], 1);
     giveSetter(this.smartObject, ["smartObject"], 1);
+    giveSetter(this.quickEffect, ["quickEffect"], 1);
+
     return this;
 
 
@@ -278,6 +280,47 @@ GobCaryon.prototype.__new_smartObject = function ()
     }
 }
 
+GobCaryon.prototype.__new_quickEffect = function ()
+{
+    return {
+        dropShadow: {
+            enable:null,
+            color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+            opacity:null,/*透明度*/
+            x:null,
+            y:null,
+            blur: null, /*大小*/
+            spread:null,/*扩展*/
+        },
+        copyEffect_All:null,
+
+
+
+        assignment: {
+            dropShadow: {
+                enable:null,
+                color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                opacity:null,/*透明度*/
+                x:null,
+                y:null,
+                blur: null, /*大小*/
+                spread:null,/*扩展*/
+            },
+        },
+        enableAssigns: {
+            dropShadow: {
+                enable:null,
+                color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                opacity:null,/*透明度*/
+                x:null,
+                y:null,
+                blur: null, /*大小*/
+                spread:null,/*扩展*/
+            },
+        }
+    }
+}
+
 
 /** setter , 设置 Gob 属性值
  *
@@ -289,7 +332,7 @@ GobCaryon.prototype.__new_smartObject = function ()
 GobCaryon.prototype._setData = async function (names, value)
 {
 
-    // console.log(`_setData([${names}], ${value}):`)
+    console.log(`_setData([${names}], ${value}):`)
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -817,7 +860,7 @@ GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
 
 GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
 {
-    // [martObject]---------------------------------------------------------------
+    // [smartObject]---------------------------------------------------------------
     var item_smartObject = this.__new_smartObject();
     var smartObject = await enzymes.getLayerInfo_smartObject_byId(layerId);
     item_smartObject.link = smartObject.link;
@@ -825,6 +868,24 @@ GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
     item_smartObject.fileReference = smartObject.fileReference;
     return item_smartObject
 }
+
+
+GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId)
+{
+    // [quickEffect]---------------------------------------------------------------
+    var item_quickEffect = this.__new_quickEffect();
+    var quickEffect = await enzymes.getLayerInfo_quickEffect_byId(layerId);
+    this._setTypeColor(item_quickEffect.dropShadow.color, quickEffect.dropShadow.color);
+
+    item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
+    item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
+
+    return item_quickEffect
+}
+
+
+
+
 
 
 GobCaryon.prototype._setTypeColor = function (typeColor, color)
@@ -868,6 +929,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     var new_text = this.__new_text;
     var new_shape = this.__new_shape;
     var new_smartObject = this.__new_smartObject;
+    var new_quickEffect = this.__new_quickEffect;
 
 
     //属性注册[6/8]
@@ -875,6 +937,8 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     temp.text = new_text();
     temp.shape = new_shape();
     temp.smartObject = new_smartObject();
+    temp.quickEffect  = new_quickEffect();
+
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
@@ -899,6 +963,9 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
         _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
+
+
+
 
     }
 

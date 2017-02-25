@@ -85,10 +85,10 @@ DataCaryon.prototype.save = async function ()
     this.info.status.saving = true;
 
 
-   var  dataOb  ={
-       layers:this.layers,
-       doc:this.doc
-   }
+    var dataOb = {
+        layers: this.layers,
+        doc: this.doc
+    }
 
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(dataOb));
 
@@ -107,12 +107,12 @@ DataCaryon.prototype.load = async function ()
     var ob = JSON.parse(dataJson);
     if (ob != undefined)
     {
-        if(ob.layers != undefined)
+        if (ob.layers != undefined)
         {
             this.layers = ob.layers;
         }
 
-        if(ob.doc != undefined)
+        if (ob.doc != undefined)
         {
             this.doc = ob.doc;
         }
@@ -227,63 +227,63 @@ var Layer = function (layerListItem)
     }
 
     this.shape =
-    {
-        strokeColor: {r: null, g: null, b: null, $hex:null}, /*描边颜色*/
-        strokeColorEnabled: null, /*启用描边*/
-        fillColor: {r: null, g: null, b: null, $hex:null}, /*填充颜色*/
-        fillColorEnabled: null, /*启用填充*/
-        lineWidth: null, /*边线宽度*/
-        dashSet: null, /*虚线设置*/
-        lineAlignment: null, /*描边选项-对齐*/
-        lineCapType: null, /*描边选项-端点*/
-        lineJoinType: null, /*描边选项-角点*/
-        // shapeSize: {x: null, y: null, h: null, w: null}, /*形状尺寸*/
-        // radian: {
-        //     /*圆角*/
-        //     topRight: null,
-        //     topLeft: null,
-        //     bottomRight: null,
-        //     bottomLeft: null,
-        // },
-        assignment: {
-            strokeColor: null,
-            strokeColorEnabled: null,
-            fillColor: null,
+        {
+            strokeColor: {r: null, g: null, b: null, $hex: null}, /*描边颜色*/
+            strokeColorEnabled: null, /*启用描边*/
+            fillColor: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
             fillColorEnabled: null, /*启用填充*/
             lineWidth: null, /*边线宽度*/
             dashSet: null, /*虚线设置*/
             lineAlignment: null, /*描边选项-对齐*/
             lineCapType: null, /*描边选项-端点*/
             lineJoinType: null, /*描边选项-角点*/
-            shapeSize: {x: null, y: null, h: null, w: null},
-            radian: {
-                /*圆角*/
-                topRight: null,
-                topLeft: null,
-                bottomRight: null,
-                bottomLeft: null,
-            }
-        },
-        enableAssigns: {
-            strokeColor: false,
-            strokeColorEnabled: false,
-            fillColor: false,
-            fillColorEnabled: false, /*启用填充*/
-            lineWidth: false, /*边线宽度*/
-            dashSet: false, /*虚线设置*/
-            lineAlignment: false, /*描边选项-对齐*/
-            lineCapType: false, /*描边选项-端点*/
-            lineJoinType: false, /*描边选项-角点*/
-            shapeSize: {x: false, y: false, h: false, w: false},
-            radian: {
-                /*圆角*/
-                topRight: false,
-                topLeft: false,
-                bottomRight: false,
-                bottomLeft: false,
+            // shapeSize: {x: null, y: null, h: null, w: null}, /*形状尺寸*/
+            // radian: {
+            //     /*圆角*/
+            //     topRight: null,
+            //     topLeft: null,
+            //     bottomRight: null,
+            //     bottomLeft: null,
+            // },
+            assignment: {
+                strokeColor: null,
+                strokeColorEnabled: null,
+                fillColor: null,
+                fillColorEnabled: null, /*启用填充*/
+                lineWidth: null, /*边线宽度*/
+                dashSet: null, /*虚线设置*/
+                lineAlignment: null, /*描边选项-对齐*/
+                lineCapType: null, /*描边选项-端点*/
+                lineJoinType: null, /*描边选项-角点*/
+                shapeSize: {x: null, y: null, h: null, w: null},
+                radian: {
+                    /*圆角*/
+                    topRight: null,
+                    topLeft: null,
+                    bottomRight: null,
+                    bottomLeft: null,
+                }
+            },
+            enableAssigns: {
+                strokeColor: false,
+                strokeColorEnabled: false,
+                fillColor: false,
+                fillColorEnabled: false, /*启用填充*/
+                lineWidth: false, /*边线宽度*/
+                dashSet: false, /*虚线设置*/
+                lineAlignment: false, /*描边选项-对齐*/
+                lineCapType: false, /*描边选项-端点*/
+                lineJoinType: false, /*描边选项-角点*/
+                shapeSize: {x: false, y: false, h: false, w: false},
+                radian: {
+                    /*圆角*/
+                    topRight: false,
+                    topLeft: false,
+                    bottomRight: false,
+                    bottomLeft: false,
+                }
             }
         }
-    }
 
     this.smartObject =
         {
@@ -294,6 +294,41 @@ var Layer = function (layerListItem)
             enableAssigns: {linked: false, link: false, fileReference: false}
         }
 
+    this.quickEffect =
+        {
+            dropShadow: {
+                enable:null,
+                color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                opacity:null,/*透明度*/
+                x:null,
+                y:null,
+                blur: null, /*大小*/
+                spread:null,/*扩展*/
+            },
+
+            assignment: {
+                dropShadow: {
+                    enable:null,
+                    color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                    opacity:null,/*透明度*/
+                    x:null,
+                    y:null,
+                    blur: null, /*大小*/
+                    spread:null,/*扩展*/
+                },
+            },
+            enableAssigns: {
+                dropShadow: {
+                    enable:false,
+                    color: {r: false, g: false, b: false, $hex: false}, /*填充颜色*/
+                    opacity:false,/*透明度*/
+                    x:false,
+                    y:false,
+                    blur: false, /*大小*/
+                    spread:false/*扩展*/
+                },
+            }
+        }
 
 
     // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });

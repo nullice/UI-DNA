@@ -465,10 +465,17 @@ Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, l
 }
 
 
-
-
-
-
+Enzymes.prototype.getLayerInfo_quickEffect_byId = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `EnzJSX.getLayerInfo_quickEffect_byId(${layerID})`
+        evalScript(
+            _jsxCode
+            ,
+            (r) => {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
+    })
+}
 
 
 /**
