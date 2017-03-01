@@ -837,7 +837,7 @@ EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
  * 获取快捷图层样式信息
  * @param id
  */
-EnzJSX.getLayerInfo_quickEffect_byId = function (id)
+EnzJSX.getLayerInfo_quickEffect_byId = function (id, retrunRaw)
 {
     var effectInfo =
         {
@@ -858,7 +858,7 @@ EnzJSX.getLayerInfo_quickEffect_byId = function (id)
     {
 
         effectInfo.raw = effectOb
-        var dropShadow = Kinase.layer.getEffectsList_universal(effectOb,"dropShadow")
+        var dropShadow = Kinase.layer.getEffectsList_universal(effectOb, "dropShadow")
         if (dropShadow != undefined)
         {
             if (dropShadow.length > 0)
@@ -866,10 +866,8 @@ EnzJSX.getLayerInfo_quickEffect_byId = function (id)
 
                 dropShadow = dropShadow[0]
 
-                $.writeln(JSON.stringify(dropShadow))
-                var cssShadow = _psShadow2CssShadow(dropShadow.localLightingAngle, dropShadow.distance,
+                var cssShadow = EnzJSX._psShadow2CssShadow(dropShadow.localLightingAngle, dropShadow.distance,
                     dropShadow.blur, dropShadow.chokeMatte)
-
 
                 effectInfo.dropShadow.x = cssShadow.x;
                 effectInfo.dropShadow.y = cssShadow.y;
@@ -877,65 +875,232 @@ EnzJSX.getLayerInfo_quickEffect_byId = function (id)
                 effectInfo.dropShadow.spread = cssShadow.spread;
                 effectInfo.dropShadow.enable = dropShadow.enabled
 
-                effectInfo.dropShadow.color.r =dropShadow.color.red;
-                effectInfo.dropShadow.color.g =dropShadow.color.grain;
-                effectInfo.dropShadow.color.b =dropShadow.color.blue;
+                effectInfo.dropShadow.opacity = dropShadow.opacity;
+                effectInfo.dropShadow.color.r = dropShadow.color.red;
+                effectInfo.dropShadow.color.g = dropShadow.color.grain;
+                effectInfo.dropShadow.color.b = dropShadow.color.blue;
 
             } else
             {
-                effectInfo.dropShadow.enabled
+                effectInfo.dropShadow.enabled = false;
             }
         }
     }
 
-
-
-    return JSON.stringify(effectInfo)
-
-    function _psShadow2CssShadow(lightingAngle, distance, blur, chokeMatte)
+    if (retrunRaw)
     {
-
-
-
-        var css = {
-            x: 0,
-            y: 0,
-            blur: 0,
-            spread: 0,
-        }
-        var angle = lightingAngle * (Math.PI / 180.0)
-
-        css.x = floatClean(-Math.cos(angle) * distance);
-        css.y = floatClean(Math.sin(angle) * distance);
-        css.blur = blur
-        css.spread = chokeMatte
-
-        // return css;
-        function floatClean(x) { return Math.round(x * 1000) / 1000; }
-
-        return css;
+        return effectInfo
+    } else
+    {
+        return JSON.stringify(effectInfo)
     }
 
 
-    function _psCssShadow2Shadow(x, y, blur, spread)
+}
+
+EnzJSX._psShadow2CssShadow = function (lightingAngle, distance, blur, chokeMatte)
+{
+
+    var css = {
+        x: 0,
+        y: 0,
+        blur: 0,
+        spread: 0,
+    }
+    var angle = lightingAngle * (Math.PI / 180.0)
+
+    css.x = floatClean(-Math.cos(angle) * distance);
+    css.y = floatClean(Math.sin(angle) * distance);
+    css.blur = blur
+    css.spread = chokeMatte
+
+    // return css;
+    function floatClean(x) { return Math.round(x * 1000) / 1000; }
+
+    return css;
+}
+
+EnzJSX._psCssShadow2Shadow = function (x, y, blur, spread)
+{
+    /*
+     * -x/y = cos(angle)/sin(angle)  => -y/x=tan(angle)
+     * */
+
+    if (x == 0)
     {
-        /*
-         * -x/y = cos(angle)/sin(angle)  => -y/x=tan(angle)
-         * */
+        var angle = (Math.PI / 180.0) * 90
+        var distance = y;
+    }
+    else if (y == 0)
+    {
+        var angle = (Math.PI / 180.0) * (-180)
+        var distance = x;
+    } else
+    {
         var angle = Math.atan(-y / x)
-        var lightingAngle = angle / (Math.PI / 180.0)
         var distance = y / Math.sin(angle)
-
-        var psShadow = {
-            lightingAngle: Math.round(lightingAngle),
-            distance: Math.round(distance),
-            blur: blur,
-            chokeMatte: spread
-        }
-
-        return psShadow
     }
 
+    var lightingAngle = angle / (Math.PI / 180.0)
+
+
+
+    if (distance < 0)
+    {
+        distance = -distance
+        lightingAngle = lightingAngle - 180
+    }
+
+    if (lightingAngle >180 )
+    {
+        lightingAngle =   lightingAngle-360;
+    }
+
+    if (lightingAngle < -180)
+    {
+        lightingAngle = 360 + lightingAngle;
+    }
+
+
+
+    var psShadow = {
+        lightingAngle: Math.round(lightingAngle),
+        distance: Math.round(distance),
+        blur: blur,
+        chokeMatte: spread
+    }
+
+    return psShadow
+}
+
+
+EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
+{
+    if (doSelect)
+    {
+        ki.layer.selectLayer_byID(id)
+    }
+
+    var Old_quickEffect = this.getLayerInfo_quickEffect_byId(id, true)
+
+
+    if (quickEffect.copyEffect_All != undefined && typeof quickEffect.copyEffect_All == 'obejct')
+    {
+        var effectObject = quickEffect.copyEffect_All;
+    } else
+    {
+        var effectObject = Old_quickEffect.raw;
+    }
+
+
+    if (quickEffect != undefined)
+    {
+        if (quickEffect.dropShadow != undefined)
+        {
+
+            var Ob_dropShadow = {
+                enabled: true, /*启用*/
+                color: {r: null, g: null, b: null}, /*结构-颜色*/
+                opacity: null, /*结构-不透明度*/
+                lightingAngle: null, /*结构-角度*/
+                useGlobalAngle: false, /*结构-使用全局光*/
+                distance: null, /*结构-距离*/
+                chokeMatte: null, /*结构-扩展*/
+                blur: null, /*结构-大小*/
+            };
+
+            var dropShadowList = Kinase.layer.getEffectsList_dropShadow(effectObject)
+            if (dropShadowList == undefined || dropShadowList.length < 1)
+            {
+                dropShadowList = [Ob_dropShadow];
+            } else
+            {
+
+            }
+
+            if (quickEffect.dropShadow.x != undefined)
+            {
+                var _x = +quickEffect.dropShadow.x;
+            } else
+            {
+                var _x = Old_quickEffect.dropShadow.x;
+            }
+
+            if (quickEffect.dropShadow.y != undefined)
+            {
+                var _y = +quickEffect.dropShadow.y;
+            } else
+            {
+                var _y = Old_quickEffect.dropShadow.y;
+            }
+
+            var _ss = this._psCssShadow2Shadow(+_x, +_y)
+
+            var _distance = _ss.distance || 0
+            var _lightingAngle = _ss.lightingAngle || 0
+
+            dropShadowList[0].localLightingAngle = _lightingAngle;
+            dropShadowList[0].distance = _distance;
+
+
+
+            if (quickEffect.dropShadow.color != undefined)
+            {
+                dropShadowList[0].color.red = quickEffect.dropShadow.color.r;
+                dropShadowList[0].color.grain = quickEffect.dropShadow.color.g;
+                dropShadowList[0].color.blue = quickEffect.dropShadow.color.b;
+
+            } else
+            {
+
+                dropShadowList[0].color.red = Old_quickEffect.dropShadow.color.r;
+                dropShadowList[0].color.grain= Old_quickEffect.dropShadow.color.g;
+                dropShadowList[0].color.blue =Old_quickEffect.dropShadow.color.b;
+
+            }
+
+            if (quickEffect.dropShadow.opacity != undefined)
+            {
+                dropShadowList[0].opacity = +quickEffect.dropShadow.opacity;
+            } else
+            {
+                dropShadowList[0].opacity = Old_quickEffect.dropShadow.opacity;
+            }
+
+
+            if (quickEffect.dropShadow.spread != undefined)
+            {
+                dropShadowList[0].chokeMatte = +quickEffect.dropShadow.spread;
+            } else
+            {
+                dropShadowList[0].chokeMatte = Old_quickEffect.dropShadow.chokeMatte;
+            }
+
+
+            if (quickEffect.dropShadow.blur != undefined)
+            {
+                dropShadowList[0].blur = +quickEffect.dropShadow.blur;
+            } else
+            {
+                dropShadowList[0].blur = Old_quickEffect.dropShadow.blur
+            }
+
+            // $.writeln(json(dropShadowList))
+
+            if (effectObject == undefined)
+            {
+                effectObject = {noEffects: true}
+            }
+            effectObject = Kinase.layer.putEffectsList_universal(effectObject, "dropShadow", dropShadowList)
+
+        }
+    }
+
+    // $.writeln("aa" + json(effectObject))
+
+    Kinase.layer.setLayerEffectsObject(effectObject, Kinase.REF_LayerID, id)
+
+    return
 }
 
 

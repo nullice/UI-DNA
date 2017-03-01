@@ -582,6 +582,7 @@
     export default{
         props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject', "end_func"],
         watch: {
+
             "color_bullets": function (val)
             {
 //                console.log("------------------")
@@ -592,14 +593,30 @@
                 if (this.callback_confirm != undefined)
                 {
                     var now = (new Date()).getTime();
-                    if (now - this.o_time_defer > 500)
+                    if (now - this.o_time_defer > 200)
                     {
                         this.callback_confirm(this.ichi_color);
+
+                        this.o_time_defer = now;
+                    }
+                }
+
+            },
+            "color1.alpha": function (val)
+            {
+                if (this.callback_confirm != undefined)
+                {
+                    var now = (new Date()).getTime();
+                    if (now - this.o_time_defer > 200)
+                    {
+                        this.callback_confirm(this.ichi_color);
+
                         this.o_time_defer = now;
                     }
                 }
 
             }
+
         },
         data(){
             return {

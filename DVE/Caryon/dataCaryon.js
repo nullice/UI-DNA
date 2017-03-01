@@ -305,28 +305,62 @@ var Layer = function (layerListItem)
                 blur: null, /*大小*/
                 spread:null,/*扩展*/
             },
+            copyEffect_All:null,
+            copyEffect_dropShadow:null,/*阴影*/
+            copyEffect_innerShadow:null,/*内阴影*/
+            copyEffect_chromeFX:null,/*等高线*/
+            copyEffect_frameFX:null,/*纹理*/
+            copyEffect_bevelEmboss:null,/*斜面与浮雕*/
+            copyEffect_innerGlow:null,/*内发光*/
+            copyEffect_outerGlow:null,/*外发光*/
+            copyEffect_patternFill:null,/*内部填充*/
+            copyEffect_solidFill:null,/*描边*/
+            copyEffect_gradientFill:null,/*渐变*/
+
 
             assignment: {
                 dropShadow: {
                     enable:null,
-                    color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                    color: null, /*填充颜色*/
                     opacity:null,/*透明度*/
                     x:null,
                     y:null,
                     blur: null, /*大小*/
                     spread:null,/*扩展*/
                 },
+                copyEffect_All:null,
+                copyEffect_dropShadow:null,/*阴影*/
+                copyEffect_innerShadow:null,/*内阴影*/
+                copyEffect_chromeFX:null,/*等高线*/
+                copyEffect_frameFX:null,/*纹理*/
+                copyEffect_bevelEmboss:null,/*斜面与浮雕*/
+                copyEffect_innerGlow:null,/*内发光*/
+                copyEffect_outerGlow:null,/*外发光*/
+                copyEffect_patternFill:null,/*内部填充*/
+                copyEffect_solidFill:null,/*描边*/
+                copyEffect_gradientFill:null,/*渐变*/
             },
             enableAssigns: {
                 dropShadow: {
                     enable:false,
-                    color: {r: false, g: false, b: false, $hex: false}, /*填充颜色*/
+                    color: false, /*填充颜色*/
                     opacity:false,/*透明度*/
                     x:false,
                     y:false,
                     blur: false, /*大小*/
-                    spread:false/*扩展*/
+                    spread:false,/*扩展*/
                 },
+                copyEffect_All:false,
+                copyEffect_dropShadow:false,/*阴影*/
+                copyEffect_innerShadow:false,/*内阴影*/
+                copyEffect_chromeFX:false,/*等高线*/
+                copyEffect_frameFX:false,/*纹理*/
+                copyEffect_bevelEmboss:false,/*斜面与浮雕*/
+                copyEffect_innerGlow:false,/*内发光*/
+                copyEffect_outerGlow:false,/*外发光*/
+                copyEffect_patternFill:false,/*内部填充*/
+                copyEffect_solidFill:false,/*描边*/
+                copyEffect_gradientFill:false,/*渐变*/
             }
         }
 

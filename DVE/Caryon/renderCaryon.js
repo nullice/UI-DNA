@@ -180,6 +180,47 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             Gob.updateGob(true);
 
         }
+        if (names[0] === "quickEffect")
+        {
+            console.log("----[start:RenderCaryon：quickEffect:" + layerId + "]---")
+
+            if(names.length >2)
+            {
+                var ob = {};
+                ob[names[1]]={}
+                ob[names[1]][item] = value;
+
+                if (namesLen > 3)
+                {
+                    if (_lastButOneName == "color")
+                    {
+                        ob[names[1]] = hexToColorOb(value);
+                    }
+                }
+
+            }else
+            {
+                var ob = {};
+                ob[item] = value;
+            }
+
+
+
+
+            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
+            await enzymes.selectLayer_byID(layerId);
+            console.log(`enzymes.setLayerInfo_quickEffect_byId(${JSON.stringify(ob)}, ${layerId})`)
+            /************************************************/
+            await enzymes.setLayerInfo_quickEffect_byId(ob, layerId)
+            /************************************************/
+            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
+
+
+        }
+
+
+
+
 
         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---")
     }

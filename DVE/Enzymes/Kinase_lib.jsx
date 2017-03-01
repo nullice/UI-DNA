@@ -2649,7 +2649,7 @@ Kinase.layer.getLayerEditInfo = function (targetReference, target)
     editInfo.kind = kind_raw.value;
 
     var artboardEnabled_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled");
-    if(artboardEnabled_raw!=undefined)
+    if (artboardEnabled_raw != undefined)
     {
         artboardEnabled_raw = artboardEnabled_raw.artboardEnabled;
         editInfo.isArtboard = artboardEnabled_raw.value;
@@ -2677,7 +2677,6 @@ Kinase.layer.getLayerEditInfo = function (targetReference, target)
 
     return editInfo;
 }
-
 
 
 /**
@@ -2847,7 +2846,8 @@ Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 Kinase.layer.getLayerEffectsObject = function (targetReference, target)
 {
     var layerEffects_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerEffects")
-    if(layerEffects_raw == undefined){
+    if (layerEffects_raw == undefined)
+    {
         return null
     }
 
@@ -2903,6 +2903,11 @@ Kinase.layer.setLayerEffectsObject = function (effectsObejct, targetReference, t
 
 Kinase.layer.getEffectsList_dropShadow = function (layerEffects_raw, onlyEnabled)
 {
+    if (layerEffects_raw == undefined)
+    {
+        return null;
+    }
+
     var dropShadowInfo = [];
     if (layerEffects_raw.value.dropShadowMulti != undefined)
     {
@@ -2990,7 +2995,7 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
     };
 
 
-    if (layerEffects_raw.noEffects)
+    if (layerEffects_raw == undefined || layerEffects_raw.noEffects)
     {
         layerEffects_raw = {
             "value": {
@@ -3290,8 +3295,24 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
 
     function _setSingle()
     {
-        layerEffects_raw.value.dropShadow.value.enabled.value = dropShadowList[0].enabled || layerEffects_raw.value.dropShadow.value.enabled.value;
-        layerEffects_raw.value.dropShadow.value.antiAlias.value = dropShadowList[0].antiAlias || layerEffects_raw.value.dropShadow.value.antiAlias.value;
+
+
+        if (dropShadowList[0].useGlobalAngle != undefined)
+        {
+            layerEffects_raw.value.dropShadow.value.useGlobalAngle.value = dropShadowList[0].useGlobalAngle
+        }
+
+        if (dropShadowList[0].enabled != undefined)
+        {
+            layerEffects_raw.value.dropShadow.value.enabled.value = dropShadowList[0].enabled
+        }
+
+        if (dropShadowList[0].antiAlias != undefined)
+        {
+            layerEffects_raw.value.dropShadow.value.antiAlias.value = dropShadowList[0].antiAlias
+        }
+
+
         layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue = dropShadowList[0].chokeMatte || layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue;
         layerEffects_raw.value.dropShadow.value.blur.value.doubleValue = dropShadowList[0].blur || layerEffects_raw.value.dropShadow.value.blur.value.doubleValue;
         layerEffects_raw.value.dropShadow.value.color.value.red.value = dropShadowList[0].color.r || layerEffects_raw.value.dropShadow.value.color.value.red.value;
@@ -3306,7 +3327,6 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
         layerEffects_raw.value.dropShadow.value.present.value = dropShadowList[0].present || layerEffects_raw.value.dropShadow.value.present.value;
         layerEffects_raw.value.dropShadow.value.showInDialog.value = dropShadowList[0].showInDialog || layerEffects_raw.value.dropShadow.value.showInDialog.value;
         layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value = dropShadowList[0].transferSpec || layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value;
-        layerEffects_raw.value.dropShadow.value.useGlobalAngle.value = dropShadowList[0].useGlobalAngle || layerEffects_raw.value.dropShadow.value.useGlobalAngle.value;
 
     }
 }
@@ -3352,7 +3372,7 @@ Kinase.layer.putEffectsList_universal = function (layerEffects_raw, effectName, 
 {
     // log(json(list))
 
-    if (layerEffects_raw.noEffects)
+    if (layerEffects_raw == undefined || layerEffects_raw.noEffects)
     {
         layerEffects_raw = {
             "value": {
@@ -3372,12 +3392,10 @@ Kinase.layer.putEffectsList_universal = function (layerEffects_raw, effectName, 
 
     if (layerEffects_raw.value[effectName + "Multi"] != undefined)
     {
-
         _setMulti()
     }
     else
     {
-
         if (list.length > 1)
         {
             layerEffects_raw.value[effectName + "Multi"] = {
@@ -3429,39 +3447,39 @@ Kinase.layer.putEffectsList_universal = function (layerEffects_raw, effectName, 
     {
         var nameList = ["value", "enumerationValue", "doubleValue"];
 
-
         // log(json(ob))
         for (var i in listItem)
         {
-
-            if (ob[i] != undefined)
+            if (listItem[i] != undefined)
             {
-
-                // log(i + "=" + (ob[i].value.constructor == Object) + json(ob[i]))
-                if (ob[i].value.constructor == Object)
+                if (ob[i] != undefined)
                 {
 
-
-                    if (listItem[i].constructor == Object)
+                    // log(i + "=" + (ob[i].value.constructor == Object) + json(ob[i]))
+                    if (ob[i].value.constructor == Object)
                     {
-                        _setSingle(ob[i].value, listItem[i])
+
+
+                        if (listItem[i].constructor == Object)
+                        {
+                            _setSingle(ob[i].value, listItem[i])
+                        } else
+                        {
+
+                            // _setSingle(ob[i].value, listItem)
+                            // log("set:" + i + "----" + json(ob[i]) +"-"+ json(listItem[i]))
+                            _unCut(ob[i].value, ["value", "enumerationValue", "doubleValue"])
+
+                        }
+
+
                     } else
                     {
 
-                        // _setSingle(ob[i].value, listItem)
-                        // log("set:" + i + "----" + json(ob[i]) +"-"+ json(listItem[i]))
-                        _unCut(ob[i].value, ["value", "enumerationValue", "doubleValue"])
-
+                        _unCut(ob[i], ["value", "enumerationValue", "doubleValue"])
                     }
-
-
-                } else
-                {
-
-                    _unCut(ob[i], ["value", "enumerationValue", "doubleValue"])
                 }
             }
-
             function _unCut(ob, nameList)
             {
                 for (var name in nameList)

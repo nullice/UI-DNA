@@ -21,9 +21,20 @@ var UI_model = {
             position: {x: 0, y: 0},
             color: IchiColor(),
             old_color_hex: "#000",
+            old_color_alpha: 1,
             callback: function () {},
-            callback_reject: function () {},
-            end_func:function ()
+            callback_reject: function ()
+            {
+
+                UI_model.msg_color_picker.color1.color.hex = UI_model.msg_color_picker.color1.old_color_hex
+                UI_model.msg_color_picker.color1.color.alpha = UI_model.msg_color_picker.color1.old_color_alpha
+                if (UI_model.msg_color_picker.color1.callback != undefined)
+                {
+                    UI_model.msg_color_picker.color1.callback(UI_model.msg_color_picker.color1.color)
+                }
+
+            },
+            end_func: function ()
             {
                 UI_model.msg_color_picker.color1.show = false;
             }
@@ -60,7 +71,7 @@ var UI_action = {
         }, 1000 * 2.5 + 1000 * ((msg + title).length / 5) + time)
     },
 
-    show_message_input: function (panel, title,data, callback)
+    show_message_input: function (panel, title, data, callback)
     {
         UI_model.msg_input[panel].show = false;
         UI_model.msg_input[panel].title = title;
@@ -71,11 +82,13 @@ var UI_action = {
         UI_model.msg_input[panel].show = true;
     },
 
-    show_message_color_picker: function (panel, color_hex, callback)
+    show_message_color_picker: function (panel, color_hex, color_alpha, callback)
     {
         UI_model.msg_color_picker[panel].show = false;
         UI_model.msg_color_picker[panel].color.hex = color_hex;
         UI_model.msg_color_picker[panel].old_color_hex = color_hex;
+        UI_model.msg_color_picker[panel].color.alpha = color_alpha || 1;
+        UI_model.msg_color_picker[panel].old_color_alpha = color_alpha || 1;
         UI_model.msg_color_picker[panel].callback = callback;
         UI_model.msg_color_picker[panel].show = true;
     }

@@ -433,6 +433,73 @@
            <!--<code>{{Gob.smartObject|json}}</code>-->
         </div>
 
+        <div class="tag-box tag-style" v-show="tagsActive.style" v-bind:class="{active:tagsActive.style}"
+             transition="trans-fade">
+            <h3> {{'阴影' |lang}} </h3>
+
+            <value-input v-bind:name="Lang.from('X')"
+                         v-bind:title="Lang.from('阴影水平偏移')"
+                         v-bind:edit_value.sync="Gob.quickEffect.dropShadow.x"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.x"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.x"
+                         mini="true"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('Y')"
+                         v-bind:title="Lang.from('阴影垂直偏移')"
+                         v-bind:edit_value.sync="Gob.quickEffect.dropShadow.y"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.y"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.y"
+                         mini="true"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('大小')"
+                         v-bind:title="Lang.from('阴影大小')"
+                         v-bind:edit_value.sync="Gob.quickEffect.dropShadow.blur"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.blur"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.blur"
+                         mini="true"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('扩展')"
+                         v-bind:title="Lang.from('扩展半径')"
+                         v-bind:edit_value.sync="Gob.quickEffect.dropShadow.spread"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.spread"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.spread"
+                         mini="true"
+            ></value-input>
+
+            <color-input v-bind:name="Lang.from('颜色')"
+                         v-bind:title="Lang.from('阴影颜色')"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.color"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.color"
+                         v-bind:color.sync="Gob.quickEffect.dropShadow.color"
+                         v-bind:opacity.sync="Gob.quickEffect.dropShadow.opacity"
+                         mini="true"
+            > </color-input>
+
+
+            <value-input v-bind:name=""
+                         v-bind:title="Lang.from('阴影不透明度')"
+                         name_html="<i class='icon-uniE9B5'></i>"
+                         v-bind:edit_value.sync="Gob.quickEffect.dropShadow.opacity"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.opacity"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.opacity"
+                         mini="true"
+            ></value-input>
+
+            <h3> {{'图层样式' |lang}} </h3>
+            <value-input v-bind:name="Lang.from('全部')"
+                         v-bind:title="Lang.from('全部图层样式')"
+                         v-bind:edit_value.sync="Gob.quickEffect.copyEffect_All"
+                         v-bind:out_value.sync="Gob.quickEffect.assignment.copyEffect_All"
+                         v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.copyEffect_All"
+
+            ></value-input>
+
+        </div>
+
+
 
 
 
@@ -490,6 +557,10 @@
 
     }
     .tag-shape.trans-fade-transition {
+        height: 450px;
+
+    }
+    .tag-style.trans-fade-transition {
         height: 450px;
 
     }

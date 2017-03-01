@@ -478,6 +478,24 @@ Enzymes.prototype.getLayerInfo_quickEffect_byId = async function (layerID)
 }
 
 
+Enzymes.prototype.setLayerInfo_quickEffect_byId = async function (quickEffect, layerID)
+{
+
+    return new Promise(function (resolve, reject)
+        {
+            var obJson = JSON.stringify(quickEffect);
+            var _jsxCode = `EnzJSX.setLayerInfo_quickEffect_byId(${obJson} ,${layerID} )`
+            evalScript(
+                _jsxCode,
+                (r) => {resolve(jsxBackCheck(r, _jsxCode))})
+        }
+    )
+}
+
+
+
+
+
 /**
  * 保存当前各图层选中状态，把返回值用作 Enzymes.selectLoad() 的参数，能再现当前各图层选中状态
  * @param layerID

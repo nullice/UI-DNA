@@ -293,30 +293,61 @@ GobCaryon.prototype.__new_quickEffect = function ()
             spread:null,/*扩展*/
         },
         copyEffect_All:null,
-
+        copyEffect_dropShadow:null,/*阴影*/
+        copyEffect_innerShadow:null,/*内阴影*/
+        copyEffect_chromeFX:null,/*等高线*/
+        copyEffect_frameFX:null,/*纹理*/
+        copyEffect_bevelEmboss:null,/*斜面与浮雕*/
+        copyEffect_innerGlow:null,/*内发光*/
+        copyEffect_outerGlow:null,/*外发光*/
+        copyEffect_patternFill:null,/*内部填充*/
+        copyEffect_solidFill:null,/*描边*/
+        copyEffect_gradientFill:null,/*渐变*/
 
 
         assignment: {
             dropShadow: {
                 enable:null,
-                color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                color: null, /*填充颜色*/
                 opacity:null,/*透明度*/
                 x:null,
                 y:null,
                 blur: null, /*大小*/
                 spread:null,/*扩展*/
             },
+            copyEffect_All:null,
+            copyEffect_dropShadow:null,/*阴影*/
+            copyEffect_innerShadow:null,/*内阴影*/
+            copyEffect_chromeFX:null,/*等高线*/
+            copyEffect_frameFX:null,/*纹理*/
+            copyEffect_bevelEmboss:null,/*斜面与浮雕*/
+            copyEffect_innerGlow:null,/*内发光*/
+            copyEffect_outerGlow:null,/*外发光*/
+            copyEffect_patternFill:null,/*内部填充*/
+            copyEffect_solidFill:null,/*描边*/
+            copyEffect_gradientFill:null,/*渐变*/
         },
         enableAssigns: {
             dropShadow: {
                 enable:null,
-                color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
+                color: null, /*填充颜色*/
                 opacity:null,/*透明度*/
                 x:null,
                 y:null,
                 blur: null, /*大小*/
                 spread:null,/*扩展*/
             },
+            copyEffect_All:null,
+            copyEffect_dropShadow:null,/*阴影*/
+            copyEffect_innerShadow:null,/*内阴影*/
+            copyEffect_chromeFX:null,/*等高线*/
+            copyEffect_frameFX:null,/*纹理*/
+            copyEffect_bevelEmboss:null,/*斜面与浮雕*/
+            copyEffect_innerGlow:null,/*内发光*/
+            copyEffect_outerGlow:null,/*外发光*/
+            copyEffect_patternFill:null,/*内部填充*/
+            copyEffect_solidFill:null,/*描边*/
+            copyEffect_gradientFill:null,/*渐变*/
         }
     }
 }
@@ -875,17 +906,29 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId)
     // [quickEffect]---------------------------------------------------------------
     var item_quickEffect = this.__new_quickEffect();
     var quickEffect = await enzymes.getLayerInfo_quickEffect_byId(layerId);
-    this._setTypeColor(item_quickEffect.dropShadow.color, quickEffect.dropShadow.color);
+
 
     item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
-    item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
+    item_quickEffect.dropShadow.opacity = quickEffect.dropShadow.opacity;
+    this._setTypeColor(item_quickEffect.dropShadow.color, quickEffect.dropShadow.color);
+    item_quickEffect.dropShadow.x = quickEffect.dropShadow.x;
+    item_quickEffect.dropShadow.y = quickEffect.dropShadow.y;
+    item_quickEffect.dropShadow.blur = quickEffect.dropShadow.blur;
+    item_quickEffect.dropShadow.spread = quickEffect.dropShadow.spread;
+    item_quickEffect.copyEffect_All = quickEffect.copyEffect_All;
+    item_quickEffect.copyEffect_dropShadow = quickEffect.copyEffect_dropShadow;
+    item_quickEffect.copyEffect_innerShadow = quickEffect.copyEffect_innerShadow;
+    item_quickEffect.copyEffect_chromeFX = quickEffect.copyEffect_chromeFX;
+    item_quickEffect.copyEffect_frameFX = quickEffect.copyEffect_frameFX;
+    item_quickEffect.copyEffect_bevelEmboss = quickEffect.copyEffect_bevelEmboss;
+    item_quickEffect.copyEffect_innerGlow = quickEffect.copyEffect_innerGlow;
+    item_quickEffect.copyEffect_outerGlow = quickEffect.copyEffect_outerGlow;
+    item_quickEffect.copyEffect_patternFill = quickEffect.copyEffect_patternFill;
+    item_quickEffect.copyEffect_solidFill = quickEffect.copyEffect_solidFill;
+    item_quickEffect.copyEffect_gradientFill = quickEffect.copyEffect_gradientFill;
 
     return item_quickEffect
 }
-
-
-
-
 
 
 GobCaryon.prototype._setTypeColor = function (typeColor, color)
@@ -965,8 +1008,11 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
 
 
+        // [quickEffect]---------------------------------------------------------------
 
-
+        var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
+        _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
     }
 
     //属性注册[8/8]
@@ -987,6 +1033,11 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     console.group("--smartObject--------------------------", temp.smartObject,)
     await _objectToGob_async(temp.smartObject, ["smartObject"], this)
+    console.groupEnd()
+
+
+    console.group("--quickEffect--------------------------", temp.quickEffect,)
+    await _objectToGob_async(temp.quickEffect, ["quickEffect"], this)
     console.groupEnd()
 
 

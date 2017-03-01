@@ -1,7 +1,9 @@
 <template>
     <div class="color_input">
 
-        <value-input v-bind:name="name" v-bind:edit_value.sync="o_color"
+        <value-input v-bind:name="name"
+                     v-bind:title="title"
+                     v-bind:edit_value.sync="o_color"
                      v-bind:out_value.sync="edit_value"
                      v-bind:enable_assign.sync="out_value"
                      v-bind:mini="mini"
@@ -75,8 +77,8 @@
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import IchiColor  from "./../Caryon/IchiColor/ichi-color.js";
     export default{
-        props: ['color', 'edit_value', "out_value", 'name', 'name_html',
-            "value_type", "enable_assign", "mini", "mode_color", "type_none"
+        props: ['color', 'edit_value', "out_value", 'name', 'title', 'name_html',
+            "value_type", "enable_assign", "mini", "mode_color", "type_none", 'opacity'
             , "color_enable"],
         watch: {
             "o_color": function (val)
@@ -159,9 +161,9 @@
             "color.b": function (val)
             {
                 this.o_outsideOperate = true
-
                 this.color_update();
             },
+
         },
         data(){
 
@@ -179,16 +181,22 @@
             picker_color: function ()
             {
                 var self = this;
+                var alpha = this.opacity / 100 || 1;
+
                 var set_color_callback = function (e)
                 {
                     self.o_color = e.hex;
+                    self.opacity = e.alpha * 100;
+
                 }
-                UI_action.show_message_color_picker("color1", this.ichi_color.hex, set_color_callback)
+
+
+                UI_action.show_message_color_picker("color1", this.ichi_color.hex, alpha, set_color_callback)
             },
             color_update: function ()
             {
 
-                if (this.color_enable != true)
+                if (this.color_enable != undefined && this.color_enable != true)
                 {
                     this.o_color = "#";
                 } else

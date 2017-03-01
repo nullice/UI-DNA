@@ -2,39 +2,37 @@
 
     <div class="debug-microscope">
         <a-area area_title="debug-microscope" area_hight="40">
-            <!--<pre>dataCaryon._nowDoucmentId：{{dataCaryon._nowDoucmentId}}-->
-                <!--dataCaryon.info.status：{{dataCaryon.info.status|json}}-->
-                <!--<pre>-->
-  <!--<pre> Gob.shape.fillColor:{{Gob.shape.fillColorEnabled}}-->
-      <!--{{Gob.shape.fillColor|json}}-->
-      <!--Gob.shape.strokeColor:{{Gob.shape.strokeColorEnabled}}-->
-       <!--{{Gob.shape.strokeColor|json}}-->
 
-  </pre>
+
+           <pre>
+            <!--{{Gob.quickEffect |json}}-->
+             </pre>
+            <!--{{UI_model.msg_color_picker.color1 |json}}-->
+
             <!--<div class="title">UI_model.msg_color_picker.color1</div>-->
-                    <!--<pre>-->
-                    <!--{{UI_model.msg_color_picker.color1 |json}}-->
-                    <!--</pre>-->
+            <!--<pre>-->
+            <!--{{UI_model.msg_color_picker.color1 |json}}-->
+            <!--</pre>-->
 
 
-                    <!--<div class="title">Gob.shape</div>-->
-                    <!--<pre>-->
-                    <!--{{Gob.shape |json}}-->
-                    <!--</pre>-->
+            <!--<div class="title">Gob.shape</div>-->
+            <!--<pre>-->
+            <!--{{Gob.shape |json}}-->
+            <!--</pre>-->
 
-                    <!--<div class="title">dataCaryon</div>-->
-                    <!--<pre>-->
-                    <!--{{dataCaryon |json}}-->
-                    <!--</pre>-->
-                    <!--<div class="title">Gob</div>-->
-                    <!--<pre>-->
-                    <!--{{Gob |json}}-->
-                    <!--</pre>-->
+            <!--<div class="title">dataCaryon</div>-->
+            <!--<pre>-->
+            <!--{{dataCaryon |json}}-->
+            <!--</pre>-->
+            <!--<div class="title">Gob</div>-->
+            <!--<pre>-->
+            <!--{{Gob |json}}-->
+            <!--</pre>-->
 
-                    <!--<div class="Gob.text">Gob</div>-->
-                    <!--<pre>-->
-                    <!--{{Gob.text.color |json}}-->
-                    <!--</pre>-->
+            <!--<div class="Gob.text">Gob</div>-->
+            <!--<pre>-->
+            <!--{{Gob.text.color |json}}-->
+            <!--</pre>-->
         </a-area>
     </div>
 

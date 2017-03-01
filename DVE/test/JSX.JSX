@@ -9,9 +9,11 @@ $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Enzymes/Enzymes_lib.jsx")
   //    var ob = Kinase.layer.get_XXX_Objcet(Kinase.REF_ActiveLayer, null, "layerEffects")
 
 
- //ob=Kinase.layer.getEffectsList_universal (ob,"dropShadow")
+ ///  ob=Kinase.layer.getEffectsList_universal (ob,"dropShadow")
  
  
+ EnzJSX.setLayerInfo_quickEffect_byId({"blur":"50"} ,418 )
  
- 
-  log(json(ob))
+  // log(json(ob))
+
+
