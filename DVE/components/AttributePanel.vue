@@ -314,14 +314,14 @@
                          mini="true"></value-input>
 
             <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('锯齿')"
-                          v-bind:title="Lang.from('下划线')"
+                          v-bind:name="Lang.from('模式')"
+                          v-bind:title="Lang.from('图层抗锯齿模式')"
                           v-bind:value.sync="Gob.text.antiAlias"
                           v-bind:select_style="{width:'64px'}"
                           v-bind:options="o_text_antiAlias_options"
                           in_class="text_antiAlias"
             >
-                <value-input v-bind:name="Lang.from('锯齿')"
+                <value-input v-bind:name="Lang.from('模式')"
                              v-bind:edit_value.sync="Gob.text.antiAlias"
                              v-bind:out_value.sync="Gob.text.assignment.antiAlias"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.antiAlias"
@@ -411,7 +411,7 @@
                     <input type="checkbox"
                            v-model:value="Gob.smartObject.linked">
                     <div class="exmo_checkbox_shadow"></div>
-                    链接对象
+                    {{'链接对象' | lang}}
                 </label>
             </div>
 
@@ -499,7 +499,185 @@
 
         </div>
 
+        <div class="tag-box tag-more" v-show="tagsActive.more" v-bind:class="{active:tagsActive.more}"
+             transition="trans-fade">
 
+            <h3> {{'信息' |lang}} </h3>
+            <value-input v-bind:name="Lang.from('名称')"
+                         v-bind:title="Lang.from('图层名称')"
+                         v-bind:edit_value.sync="Gob.more.layerName"
+                         v-bind:out_value.sync="Gob.more.assignmenat.layerName"
+                         v-bind:enable_assign.sync="Gob.more.enableAssigns.layerName"
+            ></value-input>
+
+
+
+
+
+            <h3> {{'外观' |lang}} </h3>
+            <value-input v-bind:name=""
+                         v-bind:title="Lang.from('图层不透明度')"
+                         name_html="<i class='icon-uniE9B5'></i>"
+                         v-bind:edit_value.sync="Gob.more.opacity"
+                         v-bind:out_value.sync="Gob.more.assignmenat.opacity"
+                         v-bind:enable_assign.sync="Gob.more.enableAssigns.opacity"
+                         mini="true"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('填充')"
+                         v-bind:title="Lang.from('填充不透明度')"
+                         v-bind:edit_value.sync="Gob.more.fillOpacity"
+                         v-bind:out_value.sync="Gob.more.assignmenat.fillOpacity"
+                         v-bind:enable_assign.sync="Gob.more.enableAssigns.fillOpacity"
+                         mini="true"
+            ></value-input>
+
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('混合')"
+                          v-bind:title="Lang.from('图层混合模式')"
+                          v-bind:value.sync="Gob.more.mode"
+                          v-bind:select_style="{width:'64px'}"
+                          v-bind:options="o_more_mode_options"
+                          in_class="text_antiAlias"
+            >
+                <value-input v-bind:name="Lang.from('锯齿')"
+                             v-bind:edit_value.sync="Gob.more.mode"
+                             v-bind:out_value.sync="Gob.more.assignment.mode"
+                             v-bind:enable_assign.sync="Gob.more.enableAssigns.mode"
+                             mini="true"></value-input>
+            </select-input>
+
+
+            <div class="attr-checkbox">
+                <label class="exmo_checkbox">
+                    <input type="checkbox"
+                           v-model:value="Gob.more.visible">
+                    <div class="exmo_checkbox_shadow"></div>
+                    {{'图层可视' | lang}}
+                </label>
+            </div>
+
+
+
+            <h3> {{'自定义' |lang}} </h3>
+
+            <value-input v-bind:name="Lang.from('标签')"
+                         v-bind:title="Lang.from('自定义标签')"
+                         v-bind:edit_value.sync="Gob.more.$tags"
+                         v-bind:out_value.sync="Gob.more.assignmenat.$tags"
+                         v-bind:enable_assign.sync="Gob.more.enableAssigns.$tags"
+            ></value-input>
+
+            <value-input v-bind:name="Lang.from('别名')"
+                         v-bind:title="Lang.from('图层别名')"
+                         v-bind:edit_value.sync="Gob.more.$alias"
+                         v-bind:out_value.sync="Gob.more.assignmenat.$alias"
+                         v-bind:enable_assign.sync="Gob.more.enableAssigns.$alias"
+            ></value-input>
+
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('名组')"
+                          v-bind:title="Lang.from('名称组')"
+                          v-bind:value.sync="o_show_name_group"
+                          v-bind:select_style="{width:'30px'}"
+                          v-bind:options="o_shape_namegroup_options"
+                          in_class="namegroup"
+            >
+
+            </select-input>
+
+                <div>
+
+                    <value-input
+                            v-show="o_show_name_group == 0"
+                            v-bind:name="Lang.from('0')"
+                            v-bind:title="Lang.from('名称组0')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup0"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup0"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup0"
+                    ></value-input>
+
+                    <value-input
+                            v-show="o_show_name_group == 1"
+                            v-bind:name="Lang.from('1')"
+                            v-bind:title="Lang.from('名称组1')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup1"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup1"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup1"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 2"
+                            v-bind:name="Lang.from('2')"
+                            v-bind:title="Lang.from('名称组2')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup2"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup2"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup2"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 3"
+                            v-bind:name="Lang.from('3')"
+                            v-bind:title="Lang.from('名称组3')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup3"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup3"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup3"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 4"
+                            v-bind:name="Lang.from('4')"
+                            v-bind:title="Lang.from('名称组4')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup4"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup4"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup4"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 5"
+                            v-bind:name="Lang.from('5')"
+                            v-bind:title="Lang.from('名称组5')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup5"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup5"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup5"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 6"
+                            v-bind:name="Lang.from('6')"
+                            v-bind:title="Lang.from('名称组6')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup6"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup6"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup6"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 7"
+                            v-bind:name="Lang.from('7')"
+                            v-bind:title="Lang.from('名称组7')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup7"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup7"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup7"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 8"
+                            v-bind:name="Lang.from('8')"
+                            v-bind:title="Lang.from('名称组8')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup8"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup8"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup8"
+                    ></value-input>
+                    <value-input
+                            v-show="o_show_name_group == 9"
+                            v-bind:name="Lang.from('9')"
+                            v-bind:title="Lang.from('名称组9')"
+                            v-bind:edit_value.sync="Gob.more.$nameGroup9"
+                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup9"
+                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup9"
+                    ></value-input>
+                </div>
+
+
+
+
+
+        </div>
 
 
 
@@ -564,6 +742,12 @@
         height: 450px;
 
     }
+    .tag-more.trans-fade-transition {
+        height: 450px;
+
+    }
+
+
     .trans-fade-transition {
         transition: all .3s ease;
         height: 150px;
@@ -637,6 +821,7 @@
                 UI_model: UI_model,
                 Lang: Lang,
                 o_value: "",
+                o_show_name_group:0,
                 o_positon_anchor_options: [
                     {
                         value: '0',
@@ -733,6 +918,52 @@
                     {value: 'strokeStyleMiterJoin', label: Lang.from('直角')},
                     {value: 'strokeStyleRoundJoin', label: Lang.from('圆角')},
                     {value: 'strokeStyleBevelJoin', label: Lang.from('斜削')},
+                ],
+                o_more_mode_options:[
+                    {value: 'normal', label: Lang.from('正常')},
+                    {value: 'darken', label: Lang.from('变暗')},
+                    {hr: true},
+                    {value: 'dissolve', label: Lang.from('溶解')},
+                    {value: 'multiply', label: Lang.from('正片叠底')},
+                    {value: 'colorBurn', label: Lang.from('色彩加深')},
+                    {value: 'linearBurn', label: Lang.from('线性加深')},
+                    {value: 'darkerColor', label: Lang.from('深色')},
+                    {hr: true},
+                    {value: 'lighten', label: Lang.from('变亮')},
+                    {value: 'screen', label: Lang.from('滤色')},
+                    {value: 'colorDodge', label: Lang.from('色彩减淡')},
+                    {value: 'linearDodge', label: Lang.from('线性减淡')},
+                    {value: 'lighterColor', label: Lang.from('浅色')},
+                    {hr: true},
+                    {value: 'overlay', label: Lang.from('叠加')},
+                    {value: 'softLight', label: Lang.from('柔光')},
+                    {value: 'hardLight', label: Lang.from('强光')},
+                    {value: 'vividLight', label: Lang.from('亮光')},
+                    {value: 'linearLight', label: Lang.from('线性光')},
+                    {value: 'pinLight', label: Lang.from('点光')},
+                    {value: 'hardMix', label: Lang.from('实色混合')},
+                    {hr: true},
+                    {value: 'difference', label: Lang.from('差值')},
+                    {value: 'exclusion', label: Lang.from('排除')},
+                    {value: 'blendSubtraction', label: Lang.from('减去')},
+                    {value: 'blendDivide', label: Lang.from('划分')},
+                    {hr: true},
+                    {value: 'hue', label: Lang.from('色相')},
+                    {value: 'saturation', label: Lang.from('饱和度')},
+                    {value: 'color', label: Lang.from('颜色')},
+                    {value: 'luminosity', label: Lang.from('明度')},
+                ],
+                o_shape_namegroup_options:[
+                    {value: '0', label: setSystem.ui.panel.main.nameGroupTitle[0]},
+                    {value: '1', label: setSystem.ui.panel.main.nameGroupTitle[1]},
+                    {value: '2', label: setSystem.ui.panel.main.nameGroupTitle[2]},
+                    {value: '3', label: setSystem.ui.panel.main.nameGroupTitle[3]},
+                    {value: '4', label: setSystem.ui.panel.main.nameGroupTitle[4]},
+                    {value: '5', label: setSystem.ui.panel.main.nameGroupTitle[5]},
+                    {value: '6', label: setSystem.ui.panel.main.nameGroupTitle[6]},
+                    {value: '7', label: setSystem.ui.panel.main.nameGroupTitle[7]},
+                    {value: '8', label: setSystem.ui.panel.main.nameGroupTitle[8]},
+                    {value: '9', label: setSystem.ui.panel.main.nameGroupTitle[9]},
                 ],
 
 

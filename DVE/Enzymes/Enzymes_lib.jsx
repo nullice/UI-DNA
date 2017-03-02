@@ -1138,7 +1138,7 @@ EnzJSX.getLayerInfo_more_byId = function (id, retrunRaw)
     moreInfo.layerName = name;
 
     var editInfo = Kinase.layer.getLayerEditInfo(Kinase.REF_LayerID, id)
-    moreInfo.color = editInfo.color;
+    moreInfo.layerColor = editInfo.color;
 
 
     if (retrunRaw)

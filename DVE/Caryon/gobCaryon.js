@@ -641,7 +641,15 @@ GobCaryon.prototype._setData = async function (names, value)
                                 }
                             }
                         }
-                    }
+                    },
+                    mode: {
+                        type: "mode",
+                        nameList: ["mode"],
+                        valueEnum: ['normal', 'darken', 'dissolve',  'multiply',  'colorBurn',  'linearBurn',  'darkerColor',
+                            'lighten', 'screen', 'colorDodge',  'linearDodge', 'lighterColor', 'overlay',  'softLight',
+                            'hardLight',  'vividLight',  'linearLight', 'pinLight',  'hardMix',  'difference',  'exclusion',
+                            'blendSubtract', 'blendDivide', 'hue', 'saturation',  'color',  'luminosity',]
+                    },
                 }
                 __checkTypeText(_typeDefine)
 
@@ -1012,6 +1020,24 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId)
 }
 
 
+GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
+{
+    // [more]---------------------------------------------------------------
+    var item_more = this.__new_smartObject();
+    var moreInfo = await enzymes.getLayerInfo_more_byId(layerId);
+    item_more.layerName = moreInfo.layerName;
+    item_more.visible = moreInfo.visible;
+    item_more.layerColor = moreInfo.layerColor;
+    item_more.mode = moreInfo.mode;
+    item_more.opacity = moreInfo.opacity;
+    item_more.fillOpacity = moreInfo.fillOpacity;
+console.log(item_more.mode)
+    return item_more
+}
+
+
+
+
 GobCaryon.prototype._setTypeColor = function (typeColor, color)
 {
     typeColor.r = color.r
@@ -1054,7 +1080,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     var new_shape = this.__new_shape;
     var new_smartObject = this.__new_smartObject;
     var new_quickEffect = this.__new_quickEffect;
-
+    var new_more = this.__new_more;
 
     //属性注册[6/8]
     temp.position = new_position();
@@ -1062,7 +1088,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     temp.shape = new_shape();
     temp.smartObject = new_smartObject();
     temp.quickEffect = new_quickEffect();
-
+    temp.more = new_more();
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
@@ -1090,10 +1116,17 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
 
         // [quickEffect]---------------------------------------------------------------
-
         var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
         _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
+
+        // [more]---------------------------------------------------------------
+        var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
+        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
+        _objectToObject(item_more, temp.more, true, !(i == 0));
+
+
+
     }
 
     //属性注册[8/8]
@@ -1116,10 +1149,15 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     await _objectToGob_async(temp.smartObject, ["smartObject"], this)
     console.groupEnd()
 
-
     console.group("--quickEffect--------------------------", temp.quickEffect,)
     await _objectToGob_async(temp.quickEffect, ["quickEffect"], this)
     console.groupEnd()
+
+    console.group("--more--------------------------", temp.more,)
+    await _objectToGob_async(temp.more, ["more"], this)
+    console.groupEnd()
+
+
 
 
     console.info("============")
