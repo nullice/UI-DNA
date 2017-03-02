@@ -107,7 +107,6 @@ Kinase.layer = {};
 Kinase.layer.getLayerType = function (targetReference, target)
 {
 
-
     //todo:补充图层类型
     /*
      * bitmap: 像素图层 layerKind:1
@@ -503,6 +502,7 @@ Kinase.layer.getAppearance = function (targetReference, target)
         fillOpacity: null, /*填充不透明度 0-255*/
         opacity: null, /*不透明 0-255*/
         visible: null, /*可视*/
+        mode: null, /*混合模式*/
         // userMaskDensity: null, /*图层蒙版-浓度*/
         // userMaskFeather: null, /*图层蒙版-羽化*/
         // vectorMaskDensity: null, /*矢量蒙版-浓度*/
@@ -530,6 +530,13 @@ Kinase.layer.getAppearance = function (targetReference, target)
     {
         appearanceInfo.visible = visible_raw.visible.value;
     }
+
+    var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "mode")
+    if (visible_raw.mode != undefined)
+    {
+        appearanceInfo.mode = visible_raw.mode.value.enumerationValue;
+    }
+
 
     // log(json(fillOpacity_raw));
     return appearanceInfo;
@@ -590,6 +597,36 @@ Kinase.layer.setAppearance_byActive = function (appearanceInfo)
             }
         }
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb_fillOpacity);
+    }
+
+
+    if (appearanceInfo.mode != undefined)
+    {
+        var adOb_mode = {
+            "null": {
+                "value": {
+                    "container": {
+                        "container": {}
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "to": {
+                "value": {
+                    "mode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": appearanceInfo.mode
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "layer"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("setd"), adOb_mode);
     }
 
 

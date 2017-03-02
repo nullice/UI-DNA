@@ -76,6 +76,8 @@ var GobCaryon = function ()
     this.shape = this.__new_shape();
     this.smartObject = this.__new_smartObject();
     this.quickEffect = this.__new_quickEffect();
+    this.more = this.__new_more();
+
 
     //属性注册[2/8]
     //------------注册 getter 和 setter
@@ -85,6 +87,10 @@ var GobCaryon = function ()
     giveSetter(this.shape, ["shape"], 1);
     giveSetter(this.smartObject, ["smartObject"], 1);
     giveSetter(this.quickEffect, ["quickEffect"], 1);
+    giveSetter(this.more, ["more"], 1);
+
+
+
 
     return this;
 
@@ -284,71 +290,147 @@ GobCaryon.prototype.__new_quickEffect = function ()
 {
     return {
         dropShadow: {
-            enable:null,
+            enable: null,
             color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
-            opacity:null,/*透明度*/
-            x:null,
-            y:null,
+            opacity: null, /*透明度*/
+            x: null,
+            y: null,
             blur: null, /*大小*/
-            spread:null,/*扩展*/
+            spread: null, /*扩展*/
         },
-        copyEffect_All:null,
-        copyEffect_dropShadow:null,/*阴影*/
-        copyEffect_innerShadow:null,/*内阴影*/
-        copyEffect_chromeFX:null,/*等高线*/
-        copyEffect_frameFX:null,/*纹理*/
-        copyEffect_bevelEmboss:null,/*斜面与浮雕*/
-        copyEffect_innerGlow:null,/*内发光*/
-        copyEffect_outerGlow:null,/*外发光*/
-        copyEffect_patternFill:null,/*内部填充*/
-        copyEffect_solidFill:null,/*描边*/
-        copyEffect_gradientFill:null,/*渐变*/
+        copyEffect_All: null,
+        copyEffect_dropShadow: null, /*阴影*/
+        copyEffect_innerShadow: null, /*内阴影*/
+        copyEffect_chromeFX: null, /*等高线*/
+        copyEffect_frameFX: null, /*纹理*/
+        copyEffect_bevelEmboss: null, /*斜面与浮雕*/
+        copyEffect_innerGlow: null, /*内发光*/
+        copyEffect_outerGlow: null, /*外发光*/
+        copyEffect_patternFill: null, /*内部填充*/
+        copyEffect_solidFill: null, /*描边*/
+        copyEffect_gradientFill: null, /*渐变*/
 
 
         assignment: {
             dropShadow: {
-                enable:null,
+                enable: null,
                 color: null, /*填充颜色*/
-                opacity:null,/*透明度*/
-                x:null,
-                y:null,
+                opacity: null, /*透明度*/
+                x: null,
+                y: null,
                 blur: null, /*大小*/
-                spread:null,/*扩展*/
+                spread: null, /*扩展*/
             },
-            copyEffect_All:null,
-            copyEffect_dropShadow:null,/*阴影*/
-            copyEffect_innerShadow:null,/*内阴影*/
-            copyEffect_chromeFX:null,/*等高线*/
-            copyEffect_frameFX:null,/*纹理*/
-            copyEffect_bevelEmboss:null,/*斜面与浮雕*/
-            copyEffect_innerGlow:null,/*内发光*/
-            copyEffect_outerGlow:null,/*外发光*/
-            copyEffect_patternFill:null,/*内部填充*/
-            copyEffect_solidFill:null,/*描边*/
-            copyEffect_gradientFill:null,/*渐变*/
+            copyEffect_All: null,
+            copyEffect_dropShadow: null, /*阴影*/
+            copyEffect_innerShadow: null, /*内阴影*/
+            copyEffect_chromeFX: null, /*等高线*/
+            copyEffect_frameFX: null, /*纹理*/
+            copyEffect_bevelEmboss: null, /*斜面与浮雕*/
+            copyEffect_innerGlow: null, /*内发光*/
+            copyEffect_outerGlow: null, /*外发光*/
+            copyEffect_patternFill: null, /*内部填充*/
+            copyEffect_solidFill: null, /*描边*/
+            copyEffect_gradientFill: null, /*渐变*/
         },
         enableAssigns: {
             dropShadow: {
-                enable:null,
+                enable: null,
                 color: null, /*填充颜色*/
-                opacity:null,/*透明度*/
-                x:null,
-                y:null,
+                opacity: null, /*透明度*/
+                x: null,
+                y: null,
                 blur: null, /*大小*/
-                spread:null,/*扩展*/
+                spread: null, /*扩展*/
             },
-            copyEffect_All:null,
-            copyEffect_dropShadow:null,/*阴影*/
-            copyEffect_innerShadow:null,/*内阴影*/
-            copyEffect_chromeFX:null,/*等高线*/
-            copyEffect_frameFX:null,/*纹理*/
-            copyEffect_bevelEmboss:null,/*斜面与浮雕*/
-            copyEffect_innerGlow:null,/*内发光*/
-            copyEffect_outerGlow:null,/*外发光*/
-            copyEffect_patternFill:null,/*内部填充*/
-            copyEffect_solidFill:null,/*描边*/
-            copyEffect_gradientFill:null,/*渐变*/
+            copyEffect_All: null,
+            copyEffect_dropShadow: null, /*阴影*/
+            copyEffect_innerShadow: null, /*内阴影*/
+            copyEffect_chromeFX: null, /*等高线*/
+            copyEffect_frameFX: null, /*纹理*/
+            copyEffect_bevelEmboss: null, /*斜面与浮雕*/
+            copyEffect_innerGlow: null, /*内发光*/
+            copyEffect_outerGlow: null, /*外发光*/
+            copyEffect_patternFill: null, /*内部填充*/
+            copyEffect_solidFill: null, /*描边*/
+            copyEffect_gradientFill: null, /*渐变*/
         }
+    }
+}
+
+GobCaryon.prototype.__new_more = function ()
+{
+    return {
+        layerName: null, /*图层名*/
+        $alias: null, /*别名*/
+        $nameGroup0: null, /*名称组*/
+        $nameGroup1: null,
+        $nameGroup2: null,
+        $nameGroup3: null,
+        $nameGroup4: null,
+        $nameGroup5: null,
+        $nameGroup6: null,
+        $nameGroup7: null,
+        $nameGroup8: null,
+        $nameGroup9: null,
+        $class: null, /*图层类*/
+        $tags:null,/*标签*/
+        $note1:null,/*图层备注1*/
+        $note2:null,/*图层备注1*/
+        $note3:null,/*图层备注1*/
+        visible: null, /*图层可视性*/
+        layerColor: null, /*图层备注颜色*/
+        mode: null, /*混合模式*/
+        opacity: null, /*不透明度*/
+        fillOpacity: null, /*填充不透明度*/
+
+
+        assignment: {
+            layerName: null, /*图层名*/
+            $alias: null, /*别名*/
+            $nameGroup0: null, /*名称组*/
+            $nameGroup1: null,
+            $nameGroup2: null,
+            $nameGroup3: null,
+            $nameGroup4: null,
+            $nameGroup5: null,
+            $nameGroup6: null,
+            $nameGroup7: null,
+            $nameGroup8: null,
+            $nameGroup9: null,
+            $class: null, /*图层类*/
+            $tags:null,/*标签*/
+            $note1:null,/*图层备注1*/
+            $note2:null,/*图层备注1*/
+            $note3:null,/*图层备注1*/
+            visible: null, /*图层可视性*/
+            layerColor: null, /*图层备注颜色*/
+            mode: null, /*混合模式*/
+            opacity: null, /*不透明度*/
+            fillOpacity: null, /*填充不透明度*/},
+
+        enableAssigns: {      layerName: null, /*图层名*/
+            $alias: null, /*别名*/
+            $nameGroup0: null, /*名称组*/
+            $nameGroup1: null,
+            $nameGroup2: null,
+            $nameGroup3: null,
+            $nameGroup4: null,
+            $nameGroup5: null,
+            $nameGroup6: null,
+            $nameGroup7: null,
+            $nameGroup8: null,
+            $nameGroup9: null,
+            $class: null, /*图层类*/
+            $tags:null,/*标签*/
+            $note1:null,/*图层备注1*/
+            $note2:null,/*图层备注1*/
+            $note3:null,/*图层备注1*/
+            visible: null, /*图层可视性*/
+            layerColor: null, /*图层备注颜色*/
+            mode: null, /*混合模式*/
+            opacity: null, /*不透明度*/
+            fillOpacity: null, /*填充不透明度*/}
     }
 }
 
@@ -381,7 +463,6 @@ GobCaryon.prototype._setData = async function (names, value)
      *  1. 属性值含有表达式
      *  2. 内置属性（$开头的属性）
      * */
-
 
     var flag_writeDataCaryon = false;//是否应该写入 dataCaryon
     var isVoidValue = false//是否是空值
@@ -980,7 +1061,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     temp.text = new_text();
     temp.shape = new_shape();
     temp.smartObject = new_smartObject();
-    temp.quickEffect  = new_quickEffect();
+    temp.quickEffect = new_quickEffect();
 
 
     //----------2. 拉取每个选中图层的数据：

@@ -493,6 +493,34 @@ Enzymes.prototype.setLayerInfo_quickEffect_byId = async function (quickEffect, l
 }
 
 
+Enzymes.prototype.getLayerInfo_more_byId = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `EnzJSX.getLayerInfo_more_byId(${layerID})`
+        evalScript(
+            _jsxCode
+            ,
+            (r) => {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
+    })
+}
+
+
+Enzymes.prototype.setLayerInfo_more_byId = async function (moreInfo, layerID)
+{
+
+    return new Promise(function (resolve, reject)
+        {
+            var obJson = JSON.stringify(moreInfo);
+            var _jsxCode = `EnzJSX.setLayerInfo_more_byId(${obJson} ,${layerID} )`
+            evalScript(
+                _jsxCode,
+                (r) => {resolve(jsxBackCheck(r, _jsxCode))})
+        }
+    )
+}
+
+
 
 
 

@@ -944,23 +944,21 @@ EnzJSX._psCssShadow2Shadow = function (x, y, blur, spread)
     var lightingAngle = angle / (Math.PI / 180.0)
 
 
-
     if (distance < 0)
     {
         distance = -distance
         lightingAngle = lightingAngle - 180
     }
 
-    if (lightingAngle >180 )
+    if (lightingAngle > 180)
     {
-        lightingAngle =   lightingAngle-360;
+        lightingAngle = lightingAngle - 360;
     }
 
     if (lightingAngle < -180)
     {
         lightingAngle = 360 + lightingAngle;
     }
-
 
 
     var psShadow = {
@@ -1043,7 +1041,6 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
             dropShadowList[0].distance = _distance;
 
 
-
             if (quickEffect.dropShadow.color != undefined)
             {
                 dropShadowList[0].color.red = quickEffect.dropShadow.color.r;
@@ -1054,8 +1051,8 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
             {
 
                 dropShadowList[0].color.red = Old_quickEffect.dropShadow.color.r;
-                dropShadowList[0].color.grain= Old_quickEffect.dropShadow.color.g;
-                dropShadowList[0].color.blue =Old_quickEffect.dropShadow.color.b;
+                dropShadowList[0].color.grain = Old_quickEffect.dropShadow.color.g;
+                dropShadowList[0].color.blue = Old_quickEffect.dropShadow.color.b;
 
             }
 
@@ -1101,6 +1098,123 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
     Kinase.layer.setLayerEffectsObject(effectObject, Kinase.REF_LayerID, id)
 
     return
+}
+
+EnzJSX.getLayerInfo_more_byId = function (id, retrunRaw)
+{
+    var moreInfo =
+        {
+            layerName: null, /*图层名*/
+            $alias: null, /*别名*/
+            $nameGroup0: null, /*名称组*/
+            $nameGroup1: null,
+            $nameGroup2: null,
+            $nameGroup3: null,
+            $nameGroup4: null,
+            $nameGroup5: null,
+            $nameGroup6: null,
+            $nameGroup7: null,
+            $nameGroup8: null,
+            $nameGroup9: null,
+            $class: null, /*图层类*/
+            $tags: null, /*标签*/
+            $note1: null, /*图层备注1*/
+            $note2: null, /*图层备注1*/
+            $note3: null, /*图层备注1*/
+            layerColor: null, /*图层备注颜色*/
+            visible: null, /*图层可视性*/
+            mode: null, /*混合模式*/
+            opacity: null, /*不透明度*/
+            fillOpacity: null, /*填充不透明度*/
+        }
+
+    var appearanceInfo = Kinase.layer.getAppearance(Kinase.REF_LayerID, id)
+    moreInfo.fillOpacity = appearanceInfo.fillOpacity
+    moreInfo.opacity = appearanceInfo.opacity
+    moreInfo.visible = appearanceInfo.visible
+    moreInfo.mode = appearanceInfo.mode
+
+    var name = Kinase.layer.getLayerName_byID(id)
+    moreInfo.layerName = name;
+
+    var editInfo = Kinase.layer.getLayerEditInfo(Kinase.REF_LayerID, id)
+    moreInfo.color = editInfo.color;
+
+
+    if (retrunRaw)
+    {
+        return moreInfo
+    } else
+    {
+        return JSON.stringify(moreInfo)
+    }
+}
+
+EnzJSX.setLayerInfo_more_byId = function (moreInfo, id, doSelect)
+{
+    if (doSelect)
+    {
+        ki.layer.selectLayer_byID(id)
+    }
+
+    moreInfo.fillOpacity = appearanceInfo.fillOpacity
+    moreInfo.opacity = appearanceInfo.opacity
+    moreInfo.visible = appearanceInfo.visible
+    moreInfo.mode = appearanceInfo.mode
+
+    var appearanceInfo = {}
+    var setAppearance = false
+    if (moreInfo.fillOpacity != undefined)
+    {
+        appearanceInfo.fillOpacity = moreInfo.fillOpacity;
+        setAppearance = true;
+    }
+
+    if (moreInfo.opacity != undefined)
+    {
+        appearanceInfo.opacity = moreInfo.opacity;
+        setAppearance = true;
+    }
+
+    if (moreInfo.visible != undefined)
+    {
+        appearanceInfo.visible = moreInfo.visible;
+        setAppearance = true;
+    }
+
+    if (moreInfo.mode != undefined)
+    {
+        appearanceInfo.mode = moreInfo.mode;
+        setAppearance = true;
+    }
+
+    var setName = false;
+    if (moreInfo.layerName != undefined)
+    {
+        setName = true;
+    }
+
+    if (setAppearance || setName)
+    {
+        Kinase.layer.selectLayer_byID(id)
+    }
+
+    if (setAppearance)
+    {
+        Kinase.layer.setAppearance_byActive(appearanceInfo)
+    }
+
+    if (setName)
+    {
+        Kinase.layer.setLayerName_byActive(moreInfo.layerName)
+    }
+
+    if (moreInfo.color != undefined)
+    {
+        Kinase.layer.setLayerEditInfo({color: moreInfo.color}, Kinase.REF_LayerID, id)
+    }
+
+
 }
 
 

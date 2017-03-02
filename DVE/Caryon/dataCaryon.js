@@ -364,6 +364,81 @@ var Layer = function (layerListItem)
             }
         }
 
+    this.more =
+        {
+            layerName: null, /*图层名*/
+            $alias: null, /*别名*/
+            $nameGroup0: null, /*名称组*/
+            $nameGroup1: null,
+            $nameGroup2: null,
+            $nameGroup3: null,
+            $nameGroup4: null,
+            $nameGroup5: null,
+            $nameGroup6: null,
+            $nameGroup7: null,
+            $nameGroup8: null,
+            $nameGroup9: null,
+            $class: null, /*图层类*/
+            $tags:null,/*标签*/
+            $note1:null,/*图层备注1*/
+            $note2:null,/*图层备注1*/
+            $note3:null,/*图层备注1*/
+            visible: null, /*图层可视性*/
+            layerColor: null, /*图层备注颜色*/
+            mode: null, /*混合模式*/
+            opacity: null, /*不透明度*/
+            fillOpacity: null, /*填充不透明度*/
+
+            assignment: {
+                layerName: null, /*图层名*/
+                $alias: null, /*别名*/
+                $nameGroup0: null, /*名称组*/
+                $nameGroup1: null,
+                $nameGroup2: null,
+                $nameGroup3: null,
+                $nameGroup4: null,
+                $nameGroup5: null,
+                $nameGroup6: null,
+                $nameGroup7: null,
+                $nameGroup8: null,
+                $nameGroup9: null,
+                $class: null, /*图层类*/
+                $tags:null,/*标签*/
+                $note1:null,/*图层备注1*/
+                $note2:null,/*图层备注1*/
+                $note3:null,/*图层备注1*/
+                visible: null, /*图层可视性*/
+                layerColor: null, /*图层备注颜色*/
+                mode: null, /*混合模式*/
+                opacity: null, /*不透明度*/
+                fillOpacity: null, /*填充不透明度*/},
+
+            enableAssigns: {
+                layerName: false, /*图层名*/
+                $alias: false, /*别名*/
+                $nameGroup0: false, /*名称组*/
+                $nameGroup1: false,
+                $nameGroup2: false,
+                $nameGroup3: false,
+                $nameGroup4: false,
+                $nameGroup5: false,
+                $nameGroup6: false,
+                $nameGroup7: false,
+                $nameGroup8: false,
+                $nameGroup9: false,
+                $class: false, /*图层类*/
+                $tags:false,/*标签*/
+                $note1:false,/*图层备注1*/
+                $note2:false,/*图层备注1*/
+                $note3:false,/*图层备注1*/
+                visible: false, /*图层可视性*/
+                layerColor: false, /*图层备注颜色*/
+                mode: false, /*混合模式*/
+                opacity: false, /*不透明度*/
+                fillOpacity: false, /*填充不透明度*/
+            }
+        }
+
 
     // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
     return this;
