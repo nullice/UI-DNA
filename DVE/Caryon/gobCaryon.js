@@ -1039,7 +1039,7 @@ GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
     item_more.mode = moreInfo.mode;
     item_more.opacity = moreInfo.opacity;
     item_more.fillOpacity = moreInfo.fillOpacity;
-    console.log(item_more.mode)
+
     return item_more
 }
 
@@ -1071,13 +1071,17 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color)
  */
 GobCaryon.prototype.updateGob = async function (disableRender)
 {
-    logger.group("[updateGob]")
 
+
+    logger.group("[updateGob]")
+    console.time("updateGob 耗时")
     this.disableRender = disableRender || false;
     logger.pin("Gob", "GobCaryon.prototype.updateGo",
         `updateGob [START]`, "disableRender:" + this.disableRender)
 
     //----------1. 要拉取的数据：
+
+    console.time("updateGob前期准备耗时")
     var temp = {};
 
     //属性注册[5/8`]
@@ -1095,42 +1099,54 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     temp.smartObject = new_smartObject();
     temp.quickEffect = new_quickEffect();
     temp.more = new_more();
+    console.timeEnd("updateGob前期准备耗时")
 
     //----------2. 拉取每个选中图层的数据：
     for (var i = 0; i < this.selectList.length; i++)
     {
         //属性注册[7/8]
         //[position]---------------------------------------------------------------
+        console.time("position获取耗时")
         var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
         _objectToObject(item_position, temp.position, true, !(i == 0));
+        console.timeEnd("position 获取耗时")
 
         //[text]---------------------------------------------------------------
+        console.time("text获取耗时")
         var item_text = await this.getLayerInfoObejct_text(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
         _objectToObject(item_text, temp.text, true, !(i == 0));
+        console.timeEnd("text获取耗时")
 
         // [shape]---------------------------------------------------------------
+        console.time("shape获取耗时")
         var item_shape = await this.getLayerInfoObejct_shape(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
         _objectToObject(item_shape, temp.shape, true, !(i == 0));
+        console.timeEnd("shape获取耗时")
 
         // [smartObject]---------------------------------------------------------------
+        console.time("smartObject获取耗时")
         var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
         _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
+        console.timeEnd("smartObject获取耗时")
 
 
         // [quickEffect]---------------------------------------------------------------
+        console.time("quickEffect获取耗时")
         var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
         _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
+        console.timeEnd("quickEffect获取耗时")
 
         // [more]---------------------------------------------------------------
+        console.time("more获取耗时")
         var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
-        console.info("...more",JSON.stringify(dataCaryon.layers[this.selectList[i].id]),JSON.stringify(item_more))
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
         _objectToObject(item_more, temp.more, true, !(i == 0));
+        console.timeEnd("more获取耗时")
 
 
     }
@@ -1139,6 +1155,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     console.group("====_objectToObject_async====================================================")
 
+    console.time("属性赋值到Gob耗时")
     console.group("--position--------------------------", temp.position)
     await _objectToGob_async(temp.position, ["position"], this)
     console.groupEnd()
@@ -1163,7 +1180,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     await _objectToGob_async(temp.more, ["more"], this)
     console.groupEnd()
 
-
+    console.timeEnd("属性赋值到Gob耗时")
     console.info("============")
     console.groupEnd()
 
@@ -1193,6 +1210,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.groupEnd();
 
 
+    console.timeEnd("updateGob 耗时")
     logger.groupEnd()
     //[END]-----------------
 

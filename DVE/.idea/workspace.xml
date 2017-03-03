@@ -28,25 +28,25 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6272984">
+    <splitter split-orientation="horizontal" split-proportion="0.23197716">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="gobCaryon.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="477">
-                  <caret line="1035" column="44" lean-forward="false" selection-start-line="1035" selection-start-column="44" selection-end-line="1035" selection-end-column="44" />
+                <state relative-caret-position="1653">
+                  <caret line="1399" column="26" lean-forward="true" selection-start-line="1399" selection-start-column="26" selection-end-line="1399" selection-end-column="26" />
                   <folding>
                     <element signature="e#4458#6204#0" expanded="false" />
                     <element signature="e#6251#8183#0" expanded="false" />
-                    <element signature="e#43551#44867#0" expanded="false" />
-                    <element signature="e#44975#45793#0" expanded="false" />
+                    <element signature="e#44068#45384#0" expanded="false" />
+                    <element signature="e#45492#46310#0" expanded="false" />
                     <element signature="n#!!block;n#_inArray#0" expanded="false" />
-                    <marker date="1488522003361" expanded="false" signature="800:2181" ph="{...}" />
-                    <marker date="1488522003361" expanded="true" signature="857:2051" ph="{...}" />
-                    <marker date="1488522003361" expanded="true" signature="1097:2034" ph="{...}" />
-                    <marker date="1488522003361" expanded="true" signature="2100:2168" ph="{...}" />
-                    <marker date="1488522003361" expanded="true" signature="21674:22726" ph="{...}" />
+                    <marker date="1488523474678" expanded="false" signature="800:2181" ph="{...}" />
+                    <marker date="1488523474678" expanded="true" signature="857:2051" ph="{...}" />
+                    <marker date="1488523474678" expanded="true" signature="1097:2034" ph="{...}" />
+                    <marker date="1488523474678" expanded="true" signature="2100:2168" ph="{...}" />
+                    <marker date="1488523474678" expanded="true" signature="21674:22726" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -122,10 +122,10 @@
                 <state relative-caret-position="-133248">
                   <caret line="2639" column="0" lean-forward="false" selection-start-line="2639" selection-start-column="0" selection-end-line="2639" selection-end-column="0" />
                   <folding>
-                    <marker date="1488521904470" expanded="true" signature="1361:1241099" ph="[...]" />
-                    <marker date="1488521904470" expanded="true" signature="1241076:1241088" ph="{...}" />
-                    <marker date="1488521904470" expanded="true" signature="1241081:1241086" ph="/*...*/" />
-                    <marker date="1488521904470" expanded="true" signature="1241089:1241097" ph="/*...*/" />
+                    <marker date="1488523439644" expanded="true" signature="1361:1242070" ph="[...]" />
+                    <marker date="1488523439644" expanded="true" signature="1242047:1242059" ph="{...}" />
+                    <marker date="1488523439644" expanded="true" signature="1242052:1242057" ph="/*...*/" />
+                    <marker date="1488523439644" expanded="true" signature="1242060:1242068" ph="/*...*/" />
                   </folding>
                 </state>
               </provider>
@@ -202,8 +202,8 @@
           <file leaf-file-name="dataCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4284">
-                  <caret line="268" column="42" lean-forward="true" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
+                <state relative-caret-position="33">
+                  <caret line="67" column="10" lean-forward="false" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
                   <folding>
                     <element signature="e#451#1039#0" expanded="false" />
                   </folding>
@@ -214,20 +214,19 @@
           <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="68">
-                  <caret line="509" column="84" lean-forward="false" selection-start-line="509" selection-start-column="84" selection-end-line="509" selection-end-column="84" />
+                <state relative-caret-position="160">
+                  <caret line="500" column="0" lean-forward="true" selection-start-line="500" selection-start-column="0" selection-end-line="500" selection-end-column="0" />
                   <folding>
-                    <element signature="n#div#1;n#div#6;n#a-area#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#style#0;n#!!top" expanded="false" />
-                    <marker date="1488507535589" expanded="true" signature="38536:38552" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="38786:38802" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="38995:39011" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="39284:39300" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="39493:39509" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="39702:39718" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="39971:39987" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="40180:40196" ph="..." />
-                    <marker date="1488507535589" expanded="true" signature="40410:40426" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="38521:38537" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="38771:38787" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="38980:38996" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="39269:39285" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="39478:39494" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="39687:39703" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="39956:39972" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="40165:40181" ph="..." />
+                    <marker date="1488523708643" expanded="true" signature="40395:40411" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -318,9 +317,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>strokeStyleButtCap</find>
-      <find>o_shape_lineJoinType_options</find>
-      <find>enable_assign</find>
       <find>端点</find>
       <find>mini</find>
       <find>localLightingAngle</find>
@@ -348,10 +344,14 @@
       <find>raw</find>
       <find>setLayerEditInfo</find>
       <find>注册</find>
+      <find>layerName</find>
+      <find>[[[writeDataCaryon</find>
+      <find>assignmenat</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
       <replace>Kinase.</replace>
+      <replace>assignment</replace>
     </replaceStrings>
   </component>
   <component name="HighlightingSettingsPerFile">
@@ -409,8 +409,8 @@
         <option value="$PROJECT_DIR$/components/AttributePanel_select.vue" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
+        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
       </list>
     </option>
   </component>
@@ -719,12 +719,12 @@
       <workItem from="1487412650225" duration="48533000" />
       <workItem from="1487657263268" duration="67000" />
       <workItem from="1487657368982" duration="23765000" />
-      <workItem from="1487817984100" duration="147599000" />
+      <workItem from="1487817984100" duration="149185000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2214804000" />
+    <option name="totallyTimeSpent" value="2216390000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -739,7 +739,7 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25500527" sideWeight="0.5232936" order="1" side_tool="true" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2618546" sideWeight="0.5232936" order="1" side_tool="true" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1685761" sideWeight="0.52094716" order="7" side_tool="true" content_ui="tabs" />
@@ -747,7 +747,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21548998" sideWeight="0.40411702" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25500527" sideWeight="0.4767064" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2618546" sideWeight="0.4767064" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.021276595" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21548998" sideWeight="0.40411702" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1060,10 +1060,10 @@
         <state relative-caret-position="-133248">
           <caret line="2639" column="0" lean-forward="false" selection-start-line="2639" selection-start-column="0" selection-end-line="2639" selection-end-column="0" />
           <folding>
-            <marker date="1488521904470" expanded="true" signature="1361:1241099" ph="[...]" />
-            <marker date="1488521904470" expanded="true" signature="1241076:1241088" ph="{...}" />
-            <marker date="1488521904470" expanded="true" signature="1241081:1241086" ph="/*...*/" />
-            <marker date="1488521904470" expanded="true" signature="1241089:1241097" ph="/*...*/" />
+            <marker date="1488523439644" expanded="true" signature="1361:1242070" ph="[...]" />
+            <marker date="1488523439644" expanded="true" signature="1242047:1242059" ph="{...}" />
+            <marker date="1488523439644" expanded="true" signature="1242052:1242057" ph="/*...*/" />
+            <marker date="1488523439644" expanded="true" signature="1242060:1242068" ph="/*...*/" />
           </folding>
         </state>
       </provider>
@@ -1254,49 +1254,48 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4284">
-          <caret line="268" column="42" lean-forward="true" selection-start-line="268" selection-start-column="42" selection-end-line="268" selection-end-column="42" />
+        <state relative-caret-position="33">
+          <caret line="67" column="10" lean-forward="false" selection-start-line="67" selection-start-column="10" selection-end-line="67" selection-end-column="10" />
           <folding>
             <element signature="e#451#1039#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
+    <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="509" column="84" lean-forward="false" selection-start-line="509" selection-start-column="84" selection-end-line="509" selection-end-column="84" />
+        <state relative-caret-position="1653">
+          <caret line="1399" column="26" lean-forward="true" selection-start-line="1399" selection-start-column="26" selection-end-line="1399" selection-end-column="26" />
           <folding>
-            <element signature="n#div#1;n#div#6;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <marker date="1488507535589" expanded="true" signature="38536:38552" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="38786:38802" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="38995:39011" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="39284:39300" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="39493:39509" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="39702:39718" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="39971:39987" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="40180:40196" ph="..." />
-            <marker date="1488507535589" expanded="true" signature="40410:40426" ph="..." />
+            <element signature="e#4458#6204#0" expanded="false" />
+            <element signature="e#6251#8183#0" expanded="false" />
+            <element signature="e#44068#45384#0" expanded="false" />
+            <element signature="e#45492#46310#0" expanded="false" />
+            <element signature="n#!!block;n#_inArray#0" expanded="false" />
+            <marker date="1488523474678" expanded="false" signature="800:2181" ph="{...}" />
+            <marker date="1488523474678" expanded="true" signature="857:2051" ph="{...}" />
+            <marker date="1488523474678" expanded="true" signature="1097:2034" ph="{...}" />
+            <marker date="1488523474678" expanded="true" signature="2100:2168" ph="{...}" />
+            <marker date="1488523474678" expanded="true" signature="21674:22726" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="1035" column="44" lean-forward="false" selection-start-line="1035" selection-start-column="44" selection-end-line="1035" selection-end-column="44" />
+        <state relative-caret-position="160">
+          <caret line="500" column="0" lean-forward="true" selection-start-line="500" selection-start-column="0" selection-end-line="500" selection-end-column="0" />
           <folding>
-            <element signature="e#4458#6204#0" expanded="false" />
-            <element signature="e#6251#8183#0" expanded="false" />
-            <element signature="e#43551#44867#0" expanded="false" />
-            <element signature="e#44975#45793#0" expanded="false" />
-            <element signature="n#!!block;n#_inArray#0" expanded="false" />
-            <marker date="1488522003361" expanded="false" signature="800:2181" ph="{...}" />
-            <marker date="1488522003361" expanded="true" signature="857:2051" ph="{...}" />
-            <marker date="1488522003361" expanded="true" signature="1097:2034" ph="{...}" />
-            <marker date="1488522003361" expanded="true" signature="2100:2168" ph="{...}" />
-            <marker date="1488522003361" expanded="true" signature="21674:22726" ph="{...}" />
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <marker date="1488523708643" expanded="true" signature="38521:38537" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="38771:38787" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="38980:38996" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="39269:39285" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="39478:39494" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="39687:39703" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="39956:39972" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="40165:40181" ph="..." />
+            <marker date="1488523708643" expanded="true" signature="40395:40411" ph="..." />
           </folding>
         </state>
       </provider>

@@ -506,7 +506,7 @@
             <value-input v-bind:name="Lang.from('名称')"
                          v-bind:title="Lang.from('图层名称')"
                          v-bind:edit_value.sync="Gob.more.layerName"
-                         v-bind:out_value.sync="Gob.more.assignmenat.layerName"
+                         v-bind:out_value.sync="Gob.more.assignment.layerName"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.layerName"
             ></value-input>
 
@@ -534,7 +534,7 @@
                          v-bind:title="Lang.from('图层不透明度')"
                          name_html="<i class='icon-uniE9B5'></i>"
                          v-bind:edit_value.sync="Gob.more.opacity"
-                         v-bind:out_value.sync="Gob.more.assignmenat.opacity"
+                         v-bind:out_value.sync="Gob.more.assignment.opacity"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.opacity"
                          mini="true"
             ></value-input>
@@ -542,7 +542,7 @@
             <value-input v-bind:name="Lang.from('填充')"
                          v-bind:title="Lang.from('填充不透明度')"
                          v-bind:edit_value.sync="Gob.more.fillOpacity"
-                         v-bind:out_value.sync="Gob.more.assignmenat.fillOpacity"
+                         v-bind:out_value.sync="Gob.more.assignment.fillOpacity"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.fillOpacity"
                          mini="true"
             ></value-input>
@@ -580,14 +580,14 @@
             <value-input v-bind:name="Lang.from('标签')"
                          v-bind:title="Lang.from('自定义标签')"
                          v-bind:edit_value.sync="Gob.more.$tags"
-                         v-bind:out_value.sync="Gob.more.assignmenat.$tags"
+                         v-bind:out_value.sync="Gob.more.assignment.$tags"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.$tags"
             ></value-input>
 
             <value-input v-bind:name="Lang.from('别名')"
                          v-bind:title="Lang.from('图层别名')"
                          v-bind:edit_value.sync="Gob.more.$alias"
-                         v-bind:out_value.sync="Gob.more.assignmenat.$alias"
+                         v-bind:out_value.sync="Gob.more.assignment.$alias"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.$alias"
             ></value-input>
 
@@ -608,7 +608,7 @@
                             v-bind:name="Lang.from('0')"
                             v-bind:title="Lang.from('名称组0')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup0"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup0"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup0"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup0"
                     ></value-input>
 
@@ -617,7 +617,7 @@
                             v-bind:name="Lang.from('1')"
                             v-bind:title="Lang.from('名称组1')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup1"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup1"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup1"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup1"
                     ></value-input>
                     <value-input
@@ -625,7 +625,7 @@
                             v-bind:name="Lang.from('2')"
                             v-bind:title="Lang.from('名称组2')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup2"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup2"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup2"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup2"
                     ></value-input>
                     <value-input
@@ -633,7 +633,7 @@
                             v-bind:name="Lang.from('3')"
                             v-bind:title="Lang.from('名称组3')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup3"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup3"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup3"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup3"
                     ></value-input>
                     <value-input
@@ -641,7 +641,7 @@
                             v-bind:name="Lang.from('4')"
                             v-bind:title="Lang.from('名称组4')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup4"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup4"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup4"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup4"
                     ></value-input>
                     <value-input
@@ -649,7 +649,7 @@
                             v-bind:name="Lang.from('5')"
                             v-bind:title="Lang.from('名称组5')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup5"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup5"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup5"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup5"
                     ></value-input>
                     <value-input
@@ -657,7 +657,7 @@
                             v-bind:name="Lang.from('6')"
                             v-bind:title="Lang.from('名称组6')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup6"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup6"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup6"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup6"
                     ></value-input>
                     <value-input
@@ -665,7 +665,7 @@
                             v-bind:name="Lang.from('7')"
                             v-bind:title="Lang.from('名称组7')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup7"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup7"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup7"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup7"
                     ></value-input>
                     <value-input
@@ -673,7 +673,7 @@
                             v-bind:name="Lang.from('8')"
                             v-bind:title="Lang.from('名称组8')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup8"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup8"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup8"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup8"
                     ></value-input>
                     <value-input
@@ -681,7 +681,7 @@
                             v-bind:name="Lang.from('9')"
                             v-bind:title="Lang.from('名称组9')"
                             v-bind:edit_value.sync="Gob.more.$nameGroup9"
-                            v-bind:out_value.sync="Gob.more.assignmenat.$nameGroup9"
+                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup9"
                             v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup9"
                     ></value-input>
                 </div>
