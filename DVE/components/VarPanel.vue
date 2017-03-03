@@ -31,7 +31,7 @@
         </div>
         <div class="var_list">
             <!--todo:计划增加拼音、假名过滤支持-->
-            <div class="var_item" v-for="a_var in vars |  filterBy o_filter_key in 'name'">
+            <div class="var_item" v-for="a_var in vars | filterBy o_filter_key in 'name'">
                 <edit-text-label
                         v-bind:in_value.sync="$key"
                         display_class="var_name cell"

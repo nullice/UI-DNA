@@ -405,15 +405,15 @@
                     this.pickerMapStyle_h.background = ""
 
 
+                    var l = this.edit_color.hsl.l;
 
-                    if (this.edit_color.hsl.l < 50)
+                    if (l < 50)
                     {
-                        this.pickerMapStyle_v.background = "rgba(0,0,0," + (1 - this.edit_color.hsl.l / 100) + ")"
+                        this.pickerMapStyle_v.background = "rgba(0,0,0," + (0.5 - (l / 100)) + ")"
 
                     } else
                     {
-                        var v = this.edit_color.hsl.l;
-                        this.pickerMapStyle_v.background = "rgba(255,255,255," + ((v - 50) / 52) + ")"
+                        this.pickerMapStyle_v.background = "rgba(255,255,255," + ((l - 50) / 52) + ")"
                     }
 
 
