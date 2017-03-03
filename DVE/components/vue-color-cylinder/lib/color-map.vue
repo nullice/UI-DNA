@@ -337,14 +337,14 @@
                 }
 
 
-                var mouseX = e.pageX ;
-                var mouseY = e.pageY ;
-                var rect =    e.srcElement.getBoundingClientRect()
-                var positionX = rect.left + window.pageXOffset ;
-                var positionY = rect.top + window.pageYOffset ;
+                var mouseX = e.pageX;
+                var mouseY = e.pageY;
+                var rect = e.srcElement.getBoundingClientRect()
+                var positionX = rect.left + window.pageXOffset;
+                var positionY = rect.top + window.pageYOffset;
 
-                var offsetX = mouseX - positionX ;
-                var offsetY = mouseY - positionY ;
+                var offsetX = mouseX - positionX;
+                var offsetY = mouseY - positionY;
 
 
                 var width = e.target.offsetWidth
@@ -354,8 +354,8 @@
                 this.height = height
 
 
-                console.info("=======map_select-e",e.srcElement.getBoundingClientRect())
-                console.info("=======map_select-offsetX, width, offsetY, height",offsetX, width, offsetY, height)
+//                console.info("=======map_select-e",e.srcElement.getBoundingClientRect())
+//                console.info("=======map_select-offsetX, width, offsetY, height",offsetX, width, offsetY, height)
                 this.map_thumb_offset2value(offsetX, width, offsetY, height)
             },
 
@@ -404,7 +404,19 @@
                     this.o_temp_color.hsv.v = 100;
                     this.pickerMapStyle_h.background = ""
 
-                    this.pickerMapStyle_v.background = "rgba(0,0,0," + (1 - this.edit_color.hsv.v / 100) + ")"
+
+
+                    if (this.edit_color.hsl.l < 50)
+                    {
+                        this.pickerMapStyle_v.background = "rgba(0,0,0," + (1 - this.edit_color.hsl.l / 100) + ")"
+
+                    } else
+                    {
+                        var v = this.edit_color.hsl.l;
+                        this.pickerMapStyle_v.background = "rgba(255,255,255," + ((v - 50) / 52) + ")"
+                    }
+
+
                 }
 
             },
