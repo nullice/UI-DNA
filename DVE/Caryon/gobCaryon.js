@@ -439,10 +439,11 @@ GobCaryon.prototype.__new_more = function ()
  *
  * @param names 属性名路径列表，如 [position,enableAssigns,y]
  * @param value 要设置的值
+ * @param onlySet 仅仅设置而不执行其他操作
  * @returns {Promise.<void>}
  * @private
  */
-GobCaryon.prototype._setData = async function (names, value)
+GobCaryon.prototype._setData = async function (names, value, onlySet)
 {
 
     // console.log(`_setData([${names}], ${value}):`)
@@ -455,6 +456,15 @@ GobCaryon.prototype._setData = async function (names, value)
     //-------- 【1】. 值写入实际存储的属性 this._XXX;
     var changeValue_Gob = _valueToObject(this, names, 0, value, true);
 
+    if (onlySet)
+    {
+        return;
+    }
+
+    if (value == Gob.MULT)
+    {
+        return;
+    }
 
     //属性注册[4/8]
 
@@ -485,8 +495,8 @@ GobCaryon.prototype._setData = async function (names, value)
 
     } else
     {
-        if (value != Gob.MULT)
-        {
+
+
             //0. 变量赋值属性
             if (_lastButOneName == "assignment" && _lastButOneName == "enableAssigns")
             {
@@ -572,7 +582,7 @@ GobCaryon.prototype._setData = async function (names, value)
                 var _typeDefine = {
                     boolean: {
                         type: "boolean",//属性名称
-                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked",'visible'], //这些名字的属性使用这一类型
+                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked", 'visible'], //这些名字的属性使用这一类型
                         valueEnum: ["true", "false", true, false], //当值为这些时被判定为类型文本
                         judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
                     },
@@ -624,7 +634,7 @@ GobCaryon.prototype._setData = async function (names, value)
                     },
                     pathText: {
                         type: "pathText",
-                        nameList: ["link", "fileReference",'layerName'],
+                        nameList: ["link", "fileReference", 'layerName'],
                         valueEnum: null,
                         judgementFunc: function (value)
                         {
@@ -711,7 +721,7 @@ GobCaryon.prototype._setData = async function (names, value)
 
 
             }
-        }
+
 
     }
 
@@ -1101,83 +1111,129 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     temp.more = new_more();
     console.timeEnd("updateGob前期准备耗时")
 
+
+    console.time("拉取每个选中图层的数据")
     //----------2. 拉取每个选中图层的数据：
-    for (var i = 0; i < this.selectList.length; i++)
+
+    if (this.selectList.length < setSystem.inset.selectMax)/*小于最大选中限制时，拉取每个图层的数据*/
     {
-        //属性注册[7/8]
-        //[position]---------------------------------------------------------------
-        console.time("position获取耗时")
-        var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
-        _objectToObject(item_position, temp.position, true, !(i == 0));
-        console.timeEnd("position 获取耗时")
+        for (var i = 0; i < this.selectList.length; i++)
+        {
+            //属性注册[7/8]
+            //[position]---------------------------------------------------------------
+            console.time("position获取耗时")
+            var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
+            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
+            _objectToObject(item_position, temp.position, true, !(i == 0));
+            console.timeEnd("position 获取耗时")
 
-        //[text]---------------------------------------------------------------
-        console.time("text获取耗时")
-        var item_text = await this.getLayerInfoObejct_text(this.selectList[i].id);
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
-        _objectToObject(item_text, temp.text, true, !(i == 0));
-        console.timeEnd("text获取耗时")
+            //[text]---------------------------------------------------------------
+            console.time("text获取耗时")
+            var item_text = await this.getLayerInfoObejct_text(this.selectList[i].id);
+            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
+            _objectToObject(item_text, temp.text, true, !(i == 0));
+            console.timeEnd("text获取耗时")
 
-        // [shape]---------------------------------------------------------------
-        console.time("shape获取耗时")
-        var item_shape = await this.getLayerInfoObejct_shape(this.selectList[i].id);
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
-        _objectToObject(item_shape, temp.shape, true, !(i == 0));
-        console.timeEnd("shape获取耗时")
+            // [shape]---------------------------------------------------------------
+            console.time("shape获取耗时")
+            var item_shape = await this.getLayerInfoObejct_shape(this.selectList[i].id);
+            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
+            _objectToObject(item_shape, temp.shape, true, !(i == 0));
+            console.timeEnd("shape获取耗时")
 
-        // [smartObject]---------------------------------------------------------------
-        console.time("smartObject获取耗时")
-        var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
-        _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
-        console.timeEnd("smartObject获取耗时")
+            // [smartObject]---------------------------------------------------------------
+            console.time("smartObject获取耗时")
+            var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
+            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
+            _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
+            console.timeEnd("smartObject获取耗时")
 
 
-        // [quickEffect]---------------------------------------------------------------
-        console.time("quickEffect获取耗时")
-        var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
-        _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
-        console.timeEnd("quickEffect获取耗时")
+            // [quickEffect]---------------------------------------------------------------
+            console.time("quickEffect获取耗时")
+            var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
+            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
+            _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
+            console.timeEnd("quickEffect获取耗时")
 
-        // [more]---------------------------------------------------------------
-        console.time("more获取耗时")
-        var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
-        _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
-        _objectToObject(item_more, temp.more, true, !(i == 0));
-        console.timeEnd("more获取耗时")
+            // [more]---------------------------------------------------------------
+            console.time("more获取耗时")
+            var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
+            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
+            _objectToObject(item_more, temp.more, true, !(i == 0));
+            console.timeEnd("more获取耗时")
+        }
+    } else/*大于最大选中限制时，忽略*/
+    {
+
+        _setObejctAll(temp, Gob.MULT)
+        console.info("sssss", temp)
+
+        function _setObejctAll(object, value)
+        {
+
+            for (var v in object)
+            {
+                if (v != 'enableAssigns')
+                {
+                    if (object[v]  instanceof Object)
+                    {
+                        _setObejctAll(object[v], value)
+
+                    } else
+                    {
+                        object[v] = value
+                    }
+                }
+            }
+        }
+
 
 
     }
 
+
+    console.timeEnd("拉取每个选中图层的数据")
     //属性注册[8/8]
 
     console.group("====_objectToObject_async====================================================")
 
     console.time("属性赋值到Gob耗时")
     console.group("--position--------------------------", temp.position)
+
+    // console.time("属性赋值到Gob.position耗时")
     await _objectToGob_async(temp.position, ["position"], this)
+    // console.timeEnd("属性赋值到Gob.position耗时")
     console.groupEnd()
 
     console.group("--text--------------------------", temp.text,)
+    // console.time("属性赋值到Gob.text耗时")
     await _objectToGob_async(temp.text, ["text"], this)
+    // console.timeEnd("属性赋值到Gob.text耗时")
     console.groupEnd()
 
     console.group("--shape--------------------------", temp.shape,)
+    // console.time("属性赋值到Gob.shape耗时")
     await _objectToGob_async(temp.shape, ["shape"], this)
+    // console.timeEnd("属性赋值到Gob.shape耗时")
     console.groupEnd()
 
     console.group("--smartObject--------------------------", temp.smartObject,)
+    // console.time("属性赋值到Gob.smartObject耗时")
     await _objectToGob_async(temp.smartObject, ["smartObject"], this)
+    // console.timeEnd("属性赋值到Gob.smartObject耗时")
     console.groupEnd()
 
     console.group("--quickEffect--------------------------", temp.quickEffect,)
+    // console.time("属性赋值到Gob.quickEffect耗时")
     await _objectToGob_async(temp.quickEffect, ["quickEffect"], this)
+    // console.timeEnd("属性赋值到Gob.quickEffect耗时")
     console.groupEnd()
 
     console.group("--more--------------------------", temp.more,)
+    // console.time("属性赋值到Gob.more耗时")
     await _objectToGob_async(temp.more, ["more"], this)
+    // console.timeEnd("属性赋值到Gob.more耗时")
     console.groupEnd()
 
     console.timeEnd("属性赋值到Gob耗时")
@@ -1217,7 +1273,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     function _setValue(oldValue, value, ignoreNull)
     {
-
         if (oldValue == undefined)
         {
             if (ignoreNull)
@@ -1303,7 +1358,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
                 await _objectToGob_async(srcObject[x], nowNames.slice(0), gobThis)
             } else
             {
-                await gobThis._setData(nowNames, srcObject[x])
+                await gobThis._setData(nowNames, srcObject[x], true)
             }
         }
 

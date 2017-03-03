@@ -36,7 +36,12 @@ var SetSystem = function ()
 
                 }
             }
-        }
+        },
+
+    }
+    this.inset={
+        selectMax:6,/*最大选中图层数，大于这个数，选中图层时 Gob 将不从实际图层拉取数据而是仅显示“多值”*/
+
     }
 
 
