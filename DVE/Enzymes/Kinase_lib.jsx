@@ -651,11 +651,11 @@ Kinase.layer.setAppearance_byActive = function (appearanceInfo)
         };
         if ((appearanceInfo.visible == true) && (oldAppearanceInfo.visible == false))
         {
-            mu.executeActionObjcet(charIDToTypeID("Shw "), adOb_fillOpacity);
+            mu.executeActionObjcet(charIDToTypeID("Shw "), adOb_visible);
         }
         else if ((appearanceInfo.visible == false) && (oldAppearanceInfo.visible == true))
         {
-            mu.executeActionObjcet(charIDToTypeID("Hd  "), adOb_fillOpacity);
+            mu.executeActionObjcet(charIDToTypeID("Hd  "), adOb_visible);
         }
     }
 

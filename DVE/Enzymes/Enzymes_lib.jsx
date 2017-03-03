@@ -1157,10 +1157,6 @@ EnzJSX.setLayerInfo_more_byId = function (moreInfo, id, doSelect)
         ki.layer.selectLayer_byID(id)
     }
 
-    moreInfo.fillOpacity = appearanceInfo.fillOpacity
-    moreInfo.opacity = appearanceInfo.opacity
-    moreInfo.visible = appearanceInfo.visible
-    moreInfo.mode = appearanceInfo.mode
 
     var appearanceInfo = {}
     var setAppearance = false
@@ -1194,7 +1190,7 @@ EnzJSX.setLayerInfo_more_byId = function (moreInfo, id, doSelect)
         setName = true;
     }
 
-    if (setAppearance || setName)
+    if (setAppearance || setName || moreInfo.layerColor != undefined)
     {
         Kinase.layer.selectLayer_byID(id)
     }
@@ -1209,9 +1205,9 @@ EnzJSX.setLayerInfo_more_byId = function (moreInfo, id, doSelect)
         Kinase.layer.setLayerName_byActive(moreInfo.layerName)
     }
 
-    if (moreInfo.color != undefined)
+    if (moreInfo.layerColor != undefined)
     {
-        Kinase.layer.setLayerEditInfo({color: moreInfo.color}, Kinase.REF_LayerID, id)
+        Kinase.layer.setLayerEditInfo({color: moreInfo.layerColor}, Kinase.REF_ActiveLayer, null)
     }
 
 

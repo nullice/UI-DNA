@@ -30,6 +30,9 @@ RenderCaryon.prototype.test = async function (x)
 }
 
 
+
+
+
 /**
  * 局部渲染，渲染指定图层 ID 的指定属性组
  * @param layerId
@@ -56,12 +59,10 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             ignore = true;
         }
     }
-
     if (_inArray(item, ["assignment", "$enableFormula", "enableAssigns"]))//忽略 color.r/g/b
     {
         ignore = true;
     }
-
 
     //-------------------------------------------------
 
@@ -204,9 +205,6 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 ob[item] = value;
             }
 
-
-
-
             Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
             await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_quickEffect_byId(${JSON.stringify(ob)}, ${layerId})`)
@@ -214,19 +212,29 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             await enzymes.setLayerInfo_quickEffect_byId(ob, layerId)
             /************************************************/
             Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
+        }
+        if (names[0] === "more")
+        {
+            console.log("----[start:RenderCaryon：more:" + layerId + "]---")
+            if (namesLen == 2)
+            {
+                var ob = {};
+                ob[item] = value;
+            }
 
+
+            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
+            await enzymes.selectLayer_byID(layerId);
+            console.log(`enzymes.setLayerInfo_more_byId(${JSON.stringify(ob)}, ${layerId})`)
+            /************************************************/
+            await enzymes.setLayerInfo_more_byId(ob, layerId)
+            /************************************************/
+            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
 
         }
 
-
-
-
-
         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---")
     }
-
-
-
 
 
     this.status.rendering = false;// 标记渲染状态结束，停止渲染按钮动画

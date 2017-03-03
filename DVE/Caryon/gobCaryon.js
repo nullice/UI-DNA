@@ -90,8 +90,6 @@ var GobCaryon = function ()
     giveSetter(this.more, ["more"], 1);
 
 
-
-
     return this;
 
 
@@ -374,16 +372,15 @@ GobCaryon.prototype.__new_more = function ()
         $nameGroup8: null,
         $nameGroup9: null,
         $class: null, /*图层类*/
-        $tags:null,/*标签*/
-        $note1:null,/*图层备注1*/
-        $note2:null,/*图层备注1*/
-        $note3:null,/*图层备注1*/
+        $tags: null, /*标签*/
+        $note1: null, /*图层备注1*/
+        $note2: null, /*图层备注1*/
+        $note3: null, /*图层备注1*/
         visible: null, /*图层可视性*/
         layerColor: null, /*图层备注颜色*/
         mode: null, /*混合模式*/
         opacity: null, /*不透明度*/
         fillOpacity: null, /*填充不透明度*/
-
 
         assignment: {
             layerName: null, /*图层名*/
@@ -399,17 +396,19 @@ GobCaryon.prototype.__new_more = function ()
             $nameGroup8: null,
             $nameGroup9: null,
             $class: null, /*图层类*/
-            $tags:null,/*标签*/
-            $note1:null,/*图层备注1*/
-            $note2:null,/*图层备注1*/
-            $note3:null,/*图层备注1*/
+            $tags: null, /*标签*/
+            $note1: null, /*图层备注1*/
+            $note2: null, /*图层备注1*/
+            $note3: null, /*图层备注1*/
             visible: null, /*图层可视性*/
             layerColor: null, /*图层备注颜色*/
             mode: null, /*混合模式*/
             opacity: null, /*不透明度*/
-            fillOpacity: null, /*填充不透明度*/},
+            fillOpacity: null, /*填充不透明度*/
+        },
 
-        enableAssigns: {      layerName: null, /*图层名*/
+        enableAssigns: {
+            layerName: null, /*图层名*/
             $alias: null, /*别名*/
             $nameGroup0: null, /*名称组*/
             $nameGroup1: null,
@@ -422,15 +421,16 @@ GobCaryon.prototype.__new_more = function ()
             $nameGroup8: null,
             $nameGroup9: null,
             $class: null, /*图层类*/
-            $tags:null,/*标签*/
-            $note1:null,/*图层备注1*/
-            $note2:null,/*图层备注1*/
-            $note3:null,/*图层备注1*/
+            $tags: null, /*标签*/
+            $note1: null, /*图层备注1*/
+            $note2: null, /*图层备注1*/
+            $note3: null, /*图层备注1*/
             visible: null, /*图层可视性*/
             layerColor: null, /*图层备注颜色*/
             mode: null, /*混合模式*/
             opacity: null, /*不透明度*/
-            fillOpacity: null, /*填充不透明度*/}
+            fillOpacity: null, /*填充不透明度*/
+        }
     }
 }
 
@@ -445,7 +445,7 @@ GobCaryon.prototype.__new_more = function ()
 GobCaryon.prototype._setData = async function (names, value)
 {
 
-    console.log(`_setData([${names}], ${value}):`)
+    // console.log(`_setData([${names}], ${value}):`)
 
     var isFormula = false;
     var doDocumentRender = false;
@@ -540,8 +540,6 @@ GobCaryon.prototype._setData = async function (names, value)
                             isFormula = true
                         }
                     }
-
-
                 }
 
                 if (_lastName == "$enableTextFormula")
@@ -574,7 +572,7 @@ GobCaryon.prototype._setData = async function (names, value)
                 var _typeDefine = {
                     boolean: {
                         type: "boolean",//属性名称
-                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked"], //这些名字的属性使用这一类型
+                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked",'visible'], //这些名字的属性使用这一类型
                         valueEnum: ["true", "false", true, false], //当值为这些时被判定为类型文本
                         judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
                     },
@@ -626,7 +624,7 @@ GobCaryon.prototype._setData = async function (names, value)
                     },
                     pathText: {
                         type: "pathText",
-                        nameList: ["link", "fileReference"],
+                        nameList: ["link", "fileReference",'layerName'],
                         valueEnum: null,
                         judgementFunc: function (value)
                         {
@@ -645,11 +643,19 @@ GobCaryon.prototype._setData = async function (names, value)
                     mode: {
                         type: "mode",
                         nameList: ["mode"],
-                        valueEnum: ['normal', 'darken', 'dissolve',  'multiply',  'colorBurn',  'linearBurn',  'darkerColor',
-                            'lighten', 'screen', 'colorDodge',  'linearDodge', 'lighterColor', 'overlay',  'softLight',
-                            'hardLight',  'vividLight',  'linearLight', 'pinLight',  'hardMix',  'difference',  'exclusion',
-                            'blendSubtract', 'blendDivide', 'hue', 'saturation',  'color',  'luminosity',]
+                        valueEnum: ['normal', 'darken', 'dissolve', 'multiply', 'colorBurn', 'linearBurn', 'darkerColor',
+                            'lighten', 'screen', 'colorDodge', 'linearDodge', 'lighterColor', 'overlay', 'softLight',
+                            'hardLight', 'vividLight', 'linearLight', 'pinLight', 'hardMix', 'difference', 'exclusion',
+                            'blendSubtract', 'blendDivide', 'hue', 'saturation', 'color', 'luminosity',]
                     },
+
+                    layerColor: {
+                        type: "layerColor",
+                        nameList: ["layerColor"],
+                        valueEnum: ['none', 'red', 'orange', 'yellowColor', 'grain', 'blue', 'violet', 'gray',]
+                    },
+
+
                 }
                 __checkTypeText(_typeDefine)
 
@@ -1023,19 +1029,19 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId)
 GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
 {
     // [more]---------------------------------------------------------------
-    var item_more = this.__new_smartObject();
+    var item_more = this.__new_more();
     var moreInfo = await enzymes.getLayerInfo_more_byId(layerId);
+
+
     item_more.layerName = moreInfo.layerName;
     item_more.visible = moreInfo.visible;
     item_more.layerColor = moreInfo.layerColor;
     item_more.mode = moreInfo.mode;
     item_more.opacity = moreInfo.opacity;
     item_more.fillOpacity = moreInfo.fillOpacity;
-console.log(item_more.mode)
+    console.log(item_more.mode)
     return item_more
 }
-
-
 
 
 GobCaryon.prototype._setTypeColor = function (typeColor, color)
@@ -1122,9 +1128,9 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
         // [more]---------------------------------------------------------------
         var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
+        console.info("...more",JSON.stringify(dataCaryon.layers[this.selectList[i].id]),JSON.stringify(item_more))
         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
         _objectToObject(item_more, temp.more, true, !(i == 0));
-
 
 
     }
@@ -1156,8 +1162,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.group("--more--------------------------", temp.more,)
     await _objectToGob_async(temp.more, ["more"], this)
     console.groupEnd()
-
-
 
 
     console.info("============")

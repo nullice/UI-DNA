@@ -510,7 +510,22 @@
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.layerName"
             ></value-input>
 
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('颜色')"
+                          v-bind:title="Lang.from('图层备注颜色')"
+                          v-bind:value.sync="Gob.more.layerColor"
+                          v-bind:select_style="{width:'30px'}"
+                          v-bind:options="o_more_layercolor_options"
+                          in_class="namegroup"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:title="Lang.from('图层备注颜色')"
+                             v-bind:edit_value.sync="Gob.more.layerColor"
+                             v-bind:out_value.sync="Gob.more.assignment.layerColor"
+                             v-bind:enable_assign.sync="Gob.more.enableAssigns.layerColor"
+                             mini="true"></value-input>
 
+            </select-input>
 
 
 
@@ -582,14 +597,12 @@
                           v-bind:title="Lang.from('名称组')"
                           v-bind:value.sync="o_show_name_group"
                           v-bind:select_style="{width:'30px'}"
-                          v-bind:options="o_shape_namegroup_options"
+                          v-bind:options="o_more_namegroup_options"
                           in_class="namegroup"
             >
 
             </select-input>
-
                 <div>
-
                     <value-input
                             v-show="o_show_name_group == 0"
                             v-bind:name="Lang.from('0')"
@@ -953,7 +966,7 @@
                     {value: 'color', label: Lang.from('颜色')},
                     {value: 'luminosity', label: Lang.from('明度')},
                 ],
-                o_shape_namegroup_options:[
+                o_more_namegroup_options:[
                     {value: '0', label: setSystem.ui.panel.main.nameGroupTitle[0]},
                     {value: '1', label: setSystem.ui.panel.main.nameGroupTitle[1]},
                     {value: '2', label: setSystem.ui.panel.main.nameGroupTitle[2]},
@@ -964,6 +977,17 @@
                     {value: '7', label: setSystem.ui.panel.main.nameGroupTitle[7]},
                     {value: '8', label: setSystem.ui.panel.main.nameGroupTitle[8]},
                     {value: '9', label: setSystem.ui.panel.main.nameGroupTitle[9]},
+                ],
+                o_more_layercolor_options:[
+                    {value: 'none', label: Lang.from('无')},
+                    {value: 'red', label: Lang.from('红色')},
+                    {value: 'orange', label: Lang.from('橙色')},
+                    {value: 'yellowColor', label: Lang.from('橙色')},
+                    {value: 'grain', label: Lang.from('绿色')},
+                    {value: 'blue', label: Lang.from('蓝色')},
+                    {value: 'violet', label: Lang.from('紫色')},
+                    {value: 'gray', label: Lang.from('灰色')},
+
                 ],
 
 

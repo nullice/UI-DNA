@@ -13,7 +13,7 @@
              class="option_list  {{in_class}}"
              >
             <attr-option v-for="item in options"
-                         v-bind:value="item.value||'none'"
+                         v-bind:value="item.value||'noneValue'"
                          v-bind:hr="item.hr"
                          v-bind:br="item.br"
                          v-bind:label="item.label"
@@ -46,7 +46,7 @@
             overflow: hidden;
             transition: .3s all;
             opacity: 0;
-            z-index: 33;
+            z-index: 44;
             background: rgb(245, 245, 245);
 
             box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.11), 0px 5px 6px rgba(34, 34, 34, 0.15);
