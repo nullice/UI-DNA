@@ -1,10 +1,8 @@
 <template>
-    <a-area area_title="选中图层" area_id="layer_selectors">
+    <a-area area_title="选中图层" area_id="layer_selectors"
+            v-bind:area_disable_fixbut="true">
         <div class="mini_info">
-            <!--<input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name|lowercase}}" autocomplete="off" checked-->
-            <!--v-model:value="enable_assign">-->
-            <!--<label class="exmo_button_icon mini" for="check_btn_{{name|lowercase}}"><i-->
-            <!--class="icon-layer-visible"></i></label>-->
+           <span class="layerNumber">{{Gob.selectList.length}}</span>
         </div>
 
         <div class="layers_list">
@@ -53,6 +51,24 @@
 
 <style lang="scss" rel="stylesheet/scss">
 
+    .layers_list {
+        max-height: 76px;
+        overflow-y: scroll;
+
+        span.layerNumber {
+            font-size: 11px;
+            background: #AEAEAE;
+            color: #fff;
+            padding: 1px 6px;
+            border-radius: 4px;
+        }
+    }
+
+    .mini_info {
+        position: absolute;
+        top: 6px;
+        left: 77px;
+    }
     .layer-item {
         font-size: 11px;
         color: #666;

@@ -45,7 +45,6 @@ var SetSystem = function ()
     }
 
 
-
     this.autoRender = false;
     this.init();
     return this;

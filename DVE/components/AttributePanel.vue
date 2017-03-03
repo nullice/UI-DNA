@@ -11,6 +11,7 @@
     ></vue-color-cylinder>
 
     <a-area area_title="UI-DNA 属性" area_id="attr_panel">
+
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position"
                    name="group1" id="option1" autocomplete="off" checked>

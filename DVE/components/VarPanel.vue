@@ -1,5 +1,8 @@
 <template>
-    <a-area area_title="变量列表" area_id="var_panel">
+    <a-area area_title="变量列表" area_id="var_panel"
+            v-bind:area_suspend="true"
+            v-bind:area_disable_fixbut="true">
+
         <bubble-box v-if="o_msg_bubble.var_panel.show"
                     v-bind:msg="o_msg_bubble.var_panel.msg"
                     v-bind:msg_title="o_msg_bubble.var_panel.title"
@@ -22,13 +25,11 @@
         </div>
 
 
+        <div class="var_list_filter">
+            <span class="icon" title="{{'过滤名称'|lang}}"><i class="icon-filter"></i></span>
+            <input type="text" title="{{'过滤名称'|lang}}" class="exmo_input_text  " v-model="o_filter_key">
+        </div>
         <div class="var_list">
-            <div class="var_list_filter">
-                <span class="icon" title="{{'过滤名称'|lang}}"><i class="icon-filter"></i></span>
-                <input type="text" title="{{'过滤名称'|lang}}" class="exmo_input_text  " v-model="o_filter_key">
-            </div>
-
-
             <!--todo:计划增加拼音、假名过滤支持-->
             <div class="var_item" v-for="a_var in vars |  filterBy o_filter_key in 'name'">
                 <edit-text-label
@@ -55,6 +56,12 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
+
+
+    .var_list {
+        height: calc(100% - 51px);
+        overflow-y: auto;
+    }
 
     .var_item {
         margin: 0 0;

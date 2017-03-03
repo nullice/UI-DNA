@@ -1,11 +1,31 @@
 <template>
-    <div class="exmo_area {{o_height_mode}}" v-bind:style="o_fixed_height?o_style_css:null">
+    <div class="exmo_area {{o_height_mode}} {{area_id}} {{area_suspend?'suspend':''}} "
+         v-bind:style="o_fixed_height?o_style_css:null"
+         v-bind:class="{'suspend':area_suspend, 'suspend_on':o_suspend_on, 'area_pad':'area_pad'}"
+    >
+
+
         <h2> {{area_title}} </h2>
+
+
         <div class="area_tool">
-            <input v-model="o_fixed_height" type="checkbox" class="exmo_icon_cheackbox " id="check_btn_{{area_id}}_1"
-                   autocomplete="off">
-            <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1"><i
-                    class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i></label>
+
+            <div class="tool" v-if="!area_disable_fixbut">
+                <input v-model="o_fixed_height" type="checkbox" class="exmo_icon_cheackbox "
+                       id="check_btn_{{area_id}}_1"
+                       autocomplete="off">
+                <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1"><i
+                        class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i></label>
+            </div>
+
+            <div class="tool" v-if="area_disable_fixbut">
+
+                <label v-on:click="o_suspend_on=!o_suspend_on"
+                       class="exmo_button_icon mini"><i
+                        class="{{o_suspend_on?'icon-shrink2':'icon-enlarge2'}}"></i></label>
+            </div>
+
+
         </div>
 
         <slot></slot>
@@ -22,7 +42,7 @@
 <script>
 
     export default {
-        props: ['area_title', "area_id", "area_hight"],
+        props: ['area_title', "area_id", "area_hight", "area_disable_fixbut", "area_suspend", "area_pad"],
 
         ready: function ()
         {
@@ -37,6 +57,8 @@
             return {
                 o_fixed_height: false,
                 o_height: 222,
+                o_suspend_on: false,
+                o_suspend_max_on: false,
                 o_last_offset: 0,
                 o_style_css: {
                     height: "223px",
@@ -99,7 +121,7 @@
 
 </script>
 
-<style lang="scss">
+<style lang="scss" rel="stylesheet/scss">
 
 
     .exmo_drag {
@@ -114,15 +136,16 @@
 
     .exmo_area {
         position: relative;
+        overflow: hidden;
+        transition: all .2s;
 
-    /*transition: all .5s;*/
+        /*transition: all .5s;*/
 
-    &
-    .mod_fixed_height {
-        /*height: 200px;*/
-        overflow: scroll;
-        overflow-x: hidden;
-    }
+        &.mod_fixed_height {
+            /*height: 200px;*/
+            overflow: scroll;
+            overflow-x: hidden;
+        }
 
     }
 
@@ -136,24 +159,52 @@
         right: 10px;
         display: none;
 
-    .exmo_button_icon i {
-        color: #ABABAB;
+        .exmo_button_icon i {
+            color: #ABABAB;
 
-        font-size: 11px;
+            font-size: 11px;
+        }
+
+        .exmo_icon_cheackbox:checked + .exmo_button_icon {
+            border: none;
+            background: rgba(80, 80, 80, 0.09);
+            margin-right: -2px;
+        }
+
+        .exmo_button_icon.mini {
+            padding: 0 4px;
+            padding-bottom: 2px;
+        }
+
     }
 
-    .exmo_icon_cheackbox:checked + .exmo_button_icon {
-        border: none;
-        background: rgba(80, 80, 80, 0.09);
-        margin-right: -2px;
+
+    .exmo_area.suspend
+    {
+        position: fixed;
+        bottom: 49px;
+        width: calc(100% - 32px);
+        z-index: 9;
+        background: #F0F0F0;
+        border-top: 2px solid rgba(0, 0, 0, 0.08);
+        height: 6px;
+
+        &.suspend_on{
+            box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.07);
+            height: 30%;
+        }
     }
 
-    .exmo_button_icon.mini {
-        padding: 0 4px;
-        padding-bottom: 2px;
+    .exmo_area.area_pad
+    {
+        max-height: 6px;
+
+        &.suspend_on{
+            max-height: 999px;
+        }
     }
 
-    }
+
 </style>
 
 

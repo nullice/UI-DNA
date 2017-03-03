@@ -45,7 +45,6 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-
     .express_pad {
         height: 50px;
         width: 100%;
@@ -54,6 +53,7 @@
         background: inherit;
         border-top: 2px solid rgba(0, 0, 0, 0.08);
         overflow: hidden;
+        z-index: 10;
 
         .more_option {
             position: absolute;
@@ -152,7 +152,7 @@
     }
 
     .bottom_pad {
-        height: 50px;
+        height: 88px;
     }
 
     .eff_animation_flip {
