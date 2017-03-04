@@ -15,40 +15,47 @@
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position"
                    name="group1" id="option1" autocomplete="off" checked>
-            <label class="btn btn_primary" for="option1" title="{{'位置' |lang}}"
-                   v-on:contextmenu.prevent="onlySelect('position')">
+            <label class="btn btn_primary" title="{{'位置' |lang}}"
+                   v-on:contextmenu.prevent="selectOnce('position')"
+                   v-on:click="onlySelect('position')">
                 <span><i class="icon-enlarge icon_position "></i></span>
             </label>
 
             <input type="checkbox" v-model="tagsActive.shape"
                    name="group1" id="option2" autocomplete="off">
-            <label class="btn btn_primary " for="option2" title="{{'形状' |lang}}"
-                   v-on:contextmenu.prevent="onlySelect('shape')">
+            <label class="btn btn_primary " title="{{'形状' |lang}}"
+                   v-on:contextmenu.prevent="selectOnce('shape')"
+                   v-on:click="onlySelect('shape')">
                 <span><i class="icon-sampler-graphics icon_shape"></i></span>
             </label>
 
             <input type="checkbox" v-model="tagsActive.text"
                    name="group1" id="option3" autocomplete="off" checked>
-            <label class="btn btn_primary " for="option3" title="{{'文字' |lang}}"
-                   v-on:contextmenu.prevent="onlySelect('text')">
+            <label class="btn btn_primary " title="{{'文字' |lang}}"
+                   v-on:contextmenu.prevent="selectOnce('text')"
+                   v-on:click="onlySelect('text')">
+
                 <span><i class="icon-sampler-charStyle"></i></span>
             </label>
 
             <input type="checkbox" v-model="tagsActive.smartobject" id="option4" autocomplete="off">
-            <label class="btn btn_primary" for="option4" title="{{'智能对象' |lang}}"
-                   v-on:contextmenu.prevent="onlySelect('smartobject')">
+            <label class="btn btn_primary" title="{{'智能对象' |lang}}"
+                   v-on:contextmenu.prevent="selectOnce('smartobject')"
+                   v-on:click="onlySelect('smartobject')">
                 <span><i class="icon-layer-smartobject"></i></span>
             </label>
 
             <input type="checkbox" v-model="tagsActive.style" id="option5" autocomplete="off">
-            <label class="btn btn_primary" for="option5" title="{{'图层样式' |lang}}"
-                   v-on:contextmenu.prevent="onlySelect('style')">
+            <label class="btn btn_primary" title="{{'图层样式' |lang}}"
+                   v-on:contextmenu.prevent="selectOnce('style')"
+                   v-on:click="onlySelect('style')">
                 <span><i class="icon-libraries-addLayerStyle"></i></span>
             </label>
 
             <input type="checkbox" v-model="tagsActive.more" id="option6" autocomplete="off">
-            <label class="btn btn_primary" for="option6" title="{{'自定义' |lang}}"
-                   v-on:contextmenu.prevent="onlySelect('more')">
+            <label class="btn btn_primary" title="{{'自定义' |lang}}"
+                   v-on:contextmenu.prevent="selectOnce('more')"
+                   v-on:click="onlySelect('more')">
 
                 <span><i class="icon-cog icon_more"></i></span>
             </label>
@@ -57,7 +64,7 @@
 
         <div class="tag-box tag-position" v-show="tagsActive.position" v-bind:class="{active:tagsActive.position}"
              transition="trans-fade">
-            <h3> {{'位置' |lang}} </h3>
+            <h3><span> {{'位置' |lang}} </span></h3>
             <value-input name="X" v-bind:edit_value.sync="Gob.position.x"
                          v-bind:out_value.sync="Gob.position.assignment.x"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.x"
@@ -88,9 +95,9 @@
             <!--<comp-a></comp-a>-->
         </div>
 
-        <div class="tag-box tag-shape" v-show="tagsActive.shape" v-bind:class="{active:tagsActive.shape}"
+        <div class="tag-box tag-shape" v-show="tagsActive.shape" v-bind:class="{active:tagsActive.shape, 'advance_on':o_advance_shape}"
              transition="trans-fade">
-            <h3> {{'形状' |lang}} </h3>
+            <h3><span> {{'形状' |lang}} </span></h3>
             <color-input v-bind:name="Lang.from('填充')"
                          v-bind:title="Lang.from('填充')"
                          v-bind:out_value.sync="Gob.shape.assignment.fillColor"
@@ -128,146 +135,163 @@
                          mini="true"></value-input>
 
 
+            <br>
+            <input type="checkbox" id="advance_2" autocomplete="off"  v-model="o_advance_shape">
+            <label class="btn btn_primary" title="{{'高级' |lang}}"
+                   for="advance_2">
+                <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' |lang}}</span></span>
+            </label>
+            <div class="advance_box">
 
-            <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('对齐')"
-                          v-bind:title="Lang.from('描边对齐')"
-                          v-bind:value.sync="Gob.shape.lineAlignment"
-                          v-bind:select_style="{width:'64px'}"
-                          v-bind:list_style="{width:'132px'}"
-                          v-bind:options="o_shape_lineAlignment_options"
-                          in_class="text_line_alignment"
-            >
+                <select-input v-bind:block="false" default_value=""
+                              v-bind:name="Lang.from('对齐')"
+                              v-bind:title="Lang.from('描边对齐')"
+                              v-bind:value.sync="Gob.shape.lineAlignment"
+                              v-bind:select_style="{width:'64px'}"
+                              v-bind:list_style="{width:'132px'}"
+                              v-bind:options="o_shape_lineAlignment_options"
+                              in_class="text_line_alignment"
+                >
 
-                <value-input v-bind:name="Lang.from('对齐')"
-                             v-bind:title="Lang.from('描边对齐')"
-                             v-bind:edit_value.sync="Gob.shape.lineAlignment"
-                             v-bind:out_value.sync="Gob.shape.assignment.lineAlignment"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineAlignment"
-                             mini="true"
-                             ></value-input>
+                    <value-input v-bind:name="Lang.from('对齐')"
+                                 v-bind:title="Lang.from('描边对齐')"
+                                 v-bind:edit_value.sync="Gob.shape.lineAlignment"
+                                 v-bind:out_value.sync="Gob.shape.assignment.lineAlignment"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineAlignment"
+                                 mini="true"
+                    ></value-input>
 
-            </select-input>
-
-
-
-            <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('端点')"
-                          v-bind:title="Lang.from('描边端点')"
-                          v-bind:value.sync="Gob.shape.lineCapType"
-                          v-bind:select_style="{width:'64px'}"
-                          v-bind:list_style="{width:'132px'}"
-                          v-bind:options="o_shape_lineCapType_options"
-                          in_class="text_line_cap_type"
-            >
-                <value-input v-bind:name="Lang.from('端点')"
-                             v-bind:title="Lang.from('描边端点')"
-                             v-bind:edit_value.sync="Gob.shape.lineCapType"
-                             v-bind:out_value.sync="Gob.shape.assignment.lineCapType"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineCapType"
-                             mini="true"
-                             ></value-input>
-            </select-input>
+                </select-input>
 
 
+                <select-input v-bind:block="false" default_value=""
+                              v-bind:name="Lang.from('端点')"
+                              v-bind:title="Lang.from('描边端点')"
+                              v-bind:value.sync="Gob.shape.lineCapType"
+                              v-bind:select_style="{width:'64px'}"
+                              v-bind:list_style="{width:'132px'}"
+                              v-bind:options="o_shape_lineCapType_options"
+                              in_class="text_line_cap_type"
+                >
+                    <value-input v-bind:name="Lang.from('端点')"
+                                 v-bind:title="Lang.from('描边端点')"
+                                 v-bind:edit_value.sync="Gob.shape.lineCapType"
+                                 v-bind:out_value.sync="Gob.shape.assignment.lineCapType"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineCapType"
+                                 mini="true"
+                    ></value-input>
+                </select-input>
+
+                <select-input v-bind:block="false" default_value=""
+                              v-bind:name="Lang.from('角点')"
+                              v-bind:title="Lang.from('描边角点')  "
+                              v-bind:value.sync="Gob.shape.lineJoinType"
+                              v-bind:select_style="{width:'64px'}"
+                              v-bind:list_style="{width:'132px'}"
+                              v-bind:options="o_shape_lineJoinType_options"
+                              in_class="text_line_cap_type"
+                >
+                    <value-input v-bind:name="Lang.from(Lang.from('角点'))"
+                                 v-bind:title="Lang.from('描边角点')"
+                                 v-bind:edit_value.sync="Gob.shape.lineJoinType"
+                                 v-bind:out_value.sync="Gob.shape.assignment.lineJoinType"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineJoinType"
+                                 mini="true"
+                    >
+                    </value-input>
+                </select-input>
 
 
-            <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('角点')"
-                          v-bind:title="Lang.from('描边角点')  "
-                          v-bind:value.sync="Gob.shape.lineJoinType"
-                          v-bind:select_style="{width:'64px'}"
-                          v-bind:list_style="{width:'132px'}"
-                          v-bind:options="o_shape_lineJoinType_options"
-                          in_class="text_line_cap_type"
-            >
-                <value-input v-bind:name="Lang.from(Lang.from('角点'))"
-                             v-bind:title="Lang.from('描边角点')"
-                             v-bind:edit_value.sync="Gob.shape.lineJoinType"
-                             v-bind:out_value.sync="Gob.shape.assignment.lineJoinType"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineJoinType"
-                             mini="true"
-                             >
-                </value-input>
-            </select-input>
+                <div><br>
+                    <div class="exmo_box_name">圆角弧度</div>
+                </div>
+                <div>
+                    <value-input v-bind:name="Lang.from('右上')"
+                                 v-bind:title="Lang.from('右上')"
+                                 v-bind:edit_value.sync="Gob.shape.radian.topRight"
+                                 v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                                 mini="true"></value-input>
+
+                    <value-input v-bind:name="Lang.from('左上')"
+                                 v-bind:title="Lang.from('左上')"
+                                 v-bind:edit_value.sync="Gob.shape.radian.topLeft"
+                                 v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                                 mini="true"></value-input>
+
+                    <value-input v-bind:name="Lang.from('右下')"
+                                 v-bind:title="Lang.from('右下')"
+                                 v-bind:edit_value.sync="Gob.shape.radian.bottomRight"
+                                 v-bind:out_value.sync="Gob.shape.assignment.radian.bottomRight"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomRight"
+                                 mini="true"></value-input>
+
+                    <value-input v-bind:name="Lang.from('左下')"
+                                 v-bind:title="Lang.from('左下')"
+                                 v-bind:edit_value.sync="Gob.shape.radian.bottomLeft"
+                                 v-bind:out_value.sync="Gob.shape.assignment.radian.bottomLeft"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomLeft"
+                                 mini="true"></value-input>
+                </div>
+
+                <div>
+                    <div><br>
+                        <div class="exmo_box_name">形状位置</div>
+                    </div>
+                    <value-input v-bind:name="Lang.from('X')"
+                                 v-bind:title="Lang.from('X')"
+                                 v-bind:edit_value.sync="Gob.shape.shapeSize.x"
+                                 v-bind:out_value.sync="Gob.shape.assignment.shapeSize.x"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.x"
+                                 v-bind:mini="true"></value-input>
+
+                    <value-input v-bind:name="Lang.from('Y')"
+                                 v-bind:title="Lang.from('Y')"
+                                 v-bind:edit_value.sync="Gob.shape.shapeSize.y"
+                                 v-bind:out_value.sync="Gob.shape.assignment.shapeSize.y"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.y"
+                                 v-bind:mini="true"></value-input>
 
 
+                    <value-input v-bind:name="Lang.from('H')"
+                                 v-bind:title="Lang.from('H')"
+                                 v-bind:edit_value.sync="Gob.shape.shapeSize.h"
+                                 v-bind:out_value.sync="Gob.shape.assignment.shapeSize.h"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.h"
+                                 v-bind:mini="true"></value-input>
 
 
+                    <value-input v-bind:name="Lang.from('W')"
+                                 v-bind:title="Lang.from('W')"
+                                 v-bind:edit_value.sync="Gob.shape.shapeSize.w"
+                                 v-bind:out_value.sync="Gob.shape.assignment.shapeSize.w"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.w"
+                                 v-bind:mini="true"></value-input>
 
-
-
-            <div>
-                <div> <br><div class="exmo_box_name">形状位置</div></div>
-                <value-input v-bind:name="Lang.from('X')"
-                             v-bind:title="Lang.from('X')"
-                             v-bind:edit_value.sync="Gob.shape.shapeSize.x"
-                             v-bind:out_value.sync="Gob.shape.assignment.shapeSize.x"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.x"
-                             v-bind:mini="true"></value-input>
-
-                <value-input v-bind:name="Lang.from('Y')"
-                             v-bind:title="Lang.from('Y')"
-                             v-bind:edit_value.sync="Gob.shape.shapeSize.y"
-                             v-bind:out_value.sync="Gob.shape.assignment.shapeSize.y"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.y"
-                             v-bind:mini="true"></value-input>
-
-
-                <value-input v-bind:name="Lang.from('H')"
-                             v-bind:title="Lang.from('H')"
-                             v-bind:edit_value.sync="Gob.shape.shapeSize.h"
-                             v-bind:out_value.sync="Gob.shape.assignment.shapeSize.h"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.h"
-                             v-bind:mini="true"></value-input>
-
-
-                <value-input v-bind:name="Lang.from('W')"
-                             v-bind:title="Lang.from('W')"
-                             v-bind:edit_value.sync="Gob.shape.shapeSize.w"
-                             v-bind:out_value.sync="Gob.shape.assignment.shapeSize.w"
-                             v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.w"
-                             v-bind:mini="true"></value-input>
+                </div>
 
             </div>
 
-            <div> <br><div class="exmo_box_name">圆角弧度</div></div>
 
-            <value-input v-bind:name="Lang.from('右上')"
-                         v-bind:title="Lang.from('右上')"
-                         v-bind:edit_value.sync="Gob.shape.radian.topRight"
-                         v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
-                         mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('左上')"
-                         v-bind:title="Lang.from('左上')"
-                         v-bind:edit_value.sync="Gob.shape.radian.topLeft"
-                         v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
-                         mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('右下')"
-                         v-bind:title="Lang.from('右下')"
-                         v-bind:edit_value.sync="Gob.shape.radian.bottomRight"
-                         v-bind:out_value.sync="Gob.shape.assignment.radian.bottomRight"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomRight"
-                         mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('左下')"
-                         v-bind:title="Lang.from('左下')"
-                         v-bind:edit_value.sync="Gob.shape.radian.bottomLeft"
-                         v-bind:out_value.sync="Gob.shape.assignment.radian.bottomLeft"
-                         v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomLeft"
-                         mini="true"></value-input>
+
+
+
+
+
+
+
 
             <!--"-->
         </div>
 
 
-        <div class="tag-box tag-text" v-show="tagsActive.text" v-bind:class="{active:tagsActive.text}"
+        <div class="tag-box tag-text" v-show="tagsActive.text" v-bind:class="{active:tagsActive.text, 'advance_on':o_advance_text}"
              transition="trans-fade">
-            <h3> {{'文本' |lang}} </h3>
+            <h3><span> {{'文本' |lang}} </span></h3>
 
             <!--<vue-color-cylinder></vue-color-cylinder>-->
             <color-input v-bind:name="Lang.from('颜色')"
@@ -276,7 +300,7 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
                          v-bind:color.sync="Gob.text.color"
                          mini="true"
-            > </color-input>
+            ></color-input>
 
 
             <value-input v-bind:name="Lang.from('字体')"
@@ -286,19 +310,6 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.fontPostScriptName"
             ></value-input>
 
-            <value-input v-bind:name="Lang.from('粗体')"
-                         v-bind:title="Lang.from('仿粗体')"
-                         v-bind:edit_value.sync="Gob.text.bold"
-                         v-bind:out_value.sync="Gob.text.assignment.bold"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.bold"
-                         mini="true"></value-input>
-
-            <value-input v-bind:name="Lang.from('斜体')"
-                         v-bind:title="Lang.from('仿斜体')"
-                         v-bind:edit_value.sync="Gob.text.italic"
-                         v-bind:out_value.sync="Gob.text.assignment.italic"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.italic"
-                         mini="true"></value-input>
 
             <value-input v-bind:name="Lang.from('尺寸')"
                          v-bind:title="Lang.from('字体尺寸')"
@@ -307,105 +318,130 @@
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
                          mini="true"></value-input>
 
-            <value-input v-bind:name="Lang.from('基线')"
-                         v-bind:title="Lang.from('基线偏移')"
-                         v-bind:edit_value.sync="Gob.text.baselineShift"
-                         v-bind:out_value.sync="Gob.text.assignment.baselineShift"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
-                         mini="true"></value-input>
-
-            <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('模式')"
-                          v-bind:title="Lang.from('图层抗锯齿模式')"
-                          v-bind:value.sync="Gob.text.antiAlias"
-                          v-bind:select_style="{width:'64px'}"
-                          v-bind:options="o_text_antiAlias_options"
-                          in_class="text_antiAlias"
-            >
-                <value-input v-bind:name="Lang.from('模式')"
-                             v-bind:edit_value.sync="Gob.text.antiAlias"
-                             v-bind:out_value.sync="Gob.text.assignment.antiAlias"
-                             v-bind:enable_assign.sync="Gob.text.enableAssigns.antiAlias"
-                             mini="true"></value-input>
-            </select-input>
-
-
-            <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('划线')"
-                          v-bind:title="Lang.from('下划线')"
-                          v-bind:value.sync="Gob.text.underline"
-                          v-bind:select_style="{width:'64px'}"
-                          v-bind:options="o_text_underline_options"
-                          in_class="text_underline"
-            >
-                <value-input v-bind:name="Lang.from('划线')"
-                             v-bind:edit_value.sync="Gob.text.underline"
-                             v-bind:out_value.sync="Gob.text.assignment.underline"
-                             v-bind:enable_assign.sync="Gob.text.enableAssigns.underline"
-                             mini="true"></value-input>
-            </select-input>
-
-
-            <select-input v-bind:block="true" default_value=""
-                          v-bind:name="Lang.from('对齐')"
-                          v-bind:title="Lang.from('段落对齐')"
-                          v-bind:value.sync="Gob.text.justification"
-                          v-bind:select_style="{width:'64px'}"
-                          v-bind:list_style="{width:'132px'}"
-                          v-bind:options="o_text_justification_options"
-                          in_class="text_justification"
-            >
-                <value-input v-bind:name="Lang.from('对齐')"
-                             v-bind:edit_value.sync="Gob.text.justification"
-                             v-bind:out_value.sync="Gob.text.assignment.justification"
-                             v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
-                             mini="true"></value-input>
-
-
-            </select-input>
-
-
-            <value-input v-bind:name="Lang.from('行距')"
-                         v-bind:title="Lang.from('行距')"
-                         v-bind:edit_value.sync="Gob.text.leading"
-                         v-bind:out_value.sync="Gob.text.assignment.leading"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.leading"
-                         mini="true"></value-input>
-
-            <value-input v-bind:name="Lang.from('字距')"
-                         v-bind:title="Lang.from('字符间距')"
-                         v-bind:edit_value.sync="Gob.text.tracking"
-                         v-bind:out_value.sync="Gob.text.assignment.tracking"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.tracking"
-                         mini="true"></value-input>
-
-            <value-input v-bind:name="Lang.from('水平')"
-                         v-bind:title="Lang.from('水平缩放')"
-                         v-bind:edit_value.sync="Gob.text.horizontalScale"
-                         v-bind:out_value.sync="Gob.text.assignment.horizontalScale"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.horizontalScale"
-                         mini="true"></value-input>
-
-            <value-input v-bind:name="Lang.from('垂直')"
-                         v-bind:name="Lang.from('垂直缩放')"
-                         v-bind:edit_value.sync="Gob.text.verticalScale"
-                         v-bind:out_value.sync="Gob.text.assignment.verticalScale"
-                         v-bind:enable_assign.sync="Gob.text.enableAssigns.verticalScale"
-                         mini="true"></value-input>
-
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
                            v-bind:out_value.sync="Gob.text.assignment.text"
                            v-bind:enable_assign.sync="Gob.text.enableAssigns.text"
                            v-bind:enable_formula.sync="Gob.text.$enableTextFormula"
             ></attr-textarea>
+
+
+            <input type="checkbox" id="advance_1" autocomplete="off" v-model="o_advance_text">
+            <label class="btn btn_primary" title="{{'高级' |lang}}"
+                   for="advance_1">
+                <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' |lang}}</span></span>
+            </label>
+            <div class="advance_box">
+
+
+                <value-input v-bind:name="Lang.from('粗体')"
+                             v-bind:title="Lang.from('仿粗体')"
+                             v-bind:edit_value.sync="Gob.text.bold"
+                             v-bind:out_value.sync="Gob.text.assignment.bold"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.bold"
+                             mini="true"></value-input>
+
+                <value-input v-bind:name="Lang.from('斜体')"
+                             v-bind:title="Lang.from('仿斜体')"
+                             v-bind:edit_value.sync="Gob.text.italic"
+                             v-bind:out_value.sync="Gob.text.assignment.italic"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.italic"
+                             mini="true"></value-input>
+
+
+                <value-input v-bind:name="Lang.from('行距')"
+                             v-bind:title="Lang.from('行距')"
+                             v-bind:edit_value.sync="Gob.text.leading"
+                             v-bind:out_value.sync="Gob.text.assignment.leading"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.leading"
+                             mini="true"></value-input>
+
+                <value-input v-bind:name="Lang.from('字距')"
+                             v-bind:title="Lang.from('字符间距')"
+                             v-bind:edit_value.sync="Gob.text.tracking"
+                             v-bind:out_value.sync="Gob.text.assignment.tracking"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.tracking"
+                             mini="true"></value-input>
+
+                <value-input v-bind:name="Lang.from('水平')"
+                             v-bind:title="Lang.from('水平缩放')"
+                             v-bind:edit_value.sync="Gob.text.horizontalScale"
+                             v-bind:out_value.sync="Gob.text.assignment.horizontalScale"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.horizontalScale"
+                             mini="true"></value-input>
+
+                <value-input v-bind:name="Lang.from('垂直')"
+                             v-bind:name="Lang.from('垂直缩放')"
+                             v-bind:edit_value.sync="Gob.text.verticalScale"
+                             v-bind:out_value.sync="Gob.text.assignment.verticalScale"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.verticalScale"
+                             mini="true"></value-input>
+
+
+                <value-input v-bind:name="Lang.from('基线')"
+                             v-bind:title="Lang.from('基线偏移')"
+                             v-bind:edit_value.sync="Gob.text.baselineShift"
+                             v-bind:out_value.sync="Gob.text.assignment.baselineShift"
+                             v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
+                             mini="true"></value-input>
+
+                <select-input v-bind:block="false" default_value=""
+                              v-bind:name="Lang.from('模式')"
+                              v-bind:title="Lang.from('图层抗锯齿模式')"
+                              v-bind:value.sync="Gob.text.antiAlias"
+                              v-bind:select_style="{width:'64px'}"
+                              v-bind:options="o_text_antiAlias_options"
+                              in_class="text_antiAlias"
+                >
+                    <value-input v-bind:name="Lang.from('模式')"
+                                 v-bind:edit_value.sync="Gob.text.antiAlias"
+                                 v-bind:out_value.sync="Gob.text.assignment.antiAlias"
+                                 v-bind:enable_assign.sync="Gob.text.enableAssigns.antiAlias"
+                                 mini="true"></value-input>
+                </select-input>
+
+
+                <select-input v-bind:block="false" default_value=""
+                              v-bind:name="Lang.from('划线')"
+                              v-bind:title="Lang.from('下划线')"
+                              v-bind:value.sync="Gob.text.underline"
+                              v-bind:select_style="{width:'64px'}"
+                              v-bind:options="o_text_underline_options"
+                              in_class="text_underline"
+                >
+                    <value-input v-bind:name="Lang.from('划线')"
+                                 v-bind:edit_value.sync="Gob.text.underline"
+                                 v-bind:out_value.sync="Gob.text.assignment.underline"
+                                 v-bind:enable_assign.sync="Gob.text.enableAssigns.underline"
+                                 mini="true"></value-input>
+                </select-input>
+
+
+                <select-input v-bind:block="true" default_value=""
+                              v-bind:name="Lang.from('对齐')"
+                              v-bind:title="Lang.from('段落对齐')"
+                              v-bind:value.sync="Gob.text.justification"
+                              v-bind:select_style="{width:'64px'}"
+                              v-bind:list_style="{width:'132px'}"
+                              v-bind:options="o_text_justification_options"
+                              in_class="text_justification"
+                >
+                    <value-input v-bind:name="Lang.from('对齐')"
+                                 v-bind:edit_value.sync="Gob.text.justification"
+                                 v-bind:out_value.sync="Gob.text.assignment.justification"
+                                 v-bind:enable_assign.sync="Gob.text.enableAssigns.justification"
+                                 mini="true"></value-input>
+                </select-input>
+
+            </div>
+
+
         </div>
 
 
-
-
-        <div class="tag-box tag-smartobject" v-show="tagsActive.smartobject" v-bind:class="{active:tagsActive.smartobject}"
+        <div class="tag-box tag-smartobject" v-show="tagsActive.smartobject"
+             v-bind:class="{active:tagsActive.smartobject}"
              transition="trans-fade">
-            <h3> {{'智能对象' |lang}} </h3>
+            <h3><span> {{'智能对象' |lang}} </span></h3>
 
             <div class="attr-checkbox">
                 <label class="exmo_checkbox">
@@ -431,12 +467,12 @@
                          v-bind:enable_assign.sync="Gob.smartObject.enableAssigns.fileReference"
             ></value-input>
 
-           <!--<code>{{Gob.smartObject|json}}</code>-->
+            <!--<code>{{Gob.smartObject|json}}</code>-->
         </div>
 
         <div class="tag-box tag-style" v-show="tagsActive.style" v-bind:class="{active:tagsActive.style}"
              transition="trans-fade">
-            <h3> {{'阴影' |lang}} </h3>
+            <h3><span> {{'阴影' |lang}} </span></h3>
 
             <value-input v-bind:name="Lang.from('X')"
                          v-bind:title="Lang.from('阴影水平偏移')"
@@ -477,7 +513,7 @@
                          v-bind:color.sync="Gob.quickEffect.dropShadow.color"
                          v-bind:opacity.sync="Gob.quickEffect.dropShadow.opacity"
                          mini="true"
-            > </color-input>
+            ></color-input>
 
 
             <value-input v-bind:name=""
@@ -489,7 +525,7 @@
                          mini="true"
             ></value-input>
 
-            <h3> {{'图层样式' |lang}} </h3>
+            <h3><span> {{'图层样式' |lang}} </span></h3>
             <value-input v-bind:name="Lang.from('全部')"
                          v-bind:title="Lang.from('全部图层样式')"
                          v-bind:edit_value.sync="Gob.quickEffect.copyEffect_All"
@@ -503,7 +539,7 @@
         <div class="tag-box tag-more" v-show="tagsActive.more" v-bind:class="{active:tagsActive.more}"
              transition="trans-fade">
 
-            <h3> {{'信息' |lang}} </h3>
+            <h3><span> {{'信息' |lang}} </span></h3>
             <value-input v-bind:name="Lang.from('名称')"
                          v-bind:title="Lang.from('图层名称')"
                          v-bind:edit_value.sync="Gob.more.layerName"
@@ -529,8 +565,7 @@
             </select-input>
 
 
-
-            <h3> {{'外观' |lang}} </h3>
+            <h3><span> {{'外观' |lang}} </span></h3>
             <value-input v-bind:name=""
                          v-bind:title="Lang.from('图层不透明度')"
                          name_html="<i class='icon-uniE9B5'></i>"
@@ -575,8 +610,7 @@
             </div>
 
 
-
-            <h3> {{'自定义' |lang}} </h3>
+            <h3><span> {{'自定义' |lang}} </span></h3>
 
             <value-input v-bind:name="Lang.from('标签')"
                          v-bind:title="Lang.from('自定义标签')"
@@ -603,96 +637,92 @@
             >
 
             </select-input>
-                <div>
-                    <value-input
-                            v-show="o_show_name_group == 0"
-                            v-bind:name="Lang.from('0')"
-                            v-bind:title="Lang.from('名称组0')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup0"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup0"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup0"
-                    ></value-input>
+            <div>
+                <value-input
+                        v-show="o_show_name_group == 0"
+                        v-bind:name="Lang.from('0')"
+                        v-bind:title="Lang.from('名称组0')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup0"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup0"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup0"
+                ></value-input>
 
-                    <value-input
-                            v-show="o_show_name_group == 1"
-                            v-bind:name="Lang.from('1')"
-                            v-bind:title="Lang.from('名称组1')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup1"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup1"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup1"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 2"
-                            v-bind:name="Lang.from('2')"
-                            v-bind:title="Lang.from('名称组2')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup2"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup2"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup2"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 3"
-                            v-bind:name="Lang.from('3')"
-                            v-bind:title="Lang.from('名称组3')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup3"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup3"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup3"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 4"
-                            v-bind:name="Lang.from('4')"
-                            v-bind:title="Lang.from('名称组4')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup4"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup4"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup4"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 5"
-                            v-bind:name="Lang.from('5')"
-                            v-bind:title="Lang.from('名称组5')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup5"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup5"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup5"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 6"
-                            v-bind:name="Lang.from('6')"
-                            v-bind:title="Lang.from('名称组6')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup6"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup6"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup6"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 7"
-                            v-bind:name="Lang.from('7')"
-                            v-bind:title="Lang.from('名称组7')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup7"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup7"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup7"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 8"
-                            v-bind:name="Lang.from('8')"
-                            v-bind:title="Lang.from('名称组8')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup8"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup8"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup8"
-                    ></value-input>
-                    <value-input
-                            v-show="o_show_name_group == 9"
-                            v-bind:name="Lang.from('9')"
-                            v-bind:title="Lang.from('名称组9')"
-                            v-bind:edit_value.sync="Gob.more.$nameGroup9"
-                            v-bind:out_value.sync="Gob.more.assignment.$nameGroup9"
-                            v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup9"
-                    ></value-input>
-                </div>
-
-
-
+                <value-input
+                        v-show="o_show_name_group == 1"
+                        v-bind:name="Lang.from('1')"
+                        v-bind:title="Lang.from('名称组1')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup1"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup1"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup1"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 2"
+                        v-bind:name="Lang.from('2')"
+                        v-bind:title="Lang.from('名称组2')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup2"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup2"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup2"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 3"
+                        v-bind:name="Lang.from('3')"
+                        v-bind:title="Lang.from('名称组3')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup3"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup3"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup3"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 4"
+                        v-bind:name="Lang.from('4')"
+                        v-bind:title="Lang.from('名称组4')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup4"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup4"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup4"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 5"
+                        v-bind:name="Lang.from('5')"
+                        v-bind:title="Lang.from('名称组5')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup5"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup5"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup5"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 6"
+                        v-bind:name="Lang.from('6')"
+                        v-bind:title="Lang.from('名称组6')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup6"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup6"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup6"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 7"
+                        v-bind:name="Lang.from('7')"
+                        v-bind:title="Lang.from('名称组7')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup7"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup7"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup7"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 8"
+                        v-bind:name="Lang.from('8')"
+                        v-bind:title="Lang.from('名称组8')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup8"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup8"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup8"
+                ></value-input>
+                <value-input
+                        v-show="o_show_name_group == 9"
+                        v-bind:name="Lang.from('9')"
+                        v-bind:title="Lang.from('名称组9')"
+                        v-bind:edit_value.sync="Gob.more.$nameGroup9"
+                        v-bind:out_value.sync="Gob.more.assignment.$nameGroup9"
+                        v-bind:enable_assign.sync="Gob.more.enableAssigns.$nameGroup9"
+                ></value-input>
+            </div>
 
 
         </div>
-
 
 
     </a-area>
@@ -710,8 +740,6 @@
     /*opacity: 1;*/
     /*transition: all .5s;*/
     /*}*/
-
-
 
     i.icon_position {
         font-size: 11px !important;
@@ -733,6 +761,7 @@
 
     .tag-position.trans-fade-transition {
         height: 130px;
+        margin-bottom: 28px;
 
     }
 
@@ -745,22 +774,36 @@
     }
 
     .tag-text.trans-fade-transition {
-        height: 600px;
+        height: 260px;
+        &.advance_on
+        {
+            height: 500px;
+        }
 
     }
+
+
     .tag-shape.trans-fade-transition {
-        height: 450px;
-
+        height: 155px;
+        &.advance_on
+        {
+            height: 500px;
+        }
     }
+
     .tag-style.trans-fade-transition {
-        height: 450px;
+        height: 250px;
 
     }
+
     .tag-more.trans-fade-transition {
         height: 450px;
 
     }
 
+    .exmo_area.attr_panel {
+        overflow: visible;
+    }
 
     .trans-fade-transition {
         transition: all .3s ease;
@@ -777,15 +820,55 @@
     }
 
     /*-----*/
-    .attr_select.text_justification i{
-        font-size: 16px!important;
+    .attr_select.text_justification i {
+        font-size: 16px !important;
     }
-
 
     .attr-checkbox {
         margin-left: 4px;
         margin-top: 16px;
     }
+
+    .advance_box {
+        overflow: hidden;
+    }
+
+    input[id^="advance"]:checked + label + .advance_box {
+        max-height: 999px;
+        transition: all .2s;
+    }
+
+    input[id^="advance"] + label + .advance_box {
+        max-height: 0px;
+        transition: all .3s;
+    }
+
+    input[id^="advance"] + label {
+        position: absolute;
+        right: 20px;
+    }
+
+    input[id^="advance"] + label span.text {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+
+    input[id^="advance"] + label i.select_triangle_icon.icon-play3 {
+        font-size: 11px !important;
+        color: #666 !important;
+        transform: rotate(90deg);
+        display: inline-block;
+    }
+
+    input[id^="advance"]:checked + label i.select_triangle_icon.icon-play3 {
+        transform: rotate(-90deg);
+    }
+
+    input[id^="advance"] {
+        height: 0;
+        width: 0;
+    }
+
 
 </style>
 
@@ -807,7 +890,7 @@
 
         ready: function ()
         {
-          console.log("--------------readyreadyreadyready--------------------")
+            console.log("--------------readyreadyreadyready--------------------")
         },
         methods: {
             onlySelect: function (tagName)
@@ -825,6 +908,10 @@
 
                 }
                 return false;
+            },
+            selectOnce: function (tagName)
+            {
+                this.tagsActive[tagName] = !this.tagsActive[tagName];
             }
 
         },
@@ -835,7 +922,10 @@
                 UI_model: UI_model,
                 Lang: Lang,
                 o_value: "",
-                o_show_name_group:0,
+                o_show_name_group: 0,
+                o_advance_shape:false,
+                o_advance_text:false,
+                o_advance_more:false,
                 o_positon_anchor_options: [
                     {
                         value: '0',
@@ -908,7 +998,7 @@
                     {value: 'underlineOnLeftInVertical', label: Lang.from('下')},
                     {value: 'underlineOnRightInVertical', label: Lang.from('右')},
                 ],
-                o_text_justification_options:[
+                o_text_justification_options: [
                     {value: 'left', label_html: "<i class='icon-text-left'>"},
                     {value: 'center', label_html: "<i class='icon-text-center'>"},
                     {value: 'right', label_html: "<i class='icon-text-right'>"},
@@ -918,22 +1008,22 @@
                     {value: 'justifyRight', label_html: "<i class='icon-text-justified-right'>"},
                 ],
 
-                o_shape_lineAlignment_options:[
+                o_shape_lineAlignment_options: [
                     {value: 'strokeStyleAlignInside', label: Lang.from('内部')},
                     {value: 'strokeStyleAlignCenter', label: Lang.from('中间')},
                     {value: 'strokeStyleAlignOutside', label: Lang.from('外部')},
                 ],
-                o_shape_lineCapType_options:[
+                o_shape_lineCapType_options: [
                     {value: 'strokeStyleButtCap', label: Lang.from('断面')},
                     {value: 'strokeStyleRoundCap', label: Lang.from('圆端')},
                     {value: 'strokeStyleSquareCap', label: Lang.from('平端')},
                 ],
-                o_shape_lineJoinType_options:[
+                o_shape_lineJoinType_options: [
                     {value: 'strokeStyleMiterJoin', label: Lang.from('直角')},
                     {value: 'strokeStyleRoundJoin', label: Lang.from('圆角')},
                     {value: 'strokeStyleBevelJoin', label: Lang.from('斜削')},
                 ],
-                o_more_mode_options:[
+                o_more_mode_options: [
                     {value: 'normal', label: Lang.from('正常')},
                     {value: 'darken', label: Lang.from('变暗')},
                     {hr: true},
@@ -967,7 +1057,7 @@
                     {value: 'color', label: Lang.from('颜色')},
                     {value: 'luminosity', label: Lang.from('明度')},
                 ],
-                o_more_namegroup_options:[
+                o_more_namegroup_options: [
                     {value: '0', label: setSystem.ui.panel.main.nameGroupTitle[0]},
                     {value: '1', label: setSystem.ui.panel.main.nameGroupTitle[1]},
                     {value: '2', label: setSystem.ui.panel.main.nameGroupTitle[2]},
@@ -979,7 +1069,7 @@
                     {value: '8', label: setSystem.ui.panel.main.nameGroupTitle[8]},
                     {value: '9', label: setSystem.ui.panel.main.nameGroupTitle[9]},
                 ],
-                o_more_layercolor_options:[
+                o_more_layercolor_options: [
                     {value: 'none', label: Lang.from('无')},
                     {value: 'red', label: Lang.from('红色')},
                     {value: 'orange', label: Lang.from('橙色')},
@@ -992,8 +1082,7 @@
                 ],
 
 
-
-        }
+            }
         },
         components: {
             "value-input": ValueInput,

@@ -51,15 +51,15 @@
 
 <style lang="scss" rel="stylesheet/scss">
 
-    .layers_list {
+    .mini_info {
         max-height: 76px;
-        overflow-y: scroll;
+        overflow-y: hidden;
 
         span.layerNumber {
-            font-size: 11px;
-            background: #AEAEAE;
-            color: #fff;
-            padding: 1px 6px;
+            font-size: 9px;
+            border: 1px solid rgba(69, 69, 69, 0.35);
+            color: #6C6C6C;
+            padding: 0px 5px;
             border-radius: 4px;
         }
     }
