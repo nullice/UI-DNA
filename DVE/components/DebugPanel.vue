@@ -5,7 +5,7 @@
 
 
            <pre>
-            <!--{{Gob.quickEffect |json}}-->
+         {{dataCaryon.layers|json}}
              </pre>
             <!--{{UI_model.msg_color_picker.color1 |json}}-->
 

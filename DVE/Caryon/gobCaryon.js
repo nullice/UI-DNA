@@ -495,8 +495,6 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
 
     } else
     {
-
-
             //0. 变量赋值属性
             if (_lastButOneName == "assignment" && _lastButOneName == "enableAssigns")
             {
@@ -505,7 +503,6 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                 flag_writeDataCaryon = true;
                 /************************/
             }
-
 
             //1. 文本值-------------------------------------------------
             if (_lastName == "text") //文本
@@ -718,11 +715,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                 }
                 //5. 值------------------------------------------------
                 /**/
-
-
             }
-
-
     }
 
 
@@ -784,7 +777,6 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                         if (isFormula) //如果是变量表达式先解析"普通变量"
                         {
                             var finValue = await varSystem.evalVar(value, this.selectList[i].id)
-
                         }
                         else if (_enableTextFormula)
                         {
@@ -887,6 +879,7 @@ GobCaryon.prototype._getData = function (names)
 
     return _valueFromObject(this, names, 0, true);
 }
+
 
 
 /**

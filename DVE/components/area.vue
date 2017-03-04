@@ -1,7 +1,7 @@
 <template>
     <div class="exmo_area {{o_height_mode}} {{area_id}} {{area_suspend?'suspend':''}} "
          v-bind:style="o_fixed_height?o_style_css:null"
-         v-bind:class="{'suspend':area_suspend, 'suspend_on':o_suspend_on, 'area_pad':'area_pad'}"
+         v-bind:class="{'suspend':area_suspend, 'suspend_on':o_suspend_on, 'area_pad':'area_pad','suspend_max':o_suspend_max_on}"
     >
 
 
@@ -17,6 +17,14 @@
                 <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1"><i
                         class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i></label>
             </div>
+
+            <div class="tool" v-if="area_disable_fixbut">
+
+                <label v-on:click="suspend_max_on"
+                       class="exmo_button_icon mini"><i
+                        class="{{o_suspend_max_on?'icon-uniE9D9':'icon-uniE9D9'}}"></i></label>
+            </div>
+
 
             <div class="tool" v-if="area_disable_fixbut">
 
@@ -78,6 +86,13 @@
             }
         },
         methods: {
+            suspend_max_on: function ()
+            {
+                this.o_suspend_max_on = !this.o_suspend_max_on;
+                this.o_suspend_on =  this.o_suspend_max_on ;
+
+            }
+            ,
             drag_heigth: function (e)
             {
                 this.o_height += e.screenY - this.o_last_offset;
@@ -123,6 +138,10 @@
 
 <style lang="scss" rel="stylesheet/scss">
 
+
+    .area_tool .tool {
+        display: inline-block;
+    }
 
     .exmo_drag {
         background: rgba(255, 0, 0, 0.0);
@@ -178,9 +197,7 @@
 
     }
 
-
-    .exmo_area.suspend
-    {
+    .exmo_area.suspend {
         position: fixed;
         bottom: 49px;
         width: calc(100% - 32px);
@@ -189,17 +206,20 @@
         border-top: 2px solid rgba(0, 0, 0, 0.08);
         height: 6px;
 
-        &.suspend_on{
+        &.suspend_on {
             box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.07);
             height: 30%;
         }
+
+        &.suspend_on.suspend_max {
+            height: calc(100% - 100px);
+        }
     }
 
-    .exmo_area.area_pad
-    {
+    .exmo_area.area_pad {
         max-height: 6px;
 
-        &.suspend_on{
+        &.suspend_on {
             max-height: 999px;
         }
     }

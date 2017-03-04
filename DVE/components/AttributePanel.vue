@@ -836,6 +836,7 @@
     input[id^="advance"]:checked + label + .advance_box {
         max-height: 999px;
         transition: all .2s;
+        overflow: visible;
     }
 
     input[id^="advance"] + label + .advance_box {
