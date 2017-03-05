@@ -27,7 +27,7 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.48614457">
+    <splitter split-orientation="horizontal" split-proportion="0.5108434">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
@@ -57,14 +57,13 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="gobCaryon.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="gobCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="378" column="15" lean-forward="false" selection-start-line="378" selection-start-column="8" selection-end-line="378" selection-end-column="15" />
+                <state relative-caret-position="491">
+                  <caret line="781" column="77" lean-forward="false" selection-start-line="781" selection-start-column="59" selection-end-line="781" selection-end-column="77" />
                   <folding>
                     <element signature="e#4458#6204#0" expanded="false" />
-                    <element signature="e#15009#15740#0" expanded="false" />
                     <element signature="e#15854#16933#0" expanded="false" />
                     <element signature="e#16955#22749#0" expanded="false" />
                     <element signature="e#27737#28289#0" expanded="false" />
@@ -85,8 +84,8 @@
           <file leaf-file-name="VarPanel.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/VarPanel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="588">
-                  <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
+                <state relative-caret-position="310">
+                  <caret line="69" column="34" lean-forward="true" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -102,16 +101,15 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="renderCaryon.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="renderCaryon.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="270">
-                  <caret line="214" column="30" lean-forward="false" selection-start-line="214" selection-start-column="26" selection-end-line="214" selection-end-column="30" />
+                <state relative-caret-position="479">
+                  <caret line="648" column="80" lean-forward="false" selection-start-line="648" selection-start-column="62" selection-end-line="648" selection-end-column="80" />
                   <folding>
                     <element signature="e#44#88#0" expanded="true" />
                     <element signature="e#14967#18096#0" expanded="false" />
-                    <element signature="e#18736#21686#0" expanded="false" />
-                    <marker date="1488711373101" expanded="false" signature="12905:14788" ph="{...}" />
+                    <marker date="1488718511119" expanded="false" signature="12905:14788" ph="{...}" />
                   </folding>
                 </state>
               </provider>
@@ -171,7 +169,7 @@
             <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="334">
-                  <caret line="668" column="25" lean-forward="false" selection-start-line="668" selection-start-column="16" selection-end-line="668" selection-end-column="25" />
+                  <caret line="675" column="25" lean-forward="false" selection-start-line="675" selection-start-column="16" selection-end-line="675" selection-end-column="25" />
                   <folding>
                     <element signature="e#44#88#0" expanded="true" />
                     <element signature="e#4856#5675#0" expanded="false" />
@@ -209,8 +207,8 @@
           <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2922">
-                  <caret line="1476" column="58" lean-forward="false" selection-start-line="1476" selection-start-column="58" selection-end-line="1476" selection-end-column="58" />
+                <state relative-caret-position="2577">
+                  <caret line="1557" column="29" lean-forward="true" selection-start-line="1557" selection-start-column="29" selection-end-line="1557" selection-end-column="29" />
                   <folding>
                     <element signature="e#21327#21725#0" expanded="false" />
                     <element signature="e#21786#22686#0" expanded="false" />
@@ -269,8 +267,8 @@
           <file leaf-file-name="Enzymes.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="400">
-                  <caret line="713" column="21" lean-forward="true" selection-start-line="713" selection-start-column="21" selection-end-line="713" selection-end-column="21" />
+                <state relative-caret-position="236">
+                  <caret line="718" column="0" lean-forward="false" selection-start-line="718" selection-start-column="0" selection-end-line="718" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -303,7 +301,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>混合</find>
       <find>blendMode</find>
       <find>picker_color</find>
       <find>vue-color-cylinder</find>
@@ -328,9 +325,10 @@
       <find>edit_value</find>
       <find>pickerMapStyle_h</find>
       <find>none</find>
-      <find>||</find>
       <find>__asyncSetCounter</find>
       <find>&gt;</find>
+      <find>.var_item</find>
+      <find>||</find>
       <find>||</find>
       <find>isAssignment</find>
     </findStrings>
@@ -382,7 +380,6 @@
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/bin/index.html" />
         <option value="$PROJECT_DIR$/components/ExpressionPanel.vue" />
-        <option value="$PROJECT_DIR$/components/VarPanel.vue" />
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-map.vue" />
         <option value="$PROJECT_DIR$/components/LayerSelectors.vue" />
         <option value="$PROJECT_DIR$/bin/CSS/styles.css" />
@@ -394,10 +391,11 @@
         <option value="$PROJECT_DIR$/components/AttributePanel_color.vue" />
         <option value="$PROJECT_DIR$/components/UI_model/UI_model.js" />
         <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
-        <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes.js" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
+        <option value="$PROJECT_DIR$/components/VarPanel.vue" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
+        <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
       </list>
     </option>
   </component>
@@ -752,12 +750,12 @@
       <workItem from="1487412650225" duration="48533000" />
       <workItem from="1487657263268" duration="67000" />
       <workItem from="1487657368982" duration="23765000" />
-      <workItem from="1487817984100" duration="229738000" />
+      <workItem from="1487817984100" duration="231968000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2296943000" />
+    <option name="totallyTimeSpent" value="2299173000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1203,7 +1201,7 @@
         <state relative-caret-position="21">
           <caret line="65" column="8098" lean-forward="false" selection-start-line="65" selection-start-column="8098" selection-end-line="65" selection-end-column="8098" />
           <folding>
-            <marker date="1488715677829" expanded="true" signature="1277876:1277888" ph="{...}" />
+            <marker date="1488716755436" expanded="true" signature="1277946:1277958" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1212,39 +1210,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="276">
           <caret line="64" column="30" lean-forward="false" selection-start-line="64" selection-start-column="30" selection-end-line="64" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="2311" column="45" lean-forward="false" selection-start-line="2311" selection-start-column="45" selection-end-line="2311" selection-end-column="45" />
-          <folding>
-            <element signature="e#14213#15109#0" expanded="false" />
-            <element signature="e#15164#16076#0" expanded="false" />
-            <element signature="e#16125#17104#0" expanded="false" />
-            <element signature="e#106383#110937#0" expanded="false" />
-            <element signature="e#133441#143245#0" expanded="false" />
-            <element signature="e#143300#147489#0" expanded="false" />
-            <element signature="e#147541#151112#0" expanded="false" />
-            <element signature="e#151166#155544#0" expanded="false" />
-            <element signature="e#155595#158657#0" expanded="false" />
-            <element signature="e#158710#163318#0" expanded="false" />
-            <element signature="e#163371#169509#0" expanded="false" />
-            <element signature="e#169564#172503#0" expanded="false" />
-            <element signature="e#172556#174597#0" expanded="false" />
-            <element signature="e#174653#187151#0" expanded="false" />
-            <element signature="e#187237#188422#0" expanded="false" />
-            <element signature="e#189671#190588#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/VarPanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="588">
-          <caret line="32" column="37" lean-forward="false" selection-start-line="32" selection-start-column="37" selection-end-line="32" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1277,14 +1242,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="713" column="21" lean-forward="true" selection-start-line="713" selection-start-column="21" selection-end-line="713" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/Richang_JSEX/objectOBJ.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -1295,28 +1252,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
+    <entry file="file://$PROJECT_DIR$/components/VarPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="668" column="25" lean-forward="false" selection-start-line="668" selection-start-column="16" selection-end-line="668" selection-end-column="25" />
+        <state relative-caret-position="310">
+          <caret line="69" column="34" lean-forward="true" selection-start-line="69" selection-start-column="34" selection-end-line="69" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="718" column="0" lean-forward="false" selection-start-line="718" selection-start-column="0" selection-end-line="718" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2577">
+          <caret line="1557" column="29" lean-forward="true" selection-start-line="1557" selection-start-column="29" selection-end-line="1557" selection-end-column="29" />
           <folding>
-            <element signature="e#44#88#0" expanded="true" />
-            <element signature="e#4856#5675#0" expanded="false" />
-            <element signature="e#5724#6782#0" expanded="false" />
-            <element signature="e#8417#9043#0" expanded="false" />
-            <element signature="e#12702#12708#0" expanded="false" />
-            <element signature="e#14967#18096#0" expanded="false" />
+            <element signature="e#21327#21725#0" expanded="false" />
+            <element signature="e#21786#22686#0" expanded="false" />
+            <element signature="e#29680#34503#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="2311" column="45" lean-forward="false" selection-start-line="2311" selection-start-column="45" selection-end-line="2311" selection-end-column="45" />
+          <folding>
+            <element signature="e#14213#15109#0" expanded="false" />
+            <element signature="e#15164#16076#0" expanded="false" />
+            <element signature="e#16125#17104#0" expanded="false" />
+            <element signature="e#106383#110937#0" expanded="false" />
+            <element signature="e#133441#143245#0" expanded="false" />
+            <element signature="e#143300#147489#0" expanded="false" />
+            <element signature="e#147541#151112#0" expanded="false" />
+            <element signature="e#151166#155544#0" expanded="false" />
+            <element signature="e#155595#158657#0" expanded="false" />
+            <element signature="e#158710#163318#0" expanded="false" />
+            <element signature="e#163371#169509#0" expanded="false" />
+            <element signature="e#169564#172503#0" expanded="false" />
+            <element signature="e#172556#174597#0" expanded="false" />
+            <element signature="e#174653#187151#0" expanded="false" />
+            <element signature="e#187237#188422#0" expanded="false" />
+            <element signature="e#189671#190588#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="378" column="15" lean-forward="false" selection-start-line="378" selection-start-column="8" selection-end-line="378" selection-end-column="15" />
+        <state relative-caret-position="491">
+          <caret line="781" column="77" lean-forward="false" selection-start-line="781" selection-start-column="59" selection-end-line="781" selection-end-column="77" />
           <folding>
             <element signature="e#4458#6204#0" expanded="false" />
-            <element signature="e#15009#15740#0" expanded="false" />
             <element signature="e#15854#16933#0" expanded="false" />
             <element signature="e#16955#22749#0" expanded="false" />
             <element signature="e#27737#28289#0" expanded="false" />
@@ -1333,14 +1327,14 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
+    <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2922">
-          <caret line="1476" column="58" lean-forward="false" selection-start-line="1476" selection-start-column="58" selection-end-line="1476" selection-end-column="58" />
+        <state relative-caret-position="479">
+          <caret line="648" column="80" lean-forward="false" selection-start-line="648" selection-start-column="62" selection-end-line="648" selection-end-column="80" />
           <folding>
-            <element signature="e#21327#21725#0" expanded="false" />
-            <element signature="e#21786#22686#0" expanded="false" />
-            <element signature="e#29680#34503#0" expanded="false" />
+            <element signature="e#44#88#0" expanded="true" />
+            <element signature="e#14967#18096#0" expanded="false" />
+            <marker date="1488718511119" expanded="false" signature="12905:14788" ph="{...}" />
           </folding>
         </state>
       </provider>

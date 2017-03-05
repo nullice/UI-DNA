@@ -67,6 +67,7 @@
         margin: 0 0;
         padding: 0 10px;
         position: relative;
+        -webkit-user-select: text;
         /*border: 1px solid rgba(0, 0, 0, 0);*/
 
         &:hover {

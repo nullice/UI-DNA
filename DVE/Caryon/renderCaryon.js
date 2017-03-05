@@ -644,7 +644,14 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
                         if (enableFormulaEval)
                         {
-                            toObject[x] = await varSystem.evalVar(object[x],layerId);
+                            if(x==="text")
+                            {
+                                toObject[x] = await varSystem.evalFormulasInText(object[x],layerId);
+                            }else
+                            {
+                                toObject[x] = await varSystem.evalVar(object[x],layerId);
+                            }
+
                         } else
                         {
                             toObject[x] = object[x];
