@@ -4,7 +4,7 @@
 
 import ARR from "./Richang_JSEX/arrayARR.js"
 import STR from "./Richang_JSEX/stringSTR.js"
-
+import TYP from "./Richang_JSEX/typeTYP.js"
 /**
  * 变量基本数据类型，主要封装 evalVar()
  * @param value
@@ -133,6 +133,46 @@ var VarSystem = function ()
         'cc': new VarType({name: 'cc', value: "#f01", type: null, isFormula: true, relatives: []}),
     };
 
+
+    /*变量可执行方法：*/
+    this.varFunctions = {
+        rgb: function (value, self)
+        {
+            ichiColor.set(value)
+            return ichiColor.rgb;
+        },
+        hsl: function (value, self)
+        {
+            ichiColor.set(value)
+            var c = ichiColor.hsl;
+            return `hsl(${c.h}, ${c.s}, ${c.l})`;
+        },
+        hsv: function (value, self)
+        {
+            ichiColor.set(value)
+            var c = ichiColor.hsv
+            return `hsv(${c.h}, ${c.s}, ${c.v})`;
+        },
+        cmyk: function (value, self)
+        {
+            ichiColor.set(value)
+            var cmyk = ichiColor.ex.colorRNA.CMYK()
+            return `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
+        },
+        lab: function (value, self)
+        {
+            ichiColor.set(value)
+            var c = ichiColor.ex.labPs
+            return `lab(${c.l}, ${c.a}, ${c.b})`;;
+        }
+    }
+
+
+    /*计数*/
+    this.$count = 0;
+    this.$layerount = 0;
+
+
     return this;
 }
 
@@ -238,8 +278,20 @@ VarSystem.prototype.layerSample = {
 VarSystem.prototype.evalVar = async function (varValue, thisId)
 {
     console.log("evalVar(" + varValue + ").", thisId)
+    var self = this
+    var result = this._execFunction_satrt(varValue)
 
-    var inVar = varValue;
+    if (result.funcName != undefined)
+    {
+        var inVar = result.value;
+        var hasFunction = true;
+    } else
+    {
+        var inVar = varValue;
+        var hasFunction = false;
+    }
+
+
     var notRecur = false;
     /*不递归*/
 
@@ -257,13 +309,35 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
     var increment = 0;
     for (let i = 0; i < varList.length; i++)
     {
-        var _this_var = this.vars[varList[i].name];
+
+        if (varList[i].name[0] == "$" || varList[i].name[0] == "￥")
+        {
+            var _this_var = {value: varList[i].name};
+        } else
+        {
+            var _this_var = this.vars[varList[i].name];
+        }
+
+
         if (_this_var !== undefined)
         {
             // console.log(varList[i].index + increment + "-" + varList[i].name.length)
             if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
             {
-                var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
+                if (ARR.hasMember(["计数", "count", "i"],) , _this_var.value.slice(1))
+                {
+                    var getValue = this.$count;
+                    this.$count++;
+                } else if (ARR.hasMember(["图层计数", "layerCount", "z"],) , _this_var.value.slice(1))
+                {
+                    var getValue = this.$layerCount;
+                }
+                else
+                {
+                    var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
+                }
+
+
             }
             else
             {
@@ -295,14 +369,27 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
     {
         if (inVar[0] == "#" || varValue[0] == ">")
         {
-            return inVar
+            return retrunFilter(inVar)
         }
 
-        return math.format(math.eval(inVar), {precision: 14})
+        return retrunFilter(math.format(math.eval(inVar), {precision: 14}))
     } catch (e)
     {
         console.error(`math.eval(${inVar})`, e)
-        return inVar
+        return retrunFilter(inVar)
+    }
+
+    function retrunFilter(value)
+    {
+
+        if (hasFunction)
+        {
+            return self._execFunction_end(value, result.funcName)
+        } else
+        {
+            return value
+        }
+
     }
 
 }
@@ -314,12 +401,53 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
  */
 VarSystem.prototype.isFormula = function (varValue)
 {
+    if (TYP.type(varValue) == "boolean")
+    {
+        return false;
+    }
+
     var varList = VarSystem.prototype.scanVarsInFormula(varValue);
     if (varList.length > 0)
     {
         return true;
     }
     return false;
+}
+
+
+VarSystem.prototype._execFunction_satrt = function (varValue)
+{
+
+    var re = /^[\w]*\(.+\)$/
+
+    if (re.test(varValue))
+    {
+        var _a = /^[\w]*\(/
+        var result = _a.exec(varValue)
+
+        if (result[0] != undefined)
+        {
+            var funcName = result[0].slice(0, result[0].length - 1)
+            var body = varValue.slice(result[0].length, varValue.length - 1)
+            return {value: body, funcName: funcName}
+        }
+    }
+    return {value: varValue, funcName: null}
+}
+
+
+VarSystem.prototype._execFunction_end = function (value, funcName)
+{
+
+    console.log(`_execFunction_end(${value},${funcName})`)
+    if (this.varFunctions[funcName] != undefined)
+    {
+        var func = this.varFunctions[funcName];
+        var result = func(funcName, this)
+        return result
+    }
+
+    return value
 }
 
 
@@ -384,7 +512,9 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 VarSystem.prototype.scanFormulasInText = function (formula, flat)
 {
 
-    var re = /{{\s*[\w\.]+\s*}}/g;
+    // var re = /{{\s*[\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
+    var re = /{{\s*[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_\$￥\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
+
     var varList = [];
     var resullt;
 

@@ -404,6 +404,8 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     console.group("1、变量赋值------------:")
     console.time("Assign_变量赋值耗时")
     this.__getLayerData_cache.layerId = null;
+    varSystem.$count = 0;
+    varSystem.$layerCount = 0;
     for (var layerId in dataCaryon.layers)
     {
         var propertyNames = ["position", "text", "shape", "smartObject", "quickEffect", "more"]
@@ -572,6 +574,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
         console.group("_copyValue", "layerId:", layerId)
         mRNA_DataLayers[layerId] = {};
         var temp = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
+        varSystem.$layerCount++;
         console.groupEnd()
     }
 
@@ -605,9 +608,10 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                                 if (object[x].$hex != undefined)
                                 {
                                     var enableFormulaEval = varSystem.isFormula(object[x].$hex);
+
                                     if (enableFormulaEval)
                                     {
-                                        var hex = await varSystem.evalVar(object[x].$hex,layerId );
+                                        var hex = await varSystem.evalVar(object[x].$hex, layerId);
                                     } else
                                     {
                                         var hex = object[x].$hex
@@ -628,11 +632,11 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                     }
                     else
                     {
-                        // console.log(x,object[x])
-                        if (x === "text")
+                        if (x == "text")
                         {
-                            if (object["$enableFormula"])
+                            if (object["$enableTextFormula"])
                             {
+                                console.log()
                                 var enableFormulaEval = true;
                             }
                         }
@@ -644,13 +648,15 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
                         if (enableFormulaEval)
                         {
-                            if(x==="text")
+                            // console.log(`enableFormulaEval`,x,object[x],layerId)
+                            if (x === "text")
                             {
-                                toObject[x] = await varSystem.evalFormulasInText(object[x],layerId);
-                            }else
+                                toObject[x] = await varSystem.evalFormulasInText(object[x], layerId);
+                            } else
                             {
-                                toObject[x] = await varSystem.evalVar(object[x],layerId);
+                                toObject[x] = await varSystem.evalVar(object[x], layerId);
                             }
+
 
                         } else
                         {
