@@ -4,8 +4,8 @@
         <value-input v-bind:name="name"
                      v-bind:title="title"
                      v-bind:edit_value.sync="o_color"
-                     v-bind:out_value.sync="edit_value"
-                     v-bind:enable_assign.sync="out_value"
+                     v-bind:out_value.sync="out_value"
+                     v-bind:enable_assign.sync="enable_assign"
                      v-bind:mini="mini"
                      v-bind:enable_uppercase="true"
 
@@ -181,7 +181,14 @@
             picker_color: function ()
             {
                 var self = this;
-                var alpha = this.opacity / 100 || 1;
+                if(this.opacity == undefined)
+                {
+                    var alpha =  1;
+                }else
+                {
+                    var alpha = this.opacity / 100
+                }
+
 
                 var set_color_callback = function (e)
                 {

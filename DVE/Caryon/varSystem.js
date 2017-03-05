@@ -71,7 +71,7 @@ VarType.prototype.updateRelatives = function (newFormula)
             var removeArr = ARR.difference(oldRelatives, newRelatives);
             for (var i = 0; i < removeArr.length; i++)
             {
-                if(varSystem.vars[removeArr[i]]!=undefined)
+                if (varSystem.vars[removeArr[i]] != undefined)
                 {
                     ARR.remove(varSystem.vars[removeArr[i]].relatives, this.name, true)
                 }
@@ -230,17 +230,30 @@ VarSystem.prototype.layerSample = {
 
 
 /**
- * 解析变量。计算变量把变量变成具体值。
- *
- **/
+ *  解析变量。计算变量把变量变成具体值。
+ * @param varValue
+ * @param thisId
+ * @returns {Promise.<*>}
+ */
 VarSystem.prototype.evalVar = async function (varValue, thisId)
 {
-    console.log("evalVar(" + varValue + ")", thisId)
+    console.log("evalVar(" + varValue + ").", thisId)
 
     var inVar = varValue;
-    var varList = [];
-    varList = VarSystem.prototype.scanVarsInFormula(varValue);
+    var notRecur = false;
+    /*不递归*/
 
+
+    if (inVar[0] == ">")
+    {
+        inVar = inVar.slice(1);
+        notRecur = true
+    }
+
+    var varList = [];
+    varList = VarSystem.prototype.scanVarsInFormula(inVar);
+
+    // console.info(inVar,varList)
     var increment = 0;
     for (let i = 0; i < varList.length; i++)
     {
@@ -251,9 +264,17 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
             if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
             {
                 var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
-            } else//                                                            ---普通变量
+            }
+            else
             {
-                var getValue = await this.evalVar(_this_var.value);
+                if (notRecur)
+                {
+                    var getValue = _this_var.value;
+                } else
+                {
+                    var getValue = await this.evalVar(_this_var.value);
+                }
+
             }
 
 
@@ -270,11 +291,9 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
 
 
     //修正 JavaScript 精度问题
-
-
     try
     {
-        if (inVar[0] == "#")
+        if (inVar[0] == "#" || varValue[0] == ">")
         {
             return inVar
         }
@@ -282,7 +301,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId)
         return math.format(math.eval(inVar), {precision: 14})
     } catch (e)
     {
-        console.error("math.eval(inVar)", e)
+        console.error(`math.eval(${inVar})`, e)
         return inVar
     }
 

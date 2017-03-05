@@ -716,13 +716,14 @@ Enzymes.prototype.evalEnhancer = async function (enhancer, thisId)
  * @returns {Promise}
  * @constructor
  */
-Enzymes.prototype.DNAExpress = function (mRNA_Layers, vars)
+Enzymes.prototype.DNAExpress = function (mRNA_Layers)
 {
     return new Promise(function (resolve, reject)
     {
 
+        var obJson = JSON.stringify(mRNA_Layers);
+        var _jsxCode = `EnzJSX.DNAExpress(${obJson})`
 
-        var _jsxCode = `EnzJSX.DNAExpress('${JSON.stringify(mRNA_Layers)}','${JSON.stringify(vars)}')`
         console.log(_jsxCode)
         evalScript(
             _jsxCode

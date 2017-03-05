@@ -5,6 +5,8 @@
 
 import ARR from "./Richang_JSEX/arrayARR.js"
 import TYP from "./Richang_JSEX/typeTYP.js"
+import OBJ from "./Richang_JSEX/objectOBJ.js"
+
 
 var RenderCaryon = function ()
 {
@@ -28,9 +30,6 @@ RenderCaryon.prototype.test = async function (x)
     await enzymes.selectLayer_byID(7);
     await enzymes.setLayerInfo_position_byId({h: x}, 7)
 }
-
-
-
 
 
 /**
@@ -135,9 +134,9 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
             if (namesLen == 3)
             {
-                if (_lastButOneName == "color")
+                if (ARR.hasMember(["color", "fillColor", "strokeColor"], _lastButOneName))
                 {
-                    var ob = hexToColorOb(value);
+                    var ob = hexToColorOb(value, _lastButOneName);
                 } else
                 {
                     var ob = {}
@@ -165,7 +164,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 ob[item] = value;
             }
 
-            if(item=="link")
+            if (item == "link")
             {
                 ob.linked = true
             }
@@ -185,10 +184,10 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
         {
             console.log("----[start:RenderCaryon：quickEffect:" + layerId + "]---")
 
-            if(names.length >2)
+            if (names.length > 2)
             {
                 var ob = {};
-                ob[names[1]]={}
+                ob[names[1]] = {}
                 ob[names[1]][item] = value;
 
                 if (namesLen > 3)
@@ -199,7 +198,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                     }
                 }
 
-            }else
+            } else
             {
                 var ob = {};
                 ob[item] = value;
@@ -242,10 +241,22 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     logger.groupEnd();
 
 //END-------------------
-    function hexToColorOb(hex)
+    function hexToColorOb(hex, colorObjectName)
     {
         ichiColor.set(hex);
-        var ob = {color: {"r": ichiColor.r, "g": ichiColor.g, "b": ichiColor.b}}
+
+        if (colorObjectName != undefined)
+        {
+            var ob = {}
+            ob[colorObjectName] = {"r": ichiColor.r, "g": ichiColor.g, "b": ichiColor.b};
+
+        }
+        else
+        {
+            var ob = {color: {"r": ichiColor.r, "g": ichiColor.g, "b": ichiColor.b}}
+
+        }
+
         return ob
     }
 }
@@ -283,6 +294,99 @@ RenderCaryon.prototype._getLayerData = async function (rootName, name, layerId)
 
 }
 
+RenderCaryon.prototype._getLayerDataByNamse = async function (rootName, names, layerId)
+{
+    var self = this;
+
+    console.log("_getLayerData:", rootName, "[" + names + "]", layerId)
+    //调用缓存：
+    if ((this.__getLayerData_cache.rootName == rootName) && (this.__getLayerData_cache.layerId == layerId))
+    {
+        return _returnFilter(OBJ.getObjectValueByNames(this.__getLayerData_cache.cache, names));
+    }
+
+
+    if (rootName == "position")
+    {
+        console.log("_getLayerData:getLayerInfo_position_byId")
+        var position = await Gob.getLayerInfoObejct_position(layerId);
+
+        _saveCache(position)
+        return OBJ.getObjectValueByNames(position, names)
+    }
+
+    if (rootName == "text")
+    {
+        console.log("_getLayerData:getLayerInfo_text_byId")
+        var text = await Gob.getLayerInfoObejct_text(layerId);
+
+        _saveCache(text)
+        return _returnFilter(OBJ.getObjectValueByNames(text, names))
+    }
+
+    if (rootName == "shape")
+    {
+        console.log("_getLayerData:getLayerInfo_shape_byId")
+        var shape = await Gob.getLayerInfoObejct_shape(layerId);
+
+        _saveCache(shape)
+        return _returnFilter(OBJ.getObjectValueByNames(shape, names))
+    }
+
+    if (rootName == "smartObject")
+    {
+        console.log("_getLayerData:getLayerInfo_smartObject_byId")
+        var smartObject = await Gob.getLayerInfoObejct_smartObject(layerId);
+
+        _saveCache(smartObject)
+        return _returnFilter(OBJ.getObjectValueByNames(smartObject, names))
+    }
+
+    if (rootName == "quickEffect")
+    {
+        console.log("_getLayerData:getLayerInfo_quickEffect_byId")
+        var quickEffect = await Gob.getLayerInfoObejct_quickEffect(layerId);
+
+        _saveCache(quickEffect)
+        return _returnFilter(OBJ.getObjectValueByNames(quickEffect, names))
+    }
+
+    if (rootName == "more")
+    {
+        console.log("_getLayerData:getLayerInfo_more_byId")
+        var more = await Gob.getLayerInfoObejct_more(layerId);
+
+        _saveCache(more)
+        return _returnFilter(OBJ.getObjectValueByNames(more, names))
+    }
+
+
+    function _saveCache(info)
+    {
+        self.__getLayerData_cache.rootName = rootName;
+        self.__getLayerData_cache.layerId = layerId;
+        self.__getLayerData_cache.cache = info;
+
+    }
+
+    function _returnFilter(value)
+    {
+        if (TYP.type(value) == "object")
+        {
+            if (value.$hex != undefined)
+            {
+                return value.$hex
+            }
+        }
+        else
+        {
+            return value
+        }
+
+    }
+
+}
+
 
 /**
  * 渲染当前文档
@@ -292,58 +396,166 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     this.status.rendering = true;
     var _this = this;
 
-    console.log("START【renderDocument】----------------")
-//  1、变量赋值-------------------------------------------------------------------
-    console.log("1、变量赋值------------:")
-    this.__getLayerData_cache.layerId = null;
+    logger.group("----------------START【renderDocument】----------------")
+    console.time("渲染文档耗时")
 
+//  1、变量赋值-------------------------------------------------------------------
+    /*把有 Assign 的图层属性赋值到 varSystem */
+    console.group("1、变量赋值------------:")
+    console.time("Assign_变量赋值耗时")
+    this.__getLayerData_cache.layerId = null;
     for (var layerId in dataCaryon.layers)
     {
-        if (dataCaryon.layers[layerId].position != undefined)
+        var propertyNames = ["position", "text", "shape", "smartObject", "quickEffect", "more"]
+        for (var i = 0; i < propertyNames.length; i++)
         {
-            await _doAssign(dataCaryon.layers[layerId], "position")
-            await _doAssign(dataCaryon.layers[layerId], "text")
+            if (dataCaryon.layers[layerId][propertyNames[i]] != undefined)
+            {
+                // await _doAssign(dataCaryon.layers[layerId], propertyNames[i]);
+                await _doAssignNames(dataCaryon.layers[layerId], propertyNames[i]);
+
+            }
         }
     }
 
-    console.log(varSystem.vars)
+    console.log("varSystem.vars", varSystem.vars)
+    console.timeEnd("Assign_变量赋值耗时")
+    console.groupEnd()
 
-    async function _doAssign(layer, propertyName)
+    // /**
+    //  * 执行分派变量
+    //  * @param layer
+    //  * @param propertyName
+    //  * @returns {Promise.<void>}
+    //  * @private
+    //  */
+    // async function _doAssign(layer, propertyName)
+    // {
+    //     if (layer[propertyName].assignment != undefined)
+    //     {
+    //         if (OBJ.isEmptyObject(layer[propertyName].assignment) != true)
+    //         {
+    //             console.log("_doAssign: assignment：", propertyName, layer[propertyName].assignment)
+    //             for (var n in layer[propertyName].assignment)
+    //             {
+    //                 if ((layer[propertyName].enableAssigns != undefined ) && (layer[propertyName].enableAssigns[n] == true))
+    //                 {
+    //                     if (layer[propertyName][n] != undefined)
+    //                     {
+    //                         if (varSystem.isFormula(layer[propertyName][n]))
+    //                         {
+    //                             var getValue = await varSystem.evalVar(layer[propertyName][n]);
+    //                         } else
+    //                         {
+    //                             var getValue = layer[propertyName][n];
+    //                         }
+    //                     } else
+    //                     {
+    //                         var getValue = await _this._getLayerData(propertyName, n, layer.id);
+    //                     }
+    //
+    //                     var _varNames = layer[propertyName].assignment[n].split((/[,，]/));//-----多个赋值："xx,ddd，cc"
+    //                     for (var i = 0; i < _varNames.length; i++)
+    //                     {
+    //                         if (varSystem.vars[_varNames[i]] != undefined)
+    //                         {
+    //                             console.log("_doAssign: setVarr:" + _varNames[i] + "=" + getValue)
+    //                             varSystem.vars[_varNames[i]].value = getValue;
+    //                         }
+    //
+    //                     }
+    //
+    //                 }
+    //             }
+    //
+    //         }
+    //
+    //     }
+    // }
+
+    /**
+     * 执行分派变量
+     * @param layer
+     * @param rootName
+     * @returns {Promise.<void>}
+     * @private
+     */
+    async function _doAssignNames(layer, rootName)
     {
-        if (layer[propertyName].assignment != undefined)
+        var undefinedAssign = (layer[rootName].assignment == undefined)
+        var emptyAssign = OBJ.isEmptyObject(layer[rootName].assignment)
+        var assignment = layer[rootName].assignment
+        var enableAssigns = layer[rootName].enableAssigns
+
+
+        if (!undefinedAssign && !emptyAssign)
         {
-            console.log("_doAssign: assignment：", layer[propertyName].assignment)
-            for (var n in layer[propertyName].assignment)
+            for (var x in assignment)
             {
-                if ((layer[propertyName].enableAssigns != undefined ) && (layer[propertyName].enableAssigns[n] == true))
+                await _asDo(assignment, [x])
+            }
+
+            async function _asDo(object, names)
+            {
+                console.info("_asDo4 - names:", names, object)
+                var assignmentValue = OBJ.getObjectValueByNames(object, names);
+                console.info("assignmentValue:", assignmentValue)
+
+                try
                 {
-                    if (layer[propertyName][n] != undefined)
+
+                    if (TYP.type(assignmentValue) == "objecet" && (OBJ.isEmptyObject(assignmentValue) != true))
                     {
-                        if (varSystem.isFormula(layer[propertyName][n]))
+                        for (var _x in assignmentValue)
                         {
-                            var getValue = await varSystem.evalVar(layer[propertyName][n]);
-                        } else
-                        {
-                            var getValue = layer[propertyName][n];
+                            await _asDo(assignmentValue, names.concat(_x))
                         }
+
                     } else
                     {
-                        var getValue = await _this._getLayerData(propertyName, n, layer.id);
-                    }
-                    var _varNames = layer[propertyName].assignment[n].split((/[,，]/));//-----多个赋值："xx,ddd，cc"
-                    for (var i = 0; i < _varNames.length; i++)
-                    {
-                        if (varSystem.vars[_varNames[i]] != undefined)
+                        var enable = OBJ.getObjectValueByNames(enableAssigns, names);
+                        if (enable)
                         {
-                            console.log("_doAssign: setVarr:" + _varNames[i] + "=" + getValue)
-                            varSystem.vars[_varNames[i]].value = getValue;
-                        }
+                            var dataCaryonValue = OBJ.getObjectValueByNames(layer[rootName], names);
+                            console.info("dataCaryonValue", dataCaryonValue)
+                            if (dataCaryonValue != undefined && (OBJ.isEmptyObject(dataCaryonValue) != true))
+                            {
+                                if (varSystem.isFormula(dataCaryonValue))
+                                {
+                                    var getValue = await varSystem.evalVar(dataCaryonValue);
+                                } else
+                                {
+                                    var getValue = dataCaryonValue;
+                                }
+                            } else
+                            {
+                                var getValue = await _this._getLayerDataByNamse(rootName, names, layer.id);
+                                console.info("getValue", getValue)
+                            }
 
+                            if (getValue != undefined)
+                            {
+                                var _varNames = assignmentValue.split((/[,，]/));//-----多个赋值："xx,ddd，cc"
+                                for (var i = 0; i < _varNames.length; i++)
+                                {
+                                    if (varSystem.vars[_varNames[i]] != undefined)
+                                    {
+                                        console.log("_doAssign: setVarr:" + _varNames[i] + "=" + getValue)
+                                        varSystem.vars[_varNames[i]].value = getValue;
+                                    }
+                                }
+                            }
+
+                        }
                     }
 
                 }
-            }
+                catch (e)
+                {
+                    console.error(e)
+                }
 
+            }
         }
     }
 
@@ -357,10 +569,10 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     for (var layerId in dataCaryon.layers)
     {
-        console.info("start _ id" + layerId)
+        console.group("_copyValue", "layerId:", layerId)
         mRNA_DataLayers[layerId] = {};
         var temp = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
-        console.info("end _ id" + layerId)
+        console.groupEnd()
     }
 
 
@@ -385,13 +597,38 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                 {
                     if (TYP.type(object[x]) === "object")
                     {
-                        toObject[x] = {};
-                        // console.log(`_copyValue(${object[x]}, ${layerId}, ${toObject[x]})`)
-                        await _copyValue(object[x], layerId, toObject[x])
+                        if (OBJ.isEmptyObject(object[x]) != true)
+                        {
+                            if (ARR.hasMember(["color", "fillColor", "strokeColor"], x))
+                            {
+                                toObject[x] = {};
+                                if (object[x].$hex != undefined)
+                                {
+                                    var enableFormulaEval = varSystem.isFormula(object[x].$hex);
+                                    if (enableFormulaEval)
+                                    {
+                                        var hex = await varSystem.evalVar(object[x].$hex,layerId );
+                                    } else
+                                    {
+                                        var hex = object[x].$hex
+                                    }
+                                    ichiColor.hex = hex
+                                    toObject[x].r = ichiColor.r;
+                                    toObject[x].g = ichiColor.g;
+                                    toObject[x].b = ichiColor.b;
+                                }
 
+                            } else
+                            {
+                                toObject[x] = {};
+                                // console.log(`object:`,x)
+                                await _copyValue(object[x], layerId, toObject[x])
+                            }
+                        }
                     }
                     else
                     {
+                        // console.log(x,object[x])
                         if (x === "text")
                         {
                             if (object["$enableFormula"])
@@ -403,9 +640,11 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                         {
                             var enableFormulaEval = varSystem.isFormula(object[x]);
                         }
+
+
                         if (enableFormulaEval)
                         {
-                            toObject[x] = await varSystem.evalVar(object[x]);
+                            toObject[x] = await varSystem.evalVar(object[x],layerId);
                         } else
                         {
                             toObject[x] = object[x];
@@ -424,8 +663,14 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
 //  3、ExtendScript 端渲染-------------------------------------------------------------------
     console.log("3、ExtendScript 端渲染")
-    await enzymes.DNAExpress(mRNA_DataLayers, varSystem.vars)
+    console.log("DNAExpress:", mRNA_DataLayers)
+
+    await enzymes.DNAExpress(mRNA_DataLayers)
     this.status.rendering = false;
+
+
+    console.timeEnd("渲染文档耗时")
+    logger.groupEnd("----------------START【renderDocument】----------------")
 }
 
 

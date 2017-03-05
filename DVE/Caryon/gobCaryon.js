@@ -492,230 +492,228 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         /************************/
         flag_writeDataCaryon = true;
         /************************/
-
     } else
     {
-            //0. 变量赋值属性
-            if (_lastButOneName == "assignment" && _lastButOneName == "enableAssigns")
+        //0. 变量赋值属性
+        if (names[1] == "assignment" || names[1] == "enableAssigns")
+        {
+            isAssignment = true;
+            /************************/
+            flag_writeDataCaryon = true;
+            /************************/
+        }else
+        //1. 文本值-------------------------------------------------
+        if (_lastName == "text") //文本
+        {
+            if (TYP.type(value) == "string")
             {
-                isAssignment = true;
-                /************************/
-                flag_writeDataCaryon = true;
-                /************************/
-            }
-
-            //1. 文本值-------------------------------------------------
-            if (_lastName == "text") //文本
-            {
-                if (TYP.type(value) == "string")
+                console.info("_getObjectValueByNames(this, names, 1).$enableTextFormula", _getObjectValueByNames(this, names, 1).$enableTextFormula)
+                if (_getObjectValueByNames(this, names, 1).$enableTextFormula)//检查是否启用了文本表达式
                 {
-                    console.info("_getObjectValueByNames(this, names, 1).$enableTextFormula", _getObjectValueByNames(this, names, 1).$enableTextFormula)
-                    if (_getObjectValueByNames(this, names, 1).$enableTextFormula)//检查是否启用了文本表达式
-                    {
-                        var _enableTextFormula = true
-                    } else
-                    {
-                        var _enableTextFormula = false
-                    }
-
-                    if (_enableTextFormula)//文本表达式
-                    {
-                        /************************/
-                        flag_writeDataCaryon = true;
-                        /************************/
-                    }
-                }
-            }
-            //2. 内置属性------------------------------------------------
-            else if (_lastName[0] === "$")
-            {
-                var _writeData = true;
-
-                if (_lastName == "$hex") //$hex 属性不写入 dataCaryon，只作为颜色改变的触发属性
+                    var _enableTextFormula = true
+                } else
                 {
-
-                    _writeData = false
-                    if (value == undefined)
-                    {
-                        _writeData = true;
-
-                    } else
-                    {
-                        if (value[0] != "#")
-                        {
-                            _writeData = true;
-                            isFormula = true
-                        }
-                    }
+                    var _enableTextFormula = false
                 }
 
-                if (_lastName == "$enableTextFormula")
-                {
-                    if (value == true)
-                    {
-                        var temp = this.text.text;
-                        this.text.text = ""
-                        this.text.text = temp
-                    }
-                    else
-                    {
-                        this.text.text = ""
-                    }
-
-                }
-
-
-                if (_writeData)
+                if (_enableTextFormula)//文本表达式
                 {
                     /************************/
                     flag_writeDataCaryon = true;
                     /************************/
                 }
-
             }
-            else
+        }
+        //2. 内置属性------------------------------------------------
+        else if (_lastName[0] === "$")
+        {
+            var _writeData = true;
+
+            if (_lastName == "$hex") //$hex 属性不写入 dataCaryon，只作为颜色改变的触发属性
             {
-                //3. 类型文本------------------------------------------------
-                var _typeDefine = {
-                    boolean: {
-                        type: "boolean",//属性名称
-                        nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked", 'visible'], //这些名字的属性使用这一类型
-                        valueEnum: ["true", "false", true, false], //当值为这些时被判定为类型文本
-                        judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
-                    },
-                    underline: {
-                        type: "underline",
-                        nameList: ["underline"],
-                        valueEnum: ["underlineOff", "underlineOnLeftInVertical", "underlineOnRightInVertical",
-                            "verticalUnderlineLeft", "verticalUnderlineRight"]
-                    },
-                    justification: {
-                        type: "justification",
-                        nameList: ["justification"],
-                        valueEnum: ["center", "right", "left",
-                            "justifyAll", "justifyLeft", "justifyRight"]
-                    },
-                    lineJoinType: {
-                        type: "lineJoinType",
-                        nameList: ["lineJoinType"],
-                        valueEnum: ["strokeStyleMiterJoin", "strokeStyleRoundJoin", "strokeStyleBevelJoin"]
-                    },
-                    lineCapType: {
-                        type: "lineCapType",
-                        nameList: ["lineCapType"],
-                        valueEnum: ["strokeStyleButtCap", "strokeStyleRoundCap", "strokeStyleSquareCap"]
-                    },
-                    lineAlignment: {
-                        type: "lineAlignment",
-                        nameList: ["lineAlignment"],
-                        valueEnum: ["strokeStyleAlignInside", "strokeStyleAlignCenter", "strokeStyleAlignOutside"]
-                    },
-                    antiAlias: {
-                        type: "antiAlias",
-                        nameList: ["antiAlias"],
-                        valueEnum: null,
-                        judgementFunc: function (value)
-                        {
-                            if (value != undefined)
-                            {
-                                if (value.slice(0, 9) == "antiAlias")
-                                {
-                                    return true;
-                                } else
-                                {
-                                    return false;
-                                }
 
-                            }
-                        }
-                    },
-                    pathText: {
-                        type: "pathText",
-                        nameList: ["link", "fileReference", 'layerName'],
-                        valueEnum: null,
-                        judgementFunc: function (value)
-                        {
-                            if (value != undefined)
-                            {
-                                if (value[0] == ">")//>开头的路径要要经过变量处理
-                                {
-                                    return false;
-                                } else
-                                {
-                                    return true;
-                                }
-                            }
-                        }
-                    },
-                    mode: {
-                        type: "mode",
-                        nameList: ["mode"],
-                        valueEnum: ['normal', 'darken', 'dissolve', 'multiply', 'colorBurn', 'linearBurn', 'darkerColor',
-                            'lighten', 'screen', 'colorDodge', 'linearDodge', 'lighterColor', 'overlay', 'softLight',
-                            'hardLight', 'vividLight', 'linearLight', 'pinLight', 'hardMix', 'difference', 'exclusion',
-                            'blendSubtract', 'blendDivide', 'hue', 'saturation', 'color', 'luminosity',]
-                    },
-
-                    layerColor: {
-                        type: "layerColor",
-                        nameList: ["layerColor"],
-                        valueEnum: ['none', 'red', 'orange', 'yellowColor', 'grain', 'blue', 'violet', 'gray',]
-                    },
-
-
-                }
-                __checkTypeText(_typeDefine)
-
-                //  -------------定义数据和方法：
-                function __checkTypeText(_typeDefine)
+                _writeData = false
+                if (value == undefined)
                 {
+                    _writeData = true;
 
-                    for (var i in _typeDefine)
+                } else
+                {
+                    if (value[0] != "#")
                     {
-                        var isType = ARR.hasMember(_typeDefine[i].nameList, _lastName);
-                        if (isType)
-                        {
-
-                            if (_typeDefine[i].judgementFunc != undefined)
-                            {
-                                if (_typeDefine[i].judgementFunc(value))
-                                {
-                                    isTypeText = true;
-                                    _typeText_typeName = _typeDefine[i].type
-                                    break;
-                                }
-                            }
-                            else
-                            {
-
-                                if (ARR.hasMember(_typeDefine[i].valueEnum, value))
-                                {
-                                    isTypeText = true;
-                                    _typeText_typeName = _typeDefine[i].type
-                                    break;
-
-                                }
-                            }
-                        }
+                        _writeData = true;
+                        isFormula = true
                     }
                 }
-
-                //  END类型文本-------------------------------------------------
-
-                //4. 变量表达式------------------------------------------------
-                if (isTypeText == false)
-                {
-                    if (varSystem.isFormula(value)) //只写入公式变量
-                    {
-                        isFormula = true;
-                        /************************/
-                        flag_writeDataCaryon = true;
-                        /************************/
-                    }
-                }
-                //5. 值------------------------------------------------
-                /**/
             }
+
+            if (_lastName == "$enableTextFormula")
+            {
+                if (value == true)
+                {
+                    var temp = this.text.text;
+                    this.text.text = ""
+                    this.text.text = temp
+                }
+                else
+                {
+                    this.text.text = ""
+                }
+
+            }
+
+
+            if (_writeData)
+            {
+                /************************/
+                flag_writeDataCaryon = true;
+                /************************/
+            }
+
+        }
+        else
+        {
+            //3. 类型文本------------------------------------------------
+            var _typeDefine = {
+                boolean: {
+                    type: "boolean",//属性名称
+                    nameList: ["bold", "italic", "strokeColorEnabled", "fillColorEnabled", "linked", 'visible'
+                        , "enable"], //这些名字的属性使用这一类型
+                    valueEnum: ["true", "false", true, false], //当值为这些时被判定为类型文本
+                    judgementFunc: null //自定义判断函数，不指定 valueEnum ，使用一个函数判断 value 是否是一个类型文本
+                },
+                underline: {
+                    type: "underline",
+                    nameList: ["underline"],
+                    valueEnum: ["underlineOff", "underlineOnLeftInVertical", "underlineOnRightInVertical",
+                        "verticalUnderlineLeft", "verticalUnderlineRight"]
+                },
+                justification: {
+                    type: "justification",
+                    nameList: ["justification"],
+                    valueEnum: ["center", "right", "left",
+                        "justifyAll", "justifyLeft", "justifyRight"]
+                },
+                lineJoinType: {
+                    type: "lineJoinType",
+                    nameList: ["lineJoinType"],
+                    valueEnum: ["strokeStyleMiterJoin", "strokeStyleRoundJoin", "strokeStyleBevelJoin"]
+                },
+                lineCapType: {
+                    type: "lineCapType",
+                    nameList: ["lineCapType"],
+                    valueEnum: ["strokeStyleButtCap", "strokeStyleRoundCap", "strokeStyleSquareCap"]
+                },
+                lineAlignment: {
+                    type: "lineAlignment",
+                    nameList: ["lineAlignment"],
+                    valueEnum: ["strokeStyleAlignInside", "strokeStyleAlignCenter", "strokeStyleAlignOutside"]
+                },
+                antiAlias: {
+                    type: "antiAlias",
+                    nameList: ["antiAlias"],
+                    valueEnum: null,
+                    judgementFunc: function (value)
+                    {
+                        if (value != undefined)
+                        {
+                            if (value.slice(0, 9) == "antiAlias")
+                            {
+                                return true;
+                            } else
+                            {
+                                return false;
+                            }
+
+                        }
+                    }
+                },
+                pathText: {
+                    type: "pathText",
+                    nameList: ["link", "fileReference", 'layerName','fontPostScriptName'],
+                    valueEnum: null,
+                    judgementFunc: function (value)
+                    {
+                        if (value != undefined)
+                        {
+                            if (value[0] == ">")//>开头的路径要要经过变量处理
+                            {
+                                return false;
+                            } else
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                },
+                mode: {
+                    type: "mode",
+                    nameList: ["mode"],
+                    valueEnum: ['normal', 'darken', 'dissolve', 'multiply', 'colorBurn', 'linearBurn', 'darkerColor',
+                        'lighten', 'screen', 'colorDodge', 'linearDodge', 'lighterColor', 'overlay', 'softLight',
+                        'hardLight', 'vividLight', 'linearLight', 'pinLight', 'hardMix', 'difference', 'exclusion',
+                        'blendSubtract', 'blendDivide', 'hue', 'saturation', 'color', 'luminosity',]
+                },
+
+                layerColor: {
+                    type: "layerColor",
+                    nameList: ["layerColor"],
+                    valueEnum: ['none', 'red', 'orange', 'yellowColor', 'grain', 'blue', 'violet', 'gray',]
+                },
+
+
+            }
+            __checkTypeText(_typeDefine)
+
+            //  -------------定义数据和方法：
+            function __checkTypeText(_typeDefine)
+            {
+
+                for (var i in _typeDefine)
+                {
+                    var isType = ARR.hasMember(_typeDefine[i].nameList, _lastName);
+                    if (isType)
+                    {
+                        if (_typeDefine[i].judgementFunc != undefined)
+                        {
+                            if (_typeDefine[i].judgementFunc(value))
+                            {
+                                isTypeText = true;
+                                _typeText_typeName = _typeDefine[i].type
+                                break;
+                            }
+                        }
+                        else
+                        {
+
+                            if (ARR.hasMember(_typeDefine[i].valueEnum, value))
+                            {
+                                isTypeText = true;
+                                _typeText_typeName = _typeDefine[i].type
+                                break;
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            //  END类型文本-------------------------------------------------
+
+            //4. 变量表达式------------------------------------------------
+            if (isTypeText == false)
+            {
+                if (varSystem.isFormula(value)) //只写入公式变量
+                {
+                    isFormula = true;
+                    /************************/
+                    flag_writeDataCaryon = true;
+                    /************************/
+                }
+            }
+            //5. 值------------------------------------------------
+            /**/
+        }
     }
 
 
@@ -879,7 +877,6 @@ GobCaryon.prototype._getData = function (names)
 
     return _valueFromObject(this, names, 0, true);
 }
-
 
 
 /**
@@ -1169,7 +1166,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
             {
                 if (v != 'enableAssigns')
                 {
-                    if (object[v]  instanceof Object)
+                    if (object[v] instanceof Object)
                     {
                         _setObejctAll(object[v], value)
 
@@ -1180,7 +1177,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
                 }
             }
         }
-
 
 
     }
@@ -1516,13 +1512,26 @@ function _getObjectValueByNames(object, names, aheadEndTime)
     var nowValue;
     for (var i = 0; i < (names.length - (aheadEndTime || 0)); i++)
     {
-
         if (i == 0)
         {
-            nowValue = object[names[i]];
+
+            if (object[names[i]] != undefined)
+            {
+                nowValue = object[names[i]];
+            } else
+            {
+                return null
+            }
+
         } else
         {
-            nowValue = nowValue[names[i]];
+            if (nowValue[names[i]] != undefined)
+            {
+                nowValue = nowValue[names[i]];
+            } else
+            {
+                return null
+            }
         }
 
     }

@@ -727,11 +727,11 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
                 b: null,
                 enabled: null
             }, /*填充颜色*/
-            lineWidth: shapeInfo.lineWidth || null, /*边线宽度*/
-            dashSet: shapeInfo.dashSet || null, /*虚线设置*/
-            lineAlignment: shapeInfo.lineAlignment || null, /*描边选项-对齐*/
-            lineCapType: shapeInfo.lineCapType || null, /*描边选项-端点*/
-            lineJoinType: shapeInfo.lineJoinType || null, /*描边选项-角点*/
+            lineWidth: EnzJSX._set(shapeInfo.lineWidth), /*边线宽度*/
+            dashSet: EnzJSX._set(shapeInfo.dashSet), /*虚线设置*/
+            lineAlignment: EnzJSX._set(shapeInfo.lineAlignment), /*描边选项-对齐*/
+            lineCapType: EnzJSX._set(shapeInfo.lineCapType), /*描边选项-端点*/
+            lineJoinType: EnzJSX._set(shapeInfo.lineJoinType), /*描边选项-角点*/
         };
 
         if (shapeInfo.strokeColorEnabled != undefined)
@@ -747,19 +747,19 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
 
         if (shapeInfo.strokeColor != undefined)
         {
-            strokeStyle.strokeColor.r = shapeInfo.strokeColor.r || null
-            strokeStyle.strokeColor.g = shapeInfo.strokeColor.g || null
-            strokeStyle.strokeColor.b = shapeInfo.strokeColor.b || null
+            strokeStyle.strokeColor.r = shapeInfo.strokeColor.r
+            strokeStyle.strokeColor.g = shapeInfo.strokeColor.g
+            strokeStyle.strokeColor.b = shapeInfo.strokeColor.b
         }
         if (shapeInfo.fillColor != undefined)
         {
-            strokeStyle.fillColor.r = shapeInfo.fillColor.r || null
-            strokeStyle.fillColor.g = shapeInfo.fillColor.g || null
-            strokeStyle.fillColor.b = shapeInfo.fillColor.b || null
+            strokeStyle.fillColor.r = shapeInfo.fillColor.r
+            strokeStyle.fillColor.g = shapeInfo.fillColor.g
+            strokeStyle.fillColor.b = shapeInfo.fillColor.b
         }
         //todo：判定是否都为 null 值，减少无效99渲染次数
-
-        $.writeln(JSON.stringify(shapeInfo.fillColorEnabled))
+        $.writeln(JSON.stringify(shapeInfo))
+        $.writeln(JSON.stringify(strokeStyle))
         ki.layer.setStrokeStyle_byActive(strokeStyle)
 
     } catch (e)
@@ -1404,10 +1404,14 @@ EnzJSX.evalEnhancer = function (enhancer, thisId)
  * @param vars_json
  * @constructor
  */
-EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
+EnzJSX.DNAExpress = function (mRNA_Layers_json)
 {
-    var layers = JSON.parse(mRNA_Layers_json)
-    var vars = JSON.parse(vars_json)
+    // var layers = JSON.parse(mRNA_Layers_json)
+    // var vars = JSON.parse(vars_json)
+    var log=""
+    var layers = mRNA_Layers_json
+
+
     _func(); //封装功能代码，以便只产生一个 Photoshop 的历史记录
 
 
@@ -1418,7 +1422,6 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
         //图层信息查询缓存
         var queryCache = {};
 
-
         //【首轮循环】----------------------------
         var _inArray = EnzJSX._inArray;
         for (var layerId in layers)
@@ -1426,7 +1429,6 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
             //position------------------------------------------
             if (layers[layerId].position != undefined)
             {
-
                 var _info_position = {};
                 var _do_position = false;
                 for (var _x in layers[layerId].position)
@@ -1445,14 +1447,134 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json, vars_json)
                 {
                     ki.layer.selectLayer_byID(layerId);
                     EnzJSX.setLayerInfo_position_byId(_info_position, layerId)
+
                 }
             }
             //text------------------------------------------
+            if (layers[layerId].text != undefined)
+            {
+                var _info_text = {};
+                var _do_text = false;
+                for (var _x in layers[layerId].text)
+                {
+                    if (_inArray(_x, ["bold", "italic"]))
+                    {
+                        _info_text[_x] = (layers[layerId].text[_x] == "true");
+                        _do_text = true;
+                    }
+                    else
+                    {
+                        _info_text[_x] = layers[layerId].text[_x];
+                        _do_text = true;
+                    }
+                }
+                if (_do_text)
+                {
+                    ki.layer.selectLayer_byID(layerId);
+                    EnzJSX.setLayerInfo_text_byId(_info_text, layerId)
+                }
+            }
+            //shape------------------------------------------
+            if (layers[layerId].shape != undefined)
+            {
+                var _info_shape = {};
+                var _do_shape = false;
+                for (var _x in layers[layerId].shape)
+                {
+                    if (_inArray(_x, ["strokeColorEnabled", "fillColorEnabled",]))
+                    {
+                        _info_shape[_x] = (layers[layerId].shape[_x] == "true");
+                        _do_shape = true;
+                    }
+                    else
+                    {
+                        _info_shape[_x] = layers[layerId].shape[_x];
+                        _do_shape = true;
+                    }
+                }
+                if (_do_shape)
+                {
+                    ki.layer.selectLayer_byID(layerId);
+                    EnzJSX.setLayerInfo_shape_byId(_info_shape, layerId)
+                }
+            }
+            //smartObject------------------------------------------
+            if (layers[layerId].smartObject != undefined)
+            {
+                var _info_smartObject = {};
+                var _do_smartObject = false;
+                for (var _x in layers[layerId].shape)
+                {
+                    _info_smartObject[_x] = layers[layerId].smartObject[_x];
+                    _do_smartObject = true;
+
+                    if (_x == "link")
+                    {
+                        _info_smartObject.linked = true
+                    }
+                }
+                if (_do_smartObject)
+                {
+                    ki.layer.selectLayer_byID(layerId);
+                    EnzJSX.setLayerInfo_smartObject_byId(_info_smartObject, layerId)
+                }
+            }
+            //quickEffect------------------------------------------
+            if (layers[layerId].quickEffect != undefined)
+            {
+                var _info_quickEffect = {};
+                var _do_quickEffect = false;
+                for (var _x in layers[layerId].quickEffect)
+                {
+                    _info_quickEffect[_x] = layers[layerId].quickEffect[_x];
+                    _do_quickEffect = true;
+
+                }
+                if (_do_quickEffect)
+                {
+                    ki.layer.selectLayer_byID(layerId);
+                    EnzJSX.setLayerInfo_quickEffect_byId(_info_quickEffect, layerId)
+                }
+            }
+
+            //more------------------------------------------
+            if (layers[layerId].more != undefined)
+            {
+                var _info_more = {};
+                var _do_more = false;
+                for (var _x in layers[layerId].more)
+                {
+                    if (_inArray(_x, ["visible"]))
+                    {
+                        _info_more[_x] = (layers[layerId].more[_x] == "true");
+                        _do_more = true;
+                    }
+                    else
+                    {
+                        _info_more[_x] = layers[layerId].more[_x];
+                        _do_more = true;
+                    }
+                }
+                if (_do_more)
+                {
+                    ki.layer.selectLayer_byID(layerId);
+                    EnzJSX.setLayerInfo_more_byId(_info_more, layerId)
+                }
+            }
 
         }
 
         EnzJSX.selectLoad(save);
     }
+
+
+}
+
+
+EnzJSX._setForTypeColor = function (color)
+{
+
+
 }
 
 EnzJSX._inArray = function (name, array, prefix)
@@ -1480,5 +1602,26 @@ EnzJSX._inArray = function (name, array, prefix)
 }
 
 
-
-
+/**
+ * 处理值，如果值为 undefined ，返回默认值
+ * @param value
+ * @param defaultValue
+ * @returns {*}
+ * @private
+ */
+EnzJSX._set = function (value, defaultValue)
+{
+    if (value != undefined)
+    {
+        return value;
+    } else
+    {
+        if (defaultValue != undefined)
+        {
+            return defaultValue;
+        } else
+        {
+            return null;
+        }
+    }
+}

@@ -840,7 +840,7 @@ Kinase.layer.setLayerText_Quick = function (text, targetReference, target)
     var ref = new ActionReference();
 
     if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-    targetReference(ref, target || null, "textLayer")
+    targetReference(ref, _value(target, null), "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -925,7 +925,7 @@ Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
 
     var ref = new ActionReference();
     if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-    targetReference(ref, target || null, "textLayer")
+    targetReference(ref, _value(target, null), "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
     // log(json(adOb))
@@ -1014,7 +1014,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1054,7 +1054,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1101,7 +1101,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1149,7 +1149,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1201,7 +1201,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1249,7 +1249,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1332,7 +1332,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1367,7 +1367,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1403,7 +1403,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1437,7 +1437,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1472,7 +1472,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "textLayer")
+        targetReference(ref, _value(target, null), "textLayer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
@@ -1591,7 +1591,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
     var ref = new ActionReference();
     if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-    targetReference(ref, target || null, "textLayer")
+    targetReference(ref, _value(target, null), "textLayer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
     // log(json(adOb))
@@ -2134,7 +2134,7 @@ Kinase.layer.setLayerRadian_byActive = function (radianInfo)
 Kinase.layer.getLayerBounds = function (targetReference, target, getType)
 {
     var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}
-    var classStr = getType || "boundsNoEffects";//"bounds"、"boundsNoMask"
+    var classStr =  _value(getType , "boundsNoEffects") ;//"bounds"、"boundsNoMask"
     var boundsInfo_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
 
 
@@ -2204,7 +2204,7 @@ Kinase.layer.setLayerBounds_byActive = function (boundsInfo)
 Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doVerify)
 {
     // {x: null, y: null, w: null, h: null,centerStatea,}
-    var oldradianInfo = Kinase.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
+    var oldradianInfo = Kinase.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, _value(target, null));
 
     var adOb = {
         "null": {
@@ -2257,7 +2257,7 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
     var ref = new ActionReference();
 
     if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-    targetReference(ref, target || null)
+    targetReference(ref, _value(target, null))
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value = refOb;
 
@@ -2307,7 +2307,7 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
 
     if (doVerify)
     {
-        var oldradianInfo2 = Kinase.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, target || null);
+        var oldradianInfo2 = Kinase.layer.getLayerBounds(targetReference || Kinase.REF_ActiveLayer, _value(target, null));
         if (boundsInfo.x != oldradianInfo2.x ||
             boundsInfo.y != oldradianInfo2.y ||
             boundsInfo.h != oldradianInfo2.h ||
@@ -2748,7 +2748,7 @@ Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "layer")
+        targetReference(ref, _value(target, null), "layer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value[0].value = refOb;
         if (editInfo.visible)
@@ -2819,7 +2819,7 @@ Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "layer")
+        targetReference(ref, _value(target, null), "layer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value = refOb;
         mu.executeActionObjcet(stringIDToTypeID("applyLocking"), adOb);
@@ -2860,7 +2860,7 @@ Kinase.layer.setLayerEditInfo = function (editInfo, targetReference, target)
 
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-        targetReference(ref, target || null, "layer")
+        targetReference(ref, _value(target, null), "layer")
         var refOb = mu.actionReferenceToObject(ref)
         adOb.null.value = refOb;
         // log(json(adOb))
@@ -2928,7 +2928,7 @@ Kinase.layer.setLayerEffectsObject = function (effectsObejct, targetReference, t
 
     var ref = new ActionReference();
     if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
-    targetReference(ref, target || null, "layer")
+    targetReference(ref, _value(target, null), "layer")
     var refOb = mu.actionReferenceToObject(ref)
     adOb.null.value.container = refOb;
 
@@ -3310,23 +3310,42 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
         }
         for (var i = 0; i < dropShadowList.length; i++)
         {
-            layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value = dropShadowList[i].enabled || layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value
-            layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value = dropShadowList[i].antiAlias || layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue = dropShadowList[i].chokeMatte || layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue = dropShadowList[i].blur || layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value = dropShadowList[i].color.r || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value = dropShadowList[i].color.g || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value = dropShadowList[i].color.b || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue = dropShadowList[i].distance || layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value = dropShadowList[i].layerConceals || layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue = dropShadowList[i].lightingAngle || layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue = dropShadowList[i].blendMode || layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue = dropShadowList[i].noise || layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue = dropShadowList[i].opacity || layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.present.value = dropShadowList[i].present || layerEffects_raw.value.dropShadowMulti.value[i].value.present.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value = dropShadowList[i].showInDialog || layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value = dropShadowList[i].transferSpec || layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value;
-            layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value = dropShadowList[i].useGlobalAngle || layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value;
+            layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value = _value(dropShadowList[i].enabled, layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value = _value(dropShadowList[i].antiAlias, layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue = _value(dropShadowList[i].chokeMatte, layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue = _value(dropShadowList[i].blur, layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value = _value(dropShadowList[i].color.r, layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value = _value(dropShadowList[i].color.g, layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value = _value(dropShadowList[i].color.b, layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue = _value(dropShadowList[i].distance, layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value = _value(dropShadowList[i].layerConceals, layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue = _value(dropShadowList[i].lightingAngle, layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue = _value(dropShadowList[i].blendMode, layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue = _value(dropShadowList[i].noise, layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue = _value(dropShadowList[i].opacity, layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.present.value = _value(dropShadowList[i].present, layerEffects_raw.value.dropShadowMulti.value[i].value.present.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value = _value(dropShadowList[i].showInDialog, layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value = _value(dropShadowList[i].transferSpec, layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value)
+            layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value = _value(dropShadowList[i].useGlobalAngle, layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value)
+
+
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value = dropShadowList[i].enabled || layerEffects_raw.value.dropShadowMulti.value[i].value.enabled.value
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value = dropShadowList[i].antiAlias || layerEffects_raw.value.dropShadowMulti.value[i].value.antiAlias.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue = dropShadowList[i].chokeMatte || layerEffects_raw.value.dropShadowMulti.value[i].value.chokeMatte.value.doubleValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue = dropShadowList[i].blur || layerEffects_raw.value.dropShadowMulti.value[i].value.blur.value.doubleValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value = dropShadowList[i].color.r || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.red.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value = dropShadowList[i].color.g || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.grain.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value = dropShadowList[i].color.b || layerEffects_raw.value.dropShadowMulti.value[i].value.color.value.blue.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue = dropShadowList[i].distance || layerEffects_raw.value.dropShadowMulti.value[i].value.distance.value.doubleValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value = dropShadowList[i].layerConceals || layerEffects_raw.value.dropShadowMulti.value[i].value.layerConceals.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue = dropShadowList[i].lightingAngle || layerEffects_raw.value.dropShadowMulti.value[i].value.localLightingAngle.value.doubleValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue = dropShadowList[i].blendMode || layerEffects_raw.value.dropShadowMulti.value[i].value.mode.value.enumerationValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue = dropShadowList[i].noise || layerEffects_raw.value.dropShadowMulti.value[i].value.noise.value.doubleValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue = dropShadowList[i].opacity || layerEffects_raw.value.dropShadowMulti.value[i].value.opacity.value.doubleValue;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.present.value = dropShadowList[i].present || layerEffects_raw.value.dropShadowMulti.value[i].value.present.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value = dropShadowList[i].showInDialog || layerEffects_raw.value.dropShadowMulti.value[i].value.showInDialog.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value = dropShadowList[i].transferSpec || layerEffects_raw.value.dropShadowMulti.value[i].value.transferSpec.value.name.value;
+            // layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value = dropShadowList[i].useGlobalAngle || layerEffects_raw.value.dropShadowMulti.value[i].value.useGlobalAngle.value;
         }
     }
 
@@ -3350,20 +3369,35 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
         }
 
 
-        layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue = dropShadowList[0].chokeMatte || layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue;
-        layerEffects_raw.value.dropShadow.value.blur.value.doubleValue = dropShadowList[0].blur || layerEffects_raw.value.dropShadow.value.blur.value.doubleValue;
-        layerEffects_raw.value.dropShadow.value.color.value.red.value = dropShadowList[0].color.r || layerEffects_raw.value.dropShadow.value.color.value.red.value;
-        layerEffects_raw.value.dropShadow.value.color.value.grain.value = dropShadowList[0].color.g || layerEffects_raw.value.dropShadow.value.color.value.grain.value;
-        layerEffects_raw.value.dropShadow.value.color.value.blue.value = dropShadowList[0].color.b || layerEffects_raw.value.dropShadow.value.color.value.blue.value;
-        layerEffects_raw.value.dropShadow.value.distance.value.doubleValue = dropShadowList[0].distance || layerEffects_raw.value.dropShadow.value.distance.value.doubleValue;
-        layerEffects_raw.value.dropShadow.value.layerConceals.value = dropShadowList[0].layerConceals || layerEffects_raw.value.dropShadow.value.layerConceals.value;
-        layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue = dropShadowList[0].lightingAngle || layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue;
-        layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue = dropShadowList[0].blendMode || layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue;
-        layerEffects_raw.value.dropShadow.value.noise.value.doubleValue = dropShadowList[0].noise || layerEffects_raw.value.dropShadow.value.noise.value.doubleValue;
-        layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue = dropShadowList[0].opacity || layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue;
-        layerEffects_raw.value.dropShadow.value.present.value = dropShadowList[0].present || layerEffects_raw.value.dropShadow.value.present.value;
-        layerEffects_raw.value.dropShadow.value.showInDialog.value = dropShadowList[0].showInDialog || layerEffects_raw.value.dropShadow.value.showInDialog.value;
-        layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value = dropShadowList[0].transferSpec || layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value;
+        layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue  = _value(  dropShadowList[0].chokeMatte , layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.blur.value.doubleValue  = _value(  dropShadowList[0].blur , layerEffects_raw.value.dropShadow.value.blur.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.color.value.red.value  = _value(  dropShadowList[0].color.r , layerEffects_raw.value.dropShadow.value.color.value.red.value)
+        layerEffects_raw.value.dropShadow.value.color.value.grain.value  = _value(  dropShadowList[0].color.g , layerEffects_raw.value.dropShadow.value.color.value.grain.value)
+        layerEffects_raw.value.dropShadow.value.color.value.blue.value  = _value(  dropShadowList[0].color.b , layerEffects_raw.value.dropShadow.value.color.value.blue.value)
+        layerEffects_raw.value.dropShadow.value.distance.value.doubleValue  = _value(  dropShadowList[0].distance , layerEffects_raw.value.dropShadow.value.distance.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.layerConceals.value  = _value(  dropShadowList[0].layerConceals , layerEffects_raw.value.dropShadow.value.layerConceals.value)
+        layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue  = _value(  dropShadowList[0].lightingAngle , layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue  = _value(  dropShadowList[0].blendMode , layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue)
+        layerEffects_raw.value.dropShadow.value.noise.value.doubleValue  = _value(  dropShadowList[0].noise , layerEffects_raw.value.dropShadow.value.noise.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue  = _value(  dropShadowList[0].opacity , layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.present.value  = _value(  dropShadowList[0].present , layerEffects_raw.value.dropShadow.value.present.value)
+        layerEffects_raw.value.dropShadow.value.showInDialog.value  = _value(  dropShadowList[0].showInDialog , layerEffects_raw.value.dropShadow.value.showInDialog.value)
+        layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value  = _value(  dropShadowList[0].transferSpec , layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value)
+
+        // layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue = dropShadowList[0].chokeMatte || layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue;
+        // layerEffects_raw.value.dropShadow.value.blur.value.doubleValue = dropShadowList[0].blur || layerEffects_raw.value.dropShadow.value.blur.value.doubleValue;
+        // layerEffects_raw.value.dropShadow.value.color.value.red.value = dropShadowList[0].color.r || layerEffects_raw.value.dropShadow.value.color.value.red.value;
+        // layerEffects_raw.value.dropShadow.value.color.value.grain.value = dropShadowList[0].color.g || layerEffects_raw.value.dropShadow.value.color.value.grain.value;
+        // layerEffects_raw.value.dropShadow.value.color.value.blue.value = dropShadowList[0].color.b || layerEffects_raw.value.dropShadow.value.color.value.blue.value;
+        // layerEffects_raw.value.dropShadow.value.distance.value.doubleValue = dropShadowList[0].distance || layerEffects_raw.value.dropShadow.value.distance.value.doubleValue;
+        // layerEffects_raw.value.dropShadow.value.layerConceals.value = dropShadowList[0].layerConceals || layerEffects_raw.value.dropShadow.value.layerConceals.value;
+        // layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue = dropShadowList[0].lightingAngle || layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue;
+        // layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue = dropShadowList[0].blendMode || layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue;
+        // layerEffects_raw.value.dropShadow.value.noise.value.doubleValue = dropShadowList[0].noise || layerEffects_raw.value.dropShadow.value.noise.value.doubleValue;
+        // layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue = dropShadowList[0].opacity || layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue;
+        // layerEffects_raw.value.dropShadow.value.present.value = dropShadowList[0].present || layerEffects_raw.value.dropShadow.value.present.value;
+        // layerEffects_raw.value.dropShadow.value.showInDialog.value = dropShadowList[0].showInDialog || layerEffects_raw.value.dropShadow.value.showInDialog.value;
+        // layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value = dropShadowList[0].transferSpec || layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value;
 
     }
 }
@@ -5130,8 +5164,9 @@ Kinase.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
     ad.putReference(charIDToTypeID("null"), rf);
     executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
 
-    var w = w || 100;
-    var h = h || 50;
+
+    var w =   _value(w , 100);
+    var h =    _value(h , 50);
 
     var itemIndex = ki.layer.getItemIndexBylayerID(ki.layer.getLayerIdByActive())
 
@@ -6082,4 +6117,21 @@ Kinase.lowerIndex = function ()
 Kinase.upperIndex = function ()
 {
     return app.activeDocument.layers[0].itemIndex;
+}
+
+var _value = function (value, defaultValue)
+{
+    if (value != undefined)
+    {
+        return value;
+    } else
+    {
+        if (defaultValue != undefined)
+        {
+            return defaultValue;
+        } else
+        {
+            return null;
+        }
+    }
 }

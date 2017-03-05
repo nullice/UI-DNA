@@ -57,7 +57,14 @@ var UI_action = {
     show_message_bubble: function (panel, title, msg, color, time)
     {
         var time = time || 0;
-        var color = color || "none";
+        if (color == undefined)
+        {
+            var color = "none";
+        } else
+        {
+            var color = color;
+        }
+
 
         UI_model.msg_bubble[panel].show = false;
         UI_model.msg_bubble[panel].title = title;

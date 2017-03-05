@@ -28,17 +28,16 @@
 
 var objectOBJ = {
 
-    
-    
-    
-    
+
     /**
      * 对象是否为空
      * @param obj
      * @returns {boolean}
      */
-    isEmptyObject: function( obj ) {
-        for ( var name in obj ) {
+    isEmptyObject: function (obj)
+    {
+        for (var name in obj)
+        {
             return false;
         }
         return true;
@@ -60,11 +59,11 @@ var objectOBJ = {
         for (var x in ob1)
         {
 
-            if(func_for!=undefined)
+            if (func_for != undefined)
             {
-                func_for(ob1,ob2,x);
+                func_for(ob1, ob2, x);
             }
-            
+
             var _allowCopy = true;
             if (func_allowCopy != undefined)
             {
@@ -98,6 +97,72 @@ var objectOBJ = {
             }
         }
 
+    },
+
+
+    /**
+     * 根据属性名路径列表（names）获取对象属性的值
+     * @param object 对象
+     * @param names 属性名路径列表，如 [position,enableAssigns,y]
+     * @param aheadEndTime 提取结束个数，如设置为 1 则是获取倒数第 2 个属性的值，
+     * @returns {*}
+     * @private
+     */
+    getObjectValueByNames: function (object, names, aheadEndTime)
+    {
+        var nowValue;
+        for (var i = 0; i < (names.length - (aheadEndTime || 0)); i++)
+        {
+
+            if (i == 0)
+            {
+                nowValue = object[names[i]];
+            } else
+            {
+                nowValue = nowValue[names[i]];
+            }
+
+        }
+
+        return nowValue
+    },
+
+
+    /**
+     * 根据属性名路径列表（names）对对象属性赋值
+     * @param object 对象
+     * @param names 属性名路径列表，如 [position,enableAssigns,y]
+     * @param value 值
+     */
+    setObjectValueByNames: function (object, names, value)
+    {
+        var nowObject;
+
+        if (names.length == 1)
+        {
+            object[names[0]] = value;
+            return
+        }
+
+
+        for (var i = 0; i < (names.length); i++)
+        {
+            if (i == 0)
+            {
+                nowObject = object[names[0]];
+            }
+            else if (i < names.length - 2)
+            {
+                nowObject = nowObject[names[i]];
+            }
+            else if (i == names.length - 2)
+            {
+                nowObject = nowObject[names[i]];
+                nowObject[names[i + 1]] = value
+              return
+            }
+
+        }
     }
 
 
