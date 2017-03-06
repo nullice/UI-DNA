@@ -87,7 +87,8 @@ DataCaryon.prototype.save = async function ()
 
     var dataOb = {
         layers: this.layers,
-        doc: this.doc
+        doc: this.doc,
+        vars: varSystem.vars
     }
 
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(dataOb));
@@ -115,6 +116,11 @@ DataCaryon.prototype.load = async function ()
         if (ob.doc != undefined)
         {
             this.doc = ob.doc;
+        }
+
+        if (ob.vars != undefined)
+        {
+            varSystem.loadVarsFromObject(ob.vars)
         }
 
         this.info.status.saved = true;

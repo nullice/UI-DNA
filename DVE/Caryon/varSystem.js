@@ -163,7 +163,8 @@ var VarSystem = function ()
         {
             ichiColor.set(value)
             var c = ichiColor.ex.labPs
-            return `lab(${c.l}, ${c.a}, ${c.b})`;;
+            return `lab(${c.l}, ${c.a}, ${c.b})`;
+            ;
         }
     }
 
@@ -176,10 +177,34 @@ var VarSystem = function ()
     return this;
 }
 
+
+/**
+ * 载入变量表。从 json 反序列化过的 object 中载入变量表。
+ * @param object
+ */
+VarSystem.prototype.loadVarsFromObject = function (object)
+{
+
+    /*清空原变量表*/
+    for (var x in this.vars)
+    {
+        this.removeVar(x)
+    }
+
+    /*新建变量*/
+
+    for (var z in object)
+    {
+        this.addVar(object[z].name, object[z].value, object[z].type, object[z].isFormula, object[z].relatives)
+    }
+
+}
+
+
 /**
  添加变量
  */
-VarSystem.prototype.addVar = function (name, value, type, isFormula)
+VarSystem.prototype.addVar = function (name, value, type, isFormula, relatives)
 {
 
     if (this.vars[name] !== undefined)
@@ -192,7 +217,13 @@ VarSystem.prototype.addVar = function (name, value, type, isFormula)
         var isFormula = VarSystem.prototype.isFormula(value);
     }
     // this.vars[name] = new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false})
-    Vue.set(this.vars, name, new VarType({value: value, name: name, type: type || null, isFormula: isFormula || false}))
+    Vue.set(this.vars, name, new VarType({
+        value: value,
+        name: name,
+        type: type || null,
+        isFormula: isFormula || false,
+        relatives: relatives || []
+    }))
 
 }
 

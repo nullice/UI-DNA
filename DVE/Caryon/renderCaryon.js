@@ -408,6 +408,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     varSystem.$layerCount = 0;
     for (var layerId in dataCaryon.layers)
     {
+        console.group("layer:", dataCaryon.layers[layerId].name, dataCaryon.layers[layerId].id)
         var propertyNames = ["position", "text", "shape", "smartObject", "quickEffect", "more"]
         for (var i = 0; i < propertyNames.length; i++)
         {
@@ -418,6 +419,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
             }
         }
+        console.groupEnd()
     }
 
     console.log("varSystem.vars", varSystem.vars)
@@ -505,11 +507,14 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
                 try
                 {
-                    if (TYP.type(assignmentValue) == "object" && (OBJ.isEmptyObject(assignmentValue) != true))
+                    if (TYP.type(assignmentValue) == "object")
                     {
-                        for (var _x in assignmentValue)
+                        if ((OBJ.isEmptyObject(assignmentValue) != true))
                         {
-                            await _asDo(assignmentValue, names.concat(_x))
+                            for (var _x in assignmentValue)
+                            {
+                                await _asDo(object, names.concat(_x))
+                            }
                         }
 
                     } else
