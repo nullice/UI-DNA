@@ -41,6 +41,12 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
+    if(Gob._unripe)
+    {
+        logger.info("[未准备好的渲染触发]",`renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
+        return
+    }
+
     logger.group(`renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
     this.status.rendering = true;// 标记渲染状态，会触发渲染按钮动画
 
@@ -626,7 +632,9 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
                                     if (enableFormulaEval)
                                     {
-                                        var hex = await varSystem.evalVar(object[x].$hex, layerId);
+                                        var newNames = names.slice(0)
+                                        newNames.push(x)
+                                        var hex = await varSystem.evalVar(object[x].$hex, layerId, newNames);
                                     } else
                                     {
                                         var hex = object[x].$hex

@@ -1,6 +1,5 @@
 <template>
     <div class="color_input">
-
         <value-input v-bind:name="name"
                      v-bind:title="title"
                      v-bind:edit_value.sync="o_color"
@@ -63,7 +62,7 @@
     }
 
     .color_input .exmo_inbox.value_input_box.mini.press_out .out_input {
-        width:84px;
+        width: 84px;
     }
 
     .color_input .value_input_box .exmo_box_name {
@@ -85,9 +84,10 @@
             {
                 var _outsideOperate = this.o_outsideOperate;
                 this.o_outsideOperate = false;
+                var self = this;
 //                console.info("set#", "_outsideOperate", _outsideOperate)
-//                console.info("set#", "val", val)
-                if (val != "#")
+                console.info("set#", "val", val)
+                if (val!= undefined && val != "#")
                 {
                     if (val[0] != "#")
                     {
@@ -95,12 +95,15 @@
                         _setColorFromVar();
                         async function _setColorFromVar()
                         {
-                            var finValue = await varSystem.evalVar(val,null,this.color_names.concat("$hex"))
-                            this.ichi_color.hex = finValue;
-                            this.color.r = this.ichi_color.r;
-                            this.color.g = this.ichi_color.g;
-                            this.color.b = this.ichi_color.b;
-                            this.color_style.background = this.ichi_color.hex;
+                            var finValue = await varSystem.evalVar(val, null, self.color_names.concat("$hex"))
+                           if(finValue!=undefined)
+                           {
+                               this.ichi_color.hex = finValue;
+                               this.color.r = this.ichi_color.r;
+                               this.color.g = this.ichi_color.g;
+                               this.color.b = this.ichi_color.b;
+                               this.color_style.background = this.ichi_color.hex;
+                           }
                             if (_outsideOperate != true)
                             {
                                 this.type_none = false;
@@ -120,7 +123,6 @@
                             this.type_none = false;
                         }
                     }
-
                 }
                 else if (this.type_none != true)
                 {
@@ -148,18 +150,24 @@
                 this.color_update();
 
             },
-            "color.r": function (val)
+//            "color.r": function (val)
+//            {
+//                this.o_outsideOperate = true
+//                this.color_update();
+//            },
+//            "color.g": function (val)
+//            {
+//                this.o_outsideOperate = true
+//                this.color_update();
+//            },
+//            "color.b": function (val)
+//            {
+//                this.o_outsideOperate = true
+//                this.color_update();
+//            },
+            "color.$hex": function (val)
             {
-                this.o_outsideOperate = true
-                this.color_update();
-            },
-            "color.g": function (val)
-            {
-                this.o_outsideOperate = true
-                this.color_update();
-            },
-            "color.b": function (val)
-            {
+//                console.info("color.$hex：",val)
                 this.o_outsideOperate = true
                 this.color_update();
             },
@@ -181,10 +189,10 @@
             picker_color: function ()
             {
                 var self = this;
-                if(this.opacity == undefined)
+                if (this.opacity == undefined)
                 {
-                    var alpha =  1;
-                }else
+                    var alpha = 1;
+                } else
                 {
                     var alpha = this.opacity / 100
                 }
@@ -208,16 +216,23 @@
                     this.o_color = "#";
                 } else
                 {
-                    this.o_color = this.color.$hex || "";
+                    this.o_color = this.color.$hex ;
                 }
 
-                _setColorFrom$hex();
 
-                async function _setColorFrom$hex()
-                {
-                    var finValue = await varSystem.evalVar(this.color.$hex)
-                    this.ichi_color.set(finValue);
-                }
+//                _setColorFrom$hex();
+//
+//                var self =this;
+//                async function _setColorFrom$hex()
+//                {
+//                    console.info("<<<<<<<<<<<<<<", "color_update", self.o_color, self.color.$hex)
+//
+//                    var finValue = await varSystem.evalVar(self.color.$hex, null, self.color_names)
+//                    console.info("<<<<<<<<2222", "finValue",finValue)
+//
+//                    this.ichi_color.set(finValue);
+//
+//                }
             },
 
 

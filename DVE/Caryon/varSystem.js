@@ -325,7 +325,6 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 
     try
     {
-
         console.log("varSystem.evalVar('" + varValue + "').", thisId, names)
         var self = this
         var result = this._execFunction_satrt(varValue)

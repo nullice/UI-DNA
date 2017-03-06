@@ -17,7 +17,8 @@ var GobCaryon = function ()
     this.selectList = [];
 
 
-    this._neverUpdate = true;//未更新过
+    this._unripe = true;//未准备好，不渲染。
+
     this.selectRender = false; //选择图层后渲染
     this.selectRenderVarList = false; //渲染改变的变量列表
     this.selectChanged = false;
@@ -501,7 +502,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
             /************************/
             flag_writeDataCaryon = true;
             /************************/
-        }else
+        } else
         //1. 文本值-------------------------------------------------
         if (_lastName == "text") //文本
         {
@@ -630,7 +631,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                 },
                 pathText: {
                     type: "pathText",
-                    nameList: ["link", "fileReference", 'layerName','fontPostScriptName'],
+                    nameList: ["link", "fileReference", 'layerName', 'fontPostScriptName'],
                     valueEnum: null,
                     judgementFunc: function (value)
                     {
@@ -1254,9 +1255,20 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
     console.groupEnd();
 
+    if (this._unripe)
+    {
+        var self = this;
+        setTimeout(function ()
+        {
+            self._unripe = false;
+            logger.info("[准备完成] _unripe")
+        }, 500)
 
+    }
     console.timeEnd("updateGob 耗时")
     logger.groupEnd()
+
+
     //[END]-----------------
 
 
