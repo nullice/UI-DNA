@@ -57,7 +57,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     //-------------------------------------------------
     var ignore = false // 是否忽略本次渲染
 
-    if (_lastButOneName == "color")//忽略 color.r/g/b 的渲染，使用 $hex 来触发渲染
+    if (ARR.hasMember(["color", "fillColor", "strokeColor"], _lastButOneName))//忽略 color.r/g/b 的渲染，使用 $hex 来触发渲染
     {
         if (item != "$hex")
         {
