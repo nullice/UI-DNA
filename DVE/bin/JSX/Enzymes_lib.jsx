@@ -974,6 +974,49 @@ EnzJSX._psCssShadow2Shadow = function (x, y, blur, spread)
 
 EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
 {
+
+
+    function _checkEnableQuickEffect(quickEffect)
+    {
+        var list = []
+        for (var name in quickEffect)
+        {
+            list.push(name)
+        }
+        if (list.length < 1)
+        {
+            return false
+        } else if (list.length == 1 && list[0] == "dropShadow")
+        {
+            if (isEmptyObject(quickEffect['dropShadow']))
+            {
+                return false
+            } else
+            {
+                return true
+            }
+        } else
+        {
+            return true;
+        }
+
+
+        function isEmptyObject(obj)
+        {
+            for (var name in obj)
+            {
+                return false;
+            }
+            return true;
+        }
+    }
+
+    if(_checkEnableQuickEffect(quickEffect) == false)
+    {
+        return ;
+    }
+
+
     if (doSelect)
     {
         ki.layer.selectLayer_byID(id)
@@ -993,7 +1036,36 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
 
     if (quickEffect != undefined)
     {
-        if (quickEffect.dropShadow != undefined)
+
+
+        function _checkEnableDropShadow(obj)
+        {
+            var list = []
+            for (var name in obj)
+            {
+                list.push(name)
+            }
+
+            if (list.length < 1)
+            {
+                return false;
+            }
+            else if (list.length == 1 && list[0] == "color")
+            {
+                if ((obj[list[0]]["r"] != undefined ) || (obj[list[0]]["$hex"] != undefined ))
+                {
+                    return true
+                } else
+                {
+                    return false;
+                }
+            } else
+            {
+                return true
+            }
+        }
+
+        if (quickEffect.dropShadow != undefined && _checkEnableDropShadow(quickEffect.dropShadow))
         {
 
             var Ob_dropShadow = {
@@ -1408,11 +1480,13 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json)
 {
     // var layers = JSON.parse(mRNA_Layers_json)
     // var vars = JSON.parse(vars_json)
-    var log=""
+    var log = ""
     var layers = mRNA_Layers_json
 
 
     _func(); //封装功能代码，以便只产生一个 Photoshop 的历史记录
+
+    app.activeDocument.suspendHistory("UI-DNA 渲染", "_func()");
 
 
     function _func()

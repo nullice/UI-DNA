@@ -505,8 +505,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
                 try
                 {
-
-                    if (TYP.type(assignmentValue) == "objecet" && (OBJ.isEmptyObject(assignmentValue) != true))
+                    if (TYP.type(assignmentValue) == "object" && (OBJ.isEmptyObject(assignmentValue) != true))
                     {
                         for (var _x in assignmentValue)
                         {
