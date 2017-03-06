@@ -39,6 +39,19 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
+    .exmo_inbox.value_input_box  .input-assist-box{
+        max-height: 0px;
+        transition: all .8s;
+        overflow: hidden;
+    }
+
+    .exmo_inbox.value_input_box:hover  .input-assist-box{
+        max-height: 999px;
+        transition: all .3s;
+        overflow: hidden;
+    }
+
+
 
     .input-assist-box {
         position: absolute;

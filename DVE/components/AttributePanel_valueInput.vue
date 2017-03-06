@@ -243,14 +243,12 @@
         methods: {
             on_foucs: function ()
             {
-                console.log("on_foucs")
-
                 this.o_foucs = true;
             },
             on_blur:function ()
             {
-//                console.log("on_blur")
-//                this.o_foucs = false;
+
+                this.o_foucs = false;
             },
             click_uppercase: function ()
             {
