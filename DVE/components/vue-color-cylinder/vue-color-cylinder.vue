@@ -197,7 +197,7 @@
             </div>
 
             <div class="button_box">
-                <button class="exmo_button" v-on:click="o_menu.setting.state=false"> 确定</button>
+                <button class="exmo_button" v-on:click="o_menu.setting.state=false">确定</button>
             </div>
         </div>
 

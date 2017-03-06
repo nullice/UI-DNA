@@ -127,6 +127,7 @@
                          v-bind:edit_value.sync="Gob.shape.lineWidth"
                          v-bind:out_value.sync="Gob.shape.assignment.lineWidth"
                          v-bind:enable_assign.sync="Gob.shape.enableAssigns.lineWidth"
+                         v-bind:assist_range_max="10"
                          mini="true"></value-input>
 
             <value-input v-bind:name="Lang.from('虚线')"
@@ -319,6 +320,7 @@
                          v-bind:edit_value.sync="Gob.text.size"
                          v-bind:out_value.sync="Gob.text.assignment.size"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
+                         v-bind:assist_range_max="128"
                          mini="true"></value-input>
 
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
@@ -341,6 +343,7 @@
                              v-bind:edit_value.sync="Gob.text.bold"
                              v-bind:out_value.sync="Gob.text.assignment.bold"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.bold"
+                             v-bind:assist_type="'boolean'"
                              mini="true"></value-input>
 
                 <value-input v-bind:name="Lang.from('斜体')"
@@ -348,6 +351,7 @@
                              v-bind:edit_value.sync="Gob.text.italic"
                              v-bind:out_value.sync="Gob.text.assignment.italic"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.italic"
+                             v-bind:assist_type="'boolean'"
                              mini="true"></value-input>
 
 
@@ -460,6 +464,7 @@
                          v-bind:edit_value.sync="Gob.smartObject.link"
                          v-bind:out_value.sync="Gob.smartObject.assignment.link"
                          v-bind:enable_assign.sync="Gob.smartObject.enableAssigns.link"
+                         v-bind:assist_type="'path'"
             ></value-input>
 
             <value-input v-bind:name="Lang.from('名称')"

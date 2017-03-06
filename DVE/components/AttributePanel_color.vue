@@ -7,6 +7,8 @@
                      v-bind:enable_assign.sync="enable_assign"
                      v-bind:mini="mini"
                      v-bind:enable_uppercase="true"
+                     v-bind:assist_type="'color'"
+
 
         >
 

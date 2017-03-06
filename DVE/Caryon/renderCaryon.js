@@ -142,6 +142,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             {
                 if (ARR.hasMember(["color", "fillColor", "strokeColor"], _lastButOneName))
                 {
+
                     var ob = hexToColorOb(value, _lastButOneName);
                 } else
                 {

@@ -2,6 +2,7 @@
 
 
     <div v-if="value!=undefind && value != 'noneValue'" v-on:click="doSelect"
+         title="{{in_title}}"
          class="attr_option {{in_class}} {{(selected_value==value)?'selected':''}}">
         {{{label_html}}} {{label}}
         <slot></slot>
@@ -37,11 +38,17 @@
 
     export default{
 
-        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "state", "hr", "br", "in_class"],
+        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "state", "hr", "br", "in_class", "in_title", 'button'],
         methods: {
             doSelect: function ()
             {
-                this.selected_value = this.value;
+                if (this.button)
+                {
+
+                } else
+                {
+                    this.selected_value = this.value;
+                }
 
                 if (this.state != undefined)
                 {

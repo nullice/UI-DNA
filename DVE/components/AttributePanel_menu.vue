@@ -19,6 +19,7 @@
                          v-bind:selected_func="selected_func"
                          v-bind:selected_value.sync="value"
                          v-bind:in_class="block?'inline_block':''"
+
             >
 
                 <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>

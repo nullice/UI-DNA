@@ -32,7 +32,12 @@
                v-model:value="o_out"
                v-bind:placeholder="o_out_placeholder">
 
-        <input-assist v-show="o_foucs" ></input-assist>
+        <input-assist v-show="o_foucs"
+                      v-bind:assist_type="assist_type"  v-bind:edit_value.sync="o_edit"
+                      v-bind:assign_value.sync="o_out"  v-bind:assist_range_max="assist_range_max"
+                      v-bind:assist_range_min="assist_range_min"  v-bind:assist_range_width="assist_range_width"
+
+        ></input-assist>
     </div>
 
 </template>
@@ -154,7 +159,9 @@
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "title", "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color", "enable_uppercase", 'readonly'],
+        props: ['edit_value', "title", "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini",
+            "mode_color", "enable_uppercase", 'readonly',
+            'assist_type','assist_range_max','assist_range_min','assist_range_width'],
         data(){
             return {
                 o_edit: "",
