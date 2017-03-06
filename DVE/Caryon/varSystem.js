@@ -5,6 +5,7 @@
 import ARR from "./Richang_JSEX/arrayARR.js"
 import STR from "./Richang_JSEX/stringSTR.js"
 import TYP from "./Richang_JSEX/typeTYP.js"
+import OBJ from "./Richang_JSEX/objectOBJ.js"
 /**
  * 变量基本数据类型，主要封装 evalVar()
  * @param value
@@ -52,6 +53,19 @@ var VarType = function (value, name, type, isFormula, relatives)
     }
 
     return this;
+}
+
+
+VarType.prototype.setObject = function (names, value)
+{
+    console.info("@varSetObject@:", names, value)
+    if (TYP.type(this._value) != "object")
+    {
+        this._value = {};
+    }
+    OBJ.setObjectValueByNames(this._value, names, value)
+    this.updateRelatives(value);
+    this.isFormula = VarSystem.prototype.isFormula(value);
 }
 
 
@@ -306,123 +320,142 @@ VarSystem.prototype.layerSample = {
  * @param thisId
  * @returns {Promise.<*>}
  */
-VarSystem.prototype.evalVar = async function (varValue, thisId)
+VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 {
-    console.log("evalVar(" + varValue + ").", thisId)
-    var self = this
-    var result = this._execFunction_satrt(varValue)
 
-    if (result.funcName != undefined)
-    {
-        var inVar = result.value;
-        var hasFunction = true;
-    } else
-    {
-        var inVar = varValue;
-        var hasFunction = false;
-    }
-
-
-    var notRecur = false;
-    /*不递归*/
-
-
-    if (inVar[0] == ">")
-    {
-        inVar = inVar.slice(1);
-        notRecur = true
-    }
-
-    var varList = [];
-    varList = VarSystem.prototype.scanVarsInFormula(inVar);
-
-    // console.info(inVar,varList)
-    var increment = 0;
-    for (let i = 0; i < varList.length; i++)
+    try
     {
 
-        if (varList[i].name[0] == "$" || varList[i].name[0] == "￥")
+        console.log("varSystem.evalVar('" + varValue + "').", thisId, names)
+        var self = this
+        var result = this._execFunction_satrt(varValue)
+
+        if (result.funcName != undefined)
         {
-            var _this_var = {value: varList[i].name};
+            var inVar = result.value;
+            var hasFunction = true;
         } else
         {
-            var _this_var = this.vars[varList[i].name];
+            var inVar = varValue;
+            var hasFunction = false;
         }
 
 
-        if (_this_var !== undefined)
+        var notRecur = false;
+        /*不递归*/
+
+
+        if (inVar[0] == ">")
         {
-            // console.log(varList[i].index + increment + "-" + varList[i].name.length)
-            if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
+            inVar = inVar.slice(1);
+            notRecur = true
+        }
+
+        var varList = [];
+        varList = VarSystem.prototype.scanVarsInFormula(inVar);
+
+        // console.info(inVar,varList)
+        var increment = 0;
+        for (let i = 0; i < varList.length; i++)
+        {
+
+            if (varList[i].name[0] == "$" || varList[i].name[0] == "￥")
             {
-                if (ARR.hasMember(["计数", "count", "i"],) , _this_var.value.slice(1))
+                var _this_var = {value: varList[i].name};
+            } else
+            {
+                if (varList[i].name[0] == "@")
                 {
-                    var getValue = this.$count;
-                    this.$count++;
-                } else if (ARR.hasMember(["图层计数", "layerCount", "z"],) , _this_var.value.slice(1))
+
+                    var _this_var =
+                        {value: OBJ.getObjectValueByNames(this.vars[varList[i].name].value, names)};
+
+
+                } else
                 {
-                    var getValue = this.$layerCount;
+                    var _this_var = this.vars[varList[i].name];
+                }
+
+            }
+
+
+            if (_this_var !== undefined)
+            {
+                // console.log(varList[i].index + increment + "-" + varList[i].name.length)
+                if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
+                {
+                    if (ARR.hasMember(["计数", "count", "i"],) , _this_var.value.slice(1))
+                    {
+                        var getValue = this.$count;
+                        this.$count++;
+                    } else if (ARR.hasMember(["图层计数", "layerCount", "z"],) , _this_var.value.slice(1))
+                    {
+                        var getValue = this.$layerCount;
+                    }
+                    else
+                    {
+                        var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
+                    }
+
+
                 }
                 else
                 {
-                    var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
+                    if (notRecur)
+                    {
+                        var getValue = _this_var.value;
+                    } else
+                    {
+                        var getValue = await this.evalVar(_this_var.value, thisId, names);
+                    }
+
                 }
 
 
-            }
-            else
-            {
-                if (notRecur)
-                {
-                    var getValue = _this_var.value;
-                } else
-                {
-                    var getValue = await this.evalVar(_this_var.value);
-                }
+                inVar = STR.insert(inVar,
+                    varList[i].index + increment,
+                    varList[i].name.toString().length,
+                    getValue
+                );
+                increment += getValue.toString().length - varList[i].name.toString().length;
+
 
             }
-
-
-            inVar = STR.insert(inVar,
-                varList[i].index + increment,
-                varList[i].name.toString().length,
-                getValue
-            );
-            increment += getValue.toString().length - varList[i].name.toString().length;
-
-
         }
-    }
 
 
-    //修正 JavaScript 精度问题
-    try
-    {
-        if (inVar[0] == "#" || varValue[0] == ">")
+        //修正 JavaScript 精度问题
+        try
         {
+            if (inVar[0] == "#" || varValue[0] == ">")
+            {
+                return retrunFilter(inVar)
+            }
+
+            return retrunFilter(math.format(math.eval(inVar), {precision: 14}))
+        } catch (e)
+        {
+            console.error(`math.eval(${inVar})`, e)
             return retrunFilter(inVar)
         }
 
-        return retrunFilter(math.format(math.eval(inVar), {precision: 14}))
+        function retrunFilter(value)
+        {
+
+            if (hasFunction)
+            {
+                return self._execFunction_end(value, result.funcName)
+            } else
+            {
+                return value
+            }
+
+        }
     } catch (e)
     {
-        console.error(`math.eval(${inVar})`, e)
-        return retrunFilter(inVar)
+        logger.err(e)
+        return varValue
     }
-
-    function retrunFilter(value)
-    {
-
-        if (hasFunction)
-        {
-            return self._execFunction_end(value, result.funcName)
-        } else
-        {
-            return value
-        }
-
-    }
-
 }
 
 
@@ -511,7 +544,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
     // 日文平假名：3040-309F
     // 日文片假名：30A0-30FF
 
-    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
+    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$\@￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
     var varList = [];
     var resullt;
 
@@ -544,7 +577,7 @@ VarSystem.prototype.scanFormulasInText = function (formula, flat)
 {
 
     // var re = /{{\s*[\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
-    var re = /{{\s*[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_\$￥\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
+    var re = /{{\s*[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_\$\@￥\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
 
     var varList = [];
     var resullt;
@@ -568,7 +601,7 @@ VarSystem.prototype.scanFormulasInText = function (formula, flat)
 }
 
 
-VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
+VarSystem.prototype.evalFormulasInText = async function (varText, thisId, names)
 {
     var text = varText;
     var formulasList = [];
@@ -584,7 +617,7 @@ VarSystem.prototype.evalFormulasInText = async function (varText, thisId)
 
         if (isFormula)
         {
-            var getValue = await this.evalVar(thisFormulas);
+            var getValue = await this.evalVar(thisFormulas, thisId, names);
             text = STR.insert(text,
                 formulasList[i].index + increment,
                 formulasList[i].name.toString().length,

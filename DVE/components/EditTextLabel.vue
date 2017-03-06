@@ -39,12 +39,9 @@
                         }
                     }
                 },100)
-
-7
+                    7
 //                window.ee = this.$el.parentElement.children;
 //                console.log("edit_label_id_" + this.in_value)
-
-
             },
 
             editEnd: function ()

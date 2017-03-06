@@ -774,7 +774,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                         //-----------------------------------------------------------------
                         if (isFormula) //如果是变量表达式先解析"普通变量"
                         {
-                            var finValue = await varSystem.evalVar(value, this.selectList[i].id)
+                            var finValue = await varSystem.evalVar(value, this.selectList[i].id, names)
                         }
                         else if (_enableTextFormula)
                         {

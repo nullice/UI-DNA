@@ -62,8 +62,8 @@
 
     }
 
-    .exmo_inbox.value_input_box.mini.press_out .out_input {
-        width: 52px;
+    .color_input .exmo_inbox.value_input_box.mini.press_out .out_input {
+        width:84px;
     }
 
     .color_input .value_input_box .exmo_box_name {
@@ -79,7 +79,7 @@
     export default{
         props: ['color', 'edit_value', "out_value", 'name', 'title', 'name_html',
             "value_type", "enable_assign", "mini", "mode_color", "type_none", 'opacity'
-            , "color_enable"],
+            , "color_enable", "color_names"],
         watch: {
             "o_color": function (val)
             {
@@ -95,7 +95,7 @@
                         _setColorFromVar();
                         async function _setColorFromVar()
                         {
-                            var finValue = await varSystem.evalVar(val)
+                            var finValue = await varSystem.evalVar(val,null,this.color_names.concat("$hex"))
                             this.ichi_color.hex = finValue;
                             this.color.r = this.ichi_color.r;
                             this.color.g = this.ichi_color.g;

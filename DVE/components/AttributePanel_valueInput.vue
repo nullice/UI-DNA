@@ -1,8 +1,13 @@
 <template>
 
+
     <div class="exmo_inbox value_input_box" v-bind:class="{press_out:enable_assign, mini:mini}">
+
         <div class="exmo_box_name" v-on:click="click_uppercase"
-             v-bind:title="title">{{name|lang}} {{{name_html}}}</div>
+             v-bind:title="title"
+        >{{name|lang}} {{{name_html}}}
+
+        </div>
         <slot></slot>
         <input type="text" class="exmo_input_text edit_input "
                v-bind:type="readonly?'readonly':'text'"
@@ -10,17 +15,24 @@
                debounce="800"
                v-bind:placeholder="o_edit_placeholder"
                v-bind:class="{'uppercase':o_uppercase}"
+               @focus.stop="on_foucs"
+               @blur.stop="on_blur"
 
         >
 
-        <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name+title|lowercase}}" autocomplete="off" checked
+
+        <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name+title|lowercase}}" autocomplete="off"
+               checked
                v-model:value="enable_assign">
-        <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name+title|lowercase}}" title="{{'赋值到:' |lang}}"><i
+        <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name+title|lowercase}}"
+               title="{{'赋值到:' |lang}}"><i
                 class="icon-carousel-right"></i></label>
 
         <input type="text" class="exmo_input_text out_input"
                v-model:value="o_out"
                v-bind:placeholder="o_out_placeholder">
+
+        <input-assist v-show="o_foucs" ></input-assist>
     </div>
 
 </template>
@@ -136,12 +148,13 @@
 
 <script>
 
+    import InputAssist from '../components/InputAssist.vue';
 
     var muti_edit = false;
     //    var pressOut_input = false
     export default{
 //        编辑值，输出值，值名称，值类型
-        props: ['edit_value', "title","out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color","enable_uppercase", 'readonly'],
+        props: ['edit_value', "title", "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini", "mode_color", "enable_uppercase", 'readonly'],
         data(){
             return {
                 o_edit: "",
@@ -151,6 +164,7 @@
                 o_out_placeholder: "赋值",
                 o_out_isMult: false,
                 o_uppercase: false,
+                o_foucs: false,
 //                pressOut_input: pressOut_input,
             }
         },
@@ -220,16 +234,41 @@
 
         },
         methods: {
+            on_foucs: function ()
+            {
+                console.log("on_foucs")
+
+                this.o_foucs = true;
+            },
+            on_blur:function ()
+            {
+//                console.log("on_blur")
+//                this.o_foucs = false;
+            },
             click_uppercase: function ()
             {
-                if(this.enable_uppercase)
+                if (this.enable_uppercase)
                 {
                     this.o_uppercase = !this.o_uppercase
                     console.log("click_uppercase")
 
                 }
 
-            }
+            },
+            bl: function() {
+
+                alert("blur")
+
+            },
+
+            fs: function() {
+
+                alert("focus")
+
+            },
+        },
+        components: {
+            "input-assist": InputAssist
         }
 
     }

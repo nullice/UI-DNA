@@ -528,7 +528,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                             {
                                 if (varSystem.isFormula(dataCaryonValue))
                                 {
-                                    var getValue = await varSystem.evalVar(dataCaryonValue);
+                                    var getValue = await varSystem.evalVar(dataCaryonValue, layer.id, names);
                                 } else
                                 {
                                     var getValue = dataCaryonValue;
@@ -547,7 +547,17 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                                     if (varSystem.vars[_varNames[i]] != undefined)
                                     {
                                         console.log("_doAssign: setVarr:" + _varNames[i] + "=" + getValue)
-                                        varSystem.vars[_varNames[i]].value = getValue;
+
+                                        if (_varNames[i][0] == "@")
+                                        {
+                                            var fullnames = names.slice(0)
+                                            fullnames.unshift(rootName)
+                                            varSystem.vars[_varNames[i]].setObject(fullnames, getValue)
+                                        } else
+                                        {
+                                            varSystem.vars[_varNames[i]].value = getValue;
+                                        }
+
                                     }
                                 }
                             }
@@ -577,7 +587,8 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     {
         console.group("_copyValue", "layerId:", layerId)
         mRNA_DataLayers[layerId] = {};
-        var temp = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId]);
+
+        var temp = await _copyValue(dataCaryon.layers[layerId], layerId, mRNA_DataLayers[layerId], []);
         varSystem.$layerCount++;
         console.groupEnd()
     }
@@ -590,7 +601,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
      * @param toObject
      * @private
      */
-    async function _copyValue(object, layerId, toObject)
+    async function _copyValue(object, layerId, toObject, names)
     {
         // console.log("_copyValue:", object, layerId, toObject)
         for (var x in object)
@@ -630,7 +641,9 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                             {
                                 toObject[x] = {};
                                 // console.log(`object:`,x)
-                                await _copyValue(object[x], layerId, toObject[x])
+                                var newNames = names.slice(0)
+                                newNames.push(x)
+                                await _copyValue(object[x], layerId, toObject[x], newNames)
                             }
                         }
                     }
@@ -640,7 +653,6 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                         {
                             if (object["$enableTextFormula"])
                             {
-                                console.log()
                                 var enableFormulaEval = true;
                             }
                         }
@@ -653,12 +665,14 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                         if (enableFormulaEval)
                         {
                             // console.log(`enableFormulaEval`,x,object[x],layerId)
+                            var newNames = names.slice(0)
+                            newNames.push(x)
                             if (x === "text")
                             {
-                                toObject[x] = await varSystem.evalFormulasInText(object[x], layerId);
+                                toObject[x] = await varSystem.evalFormulasInText(object[x], layerId, newNames);
                             } else
                             {
-                                toObject[x] = await varSystem.evalVar(object[x], layerId);
+                                toObject[x] = await varSystem.evalVar(object[x], layerId, newNames);
                             }
 
 

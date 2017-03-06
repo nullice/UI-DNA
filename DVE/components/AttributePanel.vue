@@ -103,6 +103,7 @@
                          v-bind:out_value.sync="Gob.shape.assignment.fillColor"
                          v-bind:enable_assign.sync="Gob.shape.enableAssigns.fillColor"
                          v-bind:color.sync="Gob.shape.fillColor"
+                         v-bind:color_names="['shape','fillColor']"
                          v-bind:color_enable.sync="Gob.shape.fillColorEnabled"
 
                          mini="true"
@@ -114,6 +115,7 @@
                          v-bind:out_value.sync="Gob.shape.assignment.strokeColor"
                          v-bind:enable_assign.sync="Gob.shape.enableAssigns.strokeColor"
                          v-bind:color.sync="Gob.shape.strokeColor"
+                         v-bind:color_names="['shape','strokeColor']"
                          v-bind:color_enable.sync="Gob.shape.strokeColorEnabled"
 
                          mini="true"
@@ -299,6 +301,7 @@
                          v-bind:out_value.sync="Gob.text.assignment.color"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.color"
                          v-bind:color.sync="Gob.text.color"
+                         v-bind:color_names="['text','color']"
                          mini="true"
             ></color-input>
 
@@ -512,6 +515,7 @@
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.color"
                          v-bind:color.sync="Gob.quickEffect.dropShadow.color"
                          v-bind:opacity.sync="Gob.quickEffect.dropShadow.opacity"
+                         v-bind:color_names="['quickEffect','dropShadow','color']"
                          mini="true"
             ></color-input>
 
