@@ -36,7 +36,8 @@
 
                       v-bind:input_foucs="o_foucs"
                       v-bind:assist_type="assist_type"  v-bind:edit_value.sync="o_edit"
-                      v-bind:assign_value.sync="o_out"  v-bind:assist_range_max="assist_range_max"
+                      v-bind:assign_value.sync="o_out"   v-bind:enable_assign.sync="enable_assign"
+                      v-bind:assist_range_max="assist_range_max" v-bind:input_title="title||name"
                       v-bind:assist_range_min="assist_range_min"  v-bind:assist_range_width="assist_range_width"
 
         ></input-assist>

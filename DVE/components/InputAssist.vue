@@ -4,7 +4,6 @@
 
     <div class="input-assist-box" v-bind:class="{'input_foucs':input_foucs}">
 
-
         <!--<input type="text" @blur.stop="bl" @focus.stop="fs" >-->
 
         <div class="assist-range" v-if="assist_range_max!=undefined">
@@ -88,11 +87,11 @@
 <script>
     import attrOption from "./AttributePanel_option.vue"
     import ARR from "../Caryon/Richang_JSEX/arrayARR.js"
-
+    import OBJ from "../Caryon/Richang_JSEX/objectOBJ.js"
 
     export default{
-        props: ["assist_type", "edit_value", "assign_value", 'assist_range_max',
-            'assist_range_min', 'assist_range_width', 'input_foucs', 'names'],
+        props: ["assist_type", "edit_value", "assign_value", "enable_assign", 'assist_range_max',
+            'assist_range_min', 'assist_range_width', 'input_foucs', 'names','input_title'],
         data(){
             return {
                 o_editing: false,
@@ -103,6 +102,8 @@
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
                         selected_func: this.info_pin,
+                        varSystem: varSystem,
+                        dataCaryon: dataCaryon,
 
                         button: true
                     }
@@ -303,7 +304,7 @@
         },
         methods: {
 
-            info_pin: function (self)
+            info_pin: async function (self)
             {
 
                 /*1 创建一个变量
@@ -323,10 +324,11 @@
                         if (varSystem.vars[linkVarName + i] == undefined)
                         {
                             linkVarName = linkVarName + i;
+                            varSystem.addVar(linkVarName, this.edit_value)
+                            this.assign_value = linkVarName
                             break;
                         }
                     }
-
                 } else
                 {
                     var _varNames = self.assign_value.split((/[,，]/));
@@ -336,8 +338,47 @@
                         linkVarName = _varNames[0]
                     }
                 }
+                this.enable_assign = true;
 
-                Proteins.exec("inputAssist_creatTextLayerLinkVar", {name:linkVarName, varName:linkVarName})
+                /*创建图层----------------------*/
+
+                if(this.input_title==undefined)
+                {
+                    var textValue = this.edit_value
+                }else
+                {
+                    var textValue =this.input_title +": " + this.edit_value
+                }
+
+
+                var relayer = await Proteins.exec("inputAssist_creatTextLayerLinkVar", {
+                    name: linkVarName,
+                    varName: linkVarName,
+                    value: textValue,
+                    positionX: null,
+                    positionY: null,
+                })
+
+                console.info("relayer:",relayer)
+
+                /*文本图层内容设置为变量--------------------*/
+                if (relayer != undefined) //写 dataCaryon
+                {
+                    try
+                    {
+                        if (dataCaryon.layers[relayer.id] == undefined) //如果 dataCaryon 图层不存在，就创建
+                        {
+                            dataCaryon.addLayer(relayer);
+                        }
+                        console.info(`OBJ.setObjectValueByNames(dataCaryon.layers[${relayer.id}],` + `{{${linkVarName}}})`)
+                        OBJ.setObjectValueByNames(dataCaryon.layers[relayer.id], ["text", "text"], `${this.input_title}: {{${linkVarName}}}`)
+                        OBJ.setObjectValueByNames(dataCaryon.layers[relayer.id], ["text", "$enableTextFormula"], true)
+                    } catch (e)
+                    {
+                        logger.err("info_pin:dataCaryon:", e)
+                    }
+                }
+
             }
 
 

@@ -66,6 +66,14 @@ if (typeof window.__adobe_cep__ !== "undefined")
 var os = require('os')
 window.os = os;
 
+// javascript 常用库
+
+import ARR from "./Caryon/Richang_JSEX/arrayARR.js"
+import OBJ from "./Caryon/Richang_JSEX/objectOBJ.js"
+import TYP from "./Caryon/Richang_JSEX/typeTYP"
+window.ARR = ARR
+window.OBJ = OBJ
+window.TYP = TYP
 
 //日志记录系统 -------------------------------------
 import  LoggerCaryon  from "./Caryon/loggerCaryon.js";

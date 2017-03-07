@@ -16,7 +16,8 @@ var RenderCaryon = function ()
     }
 
     this._temp = {colorTemp: {}};
-
+    this.stopRenderPatch = false;
+    /*暂停局部渲染 flag*/
     return this;
 }
 
@@ -41,11 +42,17 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
 {
-    if(Gob._unripe)
+    if (Gob._unripe)
     {
-        logger.info("[未准备好的渲染触发]",`renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
+        logger.info("[未准备好的渲染触发]", `renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
         return
     }
+
+    if (this.stopRenderPatch)
+    {
+        return;
+    }
+
 
     logger.group(`renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
     this.status.rendering = true;// 标记渲染状态，会触发渲染按钮动画

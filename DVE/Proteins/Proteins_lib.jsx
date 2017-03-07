@@ -3,7 +3,7 @@
  */
 Proteins = {
 
-    envObject:{},
+    envObject: {},
 
     exec: function (funcName, parameObject)
     {
@@ -55,9 +55,9 @@ Proteins = {
                 var jsxFile = jsxs[i];
 
                 var re = Proteins.evalJsxFile(jsxFile)
-                if(re!=undefined)
+                if (re != undefined)
                 {
-                    result.push() ;
+                    result.push();
                 }
 
             }
@@ -71,23 +71,26 @@ Proteins = {
      * @param historyName
      * @param holdLayerSelect
      */
-    doCon:function (func, historyName, holdLayerSelect )
+    doCon: function (func, historyName, holdLayerSelect)
     {
 
-        if(holdLayerSelect)
+        if (holdLayerSelect)
         {
-            var selectSave =  ki.layer.selectSave();
+            var selectSave = ki.layer.selectSave();
             app.activeDocument.suspendHistory(historyName, "func()");
             ki.layer.selectLoad(selectSave);
-        }else
+        } else
         {
             app.activeDocument.suspendHistory(historyName, "func()");
         }
 
-    }
+    },
+    firstFontPostScriptName: null,
+
 
 }
-
+/*获取首选字体：优先级： 微软雅黑，冬青黑，思源黑体*/
+Proteins.firstFontPostScriptName =  Kinase.app.getFontPostScriptName_byFontPostScriptName(["MicrosoftYaHei", "SourceHanSansCN-Normal", "HiraginoSansGB-W3"])
 
 //环境参数对象内容：
 // envObject=({

@@ -10,24 +10,25 @@
 // license: LGPL
 
 
-
-
-
-
-
 var path = require("path")
 var Proteins = {
     exec: async function (functionName, parameObject)
     {
         return new Promise(function (resolve, reject)
         {
-
+            Gob.stopSelectEvent = true;
+            renderCaryon.stopRenderPatch = true;
             var obJson = JSON.stringify(parameObject);
             var _jsxCode = `Proteins.exec('${functionName}',${obJson})`
             console.log(_jsxCode)
             evalScript(
                 _jsxCode,
-                (r) => {resolve(JSON.parse(Proteins.jsxBackCheck(r, _jsxCode)))})
+                (r) =>
+                {
+                    renderCaryon.stopRenderPatch = false;
+                    Gob.stopSelectEvent = false;
+                    resolve(JSON.parse(Proteins.jsxBackCheck(r, _jsxCode)))
+                })
         })
     },
 

@@ -2,8 +2,11 @@
 $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Enzymes/test/test.jsx")
 $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Enzymes/Enzymes_lib.jsx")
 $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Proteins/Proteins_lib.jsx")
+Proteins.evalJsxFolder("C:\\Program Files (x86)\\Common Files\\Adobe\\CEP\\extensions\\UI-DNA\\JSX\\Proteins_libs")
 
+//--------------------------
 
+      Kinase.layer.setLayerTextMinBounds_Quick(Kinase.REF_ActiveLayer, null)
 
 //EnzJSX.setLayerInfo_shape_byId  ({"lineWidth":"10"}, 417)
 //EnzJSX.setLayerInfo_shape_byId  ({"fillColorEnabled":false}, 390)

@@ -47,6 +47,70 @@ Kinase.app.clipboardCopyText = function (text)
     executeAction(stringIDToTypeID("textToClipboard"), ad, DialogModes.NO);
 }
 
+/**
+ * 根据字体 Family 列表顺序的优先级获取一个存在的字体 postScriptName
+ * 如：getFontPostScriptName_byFontFamilyList(["微软雅黑 Bold", "苹方"]) => "MicrosoftYaHei-Bold"
+ * @param fontFamilyList []
+ * @returns {*}
+ */
+Kinase.app.getFontPostScriptName_byFontFamilyList = function (fontFamilyList)
+{
+
+    for (var i = 0; i < fontFamilyList.length; i++)
+    {
+        for (var x = 0; x < app.fonts.length; x++)
+        {
+
+            try
+            {
+                var re = RegExp("^" + fontFamilyList[i]);
+                var family = app.fonts[x]["family"] + " " + app.fonts[x]["style"]
+                if (re.test(family))
+                {
+                    return app.fonts[x].postScriptName;
+                }
+
+            } catch (e)
+            {
+                $.writeln("Kinase.app.getFontPostScriptName_byFontNameList:" + e)
+            }
+        }
+    }
+
+    return null;
+}
+
+
+/**
+ * 根据字体 postScriptName 列表顺序的优先级获取一个存在的字体 postScriptName
+ * 如 ：["MicrosoftYaHei", "SourceHanSansCN-Normal", "HiraginoSansGB-W3"] => "MicrosoftYaHei"
+ * @param fontFamilyList
+ * @returns {*}
+ */
+Kinase.app.getFontPostScriptName_byFontPostScriptName = function (fontFamilyList)
+{
+
+    for (var i = 0; i < fontFamilyList.length; i++)
+    {
+        for (var x = 0; x < app.fonts.length; x++)
+        {
+            try
+            {
+                if (app.fonts[x].postScriptName == fontFamilyList[i])
+                {
+                    return app.fonts[x].postScriptName;
+                }
+
+            } catch (e)
+            {
+                $.writeln("Kinase.app.getFontPostScriptName_byFontPostScriptName:" + e)
+            }
+        }
+    }
+
+    return null;
+}
+
 
 // Kinase.document
 // 文档相关功能 ====================================================================================================
@@ -103,6 +167,29 @@ Kinase.document.hasArtBoard = function (returnArtBoard)
 // 图层相关功能  ====================================================================================================
 
 Kinase.layer = {};
+
+/**
+ * 根据 layerId 返回图层基本信息
+ * {
+        name: name,
+        id: layerId,
+        index: itemIndex
+    }
+ * @param layerId
+ * @returns {{name: (*|Promise), id: *, index: *}}
+ */
+Kinase.layer.getLayerBaseInfo_byID = function (layerId)
+{
+    var itemIndex = Kinase.layer.getItemIndexBylayerID(layerId)
+    var name = Kinase.layer.getLayerName_byID(layerId)
+
+    return {
+        name: name,
+        id: layerId,
+        index: itemIndex
+    }
+}
+
 
 Kinase.layer.getLayerType = function (targetReference, target)
 {
