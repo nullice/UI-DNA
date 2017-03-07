@@ -1230,34 +1230,44 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.info("============")
     console.groupEnd()
 
-    this.disableRender = false;//恢复默认值；
-    this._neverUpdate = false //未更新过 = false
-    this.nowSwitching = false
 
 
-    console.group("__asyncSetCounter")
-    console.log("【this.nowSwitching = false】")
-    this.nowSwitching = false;
-    this._asyncSetSwitch = false;
-
-    //----------------更新图层后渲染
-    console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
-        " renderCaryon.status.rendering:", renderCaryon.status.rendering,
-    )
-    console.log("this.selectRenderVarList:", this.selectRenderVarList)
-    if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
+    var self = this;
+    setTimeout(function ()
     {
-        if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
-        {
-            console.log("更新图层后渲染")
-            // renderCaryon.renderDocument(true, this.selectRenderVarList)
-        }
-    }
+        self.disableRender = false;//恢复默认值；
+        self._neverUpdate = false //未更新过 = false
+        self.nowSwitching = false
+        console.log("【this.nowSwitching = false】")
+    }, 200)
+
+
+
+    // this.nowSwitching = false;
+    // this._asyncSetSwitch = false;
+
+    // //----------------更新图层后渲染
+    // console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
+    //     " renderCaryon.status.rendering:", renderCaryon.status.rendering,
+    // )
+    // console.log("this.selectRenderVarList:", this.selectRenderVarList)
+    //
+    //
+    // if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
+    // {
+    //     if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
+    //     {
+    //         console.log("更新图层后渲染")
+    //         // renderCaryon.renderDocument(true, this.selectRenderVarList)
+    //     }
+    // }
     console.groupEnd();
+
+
+
 
     if (this._unripe)
     {
-        var self = this;
         setTimeout(function ()
         {
             self._unripe = false;

@@ -135,6 +135,7 @@
                          v-bind:edit_value.sync="Gob.shape.dashSet"
                          v-bind:out_value.sync="Gob.shape.assignment.dashSet"
                          v-bind:enable_assign.sync="Gob.shape.enableAssigns.dashSet"
+                         v-bind:assist_type="'dashset'"
                          mini="true"></value-input>
 
 
@@ -214,6 +215,9 @@
                                  v-bind:edit_value.sync="Gob.shape.radian.topRight"
                                  v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
                                  v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                                 v-bind:assist_type="'radian'"
+                                 v-bind:assist_range_max="100"
+
                                  mini="true"></value-input>
 
                     <value-input v-bind:name="Lang.from('左上')"
@@ -221,6 +225,8 @@
                                  v-bind:edit_value.sync="Gob.shape.radian.topLeft"
                                  v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
                                  v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                                 v-bind:assist_type="'radian'"
+                                 v-bind:assist_range_max="100"
                                  mini="true"></value-input>
 
                     <value-input v-bind:name="Lang.from('右下')"
@@ -228,6 +234,8 @@
                                  v-bind:edit_value.sync="Gob.shape.radian.bottomRight"
                                  v-bind:out_value.sync="Gob.shape.assignment.radian.bottomRight"
                                  v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomRight"
+                                 v-bind:assist_type="'radian'"
+                                 v-bind:assist_range_max="100"
                                  mini="true"></value-input>
 
                     <value-input v-bind:name="Lang.from('左下')"
@@ -235,6 +243,8 @@
                                  v-bind:edit_value.sync="Gob.shape.radian.bottomLeft"
                                  v-bind:out_value.sync="Gob.shape.assignment.radian.bottomLeft"
                                  v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomLeft"
+                                 v-bind:assist_type="'radian'"
+                                 v-bind:assist_range_max="100"
                                  mini="true"></value-input>
                 </div>
 
@@ -321,6 +331,8 @@
                          v-bind:out_value.sync="Gob.text.assignment.size"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
                          v-bind:assist_range_max="128"
+                         v-bind:assist_range_width="150"
+
                          mini="true"></value-input>
 
             <attr-textarea name_html="<i class='icon-file-text'></i>" v-bind:edit_value.sync="Gob.text.text"
@@ -360,6 +372,7 @@
                              v-bind:edit_value.sync="Gob.text.leading"
                              v-bind:out_value.sync="Gob.text.assignment.leading"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.leading"
+                             v-bind:assist_range_max="72"
                              mini="true"></value-input>
 
                 <value-input v-bind:name="Lang.from('字距')"
@@ -367,6 +380,8 @@
                              v-bind:edit_value.sync="Gob.text.tracking"
                              v-bind:out_value.sync="Gob.text.assignment.tracking"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.tracking"
+                             v-bind:assist_range_max="800"
+
                              mini="true"></value-input>
 
                 <value-input v-bind:name="Lang.from('水平')"
@@ -374,6 +389,7 @@
                              v-bind:edit_value.sync="Gob.text.horizontalScale"
                              v-bind:out_value.sync="Gob.text.assignment.horizontalScale"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.horizontalScale"
+                             v-bind:assist_range_max="200"
                              mini="true"></value-input>
 
                 <value-input v-bind:name="Lang.from('垂直')"
@@ -381,6 +397,7 @@
                              v-bind:edit_value.sync="Gob.text.verticalScale"
                              v-bind:out_value.sync="Gob.text.assignment.verticalScale"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.verticalScale"
+                             v-bind:assist_range_max="200"
                              mini="true"></value-input>
 
 
@@ -389,6 +406,7 @@
                              v-bind:edit_value.sync="Gob.text.baselineShift"
                              v-bind:out_value.sync="Gob.text.assignment.baselineShift"
                              v-bind:enable_assign.sync="Gob.text.enableAssigns.baselineShift"
+                             v-bind:assist_range_max="18"
                              mini="true"></value-input>
 
                 <select-input v-bind:block="false" default_value=""
@@ -487,6 +505,8 @@
                          v-bind:edit_value.sync="Gob.quickEffect.dropShadow.x"
                          v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.x"
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.x"
+                         v-bind:assist_range_max="128"
+
                          mini="true"
             ></value-input>
 
@@ -495,6 +515,8 @@
                          v-bind:edit_value.sync="Gob.quickEffect.dropShadow.y"
                          v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.y"
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.y"
+                         v-bind:assist_range_max="128"
+
                          mini="true"
             ></value-input>
 
@@ -503,6 +525,7 @@
                          v-bind:edit_value.sync="Gob.quickEffect.dropShadow.blur"
                          v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.blur"
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.blur"
+                         v-bind:assist_range_max="128"
                          mini="true"
             ></value-input>
 
@@ -511,6 +534,7 @@
                          v-bind:edit_value.sync="Gob.quickEffect.dropShadow.spread"
                          v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.spread"
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.spread"
+                         v-bind:assist_range_max="100"
                          mini="true"
             ></value-input>
 
@@ -531,6 +555,8 @@
                          v-bind:edit_value.sync="Gob.quickEffect.dropShadow.opacity"
                          v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.opacity"
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.opacity"
+                         v-bind:assist_range_max="100"
+                         v-bind:assist_range_width="120"
                          mini="true"
             ></value-input>
 
@@ -581,6 +607,9 @@
                          v-bind:edit_value.sync="Gob.more.opacity"
                          v-bind:out_value.sync="Gob.more.assignment.opacity"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.opacity"
+                         v-bind:assist_range_max="100"
+                         v-bind:assist_range_width="120"
+
                          mini="true"
             ></value-input>
 
@@ -589,6 +618,7 @@
                          v-bind:edit_value.sync="Gob.more.fillOpacity"
                          v-bind:out_value.sync="Gob.more.assignment.fillOpacity"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.fillOpacity"
+                         v-bind:assist_range_max="100"
                          mini="true"
             ></value-input>
 

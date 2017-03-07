@@ -148,6 +148,8 @@ window.UI_model = UI_model;
 window.UI_action = UI_action;
 
 
+//其他 -------------------------
+
 import AttrPanel from "./components/AttributePanel.vue";
 import LayerSelectors from "./components/LayerSelectors.vue";
 import VarPanel from "./components/VarPanel.vue";

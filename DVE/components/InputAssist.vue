@@ -2,14 +2,14 @@
 <template>
 
 
-    <div class="input-assist-box">
+    <div class="input-assist-box" v-bind:class="{'input_foucs':input_foucs}">
 
 
         <!--<input type="text" @blur.stop="bl" @focus.stop="fs" >-->
 
         <div class="assist-range" v-if="assist_range_max!=undefined">
-            <input type="range" v-model="edit_value" class="exmo_range" v-bind:max="assist_range_max"
-                   v-bind:min="assist_range_min||0">
+            <input type="range" v-model="edit_value" debounce="800" class="exmo_range" v-bind:max="assist_range_max"
+                   v-bind:min="assist_range_min||0"  v-bind:style="o_range_style">
             <div class="max-info">{{assist_range_max}}</div>
 
         </div>
@@ -39,13 +39,13 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-    .exmo_inbox.value_input_box  .input-assist-box{
+    .exmo_inbox.value_input_box  .input-assist-box:not(:hover){
         max-height: 0px;
-        transition: all .8s;
+        transition: all .5s;
         overflow: hidden;
     }
 
-    .exmo_inbox.value_input_box:hover  .input-assist-box{
+    .exmo_inbox.value_input_box:hover  .input_foucs.input-assist-box, .input-assist-box:hover{
         max-height: 999px;
         transition: all .3s;
         overflow: hidden;
@@ -70,6 +70,7 @@
             position: relative;
             input.exmo_range {
                 padding: 10px;
+                width: 90px;
             }
 
             .max-info {
@@ -90,7 +91,8 @@
     import ARR from "../Caryon/Richang_JSEX/arrayARR.js"
 
     export default{
-        props: ["assist_type", "edit_value", "assign_value", 'assist_range_max', 'assist_range_min', 'assist_range_width'],
+        props: ["assist_type", "edit_value", "assign_value", 'assist_range_max',
+            'assist_range_min', 'assist_range_width','input_foucs'],
         data(){
             return {
                 o_editing: false,
@@ -147,14 +149,17 @@
                         button: true
                     },
                     {
+                        br: true,
+                    },
+                    {
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
                         selected_func: "info_pin",
-                        button: true
+                        button: true,
+                        block: true,
                     }
                 ],
-
                 options_path: [
                     {
                         value: 'open_file',
@@ -171,7 +176,56 @@
                         button: true
                     }
                 ],
-
+                    options_dashset: [
+                        {
+                            value: 'dashset_42',
+                            label:"4,2",
+                            label_html: ``,
+                            title: "虚线 4,2",
+                            selected_func: "dashset_42",
+                            block: true,
+                            button: true
+                        },
+                        {
+                            br: true,
+                        },
+                        {
+                            value: 'dashset_02',
+                            label:"0,2",
+                            label_html: ``,
+                            title: "虚线 0,2",
+                            selected_func: "dashset_02",
+                            block: true,
+                            button: true
+                        },
+                        {
+                            br: true,
+                        },
+                        {
+                            value: 'info_pin',
+                            label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                            title: "创建变量标注",
+                            selected_func: "info_pin",
+                            block: true,
+                            button: true
+                        }
+                    ],
+                options_radian: [
+                    {
+                        value: 'radian_all',
+                        label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
+                        title: "应用到所有圆角",
+                        selected_func: "open_file",
+                        button: true
+                    },
+                    {
+                        value: 'info_pin',
+                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                        title: "创建变量标注",
+                        selected_func: "info_pin",
+                        button: true
+                    }
+                ],
                 options: [
                     {
                         value: 'test2',
@@ -272,12 +326,41 @@
                     } else if (this.assist_type == "boolean")
                     {
                         return this.options_boolean
+                    }else if (this.assist_type == "dashset")
+                    {
+                        return this.options_dashset
+
+                    }else if (this.assist_type == "radian")
+                    {
+                        return this.options_radian
                     }
+
+
+
+
+
 
 
                     return this.options_normal;
                 },
             },
+            o_range_style:{
+                get: function ()
+                {
+                    if(this.assist_range_width!=undefined)
+                    {
+                        return {
+                            width:this.assist_range_width +"px"
+                        }
+                    }
+                    else
+                    {
+                        return {
+                            width:"90px"
+                        }
+                    }
+                },
+            }
         },
         components: {
             "attr-option": attrOption

@@ -97,6 +97,8 @@
                         _setColorFromVar();
                         async function _setColorFromVar()
                         {
+
+
                             var finValue = await varSystem.evalVar(val, null, self.color_names.concat("$hex"))
                            if(finValue!=undefined)
                            {

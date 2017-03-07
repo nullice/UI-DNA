@@ -32,7 +32,9 @@
                v-model:value="o_out"
                v-bind:placeholder="o_out_placeholder">
 
-        <input-assist v-show="o_foucs"
+        <input-assist
+
+                      v-bind:input_foucs="o_foucs"
                       v-bind:assist_type="assist_type"  v-bind:edit_value.sync="o_edit"
                       v-bind:assign_value.sync="o_out"  v-bind:assist_range_max="assist_range_max"
                       v-bind:assist_range_min="assist_range_min"  v-bind:assist_range_width="assist_range_width"
