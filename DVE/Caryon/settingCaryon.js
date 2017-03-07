@@ -44,11 +44,9 @@ var SetSystem = function ()
 
     }
 
-
     this.autoRender = false;
     this.init();
     return this;
-
 
 }
 
@@ -83,7 +81,6 @@ SetSystem.prototype.init = function ()
     var userExDir = path.join(appDir, "Capsules")
     _checkDir(userExDir);
     this._path_userExDir = userExDir;
-
 
 
     logger.pin("setting", "settingCaryon.js:SetSystem.prototype.init",

@@ -619,6 +619,7 @@
                          v-bind:out_value.sync="Gob.more.assignment.fillOpacity"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.fillOpacity"
                          v-bind:assist_range_max="100"
+                         v-bind:assist_range_width="90"
                          mini="true"
             ></value-input>
 

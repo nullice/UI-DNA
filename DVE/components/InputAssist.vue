@@ -9,7 +9,7 @@
 
         <div class="assist-range" v-if="assist_range_max!=undefined">
             <input type="range" v-model="edit_value" debounce="800" class="exmo_range" v-bind:max="assist_range_max"
-                   v-bind:min="assist_range_min||0"  v-bind:style="o_range_style">
+                   v-bind:min="assist_range_min||0" v-bind:style="o_range_style">
             <div class="max-info">{{assist_range_max}}</div>
 
         </div>
@@ -25,7 +25,8 @@
                          v-bind:br="item.br"
                          v-bind:label="item.label"
                          v-bind:label_html="item.label_html"
-                         v-bind:selected_func="selected_func"
+                         v-bind:selected_func="item.selected_func"
+                         v-bind:selected_func_param="getThis"
                          v-bind:in_title="item.title||''"
                          v-bind:in_class="(inline_block&&!item.block)?'inline_block':''"
                          v-bind:button="item.button"
@@ -39,19 +40,17 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-    .exmo_inbox.value_input_box  .input-assist-box:not(:hover){
+    .exmo_inbox.value_input_box .input-assist-box:not(:hover) {
         max-height: 0px;
         transition: all .5s;
         overflow: hidden;
     }
 
-    .exmo_inbox.value_input_box:hover  .input_foucs.input-assist-box, .input-assist-box:hover{
+    .exmo_inbox.value_input_box:hover .input_foucs.input-assist-box, .input-assist-box:hover {
         max-height: 999px;
         transition: all .3s;
         overflow: hidden;
     }
-
-
 
     .input-assist-box {
         position: absolute;
@@ -90,9 +89,10 @@
     import attrOption from "./AttributePanel_option.vue"
     import ARR from "../Caryon/Richang_JSEX/arrayARR.js"
 
+
     export default{
         props: ["assist_type", "edit_value", "assign_value", 'assist_range_max',
-            'assist_range_min', 'assist_range_width','input_foucs'],
+            'assist_range_min', 'assist_range_width', 'input_foucs', 'names'],
         data(){
             return {
                 o_editing: false,
@@ -102,7 +102,8 @@
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
-                        selected_func: "info_pin",
+                        selected_func: this.info_pin,
+
                         button: true
                     }
 
@@ -113,21 +114,21 @@
                         value: 'color_pick',
                         label_html: '<i class=" icon-tool-eyedropper" style="font-size: 14px;">',
                         title: "吸管",
-                        selected_func: "color_pick",
+                        selected_func: this.color_pick,
                         button: true
                     },
                     {
                         value: 'color_none',
                         label_html: '<i class="icon-checkbox-unchecked" style="font-size: 11px;">',
                         title: "无色彩",
-                        selected_func: "color_none",
+                        selected_func: this.color_none,
                         button: true
                     },
                     {
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
-                        selected_func: "info_pin",
+                        selected_func: this.info_pin,
                         button: true
                     }
 
@@ -145,7 +146,7 @@
                         value: 'boolean_false',
                         label_html: '<i class="icon-cross2" style="font-size: 11px;">',
                         title: "假",
-                        selected_func: "boolean_false",
+                        selected_func: this.boolean_false,
                         button: true
                     },
                     {
@@ -155,7 +156,7 @@
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
-                        selected_func: "info_pin",
+                        selected_func: this.info_pin,
                         button: true,
                         block: true,
                     }
@@ -165,64 +166,64 @@
                         value: 'open_file',
                         label_html: '<i class=" icon-folder-open" style="font-size: 14px;">',
                         title: "打开文件",
-                        selected_func: "open_file",
+                        selected_func: this.open_file,
                         button: true
                     },
                     {
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
-                        selected_func: "info_pin",
+                        selected_func: this.info_pin,
                         button: true
                     }
                 ],
-                    options_dashset: [
-                        {
-                            value: 'dashset_42',
-                            label:"4,2",
-                            label_html: ``,
-                            title: "虚线 4,2",
-                            selected_func: "dashset_42",
-                            block: true,
-                            button: true
-                        },
-                        {
-                            br: true,
-                        },
-                        {
-                            value: 'dashset_02',
-                            label:"0,2",
-                            label_html: ``,
-                            title: "虚线 0,2",
-                            selected_func: "dashset_02",
-                            block: true,
-                            button: true
-                        },
-                        {
-                            br: true,
-                        },
-                        {
-                            value: 'info_pin',
-                            label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
-                            title: "创建变量标注",
-                            selected_func: "info_pin",
-                            block: true,
-                            button: true
-                        }
-                    ],
+                options_dashset: [
+                    {
+                        value: 'dashset_42',
+                        label: "4,2",
+                        label_html: ``,
+                        title: "虚线 4,2",
+                        selected_func: this.dashset_42,
+                        block: true,
+                        button: true
+                    },
+                    {
+                        br: true,
+                    },
+                    {
+                        value: 'dashset_02',
+                        label: "0,2",
+                        label_html: ``,
+                        title: "虚线 0,2",
+                        selected_func: this.dashset_02,
+                        block: true,
+                        button: true
+                    },
+                    {
+                        br: true,
+                    },
+                    {
+                        value: 'info_pin',
+                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                        title: "创建变量标注",
+                        selected_func: this.info_pin,
+                        block: true,
+                        button: true
+                    }
+                ],
                 options_radian: [
                     {
                         value: 'radian_all',
                         label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
                         title: "应用到所有圆角",
-                        selected_func: "open_file",
+                        selected_func: this.open_file,
                         button: true
                     },
                     {
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
-                        selected_func: "info_pin",
+                        selected_func: this.info_pin,
                         button: true
                     }
                 ],
@@ -302,10 +303,43 @@
         },
         methods: {
 
-            info_pin: function ()
+            info_pin: function (self)
             {
-                alert(123)
+
+                /*1 创建一个变量
+                 * 2 把 assign_value 添加此变量
+                 * 3 新建文本图层
+                 * 4 文本图层的文本内容设置为此变量
+                 * */
+
+
+                /*创建变量-----------------------------*/
+                var linkVarName = ""
+                if (self.assign_value == undefined || self.assign_value == "")/*没有 assign*/
+                {
+                    linkVarName = "_pin_";
+                    for (var i = 0; i < 71020; i++)
+                    {
+                        if (varSystem.vars[linkVarName + i] == undefined)
+                        {
+                            linkVarName = linkVarName + i;
+                            break;
+                        }
+                    }
+
+                } else
+                {
+                    var _varNames = self.assign_value.split((/[,，]/));
+
+                    if (_varNames.length > 0)
+                    {
+                        linkVarName = _varNames[0]
+                    }
+                }
+
+                Proteins.exec("inputAssist_creatTextLayerLinkVar", {name:linkVarName, varName:linkVarName})
             }
+
 
         },
         computed: {
@@ -326,39 +360,41 @@
                     } else if (this.assist_type == "boolean")
                     {
                         return this.options_boolean
-                    }else if (this.assist_type == "dashset")
+                    } else if (this.assist_type == "dashset")
                     {
                         return this.options_dashset
 
-                    }else if (this.assist_type == "radian")
+                    } else if (this.assist_type == "radian")
                     {
                         return this.options_radian
                     }
 
 
-
-
-
-
-
                     return this.options_normal;
                 },
             },
-            o_range_style:{
+            o_range_style: {
                 get: function ()
                 {
-                    if(this.assist_range_width!=undefined)
+                    if (this.assist_range_width != undefined)
                     {
                         return {
-                            width:this.assist_range_width +"px"
+                            width: this.assist_range_width + "px"
                         }
                     }
                     else
                     {
                         return {
-                            width:"90px"
+                            width: "90px"
                         }
                     }
+                },
+            },
+
+            getThis: {
+                get: function ()
+                {
+                    return this;
                 },
             }
         },

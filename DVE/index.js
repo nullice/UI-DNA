@@ -51,6 +51,7 @@ var UIDNA = {
 
 }
 
+
 window.UIDNA = UIDNA
 //CEP 库-------------------------------------
 if (typeof window.__adobe_cep__ !== "undefined")
@@ -61,6 +62,10 @@ if (typeof window.__adobe_cep__ !== "undefined")
     console.info("running without CEP!")
 }
 
+//Node 库-------------------------------------
+var os = require('os')
+window.os = os;
+
 
 //日志记录系统 -------------------------------------
 import  LoggerCaryon  from "./Caryon/loggerCaryon.js";
@@ -69,7 +74,7 @@ window.logger = logger;
 
 
 logger.info(
-    "3,2,1 "+ "%c"+UIDNA.name + " v" + UIDNA.version + " -" + UIDNA.codename+ "  %cstart!",
+    "3,2,1 " + "%c" + UIDNA.name + " v" + UIDNA.version + " -" + UIDNA.codename + "  %cstart!",
     "background-color: #7d7d7d;color: #fff; padding:2px 8px; font-size:12px;border-radius: 4px;",
     (new Date()).toLocaleString(),
     {
@@ -126,6 +131,11 @@ window.Gob = Gob
 import  EventCaryon  from "./Caryon/eventCaryon";
 var eventCaryon = new EventCaryon("默认测试");
 window.eventCaryon = eventCaryon
+
+//脚本功能库相关-------------------------------------
+import  Proteins  from "./Proteins/Proteins.js";
+window.Proteins = Proteins
+Proteins.init();
 
 
 //测试相关 -----------------------------------

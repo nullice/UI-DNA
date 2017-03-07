@@ -30,7 +30,11 @@ module.exports = {
         new webpack.BannerPlugin("---------nullice--------Banner 注释"),
         // new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
         // new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}})
-        new CopyWebpackPlugin([{ context: 'Enzymes/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' }]),
+        new CopyWebpackPlugin(
+            [{ context: 'Enzymes/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' },
+                { context: 'Proteins/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' },
+                { context: 'Proteins/libs', from:"*.jsx", to: __dirname+'/bin/JSX/Proteins_libs' },
+        ]),
          // new webpack.ProvidePlugin({Vue: 'vue'}),// 注册全局标识符
 
     ],

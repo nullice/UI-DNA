@@ -23,7 +23,7 @@ function initEnzymes(in_extendPath)
     $.evalFile(extendPath + "/JSX/json3.js");
     $.evalFile(extendPath + "/JSX/Muclease_lib.jsx");
     $.evalFile(extendPath + "/JSX/Kinase_lib.jsx");
-
+    $.evalFile(extendPath + "/JSX/Proteins_lib.jsx");
 
     $.global.Kinase = Kinase;
     $.global.Muclease = Muclease;

@@ -2134,7 +2134,7 @@ Kinase.layer.setLayerRadian_byActive = function (radianInfo)
 Kinase.layer.getLayerBounds = function (targetReference, target, getType)
 {
     var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}
-    var classStr =  _value(getType , "boundsNoEffects") ;//"bounds"、"boundsNoMask"
+    var classStr = _value(getType, "boundsNoEffects");//"bounds"、"boundsNoMask"
     var boundsInfo_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
 
 
@@ -3369,20 +3369,20 @@ Kinase.layer.putEffectsList_dropShadow = function (layerEffects_raw, dropShadowL
         }
 
 
-        layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue  = _value(  dropShadowList[0].chokeMatte , layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue)
-        layerEffects_raw.value.dropShadow.value.blur.value.doubleValue  = _value(  dropShadowList[0].blur , layerEffects_raw.value.dropShadow.value.blur.value.doubleValue)
-        layerEffects_raw.value.dropShadow.value.color.value.red.value  = _value(  dropShadowList[0].color.r , layerEffects_raw.value.dropShadow.value.color.value.red.value)
-        layerEffects_raw.value.dropShadow.value.color.value.grain.value  = _value(  dropShadowList[0].color.g , layerEffects_raw.value.dropShadow.value.color.value.grain.value)
-        layerEffects_raw.value.dropShadow.value.color.value.blue.value  = _value(  dropShadowList[0].color.b , layerEffects_raw.value.dropShadow.value.color.value.blue.value)
-        layerEffects_raw.value.dropShadow.value.distance.value.doubleValue  = _value(  dropShadowList[0].distance , layerEffects_raw.value.dropShadow.value.distance.value.doubleValue)
-        layerEffects_raw.value.dropShadow.value.layerConceals.value  = _value(  dropShadowList[0].layerConceals , layerEffects_raw.value.dropShadow.value.layerConceals.value)
-        layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue  = _value(  dropShadowList[0].lightingAngle , layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue)
-        layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue  = _value(  dropShadowList[0].blendMode , layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue)
-        layerEffects_raw.value.dropShadow.value.noise.value.doubleValue  = _value(  dropShadowList[0].noise , layerEffects_raw.value.dropShadow.value.noise.value.doubleValue)
-        layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue  = _value(  dropShadowList[0].opacity , layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue)
-        layerEffects_raw.value.dropShadow.value.present.value  = _value(  dropShadowList[0].present , layerEffects_raw.value.dropShadow.value.present.value)
-        layerEffects_raw.value.dropShadow.value.showInDialog.value  = _value(  dropShadowList[0].showInDialog , layerEffects_raw.value.dropShadow.value.showInDialog.value)
-        layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value  = _value(  dropShadowList[0].transferSpec , layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value)
+        layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue = _value(dropShadowList[0].chokeMatte, layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.blur.value.doubleValue = _value(dropShadowList[0].blur, layerEffects_raw.value.dropShadow.value.blur.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.color.value.red.value = _value(dropShadowList[0].color.r, layerEffects_raw.value.dropShadow.value.color.value.red.value)
+        layerEffects_raw.value.dropShadow.value.color.value.grain.value = _value(dropShadowList[0].color.g, layerEffects_raw.value.dropShadow.value.color.value.grain.value)
+        layerEffects_raw.value.dropShadow.value.color.value.blue.value = _value(dropShadowList[0].color.b, layerEffects_raw.value.dropShadow.value.color.value.blue.value)
+        layerEffects_raw.value.dropShadow.value.distance.value.doubleValue = _value(dropShadowList[0].distance, layerEffects_raw.value.dropShadow.value.distance.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.layerConceals.value = _value(dropShadowList[0].layerConceals, layerEffects_raw.value.dropShadow.value.layerConceals.value)
+        layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue = _value(dropShadowList[0].lightingAngle, layerEffects_raw.value.dropShadow.value.localLightingAngle.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue = _value(dropShadowList[0].blendMode, layerEffects_raw.value.dropShadow.value.mode.value.enumerationValue)
+        layerEffects_raw.value.dropShadow.value.noise.value.doubleValue = _value(dropShadowList[0].noise, layerEffects_raw.value.dropShadow.value.noise.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue = _value(dropShadowList[0].opacity, layerEffects_raw.value.dropShadow.value.opacity.value.doubleValue)
+        layerEffects_raw.value.dropShadow.value.present.value = _value(dropShadowList[0].present, layerEffects_raw.value.dropShadow.value.present.value)
+        layerEffects_raw.value.dropShadow.value.showInDialog.value = _value(dropShadowList[0].showInDialog, layerEffects_raw.value.dropShadow.value.showInDialog.value)
+        layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value = _value(dropShadowList[0].transferSpec, layerEffects_raw.value.dropShadow.value.transferSpec.value.name.value)
 
         // layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue = dropShadowList[0].chokeMatte || layerEffects_raw.value.dropShadow.value.chokeMatte.value.doubleValue;
         // layerEffects_raw.value.dropShadow.value.blur.value.doubleValue = dropShadowList[0].blur || layerEffects_raw.value.dropShadow.value.blur.value.doubleValue;
@@ -5165,8 +5165,8 @@ Kinase.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
     executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
 
 
-    var w =   _value(w , 100);
-    var h =    _value(h , 50);
+    var w = _value(w, 100);
+    var h = _value(h, 50);
 
     var itemIndex = ki.layer.getItemIndexBylayerID(ki.layer.getLayerIdByActive())
 
@@ -5685,7 +5685,48 @@ Kinase.layer.selectSave = function ()
  */
 Kinase.layer.selectLoad = function (layerIDArray)
 {
-    Kinase.layer.selectMultLayers_byID(layerIDArray, true);
+
+    var nowSelect = Kinase.layer.selectSave()
+
+    var symD = symDifference(layerIDArray, nowSelect);
+
+    if (symD != undefined)
+    {
+        if (symD.length > 0)
+        {
+            Kinase.layer.selectMultLayers_byID(layerIDArray, true);
+        }
+    }
+
+    function symDifference(a, b)
+    {
+        var ob = {};
+        for (var i = 0; i < a.length; i++)
+        {
+            ob[a[i]] = true;
+        }
+
+        for (var i = 0; i < b.length; i++)
+        {
+            if (ob[b[i]] == undefined)
+            {
+                ob[b[i]] = true;
+            } else
+            {
+                ob[b[i]] = false;
+            }
+        }
+
+        var arr = [];
+        for (var x in ob)
+        {
+            if (ob[x] != false)
+            {
+                arr.push(x);
+            }
+        }
+        return arr;
+    }
 }
 
 

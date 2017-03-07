@@ -38,7 +38,8 @@
 
     export default{
 
-        props: ['value', "label_html", 'label', "selected", "selected_value", "selected_func", "state", "hr", "br", "in_class", "in_title", 'button'],
+        props: ['value', "label_html", 'label', "selected", "selected_value",
+               "selected_func",  "selected_func_param","state", "hr", "br", "in_class", "in_title", 'button'],
         methods: {
             doSelect: function ()
             {
@@ -59,7 +60,7 @@
                 }
                 if (this.selected_func != undefined)
                 {
-                    this.selected_func();
+                    this.selected_func(this.selected_func_param);
                 }
             },
 
