@@ -2,10 +2,8 @@
 
     <div class="debug-microscope">
         <a-area area_title="debug-microscope" area_hight="40">
-
-
            <pre>
-         {{dataCaryon.layers|json}}
+                     <!--{{dataCaryon.layers|json}}-->
              </pre>
             <!--{{UI_model.msg_color_picker.color1 |json}}-->
 

@@ -8,7 +8,7 @@ Proteins.evalJsxFolder("C:\\Program Files (x86)\\Common Files\\Adobe\\CEP\\exten
 
 
 //Kinase.layer.creatNewShapeLayerSquarenss_ByActive("2122121",{fillColor:{r:255,g:0,b:12},w:60, h:100,lineWidth: 10})
-Kinase.layer.creatNewShapeLayerBackBox_ByActive("ssss",{})
+Kinase.layer.setLayerToSmart_ByActive()
 
 //EnzJSX.setLayerInfo_shape_byId  ({"lineWidth":"10"}, 417)
 //EnzJSX.setLayerInfo_shape_byId  ({"fillColorEnabled":false}, 390)

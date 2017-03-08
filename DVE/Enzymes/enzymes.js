@@ -444,7 +444,7 @@ Enzymes.prototype.getLayerInfo_smartObject_byId = async function (layerID)
  * @param layerID
  * @returns {Promise}
  */
-Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, layerID)
+Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, layerID,doSelect)
 {
 
 //     * smartInfo = {
@@ -456,7 +456,7 @@ Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, l
     return new Promise(function (resolve, reject)
         {
             var obJson = JSON.stringify(smartObject);
-            var _jsxCode = `EnzJSX.setLayerInfo_smartObject_byId(${obJson} ,${layerID} )`
+            var _jsxCode = `EnzJSX.setLayerInfo_smartObject_byId(${obJson} ,${layerID}  ,${doSelect})`
             evalScript(
                 _jsxCode,
                 (r) => {resolve(jsxBackCheck(r, _jsxCode))})

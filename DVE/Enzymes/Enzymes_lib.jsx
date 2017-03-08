@@ -365,7 +365,7 @@ EnzJSX.getSelectLayerArray = function (debarDataLayer)
             name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
             id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
             itemIndex: itemIndexs[i],
-            type: ki.layer.getLayerType(Kinase.REF_ItemIndex, itemIndexs[i]+Kinase.BKOffset()),
+            type: ki.layer.getLayerType(Kinase.REF_ItemIndex, itemIndexs[i] + Kinase.BKOffset()),
         }
 
         if (layer.name === "__UI-DNA__" || layer.name === "_DNA_DATA_" || layer.name === "_ui-dna.nullice.com_")
@@ -711,7 +711,6 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
         ki.layer.selectLayer_byID(id)
     }
 
-
     try
     {
         var strokeStyle = {
@@ -809,27 +808,51 @@ EnzJSX.getLayerInfo_smartObject_byId = function (id)
     return JSON.stringify(smartInfo)
 }
 
-
 /**
- * 设置图层智能对象信息
+ * 设置图层智能对象信息。 注意：当一个图层变为智能对象时会改变 id
  * @param smartObject
  * @param id
  * @param doSelect
+ * @returns {*} 新图层 id，如果有的话
  */
 EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
 {
-    if (doSelect)
+    var newId =null
+    app.activeDocument.suspendHistory("设置智能对象", "func()");
+
+
+    function func()
     {
         ki.layer.selectLayer_byID(id)
-    }
-    //    smartInfo = {
-    //       linked: null, /!*是否为链接对象*!/
-    //       link: null, /!*链接地址*!/
-    //       fileReference: null, /!*链接文件名*!/
-    //    }
 
-    var smartInfo = Kinase.layer.setLayerSmartInfo_ByActive(smartObject)
-    return JSON.stringify(smartInfo)
+        //    smartInfo = {
+        //       linked: null, /!*是否为链接对象*!/
+        //       link: null, /!*链接地址*!/
+        //       fileReference: null, /!*链接文件名*!/
+        //    }
+
+        var targetLayerType = Kinase.layer.getLayerType(Kinase.REF_LayerID, id)
+        var oldBounds = Kinase.layer.getLayerBounds(Kinase.REF_LayerID, id)
+
+        if (targetLayerType.typeName != "smartObject")
+        {
+            Kinase.layer.setLayerToSmart_ByActive()
+             newId = Kinase.layer.getLayerIdByActive()
+        }
+
+        Kinase.layer.setLayerSmartInfo_ByActive(smartObject)
+
+        Kinase.layer.setLayerBounds_byActive(oldBounds)
+    }
+
+    if (newId != undefined)
+    {
+        return newId
+    } else
+    {
+        return id
+    }
+
 }
 
 
@@ -1011,9 +1034,9 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
         }
     }
 
-    if(_checkEnableQuickEffect(quickEffect) == false)
+    if (_checkEnableQuickEffect(quickEffect) == false)
     {
-        return ;
+        return;
     }
 
 

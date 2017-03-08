@@ -147,7 +147,7 @@
                         value: 'boolean_true',
                         label_html: '<i class=" icon-checkmark" style="font-size: 14px;">',
                         title: "真",
-                        selected_func: "boolean_true",
+                        selected_func: this.boolean_true,
                         button: true
                     },
                     {
@@ -405,53 +405,80 @@
             },
             color_eyedropper: async function (self)
             {
+                var oldColor = await Proteins.exec("inputAssist_getForegroundColor_hex")
+                var editHexValue = ichiColor.set(this.edit_value).hex.slice(1)
+                await Proteins.exec("inputAssist_setForegroundColor_hex", {hexValue: editHexValue})
+
+
                 var selectStateSign = JSON.stringify(Gob.selectList)
                 var tool = await Proteins.exec("inputAssist_getCurrentTool")
                 var color = await Proteins.exec("inputAssist_getForegroundColor_hex")
                 var _times = 0
-                await Proteins.exec("inputAssist_setCurrentTool",{toolName:"eyedropperTool"})
+                await Proteins.exec("inputAssist_setCurrentTool", {toolName: "eyedropperTool"})
                 var self = this
                 watchColor()
 
 
                 async function watchColor()
                 {
-                    console.info("watchColor:", _times)
+//                    console.info("watchColor:", _times)
                     _times++;
 
                     var now_selectStateSign = JSON.stringify(Gob.selectList)
                     var now_tool = await Proteins.exec("inputAssist_getCurrentTool")
                     var now_color = await Proteins.exec("inputAssist_getForegroundColor_hex")
 
-                    if (now_selectStateSign !=selectStateSign )
+                    if (now_selectStateSign != selectStateSign)
                     {
-                        console.info("watchColor_end-0",now_selectStateSign )
+//                        console.info("watchColor_end-0",now_selectStateSign )
                         return;
 
                     }
 
-                    if (now_tool !=  "eyedropperTool")
+                    if (now_tool != "eyedropperTool")
                     {
-                        console.info("watchColor_end-1",now_tool )
+//                        console.info("watchColor_end-1",now_tool )
                         return;
 
                     }
 
                     if (now_color != color)
                     {
-                        console.info("watchColor_end-2",now_color )
+//                        console.info("watchColor_end-2",now_color )
                         self.edit_value = now_color;
-                        await Proteins.exec("inputAssist_setCurrentTool",{toolName:tool})
+                        await Proteins.exec("inputAssist_setCurrentTool", {toolName: tool})
+                        await Proteins.exec("inputAssist_setForegroundColor_hex", {hexValue: oldColor.slice(1)})
                         return;
 
                     }
 
                     setTimeout(watchColor, 300)
                 }
+            },
+            color_none: function ()
+            {
+                this.edit_value = "#"
+            },
+            boolean_true: function ()
+            {
+                this.edit_value = true
+            },
+            boolean_false: function ()
+            {
+                this.edit_value = false
+            },
+            open_file: function ()
+            {
+                var result = window.cep.fs.showOpenDialogEx(false, false, "打开一个图片", null, ["jpeg", "jpg", "bmp", "png", "gif", "psd", "psb", "svg", "eps"], "常见图片类型");
 
-
-
-
+                if (result != undefined && result.data != undefined)
+                {
+                    if (result.data.length > 0)
+                    {
+                        this.edit_value = result.data[0]
+                    }
+                }
+                ;
             }
 
 

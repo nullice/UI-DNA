@@ -556,9 +556,10 @@ Kinase.layer.get_AGMStrokeStyleInfo_Objcet = function (targetReference, target)
  * @param targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @param xxx - 属性名称
+ * @param getSimpleObject - 获取简单对象
  * @returns {{}}
  */
-Kinase.layer.get_XXX_Objcet = function (targetReference, target, xxx)
+Kinase.layer.get_XXX_Objcet = function (targetReference, target, xxx, getSimpleObject)
 {
 
     try
@@ -573,8 +574,15 @@ Kinase.layer.get_XXX_Objcet = function (targetReference, target, xxx)
         $.writeln(e)
     }
 
+    if (getSimpleObject === true)
+    {
+        return mu.actionDescriptorToSimpleObject(layerDesc)
+    } else
+    {
+        return mu.actionDescriptorToObject(layerDesc);
+    }
 
-    return mu.actionDescriptorToObject(layerDesc);
+
 }
 
 /**
@@ -5008,6 +5016,7 @@ Kinase.layer.getLayerSmartInfo = function (targetReference, target)
         linked: null, /*是否为链接对象*/
         link: null, /*链接地址*/
         fileReference: null, /*链接文件名*/
+
     }
 
     var smart_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "smartObject")
@@ -5050,6 +5059,70 @@ Kinase.layer.getLayerSmartInfo = function (targetReference, target)
     return smartInfo
 }
 
+/**获取智能对象更多信息
+ *
+ *
+ * @param targetReference
+ * @param target
+ * @returns {{linked: null, link: null, fileReference: null}}
+ */
+Kinase.layer.getLayerSmartMoreInfo = function (targetReference, target)
+{
+    // 返回例子：{
+    //         "ID": "e28f121e-03f2-11e7-83da-96bd594a42b8",
+    //         "placed": "e4e8fc97-03f2-11e7-83da-96bd594a42b8",
+    //         "pageNumber": 1,
+    //         "totalPages": 1,
+    //         "crop": 1,
+    //         "frameStep": {"numerator": 0, "denominator": 600, "_objectType": "null"},
+    //         "duration": {"numerator": 0, "denominator": 600, "_objectType": "null"},
+    //         "frameCount": 1,
+    //         "antiAliasType": 16,
+    //         "type": 2,
+    //         "transform": [476, 144, 616, 144, 616, 309, 476, 309],
+    //         "nonAffineTransform": [476, 144, 616, 144, 616, 309, 476, 309],
+    //         "warp": {
+    //             "warpStyle": {"enumerationType": "warpStyle", "enumerationValue": "warpNone"},
+    //             "warpValue": 0,
+    //             "warpPerspective": 0,
+    //             "warpPerspectiveOther": 0,
+    //             "warpRotate": {"enumerationType": "orientation", "enumerationValue": "horizontal"},
+    //             "bounds": {
+    //                 "top": {"doubleType": "pixelsUnit", "doubleValue": 0},
+    //                 "left": {"doubleType": "pixelsUnit", "doubleValue": 0},
+    //                 "bottom": {"doubleType": "pixelsUnit", "doubleValue": 600},
+    //                 "right": {"doubleType": "pixelsUnit", "doubleValue": 800},
+    //                 "_objectType": "rectangle"
+    //             },
+    //             "uOrder": 4,
+    //             "vOrder": 4,
+    //             "_objectType": "warp"
+    //         },
+    //         "size": {"width": 800, "height": 600, "_objectType": "paint"},
+    //         "resolution": {"doubleType": "densityUnit", "doubleValue": 72},
+    //         "comp": -1,
+    //         "compInfo": {"compID": -1, "originalCompID": -1, "_objectType": "null"},
+    //         "_objectType": "null"
+    //     }
+    // }
+    var smart_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "smartObjectMore", true)
+
+    if (smart_raw != undefined && smart_raw["smartObjectMore"] != undefined)
+    {
+        return smart_raw.smartObjectMore
+    } else
+    {
+        return
+    }
+
+}
+
+
+/**
+ * 设置智能对象信息
+ * @param smartInfo
+ * @returns {null}
+ */
 Kinase.layer.setLayerSmartInfo_ByActive = function (smartInfo)
 {
     if (smartInfo == undefined)
@@ -6106,15 +6179,24 @@ Kinase.layer.selectMultLayers_byID = function (layerIDArray, repick)
     }
     for (var i = 0; i < layerIDArray.length; i++)
     {
-        var desc = new ActionDescriptor();
-        var ref = new ActionReference();
-        ref.putIdentifier(charIDToTypeID('Lyr '), layerIDArray[i]);
-        desc.putReference(charIDToTypeID('null'), ref);
-        desc.putEnumerated(stringIDToTypeID('selectionModifier'),
-            stringIDToTypeID('selectionModifierType'),
-            stringIDToTypeID('addToSelection'));
-        desc.putBoolean(charIDToTypeID('MkVs'), false);
-        executeAction(charIDToTypeID('slct'), desc, DialogModes.NO);
+        try
+        {
+
+
+            var desc = new ActionDescriptor();
+            var ref = new ActionReference();
+            ref.putIdentifier(charIDToTypeID('Lyr '), layerIDArray[i]);
+            desc.putReference(charIDToTypeID('null'), ref);
+            desc.putEnumerated(stringIDToTypeID('selectionModifier'),
+                stringIDToTypeID('selectionModifierType'),
+                stringIDToTypeID('addToSelection'));
+            desc.putBoolean(charIDToTypeID('MkVs'), false);
+            executeAction(charIDToTypeID('slct'), desc, DialogModes.NO);
+        } catch (e)
+        {
+            $.writeln("Kinase.layer.selectMultLayers_byID :" + e)
+        }
+
 
     }
 }

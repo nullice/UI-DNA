@@ -117,27 +117,45 @@ Libs.inputAssist_photoshopColorPicker_hex = function (infoObjec, envObject)
     return re
 }
 
+/**
+ *  获取前景颜色
+ * @param infoObjec
+ * @param envObject
+ * @returns {string} "#ff2211"
+ */
 Libs.inputAssist_getForegroundColor_hex = function (infoObjec, envObject)
 {
    var re = "#" + app.foregroundColor.rgb.hexValue
     return re
 }
 
+/**
+ * 设置前景颜色
+ * @param infoObjec {hexValue:"ff2211"}
+ * @param envObject
+ */
 Libs.inputAssist_setForegroundColor_hex = function (infoObjec, envObject)
 {
     app.foregroundColor.rgb.hexValue = infoObjec.hexValue
 }
 
-Libs.inputAssist_setForegroundColor_hex = function (infoObjec, envObject)
-{
-    app.foregroundColor.rgb.hexValue = infoObjec.hex
-}
 
+/**
+ * 设置当前工具
+ * @param infoObjec
+ * @param envObject
+ */
 Libs.inputAssist_setCurrentTool = function (infoObjec, envObject)
 {
     app.currentTool=infoObjec.toolName
 }
 
+/**
+ * 获取当前工具名
+ * @param infoObjec
+ * @param envObject
+ * @returns {string|*}
+ */
 Libs.inputAssist_getCurrentTool = function (infoObjec, envObject)
 {
 

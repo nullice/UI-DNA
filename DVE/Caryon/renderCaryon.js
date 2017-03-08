@@ -187,11 +187,12 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_smartObject_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
-            await enzymes.setLayerInfo_smartObject_byId(ob, layerId)
+            var newId = await enzymes.setLayerInfo_smartObject_byId(ob, layerId, true)
             /************************************************/
             Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
+            // Gob.updateGob(true);
+            var needUpdateGob = true
 
-            Gob.updateGob(true);
 
         }
         if (names[0] === "quickEffect")
@@ -240,7 +241,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_more_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
-            await enzymes.setLayerInfo_more_byId(ob, layerId)
+            var newId = await enzymes.setLayerInfo_more_byId(ob, layerId)
             /************************************************/
             Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
 
@@ -253,6 +254,13 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     this.status.rendering = false;// 标记渲染状态结束，停止渲染按钮动画
 
     logger.groupEnd();
+
+
+    var re = {
+        needUpdateGob: needUpdateGob,
+        newId: newId
+    }
+    return re
 
 //END-------------------
     function hexToColorOb(hex, colorObjectName)

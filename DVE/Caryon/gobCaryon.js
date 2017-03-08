@@ -448,7 +448,6 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
 {
 
     // console.log(`_setData([${names}], ${value}):`)
-
     var isFormula = false;
     var doDocumentRender = false;
     var varUpdatelist = [];
@@ -508,7 +507,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         {
             if (TYP.type(value) == "string")
             {
-                console.info("_getObjectValueByNames(this, names, 1).$enableTextFormula", _getObjectValueByNames(this, names, 1).$enableTextFormula)
+                // console.info("_getObjectValueByNames(this, names, 1).$enableTextFormula", _getObjectValueByNames(this, names, 1).$enableTextFormula)
                 if (_getObjectValueByNames(this, names, 1).$enableTextFormula)//检查是否启用了文本表达式
                 {
                     var _enableTextFormula = true
@@ -728,6 +727,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         var save = await enzymes.selectSave();
     }
 
+    // console.info("-----------------------------------------selectList:", JSON.stringify(this.selectList))
     //2.每个图层执行一次分发操作：
     for (var i = 0; i < this.selectList.length; i++)
     {
@@ -788,8 +788,42 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                         }
                         //-----------------------------------------------------------------
 
-                        // console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
-                        await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
+                        console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
+                        try
+                        {
+                            var re = await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
+                            if (re != undefined && re.newId != undefined && re.newId != this.selectList[i].id)
+                            {
+                               var  layerId = this.selectList[i].id
+                                Gob.selectList.map(function (x)
+                                {
+                                    if (x.id == layerId)
+                                    {
+                                        x.id = re.newId
+                                    }
+                                })
+
+                                if (save != undefined)
+                                {
+                                    save = save.map(function (x)
+                                    {
+                                        if (x == layerId)
+                                        {
+                                            return re.newId
+                                        } else
+                                        {
+                                            return x
+                                        }
+                                    })
+                                }
+                            }
+
+
+                        } catch (e)
+                        {
+                            logger.err("Gob._set()", e)
+                        }
+
                         console.log("【END】renderPatch------" + names + "=>" + finValue)
                     }
 
@@ -798,52 +832,64 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         }
     }
 
-
+    console.info("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
 //3.自动渲染文档:
-    if (setSystem.autoRender && this.disableRender != true)
-    {
-        if (this[names[0]]["enableAssigns"][names[names.length - 1]])
-        {
-            console.log("autoRender", (changeValue_dataCaryon || changeValue_Gob), this[names[0]]["enableAssigns"][names[names.length - 1]], names)
-            if (value != Gob.MULT && (changeValue_dataCaryon || changeValue_Gob))
-            {
-                var _assign = this[names[0]]["assignment"][names[names.length - 1]];
+//     if (setSystem.autoRender && this.disableRender != true)
+//     {
+//         if (this[names[0]]["enableAssigns"][names[names.length - 1]])
+//         {
+//             console.log("autoRender", (changeValue_dataCaryon || changeValue_Gob), this[names[0]]["enableAssigns"][names[names.length - 1]], names)
+//             if (value != Gob.MULT && (changeValue_dataCaryon || changeValue_Gob))
+//             {
+//                 var _assign = this[names[0]]["assignment"][names[names.length - 1]];
+//
+//                 console.log("_assign:", _assign)
+//                 if (_assign != undefined)
+//                 {
+//                     varUpdatelist = _assign.split((/[,，]/));
+//                     console.log("varUpdatelist", varUpdatelist)
+//                     if (varUpdatelist.length > 0)
+//                     {
+//                         if (doDocumentRender)
+//                         {
+//                             renderCaryon.renderDocument(true, varUpdatelist)
+//                         } else
+//                         {
+//                             this.selectRender = true;
+//                             this.selectRenderVarList = this.selectRenderVarList.concat(varUpdatelist);
+//
+//                         }
+//                     }
+//                 }
+//             }
+//         }
+//     }
 
-                console.log("_assign:", _assign)
-                if (_assign != undefined)
-                {
-                    varUpdatelist = _assign.split((/[,，]/));
-                    console.log("varUpdatelist", varUpdatelist)
-                    if (varUpdatelist.length > 0)
-                    {
-                        if (doDocumentRender)
-                        {
-                            renderCaryon.renderDocument(true, varUpdatelist)
-                        } else
-                        {
-                            this.selectRender = true;
-                            this.selectRenderVarList = this.selectRenderVarList.concat(varUpdatelist);
 
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-
-//4.恢复选中图层状态
+// 4.恢复选中图层状态
     if (this.selectList.length > 1)
     {
         if (rendered)
         {
             var save2 = await enzymes.selectSave();
+
             if (ARR.difference(save, save2).length != 0)
             {
+
                 await enzymes.selectLoad(save);
+
             }
         }
     }
+
+
+    // if (re != undefined)
+    // {
+    //     if (re.needUpdateGob)
+    //     {
+    //         Gob.updateGob(true);
+    //     }
+    // }
     Gob._asyncSetCounter--;
 
 
@@ -886,6 +932,14 @@ GobCaryon.prototype._getData = function (names)
 GobCaryon.prototype.updateSelect = async function ()
 {
 
+
+
+
+
+    if (this.disableSelectEvent)// 如果设置了停止选择更新开关则返回
+    {
+        return;
+    }
 
     if (this.stopSelectEvent)// 如果设置了停止选择更新开关则返回
     {
@@ -1189,47 +1243,46 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.group("====_objectToObject_async====================================================")
 
     console.time("属性赋值到Gob耗时")
-    console.group("--position--------------------------", temp.position)
+    // console.group("--position--------------------------", temp.position)
 
     // console.time("属性赋值到Gob.position耗时")
     await _objectToGob_async(temp.position, ["position"], this)
     // console.timeEnd("属性赋值到Gob.position耗时")
-    console.groupEnd()
+    // console.groupEnd()
 
-    console.group("--text--------------------------", temp.text,)
+    // console.group("--text--------------------------", temp.text,)
     // console.time("属性赋值到Gob.text耗时")
     await _objectToGob_async(temp.text, ["text"], this)
     // console.timeEnd("属性赋值到Gob.text耗时")
-    console.groupEnd()
+    // console.groupEnd()
 
-    console.group("--shape--------------------------", temp.shape,)
+    // console.group("--shape--------------------------", temp.shape,)
     // console.time("属性赋值到Gob.shape耗时")
     await _objectToGob_async(temp.shape, ["shape"], this)
     // console.timeEnd("属性赋值到Gob.shape耗时")
-    console.groupEnd()
+    // console.groupEnd()
 
-    console.group("--smartObject--------------------------", temp.smartObject,)
+    // console.group("--smartObject--------------------------", temp.smartObject,)
     // console.time("属性赋值到Gob.smartObject耗时")
     await _objectToGob_async(temp.smartObject, ["smartObject"], this)
     // console.timeEnd("属性赋值到Gob.smartObject耗时")
-    console.groupEnd()
+    // console.groupEnd()
 
-    console.group("--quickEffect--------------------------", temp.quickEffect,)
+    // console.group("--quickEffect--------------------------", temp.quickEffect,)
     // console.time("属性赋值到Gob.quickEffect耗时")
     await _objectToGob_async(temp.quickEffect, ["quickEffect"], this)
     // console.timeEnd("属性赋值到Gob.quickEffect耗时")
-    console.groupEnd()
+    // console.groupEnd()
 
-    console.group("--more--------------------------", temp.more,)
+    // console.group("--more--------------------------", temp.more,)
     // console.time("属性赋值到Gob.more耗时")
     await _objectToGob_async(temp.more, ["more"], this)
     // console.timeEnd("属性赋值到Gob.more耗时")
-    console.groupEnd()
+    // console.groupEnd()
 
     console.timeEnd("属性赋值到Gob耗时")
     console.info("============")
     console.groupEnd()
-
 
 
     var self = this;
@@ -1240,7 +1293,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         self.nowSwitching = false
         console.log("【this.nowSwitching = false】")
     }, 200)
-
 
 
     // this.nowSwitching = false;
@@ -1262,8 +1314,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     //     }
     // }
     console.groupEnd();
-
-
 
 
     if (this._unripe)
