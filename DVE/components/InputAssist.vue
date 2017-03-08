@@ -382,6 +382,8 @@
                         console.info(`OBJ.setObjectValueByNames(dataCaryon.layers[${relayer.id}],` + `{{${linkVarName}}})`)
                         OBJ.setObjectValueByNames(dataCaryon.layers[relayer.id], ["text", "text"], `${this.input_title}: {{${linkVarName}}}`)
                         OBJ.setObjectValueByNames(dataCaryon.layers[relayer.id], ["text", "$enableTextFormula"], true)
+                        dataCaryon.layerTags_addTags(relayer.id, "$pin")
+
                     } catch (e)
                     {
                         logger.err("info_pin:dataCaryon:", e)
@@ -467,15 +469,72 @@
             {
                 this.edit_value = false
             },
-            open_file: function ()
+            open_file: async function ()
             {
-                var result = window.cep.fs.showOpenDialogEx(false, false, "打开一个图片", null, ["jpeg", "jpg", "bmp", "png", "gif", "psd", "psb", "svg", "eps"], "常见图片类型");
+                var result = window.cep.fs.showOpenDialogEx(true, false, "打开一个图片", null, ["jpeg", "jpg", "bmp", "png", "gif", "psd", "psb", "svg", "eps"], "常见图片类型");
 
                 if (result != undefined && result.data != undefined)
                 {
-                    if (result.data.length > 0)
+                    if (result.data.length == 1)
                     {
                         this.edit_value = result.data[0]
+                    }
+                    else if (result.data.length > 1)
+                    {
+                        var save = await enzymes.selectSave();
+                        Gob.stopSelectEvent = true;
+                        Gob.disableSelectEvent = true
+                        Gob.disableRender = true
+                        var ob = {linked: true};
+                        var filePoint = 0
+
+                        for (var i = 0; i < Gob.selectList.length; i++)
+                        {
+                            ob.link = getAfile()
+                            var re = await enzymes.setLayerInfo_smartObject_byId(ob, Gob.selectList[i].id, true)
+                            if (re != undefined && re.newId != undefined && re.newId != this.selectList[i].id)
+                            {
+                                var layerId = this.selectList[i].id
+                                Gob.selectList.map(function (x)
+                                {
+                                    if (x.id == layerId)
+                                    {
+                                        x.id = re.newId
+                                    }
+                                })
+
+                                if (save != undefined)
+                                {
+                                    save = save.map(function (x)
+                                    {
+                                        if (x == layerId)
+                                        {
+                                            return re.newId
+                                        } else
+                                        {
+                                            return x
+                                        }
+                                    })
+                                }
+                            }
+                        }
+
+
+                        function getAfile()
+                        {
+                            if (filePoint >= result.data.length)
+                            {
+                                filePoint = 0
+                            }
+
+                            return result.data[filePoint++]
+                        }
+
+                        Gob.stopSelectEvent = false;
+                        Gob.disableSelectEvent = false
+                        Gob.disableRender = false
+                        await enzymes.selectLoad(save);
+
                     }
                 }
                 ;

@@ -303,70 +303,70 @@ var Layer = function (layerListItem)
     this.quickEffect =
         {
             dropShadow: {
-                enable:null,
+                enable: null,
                 color: {r: null, g: null, b: null, $hex: null}, /*填充颜色*/
-                opacity:null,/*透明度*/
-                x:null,
-                y:null,
+                opacity: null, /*透明度*/
+                x: null,
+                y: null,
                 blur: null, /*大小*/
-                spread:null,/*扩展*/
+                spread: null, /*扩展*/
             },
-            copyEffect_All:null,
-            copyEffect_dropShadow:null,/*阴影*/
-            copyEffect_innerShadow:null,/*内阴影*/
-            copyEffect_chromeFX:null,/*等高线*/
-            copyEffect_frameFX:null,/*纹理*/
-            copyEffect_bevelEmboss:null,/*斜面与浮雕*/
-            copyEffect_innerGlow:null,/*内发光*/
-            copyEffect_outerGlow:null,/*外发光*/
-            copyEffect_patternFill:null,/*内部填充*/
-            copyEffect_solidFill:null,/*描边*/
-            copyEffect_gradientFill:null,/*渐变*/
+            copyEffect_All: null,
+            copyEffect_dropShadow: null, /*阴影*/
+            copyEffect_innerShadow: null, /*内阴影*/
+            copyEffect_chromeFX: null, /*等高线*/
+            copyEffect_frameFX: null, /*纹理*/
+            copyEffect_bevelEmboss: null, /*斜面与浮雕*/
+            copyEffect_innerGlow: null, /*内发光*/
+            copyEffect_outerGlow: null, /*外发光*/
+            copyEffect_patternFill: null, /*内部填充*/
+            copyEffect_solidFill: null, /*描边*/
+            copyEffect_gradientFill: null, /*渐变*/
 
 
             assignment: {
                 dropShadow: {
-                    enable:null,
+                    enable: null,
                     color: null, /*填充颜色*/
-                    opacity:null,/*透明度*/
-                    x:null,
-                    y:null,
+                    opacity: null, /*透明度*/
+                    x: null,
+                    y: null,
                     blur: null, /*大小*/
-                    spread:null,/*扩展*/
+                    spread: null, /*扩展*/
                 },
-                copyEffect_All:null,
-                copyEffect_dropShadow:null,/*阴影*/
-                copyEffect_innerShadow:null,/*内阴影*/
-                copyEffect_chromeFX:null,/*等高线*/
-                copyEffect_frameFX:null,/*纹理*/
-                copyEffect_bevelEmboss:null,/*斜面与浮雕*/
-                copyEffect_innerGlow:null,/*内发光*/
-                copyEffect_outerGlow:null,/*外发光*/
-                copyEffect_patternFill:null,/*内部填充*/
-                copyEffect_solidFill:null,/*描边*/
-                copyEffect_gradientFill:null,/*渐变*/
+                copyEffect_All: null,
+                copyEffect_dropShadow: null, /*阴影*/
+                copyEffect_innerShadow: null, /*内阴影*/
+                copyEffect_chromeFX: null, /*等高线*/
+                copyEffect_frameFX: null, /*纹理*/
+                copyEffect_bevelEmboss: null, /*斜面与浮雕*/
+                copyEffect_innerGlow: null, /*内发光*/
+                copyEffect_outerGlow: null, /*外发光*/
+                copyEffect_patternFill: null, /*内部填充*/
+                copyEffect_solidFill: null, /*描边*/
+                copyEffect_gradientFill: null, /*渐变*/
             },
             enableAssigns: {
                 dropShadow: {
-                    enable:false,
+                    enable: false,
                     color: false, /*填充颜色*/
-                    opacity:false,/*透明度*/
-                    x:false,
-                    y:false,
+                    opacity: false, /*透明度*/
+                    x: false,
+                    y: false,
                     blur: false, /*大小*/
-                    spread:false,/*扩展*/
+                    spread: false, /*扩展*/
                 },
-                copyEffect_All:false,
-                copyEffect_dropShadow:false,/*阴影*/
-                copyEffect_innerShadow:false,/*内阴影*/
-                copyEffect_chromeFX:false,/*等高线*/
-                copyEffect_frameFX:false,/*纹理*/
-                copyEffect_bevelEmboss:false,/*斜面与浮雕*/
-                copyEffect_innerGlow:false,/*内发光*/
-                copyEffect_outerGlow:false,/*外发光*/
-                copyEffect_patternFill:false,/*内部填充*/
-                copyEffect_solidFill:false,/*描边*/
-                copyEffect_gradientFill:false,/*渐变*/
+                copyEffect_All: false,
+                copyEffect_dropShadow: false, /*阴影*/
+                copyEffect_innerShadow: false, /*内阴影*/
+                copyEffect_chromeFX: false, /*等高线*/
+                copyEffect_frameFX: false, /*纹理*/
+                copyEffect_bevelEmboss: false, /*斜面与浮雕*/
+                copyEffect_innerGlow: false, /*内发光*/
+                copyEffect_outerGlow: false, /*外发光*/
+                copyEffect_patternFill: false, /*内部填充*/
+                copyEffect_solidFill: false, /*描边*/
+                copyEffect_gradientFill: false, /*渐变*/
             }
         }
 
@@ -385,10 +385,10 @@ var Layer = function (layerListItem)
             $nameGroup8: null,
             $nameGroup9: null,
             $class: null, /*图层类*/
-            $tags:null,/*标签*/
-            $note1:null,/*图层备注1*/
-            $note2:null,/*图层备注1*/
-            $note3:null,/*图层备注1*/
+            $tags: null, /*标签*/
+            $note1: null, /*图层备注1*/
+            $note2: null, /*图层备注1*/
+            $note3: null, /*图层备注1*/
             visible: null, /*图层可视性*/
             layerColor: null, /*图层备注颜色*/
             mode: null, /*混合模式*/
@@ -409,15 +409,16 @@ var Layer = function (layerListItem)
                 $nameGroup8: null,
                 $nameGroup9: null,
                 $class: null, /*图层类*/
-                $tags:null,/*标签*/
-                $note1:null,/*图层备注1*/
-                $note2:null,/*图层备注1*/
-                $note3:null,/*图层备注1*/
+                $tags: null, /*标签*/
+                $note1: null, /*图层备注1*/
+                $note2: null, /*图层备注1*/
+                $note3: null, /*图层备注1*/
                 visible: null, /*图层可视性*/
                 layerColor: null, /*图层备注颜色*/
                 mode: null, /*混合模式*/
                 opacity: null, /*不透明度*/
-                fillOpacity: null, /*填充不透明度*/},
+                fillOpacity: null, /*填充不透明度*/
+            },
 
             enableAssigns: {
                 layerName: false, /*图层名*/
@@ -433,10 +434,10 @@ var Layer = function (layerListItem)
                 $nameGroup8: false,
                 $nameGroup9: false,
                 $class: false, /*图层类*/
-                $tags:false,/*标签*/
-                $note1:false,/*图层备注1*/
-                $note2:false,/*图层备注1*/
-                $note3:false,/*图层备注1*/
+                $tags: false, /*标签*/
+                $note1: false, /*图层备注1*/
+                $note2: false, /*图层备注1*/
+                $note3: false, /*图层备注1*/
                 visible: false, /*图层可视性*/
                 layerColor: false, /*图层备注颜色*/
                 mode: false, /*混合模式*/
@@ -449,6 +450,129 @@ var Layer = function (layerListItem)
     // Object.defineProperty(this, "id", { get: function () { return 1 + 1; } });
     return this;
 }
+
+/**
+ * 以数组形式获取一个图层在 DataCaryon 里的 tags
+ * @param layerId
+ * @returns {*}
+ */
+DataCaryon.prototype.layerTags_getArray = function (layerId)
+{
+    if (this.layers[layerId] == undefined || this.layers[layerId].more == undefined || this.layers[layerId].more.$tags == undefined)
+    {
+        return null
+    }
+
+
+    var tagsText = this.layers[layerId].more.$tags
+    if (tagsText != undefined)
+    {
+        var arr = tagsText.split(/[,，]/)
+        return arr
+    } else
+    {
+        return null
+    }
+}
+
+/**
+ * 为一个在存在 DataCaryon 中的图层，检查 tag 是否存在
+ * @param layerId
+ * @param tag
+ * @returns {*}
+ */
+DataCaryon.prototype.layerTags_hasTag = function (layerId, tag)
+{
+    if (this.layers[layerId] == undefined || this.layers[layerId].more == undefined || this.layers[layerId].more.$tags == undefined)
+    {
+        return null
+    }
+
+    var arr = this.layerTags_getArray(layerId)
+    if (arr == undefined)
+    {
+        return false
+    }
+
+    for (var i = 0; i < arr.length; i++)
+    {
+
+        if (arr[i] == tag)
+        {
+            return true
+        }
+    }
+    return false
+}
+
+/**
+ * 为一个在存在 DataCaryon 中的图层，添加一个 tags 条目
+ * @param layerId
+ * @returns {null}
+ */
+DataCaryon.prototype.layerTags_addTags = function (layerId, tag)
+{
+    if (this.layers[layerId] == undefined)
+    {
+        return null
+    }
+
+    if (this.layers[layerId].more == undefined)
+    {
+        this.layers[layerId].more = {}
+    }
+
+    if (this.layers[layerId].more.$tags == undefined)
+    {
+        this.layers[layerId].more.$tags = ""
+    }
+
+
+    if(this.layerTags_hasTag(layerId, tag))
+    {
+        return null /*已存在*/
+    }
+    
+    var tagsText = this.layers[layerId].more.$tags
+    if (tagsText == undefined || tagsText == "")
+    {
+        this.layers[layerId].more.$tags = tag
+    } else
+    {
+        this.layers[layerId].more.$tags = tagsText + ", " + tag
+    }
+}
+
+
+/**
+ * 为一个在存在 DataCaryon 中的图层，删除一个 tags 条目
+ * @param layerId
+ * @param tag
+ * @returns {null}
+ */
+DataCaryon.prototype.layerTags_deleteTags = function (layerId, tag)
+{
+    if (this.layers[layerId] == undefined || this.layers[layerId].more == undefined || this.layers[layerId].more.$tags == undefined)
+    {
+        return null
+    }
+
+    var arr = this.layerTags_getArray(layerId)
+    var newText = ""
+    for (var i = 0; i < arr.length; i++)
+    {
+        if (arr[i] != tag)
+        {
+            newText = newText + arr[i]
+            if (i < arr.length - 1)
+            {
+                newText = newText + ", "
+            }
+        }
+    }
+    this.layers[layerId].more.$tags = newText
+}
+
 
 //----------------------------------------
 

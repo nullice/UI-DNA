@@ -832,7 +832,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         }
     }
 
-    console.info("zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz")
+
 //3.自动渲染文档:
 //     if (setSystem.autoRender && this.disableRender != true)
 //     {
