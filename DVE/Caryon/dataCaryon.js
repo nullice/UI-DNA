@@ -532,7 +532,7 @@ DataCaryon.prototype.layerTags_addTags = function (layerId, tag)
     {
         return null /*已存在*/
     }
-    
+
     var tagsText = this.layers[layerId].more.$tags
     if (tagsText == undefined || tagsText == "")
     {

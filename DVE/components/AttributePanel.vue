@@ -105,6 +105,7 @@
                          v-bind:color.sync="Gob.shape.fillColor"
                          v-bind:color_names="['shape','fillColor']"
                          v-bind:color_enable.sync="Gob.shape.fillColorEnabled"
+                         v-bind:opacity.sync="Gob.more.fillOpacity"
 
                          mini="true"
             ></color-input>

@@ -588,17 +588,12 @@
 //                console.log("------------------")
 //                console.log(val)
             },
-            "color1.int": function (val)
+            "color1.int": function (val)/*当颜色改变时向上传递改变 ，以实时预览颜色改变*/
             {
                 if (this.callback_confirm != undefined)
                 {
-                    var now = (new Date()).getTime();
-                    if (now - this.o_time_defer > 200)
-                    {
-                        this.callback_confirm(this.ichi_color);
-
-                        this.o_time_defer = now;
-                    }
+//
+                    this.updateEditColor(this)
                 }
 
             },
@@ -710,7 +705,7 @@
                         state: false,
                         child: {
                             x: true,
-                            y:true,
+                            y: true,
                             z: true,
                         }
                     },
@@ -745,6 +740,10 @@
             }
         },
         methods: {
+            updateEditColor: _.throttle(function (self)
+            {
+                self.callback_confirm(self.ichi_color);
+            }, 200),
             click_ok: function ()
             {
                 this.callback_confirm(this.ichi_color);
@@ -758,8 +757,8 @@
             main_box_mousedown: function (e)
             {
                 console.log("main_box_mousedown",
-                        ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box")
-                        , e.target.classList)
+                    ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box")
+                    , e.target.classList)
 
                 if (ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box"))
                 {
