@@ -365,7 +365,7 @@ EnzJSX.getSelectLayerArray = function (debarDataLayer)
             name: ki.layer.getLayerName_byItemIndex(itemIndexs[i]),
             id: ki.layer.getLayerIdByItemIndex(itemIndexs[i]),
             itemIndex: itemIndexs[i],
-            type: ki.layer.getLayerType(Kinase.REF_ItemIndex, itemIndexs[i]),
+            type: ki.layer.getLayerType(Kinase.REF_ItemIndex, itemIndexs[i]+Kinase.BKOffset()),
         }
 
         if (layer.name === "__UI-DNA__" || layer.name === "_DNA_DATA_" || layer.name === "_ui-dna.nullice.com_")

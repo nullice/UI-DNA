@@ -2215,7 +2215,7 @@ Kinase.layer.setLayerRadian_byActive = function (radianInfo)
  * 获取图层范围边界信息
  * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
- * @param getType
+ * @param getType 获取边类型，默认为："boundsNoEffects"，还可以是："bounds"、"boundsNoMask"
  * @returns {{x: null, y: null, w: null, h: null, right: null, bottom: null}}
  */
 Kinase.layer.getLayerBounds = function (targetReference, target, getType)
@@ -2257,10 +2257,10 @@ Kinase.layer.getLayerBounds = function (targetReference, target, getType)
     var parentLayerItemIndex = ki.layer.getParentLayerItemIndex_byItemIndex(itemIndex_raw.itemIndex.value);
     if (parentLayerItemIndex > -1)
     {
-        var artBoard_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "artboardEnabled", "Lyr ");
+        var artBoard_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex + Kinase.BKOffset(), "artboardEnabled", "Lyr ");
         if (artBoard_raw.artboardEnabled.value == true)
         {
-            var artBoard_boundsInfo_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex, "boundsNoEffects", "Lyr ");
+            var artBoard_boundsInfo_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex + Kinase.BKOffset(), "boundsNoEffects", "Lyr ");
             artBoard_boundsInfo_raw = artBoard_boundsInfo_raw.boundsNoEffects;
 
             boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
@@ -5602,6 +5602,222 @@ Kinase.layer.creatNewTextLayer_ByActive = function (name, w, h, text, english)
 
 
 /**
+ * 创建一个新的圆角矩形形状图层
+ *  // defaultInfo = {
+    //     fillColor:  {r: 0, g: 0, b: 0}, 填充颜色/
+    //     strokeColor:  {r: 0, g: 0, b: 0}, 描边颜色/
+    //     lineWidth: 0, 描边宽度
+    //     x: 10,
+    //     y: 10,
+    //     h: 30,
+    //     w: 60,
+    //     radian: shapeInfo.radian || {
+    //         圆角
+    //         topRight: 3,
+    //         topLeft: 3,
+    //         bottomRight: 3,
+    //         bottomLeft: 3,
+    //     },
+    // }
+ * @param layerName 图层名称
+ * @param shapeInfo 形状信息
+ */
+Kinase.layer.creatNewShapeLayerSquarenss_ByActive = function (layerName, shapeInfo)
+{
+    if (shapeInfo == undefined) shapeInfo = {};
+
+    var defaultInfo = {
+        fillColor: shapeInfo.fillColor || {r: 0, g: 0, b: 0}, /*填充颜色*/
+        strokeColor: shapeInfo.strokeColor || {r: 0, g: 0, b: 0}, /*描边颜色*/
+        lineWidth: 0, /*描边宽度*/
+        x: 10,
+        y: 10,
+        h: 30,
+        w: 60,
+        radian: shapeInfo.radian || {
+            /*圆角*/
+            topRight: 3,
+            topLeft: 3,
+            bottomRight: 3,
+            bottomLeft: 3,
+        },
+    }
+    if (shapeInfo.x != undefined) defaultInfo.x = shapeInfo.x;
+    if (shapeInfo.y != undefined) defaultInfo.y = shapeInfo.y;
+    if (shapeInfo.h != undefined) defaultInfo.h = shapeInfo.h;
+    if (shapeInfo.w != undefined) defaultInfo.w = shapeInfo.w;
+    if (shapeInfo.lineWidth != undefined) defaultInfo.lineWidth = shapeInfo.lineWidth;
+
+    var rltb = Kinase._xywh2rltb({x: defaultInfo.x, y: defaultInfo.y, w: defaultInfo.w, h: defaultInfo.h})
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {"container": {}},
+                "form": "ReferenceFormType.CLASSTYPE",
+                "desiredClass": "contentLayer"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "using": {
+            "value": {
+                "type": {
+                    "value": {
+                        "color": {
+                            "value": {
+                                "red": {"value": defaultInfo.fillColor.r, "type": "DescValueType.DOUBLETYPE"},
+                                "grain": {"value": defaultInfo.fillColor.g, "type": "DescValueType.DOUBLETYPE"},
+                                "blue": {"value": defaultInfo.fillColor.b, "type": "DescValueType.DOUBLETYPE"}
+                            }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
+                        }
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "solidColorLayer"
+                },
+                "shape": {
+                    "value": {
+                        "unitValueQuadVersion": {"value": 1, "type": "DescValueType.INTEGERTYPE"},
+                        "top": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": rltb.top},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "left": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": rltb.left},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "bottom": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": rltb.bottom},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "right": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": rltb.right},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "topRight": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": defaultInfo.radian.topRight},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "topLeft": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": defaultInfo.radian.topLeft},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "bottomLeft": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": defaultInfo.radian.bottomLeft},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "bottomRight": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": defaultInfo.radian.bottomRight},
+                            "type": "DescValueType.UNITDOUBLE"
+                        }
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "rectangle"
+                },
+                "strokeStyle": {
+                    "value": {
+                        "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                        "strokeEnabled": {"value": true, "type": "DescValueType.BOOLEANTYPE"},
+                        "fillEnabled": {"value": true, "type": "DescValueType.BOOLEANTYPE"},
+                        "strokeStyleLineWidth": {
+                            "value": {"doubleType": "pixelsUnit", "doubleValue": defaultInfo.lineWidth},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "strokeStyleLineDashOffset": {
+                            "value": {"doubleType": "pointsUnit", "doubleValue": 0},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "strokeStyleMiterLimit": {"value": 100, "type": "DescValueType.DOUBLETYPE"},
+                        "strokeStyleLineCapType": {
+                            "value": {
+                                "enumerationType": "strokeStyleLineCapType",
+                                "enumerationValue": "strokeStyleButtCap"
+                            }, "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "strokeStyleLineJoinType": {
+                            "value": {
+                                "enumerationType": "strokeStyleLineJoinType",
+                                "enumerationValue": "strokeStyleMiterJoin"
+                            }, "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "strokeStyleLineAlignment": {
+                            "value": {
+                                "enumerationType": "strokeStyleLineAlignment",
+                                "enumerationValue": "strokeStyleAlignInside"
+                            }, "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "strokeStyleScaleLock": {"value": false, "type": "DescValueType.BOOLEANTYPE"},
+                        "strokeStyleStrokeAdjust": {"value": false, "type": "DescValueType.BOOLEANTYPE"},
+                        "strokeStyleLineDashSet": {"value": {}, "type": "DescValueType.LISTTYPE"},
+                        "strokeStyleBlendMode": {
+                            "value": {
+                                "enumerationType": "blendMode",
+                                "enumerationValue": "normal"
+                            }, "type": "DescValueType.ENUMERATEDTYPE"
+                        },
+                        "strokeStyleOpacity": {
+                            "value": {"doubleType": "percentUnit", "doubleValue": 100},
+                            "type": "DescValueType.UNITDOUBLE"
+                        },
+                        "strokeStyleContent": {
+                            "value": {
+                                "color": {
+                                    "value": {
+                                        "red": {
+                                            "value": defaultInfo.strokeColor.r,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "grain": {
+                                            "value": defaultInfo.strokeColor.g,
+                                            "type": "DescValueType.DOUBLETYPE"
+                                        },
+                                        "blue": {"value": defaultInfo.strokeColor.b, "type": "DescValueType.DOUBLETYPE"}
+                                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
+                                }
+                            }, "type": "DescValueType.OBJECTTYPE", "objectType": "solidColorLayer"
+                        },
+                        "strokeStyleResolution": {"value": 96, "type": "DescValueType.DOUBLETYPE"}
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                }
+            }, "type": "DescValueType.OBJECTTYPE", "objectType": "contentLayer"
+        },
+    }
+    mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
+
+
+    if (layerName != undefined)
+    {
+        Kinase.layer.setLayerName_byActive(layerName);
+    }
+}
+
+
+Kinase.layer.creatNewShapeLayerBackBox_ByActive = function (layerName, padding, shapeInfo)
+{
+    if (shapeInfo == undefined) shapeInfo = {};
+    if (padding == undefined) padding = {};
+
+    var trgetId = Kinase.layer.getLayerIdByActive();
+    var trgetBounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
+    // {{x: null, y: null, w: null, h: null, right: null, bottom: null}}
+
+
+    var boxBounds_rltb = {
+        left: trgetBounds.x - +_value(padding.left, 10),
+        top: trgetBounds.y - +_value(padding.top, 10),
+        right: trgetBounds.right + +_value(padding.right, 10),
+        bottom: trgetBounds.bottom + +_value(padding.bottom, 10),
+    }
+
+    var boxBounds_xywh = Kinase._rltb2xywh(boxBounds_rltb);
+
+
+    shapeInfo.x = boxBounds_xywh.x
+    shapeInfo.y = boxBounds_xywh.y
+    shapeInfo.w = boxBounds_xywh.w
+    shapeInfo.h = boxBounds_xywh.h
+
+    Kinase.layer.creatNewShapeLayerSquarenss_ByActive(layerName, shapeInfo)
+    Kinase.layer.moveActiveLayerOrder(Kinase.layer.getItemIndexBylayerID(trgetId) - 1)
+
+}
+
+
+/**
  * 删除选中图层
  */
 Kinase.layer.deleteLayer_ByActive = function ()
@@ -5649,7 +5865,10 @@ Kinase.layer.deleteLayer_ByActive = function ()
 }
 
 
-/*移动图层排序*/
+/**
+ * 移动图层排序
+ * @param itemIndex
+ */
 Kinase.layer.moveActiveLayerOrder = function (itemIndex)
 {
 
