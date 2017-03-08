@@ -3001,6 +3001,7 @@ Kinase.layer.getLayerEffectsObject = function (targetReference, target)
  */
 Kinase.layer.setLayerEffectsObject = function (effectsObejct, targetReference, target)
 {
+
     var adOb = {
         "null": {
             "value": {

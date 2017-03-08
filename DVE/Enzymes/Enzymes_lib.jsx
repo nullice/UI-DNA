@@ -817,7 +817,7 @@ EnzJSX.getLayerInfo_smartObject_byId = function (id)
  */
 EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
 {
-    var newId =null
+    var newId = null
     app.activeDocument.suspendHistory("设置智能对象", "func()");
 
 
@@ -837,7 +837,7 @@ EnzJSX.setLayerInfo_smartObject_byId = function (smartObject, id, doSelect)
         if (targetLayerType.typeName != "smartObject")
         {
             Kinase.layer.setLayerToSmart_ByActive()
-             newId = Kinase.layer.getLayerIdByActive()
+            newId = Kinase.layer.getLayerIdByActive()
         }
 
         Kinase.layer.setLayerSmartInfo_ByActive(smartObject)
@@ -1045,16 +1045,29 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
         ki.layer.selectLayer_byID(id)
     }
 
+
+    if (quickEffect.copyEffect_All != undefined)
+    {
+        try
+        {
+            var obALL = JSON.parse(quickEffect.copyEffect_All)
+            if (obALL.value != undefined)
+            {
+                Kinase.layer.setLayerEffectsObject(obALL, Kinase.REF_LayerID, id)
+            }
+
+        } catch (e)
+        {
+
+        }
+    }
+
+
+
     var Old_quickEffect = this.getLayerInfo_quickEffect_byId(id, true)
 
 
-    if (quickEffect.copyEffect_All != undefined && typeof quickEffect.copyEffect_All == 'obejct')
-    {
-        var effectObject = quickEffect.copyEffect_All;
-    } else
-    {
-        var effectObject = Old_quickEffect.raw;
-    }
+    var effectObject = Old_quickEffect.raw;
 
 
     if (quickEffect != undefined)
@@ -1191,6 +1204,7 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
     // $.writeln("aa" + json(effectObject))
 
     Kinase.layer.setLayerEffectsObject(effectObject, Kinase.REF_LayerID, id)
+
 
     return
 }

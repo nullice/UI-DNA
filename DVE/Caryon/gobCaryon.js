@@ -794,7 +794,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                             var re = await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
                             if (re != undefined && re.newId != undefined && re.newId != this.selectList[i].id)
                             {
-                               var  layerId = this.selectList[i].id
+                                var layerId = this.selectList[i].id
                                 Gob.selectList.map(function (x)
                                 {
                                     if (x.id == layerId)
@@ -933,9 +933,6 @@ GobCaryon.prototype.updateSelect = async function ()
 {
 
 
-
-
-
     if (this.disableSelectEvent)// 如果设置了停止选择更新开关则返回
     {
         return;
@@ -1051,7 +1048,7 @@ GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId)
+GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId, getRaw)
 {
     // [quickEffect]---------------------------------------------------------------
     var item_quickEffect = this.__new_quickEffect();
@@ -1065,7 +1062,14 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId)
     item_quickEffect.dropShadow.y = quickEffect.dropShadow.y;
     item_quickEffect.dropShadow.blur = quickEffect.dropShadow.blur;
     item_quickEffect.dropShadow.spread = quickEffect.dropShadow.spread;
-    item_quickEffect.copyEffect_All = quickEffect.copyEffect_All;
+    if (getRaw)
+    {
+        item_quickEffect.copyEffect_All = JSON.stringify(quickEffect.raw);
+    } else
+    {
+        item_quickEffect.copyEffect_All = quickEffect.copyEffect_All;
+    }
+
     item_quickEffect.copyEffect_dropShadow = quickEffect.copyEffect_dropShadow;
     item_quickEffect.copyEffect_innerShadow = quickEffect.copyEffect_innerShadow;
     item_quickEffect.copyEffect_chromeFX = quickEffect.copyEffect_chromeFX;

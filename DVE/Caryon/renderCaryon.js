@@ -359,7 +359,6 @@ RenderCaryon.prototype._getLayerDataByNamse = async function (rootName, names, l
     {
         console.log("_getLayerData:getLayerInfo_smartObject_byId")
         var smartObject = await Gob.getLayerInfoObejct_smartObject(layerId);
-
         _saveCache(smartObject)
         return _returnFilter(OBJ.getObjectValueByNames(smartObject, names))
     }
@@ -367,7 +366,7 @@ RenderCaryon.prototype._getLayerDataByNamse = async function (rootName, names, l
     if (rootName == "quickEffect")
     {
         console.log("_getLayerData:getLayerInfo_quickEffect_byId")
-        var quickEffect = await Gob.getLayerInfoObejct_quickEffect(layerId);
+        var quickEffect = await Gob.getLayerInfoObejct_quickEffect(layerId, true);
 
         _saveCache(quickEffect)
         return _returnFilter(OBJ.getObjectValueByNames(quickEffect, names))
