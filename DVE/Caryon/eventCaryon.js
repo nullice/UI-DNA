@@ -135,8 +135,8 @@ EventCaryon.prototype.initEvent = async function ()
 
 EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
 {
-    // console.log("PhotoshopCallbackUnique");
-    // console.log(csEvent);
+    console.log("PhotoshopCallbackUnique");
+    console.log(csEvent);
     try
     {
         // console.log(typeof csEvent.data === "string")

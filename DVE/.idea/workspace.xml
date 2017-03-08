@@ -27,19 +27,19 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7663799">
+    <splitter split-orientation="horizontal" split-proportion="0.6174719">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="142">
-                  <caret line="340" column="0" lean-forward="false" selection-start-line="340" selection-start-column="0" selection-end-line="340" selection-end-column="0" />
+                <state relative-caret-position="600">
+                  <caret line="981" column="208" lean-forward="false" selection-start-line="981" selection-start-column="208" selection-end-line="981" selection-end-column="208" />
                   <folding>
                     <element signature="e#197597#213044#0" expanded="false" />
                     <element signature="e#197982#211268#0" expanded="false" />
                     <element signature="e#214583#221830#0" expanded="false" />
-                    <element signature="e#227809#228338#0" expanded="false" />
+                    <element signature="e#228298#228827#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -72,8 +72,8 @@
           <file leaf-file-name="Enzymes_lib.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="130">
-                  <caret line="365" column="43" lean-forward="true" selection-start-line="365" selection-start-column="43" selection-end-line="365" selection-end-column="43" />
+                <state relative-caret-position="-80">
+                  <caret line="367" column="40" lean-forward="false" selection-start-line="367" selection-start-column="40" selection-end-line="367" selection-end-column="60" />
                   <folding>
                     <element signature="e#21398#21796#0" expanded="false" />
                     <element signature="e#21857#22757#0" expanded="false" />
@@ -88,8 +88,8 @@
           <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="235">
-                  <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+                <state relative-caret-position="777">
+                  <caret line="445" column="27" lean-forward="false" selection-start-line="445" selection-start-column="23" selection-end-line="445" selection-end-column="27" />
                   <folding>
                     <element signature="e#3909#4799#0" expanded="false" />
                   </folding>
@@ -97,34 +97,48 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="InputAssist.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="InputAssist.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/InputAssist.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="383">
-                  <caret line="197" column="40" lean-forward="true" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
+                <state relative-caret-position="483">
+                  <caret line="325" column="29" lean-forward="false" selection-start-line="325" selection-start-column="29" selection-end-line="325" selection-end-column="29" />
                   <folding>
                     <element signature="e#2545#2597#0" expanded="true" />
-                    <marker date="1488897998298" expanded="true" signature="3199:3215" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="3667:3683" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="3987:4003" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="4295:4311" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="4666:4682" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="4975:4991" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="5363:5379" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="5766:5782" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="6074:6090" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="7272:7288" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="7681:7697" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="7992:8008" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="8795:8811" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="9045:9061" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="9254:9270" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="9543:9559" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="9752:9768" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="9961:9977" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="10230:10246" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="10439:10455" ph="..." />
-                    <marker date="1488897998298" expanded="true" signature="10669:10685" ph="..." />
+                    <element signature="e#2749#2924#0" expanded="false" />
+                    <marker date="1488957672567" expanded="true" signature="3200:3216" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="3674:3690" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="4000:4016" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="4318:4334" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="4644:4660" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="5015:5031" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="5324:5340" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="5712:5728" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="6115:6131" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="6423:6439" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="7621:7637" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="8030:8046" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="8341:8357" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="9144:9160" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="9394:9410" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="9603:9619" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="9892:9908" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="10101:10117" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="10310:10326" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="10579:10595" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="10788:10804" ph="..." />
+                    <marker date="1488957672567" expanded="true" signature="11018:11034" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="inputAssist.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Proteins/libs/inputAssist.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="371">
+                  <caret line="140" column="31" lean-forward="false" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="31" />
+                  <folding>
+                    <element signature="e#197#2730#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -133,8 +147,8 @@
           <file leaf-file-name="Proteins_lib.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Proteins/Proteins_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1890">
-                  <caret line="92" column="32" lean-forward="false" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="32" />
+                <state relative-caret-position="21">
+                  <caret line="47" column="32" lean-forward="true" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
                   <folding>
                     <element signature="e#0#40#0" expanded="false" />
                   </folding>
@@ -175,16 +189,6 @@
                     <element signature="e#2082#3032#0" expanded="false" />
                     <element signature="e#4218#5680#0" expanded="false" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="inputAssist.jsx" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Proteins/libs/inputAssist.jsx">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="509">
-                  <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -263,11 +267,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="eventCaryon.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="eventCaryon.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/eventCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1220">
-                  <caret line="138" column="28" lean-forward="false" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
+                <state relative-caret-position="275">
+                  <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="138" selection-end-column="25" />
                   <folding>
                     <element signature="e#687#695#0" expanded="false" />
                   </folding>
@@ -289,11 +293,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="210">
-                  <caret line="616" column="37" lean-forward="false" selection-start-line="616" selection-start-column="32" selection-end-line="616" selection-end-column="37" />
+                <state relative-caret-position="315">
+                  <caret line="333" column="56" lean-forward="true" selection-start-line="333" selection-start-column="56" selection-end-line="333" selection-end-column="56" />
                   <folding>
                     <element signature="n#div#2;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="e#41959#42028#0" expanded="true" />
@@ -338,7 +342,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>||</find>
       <find>.var_item</find>
       <find>_execFunction_end</find>
       <find>isAssignment</find>
@@ -360,7 +363,6 @@
       <find>_neverUpdate</find>
       <find>doSelect</find>
       <find>type</find>
-      <find>color-input</find>
       <find>v</find>
       <find>Proteins</find>
       <find>linkVarName</find>
@@ -368,6 +370,8 @@
       <find>SelectLayerArray</find>
       <find>itemIndex</find>
       <find>Kinase.REF_ItemIndex</find>
+      <find>color-input</find>
+      <find>inputAssist_getCurrentTool</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -392,7 +396,6 @@
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue" />
         <option value="$PROJECT_DIR$/components/MessageBox/InputBox.vue" />
         <option value="$PROJECT_DIR$/bin/JS/jquery-2.1.4.min.js" />
-        <option value="$PROJECT_DIR$/Caryon/eventCaryon.js" />
         <option value="$PROJECT_DIR$/Enzymes/Muclease_lib.jsx" />
         <option value="$PROJECT_DIR$/components/AttributePanel_selectInput.vue" />
         <option value="$PROJECT_DIR$/Enzymes/test/debug.json" />
@@ -428,11 +431,12 @@
         <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/Proteins/Proteins.js" />
         <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
-        <option value="$PROJECT_DIR$/components/InputAssist.vue" />
+        <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
+        <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
+        <option value="$PROJECT_DIR$/Caryon/eventCaryon.js" />
         <option value="$PROJECT_DIR$/Proteins/Proteins_lib.jsx" />
         <option value="$PROJECT_DIR$/Proteins/libs/inputAssist.jsx" />
-        <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx" />
+        <option value="$PROJECT_DIR$/components/InputAssist.vue" />
       </list>
     </option>
   </component>
@@ -842,12 +846,12 @@
       <workItem from="1487657263268" duration="67000" />
       <workItem from="1487657368982" duration="23765000" />
       <workItem from="1487817984100" duration="241409000" />
-      <workItem from="1488761691613" duration="88073000" />
+      <workItem from="1488761691613" duration="99781000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2396687000" />
+    <option name="totallyTimeSpent" value="2408395000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -866,12 +870,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.021712907" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1685761" sideWeight="0.52094716" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4149578" sideWeight="0.4790528" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4149578" sideWeight="0.4790528" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21548998" sideWeight="0.40411702" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20389885" sideWeight="0.56212306" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20368364" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2026538" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21548998" sideWeight="0.40411702" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -978,7 +982,7 @@
         <state relative-caret-position="21">
           <caret line="65" column="8098" lean-forward="false" selection-start-line="65" selection-start-column="8098" selection-end-line="65" selection-end-column="8098" />
           <folding>
-            <marker date="1488943859327" expanded="true" signature="1328467:1328479" ph="{...}" />
+            <marker date="1488957674058" expanded="true" signature="1335632:1335644" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -1187,16 +1191,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/eventCaryon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1220">
-          <caret line="138" column="28" lean-forward="false" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
-          <folding>
-            <element signature="e#687#695#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/webpack.config.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="348">
@@ -1304,54 +1298,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="616" column="37" lean-forward="false" selection-start-line="616" selection-start-column="32" selection-end-line="616" selection-end-column="37" />
-          <folding>
-            <element signature="n#div#2;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#41959#42028#0" expanded="true" />
-            <marker date="1488860793484" expanded="true" signature="43792:43808" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="44042:44058" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="44251:44267" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="44540:44556" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="44749:44765" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="44958:44974" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="45227:45243" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="45436:45452" ph="..." />
-            <marker date="1488860793484" expanded="true" signature="45666:45682" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="149" column="18" lean-forward="false" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
-          <folding>
-            <element signature="e#319#913#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Proteins/Proteins_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1890">
-          <caret line="92" column="32" lean-forward="false" selection-start-line="92" selection-start-column="9" selection-end-line="92" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#40#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Proteins/libs/inputAssist.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="509">
-          <caret line="40" column="0" lean-forward="false" selection-start-line="40" selection-start-column="0" selection-end-line="40" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/Richang_JSEX/objectOBJ.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="979">
@@ -1395,51 +1341,63 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/InputAssist.vue">
+    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="197" column="40" lean-forward="true" selection-start-line="197" selection-start-column="40" selection-end-line="197" selection-end-column="40" />
+        <state relative-caret-position="600">
+          <caret line="981" column="208" lean-forward="false" selection-start-line="981" selection-start-column="208" selection-end-line="981" selection-end-column="208" />
           <folding>
-            <element signature="e#2545#2597#0" expanded="true" />
-            <marker date="1488897998298" expanded="true" signature="3199:3215" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="3667:3683" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="3987:4003" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="4295:4311" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="4666:4682" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="4975:4991" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="5363:5379" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="5766:5782" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="6074:6090" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="7272:7288" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="7681:7697" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="7992:8008" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="8795:8811" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="9045:9061" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="9254:9270" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="9543:9559" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="9752:9768" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="9961:9977" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="10230:10246" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="10439:10455" ph="..." />
-            <marker date="1488897998298" expanded="true" signature="10669:10685" ph="..." />
+            <element signature="e#197597#213044#0" expanded="false" />
+            <element signature="e#197982#211268#0" expanded="false" />
+            <element signature="e#214583#221830#0" expanded="false" />
+            <element signature="e#228298#228827#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
+    <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="235">
-          <caret line="220" column="0" lean-forward="false" selection-start-line="220" selection-start-column="0" selection-end-line="220" selection-end-column="0" />
+          <caret line="149" column="18" lean-forward="false" selection-start-line="149" selection-start-column="18" selection-end-line="149" selection-end-column="18" />
           <folding>
-            <element signature="e#3909#4799#0" expanded="false" />
+            <element signature="e#319#913#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="333" column="56" lean-forward="true" selection-start-line="333" selection-start-column="56" selection-end-line="333" selection-end-column="56" />
+          <folding>
+            <element signature="n#div#2;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#41959#42028#0" expanded="true" />
+            <marker date="1488860793484" expanded="true" signature="43792:43808" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="44042:44058" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="44251:44267" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="44540:44556" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="44749:44765" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="44958:44974" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="45227:45243" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="45436:45452" ph="..." />
+            <marker date="1488860793484" expanded="true" signature="45666:45682" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/eventCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="275">
+          <caret line="137" column="0" lean-forward="false" selection-start-line="137" selection-start-column="0" selection-end-line="138" selection-end-column="25" />
+          <folding>
+            <element signature="e#687#695#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
-          <caret line="365" column="43" lean-forward="true" selection-start-line="365" selection-start-column="43" selection-end-line="365" selection-end-column="43" />
+        <state relative-caret-position="-80">
+          <caret line="367" column="40" lean-forward="false" selection-start-line="367" selection-start-column="40" selection-end-line="367" selection-end-column="60" />
           <folding>
             <element signature="e#21398#21796#0" expanded="false" />
             <element signature="e#21857#22757#0" expanded="false" />
@@ -1450,15 +1408,65 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
+    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="340" column="0" lean-forward="false" selection-start-line="340" selection-start-column="0" selection-end-line="340" selection-end-column="0" />
+        <state relative-caret-position="777">
+          <caret line="445" column="27" lean-forward="false" selection-start-line="445" selection-start-column="23" selection-end-line="445" selection-end-column="27" />
           <folding>
-            <element signature="e#197597#213044#0" expanded="false" />
-            <element signature="e#197982#211268#0" expanded="false" />
-            <element signature="e#214583#221830#0" expanded="false" />
-            <element signature="e#227809#228338#0" expanded="false" />
+            <element signature="e#3909#4799#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proteins/Proteins_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="47" column="32" lean-forward="true" selection-start-line="47" selection-start-column="32" selection-end-line="47" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#40#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proteins/libs/inputAssist.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="371">
+          <caret line="140" column="31" lean-forward="false" selection-start-line="140" selection-start-column="5" selection-end-line="140" selection-end-column="31" />
+          <folding>
+            <element signature="e#197#2730#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/InputAssist.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="325" column="29" lean-forward="false" selection-start-line="325" selection-start-column="29" selection-end-line="325" selection-end-column="29" />
+          <folding>
+            <element signature="e#2545#2597#0" expanded="true" />
+            <element signature="e#2749#2924#0" expanded="false" />
+            <marker date="1488957672567" expanded="true" signature="3200:3216" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="3674:3690" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="4000:4016" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="4318:4334" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="4644:4660" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="5015:5031" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="5324:5340" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="5712:5728" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="6115:6131" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="6423:6439" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="7621:7637" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="8030:8046" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="8341:8357" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="9144:9160" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="9394:9410" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="9603:9619" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="9892:9908" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="10101:10117" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="10310:10326" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="10579:10595" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="10788:10804" ph="..." />
+            <marker date="1488957672567" expanded="true" signature="11018:11034" ph="..." />
           </folding>
         </state>
       </provider>

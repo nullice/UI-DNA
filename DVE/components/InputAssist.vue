@@ -91,7 +91,7 @@
 
     export default{
         props: ["assist_type", "edit_value", "assign_value", "enable_assign", 'assist_range_max',
-            'assist_range_min', 'assist_range_width', 'input_foucs', 'names','input_title'],
+            'assist_range_min', 'assist_range_width', 'input_foucs', 'names', 'input_title'],
         data(){
             return {
                 o_editing: false,
@@ -112,10 +112,10 @@
                 ],
                 options_color: [
                     {
-                        value: 'color_pick',
+                        value: 'color_eyedropper',
                         label_html: '<i class=" icon-tool-eyedropper" style="font-size: 14px;">',
                         title: "吸管",
-                        selected_func: this.color_pick,
+                        selected_func: this.color_eyedropper,
                         button: true
                     },
                     {
@@ -123,6 +123,13 @@
                         label_html: '<i class="icon-checkbox-unchecked" style="font-size: 11px;">',
                         title: "无色彩",
                         selected_func: this.color_none,
+                        button: true
+                    },
+                    {
+                        value: 'ps_color_picker',
+                        label_html: '<i class=" icon-workspace" style="font-size: 14px;">',
+                        title: "Photoshop 的色彩选择器",
+                        selected_func: this.ps_color_picker,
                         button: true
                     },
                     {
@@ -342,12 +349,12 @@
 
                 /*创建图层----------------------*/
 
-                if(this.input_title==undefined)
+                if (this.input_title == undefined)
                 {
                     var textValue = this.edit_value
-                }else
+                } else
                 {
-                    var textValue =this.input_title +": " + this.edit_value
+                    var textValue = this.input_title + ": " + this.edit_value
                 }
 
 
@@ -357,9 +364,11 @@
                     value: textValue,
                     positionX: null,
                     positionY: null,
+                    title: this.input_title
                 })
 
-                console.info("relayer:",relayer)
+
+                console.info("relayer:", relayer)
 
                 /*文本图层内容设置为变量--------------------*/
                 if (relayer != undefined) //写 dataCaryon
@@ -378,6 +387,70 @@
                         logger.err("info_pin:dataCaryon:", e)
                     }
                 }
+
+            },
+
+            ps_color_picker: async function (self)
+            {
+
+                var defualtHex = ichiColor.set(this.edit_value).hex.slice(1)
+                var hex = await Proteins.exec("inputAssist_photoshopColorPicker_hex", {defualtHex: defualtHex})
+                if (hex != undefined)
+                {
+                    if (hex[0] == "#")
+                    {
+                        this.edit_value = hex;
+                    }
+                }
+            },
+            color_eyedropper: async function (self)
+            {
+                var selectStateSign = JSON.stringify(Gob.selectList)
+                var tool = await Proteins.exec("inputAssist_getCurrentTool")
+                var color = await Proteins.exec("inputAssist_getForegroundColor_hex")
+                var _times = 0
+                await Proteins.exec("inputAssist_setCurrentTool",{toolName:"eyedropperTool"})
+                var self = this
+                watchColor()
+
+
+                async function watchColor()
+                {
+                    console.info("watchColor:", _times)
+                    _times++;
+
+                    var now_selectStateSign = JSON.stringify(Gob.selectList)
+                    var now_tool = await Proteins.exec("inputAssist_getCurrentTool")
+                    var now_color = await Proteins.exec("inputAssist_getForegroundColor_hex")
+
+                    if (now_selectStateSign !=selectStateSign )
+                    {
+                        console.info("watchColor_end-0",now_selectStateSign )
+                        return;
+
+                    }
+
+                    if (now_tool !=  "eyedropperTool")
+                    {
+                        console.info("watchColor_end-1",now_tool )
+                        return;
+
+                    }
+
+                    if (now_color != color)
+                    {
+                        console.info("watchColor_end-2",now_color )
+                        self.edit_value = now_color;
+                        await Proteins.exec("inputAssist_setCurrentTool",{toolName:tool})
+                        return;
+
+                    }
+
+                    setTimeout(watchColor, 300)
+                }
+
+
+
 
             }
 

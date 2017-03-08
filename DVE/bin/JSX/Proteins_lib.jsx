@@ -43,7 +43,6 @@ Proteins = {
     /*执行一个目录下所有 jsx 脚本文件*/
     evalJsxFolder: function (jsxFolderPath)
     {
-
         var folder = new Folder(jsxFolderPath);
         var result = [];
         $.writeln(folder.exists)

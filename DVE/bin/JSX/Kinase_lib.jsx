@@ -978,8 +978,8 @@ Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
     var newBounds = {
         top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
         left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
-        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + textKey_raw.value.boundingBox.value.bottom.value.doubleValue - textKey_raw.value.boundingBox.value.top.value.doubleValue + 2,
-        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value + textKey_raw.value.boundingBox.value.right.value.doubleValue - textKey_raw.value.boundingBox.value.left.value.doubleValue + 2
+        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + textKey_raw.value.boundingBox.value.bottom.value.doubleValue - textKey_raw.value.boundingBox.value.top.value.doubleValue + 3,
+        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value + textKey_raw.value.boundingBox.value.right.value.doubleValue - textKey_raw.value.boundingBox.value.left.value.doubleValue + 3
     }
 
 
@@ -5785,7 +5785,25 @@ Kinase.layer.creatNewShapeLayerSquarenss_ByActive = function (layerName, shapeIn
     }
 }
 
-
+/**
+ * 为当前创建一个指定 padding 的背板形状图层
+ *
+ *  *  // shapeInfo = {
+    //     fillColor:  {r: 0, g: 0, b: 0}, 填充颜色/
+    //     strokeColor:  {r: 0, g: 0, b: 0}, 描边颜色/
+    //     lineWidth: 0, 描边宽度
+    //     radian: shapeInfo.radian || {
+    //         圆角
+    //         topRight: 3,
+    //         topLeft: 3,
+    //         bottomRight: 3,
+    //         bottomLeft: 3,
+    //     },
+    // }
+ * @param layerName 图层名称
+ * @param padding {left: , right: , top: , bottom: }
+ * @param shapeInfo
+ */
 Kinase.layer.creatNewShapeLayerBackBox_ByActive = function (layerName, padding, shapeInfo)
 {
     if (shapeInfo == undefined) shapeInfo = {};
