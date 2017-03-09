@@ -1,6 +1,6 @@
 <template>
 
-    <debug-microscope>测试用</debug-microscope>
+    <!--<debug-microscope>测试用</debug-microscope>-->
     <!---->
     <vue-color-cylinder v-show="UI_model.msg_color_picker.color1.show"
                         v-bind:ichi_color.sync="UI_model.msg_color_picker.color1.color" confirm="true"
@@ -118,7 +118,6 @@
                          v-bind:color.sync="Gob.shape.strokeColor"
                          v-bind:color_names="['shape','strokeColor']"
                          v-bind:color_enable.sync="Gob.shape.strokeColorEnabled"
-
                          mini="true"
             ></color-input>
 

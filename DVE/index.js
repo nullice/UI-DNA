@@ -172,6 +172,8 @@ import AttrPanel from "./components/AttributePanel.vue";
 import LayerSelectors from "./components/LayerSelectors.vue";
 import VarPanel from "./components/VarPanel.vue";
 import ExpressionPanel from  "./components/ExpressionPanel.vue"
+import QuickPanel from  "./components/QuickPanel.vue"
+
 
 
 var mainVue = new Vue({
@@ -183,7 +185,8 @@ var mainVue = new Vue({
         "attr-panel": AttrPanel,
         "layers-panel": LayerSelectors,
         "var-panel": VarPanel,
-        "expression-panel": ExpressionPanel
+        "expression-panel": ExpressionPanel,
+        "quick-panel":QuickPanel
     }
 })
 

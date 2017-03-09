@@ -2219,6 +2219,7 @@ Kinase.layer.setLayerRadian_byActive = function (radianInfo)
 
 }
 
+
 /**
  * 获取图层范围边界信息
  * @param targetReference - targetReference 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
@@ -2230,33 +2231,79 @@ Kinase.layer.getLayerBounds = function (targetReference, target, getType)
 {
     var boundsInfo = {x: null, y: null, w: null, h: null, right: null, bottom: null}
     var classStr = _value(getType, "boundsNoEffects");//"bounds"、"boundsNoMask"
-    var boundsInfo_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
 
 
-    if (isEmptyObject(boundsInfo_raw) || boundsInfo_raw[classStr] == undefined)
+    if (Kinase.layer.isLayerSet(targetReference, target))//判断是否是图层组
     {
-        boundsInfo.err = "err:not shape layer."
-        return boundsInfo;
+        var _itemIndex = null
+        // $.writeln("isLayerSet")
+
+
+        if (targetReference === Kinase.REF_ActiveLayer)
+        {
+            _itemIndex = Kinase.layer.getItemIndexBylayerID(Kinase.layer.getLayerIdByActive())
+            // $.writeln("_itemIndex:" + _itemIndex)
+        } else if (targetReference === Kinase.REF_LayerID)
+        {
+            _itemIndex = Kinase.layer.getItemIndexBylayerID(target)
+        } else if (targetReference === Kinase.REF_ItemIndex)
+        {
+            _itemIndex = target
+        }
+
+
+        if (_itemIndex != undefined)
+        {
+            var DOMObject = Kinase.layer.getLayerDOMObject_byItemIndex(_itemIndex)
+
+            // $.writeln("classStr:" + classStr + "=" + DOMObject[classStr])
+            if (DOMObject[classStr] != undefined)
+            {
+                var reg = /[0-9]*/
+                var DOmBounds = DOMObject[classStr]
+                boundsInfo.x = +reg.exec(DOmBounds[0])[0]
+                boundsInfo.y = +reg.exec(DOmBounds[1])[0]
+                boundsInfo.right = +reg.exec(DOmBounds[2])[0]
+                boundsInfo.bottom = +reg.exec(DOmBounds[3])[0]
+                boundsInfo.w = boundsInfo.right - boundsInfo.x;
+                boundsInfo.h = boundsInfo.bottom - boundsInfo.y;
+
+
+            }
+        }
+
+
     }
+
     else
     {
-        var boundsInfo_raw = boundsInfo_raw[classStr];
-    }
+        var boundsInfo_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
+
+        if (isEmptyObject(boundsInfo_raw) || boundsInfo_raw[classStr] == undefined)
+        {
+            boundsInfo.err = "err:not shape layer."
+            return boundsInfo;
+        }
+        else
+        {
+            var boundsInfo_raw = boundsInfo_raw[classStr];
+        }
+        boundsInfo.x = boundsInfo_raw.value.left.value.doubleValue
+        boundsInfo.y = boundsInfo_raw.value.top.value.doubleValue
+        boundsInfo.right = boundsInfo_raw.value.right.value.doubleValue
+        boundsInfo.bottom = boundsInfo_raw.value.bottom.value.doubleValue
+
+        if (boundsInfo_raw.value.width == undefined)
+        {
+            boundsInfo.w = boundsInfo.right - boundsInfo.x;
+            boundsInfo.h = boundsInfo.bottom - boundsInfo.y;
+        } else
+        {
+            boundsInfo.w = boundsInfo_raw.value.width.value.doubleValue
+            boundsInfo.h = boundsInfo_raw.value.height.value.doubleValue
+        }
 
 
-    boundsInfo.x = boundsInfo_raw.value.left.value.doubleValue
-    boundsInfo.y = boundsInfo_raw.value.top.value.doubleValue
-    boundsInfo.right = boundsInfo_raw.value.right.value.doubleValue
-    boundsInfo.bottom = boundsInfo_raw.value.bottom.value.doubleValue
-
-    if (boundsInfo_raw.value.width == undefined)
-    {
-        boundsInfo.w = boundsInfo.right - boundsInfo.x;
-        boundsInfo.h = boundsInfo.bottom - boundsInfo.y;
-    } else
-    {
-        boundsInfo.w = boundsInfo_raw.value.width.value.doubleValue
-        boundsInfo.h = boundsInfo_raw.value.height.value.doubleValue
     }
 
 
