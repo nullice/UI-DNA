@@ -1,19 +1,114 @@
 <template>
 
     <a-area area_title="快捷功能" area_id="attr_panel">
+        <!--<pre> {{Gob_selectTypes|json}}</pre>-->
+
+
+        <div class="quick_funcs_box">
+          <h4>形状</h4>
+
+            <div class="quick_buts">
+
+                <quick-icon-button v-bind:name="合并|lang" v-bind:title="合并形状|lang"
+                                   v-bind:more_onoff.sync="more_onoff.one" v-bind:func="func_shape_one">
+                    <i class="iconfont icon-xuanze-copy-copy"></i>
+                </quick-icon-button>
+
+                <quick-icon-button v-bind:more_onoff="null">
+                    <i class="icon-xor-union"></i>
+                </quick-icon-button>
+
+                <quick-icon-button>
+                    <i class="icon-xor-difference"></i>
+                </quick-icon-button>
+
+                <quick-icon-button>
+                    <i class="icon-xor-intersect"></i>
+                </quick-icon-button>
+
+                <quick-icon-button>
+                    <i class="icon-xor-subtract"></i>
+                </quick-icon-button>
+
+            </div>
+
+            <div class="quick_mores ">
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.one}">
+
+                    <h4>更多选择器</h4>
+                    <div class="info">
+                        sdfsdafsdafdsafaaasdf
+                        撒打发撒打发撒打发撒打发
+                    </div>
+
+                    <div class="exmo_inbox">
+                        <div class="exmo_box_name">选择性</div>
+                        <input type="text" class="exmo_input_text" placeholder="占位符" value="普通编辑框">
+                    </div>
+
+                    <div class="exmo_inbox">
+                        <div class="exmo_box_name">挂机下是否</div>
+                        <input type="text" class="exmo_input_text" placeholder="占位符" value="普通编辑框">
+                    </div>
+
+                </div>
+            </div>
 
 
 
-123123123123
+
+
+        </div>
+
 
     </a-area>
 
 
-
-
-
 </template>
 <style lang="scss" rel="stylesheet/scss">
+
+    .quick_funcs_box{
+
+
+        .quick_more_item {
+            h4 {
+                font-weight: normal;
+                font-size: 13px;
+                padding: 2px 0;
+                margin: 0;
+            }
+
+            .info {
+                overflow: hidden;
+                font-size: 12px;
+                color: #797878;
+                border-bottom: 1px dashed rgba(0, 0, 0, 0.22);
+                padding-bottom: 6px;
+                margin-bottom: 4px;
+            }
+
+            padding: 10px 16px;
+
+            overflow: hidden;
+            visibility: hidden;
+            max-height: 0;
+            transition: all .4s;
+            background-color: rgba(228, 229, 229, 1);
+            width: 100%;
+            margin-left: -16px;
+            background: linear-gradient(180deg, rgba(158, 158, 158, 0.44) 0%, rgba(153, 153, 153, 0.24) 6px, rgba(153, 153, 153, 0.16) 98%, rgba(205, 205, 205, 0.52) 100%);
+        }
+        .quick_more_item.more_on {
+
+            visibility: visible;
+            max-height: 999px;
+        }
+
+
+
+    }
+
+
 
 
 </style>
@@ -24,14 +119,23 @@
     import AttrSelect from "./AttributePanel_select.vue"
     import SelectInput from "./AttributePanel_selectInput.vue"
     import AttrTextarea from "./AttributePanel_textarea.vue"
-
-
-
+    import QuickIconButton from "./QuickPanel_iconButton.vue"
 
     export default{
         props: [],
         data(){
             return {
+                more_onoff:{
+                    one:false,
+
+                },
+
+
+
+
+
+                Gob_selectTypes: Gob.selectTypes, /*当前选中图层类型状态，以此控制功能按钮是否显示*/
+
                 o_editing: false,
                 inline_block: true,
                 options: [
@@ -104,11 +208,16 @@
                         label: ''
                     }
 
-                ]
+                ],
+
             }
 
         },
         methods: {
+            func_shape_one:function ()
+            {
+
+            }
 
 
         },
@@ -146,6 +255,8 @@
             "attr-select": AttrSelect,
             "select-input": SelectInput,
             "attr-textarea": AttrTextarea,
+            "quick-icon-button":QuickIconButton
+
         }
 
 

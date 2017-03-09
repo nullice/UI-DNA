@@ -14,8 +14,17 @@ import TYP from "./Richang_JSEX/typeTYP.js"
  */
 var GobCaryon = function ()
 {
-    this.selectList = [];
 
+
+    this.selectList = [];
+    this.selectTypes = {
+        bitmap: false,
+        text: false,
+        shape: false,
+        smartObject: false,
+        layerSet: false
+    }
+    /*当前选中图层类型，相应属性为真表示有此种类型图层被选中*/
 
     this._unripe = true;//未准备好，不渲染。
 
@@ -800,6 +809,9 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                                     if (x.id == layerId)
                                     {
                                         x.id = re.newId
+                                        x.type.typeName = "smartObject"
+                                        x.type.layerKind = 5
+
                                     }
                                 })
 
@@ -960,11 +972,30 @@ GobCaryon.prototype.updateSelect = async function ()
     console.log("【this.nowSwitching = true】")
 
     //判断选中图层是否有改变
-    var newList = (await enzymes.getSelectLayerArray()).reverse();
+
+    var newList = (await enzymes.getSelectLayerArray()).reverse();//"获取图层"
     this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
     logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
-
     this.selectList = newList;
+
+    // 更新 Gob.selectTypes
+    for (var x in this.selectTypes)
+    {
+        this.selectTypes[x] = false
+    }
+
+    for (var i = 0; i < this.selectList.length; i++)
+    {
+        for (var x in this.selectTypes)
+        {
+            if (this.selectList[i].type.typeName == x)
+            {
+                this.selectTypes[x] = true;
+            }
+        }
+    }
+
+
     //******************
     await this.updateGob();
     //******************
