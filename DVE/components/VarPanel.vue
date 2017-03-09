@@ -20,6 +20,18 @@
         </input-box>
 
 
+        <input-box
+                v-if="o_msg_input.var_edit.show"
+                v-bind:msg_title="o_msg_input.var_edit.title"
+                v-bind:msg_input_data="o_msg_input.var_edit.data"
+                v-bind:msg_callback="o_msg_input.var_edit.callback"
+                v-bind:msg_mode="o_msg_input.var_edit"
+                v-bind:msg="o_msg_input.var_edit.msg"
+        >
+        </input-box>
+
+
+
         <div class="var_tool">
             <button v-on:click="add_new_var" class="exmo_button_icon mini"><i class="icon-add-new"></i></button>
         </div>
@@ -40,11 +52,14 @@
                 ></edit-text-label>
 
 
+
+
                 <edit-text-label
                         v-bind:class_switch_1="a_var.isFormula ? 'formula' :''"
                         v-bind:in_value.sync="a_var.value"
                         display_class="var_value cell"
                         edit_class="var_value cell"
+                        v-bind:var_name="$key"
                 ></edit-text-label>
 
                 <button v-on:click="delete_a_var($key)" class="exmo_button_icon mini var_delete"><i
@@ -66,8 +81,11 @@
     .var_item {
         margin: 0 0;
         padding: 0 10px;
+        line-height: 16px;
+        padding-top: 4px;
+        padding-bottom: 4px;
         position: relative;
-        -webkit-user-select: text;
+        -webkit-user-select: none;
         /*border: 1px solid rgba(0, 0, 0, 0);*/
 
         &:hover {
@@ -84,8 +102,10 @@
 
         .cell {
             font-size: 13px;
-            padding: 4px 4px;
+            padding: 0px 4px;
             color: #666;
+            text-overflow: ellipsis;
+            overflow: hidden;
 
         }
 
@@ -215,17 +235,22 @@
         },
 
         methods: {
+
             add_new_var: function ()
             {
-                var data = [{name: "变量名", type: "text", varify: varify_varName}, {name: "值", type: "text"},
+                var data = [
+                    {name: "变量名", type: "text", varify: varify_varName},
+                    {name: "值", type: "textarea", cows: 2},
                     {
                         name: "类型", type: "select", options: [
-                        {text: Lang.from('模板变量'), value: 'template'},
+//                        {text: Lang.from('模板变量'), value: 'template'},
                         {text: Lang.from('普通变量'), value: 'normal'},
-                        {text: Lang.from('脚本变量'), value: 'script'}
-                    ],
-                        select: "normal"
-                    },]
+//                        {text: Lang.from('脚本变量'), value: 'script'}
+                    ], select: "normal"
+                    },
+//                    {name: "事实上", type: "textarea"},
+
+                ]
 
                 var varify_varName = function (x, e)
                 {

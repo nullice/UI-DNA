@@ -13,7 +13,8 @@ var UI_model = {
         input_box: {title: "", msg: "", show: false, color: "none"}
     },
     msg_input: {
-        var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}}
+        var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}},
+        var_edit: {title: "", data: [], show: false, color: "none", callback: function () {return 0}}
     },
     msg_color_picker: {
         color1: {

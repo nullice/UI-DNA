@@ -1,6 +1,6 @@
 <template>
     <div class="message-box-input  message-color-{{msg_color}}">
-        <div class="message-window-input   animated zoomIn">
+        <div class="message-window-input   animated zoomIn" >
             <h2 class="message-title">{{msg_title}}</h2>
             <div class="message-msg">{{{msg}}}</div>
 
@@ -10,7 +10,7 @@
                         v-bind:msg_color="o_msg_bubble.input_box.color"
             ></bubble-box>
 
-            <div class="input_item" v-for="item in msg_input_data">
+            <div class="input_item" v-for="item in msg_input_data" v-bind:class="{'textarea-big':item.type=='textareaBig'}">
                 <span v-if="item.type!='checkbox'">{{item.name}}</span>
                 <input v-if="item.type=='text'" type="text" class="exmo_input_text"
                        placeholder="{{item.placeholder||''}}"
@@ -27,6 +27,18 @@
                     <div class="exmo_checkbox_shadow"></div>
                     {{item.name}}
                 </label>
+
+                <div class="value_input_textarea_box" >
+
+                          <textarea
+                                  v-if="item.type=='textarea'||item.type=='textareaBig'"
+                                  v-model="item.value"
+                                  class="exmo_inbox value_input_box"
+                                  v-bind:cows="item.cows||2"
+                          ></textarea>
+                </div>
+
+
             </div>
 
             <div class="button_bar">
@@ -63,12 +75,10 @@
             top: 20%;
             margin: auto;
 
-
             .message-msg {
                 font-size: 13px;
                 color: #3A3A3A;
-                p.p_var_list
-                {
+                p.p_var_list {
                     color: #4268DD;
                     padding-left: 16px;
                 }
@@ -77,6 +87,25 @@
                 font-size: 13px;
                 color: rgb(77, 77, 77);
                 margin-bottom: 8px;
+
+
+                &.textarea-big{
+                    position: relative;
+                    width: 100%;
+
+                    .value_input_textarea_box{
+                        width: 100%;
+                    }
+
+                    .value_input_textarea_box textarea.exmo_inbox.value_input_box{
+                        padding: 0;
+                    }
+
+                    span{
+                        display: inline;
+                        min-width: 0;
+                    }
+                }
 
                 input.illegal_value {
                     color: #F04D45;
@@ -90,6 +119,9 @@
                     text-align: right;
                     opacity: .75;
                 }
+
+
+
             }
 
             .button_bar {
@@ -104,6 +136,14 @@
 
             .exmo_input_text, .exmo_select {
                 width: 65%;
+            }
+
+            textarea.exmo_inbox.value_input_box {
+                width: 100%;
+            }
+
+            .value_input_textarea_box {
+                display: inline-block;
             }
 
         }

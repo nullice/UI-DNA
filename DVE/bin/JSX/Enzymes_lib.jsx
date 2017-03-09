@@ -1050,9 +1050,7 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
     {
         try
         {
-
             var obALL = JSON.parse(quickEffect.copyEffect_All)
-            alert("id:"+id+"=>" +JSON.stringify(obALL))
             if (obALL.value != undefined)
             {
                 Kinase.layer.setLayerEffectsObject(obALL, Kinase.REF_LayerID, id)
