@@ -9,24 +9,24 @@
 
             <div class="quick_buts">
 
-                <quick-icon-button v-bind:name="合并|lang" v-bind:title="合并形状|lang"
+                <quick-icon-button v-bind:name="合并" v-bind:title="合并形状"
                                    v-bind:more_onoff.sync="more_onoff.one" v-bind:func="func_shape_one">
                     <i class="iconfont icon-xuanze-copy-copy"></i>
                 </quick-icon-button>
 
-                <quick-icon-button v-bind:more_onoff="null">
+                <quick-icon-button v-bind:func="func_shape_combine" v-bind:in_title="Lang.from('合并形状')">
                     <i class="icon-xor-union"></i>
                 </quick-icon-button>
 
-                <quick-icon-button>
+                <quick-icon-button  v-bind:func=" func_shape_symDifference" v-bind:in_title="Lang.from('形状对称差')">
                     <i class="icon-xor-difference"></i>
                 </quick-icon-button>
 
-                <quick-icon-button>
+                <quick-icon-button  v-bind:func="func_shape_intersect" v-bind:in_title="Lang.from('形状交集')">
                     <i class="icon-xor-intersect"></i>
                 </quick-icon-button>
 
-                <quick-icon-button>
+                <quick-icon-button  v-bind:func="func_shape_subtract" v-bind:in_title="Lang.from('减去形状')">
                     <i class="icon-xor-subtract"></i>
                 </quick-icon-button>
 
@@ -129,6 +129,7 @@
                     one:false,
 
                 },
+                Lang:Lang,
 
 
 
@@ -217,7 +218,24 @@
             func_shape_one:function ()
             {
 
+            },
+            func_shape_combine:function ()
+            {
+                Proteins.exec("quick_shape_path_combine")
+            },
+            func_shape_subtract:function ()
+            {
+                Proteins.exec("quick_shape_path_subtract")
+            },
+            func_shape_intersect:function ()
+            {
+                Proteins.exec("quick_shape_path_intersect")
+            },
+            func_shape_symDifference:function ()
+            {
+                Proteins.exec("quick_shape_path_symDifference")
             }
+
 
 
         },

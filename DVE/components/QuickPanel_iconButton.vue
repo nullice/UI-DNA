@@ -1,13 +1,15 @@
 <template>
 
     <div class="quick_but {{in_class}}">
-        <div class="exmo_button_icon quick_but_icon" v-bind:class="{'more_on':more_onoff}" >
+        <div class="exmo_button_icon quick_but_icon" v-bind:class="{'more_on':more_onoff}"
+        v-on:click="func" v-bind:title="in_title">
             <slot></slot>
         </div>
 
 
         <div class="quick_but_more_icon" v-bind:class="{'more_on':more_onoff,'hidden':!show_more}"
              v-on:click="click_more"
+             title="{{'更多选项'|lang}}"
 
         >
             <i class="icon-play3"></i>
@@ -74,7 +76,7 @@
 </style>
 <script>
     export default{
-        props: ["func", "in_class", "more_onoff"],
+        props: ["func", "in_class", "more_onoff","in_title"],
         data(){
             return {}
         },
@@ -90,7 +92,7 @@
         computed: {
             show_more:function ()
             {
-                if(this.func != undefined)
+                if(this.more_onoff != undefined)
                 {
                     return true
                 }else

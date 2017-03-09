@@ -7,9 +7,9 @@ Proteins = {
 
     exec: function (funcName, parameObject)
     {
-        $.writeln(funcName)
-        $.writeln(Libs[funcName] != undefined)
-        $.writeln(typeof  Libs[funcName])
+        // $.writeln(funcName)
+        // $.writeln(Libs[funcName] != undefined)
+        // $.writeln(typeof  Libs[funcName])
 
         if (Libs[funcName] != undefined)
         {
@@ -66,9 +66,9 @@ Proteins = {
 
     /**
      * 函数执行控制。为执行函数指定历史记录名称，并可选是否保持图层选中
-     * @param _func
+     * @param _func 要执行的函数
      * @param historyName
-     * @param holdLayerSelect
+     * @param holdLayerSelect 保持图层选中，动作执行后选中执行前的图层
      */
     doCon: function (func, historyName, holdLayerSelect)
     {

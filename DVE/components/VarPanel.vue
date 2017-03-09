@@ -79,6 +79,7 @@
     }
 
     .var_item {
+        white-space: nowrap;
         margin: 0 0;
         padding: 0 10px;
         line-height: 16px;
