@@ -39,7 +39,8 @@ var SetSystem = function ()
         },
         quick:{
             shape_radius:"",
-            shape_enable_curnerEditor:false
+            shape_enable_curnerEditor:false,
+            shape_use_svgo:true
 
         }
 

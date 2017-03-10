@@ -66,6 +66,10 @@ if (typeof window.__adobe_cep__ !== "undefined")
 var os = require('os')
 window.os = os;
 
+
+
+
+
 // javascript 常用库
 
 import ARR from "./Caryon/Richang_JSEX/arrayARR.js"
@@ -74,6 +78,19 @@ import TYP from "./Caryon/Richang_JSEX/typeTYP"
 window.ARR = ARR
 window.OBJ = OBJ
 window.TYP = TYP
+// 异步封装-------------------------------------
+
+window.svgoAsync = async function (svg)
+{
+    return new Promise(function (resolve, reject)
+    {
+        window.svgo.optimize(svg, (r) => {resolve(r)})
+    })
+}
+
+
+
+
 
 //日志记录系统 -------------------------------------
 import  LoggerCaryon  from "./Caryon/loggerCaryon.js";
@@ -193,6 +210,21 @@ var mainVue = new Vue({
 window.mainVue = mainVue
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //测试 ----------------------
 async function doAsync()
 {
@@ -225,6 +257,7 @@ async function asyncTask()
 
     return 2016
 }
+
 
 
 var __result = asyncTask()

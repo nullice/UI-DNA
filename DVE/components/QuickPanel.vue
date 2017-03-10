@@ -34,31 +34,14 @@
                 <quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.shape_advance" v-bind:func="func_shape_shape_advance">
-                    <i class="icon-sampler-stroke-swatch"></i>
+                    <i class="iconfont  icon-gengduo-shuxiang"></i>
                 </quick-icon-button>
 
             </div>
 
             <div class="quick_mores ">
-                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.shape_advance}">
-                    <h4>更多选择器</h4>
-                    <div class="info">
-                        sdfsdafsdafdsafaaasdf
-                        撒打发撒打发撒打发撒打发
-                    </div>
 
-                    <div class="exmo_inbox">
-                        <div class="exmo_box_name">选择性</div>
-                        <input type="text" class="exmo_input_text" placeholder="占位符" value="普通编辑框">
-                    </div>
-
-                    <div class="exmo_inbox">
-                        <div class="exmo_box_name">挂机下是否</div>
-                        <input type="text" class="exmo_input_text" placeholder="占位符" value="普通编辑框">
-                    </div>
-                </div>
-
-
+                <!--圆角-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.radius}">
                     <div class="fun_block">
                         <div class="info">
@@ -74,14 +57,14 @@
                         </div>
                     </div>
 
-
+                    <!--路径角变换-->
                     <div class="fun_block">
                         <div class="info">
 
                             <span title="此功能封装自 David Jensen（photoshopscripts.wordpress.com）的脚本：Photoshop Corner Editor 1.0.6">路径角变换*</span>
                             <span v-show="setSystem.ui.quick.shape_enable_curnerEditor">  <br> 使用前先用
                                 <span class="click-text"
-                                                     v-on:click='selectTool("pathComponentSelectTool")'>
+                                      v-on:click='selectTool("pathComponentSelectTool")'>
                                     路径选择工具</span>  选中形状
                             </span>
 
@@ -155,6 +138,52 @@
 
                 </div>
 
+                <!--形状高级选项-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.shape_advance}">
+                    <div class="info">
+
+                    </div>
+
+
+                    <div class="fun_block">
+                        <div class="info">
+                            形状属性
+                            <div class="more_button_bar_big inline">
+                                <button class="exmo_button_ghost" v-on:click="func_shape_copyShapeProperty">复制</button>
+                                <button class="exmo_button_ghost" v-on:click="func_shape_pasetShapeProperty">粘贴</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="fun_block">
+                        <!--<div class="info">-->
+                        <!--CSS 与 SVG <span class="sub">使用 SVGO 优化 </span>-->
+                        <!--</div>-->
+
+                        <div class="info">
+                            SVG
+                            <div class="more_button_bar_big inline">
+                                <button class="exmo_button_ghost" v-on:click="func_shape_copySvg">复制</button>
+                                <button class="exmo_button_ghost" v-on:click="func_shape_saveSvg">保存</button>
+                            </div>
+                        </div>
+
+                        <div class="exmo_inbox">
+                            <div class="exmo_checkbox">
+                                <input type="checkbox" id="qp_ssvgo" v-model="setSystem.ui.quick.shape_use_svgo">
+                                <div class="exmo_checkbox_shadow"></div>
+                                <label for="qp_ssvgo">
+                                    使用 SVGO 优化
+                                </label>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
 
             </div>
 
@@ -173,12 +202,11 @@
         color: #5D88CB;
         cursor: pointer;
 
-        &:hover{
+        &:hover {
             color: #2771E4;
             text-decoration: underline;
         }
     }
-
 
     .quick_funcs_box {
 
@@ -215,6 +243,24 @@
 
             }
 
+            .more_button_bar_big {
+                text-align: center;
+                width: 100%;
+
+                &.inline {
+                    display: inline-block;
+                    text-align: right;
+                    position: absolute;
+                    right: 0;
+                }
+
+                button.exmo_button_ghost {
+                    font-size: 12px;
+                    padding: 3px 20px;
+                    margin: 0 8px;
+                }
+            }
+
             .fun_block:not(:nth-last-of-type(1)) {
                 margin-bottom: 16px;
                 padding-bottom: 14px;
@@ -230,13 +276,16 @@
 
             .info {
                 -webkit-user-select: text;
-                overflow: hidden;
                 font-size: 12px;
                 color: #797878;
                 padding-bottom: 6px;
                 margin-bottom: 4px;
-
                 position: relative;
+
+                .sub {
+                    color: rgba(0, 0, 0, 0.34);
+                    padding-left: 5px;
+                }
 
                 .func_enable {
                     position: absolute;
@@ -383,7 +432,7 @@
 
         },
         methods: {
-            selectTool:function (toolName)
+            selectTool: function (toolName)
             {
                 Proteins.exec("inputAssist_setCurrentTool", {toolName: toolName})
             },
@@ -476,14 +525,14 @@
                 var info = await Proteins.exec("encapsulate_cornerEditor_getEditLog")
 
 
-                if(info.cornerPatternMetadata!=undefined)
+                if (info.cornerPatternMetadata != undefined)
                 {
-                    this.o_shape_cornerEditor_radiiTxt =info.cornerPatternMetadata
+                    this.o_shape_cornerEditor_radiiTxt = info.cornerPatternMetadata
                 }
 
-                if(info.cornerMethodMetadata!=undefined)
+                if (info.cornerMethodMetadata != undefined)
                 {
-                   this.o_shape_cornerEditor_cornerMethod0 =info.cornerMethodMetadata
+                    this.o_shape_cornerEditor_cornerMethod0 = info.cornerMethodMetadata
                 }
 
             },
@@ -504,7 +553,78 @@
 
                 Proteins.exec("encapsulate_cornerEditor_do", parameOb)
 
+            },
+            func_shape_pasetShapeProperty: function ()
+            {
+                Proteins.exec("quick_shape_advance_pasetShapeProperty")
             }
+            ,
+            func_shape_copyShapeProperty: function ()
+            {
+                Proteins.exec("quick_shape_advance_copyShapeProperty")
+            },
+            func_shape_copySvg: async function ()
+            {
+                var svgFin = ""
+
+                if (Gob.selectList.length < 2)
+                {
+                    await _func()
+                } else
+                {
+
+                    var save = await enzymes.selectSave()
+                    Gob.stopSelectEvent = true
+                    for (var i = 0; i < Gob.selectList.length; i++)
+                    {
+                        await enzymes.selectLayer_byID(Gob.selectList[i].id)
+                        //-----------------------
+                        await _func()
+                        if (i < Gob.selectList.length - 1)
+                        {
+                            svgFin = svgFin + "\n\n"
+                        }
+
+                        //-----------------------
+                    }
+                    Gob.stopSelectEvent = false
+                    await enzymes.selectLoad(save)
+                }
+
+
+                async function _func()
+                {
+                    if (await  Proteins.exec("quick_shape_advance_copyShapeSVG") == 0)
+                    {
+                        var svg = NodeCopy.paste()
+                        if (setSystem.ui.quick.shape_use_svgo)
+                        {
+                            try
+                            {
+                                var svgo = await svgoAsync(svg)
+
+                                if (svgo.data != undefined)
+                                {
+                                    svg = svgo.data
+                                }
+                            } catch (e)
+                            {
+                                console.error(e)
+                            }
+                        }
+                        svgFin = svgFin + svg;
+                    }
+
+                }
+                
+                NodeCopy.copy(svgFin)
+
+            },
+            func_shape_saveSvg:function ()
+            {
+                
+            }
+
 
         },
         computed: {
