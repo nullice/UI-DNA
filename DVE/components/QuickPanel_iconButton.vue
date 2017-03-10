@@ -76,16 +76,16 @@
 </style>
 <script>
     export default{
-        props: ["func", "in_class", "more_onoff","in_title"],
+        props: ["func", "in_class","in_title", "click_more_func", "more_onoff","name"],
         data(){
             return {}
         },
         methods: {
             click_more: function ()
             {
-                if (this.more_onoff != undefined)
+                if (this.click_more_func != undefined)
                 {
-                    this.more_onoff = !this.more_onoff;
+                    this.click_more_func(this.name)
                 }
             }
         },

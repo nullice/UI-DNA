@@ -26,6 +26,8 @@ var GobCaryon = function ()
     }
     /*当前选中图层类型，相应属性为真表示有此种类型图层被选中*/
 
+    this.selectTime =0;/* selectUpdate() 更新计数，可用于监控选中图层刷新事件*/
+
     this._unripe = true;//未准备好，不渲染。
 
     this.selectRender = false; //选择图层后渲染
@@ -977,6 +979,10 @@ GobCaryon.prototype.updateSelect = async function ()
     this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
     logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
     this.selectList = newList;
+    if(this.selectChanged)
+    {
+        this.selectTime ++;
+    }
 
     // 更新 Gob.selectTypes
     for (var x in this.selectTypes)
