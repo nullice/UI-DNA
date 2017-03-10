@@ -65,7 +65,8 @@ if (typeof window.__adobe_cep__ !== "undefined")
 //Node 库-------------------------------------
 var os = require('os')
 window.os = os;
-
+var path = require('path')
+window.path = path;
 
 
 
@@ -75,9 +76,14 @@ window.os = os;
 import ARR from "./Caryon/Richang_JSEX/arrayARR.js"
 import OBJ from "./Caryon/Richang_JSEX/objectOBJ.js"
 import TYP from "./Caryon/Richang_JSEX/typeTYP"
+import STR from "./Caryon/Richang_JSEX/stringSTR"
+import FIL from "./Caryon/Richang_JSEX/fileFIL"
 window.ARR = ARR
 window.OBJ = OBJ
 window.TYP = TYP
+window.STR = STR
+window.FIL = FIL
+
 // 异步封装-------------------------------------
 
 window.svgoAsync = async function (svg)

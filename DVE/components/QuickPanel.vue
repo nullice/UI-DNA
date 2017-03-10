@@ -165,7 +165,7 @@
                             SVG
                             <div class="more_button_bar_big inline">
                                 <button class="exmo_button_ghost" v-on:click="func_shape_copySvg">复制</button>
-                                <button class="exmo_button_ghost" v-on:click="func_shape_saveSvg">保存</button>
+                                <button class="exmo_button_ghost" v-on:click="func_shape_saveSvg">导出</button>
                             </div>
                         </div>
 
@@ -566,7 +566,6 @@
             func_shape_copySvg: async function ()
             {
                 var svgFin = ""
-
                 if (Gob.selectList.length < 2)
                 {
                     await _func()
@@ -616,13 +615,107 @@
                     }
 
                 }
-                
+
                 NodeCopy.copy(svgFin)
 
             },
-            func_shape_saveSvg:function ()
+            func_shape_saveSvg: async function ()
             {
-                
+                var svgFin = []
+                var layerNames = []
+                if (Gob.selectList.length < 2)
+                {
+                    await _func()
+                    layerNames.push(Gob.selectList[0].name)
+                } else
+                {
+                    var save = await enzymes.selectSave()
+                    Gob.stopSelectEvent = true
+                    for (var i = 0; i < Gob.selectList.length; i++)
+                    {
+                        await enzymes.selectLayer_byID(Gob.selectList[i].id)
+                        //-----------------------
+                        await _func()
+                        layerNames.push(Gob.selectList[i].name)
+
+                        //-----------------------
+                    }
+                    Gob.stopSelectEvent = false
+                    await enzymes.selectLoad(save)
+                }
+
+
+                if (svgFin.length == 1)
+                {
+
+                    var result = window.cep.fs.showSaveDialogEx("保存 SVG", "", ["svg"], layerNames[0] + ".svg", "SVG");
+                    if (0 == result.err)
+                    {
+                        if (result.data.length == 0)
+                        {
+                            console.log("用户放弃了保存");
+                        }
+                        else
+                        {
+                            var svaeResult = window.cep.fs.writeFile(result.data, svgFin[0]);
+                        }
+                    }
+
+
+                } else if (svgFin.length > 1)
+                {
+
+                    var result = window.cep.fs.showOpenDialog(true, true, "选择文件夹", "", "")
+                    if (0 == result.err)
+                    {
+                        if (result.data.length == 0)
+                        {
+                            console.log("用户放弃了保存");
+                        }
+                        else
+                        {
+                            console.log("result.data",result.data);
+                            for (var i = 0; i < svgFin.length; i++)
+                            {
+                                var writePath = path.join(result.data[0], FIL.filterFileName(layerNames[i], "_")+".svg")
+                                console.log("svg writePath:", writePath)
+                                window.cep.fs.writeFile(writePath, svgFin[i]);
+
+                            }
+
+                        }
+                    }
+
+
+                }
+
+
+                //end------------------
+                async function _func()
+                {
+                    if (await  Proteins.exec("quick_shape_advance_copyShapeSVG") == 0)
+                    {
+                        var svg = NodeCopy.paste()
+                        if (setSystem.ui.quick.shape_use_svgo)
+                        {
+                            try
+                            {
+                                var svgo = await svgoAsync(svg)
+
+                                if (svgo.data != undefined)
+                                {
+                                    svg = svgo.data
+                                }
+                            } catch (e)
+                            {
+                                console.error(e)
+                            }
+                        }
+
+                        svgFin.push(svg)
+                    }
+
+                }
             }
 
 

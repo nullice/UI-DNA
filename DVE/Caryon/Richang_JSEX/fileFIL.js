@@ -1,7 +1,6 @@
 /**
- * Created by bgllj on 2016/9/8.
+ * Created by bgllj on 2017/03/10.
  */
-
 
 
 //      ___                       ___           ___           ___           ___           ___
@@ -21,71 +20,33 @@
 //        +-------------------+
 //        |   Richang  JSEX   |
 //        +-------------------+
-//            · stringSTR ·
+//              · fileFIL ·
 //
 //       By nullice ui@nullice.com
 //             nullice.com
 //            license: LGPL
 
-
-/**
- * 字符串相关功能模块
- * @type {{left: stringSTR.left, right: stringSTR.right, insert: stringSTR.insert}}
- */
-var stringSTR = {
+ var fs  = require("fs")
+var fileFIL = {
     /**
-     * 取字符串左边
-     * ****依赖 stringSTR.right()***
-     * @param {String} str 原文
-     * @param {Number} offset 偏移值
+     * 去除一个字符串中不符合成为文件名的字符
+     * @param name
+     * @param fix 非法字符替代
      * @returns {*}
      */
-    left: function (str, offset)
+    filterFileName: function (name, fix)
     {
-
-        if (offset >= 0)
+        if (name != undefined && name.length != undefined)
         {
-            var s = str.substr(0, offset);
-            return s;
+            var reg = /[\\/:*?"<>]/g
+            name = name.replace(reg, fix||"")
+            return name
         } else
         {
-            return this.right(str, -offset);
+            return null
         }
-    },
-    /**
-     * 取字符串右边。
-     * ****依赖 stringSTR.left()***
-     * @param {String} str 原文
-     * @param {Number} offset 偏移值
-     * @returns {*}
-     */
-    right: function (str, offset)
-    {
-        if (offset >= 0)
-        {
-            var s = str.substr(str.length - offset, offset);
-            return s;
-        } else
-        {
-            return this.left(str, -offset);
-        }
-    },
-
-    /**
-     * 插入文本到指定位置
-     * @param {String} str 原文
-     * @param {Number} start 开始位置
-     * @param {Number} offset 偏移值
-     * @param {String} inStr 要插入的文本
-     * @returns {*}
-     */
-    insert: function (str, start, offset, inStr)
-    {
-        return str.slice(0, start) + inStr + str.slice(start + Math.abs(offset));
     },
 
 
 }
-
-
-export  default stringSTR;
+export  default fileFIL;
