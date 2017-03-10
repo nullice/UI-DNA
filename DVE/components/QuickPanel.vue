@@ -65,6 +65,7 @@
                             设置圆角 {{o_radius_now}}
                         </div>
 
+
                         <div class="exmo_inbox">
                             <div class="exmo_box_name">圆角</div>
                             <input type="text" class="exmo_input_text" placeholder="如 2 或 2,2,0,0"
@@ -76,45 +77,79 @@
 
                     <div class="fun_block">
                         <div class="info">
-                            路径角变换
-                        </div>
 
-                        <div class="exmo_inbox">
-                            <div class="exmo_box_name">圆角参数</div>
-                            <input type="text" class="exmo_input_text" placeholder="如 2 或 2,2,0,0 或 2,3 5,3">
-                        </div>
+                            <span title="此功能封装自 David Jensen（photoshopscripts.wordpress.com）的脚本：Photoshop Corner Editor 1.0.6">路径角变换*</span>
+                            <span v-show="setSystem.ui.quick.shape_enable_curnerEditor">  <br> 使用前先用
+                                <span class="click-text"
+                                                     v-on:click='selectTool("pathComponentSelectTool")'>
+                                    路径选择工具</span>  选中形状
+                            </span>
 
-
-                        <div class="exmo_inbox">
-                            <div class="exmo_box_name">圆角模式</div>
-
-                            <div class="exmo_radio">
-                                <input type="radio" id="cmethod0" name="group_corner_method" placeholder="占位符"
-                                       value="普通编辑框">
-                                <div class="exmo_radio_shadow"></div>
-
-                                <label for="cmethod0">
-                                    Radius
-                                </label>
-                            </div>
-
-                            <div class="exmo_radio">
-                                <input type="radio" id="cmethod1" name="group_corner_method" placeholder="占位符">
-                                <div class="exmo_radio_shadow"></div>
-                                <label for="cmethod1">
-                                    Adobe
-                                </label>
+                            <div class="func_enable">
+                                <div class="exmo_checkbox">
+                                    <input type="checkbox" id="cablece1"
+                                           v-model="setSystem.ui.quick.shape_enable_curnerEditor">
+                                    <div class="exmo_checkbox_shadow"></div>
+                                    <label for="cablece1">
+                                        启用
+                                    </label>
+                                </div>
                             </div>
 
                         </div>
 
-                        <div class="exmo_checkbox">
-                            <input type="checkbox" id="csvaeol1"  placeholder="占位符">
-                            <div class="exmo_checkbox_shadow"></div>
-                            <label for="csvaeol1">
-                                保存原始角
-                            </label>
+                        <div v-show="setSystem.ui.quick.shape_enable_curnerEditor">
+                            <div class="exmo_inbox">
+                                <div class="exmo_box_name">圆角参数</div>
+                                <input type="text" class="exmo_input_text" placeholder="如 2 或 2,2,0,0 或 2,3 5,3"
+                                       v-model="o_shape_cornerEditor_radiiTxt">
+                            </div>
+
+
+                            <div class="exmo_inbox">
+                                <div class="exmo_box_name">圆角模式</div>
+                                <div class="exmo_radio">
+                                    <input type="radio" id="cmethod0" value="0" name="group_corner_method"
+                                           v-model="o_shape_cornerEditor_cornerMethod0">
+                                    <div class="exmo_radio_shadow"></div>
+
+                                    <label for="cmethod0">
+                                        半径
+                                    </label>
+                                </div>
+
+                                <div class="exmo_radio">
+                                    <input type="radio" id="cmethod1" name="group_corner_method" value="1"
+                                           v-model="o_shape_cornerEditor_cornerMethod0">
+                                    <div class="exmo_radio_shadow"></div>
+                                    <label for="cmethod1">
+                                        Adobe
+                                    </label>
+                                </div>
+
+                            </div>
+
+
+                            <div class="exmo_inbox">
+                                <div class="exmo_checkbox">
+                                    <input type="checkbox" id="csvaeol1" v-model="o_shape_cornerEditor_editable">
+                                    <div class="exmo_checkbox_shadow"></div>
+                                    <label for="csvaeol1">
+                                        保存原始角
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="more_button_bar">
+                                <button class="exmo_button_ghost" v-on:click="func_shape_cornerEditor_do(0)">圆角</button>
+                                <button class="exmo_button_ghost" v-on:click="func_shape_cornerEditor_do(1)">反圆</button>
+                                <button class="exmo_button_ghost" v-on:click="func_shape_cornerEditor_do(2)">斜切</button>
+                                <button class="exmo_button_ghost" v-on:click="func_shape_cornerEditor_do(3)">内直</button>
+
+                            </div>
+
                         </div>
+
 
                     </div>
 
@@ -133,9 +168,52 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
+
+    span.click-text {
+        color: #5D88CB;
+        cursor: pointer;
+
+        &:hover{
+            color: #2771E4;
+            text-decoration: underline;
+        }
+    }
+
+
     .quick_funcs_box {
 
         .quick_more_item {
+
+            .exmo_inbox {
+                width: 100%;
+                margin-bottom: 8px;
+            }
+
+            input.exmo_input_text {
+                width: calc(100% - 90px);
+            }
+
+            .exmo_checkbox, .exmo_radio {
+                color: #777;
+                vertical-align: middle;
+                label {
+                    font-size: 12px;
+                }
+            }
+
+            .exmo_checkbox {
+                margin-top: 6px;
+            }
+            .more_button_bar {
+                text-align: center;
+                width: 100%;
+                padding-top: 12px;
+                button.exmo_button_ghost {
+                    font-size: 12px;
+                    padding: 3px 16px;
+                }
+
+            }
 
             .fun_block:not(:nth-last-of-type(1)) {
                 margin-bottom: 16px;
@@ -151,11 +229,21 @@
             }
 
             .info {
+                -webkit-user-select: text;
                 overflow: hidden;
                 font-size: 12px;
                 color: #797878;
                 padding-bottom: 6px;
                 margin-bottom: 4px;
+
+                position: relative;
+
+                .func_enable {
+                    position: absolute;
+                    right: 10px;
+                    top: 0px;
+                    margin-top: -5px;
+                }
             }
 
             padding: 0px 16px;
@@ -289,11 +377,16 @@
                 ],
 
                 o_shape_cornerEditor_radiiTxt: "",
-
+                o_shape_cornerEditor_cornerMethod0: 0,
+                o_shape_cornerEditor_editable: true,
             }
 
         },
         methods: {
+            selectTool:function (toolName)
+            {
+                Proteins.exec("inputAssist_setCurrentTool", {toolName: toolName})
+            },
             click_onecMore: function (moreName)
             {
                 for (var x in  this.more_onoff)
@@ -381,7 +474,35 @@
             {
 
                 var info = await Proteins.exec("encapsulate_cornerEditor_getEditLog")
-                console.info(info)
+
+
+                if(info.cornerPatternMetadata!=undefined)
+                {
+                    this.o_shape_cornerEditor_radiiTxt =info.cornerPatternMetadata
+                }
+
+                if(info.cornerMethodMetadata!=undefined)
+                {
+                   this.o_shape_cornerEditor_cornerMethod0 =info.cornerMethodMetadata
+                }
+
+            },
+
+            func_shape_cornerEditor_do: function (type)
+            {
+                var itemIndexArr = []
+                Gob.selectList.forEach(function (x) {itemIndexArr.push(x.itemIndex)})
+                var parameOb = {
+
+                    radiiTxt: this.o_shape_cornerEditor_radiiTxt, //圆角参数文本
+                    cornerType: +type,//= 0Round;  1Inverse; 2Chamfer;  3Inset
+                    cornerMethod: +this.o_shape_cornerEditor_cornerMethod0,//0 Radius 模式, 1 Adobe 模式
+                    editable: this.o_shape_cornerEditor_editable, // Save Original Corners
+                    selectedLayers: itemIndexArr//当前选中图层 itemIndex 数组，提供这个能提高速度
+                }
+
+
+                Proteins.exec("encapsulate_cornerEditor_do", parameOb)
 
             }
 
