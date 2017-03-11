@@ -1,497 +1,110 @@
-{
-  "name": {
-    "value": "ื้ 8",
-    "type": "DescValueType.STRINGTYPE"
+[
+  {
+    "name": "4",
+    "id": 528,
+    "x": 47,
+    "y": 117,
+    "w": 37,
+    "h": 29,
+    "right": 84,
+    "bottom": 146,
+    "xy": 164,
+    "x_y": -70,
+    "rank_x": 0,
+    "rank_y": 5,
+    "rank_right": 0,
+    "rank_bottom": 5,
+    "rank_xy": 2,
+    "rank_x_y": 0
   },
-  "color": {
-    "value": {
-      "enumerationType": "color",
-      "enumerationValue": "none"
-    },
-    "type": "DescValueType.ENUMERATEDTYPE"
+  {
+    "name": "5",
+    "id": 529,
+    "x": 117,
+    "y": 114,
+    "w": 30,
+    "h": 27,
+    "right": 147,
+    "bottom": 141,
+    "xy": 231,
+    "x_y": 3,
+    "rank_x": 2,
+    "rank_y": 4,
+    "rank_right": 3,
+    "rank_bottom": 4,
+    "rank_xy": 4,
+    "rank_x_y": 1
   },
-  "visible": {
-    "value": true,
-    "type": "DescValueType.BOOLEANTYPE"
+  {
+    "name": "1",
+    "id": 525,
+    "x": 66,
+    "y": 29,
+    "w": 22,
+    "h": 27,
+    "right": 88,
+    "bottom": 56,
+    "xy": 95,
+    "x_y": 37,
+    "rank_x": 1,
+    "rank_y": 2,
+    "rank_right": 1,
+    "rank_bottom": 0,
+    "rank_xy": 0,
+    "rank_x_y": 2
   },
-  "mode": {
-    "value": {
-      "enumerationType": "blendMode",
-      "enumerationValue": "passThrough"
-    },
-    "type": "DescValueType.ENUMERATEDTYPE"
+  {
+    "name": "6",
+    "id": 530,
+    "x": 192,
+    "y": 100,
+    "w": 33,
+    "h": 36,
+    "right": 225,
+    "bottom": 136,
+    "xy": 292,
+    "x_y": 92,
+    "rank_x": 4,
+    "rank_y": 3,
+    "rank_right": 5,
+    "rank_bottom": 3,
+    "rank_xy": 5,
+    "rank_x_y": 3
   },
-  "opacity": {
-    "value": 255,
-    "type": "DescValueType.INTEGERTYPE"
+  {
+    "name": "2",
+    "id": 526,
+    "x": 121,
+    "y": 28,
+    "w": 22,
+    "h": 28,
+    "right": 143,
+    "bottom": 56,
+    "xy": 149,
+    "x_y": 93,
+    "rank_x": 3,
+    "rank_y": 0,
+    "rank_right": 2,
+    "rank_bottom": 1,
+    "rank_xy": 1,
+    "rank_x_y": 4
   },
-  "layerID": {
-    "value": 487,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "itemIndex": {
-    "value": 33,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "count": {
-    "value": 58,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "preserveTransparency": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "layerFXVisible": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "globalAngle": {
-    "value": 90,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "background": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "layerSection": {
-    "value": {
-      "enumerationType": "layerSectionType",
-      "enumerationValue": "layerSectionStart"
-    },
-    "type": "DescValueType.ENUMERATEDTYPE"
-  },
-  "layerLocking": {
-    "value": {
-      "protectTransparency": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "protectComposite": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "protectPosition": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "protectArtboardAutonest": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "protectAll": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "layerLocking"
-  },
-  "group": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "layerSectionExpanded": {
-    "value": true,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "targetChannels": {
-    "value": {
-      "0": {
-        "value": {
-          "container": {
-            "container": {}
-          },
-          "form": "ReferenceFormType.INDEX",
-          "desiredClass": "channel",
-          "index": 1
-        },
-        "type": "DescValueType.REFERENCETYPE"
-      },
-      "1": {
-        "value": {
-          "container": {
-            "container": {}
-          },
-          "form": "ReferenceFormType.INDEX",
-          "desiredClass": "channel",
-          "index": 2
-        },
-        "type": "DescValueType.REFERENCETYPE"
-      },
-      "2": {
-        "value": {
-          "container": {
-            "container": {}
-          },
-          "form": "ReferenceFormType.INDEX",
-          "desiredClass": "channel",
-          "index": 3
-        },
-        "type": "DescValueType.REFERENCETYPE"
-      }
-    },
-    "type": "DescValueType.LISTTYPE"
-  },
-  "visibleChannels": {
-    "value": {
-      "0": {
-        "value": {
-          "container": {
-            "container": {}
-          },
-          "form": "ReferenceFormType.INDEX",
-          "desiredClass": "channel",
-          "index": 1
-        },
-        "type": "DescValueType.REFERENCETYPE"
-      },
-      "1": {
-        "value": {
-          "container": {
-            "container": {}
-          },
-          "form": "ReferenceFormType.INDEX",
-          "desiredClass": "channel",
-          "index": 2
-        },
-        "type": "DescValueType.REFERENCETYPE"
-      },
-      "2": {
-        "value": {
-          "container": {
-            "container": {}
-          },
-          "form": "ReferenceFormType.INDEX",
-          "desiredClass": "channel",
-          "index": 3
-        },
-        "type": "DescValueType.REFERENCETYPE"
-      }
-    },
-    "type": "DescValueType.LISTTYPE"
-  },
-  "channelRestrictions": {
-    "value": {
-      "0": {
-        "value": {
-          "enumerationType": "channel",
-          "enumerationValue": "red"
-        },
-        "type": "DescValueType.ENUMERATEDTYPE"
-      },
-      "1": {
-        "value": {
-          "enumerationType": "channel",
-          "enumerationValue": "grain"
-        },
-        "type": "DescValueType.ENUMERATEDTYPE"
-      },
-      "2": {
-        "value": {
-          "enumerationType": "channel",
-          "enumerationValue": "blue"
-        },
-        "type": "DescValueType.ENUMERATEDTYPE"
-      }
-    },
-    "type": "DescValueType.LISTTYPE"
-  },
-  "fillOpacity": {
-    "value": 255,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "hasUserMask": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "hasVectorMask": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "proportionalScaling": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "layerKind": {
-    "value": 7,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "hasFilterMask": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "userMaskDensity": {
-    "value": 255,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "userMaskFeather": {
-    "value": 0,
-    "type": "DescValueType.DOUBLETYPE"
-  },
-  "vectorMaskDensity": {
-    "value": 255,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "vectorMaskFeather": {
-    "value": 0,
-    "type": "DescValueType.DOUBLETYPE"
-  },
-  "bounds": {
-    "value": {
-      "top": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 0
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "left": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 0
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "bottom": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1924
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "right": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1336
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "width": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1336
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "height": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1924
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "rectangle"
-  },
-  "boundsNoEffects": {
-    "value": {
-      "top": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 0
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "left": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 0
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "bottom": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1924
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "right": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1336
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "width": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1336
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "height": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1924
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "rectangle"
-  },
-  "boundsNoMask": {
-    "value": {
-      "top": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 0
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "left": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 0
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "bottom": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1924
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "right": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1336
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "width": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1336
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      },
-      "height": {
-        "value": {
-          "doubleType": "pixelsUnit",
-          "doubleValue": 1924
-        },
-        "type": "DescValueType.UNITDOUBLE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "rectangle"
-  },
-  "useAlignedRendering": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "generatorSettings": {
-    "value": {},
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "generatorSettings"
-  },
-  "keyOriginType": {
-    "value": {},
-    "type": "DescValueType.LISTTYPE"
-  },
-  "fillEnabled": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "animationProtection": {
-    "value": {
-      "animationUnifyPosition": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "animationUnifyEffects": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "animationUnifyVisibility": {
-        "value": false,
-        "type": "DescValueType.BOOLEANTYPE"
-      },
-      "animationPropagate": {
-        "value": true,
-        "type": "DescValueType.BOOLEANTYPE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "animationProtection"
-  },
-  "artboard": {
-    "value": {
-      "artboardRect": {
-        "value": {
-          "top": {
-            "value": 0,
-            "type": "DescValueType.DOUBLETYPE"
-          },
-          "left": {
-            "value": 0,
-            "type": "DescValueType.DOUBLETYPE"
-          },
-          "bottom": {
-            "value": 0,
-            "type": "DescValueType.DOUBLETYPE"
-          },
-          "right": {
-            "value": 0,
-            "type": "DescValueType.DOUBLETYPE"
-          }
-        },
-        "type": "DescValueType.OBJECTTYPE",
-        "objectType": "classFloatRect"
-      },
-      "guideIDs": {
-        "value": {},
-        "type": "DescValueType.LISTTYPE"
-      },
-      "artboardPresetName": {
-        "value": "",
-        "type": "DescValueType.STRINGTYPE"
-      },
-      "color": {
-        "value": {
-          "red": {
-            "value": 255,
-            "type": "DescValueType.DOUBLETYPE"
-          },
-          "grain": {
-            "value": 255,
-            "type": "DescValueType.DOUBLETYPE"
-          },
-          "blue": {
-            "value": 255,
-            "type": "DescValueType.DOUBLETYPE"
-          }
-        },
-        "type": "DescValueType.OBJECTTYPE",
-        "objectType": "RGBColor"
-      },
-      "artboardBackgroundType": {
-        "value": 1,
-        "type": "DescValueType.INTEGERTYPE"
-      }
-    },
-    "type": "DescValueType.OBJECTTYPE",
-    "objectType": "artboard"
-  },
-  "artboardEnabled": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "vectorMaskEnabled": {
-    "value": false,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "vectorMaskEmpty": {
-    "value": true,
-    "type": "DescValueType.BOOLEANTYPE"
-  },
-  "textWarningLevel": {
-    "value": 0,
-    "type": "DescValueType.INTEGERTYPE"
+  {
+    "name": "3",
+    "id": 527,
+    "x": 196,
+    "y": 28,
+    "w": 25,
+    "h": 32,
+    "right": 221,
+    "bottom": 60,
+    "xy": 224,
+    "x_y": 168,
+    "rank_x": 5,
+    "rank_y": 1,
+    "rank_right": 4,
+    "rank_bottom": 2,
+    "rank_xy": 3,
+    "rank_x_y": 5
   }
-}
-
+]

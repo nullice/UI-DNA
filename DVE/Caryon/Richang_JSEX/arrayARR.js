@@ -185,7 +185,7 @@ var arrayARR = {
      * a:[1,2,3] b:[1,2,4]   a∩b => [1,2]
      * @returns {Array}
      */
-    intersection: function ()
+    intersection: function (a,b)
     {
         var ob = {};
         for (var i = 0; i < a.length; i++)
@@ -322,6 +322,55 @@ var arrayARR = {
             }
         }
 
+    },
+
+
+    /**
+     * 排序对象数组
+     * @param arr 数组
+     * @param key 对象排序的键值，如 [{a:12}, {a:33}] , key 为 "a" 则以 a 排序
+     * @param bigFront 大值在前
+     */
+    sortObjectArray: function (arr, key, bigFront)
+    {
+        if (arr != undefined && arr.sort != undefined)
+        {
+
+            return arr.sort(by(key));
+        }
+
+         function by(name)
+        {
+            return function (o, p)
+            {
+                var a, b;
+                if (typeof o === "object" && typeof p === "object" && o && p)
+                {
+                    a = o[name];
+                    b = p[name];
+                    if (a === b)
+                    {
+                        return 0;
+                    }
+                    if (typeof a === typeof b)
+                    {
+                        if (bigFront)
+                        {
+                            return a > b ? -1 : 1;
+                        } else
+                        {
+                            return a < b ? -1 : 1;
+                        }
+
+                    }
+                    return typeof a < typeof b ? -1 : 1;
+                }
+                else
+                {
+                    throw ("error");
+                }
+            }
+        }
     }
 
 

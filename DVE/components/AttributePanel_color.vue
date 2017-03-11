@@ -88,9 +88,10 @@
                 this.o_outsideOperate = false;
                 var self = this;
 //                console.info("set#", "_outsideOperate", _outsideOperate)
-                console.info("set#", "val", val)
-                if (val!= undefined && val != "#")
+
+                if (val != undefined && val != "#" && (val != Gob.MULT) )
                 {
+                    console.info("set#", "val", val)
                     if (val[0] != "#")
                     {
                         this.color.$hex = val;
@@ -100,14 +101,14 @@
 
 
                             var finValue = await varSystem.evalVar(val, null, self.color_names.concat("$hex"))
-                           if(finValue!=undefined)
-                           {
-                               this.ichi_color.hex = finValue;
-                               this.color.r = this.ichi_color.r;
-                               this.color.g = this.ichi_color.g;
-                               this.color.b = this.ichi_color.b;
-                               this.color_style.background = this.ichi_color.hex;
-                           }
+                            if (finValue != undefined)
+                            {
+                                this.ichi_color.hex = finValue;
+                                this.color.r = this.ichi_color.r;
+                                this.color.g = this.ichi_color.g;
+                                this.color.b = this.ichi_color.b;
+                                this.color_style.background = this.ichi_color.hex;
+                            }
                             if (_outsideOperate != true)
                             {
                                 this.type_none = false;
@@ -220,7 +221,7 @@
                     this.o_color = "#";
                 } else
                 {
-                    this.o_color = this.color.$hex ;
+                    this.o_color = this.color.$hex;
                 }
 
 
