@@ -5,6 +5,94 @@
 
 
         <div class="quick_funcs_box">
+            <h4>排列</h4>
+            <div class="quick_buts">
+                <quick-icon-button v-bind:title="Lang.from('间距排列')" name="permute_spacing"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.permute_spacing" v-bind:func="func_permute_doSpacingGird">
+                    <i class="icon-libraries-sortIcons" style="font-size: 13px;"></i>
+                </quick-icon-button>
+
+                <!--<quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"-->
+                <!--v-bind:click_more_func="click_onecMore"-->
+                <!--v-bind:more_onoff="more_onoff.shape_advance" v-bind:func="func_shape_shape_advance">-->
+                <!--<i class="iconfont  icon-gengduo-shuxiang"></i>-->
+                <!--</quick-icon-button>-->
+
+            </div>
+
+
+            <div class="quick_mores ">
+                <!--间距排列-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.permute_spacing}">
+                    <div class="info">
+                        通过指定图层间水平和垂直间距来排列图层 <br><span class="sub">可理解为文本的排列方式</span>
+                    </div>
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">水平间距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_dX_calc"
+                               v-model="o_permute_spacing_dX"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">垂直间距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_dY_calc"
+                               v-model="o_permute_spacing_dY"
+                        >
+                    </div>
+                    <br>
+                    <div class="exmo_inbox min" title="为 0 时自动计算">
+                        <div class="exmo_box_name">行数</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_row_calc"
+                               v-model="o_permute_spacing_row"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min" title="为 0 时自动计算">
+                        <div class="exmo_box_name">列数</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_col_calc"
+                               v-model="o_permute_spacing_col"
+                        >
+                    </div>
+
+                    <br>
+                    <div class="info">
+                        行内垂直对齐方式
+                    </div>
+
+                    <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_01"
+                           value="top" name="group_permut_spacing0"
+                           v-model="o_permute_spacing_inLineAlign">
+                    <label class="exmo_button_icon mini" for="quick_permute_01">
+                        <i class="icon-align-top"></i></label>
+
+                    <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_02"
+                           value="bottom" name="group_permut_spacing0"
+                           v-model="o_permute_spacing_inLineAlign">
+                    <label class="exmo_button_icon mini" for="quick_permute_02">
+                        <i class="icon-align-bottom"></i></label>
+
+
+                    <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_03"
+                           value="vetically" name="group_permut_spacing0"
+                           v-model="o_permute_spacing_inLineAlign">
+                    <label class="exmo_button_icon mini" for="quick_permute_03">
+                        <i class="icon-align-middle"></i></label>
+
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--形状-->
+        <div class="quick_funcs_box">
             <h4>形状</h4>
 
             <div class="quick_buts">
@@ -215,6 +303,16 @@
             .exmo_inbox {
                 width: 100%;
                 margin-bottom: 8px;
+
+                &.min {
+                    width: calc(50% - 6px);
+
+                    input.exmo_input_text {
+                        width: calc(50% - 8px);
+                    }
+
+                }
+
             }
 
             input.exmo_input_text {
@@ -335,7 +433,19 @@
                     this.func_shape_cornerEditor_updateInfoByXmp()
                 }
 
+                if (this.more_onoff.permute_spacing)
+                {
+                    this.func_permute_updateSpacingGird()
+                }
+            },
+            "more_onoff.permute_spacing": function ()
+            {
+                if (this.more_onoff.permute_spacing)
+                {
+                    this.func_permute_updateSpacingGird()
+                }
             }
+
 
         },
 
@@ -346,6 +456,8 @@
                     one: false,
                     radius: false,
                     shape_advance: false,
+                    permute_spacing: false
+
                 },
                 Lang: Lang,
                 Gob: Gob,
@@ -428,6 +540,18 @@
                 o_shape_cornerEditor_radiiTxt: "",
                 o_shape_cornerEditor_cornerMethod0: 0,
                 o_shape_cornerEditor_editable: true,
+
+                o_permute_spacing_col: null,
+                o_permute_spacing_row: null,
+                o_permute_spacing_col_calc: 0,
+                o_permute_spacing_row_calc: 0,
+                o_permute_spacing_dX: null,
+                o_permute_spacing_dY: null,
+                o_permute_spacing_dX_calc: 0,
+                o_permute_spacing_dY_calc: 0,
+                o_permute_spacing_inLineAlign: "bottom",
+
+
             }
 
         },
@@ -648,6 +772,8 @@
                 if (svgFin.length == 1)
                 {
 
+                    console.info(window)
+
                     var result = window.cep.fs.showSaveDialogEx("保存 SVG", "", ["svg"], layerNames[0] + ".svg", "SVG");
                     if (0 == result.err)
                     {
@@ -665,7 +791,8 @@
                 } else if (svgFin.length > 1)
                 {
 
-                    var result = window.cep.fs.showOpenDialog(true, true, "选择文件夹", "", "")
+                    var result = window.cep.fs.showOpenDialogEx(true, true, "选择文件夹", "", "")
+
                     if (0 == result.err)
                     {
                         if (result.data.length == 0)
@@ -674,10 +801,10 @@
                         }
                         else
                         {
-                            console.log("result.data",result.data);
+                            console.log("result.data", result.data);
                             for (var i = 0; i < svgFin.length; i++)
                             {
-                                var writePath = path.join(result.data[0], FIL.filterFileName(layerNames[i], "_")+".svg")
+                                var writePath = path.join(result.data[0], FIL.filterFileName(layerNames[i], "_") + ".svg")
                                 console.log("svg writePath:", writePath)
                                 window.cep.fs.writeFile(writePath, svgFin[i]);
 
@@ -716,6 +843,47 @@
                     }
 
                 }
+            },
+
+            func_permute_updateSpacingGird: async function ()
+            {
+                console.info("func_permute_updateSpacingGird")
+                var info = await Proteins.exec("quick_permute_getLayerGrid")
+                this.o_permute_spacing_col_calc = info.colNumber
+                this.o_permute_spacing_row_calc = info.rowNumber = info.rowNumber
+                this.o_permute_spacing_dX_calc = info.suggestDX || 0
+                this.o_permute_spacing_dY_calc = info.suggestDY || 0
+            },
+            func_permute_doSpacingGird: async function ()
+            {
+                var paramOb = {
+                    rowNumber: this.o_permute_spacing_row, /*行数*/
+                    colNumber: this.o_permute_spacing_col, /*列数*/
+                    dX: this.o_permute_spacing_dX, /* x 间距*/
+                    dY: this.o_permute_spacing_dY, /* Y 间距*/
+                    inLineAlign: this.o_permute_spacing_inLineAlign, /*行内垂直对齐方式*/
+                }
+
+
+                if (paramOb.colNumber == undefined || paramOb.colNumber == "")
+                {
+                    paramOb.colNumber = this.o_permute_spacing_col_calc
+                }
+                if ( paramOb.rowNumber == undefined ||  paramOb.rowNumber  == "")
+                {
+                    paramOb.rowNumber = this.o_permute_spacing_row_calc
+                }
+                if (paramOb.dX  == undefined || paramOb.dX  == "")
+                {
+                    paramOb.dX = this.o_permute_spacing_dX_calc
+                }
+                if (paramOb.dY == undefined ||  paramOb.dY == "")
+                {
+                    paramOb.dY = this.o_permute_spacing_dY_calc
+                }
+
+                await Proteins.exec("quick_permute_doPermuteBySpacing", paramOb)
+                this.func_permute_updateSpacingGird()
             }
 
 

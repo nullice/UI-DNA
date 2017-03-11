@@ -1333,7 +1333,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         self._neverUpdate = false //未更新过 = false
         self.nowSwitching = false
         console.log("【this.nowSwitching = false】")
-    }, 200)
+    }, 700)
 
 
     // this.nowSwitching = false;

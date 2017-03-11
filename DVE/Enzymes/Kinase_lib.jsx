@@ -6185,11 +6185,18 @@ Kinase.layer.selectLayer_byID = function (layerID)
     {
         return;
     }
-    var ref = new ActionReference();
-    ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
-    var desc = new ActionDescriptor();
-    desc.putReference(charIDToTypeID("null"), ref);
-    executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
+
+    // try
+    // {
+        var ref = new ActionReference();
+        ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
+        var desc = new ActionDescriptor();
+        desc.putReference(charIDToTypeID("null"), ref);
+        executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
+    // } catch (e)
+    // {
+    //     $.writeln("Kinase.layer.selectLayer_byID:" + e)
+    // }
 }
 
 /**
@@ -6198,11 +6205,19 @@ Kinase.layer.selectLayer_byID = function (layerID)
  */
 Kinase.layer.selectLayer_byItemIndex = function (ItemIndex)
 {
-    var ref = new ActionReference();
-    ref.putIndex(charIDToTypeID("Lyr "), ItemIndex + Kinase.BKOffset());
-    var desc = new ActionDescriptor();
-    desc.putReference(charIDToTypeID("null"), ref);
-    executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
+
+    try
+    {
+        var ref = new ActionReference();
+        ref.putIndex(charIDToTypeID("Lyr "), ItemIndex + Kinase.BKOffset());
+        var desc = new ActionDescriptor();
+        desc.putReference(charIDToTypeID("null"), ref);
+        executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
+
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.selectLayer_byID:" + e)
+    }
 
 }
 

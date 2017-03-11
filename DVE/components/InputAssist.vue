@@ -471,10 +471,11 @@
             },
             open_file: async function ()
             {
-                var result = window.cep.fs.showOpenDialogEx(true, false, "打开一个图片", null, ["jpeg", "jpg", "bmp", "png", "gif", "psd", "psb", "svg", "eps"], "常见图片类型");
+                var result = window.cep.fs.showOpenDialog(true, false, "打开一个图片", null, ["jpeg", "jpg", "bmp", "png", "gif", "psd", "psb", "svg", "eps"], "常见图片类型");
 
                 if (result != undefined && result.data != undefined)
                 {
+                    console.info("open_file:result:",result.data,"result")
                     if (result.data.length == 1)
                     {
                         this.edit_value = result.data[0]
