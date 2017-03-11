@@ -9,9 +9,22 @@
             <div class="quick_buts">
                 <quick-icon-button v-bind:title="Lang.from('间距排列')" name="permute_spacing"
                                    v-bind:click_more_func="click_onecMore"
-                                   v-bind:more_onoff="more_onoff.permute_spacing" v-bind:func="func_permute_doSpacingGird">
+                                   v-bind:more_onoff="more_onoff.permute_spacing"
+                                   v-bind:func="func_permute_doSpacingGird">
                     <i class="icon-libraries-sortIcons" style="font-size: 13px;"></i>
                 </quick-icon-button>
+
+                <quick-icon-button v-bind:title="Lang.from('网格排列')" name="permute_matrix"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.permute_matrix"
+                                   v-bind:func="func_permute_doMatrix">
+                    <i class="iconfont icon-duoxuanjuzhen" style="font-size: 13px;margin-bottom: -1px;display: inline-block;"></i>
+                </quick-icon-button>
+
+
+
+
+
 
                 <!--<quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"-->
                 <!--v-bind:click_more_func="click_onecMore"-->
@@ -44,6 +57,7 @@
                         >
                     </div>
                     <br>
+
                     <div class="exmo_inbox min" title="为 0 时自动计算">
                         <div class="exmo_box_name">行数</div>
                         <input type="text" class="exmo_input_text"
@@ -61,31 +75,95 @@
                     </div>
 
                     <br>
+                    <br>
                     <div class="info">
                         行内垂直对齐方式
+
+
+                       <div class="inline-but-bar"> <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_01"
+                                                           value="top" name="group_permut_spacing0"
+                                                           v-model="o_permute_spacing_inLineAlign">
+                           <label class="exmo_button_icon mini" for="quick_permute_01">
+                               <i class="icon-align-top"></i></label>
+
+                           <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_02"
+                                  value="bottom" name="group_permut_spacing0"
+                                  v-model="o_permute_spacing_inLineAlign">
+                           <label class="exmo_button_icon mini" for="quick_permute_02">
+                               <i class="icon-align-bottom"></i></label>
+
+                           <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_03"
+                                  value="vetically" name="group_permut_spacing0"
+                                  v-model="o_permute_spacing_inLineAlign">
+                           <label class="exmo_button_icon mini" for="quick_permute_03">
+                               <i class="icon-align-middle"></i></label></div>
                     </div>
 
-                    <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_01"
-                           value="top" name="group_permut_spacing0"
-                           v-model="o_permute_spacing_inLineAlign">
-                    <label class="exmo_button_icon mini" for="quick_permute_01">
-                        <i class="icon-align-top"></i></label>
-
-                    <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_02"
-                           value="bottom" name="group_permut_spacing0"
-                           v-model="o_permute_spacing_inLineAlign">
-                    <label class="exmo_button_icon mini" for="quick_permute_02">
-                        <i class="icon-align-bottom"></i></label>
 
 
-                    <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_03"
-                           value="vetically" name="group_permut_spacing0"
-                           v-model="o_permute_spacing_inLineAlign">
-                    <label class="exmo_button_icon mini" for="quick_permute_03">
-                        <i class="icon-align-middle"></i></label>
+
 
 
                 </div>
+
+                <!--网格排列-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.permute_matrix}">
+                    <div class="info">
+                        通过指定网格来排列图层<br><span class="sub">图层锚点对齐网格交点</span>
+                    </div>
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">网格宽度</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_dMxtX_calc"
+                               v-model="o_permute_matrix_dX"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">网格高度</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_dMxtY_calc"
+                               v-model="o_permute_matrix_dY"
+                        >
+                    </div>
+                    <br>
+                    <div class="exmo_inbox min" title="为 0 时自动计算">
+                        <div class="exmo_box_name">行数</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_row_calc"
+                               v-model="o_permute_matrix_row"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min" title="为 0 时自动计算">
+                        <div class="exmo_box_name">列数</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_spacing_col_calc"
+                               v-model="o_permute_matrix_col"
+                        >
+                    </div>
+
+                    <br>
+                    <br>
+                    <div class="info">
+                        图层对齐网格锚点
+                    </div>
+
+                    <select-input block="true" default_value="0"
+                                  v-bind:value.sync="o_permute_matrix_anchor"
+                                  v-bind:select_style="{width:'69px'}"
+                                  v-bind:list_style="{width:'147px'}"
+                                  v-bind:options="o_permute_matrix_anchor_options"
+                                  in_class="permute_matrix_anchor"
+                    >
+                    </select-input>
+                    <div class="permute_matrix_anchor_shadw"></div>
+
+
+                </div>
+
+
+
 
             </div>
 
@@ -297,8 +375,21 @@
     }
 
     .quick_funcs_box {
+        h4 {
+            position: absolute;
+            margin-left: -2px;
+            margin-top: 4px;
+            font-weight: normal;
+            font-size: 12px;
+        }
+
+        .quick_buts {
+            font-size: 0;
+            padding-left: 24px;
+        }
 
         .quick_more_item {
+
 
             .exmo_inbox {
                 width: 100%;
@@ -391,7 +482,30 @@
                     top: 0px;
                     margin-top: -5px;
                 }
+
+
+                .inline-but-bar{
+                    position: absolute;
+                    right: 10px;
+                    top: 0px;
+                    margin-top: 0px;
+                }
             }
+
+            .permute_matrix_anchor_shadw{
+                height: 22px;
+            }
+            .permute_matrix_anchor
+            {
+                position: absolute;
+
+            }
+            .option_list.permute_matrix_anchor
+            {
+                margin-top: 40px;
+            }
+
+
 
             padding: 0px 16px;
             overflow: hidden;
@@ -433,19 +547,26 @@
                     this.func_shape_cornerEditor_updateInfoByXmp()
                 }
 
-                if (this.more_onoff.permute_spacing)
+                if (this.more_onoff.permute_spacing||this.more_onoff.permute_matrix)
                 {
                     this.func_permute_updateSpacingGird()
                 }
             },
             "more_onoff.permute_spacing": function ()
             {
-                if (this.more_onoff.permute_spacing)
+                if (this.more_onoff.permute_spacing||this.more_onoff.permute_matrix)
                 {
                     this.func_permute_updateSpacingGird()
                 }
             }
-
+            ,
+            "more_onoff.permute_matrix": function ()
+            {
+                if (this.more_onoff.permute_spacing||this.more_onoff.permute_matrix)
+                {
+                    this.func_permute_updateSpacingGird()
+                }
+            }
 
         },
 
@@ -456,7 +577,8 @@
                     one: false,
                     radius: false,
                     shape_advance: false,
-                    permute_spacing: false
+                    permute_spacing: false,
+                    permute_matrix: false,
 
                 },
                 Lang: Lang,
@@ -549,9 +671,70 @@
                 o_permute_spacing_dY: null,
                 o_permute_spacing_dX_calc: 0,
                 o_permute_spacing_dY_calc: 0,
+                o_permute_spacing_dMxtX_calc: 0,
+                o_permute_spacing_dMxtY_calc:0,
                 o_permute_spacing_inLineAlign: "bottom",
+                o_permute_matrix_col: null,
+                o_permute_matrix_row: null,
+                o_permute_matrix_dX: null,
+                o_permute_matrix_dY: null,
+                o_permute_matrix_anchor: 4,
+                o_permute_matrix_anchor_options: [
+                    {
+                        value: '0',
+                        label_html: '<i class="icon-reference-tl" style="font-size: 21px;">',
+                        label: "",
+                        selected: true,
+                    },
+                    {
+                        value: '1',
+                        label_html: '<i class="icon-reference-tm" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '2',
+                        label_html: '<i class="icon-reference-tr" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        br: true,
+                    },
+                    {
+                        value: '3',
+                        label_html: '<i class="icon-reference-cl " style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '4',
+                        label_html: '<i class="icon-reference-cm" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '5',
+                        label_html: '<i class="icon-reference-cr" style="font-size: 21px;">',
+                        label: ''
+                    }, {
 
+                        br: true,
+                    },
+                    {
+                        value: '6',
+                        label_html: '<i class="icon-reference-bl" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '7',
+                        label_html: '<i class="icon-reference-bm" style="font-size: 21px;">',
+                        label: ''
+                    }
+                    ,
+                    {
+                        value: '8',
+                        label_html: '<i class="icon-reference-br" style="font-size: 21px;">',
+                        label: ''
+                    }
 
+                ],
             }
 
         },
@@ -853,6 +1036,13 @@
                 this.o_permute_spacing_row_calc = info.rowNumber = info.rowNumber
                 this.o_permute_spacing_dX_calc = info.suggestDX || 0
                 this.o_permute_spacing_dY_calc = info.suggestDY || 0
+                this.o_permute_spacing_dMxtX_calc = info.suggestMxtX || 0
+                this.o_permute_spacing_dMxtY_calc = info.suggestMxtY || 0
+
+
+
+
+
             },
             func_permute_doSpacingGird: async function ()
             {
@@ -869,22 +1059,54 @@
                 {
                     paramOb.colNumber = this.o_permute_spacing_col_calc
                 }
-                if ( paramOb.rowNumber == undefined ||  paramOb.rowNumber  == "")
+                if (paramOb.rowNumber == undefined || paramOb.rowNumber == "")
                 {
                     paramOb.rowNumber = this.o_permute_spacing_row_calc
                 }
-                if (paramOb.dX  == undefined || paramOb.dX  == "")
+                if (paramOb.dX == undefined || paramOb.dX == "")
                 {
                     paramOb.dX = this.o_permute_spacing_dX_calc
                 }
-                if (paramOb.dY == undefined ||  paramOb.dY == "")
+                if (paramOb.dY == undefined || paramOb.dY == "")
                 {
                     paramOb.dY = this.o_permute_spacing_dY_calc
                 }
 
                 await Proteins.exec("quick_permute_doPermuteBySpacing", paramOb)
                 this.func_permute_updateSpacingGird()
-            }
+            },
+
+            func_permute_doMatrix:async function ()
+            {
+                var paramOb = {
+                    rowNumber: this.o_permute_matrix_row, /*行数*/
+                    colNumber: this.o_permute_matrix_col, /*列数*/
+                    dX: this.o_permute_matrix_dX, /* x 间距*/
+                    dY: this.o_permute_matrix_dY, /* Y 间距*/
+                    anchor: this.o_permute_matrix_anchor, /*行内垂直对齐方式*/
+                }
+
+
+                if (paramOb.colNumber == undefined || paramOb.colNumber == "")
+                {
+                    paramOb.colNumber = this.o_permute_spacing_col_calc
+                }
+                if (paramOb.rowNumber == undefined || paramOb.rowNumber == "")
+                {
+                    paramOb.rowNumber = this.o_permute_spacing_row_calc
+                }
+                if (paramOb.dX == undefined || paramOb.dX == "")
+                {
+                    paramOb.dX = this.o_permute_spacing_dMxtX_calc
+                }
+                if (paramOb.dY == undefined || paramOb.dY == "")
+                {
+                    paramOb.dY = this.o_permute_spacing_dMxtY_calc
+                }
+
+                await Proteins.exec("quick_permute_doPermuteByMatrixGrid", paramOb)
+                this.func_permute_updateSpacingGird()
+            },
 
 
         },

@@ -181,6 +181,8 @@
             colNumber: grid.ColNumber, /*预测当前列数*/
             suggestDY: meterDxy.suggestY, /*预测当前 y 间距*/
             suggestDX: meterDxy.suggestX, /*预测当前 x 间距*/
+            suggestMxtX: meterDxy.suggestMxtX, /*预测当前 网格x 间距*/
+            suggestMxtY: meterDxy.suggestMxtY, /*预测当前 网格Y 间距*/
         }
 
         return re
@@ -352,7 +354,7 @@
 
                     var pinY = 2 * minY - oneItemBuoudAnchor.y
                     var pinX = 2 * minX - oneItemBuoudAnchor.x
-                    minX=pinX
+                    minX = pinX
                     for (var r = 0; r < row; r++)
                     {
 
@@ -703,8 +705,9 @@
     function calcLayerMeterDxy(rowColIds, layerPool)
     {
         var meterdX = []
-
         var meterdY = []
+        var meterdMxtX = []
+        var meterdMxtY = []
 
         for (var r = 0; r < rowColIds.length; r++)
         {
@@ -712,20 +715,33 @@
             var rowLayers = idsTolayerArr(rowColIds[r], layerPool)
 
 
-            for (var c = 0; c < rowLayers.length - 1; c++)
+            for (var c = 0; c < rowLayers.length; c++)
             {
-                var dX = rowLayers[c + 1].x - rowLayers[c].right
 
-                var t = getByKey(meterdX, "value", dX)
-                if (t == undefined)
+                if (c < rowLayers.length - 1)
                 {
-                    meterdX.push({value: dX, time: 1})
-                } else
-                {
-                    t.time++;
+                    var dX = rowLayers[c + 1].x - rowLayers[c].right
+                    var dMxtX = rowLayers[c + 1].x - rowLayers[c].x
+
+                    var t = getByKey(meterdX, "value", dX)
+                    if (t == undefined)
+                    {
+                        meterdX.push({value: dX, time: 1})
+                    } else
+                    {
+                        t.time++;
+                    }
+
+                    var tM = getByKey(meterdMxtX, "value", dMxtX)
+                    if (tM == undefined)
+                    {
+                        meterdMxtX.push({value: dMxtX, time: 1})
+                    } else
+                    {
+                        tM.time++;
+                    }
+
                 }
-
-
                 if (r > 0)
                 {
                     var dY = rowLayers[c].y - lineBottom
@@ -736,6 +752,18 @@
                     } else
                     {
                         t.time++;
+                    }
+
+
+                    var dMxtY = rowLayers[c].bottom - lineBottom
+                    // $.writeln("bottom:" + rowLayers[c].bottom + " - lineBottom:" + lineBottom)
+                    var tM = getByKey(meterdMxtY, "value", dMxtY)
+                    if (tM == undefined)
+                    {
+                        meterdMxtY.push({value: dMxtY, time: 0})
+                    } else
+                    {
+                        tM.time++;
                     }
                 }
 
@@ -760,12 +788,28 @@
             suggestY = meterdY[0].value
         }
 
+        var suggestMxtX = null
+        if (meterdMxtX.length > 0)
+        {
+            meterdMxtX = sortObjectArray(meterdMxtX, "time", true)
+            suggestMxtX = meterdMxtX[0].value
+        }
+
+        var suggestMxtY = null
+        if (meterdMxtY.length > 0)
+        {
+            meterdMxtY = sortObjectArray(meterdMxtY, "time", true)
+            suggestMxtY = meterdMxtY[0].value
+        }
+
 
         return {
             meterdX: meterdX,
             meterdY: meterdY,
             suggestY: suggestY,
-            suggestX: suggestX
+            suggestX: suggestX,
+            suggestMxtX: suggestMxtX,
+            suggestMxtY: suggestMxtY
         }
 
 
