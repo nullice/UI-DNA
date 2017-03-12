@@ -1,10 +1,10 @@
 <template>
 
-    <a-area area_title="快捷功能" area_id="attr_panel">
+    <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true">
         <!--<pre> {{Gob_selectTypes|json}}</pre>-->
 
-
-        <div class="quick_funcs_box">
+        <!--排列-->
+        <div   class="quick_funcs_box"  >
             <h4>排列</h4>
             <div class="quick_buts">
                 <quick-icon-button v-bind:title="Lang.from('间距排列')" name="permute_spacing"
@@ -18,12 +18,9 @@
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.permute_matrix"
                                    v-bind:func="func_permute_doMatrix">
-                    <i class="iconfont icon-duoxuanjuzhen" style="font-size: 13px;margin-bottom: -1px;display: inline-block;"></i>
+                    <i class="iconfont icon-duoxuanjuzhen"
+                       style="font-size: 13px;margin-bottom: -1px;display: inline-block;"></i>
                 </quick-icon-button>
-
-
-
-
 
 
                 <!--<quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"-->
@@ -35,7 +32,7 @@
             </div>
 
 
-            <div class="quick_mores ">
+            <div class="quick_mores" >
                 <!--间距排列-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.permute_spacing}">
                     <div class="info">
@@ -80,28 +77,25 @@
                         行内垂直对齐方式
 
 
-                       <div class="inline-but-bar"> <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_01"
+                        <div class="inline-but-bar"><input type="radio" class="exmo_icon_cheackbox"
+                                                           id="quick_permute_01"
                                                            value="top" name="group_permut_spacing0"
                                                            v-model="o_permute_spacing_inLineAlign">
-                           <label class="exmo_button_icon mini" for="quick_permute_01">
-                               <i class="icon-align-top"></i></label>
+                            <label class="exmo_button_icon mini" for="quick_permute_01">
+                                <i class="icon-align-top"></i></label>
 
-                           <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_02"
-                                  value="bottom" name="group_permut_spacing0"
-                                  v-model="o_permute_spacing_inLineAlign">
-                           <label class="exmo_button_icon mini" for="quick_permute_02">
-                               <i class="icon-align-bottom"></i></label>
+                            <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_02"
+                                   value="bottom" name="group_permut_spacing0"
+                                   v-model="o_permute_spacing_inLineAlign">
+                            <label class="exmo_button_icon mini" for="quick_permute_02">
+                                <i class="icon-align-bottom"></i></label>
 
-                           <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_03"
-                                  value="vetically" name="group_permut_spacing0"
-                                  v-model="o_permute_spacing_inLineAlign">
-                           <label class="exmo_button_icon mini" for="quick_permute_03">
-                               <i class="icon-align-middle"></i></label></div>
+                            <input type="radio" class="exmo_icon_cheackbox" id="quick_permute_03"
+                                   value="vetically" name="group_permut_spacing0"
+                                   v-model="o_permute_spacing_inLineAlign">
+                            <label class="exmo_button_icon mini" for="quick_permute_03">
+                                <i class="icon-align-middle"></i></label></div>
                     </div>
-
-
-
-
 
 
                 </div>
@@ -163,14 +157,11 @@
                 </div>
 
 
-
-
             </div>
-
         </div>
 
         <!--形状-->
-        <div class="quick_funcs_box">
+        <div  v-show="show_shape" class="quick_funcs_box">
             <h4>形状</h4>
 
             <div class="quick_buts">
@@ -363,6 +354,17 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
+    .exmo_area.quick_panel {
+        padding-bottom: 0;
+        overflow: visible;
+
+        &.suspend_off{
+            overflow: hidden;
+            max-height: 22px;
+        }
+    }
+
+
 
     span.click-text {
         color: #5D88CB;
@@ -389,7 +391,6 @@
         }
 
         .quick_more_item {
-
 
             .exmo_inbox {
                 width: 100%;
@@ -483,8 +484,7 @@
                     margin-top: -5px;
                 }
 
-
-                .inline-but-bar{
+                .inline-but-bar {
                     position: absolute;
                     right: 10px;
                     top: 0px;
@@ -492,20 +492,16 @@
                 }
             }
 
-            .permute_matrix_anchor_shadw{
+            .permute_matrix_anchor_shadw {
                 height: 22px;
             }
-            .permute_matrix_anchor
-            {
+            .permute_matrix_anchor {
                 position: absolute;
 
             }
-            .option_list.permute_matrix_anchor
-            {
+            .option_list.permute_matrix_anchor {
                 margin-top: 40px;
             }
-
-
 
             padding: 0px 16px;
             overflow: hidden;
@@ -547,14 +543,14 @@
                     this.func_shape_cornerEditor_updateInfoByXmp()
                 }
 
-                if (this.more_onoff.permute_spacing||this.more_onoff.permute_matrix)
+                if (this.more_onoff.permute_spacing || this.more_onoff.permute_matrix)
                 {
                     this.func_permute_updateSpacingGird()
                 }
             },
             "more_onoff.permute_spacing": function ()
             {
-                if (this.more_onoff.permute_spacing||this.more_onoff.permute_matrix)
+                if (this.more_onoff.permute_spacing || this.more_onoff.permute_matrix)
                 {
                     this.func_permute_updateSpacingGird()
                 }
@@ -562,7 +558,7 @@
             ,
             "more_onoff.permute_matrix": function ()
             {
-                if (this.more_onoff.permute_spacing||this.more_onoff.permute_matrix)
+                if (this.more_onoff.permute_spacing || this.more_onoff.permute_matrix)
                 {
                     this.func_permute_updateSpacingGird()
                 }
@@ -672,7 +668,7 @@
                 o_permute_spacing_dX_calc: 0,
                 o_permute_spacing_dY_calc: 0,
                 o_permute_spacing_dMxtX_calc: 0,
-                o_permute_spacing_dMxtY_calc:0,
+                o_permute_spacing_dMxtY_calc: 0,
                 o_permute_spacing_inLineAlign: "bottom",
                 o_permute_matrix_col: null,
                 o_permute_matrix_row: null,
@@ -1040,9 +1036,6 @@
                 this.o_permute_spacing_dMxtY_calc = info.suggestMxtY || 0
 
 
-
-
-
             },
             func_permute_doSpacingGird: async function ()
             {
@@ -1076,7 +1069,7 @@
                 this.func_permute_updateSpacingGird()
             },
 
-            func_permute_doMatrix:async function ()
+            func_permute_doMatrix: async function ()
             {
                 var paramOb = {
                     rowNumber: this.o_permute_matrix_row, /*行数*/
@@ -1139,13 +1132,16 @@
                         + this.Gob.shape.radian.bottomLeft
                 }
             },
-
-            getThis: {
+            show_shape: {
                 get: function ()
                 {
-                    return this;
+                    return this.Gob.selectTypes["shape"]
+
                 },
             }
+
+
+
         },
         components: {
             "attr-option": AttrOption,

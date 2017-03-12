@@ -1,7 +1,8 @@
 <template>
+
     <div class="exmo_area {{o_height_mode}} {{area_id}} {{area_suspend?'suspend':''}} "
          v-bind:style="o_fixed_height?o_style_css:null"
-         v-bind:class="{'suspend':area_suspend, 'suspend_on':o_suspend_on, 'area_pad':'area_pad','suspend_max':o_suspend_max_on}"
+         v-bind:class="{'suspend':area_suspend, 'suspend_on':o_suspend_on, 'suspend_off':(o_suspend_on===false),   'area_pad':'area_pad', 'suspend_max':o_suspend_max_on}"
     >
 
 
@@ -18,7 +19,7 @@
                         class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i></label>
             </div>
 
-            <div class="tool" v-if="area_disable_fixbut">
+            <div class="tool" v-if="area_disable_fixbut&&area_disable_fixbut_max">
 
                 <label v-on:click="suspend_max_on"
                        class="exmo_button_icon mini"><i
@@ -28,7 +29,7 @@
 
             <div class="tool" v-if="area_disable_fixbut">
 
-                <label v-on:click="o_suspend_on=!o_suspend_on"
+                <label v-on:click="suspend_on"
                        class="exmo_button_icon mini"><i
                         class="{{o_suspend_on?'icon-shrink2':'icon-enlarge2'}}"></i></label>
             </div>
@@ -50,7 +51,7 @@
 <script>
 
     export default {
-        props: ['area_title', "area_id", "area_hight", "area_disable_fixbut", "area_suspend", "area_pad"],
+        props: ['area_title', "area_id", "area_hight", "area_disable_fixbut", "area_disable_fixbut_max", "area_suspend", "area_pad","area_init_close","area_opened"],
 
         ready: function ()
         {
@@ -59,13 +60,20 @@
                 this.o_height = +this.area_hight;
                 this.o_fixed_height = true;
             }
+
+            if(this.area_init_close)
+            {
+
+                this.o_suspend_on = false;
+                this.area_opened = (this.o_suspend_on === true)
+            }
         },
 
         data(){
             return {
                 o_fixed_height: false,
                 o_height: 222,
-                o_suspend_on: false,
+                o_suspend_on: this.area_opened,
                 o_suspend_max_on: false,
                 o_last_offset: 0,
                 o_style_css: {
@@ -89,8 +97,15 @@
             suspend_max_on: function ()
             {
                 this.o_suspend_max_on = !this.o_suspend_max_on;
-                this.o_suspend_on =  this.o_suspend_max_on ;
+                this.o_suspend_on = this.o_suspend_max_on;
+                this.area_opened = (this.o_suspend_on === true)
 
+            },
+            suspend_on: function ()
+            {
+                this.o_suspend_on = !this.o_suspend_on;
+                this.o_suspend_max_on = false;
+                this.area_opened = (this.o_suspend_on === true)
             }
             ,
             drag_heigth: function (e)

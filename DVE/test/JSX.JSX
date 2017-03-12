@@ -8,13 +8,40 @@ Proteins.evalJsxFolder("E:/Work/GitHub/UI-DNA/DVE/Proteins/libs")
 
 
 //Kinase.layer.creatNewShapeLayerSquarenss_ByActive("2122121",{fillColor:{r:255,g:0,b:12},w:60, h:100,lineWidth: 10})
+    app.activeDocument.suspendHistory("sss", "longS()");
+    function longS()
+    {
+        function copyNow()
+        {
+            var idDplc = charIDToTypeID("Dplc");
+            var desc130 = new ActionDescriptor();
+            var idnull = charIDToTypeID("null");
+            var ref32 = new ActionReference();
+            var idLyr = charIDToTypeID("Lyr ");
+            var idOrdn = charIDToTypeID("Ordn");
+            var idTrgt = charIDToTypeID("Trgt");
+            ref32.putEnumerated(idLyr, idOrdn, idTrgt);
+            desc130.putReference(idnull, ref32);
+            var idVrsn = charIDToTypeID("Vrsn");
+            desc130.putInteger(idVrsn, 5);
+            var idIdnt = charIDToTypeID("Idnt");
+            executeAction(idDplc, desc130, DialogModes.NO);
+        }
 
-//Libs.quick_permute_getLayerGrid()
+        for (var i = 0; i <10; i++)
+        {
+            copyNow()
+
+            var bounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
+            Kinase.layer.setLayerBounds_byActive({x: bounds.x + 0,y:bounds.y +1
+            })
+        
+       //  Kinase.layer.setAppearance_byActive({opacity:100*(10-i/10)})
+
+        }
+    }
 //Proteins.exec( "quick_shape_advance_copyShapeSVG" )
-   Libs.quick_permute_doPermuteByMatrixGrid(
-   
-   
-   )
+ 
 
 
 //EnzJSX.setLayerInfo_shape_byId  ({"lineWidth":"10"}, 417)

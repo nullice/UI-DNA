@@ -1,6 +1,11 @@
 <template>
     <a-area area_title="选中图层" area_id="layer_selectors"
-            v-bind:area_disable_fixbut="true">
+            v-bind:area_disable_fixbut="true"
+            v-bind:area_init_close="true"
+
+    >
+
+
         <div class="mini_info">
            <span class="layerNumber">{{Gob.selectList.length}}</span>
         </div>

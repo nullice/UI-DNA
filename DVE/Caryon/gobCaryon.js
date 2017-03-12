@@ -26,7 +26,8 @@ var GobCaryon = function ()
     }
     /*当前选中图层类型，相应属性为真表示有此种类型图层被选中*/
 
-    this.selectTime =0;/* selectUpdate() 更新计数，可用于监控选中图层刷新事件*/
+    this.selectTime = 0;
+    /* selectUpdate() 更新计数，可用于监控选中图层刷新事件*/
 
     this._unripe = true;//未准备好，不渲染。
 
@@ -35,6 +36,7 @@ var GobCaryon = function ()
     this.selectChanged = false;
     this.selectUpdateing = false;
     this.disableRender = false //不渲染
+    this.disableAttrPanel = false //AttrPanel 关闭了，不需要更新
 
 
     this.nowSwitching = false;//是否在切换选中图层中
@@ -979,9 +981,9 @@ GobCaryon.prototype.updateSelect = async function ()
     this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
     logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
     this.selectList = newList;
-    if(this.selectChanged)
+    if (this.selectChanged)
     {
-        this.selectTime ++;
+        this.selectTime++;
     }
 
     // 更新 Gob.selectTypes
@@ -1002,9 +1004,16 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
 
-    //******************
-    await this.updateGob();
-    //******************
+    if (this.disableAttrPanel)// AttrPanel 关闭了，不需要更新
+    {
+
+    } else
+    {
+        //******************
+        await this.updateGob();
+        //******************
+    }
+
     this.selectUpdateing = false;
     console.log("selectUpdateing:false")
     logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【结束】选中图层周期 [updateSelect]--------------------")

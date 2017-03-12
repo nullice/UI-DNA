@@ -40,7 +40,7 @@
 
             .quick_but_more_icon {
                 transition: all .3s;
-                height: 10px;
+                height: 12px;
                 font-size: 8px;
                 text-align: center;
                 color: rgba(0, 0, 0, 0.48);

@@ -1,7 +1,10 @@
 <template>
     <a-area area_title="变量列表" area_id="var_panel"
             v-bind:area_suspend="true"
-            v-bind:area_disable_fixbut="true">
+            v-bind:area_disable_fixbut="true"
+            v-bind:area_disable_fixbut_max="true"
+
+    >
 
         <bubble-box v-if="o_msg_bubble.var_panel.show"
                     v-bind:msg="o_msg_bubble.var_panel.msg"

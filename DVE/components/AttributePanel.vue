@@ -10,7 +10,8 @@
 
     ></vue-color-cylinder>
 
-    <a-area area_title="UI-DNA 属性" area_id="attr_panel">
+    <a-area area_title="UI-DNA 属性" area_id="attr_panel" v-bind:area_disable_fixbut="true"
+            v-bind:area_opened.sync="o_attr_open">
 
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position"
@@ -95,7 +96,8 @@
             <!--<comp-a></comp-a>-->
         </div>
 
-        <div class="tag-box tag-shape" v-show="tagsActive.shape" v-bind:class="{active:tagsActive.shape, 'advance_on':o_advance_shape}"
+        <div class="tag-box tag-shape" v-show="tagsActive.shape"
+             v-bind:class="{active:tagsActive.shape, 'advance_on':o_advance_shape}"
              transition="trans-fade">
             <h3><span> {{'形状' |lang}} </span></h3>
             <color-input v-bind:name="Lang.from('填充')"
@@ -140,7 +142,7 @@
 
 
             <br>
-            <input type="checkbox" id="advance_2" autocomplete="off"  v-model="o_advance_shape">
+            <input type="checkbox" id="advance_2" autocomplete="off" v-model="o_advance_shape">
             <label class="btn btn_primary" title="{{'高级' |lang}}"
                    for="advance_2">
                 <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' |lang}}</span></span>
@@ -287,22 +289,12 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
             <!--"-->
         </div>
 
 
-        <div class="tag-box tag-text" v-show="tagsActive.text" v-bind:class="{active:tagsActive.text, 'advance_on':o_advance_text}"
+        <div class="tag-box tag-text" v-show="tagsActive.text"
+             v-bind:class="{active:tagsActive.text, 'advance_on':o_advance_text}"
              transition="trans-fade">
             <h3><span> {{'文本' |lang}} </span></h3>
 
@@ -781,6 +773,10 @@
     /*transition: all .5s;*/
     /*}*/
 
+    .exmo_btn_group {
+        margin-left: 10px;
+    }
+
     i.icon_position {
         font-size: 11px !important;
         vertical-align: top !important;
@@ -815,18 +811,15 @@
 
     .tag-text.trans-fade-transition {
         height: 260px;
-        &.advance_on
-        {
+        &.advance_on {
             height: 500px;
         }
 
     }
 
-
     .tag-shape.trans-fade-transition {
         height: 155px;
-        &.advance_on
-        {
+        &.advance_on {
             height: 500px;
         }
     }
@@ -910,6 +903,17 @@
         width: 0;
     }
 
+    .exmo_area.attr_panel.area_pad.suspend_off {
+        overflow: hidden;
+        position: absolute;
+        bottom: 88px;
+        border-bottom: none;
+        border-top: 2px solid rgba(0, 0, 0, 0.08);
+        height: 6px;
+        background: #F0F0F0;
+
+    }
+
 
 </style>
 
@@ -956,6 +960,20 @@
             }
 
         },
+        watch: {
+            "o_attr_open": function (val)
+            {
+                if (val === false)
+                {
+                    Gob.disableAttrPanel = true
+                } else
+                {
+                    Gob.disableAttrPanel = false
+                    Gob.updateSelect()
+                }
+
+            }
+        },
         data(){
             return {
                 Gob: Gob,
@@ -963,10 +981,11 @@
                 UI_model: UI_model,
                 Lang: Lang,
                 o_value: "",
+                o_attr_open: true,
                 o_show_name_group: 0,
-                o_advance_shape:false,
-                o_advance_text:false,
-                o_advance_more:false,
+                o_advance_shape: false,
+                o_advance_text: false,
+                o_advance_more: false,
                 o_positon_anchor_options: [
                     {
                         value: '0',
