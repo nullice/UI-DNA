@@ -15,7 +15,7 @@
      * @param key 对象排序的键值，如 [{a:12}, {a:33}] , key 为 "a" 则以 a 排序
      * @param bigFront 大值在前
      */
-    var sortObjectArray = function (arr, key, bigFront)
+    var sortObjectArray = function (arr, key, bigFront, isStr)
     {
         if (arr != undefined && arr.sort != undefined)
         {
@@ -38,13 +38,29 @@
                     }
                     if (typeof a === typeof b)
                     {
+
+
                         if (bigFront)
                         {
-                            return a > b ? -1 : 1;
+                            if (isStr)
+                            {
+                                return a.localeCompare(b);
+                            } else
+                            {
+                                return a > b ? -1 : 1;
+                            }
+
                         } else
                         {
-                            return a < b ? -1 : 1;
+                            if (isStr)
+                            {
+                                return -a.localeCompare(b);
+                            } else
+                            {
+                                return a < b ? -1 : 1;
+                            }
                         }
+
 
                     }
                     return typeof a < typeof b ? -1 : 1;
@@ -534,7 +550,8 @@
             var bounds = Kinase.layer.getLayerBounds(Kinase.REF_LayerID, layerIds[i])
 
             var layerItem = {
-                name: Kinase.layer.getLayerName_byID(layerIds[i]),
+                // name: Kinase.layer.getLayerName_byID(layerIds[i]),//仅测试时使用
+                name: "",
                 id: layerIds[i],
                 x: bounds.x, y: bounds.y, w: bounds.w, h: bounds.h,
                 right: bounds.right, bottom: bounds.bottom,
@@ -949,6 +966,77 @@
     }
 
 
+    /**
+     * 倒序排列图层顺序
+     */
+    Libs.quick_permute_doSelectLayersInveroOrder = function (infoObject)
+    {
+        function _func()
+        {
+
+            try
+            {
+                if (infoObject != undefined && infoObject.byName === true)
+                {
+                    baseLayersOrder(true)
+                } else
+                {
+
+                    baseLayersOrder()
+                }
+
+
+            } catch (e)
+            {
+                $.writeln("err quick_permute_doSelectLayersInveroOrder:+\n" + e)
+            }
+        }
+
+        Proteins.doCon(_func, "倒序排列图层顺序", true)
+    }
+
+
+    function baseLayersOrder(useNameOrder)
+    {
+        var layerIds = Kinase.layer.getTargetLayersID()
+
+        var layerPool = []
+        for (var i = 0; i < layerIds.length; i++)
+        {
+            var itemIndex = Kinase.layer.getItemIndexBylayerID(layerIds[i])
+            var layerItem = {
+                id: layerIds[i],
+                itemIndex: itemIndex,
+            }
+
+            if (useNameOrder)
+            {
+                layerItem.name = Kinase.layer.getLayerName_byID(layerIds[i])
+            }
+
+            layerPool.push(layerItem)
+        }
+
+
+        layerPool = sortObjectArray(layerPool, "itemIndex", true)
+        var bottom = layerPool[layerPool.length - 1].itemIndex
+
+        if (useNameOrder)
+        {
+            layerPool = sortObjectArray(layerPool, "name", true,true)
+        }
+
+        $.writeln(json(layerPool))
+        for (var i = 0; i < layerPool.length - 1; i++)
+        {
+            // $.writeln(layerPool[i].itemIndex +">" +(bottom + i))
+            Kinase.layer.selectLayer_byID(layerPool[i].id)
+            Kinase.layer.moveActiveLayerOrder(bottom + i)
+
+        }
+    }
+
+
 // Libs.quick_shape_advance_copyShapeProperty = function (infoObjec, envObject)
 // {
 //
@@ -967,8 +1055,6 @@
 //     return 0
 
 // }
-
-
 
 
 })()

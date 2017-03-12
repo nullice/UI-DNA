@@ -6011,6 +6011,11 @@ Kinase.layer.deleteLayer_ByActive = function ()
 Kinase.layer.moveActiveLayerOrder = function (itemIndex)
 {
 
+    if(itemIndex==undefined)
+    {
+        return
+    }
+
     var adOb = {
         "null": {
             "value": {

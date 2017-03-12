@@ -35,9 +35,9 @@ Libs.encapsulate_cornerEditor_do = function (infoObjec, envObject)
     function _func0()
     {
         var oldTool = app.currentTool
-        app.currentTool="pathComponentSelectTool"
+        app.currentTool = "pathComponentSelectTool"
         func()
-        app.currentTool=oldTool
+        app.currentTool = oldTool
         function func()
         {
 
@@ -45,10 +45,19 @@ Libs.encapsulate_cornerEditor_do = function (infoObjec, envObject)
             var docRef = activeDocument;
             if (infoObjec.selectedLayers != undefined)
             {
-                var  selectedLayers = infoObjec.selectedLayers
+                var selectedLayers = infoObjec.selectedLayers
+
+
+                var bkOffset = Kinase.BKOffset()
+                for (var i = 0; i < selectedLayers.length; i++)
+                {
+                    selectedLayers[i] = selectedLayers[i] + bkOffset
+                }
+
+
             } else
             {
-                var  selectedLayers = getSelectedLayersIdx();
+                var selectedLayers = getSelectedLayersIdx();
             }
             /*记录 Photoshop 原单位设置：*/
             if (app.preferences.rulerUnits != Units.PIXELS)
@@ -461,12 +470,9 @@ Libs.encapsulate_cornerEditor_do = function (infoObjec, envObject)
                         {
                             midX = endXMid + (endXMid - x1)
                             midY = endYMid + (endYMid - y1)
-
-
                         }
 
                     }
-
 
                     var handle1x = line1newEndX + Math.cos(l1Angle) * radius * KAPPA;
                     var handle1y = line1newEndY + Math.sin(l1Angle) * radius * KAPPA;
