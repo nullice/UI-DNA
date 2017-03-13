@@ -605,7 +605,7 @@ Kinase.layer.getAppearance = function (targetReference, target)
     };
 
     var fillOpacity_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "fillOpacity")
-    if (fillOpacity_raw.fillOpacity != undefined)
+    if (fillOpacity_raw!= undefined && fillOpacity_raw.fillOpacity != undefined)
     {
         appearanceInfo.fillOpacity = fillOpacity_raw.fillOpacity.value;
         appearanceInfo.fillOpacity = appearanceInfo.fillOpacity / 255 * 100
@@ -613,7 +613,7 @@ Kinase.layer.getAppearance = function (targetReference, target)
     }
 
     var opacity_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "opacity")
-    if (opacity_raw.opacity != undefined)
+    if (opacity_raw!= undefined && opacity_raw.opacity != undefined)
     {
         appearanceInfo.opacity = opacity_raw.opacity.value;
         appearanceInfo.opacity = appearanceInfo.opacity / 255 * 100
@@ -621,13 +621,13 @@ Kinase.layer.getAppearance = function (targetReference, target)
     }
 
     var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "visible")
-    if (visible_raw.visible != undefined)
+    if (visible_raw!= undefined && visible_raw.visible != undefined)
     {
         appearanceInfo.visible = visible_raw.visible.value;
     }
 
     var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "mode")
-    if (visible_raw.mode != undefined)
+    if (visible_raw!= undefined &&  visible_raw.mode != undefined)
     {
         appearanceInfo.mode = visible_raw.mode.value.enumerationValue;
     }
@@ -2831,24 +2831,44 @@ Kinase.layer.getLayerEditInfo = function (targetReference, target)
     if (artboardEnabled_raw != undefined)
     {
         artboardEnabled_raw = artboardEnabled_raw.artboardEnabled;
-        editInfo.isArtboard = artboardEnabled_raw.value;
+        if (artboardEnabled_raw != undefined)
+        {
+            editInfo.isArtboard = artboardEnabled_raw.value;
+        } else
+        {
+            editInfo.isArtboard = false
+        }
+
     }
 
 
     var color_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "color");
     color_raw = color_raw.color;
-    editInfo.color = color_raw.value.enumerationValue;
+
+    if (color_raw != undefined && color_raw.value != undefined && color_raw.value.enumerationValue != undefined)
+    {
+        editInfo.color = color_raw.value.enumerationValue;
+    }
+
 
     var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "visible");
     visible_raw = visible_raw.visible;
-    editInfo.visible = visible_raw.value;
+    if (visible_raw != undefined && visible_raw.value != undefined)
+    {
+        editInfo.visible = visible_raw.value;
+    }
+
 
     var layerLocking_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerLocking");
     layerLocking_raw = layerLocking_raw.layerLocking;
-    editInfo.lock.transparency = layerLocking_raw.value.protectTransparency.value;
-    editInfo.lock.all = layerLocking_raw.value.protectAll.value;
-    editInfo.lock.composite = layerLocking_raw.value.protectComposite.value;
-    editInfo.lock.position = layerLocking_raw.value.protectPosition.value
+    if (layerLocking_raw != undefined)
+    {
+        editInfo.lock.transparency = layerLocking_raw.value.protectTransparency.value;
+        editInfo.lock.all = layerLocking_raw.value.protectAll.value;
+        editInfo.lock.composite = layerLocking_raw.value.protectComposite.value;
+        editInfo.lock.position = layerLocking_raw.value.protectPosition.value
+    }
+
     if (layerLocking_raw.value.protectArtboardAutonest != undefined)
     {
         editInfo.lock.artboardAutonest = layerLocking_raw.value.protectArtboardAutonest.value;
@@ -5298,15 +5318,24 @@ Kinase.layer.isLayerSet = function (targetReference, target)
  */
 Kinase.layer.isArtBoard = function (targetReference, target)
 {
-    var artBoard_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled", "Lyr ");
 
-    if (artBoard_raw.artboardEnabled.value == true)
+    try
     {
-        return true;
-    } else
+        var artBoard_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "artboardEnabled", "Lyr ");
+
+        if (artBoard_raw.artboardEnabled.value == true)
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+
+    } catch (e)
     {
-        return false;
+        return false
     }
+
 }
 
 
@@ -6011,7 +6040,7 @@ Kinase.layer.deleteLayer_ByActive = function ()
 Kinase.layer.moveActiveLayerOrder = function (itemIndex)
 {
 
-    if(itemIndex==undefined)
+    if (itemIndex == undefined)
     {
         return
     }
@@ -6193,11 +6222,11 @@ Kinase.layer.selectLayer_byID = function (layerID)
 
     // try
     // {
-        var ref = new ActionReference();
-        ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
-        var desc = new ActionDescriptor();
-        desc.putReference(charIDToTypeID("null"), ref);
-        executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
+    var ref = new ActionReference();
+    ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
+    var desc = new ActionDescriptor();
+    desc.putReference(charIDToTypeID("null"), ref);
+    executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
     // } catch (e)
     // {
     //     $.writeln("Kinase.layer.selectLayer_byID:" + e)

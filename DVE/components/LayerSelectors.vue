@@ -1,13 +1,18 @@
 <template>
+
+    <menu-buttom v-bind:options="options" v-bind:memu_name="layer_selsectors"
+    >
+        <i class="icon-settings"></i>
+    </menu-buttom>
+
     <a-area area_title="选中图层" area_id="layer_selectors"
             v-bind:area_disable_fixbut="true"
             v-bind:area_init_close="true"
 
     >
 
-
         <div class="mini_info">
-           <span class="layerNumber">{{Gob.selectList.length}}</span>
+            <span class="layerNumber">{{Gob.selectList.length}}</span>
         </div>
 
         <div class="layers_list">
@@ -74,6 +79,7 @@
         top: 6px;
         left: 77px;
     }
+
     .layer-item {
         font-size: 11px;
         color: #666;
@@ -109,8 +115,7 @@
             cursor: default;
             user-select: text;
 
-
-             i {
+            i {
                 font-size: 13px;
             }
         }
@@ -142,18 +147,71 @@
 <script>
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import Area from '../components/area.vue';
+    import  MenuButtom from '../components/MenuButtom.vue'
     //import CompA from '../components/A.vue'
 
     export default {
         data(){
             return {
                 Gob: Gob,
-                Lang: Lang
+                Lang: Lang,
+
+                options: [
+
+                    {
+                        value: 'inver_order_layers',
+                        label: '倒序图层',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: this.inver_order_layers,
+                        button: true,
+                        block: true,
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '按名称排序图层',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        block: true,
+                    },
+                    {
+                        hr: true
+                    }
+                    ,
+
+                    {
+                        value: 'radian_all',
+                        label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
+                        title: "应用到所有圆角",
+                        selected_func: this.open_file,
+                        button: true
+                    },
+                    {
+                        value: 'info_pin',
+                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                        title: "创建变量标注",
+                        selected_func: this.info_pin,
+                        button: true
+                    }
+                ]
             }
+        },
+        methods: {
+            inver_order_layers: function ()
+            {
+                Proteins.exec("quick_permute_doSelectLayersInveroOrder", {})
+            },
+            name_order_layers: function ()
+            {
+                Proteins.exec("quick_permute_doSelectLayersInveroOrder", {byName: true})
+            }
+
+
         },
         components: {
             "value-input": ValueInput,
             "a-area": Area,
+            "menu-buttom": MenuButtom
 
         }
     };

@@ -5,175 +5,7 @@
      * Created by bgllj on 2017/3/9.
      */
 
-
-
-
     var json = JSON.stringify;
-    /**
-     * 排序对象数组
-     * @param arr 数组
-     * @param key 对象排序的键值，如 [{a:12}, {a:33}] , key 为 "a" 则以 a 排序
-     * @param bigFront 大值在前
-     */
-    var sortObjectArray = function (arr, key, bigFront, isStr)
-    {
-        if (arr != undefined && arr.sort != undefined)
-        {
-
-            return arr.sort(by(key));
-        }
-
-        function by(name)
-        {
-            return function (o, p)
-            {
-                var a, b;
-                if (typeof o === "object" && typeof p === "object" && o && p)
-                {
-                    a = o[name];
-                    b = p[name];
-                    if (a === b)
-                    {
-                        return 0;
-                    }
-                    if (typeof a === typeof b)
-                    {
-
-
-                        if (bigFront)
-                        {
-                            if (isStr)
-                            {
-                                return a.localeCompare(b);
-                            } else
-                            {
-                                return a > b ? -1 : 1;
-                            }
-
-                        } else
-                        {
-                            if (isStr)
-                            {
-                                return -a.localeCompare(b);
-                            } else
-                            {
-                                return a < b ? -1 : 1;
-                            }
-                        }
-
-
-                    }
-                    return typeof a < typeof b ? -1 : 1;
-                }
-                else
-                {
-                    throw ("error");
-                }
-            }
-        }
-    }
-
-
-    /**
-     * 差集。（不支持对象数组）
-     * a:[1,2,3] b:[1,2,4]   a-b => [3]
-     * @param {Array} a
-     * @param {Array} b
-     * @returns {Array}
-     */
-    var difference = function (a, b)
-    {
-        var ob = {};
-        for (var i = 0; i < a.length; i++)
-        {
-            ob[a[i]] = true;
-        }
-
-        for (var i = 0; i < b.length; i++)
-        {
-            if (ob[b[i]] != undefined)
-            {
-                ob[b[i]] = false;
-            }
-        }
-
-        var arr = [];
-        for (var x in ob)
-        {
-            if (ob[x] != false)
-            {
-                arr.push(x);
-            }
-        }
-        return arr;
-    }
-
-
-    /**
-     * 交集。（不支持对象数组）
-     * a:[1,2,3] b:[1,2,4]   a∩b => [1,2]
-     * @returns {Array}
-     */
-    var intersection = function (a, b)
-    {
-        var ob = {};
-        for (var i = 0; i < a.length; i++)
-        {
-            ob[a[i]] = false;
-        }
-
-        for (var i = 0; i < b.length; i++)
-        {
-            if (ob[b[i]] != undefined)
-            {
-                ob[b[i]] = true;
-            }
-        }
-
-        var arr = [];
-        for (var x in ob)
-        {
-            if (ob[x] != false)
-            {
-                arr.push(x);
-            }
-        }
-        return arr;
-    }
-    /**
-     * 对象数组查找
-     * 从对象数组中提取出一个对象，根据对象的一个属性值。
-     * arr: [{name:a},{name:b}] getByKey(arr,"name","b") => return {name:b}
-     * @param {[Object]} objectArr 对象数组
-     * @param {String} key 关键属性
-     * @param keyValue 欲提取的关键属性值
-     * @param equalRule 值比较函数，可空
-     * @returns {*}
-     */
-    var getByKey = function (objectArr, key, keyValue, equalRule)
-    {
-        for (var i = 0; i < objectArr.length; i++)
-        {
-            if (objectArr[i][key] != undefined)
-            {
-                if (equalRule != undefined)
-                {
-                    if (equalRule(objectArr[i][key], keyValue))
-                    {
-                        return objectArr[i]
-                    }
-
-                } else
-                {
-                    if (objectArr[i][key] == keyValue)
-                    {
-                        return objectArr[i]
-                    }
-                }
-            }
-        }
-
-    }
 
 
     /**
@@ -248,7 +80,6 @@
 
             try
             {
-
                 var grid = calcLayersGrid()
                 // RowColIds: RowColIds, /*2维数组，行列排序*/
                 // SingleIds: SingleIds, /*1维数组，行列排序*/
@@ -258,6 +89,10 @@
                 // ColNumber: ColNumber, /*列数*/
                 // LayerPool:layerPool,/*图层池*/
 
+                if (grid == undefined)
+                {
+                    return 0;
+                }
 
                 var RowColIds = []
 
@@ -315,6 +150,11 @@
                 // RowNumber: RowNumber, /*行数*/
                 // ColNumber: ColNumber, /*列数*/
                 // LayerPool:layerPool,/*图层池*/
+
+                if (grid == undefined)
+                {
+                    return 0;
+                }
 
                 if (grid.SingleIds.length < grid.rankIds_xy.length)
                 {
@@ -544,6 +384,10 @@
     function calcLayersGrid()
     {
         var layerIds = Kinase.layer.getTargetLayersID()
+        if (layerIds.length == 0)
+        {
+            return null
+        }
         var layerPool = []
         for (var i = 0; i < layerIds.length; i++)
         {
@@ -937,35 +781,6 @@
     }
 
 
-    function sortIds(ids, propertyName, layerPool)
-    {
-
-        var layerArr = idsTolayerArr(ids, layerPool)
-        sortObjectArray(layerArr, propertyName, false)
-
-        var rankIds_xy = []
-        for (var i = 0; i < layerArr.length; i++)
-        {
-            rankIds_xy.push(layerArr[i].id)
-        }
-
-        return rankIds_xy
-    }
-
-
-    function idsTolayerArr(ids, layerPool)
-    {
-
-        var layerArr = []
-        for (var i = 0; i < ids.length; i++)
-        {
-
-            layerArr.push(getByKey(layerPool, "id", ids[i]))
-        }
-        return layerArr
-    }
-
-
     /**
      * 倒序排列图层顺序
      */
@@ -985,7 +800,6 @@
                     baseLayersOrder()
                 }
 
-
             } catch (e)
             {
                 $.writeln("err quick_permute_doSelectLayersInveroOrder:+\n" + e)
@@ -995,10 +809,14 @@
         Proteins.doCon(_func, "倒序排列图层顺序", true)
     }
 
-
     function baseLayersOrder(useNameOrder)
     {
         var layerIds = Kinase.layer.getTargetLayersID()
+
+        if (layerIds == undefined || layerIds.length == 0)
+        {
+            return
+        }
 
         var layerPool = []
         for (var i = 0; i < layerIds.length; i++)
@@ -1019,14 +837,15 @@
 
 
         layerPool = sortObjectArray(layerPool, "itemIndex", true)
-        var bottom = layerPool[layerPool.length - 1].itemIndex
+        var bottom = layerPool[layerPool.length - 1].itemIndex - 1
 
         if (useNameOrder)
         {
-            layerPool = sortObjectArray(layerPool, "name", true,true)
+            layerPool = sortObjectArray(layerPool, "name", false, true)
         }
 
         $.writeln(json(layerPool))
+
         for (var i = 0; i < layerPool.length - 1; i++)
         {
             // $.writeln(layerPool[i].itemIndex +">" +(bottom + i))
