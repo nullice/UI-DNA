@@ -394,7 +394,6 @@ EnzJSX.ArrayRemove = function (array, removeArray)
         }
     }
 
-
     return array;
 }
 
@@ -413,8 +412,6 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist(rootName, "name", false, true);
         if (re == undefined)
         {
-
-
             ki.layer.selectLayer_byItemIndex(Kinase.upperIndex());
 
             ki.layer.creatNewLayerSet_ByActive(rootName)
@@ -505,9 +502,8 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
 
     }
-
-
 }
+
 
 //速度慢
 // EnzJSX.readJSONAD = function (rootName, itemName)
@@ -1061,7 +1057,6 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
 
         }
     }
-
 
 
     var Old_quickEffect = this.getLayerInfo_quickEffect_byId(id, true)

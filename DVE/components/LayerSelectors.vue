@@ -2,7 +2,7 @@
 
     <menu-buttom v-bind:options="options" v-bind:memu_name="layer_selsectors"
     >
-        <i class="icon-settings"></i>
+        <i class="icon-briefcase"></i>
     </menu-buttom>
 
     <a-area area_title="选中图层" area_id="layer_selectors"
@@ -174,10 +174,18 @@
                         button: true,
                         block: true,
                     },
+                    {hr: true},
                     {
-                        hr: true
-                    }
-                    ,
+                        value: 'rename_replace',
+                        label: '图层名称替换',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        block: true,
+                    },
+
+
+                    {hr: true},
 
                     {
                         value: 'radian_all',
@@ -204,8 +212,11 @@
             name_order_layers: function ()
             {
                 Proteins.exec("quick_permute_doSelectLayersInveroOrder", {byName: true})
-            }
-
+            },
+            rename_replace: function ()
+            {
+                Proteins.exec("quick_permute_doSelectLayersInveroOrder", {byName: true})
+            },
 
         },
         components: {

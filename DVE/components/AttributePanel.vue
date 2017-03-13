@@ -668,7 +668,7 @@
                           in_class="namegroup"
             >
 
-            </select-input>
+            </select-input> <span class="name_group_name">{{nameGroupTitle[o_show_name_group]!=o_show_name_group?nameGroupTitle[o_show_name_group]:""}}</span>
             <div>
                 <value-input
                         v-show="o_show_name_group == 0"
@@ -772,6 +772,14 @@
     /*opacity: 1;*/
     /*transition: all .5s;*/
     /*}*/
+
+    span.name_group_name {
+        position: absolute;
+        margin-top: -24px;
+        margin-left: 98px;
+        color: rgba(0, 0, 0, 0.52);
+        font-size: 12px;
+    }
 
     .exmo_btn_group {
         margin-left: 10px;
@@ -978,6 +986,8 @@
             return {
                 Gob: Gob,
                 tagsActive: setSystem.ui.panel.main.tagsActive,
+                nameGroupTitle: setSystem.ui.panel.main.nameGroupTitle,
+
                 UI_model: UI_model,
                 Lang: Lang,
                 o_value: "",
