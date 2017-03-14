@@ -208,6 +208,15 @@
                         button: true,
                         block: true,
                     },
+                    {
+                        value: 'tag_select',
+                        label: '寻找标签',
+                        title: "根据图层标签寻找并选中图层",
+                        selected_func: this.tag_select,
+                        button: true,
+                        block: true,
+                    },
+
                     {hr: true},
                     {
                         value: 'i_select_layers',
@@ -294,7 +303,61 @@
                 UI_action.show_message_input("layer_selector", "寻找并选中图层", data, ok_func)
 
             },
+            tag_select: async function ()
+            {
 
+                var data = [
+                    {name: "寻找的标签", type: "text"},
+                    {name: "排除模式", type: "checkbox", checked: false},
+//                    {name: "事实上", type: "textarea"},
+                ]
+
+                async function ok_func(data, doneFunc)
+                {
+
+                    var time = await selectLayerByTag(data[0].value, data[1].checked)
+//                    var time = await  Proteins.exec("layerNameFindAndSelected", {
+//                        findText: data[0].value,
+//                        useReg: data[1].checked,
+//                    })
+                    UI_action.show_message_bubble("input_box", "", Lang.from("寻找到 ") + time + Lang.from(" 个图层"), "")
+//                    doneFunc()
+                }
+
+                UI_action.show_message_input("layer_selector", "寻找并选中指定标签的图层", data, ok_func)
+
+
+                async function selectLayerByTag(tag, notHas)
+                {
+                    var selectIds = []
+                    for (var i  in dataCaryon.layers)
+                    {
+                        if (dataCaryon.layers[i].more != undefined && dataCaryon.layers[i].more.$tags != undefined)
+                        {
+                            var hasTag = dataCaryon.layerTags_hasTag(dataCaryon.layers[i].id, tag)
+                            if (hasTag)
+                            {
+                                selectIds.push(dataCaryon.layers[i].id)
+                            }
+                        }
+                    }
+
+
+                    if (notHas)
+                    {
+                        await enzymes.selectLoad(selectIds)
+                        var time = await Proteins.exec("invertSelectLayer", {})
+                        return time
+
+                    } else
+                    {
+                        enzymes.selectLoad(selectIds)
+                        return selectIds.length
+                    }
+
+
+                }
+            },
             i_select_layers: function ()
             {
                 Proteins.exec("invertSelectLayer", {})

@@ -157,6 +157,7 @@ Libs.invertSelectLayer = function ()
 
     Kinase.layer.selectLoad(finIds)
 
+    return finIds.length;
 }
 
 

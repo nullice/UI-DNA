@@ -750,7 +750,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         //写入 dataCaryon
         if (flag_writeDataCaryon && value != undefined)
         {
-            console.info("[[[writeDataCaryon]]]]]:", names, value)
+            console.info("[[[writeDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);

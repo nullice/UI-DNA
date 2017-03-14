@@ -229,6 +229,8 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
         }
         if (names[0] === "more")
         {
+
+
             console.log("----[start:RenderCaryon：more:" + layerId + "]---")
             if (namesLen == 2)
             {
@@ -241,7 +243,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
             await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_more_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
-            var newId = await enzymes.setLayerInfo_more_byId(ob, layerId)
+            await enzymes.setLayerInfo_more_byId(ob, layerId)
             /************************************************/
             Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
 
