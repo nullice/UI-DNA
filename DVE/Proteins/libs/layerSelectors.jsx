@@ -86,7 +86,7 @@ Libs.layersRename_replace = function (infoObjec, envObject)
  * @param envObject
  * @returns {number}
  */
-Libs.quick_layerNameFindAndSelected = function (infoObjec, envObject)
+Libs.layerNameFindAndSelected = function (infoObjec, envObject)
 {
     if (infoObjec == undefined)
     {
@@ -135,5 +135,30 @@ Libs.quick_layerNameFindAndSelected = function (infoObjec, envObject)
     return re
 
 }
+
+
+/**
+ * 选中图层反选
+ */
+Libs.invertSelectLayer = function ()
+{
+
+    var allIds = []
+    var layerPool = Kinase.layer.getAllLayerList()
+
+    for (var i = 0; i < layerPool.length; i++)
+    {
+        allIds.push(layerPool[i].id)
+    }
+
+    var selectIds = Kinase.layer.selectSave()
+
+    var finIds = difference(allIds, selectIds)
+
+    Kinase.layer.selectLoad(finIds)
+
+}
+
+
 
 

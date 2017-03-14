@@ -208,9 +208,15 @@
                         button: true,
                         block: true,
                     },
-
-
-
+                    {hr: true},
+                    {
+                        value: 'i_select_layers',
+                        label: '反选图层',
+                        title: "根据图层名称寻找并选中图层",
+                        selected_func: this.i_select_layers,
+                        button: true,
+                        block: true,
+                    },
 
 
                     {hr: true},
@@ -277,7 +283,7 @@
                 async function ok_func(data, doneFunc)
                 {
 
-                    var time = await  Proteins.exec("quick_layerNameFindAndSelected", {
+                    var time = await  Proteins.exec("layerNameFindAndSelected", {
                         findText: data[0].value,
                         useReg: data[1].checked,
                     })
@@ -288,6 +294,11 @@
                 UI_action.show_message_input("layer_selector", "寻找并选中图层", data, ok_func)
 
             },
+
+            i_select_layers: function ()
+            {
+                Proteins.exec("invertSelectLayer", {})
+            }
         },
         components: {
             "value-input": ValueInput,
