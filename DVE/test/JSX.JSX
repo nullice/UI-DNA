@@ -33,7 +33,7 @@ Proteins.evalJsxFolder("E:/Work/GitHub/UI-DNA/DVE/Proteins/libs")
             copyNow()
 
             var bounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
-            Kinase.layer.setLayerBounds_byActive({x: bounds.x + 0,y:bounds.y +1
+            Kinase.layer.setLayerBounds_byActive({x: bounds.x + 1,y:bounds.y +1
             })
         
        //  Kinase.layer.setAppearance_byActive({opacity:100*(10-i/10)})

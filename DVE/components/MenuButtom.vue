@@ -3,11 +3,16 @@
     <div class="menu-buttom-box {{memu_name}}">
 
         <div class="menu-buttom" v-on:mouseout.stop="o_onoff_on=false">
-            <input v-model="o_onoff_on" type="checkbox" class="exmo_icon_cheackbox "
-                   id="check_btn_memu_name{{memu_name}}_1">
-            <label class="exmo_button_icon mini" for="check_btn_memu_name{{memu_name}}_1">
-                <slot></slot>
+            <!--<input v-model="o_onoff_on" type="checkbox" class="exmo_icon_cheackbox "-->
+            <!--id="check_btn_memu_name{{memu_name}}_1">-->
+            <!--<label class="exmo_button_icon mini" for="check_btn_memu_name{{memu_name}}_1">-->
+            <!--<slot></slot>-->
+            <!--</label>-->
+            <label class="exmo_button_icon mini" v-on:click="click_menu_button" >
+                <slot v-on:click="click_menu_button"></slot>
             </label>
+
+
         </div>
 
 
@@ -199,6 +204,12 @@
 
         },
         methods: {
+
+            click_menu_button:function ()
+            {
+//                alert(1)
+                this.o_onoff_on=true
+            },
 
             click_menu_func: function (func)
             {

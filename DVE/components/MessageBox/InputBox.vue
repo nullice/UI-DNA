@@ -15,7 +15,9 @@
                 <input v-if="item.type=='text'" type="text" class="exmo_input_text"
                        placeholder="{{item.placeholder||''}}"
                        v-model="item.value"
-                       v-on:change="(item.verify!=undefined)?item.verify(item.value,$event):null">
+                       v-on:change="change_verify(item.verify,item.value, $event)">
+                <!--v-on:change="(item.verify!=undefined)?item.verify(item.value,$event):null-->
+
 
                 <select v-if="item.type=='select'" name="select" class="exmo_select" v-model="item.select">
                     <option v-for="option in item.options" v-bind:value="option.value">
@@ -27,6 +29,10 @@
                     <div class="exmo_checkbox_shadow"></div>
                     {{item.name}}
                 </label>
+
+                <div class="notetext" v-if="(item.type=='note')&&msg_input_data[item.value].checked"  >
+                    {{item.note}}{{{item.html}}}
+                </div>
 
                 <div class="value_input_textarea_box" >
 
@@ -75,6 +81,12 @@
             top: 20%;
             margin: auto;
 
+
+            .notetext{
+                -webkit-user-select: text;
+                font-size: 12px;
+                color: rgba(0, 0, 0, 0.47);
+            }
             .message-msg {
                 font-size: 13px;
                 color: #3A3A3A;
@@ -175,6 +187,14 @@
             cancel: function ()
             {
                 this.msg_mode.show = false;
+            },
+            change_verify:function (verify,value, $event)
+            {
+                if(typeof verify == "function")
+                {
+                    verify(value,$event)
+
+                }
             }
 
         },

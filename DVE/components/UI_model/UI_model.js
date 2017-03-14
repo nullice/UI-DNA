@@ -10,11 +10,13 @@ var UI_model = {
 
     msg_bubble: {
         var_panel: {title: "", msg: "", show: false, color: "none"},
-        input_box: {title: "", msg: "", show: false, color: "none"}
+        input_box: {title: "", msg: "", show: false, color: "none"},
+        layer_selector: {title: "", msg: "", show: false, color: "none"},
     },
     msg_input: {
         var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}},
-        var_edit: {title: "", data: [], show: false, color: "none", callback: function () {return 0}}
+        var_edit: {title: "", data: [], show: false, color: "none", callback: function () {return 0}},
+        layer_selector: {title: "", data: [], show: false, color: "none", callback: function () {return 0}},
     },
     msg_color_picker: {
         color1: {

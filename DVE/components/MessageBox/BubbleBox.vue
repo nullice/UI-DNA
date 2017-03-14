@@ -20,12 +20,12 @@
         margin: auto;
         margin-top: -35px;
         font-size: 12px;
+        z-index: 33;
     }
 
     .message-box-bubbble.message-color-red {
         background: #F06E6E;
     }
-
 
     .message-box-bubbble .message-window {
         position: absolute;
@@ -39,12 +39,11 @@
         color: rgba(255, 255, 255, 0.92);
     }
 
-    .message-box-bubbble  .message-title
-    {
+    .message-box-bubbble .message-title {
         font-weight: bold;
     }
 
-    .message-box-bubbble  .message-window i.icon-info {
+    .message-box-bubbble .message-window i.icon-info {
         color: rgba(0, 0, 0, 0.44);
         line-height: 32px;
         vertical-align: text-bottom;
@@ -61,12 +60,10 @@
 <script>
 
     export default{
-        props: ["msg","msg_title","msg_color"],
+        props: ["msg", "msg_title", "msg_color"],
         data(){
-            return{
-            }
+            return {}
         },
-        components:{
-        }
+        components: {}
     }
 </script>

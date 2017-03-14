@@ -4,12 +4,26 @@
     >
         <i class="icon-briefcase"></i>
     </menu-buttom>
+    <input-box
+            v-if="o_msg_input.layer_selector.show"
+            v-bind:msg_title="o_msg_input.layer_selector.title"
+            v-bind:msg_input_data="o_msg_input.layer_selector.data"
+            v-bind:msg_callback="o_msg_input.layer_selector.callback"
+            v-bind:msg_mode="o_msg_input.layer_selector"
+            v-bind:msg="o_msg_input.layer_selector.msg"
+    >
+    </input-box>
 
     <a-area area_title="选中图层" area_id="layer_selectors"
             v-bind:area_disable_fixbut="true"
             v-bind:area_init_close="true"
-
     >
+        <bubble-box v-if="o_msg_bubble.layer_selector.show"
+                    v-bind:msg="o_msg_bubble.layer_selector.msg"
+                    v-bind:msg_title="o_msg_bubble.layer_selector.title"
+                    v-bind:msg_color="o_msg_bubble.layer_selector.color"
+        ></bubble-box>
+
 
         <div class="mini_info">
             <span class="layerNumber">{{Gob.selectList.length}}</span>
@@ -148,6 +162,8 @@
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import Area from '../components/area.vue';
     import  MenuButtom from '../components/MenuButtom.vue'
+    import BubbleBox from '../components/MessageBox/BubbleBox.vue';
+    import InputBox from '../components/MessageBox/InputBox.vue';
     //import CompA from '../components/A.vue'
 
     export default {
@@ -155,9 +171,10 @@
             return {
                 Gob: Gob,
                 Lang: Lang,
+                o_msg_input: UI_model.msg_input,
+                o_msg_bubble: UI_model.msg_bubble,
 
                 options: [
-
                     {
                         value: 'inver_order_layers',
                         label: '倒序图层',
@@ -179,7 +196,7 @@
                         value: 'rename_replace',
                         label: '图层名称替换',
                         title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        selected_func: this.rename_replace,
                         button: true,
                         block: true,
                     },
@@ -213,16 +230,39 @@
             {
                 Proteins.exec("quick_permute_doSelectLayersInveroOrder", {byName: true})
             },
-            rename_replace: function ()
+            rename_replace: async function ()
             {
-                Proteins.exec("quick_permute_doSelectLayersInveroOrder", {byName: true})
+                var data = [
+                    {name: "寻找文本", type: "text"},
+                    {name: "替换文本", type: "text"},
+                    {name: "使用正则表达式", type: "checkbox", checked: false},
+                    {name: "", type: "note", html: "寻找任意文本：.* <br>指代寻找到的文本：$& <br>计数：$i <br>倒序计数：$-i", value: 2},
+//                    {name: "事实上", type: "textarea"},
+                ]
+
+                async function ok_func(data, doneFunc)
+                {
+//                    alert(data[0].value + data[1].value + data[2].checked)
+                    var time = await  Proteins.exec("layersRename_replace", {
+                        findText: data[0].value,
+                        replace: data[1].value,
+                        useReg: data[2].checked,
+                    })
+                    UI_action.show_message_bubble("layer_selector", "", Lang.from("已替换 ") + time + Lang.from(" 个图层"), "")
+                    doneFunc()
+                }
+
+                UI_action.show_message_input("layer_selector", "图层名称替换", data, ok_func)
+
             },
 
         },
         components: {
             "value-input": ValueInput,
             "a-area": Area,
-            "menu-buttom": MenuButtom
+            "menu-buttom": MenuButtom,
+            "bubble-box": BubbleBox,
+            "input-box": InputBox,
 
         }
     };

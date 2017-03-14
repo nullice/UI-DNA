@@ -209,7 +209,6 @@
     export default {
         data(){
             return {
-
                 vars: varSystem.vars,
                 o_msg_bubble: UI_model.msg_bubble,
                 o_msg_input: UI_model.msg_input,
@@ -253,7 +252,6 @@
                     ], select: "normal"
                     },
 //                    {name: "事实上", type: "textarea"},
-
                 ]
 
                 var varify_varName = function (x, e)
