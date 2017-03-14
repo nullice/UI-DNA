@@ -63,6 +63,8 @@ Libs.layersRename_replace = function (infoObjec, envObject)
             var newName = orgName.replace(reg, replace)
             var finName = newName.replace(/\$i/g, i + 1)
             var finName = finName.replace(/\$\-i/g, layerPool.length - i)
+
+
             if (finName != orgName)
             {
                 Kinase.layer.selectLayer_byID(layerPool[i].id)
@@ -79,14 +81,58 @@ Libs.layersRename_replace = function (infoObjec, envObject)
 
 
 /**
- * 减去形状
+ * 根据图层名称寻找并选择图层
  * @param infoObjec
  * @param envObject
  * @returns {number}
  */
-Libs.quick_shape_path_subtract = function (infoObjec, envObject)
+Libs.quick_layerNameFindAndSelected = function (infoObjec, envObject)
 {
+    if (infoObjec == undefined)
+    {
+        return 0
+    }
 
+    // var layerIDs = infoObjec["layerIDs"]
+
+    var findText = infoObjec["findText"]
+    var useReg = infoObjec["useReg"]
+    var re = 0;
+
+
+    function _func()
+    {
+        var foundIds = []
+        var layerPool = Kinase.layer.getAllLayerList()
+
+        for (var i = 0; i < layerPool.length; i++)
+        {
+            var orgName = layerPool[i].name
+            if (useReg)
+            {
+                var reg = new RegExp(findText, "g")
+
+            } else
+            {
+                var plainText = findText.replace(/\W/g, "\\$&")
+                var reg = new RegExp("^" + plainText + "$")
+            }
+
+            var testResult = reg.test(orgName)
+
+            if (testResult)
+            {
+                foundIds.push(layerPool[i].id)
+                re++;
+            }
+        }
+
+        Kinase.layer.selectLoad(foundIds)
+    }
+
+
+    Proteins.doCon(_func, "寻找图层", false)
+    return re
 
 }
 

@@ -195,11 +195,22 @@
                     {
                         value: 'rename_replace',
                         label: '图层名称替换',
-                        title: "将图层层叠顺序按名称排列",
+                        title: "在选中图层中替换图层名称",
                         selected_func: this.rename_replace,
                         button: true,
                         block: true,
                     },
+                    {
+                        value: 'find_select',
+                        label: '寻找图层',
+                        title: "根据图层名称寻找并选中图层",
+                        selected_func: this.find_select,
+                        button: true,
+                        block: true,
+                    },
+
+
+
 
 
                     {hr: true},
@@ -255,7 +266,28 @@
                 UI_action.show_message_input("layer_selector", "图层名称替换", data, ok_func)
 
             },
+            find_select: async function ()
+            {
+                var data = [
+                    {name: "寻找文本", type: "text"},
+                    {name: "使用正则表达式", type: "checkbox", checked: false},
+//                    {name: "事实上", type: "textarea"},
+                ]
 
+                async function ok_func(data, doneFunc)
+                {
+
+                    var time = await  Proteins.exec("quick_layerNameFindAndSelected", {
+                        findText: data[0].value,
+                        useReg: data[1].checked,
+                    })
+                    UI_action.show_message_bubble("input_box", "", Lang.from("寻找到 ") + time + Lang.from(" 个图层"), "")
+//                    doneFunc()
+                }
+
+                UI_action.show_message_input("layer_selector", "寻找并选中图层", data, ok_func)
+
+            },
         },
         components: {
             "value-input": ValueInput,
