@@ -22,6 +22,7 @@ var DataCaryon = function ()
 
     //直接获取属性，文档切换时，通过 this.switchDocment() ，映射到不同的实际存储
     this.layers = null;
+    this.doc = null;
     this._nowDoucmentId = null;
     Object.defineProperty(this, "nowDoucmentId",
         {
@@ -38,6 +39,18 @@ var DataCaryon = function ()
                     {
                         this.layers = this._layers[x];
                     }
+
+
+                    if (this._doc[x] == undefined)
+                    {
+                        this._doc[x] = {}
+                        this.doc = this._doc[x];
+
+                    } else
+                    {
+                        this.doc = this._doc[x];
+                    }
+
                 }
                 this._nowDoucmentId = x;
 

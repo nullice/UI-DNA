@@ -29,6 +29,7 @@
                              v-bind:in_title="item.title||''"
                              v-bind:in_class="(inline_block&&!item.block)?'inline_block':''"
                              v-bind:button="item.button"
+                             v-bind:in_class2="item.class?item.class:''"
                 >
 
                 </attr-option>

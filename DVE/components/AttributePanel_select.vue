@@ -21,9 +21,8 @@
                          v-bind:selected_func="selected_func"
                          v-bind:selected_value.sync="value"
                          v-bind:in_class="block?'inline_block':''"
-                         v
+                         v-bind:in_class2="item.class?item.class:''"
             >
-
             </attr-option>
         </div>
     </div>

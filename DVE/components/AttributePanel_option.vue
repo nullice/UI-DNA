@@ -3,16 +3,22 @@
 
     <div v-if="value!=undefind && value != 'noneValue'" v-on:click="doSelect"
          title="{{in_title}}"
-         class="attr_option {{in_class}} {{(selected_value==value)?'selected':''}}">
+         class="attr_option {{in_class}}  {{in_class2}} {{(selected_value==value)?'selected':''}}">
         {{{label_html}}} {{label}}
         <slot></slot>
     </div>
 
-    <div v-if="hr" class="option_hr"></div>
-    <div v-if="br" class="option_br"></div>
+    <div v-if="hr" class="option_hr {{in_class2}}"></div>
+    <div v-if="br" class="option_br {{in_class2}}"></div>
 
 </template>
 <style>
+
+    .attr_option.rigth-but{
+        position: absolute;
+        right: 0;
+    }
+
     .attr_option {
         font-size: 13px;
         padding: 6px 14px;
@@ -39,7 +45,7 @@
     export default{
 
         props: ['value', "label_html", 'label', "selected", "selected_value",
-               "selected_func",  "selected_func_param","state", "hr", "br", "in_class", "in_title", 'button'],
+               "selected_func",  "selected_func_param","state", "hr", "br", "in_class", "in_title", 'button',"in_class2"],
         methods: {
             doSelect: function ()
             {

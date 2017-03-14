@@ -226,24 +226,40 @@
                         button: true,
                         block: true,
                     },
-
-
-                    {hr: true},
-
                     {
-                        value: 'radian_all',
-                        label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
-                        title: "应用到所有圆角",
-                        selected_func: this.open_file,
-                        button: true
+                        value: 'selectShot',
+                        label: '记录',
+                        title: "根据图层名称寻找并选中图层",
+                        selected_func: this.selectShot,
+                        button: true,
+
                     },
                     {
-                        value: 'info_pin',
-                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
-                        title: "创建变量标注",
-                        selected_func: this.info_pin,
-                        button: true
-                    }
+                        value: 'selectRepaly',
+                        label: '还原',
+                        title: "根据图层名称寻找并选中图层",
+                        selected_func: this.selectRepaly,
+                        button: true,
+                        class:"rigth-but",
+
+                    },
+//
+//                    {hr: true},
+//
+//                    {
+//                        value: 'radian_all',
+//                        label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
+//                        title: "应用到所有圆角",
+//                        selected_func: this.open_file,
+//                        button: true
+//                    },
+//                    {
+//                        value: 'info_pin',
+//                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+//                        title: "创建变量标注",
+//                        selected_func: this.info_pin,
+//                        button: true
+//                    }
                 ]
             }
         },
@@ -342,7 +358,6 @@
                         }
                     }
 
-
                     if (notHas)
                     {
                         await enzymes.selectLoad(selectIds)
@@ -355,13 +370,124 @@
                         return selectIds.length
                     }
 
-
                 }
             },
             i_select_layers: function ()
             {
                 Proteins.exec("invertSelectLayer", {})
+            },
+            selectShot: function ()
+            {
+                if (dataCaryon["doc"]["selectShots"] == undefined)
+                {
+                    dataCaryon["doc"]["selectShots"] = {}
+                }
+
+                var selectIds = []
+                Gob.selectList.forEach(function (x) {selectIds.push(x.id)})
+                var selectIdsJson = JSON.stringify(selectIds)
+
+                var data = [
+                    {name: "记录名称", type: "text"},
+                    {name: "记录值", type: "text", value: selectIdsJson},
+                ]
+
+
+                async function ok_func(data, doneFunc)
+                {
+                    if(data[0].value=="")
+                    {
+                        UI_action.show_message_bubble("input_box", "", Lang.from("记录名不能为空"), "red");
+                    }else {
+                        dataCaryon["doc"]["selectShots"][data[0].value] = data[1].value
+                        doneFunc()
+                    }
+
+
+                }
+
+
+                UI_action.show_message_input("layer_selector", "记录文档中图层选中状态", data, ok_func)
+            },
+
+            selectRepaly: async function ()
+            {
+
+
+                var data = [
+
+                    {
+                        name: "记录", type: "select", options: []
+                    },
+                    {
+                        name: "操作", type: "select", options: [
+                        {text: Lang.from('还原'), value: 'repaly'},
+                        {text: Lang.from('更新'), value: 'rewrite'},
+                        {text: Lang.from('删除'), value: 'delete'},
+                    ]
+                        , select: "repaly"
+                    }
+
+                ]
+
+                for (var x in dataCaryon["doc"]["selectShots"])
+                {
+
+                    data[0].options.push({text: x, value: x})
+                }
+                data[0].select = x;
+
+                async function ok_func(data, doneFunc)
+                {
+
+                    if (data[0].select == undefined || data[0].select === "")
+                    {
+                        doneFunc()
+
+                    }
+                        if (data[1].select == "repaly")
+                        {
+                            var selectIds = []
+                            try
+                            {
+                                if (dataCaryon["doc"]["selectShots"][data[0].select] != undefined)
+                                {
+                                    var selectJson = dataCaryon["doc"]["selectShots"][data[0].select]
+                                    selectIds = JSON.parse(selectJson)
+                                }
+                            } catch (e)
+                            {
+                            }
+
+                            if (selectIds["length"] != undefined)
+                            {
+                                enzymes.selectLoad(selectIds)
+                            }
+                        }
+                        else if (data[1].select == "rewrite")
+                        {
+                            var selectIds = []
+                            Gob.selectList.forEach(function (x) {selectIds.push(x.id)})
+                            var selectIdsJson = JSON.stringify(selectIds)
+                            dataCaryon["doc"]["selectShots"][data[0].select] = selectIdsJson
+                        }
+                        else if (data[1].select == "delete")
+                        {
+                            if (dataCaryon["doc"]["selectShots"][data[0].select] != undefined)
+                            {
+                                delete  dataCaryon["doc"]["selectShots"][data[0].select];
+                            }
+                            doneFunc();
+                        }
+
+                }
+
+                UI_action.show_message_input("layer_selector", "图层选中状态记录", data, ok_func)
+
+
             }
+
+
         },
         components: {
             "value-input": ValueInput,

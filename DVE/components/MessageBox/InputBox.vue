@@ -1,21 +1,23 @@
 <template>
+
+
     <div class="message-box-input  message-color-{{msg_color}}">
-        <div class="message-window-input   animated zoomIn" >
+
+        <!--animated zoomIn-->
+        <div class="message-window-input   " >
             <h2 class="message-title">{{msg_title}}</h2>
             <div class="message-msg">{{{msg}}}</div>
-
             <bubble-box v-if="o_msg_bubble.input_box.show"
                         v-bind:msg="o_msg_bubble.input_box.msg"
                         v-bind:msg_title="o_msg_bubble.input_box.title"
                         v-bind:msg_color="o_msg_bubble.input_box.color"
             ></bubble-box>
-
             <div class="input_item" v-for="item in msg_input_data" v-bind:class="{'textarea-big':item.type=='textareaBig'}">
                 <span v-if="item.type!='checkbox'">{{item.name}}</span>
                 <input v-if="item.type=='text'" type="text" class="exmo_input_text"
                        placeholder="{{item.placeholder||''}}"
                        v-model="item.value"
-                       v-on:change="change_verify(item.verify,item.value, $event)">
+                       v-on:change="change_verify(item.varify, item.value, $event)">
                 <!--v-on:change="(item.verify!=undefined)?item.verify(item.value,$event):null-->
 
 
@@ -190,6 +192,8 @@
             },
             change_verify:function (verify,value, $event)
             {
+
+                console.log(verify)
                 if(typeof verify == "function")
                 {
                     verify(value,$event)

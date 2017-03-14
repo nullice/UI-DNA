@@ -1,4 +1,34 @@
 <template>
+
+
+
+
+    <input-box
+            v-if="o_msg_input.var_panel.show"
+            v-bind:msg_title="o_msg_input.var_panel.title"
+            v-bind:msg_input_data="o_msg_input.var_panel.data"
+            v-bind:msg_callback="o_msg_input.var_panel.callback"
+            v-bind:msg_mode="o_msg_input.var_panel"
+            v-bind:msg="o_msg_input.var_panel.msg"
+    >
+    </input-box>
+
+
+    <input-box
+            v-if="o_msg_input.var_edit.show"
+            v-bind:msg_title="o_msg_input.var_edit.title"
+            v-bind:msg_input_data="o_msg_input.var_edit.data"
+            v-bind:msg_callback="o_msg_input.var_edit.callback"
+            v-bind:msg_mode="o_msg_input.var_edit"
+            v-bind:msg="o_msg_input.var_edit.msg"
+    >
+    </input-box>
+
+
+
+
+
+
     <a-area area_title="变量列表" area_id="var_panel"
             v-bind:area_suspend="true"
             v-bind:area_disable_fixbut="true"
@@ -12,26 +42,6 @@
                     v-bind:msg_color="o_msg_bubble.var_panel.color"
         ></bubble-box>
 
-        <input-box
-                v-if="o_msg_input.var_panel.show"
-                v-bind:msg_title="o_msg_input.var_panel.title"
-                v-bind:msg_input_data="o_msg_input.var_panel.data"
-                v-bind:msg_callback="o_msg_input.var_panel.callback"
-                v-bind:msg_mode="o_msg_input.var_panel"
-                v-bind:msg="o_msg_input.var_panel.msg"
-        >
-        </input-box>
-
-
-        <input-box
-                v-if="o_msg_input.var_edit.show"
-                v-bind:msg_title="o_msg_input.var_edit.title"
-                v-bind:msg_input_data="o_msg_input.var_edit.data"
-                v-bind:msg_callback="o_msg_input.var_edit.callback"
-                v-bind:msg_mode="o_msg_input.var_edit"
-                v-bind:msg="o_msg_input.var_edit.msg"
-        >
-        </input-box>
 
 
 
@@ -209,6 +219,7 @@
     export default {
         data(){
             return {
+
                 vars: varSystem.vars,
                 o_msg_bubble: UI_model.msg_bubble,
                 o_msg_input: UI_model.msg_input,
@@ -241,18 +252,6 @@
 
             add_new_var: function ()
             {
-                var data = [
-                    {name: "变量名", type: "text", varify: varify_varName},
-                    {name: "值", type: "textarea", cows: 2},
-                    {
-                        name: "类型", type: "select", options: [
-//                        {text: Lang.from('模板变量'), value: 'template'},
-                        {text: Lang.from('普通变量'), value: 'normal'},
-//                        {text: Lang.from('脚本变量'), value: 'script'}
-                    ], select: "normal"
-                    },
-//                    {name: "事实上", type: "textarea"},
-                ]
 
                 var varify_varName = function (x, e)
                 {
@@ -287,6 +286,21 @@
                         return true;
                     }
                 }
+                var data = [
+                    {name: "变量名", type: "text", varify: varify_varName},
+                    {name: "值", type: "textarea", cows: 2},
+                    {
+                        name: "类型", type: "select", options: [
+//                        {text: Lang.from('模板变量'), value: 'template'},
+                        {text: Lang.from('普通变量'), value: 'normal'},
+//                        {text: Lang.from('脚本变量'), value: 'script'}
+                    ], select: "normal"
+                    },
+//                    {name: "事实上", type: "textarea"},
+
+                ]
+
+
 
 
                 var ok_func = function (data, doneFunc)
