@@ -108,7 +108,7 @@
         props: ["memu_name", "options"],
         data(){
             return {
-                o_onoff_on: true,
+                o_onoff_on: false,
                 click_hidden: false,
 
 

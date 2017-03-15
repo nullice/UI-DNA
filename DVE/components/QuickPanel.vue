@@ -3,6 +3,41 @@
     <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true">
         <!--<pre> {{Gob_selectTypes|json}}</pre>-->
 
+
+        <!--派生-->
+        <div   class="quick_funcs_box"  >
+            <h4>派生</h4>
+            <div class="quick_buts">
+                <quick-icon-button v-bind:title="Lang.from('阵列')" name="permute_spacing"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.permute_spacing"
+                                   v-bind:func="func_permute_doSpacingGird">
+                    <i class="icon-libraries-sortIcons" style="font-size: 13px;"></i>
+                </quick-icon-button>
+
+                <quick-icon-button v-bind:title="Lang.from('网格排列')" name="permute_matrix"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.permute_matrix"
+                                   v-bind:func="func_permute_doMatrix">
+                    <i class="iconfont icon-duoxuanjuzhen"
+                       style="font-size: 13px;margin-bottom: -1px;display: inline-block;"></i>
+                </quick-icon-button>
+
+            </div>
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+
+
         <!--排列-->
         <div   class="quick_funcs_box"  >
             <h4>排列</h4>

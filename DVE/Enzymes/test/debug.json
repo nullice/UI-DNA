@@ -1,110 +1,31 @@
-[
-  {
-    "name": "4",
-    "id": 528,
-    "x": 47,
-    "y": 117,
-    "w": 37,
-    "h": 29,
-    "right": 84,
-    "bottom": 146,
-    "xy": 164,
-    "x_y": -70,
-    "rank_x": 0,
-    "rank_y": 5,
-    "rank_right": 0,
-    "rank_bottom": 5,
-    "rank_xy": 2,
-    "rank_x_y": 0
+{
+  "null": {
+    "value": {
+      "container": {
+        "container": {}
+      },
+      "form": "ReferenceFormType.ENUMERATED",
+      "desiredClass": "layer",
+      "enumeratedType": "ordinal",
+      "enumeratedValue": "targetEnum"
+    },
+    "type": "DescValueType.REFERENCETYPE"
   },
-  {
-    "name": "5",
-    "id": 529,
-    "x": 117,
-    "y": 114,
-    "w": 30,
-    "h": 27,
-    "right": 147,
-    "bottom": 141,
-    "xy": 231,
-    "x_y": 3,
-    "rank_x": 2,
-    "rank_y": 4,
-    "rank_right": 3,
-    "rank_bottom": 4,
-    "rank_xy": 4,
-    "rank_x_y": 1
+  "version": {
+    "value": 5,
+    "type": "DescValueType.INTEGERTYPE"
   },
-  {
-    "name": "1",
-    "id": 525,
-    "x": 66,
-    "y": 29,
-    "w": 22,
-    "h": 27,
-    "right": 88,
-    "bottom": 56,
-    "xy": 95,
-    "x_y": 37,
-    "rank_x": 1,
-    "rank_y": 2,
-    "rank_right": 1,
-    "rank_bottom": 0,
-    "rank_xy": 0,
-    "rank_x_y": 2
-  },
-  {
-    "name": "6",
-    "id": 530,
-    "x": 192,
-    "y": 100,
-    "w": 33,
-    "h": 36,
-    "right": 225,
-    "bottom": 136,
-    "xy": 292,
-    "x_y": 92,
-    "rank_x": 4,
-    "rank_y": 3,
-    "rank_right": 5,
-    "rank_bottom": 3,
-    "rank_xy": 5,
-    "rank_x_y": 3
-  },
-  {
-    "name": "2",
-    "id": 526,
-    "x": 121,
-    "y": 28,
-    "w": 22,
-    "h": 28,
-    "right": 143,
-    "bottom": 56,
-    "xy": 149,
-    "x_y": 93,
-    "rank_x": 3,
-    "rank_y": 0,
-    "rank_right": 2,
-    "rank_bottom": 1,
-    "rank_xy": 1,
-    "rank_x_y": 4
-  },
-  {
-    "name": "3",
-    "id": 527,
-    "x": 196,
-    "y": 28,
-    "w": 25,
-    "h": 32,
-    "right": 221,
-    "bottom": 60,
-    "xy": 224,
-    "x_y": 168,
-    "rank_x": 5,
-    "rank_y": 1,
-    "rank_right": 4,
-    "rank_bottom": 2,
-    "rank_xy": 3,
-    "rank_x_y": 5
+  "ID": {
+    "value": {
+      "0": {
+        "value": 49,
+        "type": "DescValueType.INTEGERTYPE"
+      },
+      "1": {
+        "value": 50,
+        "type": "DescValueType.INTEGERTYPE"
+      }
+    },
+    "type": "DescValueType.LISTTYPE"
   }
-]
+}

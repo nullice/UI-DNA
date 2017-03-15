@@ -605,7 +605,7 @@ Kinase.layer.getAppearance = function (targetReference, target)
     };
 
     var fillOpacity_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "fillOpacity")
-    if (fillOpacity_raw!= undefined && fillOpacity_raw.fillOpacity != undefined)
+    if (fillOpacity_raw != undefined && fillOpacity_raw.fillOpacity != undefined)
     {
         appearanceInfo.fillOpacity = fillOpacity_raw.fillOpacity.value;
         appearanceInfo.fillOpacity = appearanceInfo.fillOpacity / 255 * 100
@@ -613,7 +613,7 @@ Kinase.layer.getAppearance = function (targetReference, target)
     }
 
     var opacity_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "opacity")
-    if (opacity_raw!= undefined && opacity_raw.opacity != undefined)
+    if (opacity_raw != undefined && opacity_raw.opacity != undefined)
     {
         appearanceInfo.opacity = opacity_raw.opacity.value;
         appearanceInfo.opacity = appearanceInfo.opacity / 255 * 100
@@ -621,13 +621,13 @@ Kinase.layer.getAppearance = function (targetReference, target)
     }
 
     var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "visible")
-    if (visible_raw!= undefined && visible_raw.visible != undefined)
+    if (visible_raw != undefined && visible_raw.visible != undefined)
     {
         appearanceInfo.visible = visible_raw.visible.value;
     }
 
     var visible_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "mode")
-    if (visible_raw!= undefined &&  visible_raw.mode != undefined)
+    if (visible_raw != undefined && visible_raw.mode != undefined)
     {
         appearanceInfo.mode = visible_raw.mode.value.enumerationValue;
     }
@@ -2216,6 +2216,54 @@ Kinase.layer.setLayerRadian_byActive = function (radianInfo)
     var ad = mu.objectToActionDescriptor(adOb);
     var idtoolModalStateChanged = stringIDToTypeID("changePathDetails");
     executeAction(idtoolModalStateChanged, ad, DialogModes.NO);
+
+}
+
+
+/**
+ * 获取当前所有选中图层的范围，x,y,h,w, right, bottom
+ * @param ids 可指定 id 数组，如如不提供将获取当前选中的图层
+ * @returns {{x: *, y: *, h: number, w: number, right: *, bottom: *}}
+ */
+Kinase.layer.getLayersRange = function (ids)
+{
+
+    if (ids == undefined)
+    {
+        var ids = Kinase.layer.getTargetLayersID()
+    }
+
+
+    var maxX = null, maxY = null, maxRight = null, maxBottom = null;
+
+    for (var i = 0; i < ids.length; i++)
+    {
+        var bound = Kinase.layer.getLayerBounds(Kinase.REF_LayerID, ids[i])
+        if (maxX === null || bound.x < maxX)
+        {
+            maxX = bound.x;
+        }
+
+        if (maxY === null || bound.y < maxY)
+        {
+            maxY = bound.y;
+        }
+
+        if (maxRight === null || bound.right > maxRight)
+        {
+            maxRight = bound.right
+        }
+
+        if (maxBottom === null || bound.bottom > maxBottom)
+        {
+            maxBottom = bound.bottom
+        }
+    }
+
+
+    return {
+        x: maxX, y: maxY, h: maxBottom-maxY, w: maxRight-maxX, right: maxRight, bottom: maxBottom
+    }
 
 }
 
@@ -5982,6 +6030,44 @@ Kinase.layer.creatNewShapeLayerBackBox_ByActive = function (layerName, padding, 
     Kinase.layer.creatNewShapeLayerSquarenss_ByActive(layerName, shapeInfo)
     Kinase.layer.moveActiveLayerOrder(Kinase.layer.getItemIndexBylayerID(trgetId) - 1)
 
+}
+
+/**
+ * 复制当前选中图层, 返回新图层 id 数组
+ * @returns {Array}
+ */
+Kinase.layer.copyLayer_byActive = function ()
+{
+
+    try
+    {
+        var ad = new ActionDescriptor();
+        var af = new ActionReference();
+        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        ad.putReference(charIDToTypeID("null"), af);
+        ad.putInteger(charIDToTypeID("Vrsn"), 5);
+        var adResult = executeAction(charIDToTypeID("Dplc"), ad, DialogModes.NO);
+        var obResult = mu.actionDescriptorToObject(adResult)
+
+        var ids = []
+        // $.writeln(json(obResult))
+        if (obResult["ID"]["value"] != undefined)
+        {
+            for (var i in obResult["ID"]["value"])
+            {
+                if (obResult["ID"]["value"][i]["value"] != undefined)
+                {
+                    ids.push(obResult["ID"]["value"][i]["value"])
+                }
+
+            }
+        }
+        return ids;
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.copyLayer_byActive:" + e)
+        return null
+    }
 }
 
 

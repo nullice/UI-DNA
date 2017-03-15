@@ -764,7 +764,7 @@ Enzymes.prototype._unEscape = function (str)
 
 function jsxBackCheck(returnValue, jsxCode)
 {
-    if (returnValue == "EvalScript error.")
+    if (returnValue.slice(0,17) == "EvalScript error.")
     {
         console.error(returnValue);
         console.error(jsxCode)

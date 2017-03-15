@@ -759,9 +759,11 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         }
         else//删除 dataCaryon 值
         {
+            console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
+
             if (dataCaryon.layers[this.selectList[i].id] != undefined)
             {
-                changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, "", null, true)
+                _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, "", null, true)
             }
 
         }
