@@ -796,7 +796,6 @@
                     baseLayersOrder(true)
                 } else
                 {
-
                     baseLayersOrder()
                 }
 

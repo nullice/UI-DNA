@@ -90,6 +90,10 @@ Kinase.app.getFontPostScriptName_byFontFamilyList = function (fontFamilyList)
 Kinase.app.getFontPostScriptName_byFontPostScriptName = function (fontFamilyList)
 {
 
+
+if(app.fonts == undefined)    return null;
+
+
     for (var i = 0; i < fontFamilyList.length; i++)
     {
         for (var x = 0; x < app.fonts.length; x++)
@@ -2681,7 +2685,7 @@ Kinase.layer.mirrorLayer_byActive = function (direction)
                 "type": "DescValueType.ENUMERATEDTYPE"
             }
         }
-    }else
+    } else
     {
         var adOb = {
             "null": {
@@ -2721,7 +2725,7 @@ Kinase.layer.mirrorLayer_byActive = function (direction)
         }
     }
 
-    mu.executeActionObjcet(charIDToTypeID( "Trnf" ), adOb);
+    mu.executeActionObjcet(charIDToTypeID("Trnf"), adOb);
 
 }
 
@@ -6279,6 +6283,51 @@ Kinase.layer.closeLayerSet_byActive = function ()
             activeDocument.activeLayer.link(oldLinkedLayers[x]);
     }
 }
+
+
+/**
+ * 拼合选中图层
+ */
+Kinase.layer.mergeLayer_byActive = function ()
+{
+    try
+    {
+        executeAction(charIDToTypeID("Mrg2"), new ActionDescriptor(), DialogModes.NO);
+    }
+    catch (e)
+    {
+        $.writeln("err : Kinase.layer.mergeLayer_byActive:" + e)
+    }
+}
+
+
+/**
+ * 栅格化当前选中图层
+ */
+Kinase.layer.rasterizeLayer_byActive = function ()
+{
+    try
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            }
+        }
+
+        mu.executeActionObjcet( stringIDToTypeID( "rasterizeLayer" ), adOb)
+    }
+    catch (e)
+    {
+        $.writeln("err : Kinase.layer.rasterizeLayer_byActive:" + e)
+    }
+}
+
 
 /**
  * 取消当前选中图层图层组，

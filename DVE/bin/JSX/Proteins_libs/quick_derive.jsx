@@ -127,7 +127,6 @@ Libs.quick_derive_mirror = function (infoObjec, envObject)
 {
     function _func()
     {
-
         var ids = Kinase.layer.getTargetLayersID()
         if (ids == undefined || ids.length === 0)
         {
@@ -148,11 +147,11 @@ Libs.quick_derive_mirror = function (infoObjec, envObject)
 
         if (infoObjec.direction != undefined && (infoObjec.direction == 1))
         {//垂直
-            var offset ={x:0, y:selectH}
+            var offset = {x: 0, y: selectH}
 
-        }else
+        } else
         {//水平
-            var offset ={x:selectW, y:0}
+            var offset = {x: selectW, y: 0}
         }
 
 
@@ -167,10 +166,194 @@ Libs.quick_derive_mirror = function (infoObjec, envObject)
 }
 
 
+Libs.quick_derive_longShadow = function (infoObjec, envObject)
+{
+
+    var count = 0
+    var notRezShape = false;//不栅格化
+    if (infoObjec['notRezShape'])
+    {
+        notRezShape = true
+    }
+    var setOpacity = false;
+    if (infoObjec['setOpacity'])
+    {
+        setOpacity = true
+    }
 
 
+    function _func()
+    {
+        var ids = Kinase.layer.getTargetLayersID()
+        if (ids == undefined || ids.length != 1)
+        {
+            return 0
+        }
+        var orgItemIndex = Kinase.layer.getItemIndexBylayerID(ids[0])
 
 
+        var len = infoObjec['length'] || 3;
+
+
+        var offset = {x: 1, y: 1}
+        offset = setOffsetByAngle(infoObjec.angle || 0, offset)
+
+        $.writeln("offset: " + json(offset))
+        var orgOffset = {
+            x: offset.x,
+            y: offset.y,
+        }
+        var stepLengt = 1
+
+        if (infoObjec['stepByStep'])//逐步完成
+        {
+            doEvery()
+        } else
+        {
+            doFastSample()
+        }
+
+
+        function doEvery()
+        {
+            var newIds = []
+            for (var i = 0; i < len; i++)
+            {
+                var ids = stepOnce()
+                for (var x in ids)
+                {
+                    newIds.push(ids[x])
+                }
+            }
+
+            Kinase.layer.selectLoad(newIds)
+            Kinase.layer.mergeLayer_byActive()
+            if (notRezShape != true)
+            {
+                Kinase.layer.rasterizeLayer_byActive()
+            }
+
+        }
+
+        function doFastSample()
+        {
+            if (len < 3)
+            {
+                doEvery();
+                return 0;
+            }
+
+            var newQueueIds = []
+
+            var id = stepQueue(3)
+            newQueueIds.push(id)
+            for (var i = 0; (count + stepLengt ) < len; i++)
+            {
+                id = stepQueue(3)
+                newQueueIds.push(id)
+            }
+
+            offset.x = orgOffset.x * (len - count)
+            offset.y = orgOffset.y * (len - count)
+            stepLengt = (len - count)
+            $.writeln(" -stepLengt:" + stepLengt)
+            var ids = stepOnce()
+            for (var x in ids)
+            {
+                newQueueIds.push(ids[x])
+            }
+            Kinase.layer.selectLoad(newQueueIds)
+            Kinase.layer.mergeLayer_byActive()
+            if (notRezShape != true)
+            {
+                Kinase.layer.rasterizeLayer_byActive()
+            }
+
+        }
+
+        function setOffsetByAngle(angle, offset)
+        {
+            var des = EnzJSX._psShadow2CssShadow(angle, 1, 9, 9)
+            $.writeln(" -des:" + json(des))
+
+            offset.x = des.x;
+            offset.y = des.y;
+            return normalize(offset)
+
+            function normalize(offset)
+            {
+                if (offset.x == 0)
+                {
+                    offset.x = 1;
+                }
+                var ratio = Math.abs(1 / offset.x);
+
+
+                offset.x = offset.x < 0 ? -1 : 1;
+
+                offset.y = offset.y * ratio
+
+
+                return offset
+            }
+
+        }
+
+        function stepOnce()
+        {
+            count += stepLengt;
+            var ids = Kinase.layer.copyLayer_byActive()
+            Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
+            Kinase.layer.moveActiveLayerOrder(orgItemIndex)
+            if (notRezShape != true)
+            {
+                Kinase.layer.rasterizeLayer_byActive()
+            }
+            if (setOpacity == true)
+            {
+                var initOpacity = 100;
+                if (infoObjec['initOpacity'] != undefined && infoObjec['initOpacity'] > 0)
+                {
+                    initOpacity = infoObjec['initOpacity'];
+                }
+
+                Kinase.layer.setAppearance_byActive({opacity: initOpacity * (1 - (count / len))})
+            }
+
+            return ids
+        }
+
+
+        function stepQueue(length)
+        {
+            var newIds = []
+            for (var i = 0; i < ( length || 5); i++)
+            {
+                var ids = stepOnce()
+
+                for (var x in ids)
+                {
+                    newIds.push(ids[x])
+                }
+            }
+
+            Kinase.layer.selectLoad(newIds)
+            Kinase.layer.mergeLayer_byActive()
+            offset.x = offset.x * length;
+            offset.y = offset.y * length
+            stepLengt = stepLengt * length
+            $.writeln(" -stepLengt:" + stepLengt)
+            return Kinase.layer.getLayerIdByActive()
+        }
+
+        $.writeln("stepLengt:" + stepLengt)
+    }
+
+
+    Proteins.doCon(_func, "派生长阴影", false)
+
+    return count
+}
 
 
 

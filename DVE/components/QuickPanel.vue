@@ -23,6 +23,21 @@
                     <i class="" style="  font-size: 16px;line-height: 13px;"
                        v-bind:class="{'icon-flip-horizontal':o_derive_mirror_direction==0,  'icon-flip-vertical':o_derive_mirror_direction==1, }"></i>
                 </quick-icon-button>
+
+
+                <quick-icon-button v-bind:title="Lang.from('派生长阴影')" name="derive_longShadow"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.derive_longShadow"
+                                   v-bind:func="func_derive_mirror">
+
+                    <span class="long-shadow-icon {{'deg'+o_derive_longShadow_direction}}">
+                              <i class="icon-diamonds " style="font-size: 13px;line-height: 13px;"
+                              ></i>
+                    </span>
+
+                </quick-icon-button>
+
+                icon-diamonds
             </div>
 
 
@@ -78,7 +93,6 @@
 
                 </div>
 
-
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_mirror}">
                     <div class="info">
                         镜像方向
@@ -100,6 +114,87 @@
                 </div>
 
 
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_longShadow}">
+                    <div class="info">
+                        长阴影方向
+
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">角度</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_longShadow_direction"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="inline-but-bar">
+                            <label class="exmo_button_icon mini" v-on:click="func_derive_longShadow_selectDirection">
+                                <i class="icon-rotation" style="font-size: 15px;line-height: 15px;"></i>
+
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">距离</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_longShadow_length"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">渐变</div>
+                        <div class="exmo_checkbox">
+                            <input type="checkbox" id="quick_derive_longShadow0"
+                                   v-model="o_derive_longShadow_effect">
+                            <div class="exmo_checkbox_shadow"></div>
+                            <label for="quick_derive_longShadow0">
+                                启用
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">不透明度</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_longShadow_opacity"
+                        >
+                    </div>
+
+                    <br><br>
+
+                    <div class="info">
+                        <span title="派生速度较慢，请谨慎选择距离">拖影*</span>
+
+                        <div class="func_enable">
+                            <div class="exmo_checkbox">
+                                <input type="checkbox" id="quick_derive_longShadow1"
+                                       v-model="o_derive_longShadow_stepByStep">
+                                <div class="exmo_checkbox_shadow"></div>
+                                <label for="quick_derive_longShadow1">
+                                    启用
+                                </label>
+                            </div>
+                        </div>
+
+
+                        <div v-show="o_derive_longShadow_stepByStep">
+
+                            <div class="exmo_inbox  longtext">
+                                <div class="exmo_box_name">初始不透明度</div>
+                                <input type="text" class="exmo_input_text"
+                                       v-model="o_derive_longShadow_initOpacity"
+                                >
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                </div>
             </div>
 
 
@@ -320,7 +415,6 @@
                     <!--路径角变换-->
                     <div class="fun_block">
                         <div class="info">
-
                             <span title="此功能封装自 David Jensen（photoshopscripts.wordpress.com）的脚本：Photoshop Corner Editor 1.0.6">路径角变换*</span>
                             <span v-show="setSystem.ui.quick.shape_enable_curnerEditor">  <br> 使用前先用
                                 <span class="click-text"
@@ -457,6 +551,16 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
+    .exmo_inbox.longtext {
+        .exmo_box_name {
+            width: 90px;
+        }
+
+        input.exmo_input_text {
+            width: calc(100% - 130px) !important;
+        }
+    }
+
     .exmo_area.quick_panel {
         padding-bottom: 0;
         overflow: visible;
@@ -477,6 +581,49 @@
         }
     }
 
+    .long-shadow-icon {
+        display: inline-block;
+        i {
+            font-size: 13px;
+            line-height: 13px;
+            transition: all .2s;
+            text-shadow: 0px 2px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg90 i {
+            text-shadow: 0px 4px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg45 i {
+            text-shadow: -2px 4px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg0 i {
+            text-shadow: -4px 0px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg-45 i {
+            text-shadow: -2px -4px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg-90 i {
+            text-shadow: 0px -4px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg-135 i {
+            text-shadow: 2px -4px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg180 i {
+            text-shadow: 4px 0px rgba(0, 0, 0, 0.29);
+        }
+
+        &.deg135 i {
+            text-shadow: 2px 4px rgba(0, 0, 0, 0.29);
+        }
+
+    }
+
     .quick_funcs_box {
         h4 {
             position: absolute;
@@ -489,6 +636,7 @@
         .quick_buts {
             font-size: 0;
             padding-left: 24px;
+
         }
 
         .quick_more_item {
@@ -504,6 +652,11 @@
                         width: calc(50% - 8px);
                     }
 
+                }
+
+                .exmo_checkbox {
+                    margin-left: 6px;
+                    margin-top: 3px;
                 }
 
             }
@@ -590,6 +743,8 @@
                     right: 10px;
                     top: 0px;
                     margin-top: 0px;
+                    -webkit-user-select: none;
+
                 }
             }
 
@@ -678,6 +833,7 @@
                     permute_matrix: false,
                     derive_matrix: false,
                     derive_mirror: false,
+                    derive_longShadow: false,
 
                 },
                 Lang: Lang,
@@ -839,9 +995,13 @@
                 o_derive_matrix_dX: 10,
                 o_derive_matrix_dY: 10,
                 o_derive_matrix_rename: 0,
-                o_derive_mirror_direction: 0
-
-
+                o_derive_mirror_direction: 0,
+                o_derive_longShadow_direction: -135,
+                o_derive_longShadow_length: 20,
+                o_derive_longShadow_stepByStep: false,
+                o_derive_longShadow_initOpacity: 95,
+                o_derive_longShadow_effect: true,
+                o_derive_longShadow_opacity: 80,
             }
 
         },
@@ -1227,6 +1387,24 @@
                         direction: this.o_derive_mirror_direction
                     }
                 )
+            },
+            func_derive_longShadow_selectDirection: function ()
+            {
+
+                if (this.o_derive_longShadow_direction % 45 != 0)
+                {
+                    var intNum = Math.floor(this.o_derive_longShadow_direction / 45)
+
+                    this.o_derive_longShadow_direction = intNum * 45
+                }
+
+                this.o_derive_longShadow_direction = this.o_derive_longShadow_direction - 45
+
+                if (this.o_derive_longShadow_direction == -180)
+                {
+                    this.o_derive_longShadow_direction = 180
+                }
+
             }
 
 
