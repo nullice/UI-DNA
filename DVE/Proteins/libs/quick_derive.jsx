@@ -68,8 +68,8 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
 
             if (+infoObjec.rename == 1)
             {
-                Kinase.layer.setLayerName_byActive(orgName + " -1" )
-            } else if(+infoObjec.rename == 2)
+                Kinase.layer.setLayerName_byActive(orgName + " -1")
+            } else if (+infoObjec.rename == 2)
             {
                 Kinase.layer.setLayerName_byActive(orgName + " -1-1")
             }
@@ -97,9 +97,10 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
                 if (infoObjec.rename != undefined && +infoObjec.rename == 1)
                 {
                     Kinase.layer.setLayerName_byActive(orgName + " -" + time)
-                } else if(infoObjec.rename != undefined && +infoObjec.rename == 2)
+
+                } else if (infoObjec.rename != undefined && +infoObjec.rename == 2)
                 {
-                    Kinase.layer.setLayerName_byActive(orgName + " -" + (r+1) + "-" + (c+1))
+                    Kinase.layer.setLayerName_byActive(orgName + " -" + (r + 1) + "-" + (c + 1))
                 }
 
             }
@@ -115,15 +116,54 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
 }
 
 
-Libs.quick_derive_mirror =function ()
+/**
+ * 派生镜像
+ * {
+ * direction:0,//水平镜像，垂直镜像
+ * }
+ * @returns {number}
+ */
+Libs.quick_derive_mirror = function (infoObjec, envObject)
 {
     function _func()
     {
 
+        var ids = Kinase.layer.getTargetLayersID()
+        if (ids == undefined || ids.length === 0)
+        {
+            return 0;
+        } else if (ids.length == 1)
+        {
+            var bounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
+            var selectW = bounds.w
+            var selectH = bounds.h
+
+
+        } else
+        {
+            var bounds = Kinase.layer.getLayersRange(ids)
+            var selectW = bounds.w
+            var selectH = bounds.h
+        }
+
+        if (infoObjec.direction != undefined && (infoObjec.direction == 1))
+        {//垂直
+            var offset ={x:0, y:selectH}
+
+        }else
+        {//水平
+            var offset ={x:selectW, y:0}
+        }
+
+
+        Kinase.layer.copyLayer_byActive()
+        Kinase.layer.mirrorLayer_byActive(infoObjec.direction)
+        Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
     }
-    
+
     Proteins.doCon(_func, "派生镜像", false)
     return 0
+
 }
 
 

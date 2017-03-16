@@ -16,12 +16,12 @@
                        style="font-size: 13px; display: inline-block;margin-bottom: -2px;"></i>
                 </quick-icon-button>
 
-                <quick-icon-button v-bind:title="Lang.from('网格排列')" name="permute_matrix"
+                <quick-icon-button v-bind:title="Lang.from('派生镜像')" name="derive_mirror"
                                    v-bind:click_more_func="click_onecMore"
-                                   v-bind:more_onoff="more_onoff.permute_matrix"
-                                   v-bind:func="func_permute_doMatrix">
-                    <i class="iconfont icon-duoxuanjuzhen"
-                       style="font-size: 13px;margin-bottom: -1px;display: inline-block;"></i>
+                                   v-bind:more_onoff="more_onoff.derive_mirror"
+                                   v-bind:func="func_derive_mirror">
+                    <i class="" style="  font-size: 16px;line-height: 13px;"
+                       v-bind:class="{'icon-flip-horizontal':o_derive_mirror_direction==0,  'icon-flip-vertical':o_derive_mirror_direction==1, }"></i>
                 </quick-icon-button>
             </div>
 
@@ -75,6 +75,27 @@
 
                     </div>
 
+
+                </div>
+
+
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_mirror}">
+                    <div class="info">
+                        镜像方向
+                        <div class="inline-but-bar">
+                            <input type="radio" class="exmo_icon_cheackbox" id="quick_derive_mirror_01"
+                                   value="0" name="group_derive_mirror"
+                                   v-model="o_derive_mirror_direction">
+                            <label class="exmo_button_icon mini" for="quick_derive_mirror_01">
+                                <i class="icon-flip-horizontal"></i></label>
+
+                            <input type="radio" class="exmo_icon_cheackbox" id="quick_derive_mirror_02"
+                                   value="1" name="group_derive_mirror"
+                                   v-model="o_derive_mirror_direction">
+                            <label class="exmo_button_icon mini" for="quick_derive_mirror_02">
+                                <i class="icon-flip-vertical"></i></label>
+                        </div>
+                    </div>
 
                 </div>
 
@@ -656,6 +677,7 @@
                     permute_spacing: false,
                     permute_matrix: false,
                     derive_matrix: false,
+                    derive_mirror: false,
 
                 },
                 Lang: Lang,
@@ -817,6 +839,7 @@
                 o_derive_matrix_dX: 10,
                 o_derive_matrix_dY: 10,
                 o_derive_matrix_rename: 0,
+                o_derive_mirror_direction: 0
 
 
             }
@@ -1197,7 +1220,13 @@
                         rename: this.o_derive_matrix_rename //重命名模式
                     }
                 )
-
+            },
+            func_derive_mirror: function ()
+            {
+                Proteins.exec("quick_derive_mirror", {
+                        direction: this.o_derive_mirror_direction
+                    }
+                )
             }
 
 

@@ -2262,7 +2262,7 @@ Kinase.layer.getLayersRange = function (ids)
 
 
     return {
-        x: maxX, y: maxY, h: maxBottom-maxY, w: maxRight-maxX, right: maxRight, bottom: maxBottom
+        x: maxX, y: maxY, h: maxBottom - maxY, w: maxRight - maxX, right: maxRight, bottom: maxBottom
     }
 
 }
@@ -2641,6 +2641,89 @@ Kinase.layer.moveLayerXY = function (targetReference, target, offsets)
     executeAction(charIDToTypeID('move'), desc, DialogModes.NO);
 }
 
+/**
+ * 翻转变换图层
+ * @param direction 0：水平翻转 ； 1：垂直翻转
+ */
+Kinase.layer.mirrorLayer_byActive = function (direction)
+{
+    if (direction == 0)
+    {//水平翻转
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "freeTransformCenterState": {
+                "value": {"enumerationType": "quadCenterState", "enumerationValue": "QCSAverage"},
+                "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "offset": {
+                "value": {
+                    "horizontal": {
+                        "value": {"doubleType": "pixelsUnit", "doubleValue": 0},
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "vertical": {
+                        "value": {"doubleType": "pixelsUnit", "doubleValue": 0},
+                        "type": "DescValueType.UNITDOUBLE"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "offset"
+            },
+            "width": {"value": {"doubleType": "percentUnit", "doubleValue": -100}, "type": "DescValueType.UNITDOUBLE"},
+            "interfaceIconFrameDimmed": {
+                "value": {"enumerationType": "interpolationType", "enumerationValue": "bicubic"},
+                "type": "DescValueType.ENUMERATEDTYPE"
+            }
+        }
+    }else
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "layer",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "freeTransformCenterState": {
+                "value": {
+                    "enumerationType": "quadCenterState",
+                    "enumerationValue": "QCSAverage"
+                }, "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "offset": {
+                "value": {
+                    "horizontal": {
+                        "value": {"doubleType": "pixelsUnit", "doubleValue": 0},
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "vertical": {
+                        "value": {"doubleType": "pixelsUnit", "doubleValue": 0},
+                        "type": "DescValueType.UNITDOUBLE"
+                    }
+                }, "type": "DescValueType.OBJECTTYPE", "objectType": "offset"
+            },
+            "height": {"value": {"doubleType": "percentUnit", "doubleValue": -100}, "type": "DescValueType.UNITDOUBLE"},
+            "interfaceIconFrameDimmed": {
+                "value": {
+                    "enumerationType": "interpolationType",
+                    "enumerationValue": "bicubic"
+                }, "type": "DescValueType.ENUMERATEDTYPE"
+            }
+        }
+    }
+
+    mu.executeActionObjcet(charIDToTypeID( "Trnf" ), adOb);
+
+}
 
 /**
  * 返回指定图层的形状属性对象，包括 x: 到左边界距离、y: 到顶边界距离、w: 宽度、h: 高度。
