@@ -5,14 +5,15 @@
 
 
         <!--派生-->
-        <div   class="quick_funcs_box"  >
+        <div class="quick_funcs_box">
             <h4>派生</h4>
             <div class="quick_buts">
-                <quick-icon-button v-bind:title="Lang.from('阵列')" name="permute_spacing"
+                <quick-icon-button v-bind:title="Lang.from('派生阵列')" name="derive_matrix"
                                    v-bind:click_more_func="click_onecMore"
-                                   v-bind:more_onoff="more_onoff.permute_spacing"
-                                   v-bind:func="func_permute_doSpacingGird">
-                    <i class="icon-libraries-sortIcons" style="font-size: 13px;"></i>
+                                   v-bind:more_onoff="more_onoff.derive_matrix"
+                                   v-bind:func="func_derive_matrix">
+                    <i class="iconfont  icon-bk-dot"
+                       style="font-size: 13px; display: inline-block;margin-bottom: -2px;"></i>
                 </quick-icon-button>
 
                 <quick-icon-button v-bind:title="Lang.from('网格排列')" name="permute_matrix"
@@ -22,24 +23,70 @@
                     <i class="iconfont icon-duoxuanjuzhen"
                        style="font-size: 13px;margin-bottom: -1px;display: inline-block;"></i>
                 </quick-icon-button>
-
             </div>
 
 
+            <div class="quick_mores">
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_matrix}">
+                    <div class="info">
+                        按指定行列重复复制选中图层并排布 <br><span class="sub"></span>
+                    </div>
+
+                    <div class="exmo_inbox min" title="为 0 时自动计算">
+                        <div class="exmo_box_name">行数</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_matrix_row"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min" title="为 0 时自动计算">
+                        <div class="exmo_box_name">列数</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_matrix_col"
+                        >
+                    </div>
+
+                    <br>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">水平间距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="0"
+                               v-model="o_derive_matrix_dX"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">垂直间距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="0"
+                               v-model="o_derive_matrix_dY"
+                        >
+                    </div>
 
 
+                    <div class="exmo_inbox " title="为 0 时自动计算">
+                        <div class="exmo_box_name">列数</div>
+                        <select class="exmo_select" v-model="o_derive_matrix_rename" style="width: 126px;">
+                            <option value="0"> {{"默认"|lang}}</option>
+                            <option value="1"> {{"原名 -序号"|lang}}</option>
+                            <option value="2"> {{"原名 -行号-列号"|lang}}</option>
+                        </select>
 
+                    </div>
+
+
+                </div>
+
+
+            </div>
 
 
         </div>
 
 
-
-
-
-
         <!--排列-->
-        <div   class="quick_funcs_box"  >
+        <div class="quick_funcs_box">
             <h4>排列</h4>
             <div class="quick_buts">
                 <quick-icon-button v-bind:title="Lang.from('间距排列')" name="permute_spacing"
@@ -67,7 +114,7 @@
             </div>
 
 
-            <div class="quick_mores" >
+            <div class="quick_mores">
                 <!--间距排列-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.permute_spacing}">
                     <div class="info">
@@ -196,7 +243,7 @@
         </div>
 
         <!--形状-->
-        <div  v-show="show_shape" class="quick_funcs_box">
+        <div v-show="show_shape" class="quick_funcs_box">
             <h4>形状</h4>
 
             <div class="quick_buts">
@@ -393,13 +440,11 @@
         padding-bottom: 0;
         overflow: visible;
 
-        &.suspend_off{
+        &.suspend_off {
             overflow: hidden;
             max-height: 22px;
         }
     }
-
-
 
     span.click-text {
         color: #5D88CB;
@@ -610,6 +655,7 @@
                     shape_advance: false,
                     permute_spacing: false,
                     permute_matrix: false,
+                    derive_matrix: false,
 
                 },
                 Lang: Lang,
@@ -766,6 +812,13 @@
                     }
 
                 ],
+                o_derive_matrix_col: 2,
+                o_derive_matrix_row: 2,
+                o_derive_matrix_dX: 10,
+                o_derive_matrix_dY: 10,
+                o_derive_matrix_rename: 0,
+
+
             }
 
         },
@@ -1058,7 +1111,6 @@
 
                 }
             },
-
             func_permute_updateSpacingGird: async function ()
             {
                 console.info("func_permute_updateSpacingGird")
@@ -1103,7 +1155,6 @@
                 await Proteins.exec("quick_permute_doPermuteBySpacing", paramOb)
                 this.func_permute_updateSpacingGird()
             },
-
             func_permute_doMatrix: async function ()
             {
                 var paramOb = {
@@ -1135,6 +1186,19 @@
                 await Proteins.exec("quick_permute_doPermuteByMatrixGrid", paramOb)
                 this.func_permute_updateSpacingGird()
             },
+            func_derive_matrix: function ()
+            {
+                Proteins.exec("quick_derive_matrix", {
+
+                        col: this.o_derive_matrix_col, //列数
+                        row: this.o_derive_matrix_row, //行数
+                        dX: this.o_derive_matrix_dX, //x 间距
+                        dY: this.o_derive_matrix_dY, //y 间距
+                        rename: this.o_derive_matrix_rename //重命名模式
+                    }
+                )
+
+            }
 
 
         },
@@ -1174,7 +1238,6 @@
 
                 },
             }
-
 
 
         },

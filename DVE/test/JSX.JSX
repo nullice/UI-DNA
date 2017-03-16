@@ -5,7 +5,13 @@ $.evalFile("E:/Work/GitHub/UI-DNA/DVE/Proteins/Proteins_lib.jsx")
 Proteins.evalJsxFolder("E:/Work/GitHub/UI-DNA/DVE/Proteins/libs")
 
 //--------------------------
-
+Libs.quick_derive_matrix({
+     col:2, //列数
+     row:2, //行数
+     dX:50, //x 间距
+     dY:20, //y 间距
+     rename:2
+})
 
 //Kinase.layer.creatNewShapeLayerSquarenss_ByActive("2122121",{fillColor:{r:255,g:0,b:12},w:60, h:100,lineWidth: 10})
     app.activeDocument.suspendHistory("sss", "longS()");

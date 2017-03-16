@@ -66,10 +66,10 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
         {
             var orgName = Kinase.layer.getLayerName_byActive()
 
-            if (infoObjec.rename === 1)
+            if (+infoObjec.rename == 1)
             {
                 Kinase.layer.setLayerName_byActive(orgName + " -1" )
-            } else if(infoObjec.rename === 2)
+            } else if(+infoObjec.rename == 2)
             {
                 Kinase.layer.setLayerName_byActive(orgName + " -1-1")
             }
@@ -94,10 +94,10 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
                 }
                 Kinase.layer.copyLayer_byActive()
                 Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
-                if (infoObjec.rename != undefined && infoObjec.rename === 1)
+                if (infoObjec.rename != undefined && +infoObjec.rename == 1)
                 {
                     Kinase.layer.setLayerName_byActive(orgName + " -" + time)
-                } else if(infoObjec.rename != undefined && infoObjec.rename === 2)
+                } else if(infoObjec.rename != undefined && +infoObjec.rename == 2)
                 {
                     Kinase.layer.setLayerName_byActive(orgName + " -" + (r+1) + "-" + (c+1))
                 }
@@ -108,7 +108,6 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
             var offset = {x: -((infoObjec.dX + orgX) * (col - 1 )), y: infoObjec.dY + orgY}
 
         }
-
     }
 
     Proteins.doCon(_func, " 派生阵列", false)
@@ -116,6 +115,16 @@ Libs.quick_derive_matrix = function (infoObjec, envObject)
 }
 
 
+Libs.quick_derive_mirror =function ()
+{
+    function _func()
+    {
+
+    }
+    
+    Proteins.doCon(_func, "派生镜像", false)
+    return 0
+}
 
 
 
