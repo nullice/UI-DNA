@@ -28,7 +28,7 @@
                 <quick-icon-button v-bind:title="Lang.from('派生长阴影')" name="derive_longShadow"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_longShadow"
-                                   v-bind:func="func_derive_mirror">
+                                   v-bind:func="func_derive_longShadow">
 
                     <span class="long-shadow-icon {{'deg'+o_derive_longShadow_direction}}">
                               <i class="icon-diamonds " style="font-size: 13px;line-height: 13px;"
@@ -145,6 +145,13 @@
                     </div>
 
                     <div class="exmo_inbox min">
+                        <div class="exmo_box_name">不透明度</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_longShadow_opacity"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
                         <div class="exmo_box_name">渐变</div>
                         <div class="exmo_checkbox">
                             <input type="checkbox" id="quick_derive_longShadow0"
@@ -157,10 +164,15 @@
                     </div>
 
                     <div class="exmo_inbox min">
-                        <div class="exmo_box_name">不透明度</div>
-                        <input type="text" class="exmo_input_text"
-                               v-model="o_derive_longShadow_opacity"
-                        >
+                        <div class="exmo_box_name">不栅格化</div>
+                        <div class="exmo_checkbox">
+                            <input type="checkbox" id="quick_derive_longShadow2"
+                                   v-model="o_derive_longShadow_notRezShape">
+                            <div class="exmo_checkbox_shadow"></div>
+                            <label for="quick_derive_longShadow2">
+                                启用
+                            </label>
+                        </div>
                     </div>
 
                     <br><br>
@@ -1002,6 +1014,7 @@
                 o_derive_longShadow_initOpacity: 95,
                 o_derive_longShadow_effect: true,
                 o_derive_longShadow_opacity: 80,
+                o_derive_longShadow_notRezShape: false,
             }
 
         },
@@ -1400,10 +1413,27 @@
 
                 this.o_derive_longShadow_direction = this.o_derive_longShadow_direction - 45
 
-                if (this.o_derive_longShadow_direction == -180)
+                if (this.o_derive_longShadow_direction <= -180)
                 {
                     this.o_derive_longShadow_direction = 180
                 }
+
+
+            },
+
+            func_derive_longShadow: function ()
+            {
+                Proteins.exec("quick_derive_longShadow", {
+                        notRezShape: this.o_derive_longShadow_notRezShape || false,//不栅格化图层
+                        angle: this.o_derive_longShadow_direction, //阴影角度
+                        length: this.o_derive_longShadow_length, //阴影长度
+                    effect: this.o_derive_longShadow_effect,//渐变
+                        opacity: this.o_derive_longShadow_opacity,//阴影不透明度
+                        stepByStep: this.o_derive_longShadow_stepByStep,//逐步产生阴影
+                        initOpacity: this.o_derive_longShadow_initOpacity,//逐步产生阴影-起始不透明
+                    }
+                )
+
 
             }
 

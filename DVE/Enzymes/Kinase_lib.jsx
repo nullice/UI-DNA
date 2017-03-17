@@ -91,7 +91,7 @@ Kinase.app.getFontPostScriptName_byFontPostScriptName = function (fontFamilyList
 {
 
 
-if(app.fonts == undefined)    return null;
+    if (app.fonts == undefined)    return null;
 
 
     for (var i = 0; i < fontFamilyList.length; i++)
@@ -5198,6 +5198,27 @@ Kinase.layer.setLayerEffects_ByList = function (listFunction, list, targetRefere
 }
 
 
+/**
+ * 清楚当前选中图层图层样式
+ */
+Kinase.layer.removeLayerEffects_byActive  = function ( )
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {"container": {}},
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "layer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            }, "type": "DescValueType.REFERENCETYPE"
+        }
+    }
+
+    mu.executeActionObjcet(stringIDToTypeID( "disableLayerStyle" ), adOb)
+}
+
+
 //END===========================[图层样式]========================
 
 
@@ -6320,7 +6341,7 @@ Kinase.layer.rasterizeLayer_byActive = function ()
             }
         }
 
-        mu.executeActionObjcet( stringIDToTypeID( "rasterizeLayer" ), adOb)
+        mu.executeActionObjcet(stringIDToTypeID("rasterizeLayer"), adOb)
     }
     catch (e)
     {

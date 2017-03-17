@@ -1,31 +1,604 @@
 {
-  "null": {
-    "value": {
-      "container": {
-        "container": {}
+  "value": {
+    "scale": {
+      "value": {
+        "doubleType": "percentUnit",
+        "doubleValue": 100
       },
-      "form": "ReferenceFormType.ENUMERATED",
-      "desiredClass": "layer",
-      "enumeratedType": "ordinal",
-      "enumeratedValue": "targetEnum"
+      "type": "DescValueType.UNITDOUBLE"
     },
-    "type": "DescValueType.REFERENCETYPE"
-  },
-  "version": {
-    "value": 5,
-    "type": "DescValueType.INTEGERTYPE"
-  },
-  "ID": {
-    "value": {
-      "0": {
-        "value": 49,
-        "type": "DescValueType.INTEGERTYPE"
+    "dropShadowMulti": {
+      "value": {
+        "0": {
+          "value": {
+            "enabled": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "present": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "showInDialog": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "mode": {
+              "value": {
+                "enumerationType": "blendMode",
+                "enumerationValue": "multiply"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "color": {
+              "value": {
+                "red": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "grain": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "blue": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                }
+              },
+              "type": "DescValueType.OBJECTTYPE",
+              "objectType": "RGBColor"
+            },
+            "opacity": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 35
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "useGlobalAngle": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "localLightingAngle": {
+              "value": {
+                "doubleType": "angleUnit",
+                "doubleValue": 90
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "distance": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 3
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "chokeMatte": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 0
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "blur": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 7
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "noise": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 0
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "antiAlias": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "transferSpec": {
+              "value": {
+                "name": {
+                  "value": "线性",
+                  "type": "DescValueType.STRINGTYPE"
+                }
+              },
+              "type": "DescValueType.OBJECTTYPE",
+              "objectType": "shapeCurveType"
+            },
+            "layerConceals": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            }
+          },
+          "type": "DescValueType.OBJECTTYPE",
+          "objectType": "dropShadow"
+        }
       },
-      "1": {
-        "value": 50,
-        "type": "DescValueType.INTEGERTYPE"
-      }
+      "type": "DescValueType.LISTTYPE"
     },
-    "type": "DescValueType.LISTTYPE"
-  }
+    "innerShadowMulti": {
+      "value": {
+        "0": {
+          "value": {
+            "enabled": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "present": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "showInDialog": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "mode": {
+              "value": {
+                "enumerationType": "blendMode",
+                "enumerationValue": "multiply"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "color": {
+              "value": {
+                "red": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "grain": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "blue": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                }
+              },
+              "type": "DescValueType.OBJECTTYPE",
+              "objectType": "RGBColor"
+            },
+            "opacity": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 35
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "useGlobalAngle": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "localLightingAngle": {
+              "value": {
+                "doubleType": "angleUnit",
+                "doubleValue": 90
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "distance": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 3
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "chokeMatte": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 0
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "blur": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 7
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "noise": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 0
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "antiAlias": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "transferSpec": {
+              "value": {
+                "name": {
+                  "value": "线性",
+                  "type": "DescValueType.STRINGTYPE"
+                }
+              },
+              "type": "DescValueType.OBJECTTYPE",
+              "objectType": "shapeCurveType"
+            }
+          },
+          "type": "DescValueType.OBJECTTYPE",
+          "objectType": "innerShadow"
+        }
+      },
+      "type": "DescValueType.LISTTYPE"
+    },
+    "solidFillMulti": {
+      "value": {
+        "0": {
+          "value": {
+            "enabled": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "present": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "showInDialog": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "mode": {
+              "value": {
+                "enumerationType": "blendMode",
+                "enumerationValue": "normal"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "color": {
+              "value": {
+                "red": {
+                  "value": 129.001922607422,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "grain": {
+                  "value": 129.001922607422,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "blue": {
+                  "value": 129.001922607422,
+                  "type": "DescValueType.DOUBLETYPE"
+                }
+              },
+              "type": "DescValueType.OBJECTTYPE",
+              "objectType": "RGBColor"
+            },
+            "opacity": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 100
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            }
+          },
+          "type": "DescValueType.OBJECTTYPE",
+          "objectType": "solidFill"
+        }
+      },
+      "type": "DescValueType.LISTTYPE"
+    },
+    "gradientFill": {
+      "value": {
+        "enabled": {
+          "value": true,
+          "type": "DescValueType.BOOLEANTYPE"
+        },
+        "present": {
+          "value": true,
+          "type": "DescValueType.BOOLEANTYPE"
+        },
+        "showInDialog": {
+          "value": true,
+          "type": "DescValueType.BOOLEANTYPE"
+        },
+        "mode": {
+          "value": {
+            "enumerationType": "blendMode",
+            "enumerationValue": "normal"
+          },
+          "type": "DescValueType.ENUMERATEDTYPE"
+        },
+        "opacity": {
+          "value": {
+            "doubleType": "percentUnit",
+            "doubleValue": 100
+          },
+          "type": "DescValueType.UNITDOUBLE"
+        },
+        "gradient": {
+          "value": {
+            "name": {
+              "value": "$$$/DefaultGradient/ForegroundToTransparent=Foreground to Transparent",
+              "type": "DescValueType.STRINGTYPE"
+            },
+            "gradientForm": {
+              "value": {
+                "enumerationType": "gradientForm",
+                "enumerationValue": "customStops"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "interfaceIconFrameDimmed": {
+              "value": 4096,
+              "type": "DescValueType.DOUBLETYPE"
+            },
+            "colors": {
+              "value": {
+                "0": {
+                  "value": {
+                    "color": {
+                      "value": {
+                        "red": {
+                          "value": 0,
+                          "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "grain": {
+                          "value": 0,
+                          "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "blue": {
+                          "value": 0,
+                          "type": "DescValueType.DOUBLETYPE"
+                        }
+                      },
+                      "type": "DescValueType.OBJECTTYPE",
+                      "objectType": "RGBColor"
+                    },
+                    "type": {
+                      "value": {
+                        "enumerationType": "colorStopType",
+                        "enumerationValue": "userStop"
+                      },
+                      "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "location": {
+                      "value": 0,
+                      "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "midpoint": {
+                      "value": 50,
+                      "type": "DescValueType.INTEGERTYPE"
+                    }
+                  },
+                  "type": "DescValueType.OBJECTTYPE",
+                  "objectType": "colorStop"
+                },
+                "1": {
+                  "value": {
+                    "color": {
+                      "value": {
+                        "red": {
+                          "value": 0,
+                          "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "grain": {
+                          "value": 0,
+                          "type": "DescValueType.DOUBLETYPE"
+                        },
+                        "blue": {
+                          "value": 0,
+                          "type": "DescValueType.DOUBLETYPE"
+                        }
+                      },
+                      "type": "DescValueType.OBJECTTYPE",
+                      "objectType": "RGBColor"
+                    },
+                    "type": {
+                      "value": {
+                        "enumerationType": "colorStopType",
+                        "enumerationValue": "userStop"
+                      },
+                      "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "location": {
+                      "value": 4096,
+                      "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "midpoint": {
+                      "value": 50,
+                      "type": "DescValueType.INTEGERTYPE"
+                    }
+                  },
+                  "type": "DescValueType.OBJECTTYPE",
+                  "objectType": "colorStop"
+                }
+              },
+              "type": "DescValueType.LISTTYPE"
+            },
+            "transparency": {
+              "value": {
+                "0": {
+                  "value": {
+                    "opacity": {
+                      "value": {
+                        "doubleType": "percentUnit",
+                        "doubleValue": 100
+                      },
+                      "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "location": {
+                      "value": 0,
+                      "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "midpoint": {
+                      "value": 50,
+                      "type": "DescValueType.INTEGERTYPE"
+                    }
+                  },
+                  "type": "DescValueType.OBJECTTYPE",
+                  "objectType": "transferSpec"
+                },
+                "1": {
+                  "value": {
+                    "opacity": {
+                      "value": {
+                        "doubleType": "percentUnit",
+                        "doubleValue": 0
+                      },
+                      "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "location": {
+                      "value": 4096,
+                      "type": "DescValueType.INTEGERTYPE"
+                    },
+                    "midpoint": {
+                      "value": 50,
+                      "type": "DescValueType.INTEGERTYPE"
+                    }
+                  },
+                  "type": "DescValueType.OBJECTTYPE",
+                  "objectType": "transferSpec"
+                }
+              },
+              "type": "DescValueType.LISTTYPE"
+            }
+          },
+          "type": "DescValueType.OBJECTTYPE",
+          "objectType": "gradientClassEvent"
+        },
+        "angle": {
+          "value": {
+            "doubleType": "angleUnit",
+            "doubleValue": -45
+          },
+          "type": "DescValueType.UNITDOUBLE"
+        },
+        "type": {
+          "value": {
+            "enumerationType": "gradientType",
+            "enumerationValue": "linear"
+          },
+          "type": "DescValueType.ENUMERATEDTYPE"
+        },
+        "reverse": {
+          "value": false,
+          "type": "DescValueType.BOOLEANTYPE"
+        },
+        "dither": {
+          "value": false,
+          "type": "DescValueType.BOOLEANTYPE"
+        },
+        "align": {
+          "value": true,
+          "type": "DescValueType.BOOLEANTYPE"
+        },
+        "scale": {
+          "value": {
+            "doubleType": "percentUnit",
+            "doubleValue": 100
+          },
+          "type": "DescValueType.UNITDOUBLE"
+        },
+        "offset": {
+          "value": {
+            "horizontal": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 0
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "vertical": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 0
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            }
+          },
+          "type": "DescValueType.OBJECTTYPE",
+          "objectType": "paint"
+        }
+      },
+      "type": "DescValueType.OBJECTTYPE",
+      "objectType": "gradientFill"
+    },
+    "frameFXMulti": {
+      "value": {
+        "0": {
+          "value": {
+            "enabled": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "present": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "showInDialog": {
+              "value": true,
+              "type": "DescValueType.BOOLEANTYPE"
+            },
+            "style": {
+              "value": {
+                "enumerationType": "frameStyle",
+                "enumerationValue": "insetFrame"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "paintType": {
+              "value": {
+                "enumerationType": "frameFill",
+                "enumerationValue": "solidColor"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "mode": {
+              "value": {
+                "enumerationType": "blendMode",
+                "enumerationValue": "normal"
+              },
+              "type": "DescValueType.ENUMERATEDTYPE"
+            },
+            "opacity": {
+              "value": {
+                "doubleType": "percentUnit",
+                "doubleValue": 100
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "size": {
+              "value": {
+                "doubleType": "pixelsUnit",
+                "doubleValue": 1
+              },
+              "type": "DescValueType.UNITDOUBLE"
+            },
+            "color": {
+              "value": {
+                "red": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "grain": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                },
+                "blue": {
+                  "value": 0,
+                  "type": "DescValueType.DOUBLETYPE"
+                }
+              },
+              "type": "DescValueType.OBJECTTYPE",
+              "objectType": "RGBColor"
+            },
+            "overprint": {
+              "value": false,
+              "type": "DescValueType.BOOLEANTYPE"
+            }
+          },
+          "type": "DescValueType.OBJECTTYPE",
+          "objectType": "frameFX"
+        }
+      },
+      "type": "DescValueType.LISTTYPE"
+    }
+  },
+  "type": "DescValueType.OBJECTTYPE",
+  "objectType": "null"
 }

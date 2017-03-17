@@ -1,132 +1,48 @@
 /**
- * Created by bgllj on 2017/3/9.
+ * Created by bgllj on 2017/3/16.
  */
+(function ()
+{
 
 
-/**
- * 派生 矩阵
- * {
+    /**
+     * 派生 矩阵
+     * {
  *      col:3, //列数
  *      row:2, //行数
  *      dX:50, //x 间距
  *      dX:50, //y 间距
  *      rename:0,1,2//0:photoshop 默认 1: “xx-1” ~"xx-99"‘；2："xx-1-1"~ "xx-2-4"
  * }
- * @param infoObjec
- * @param envObject
- * @returns {number}
- */
-Libs.quick_derive_matrix = function (infoObjec, envObject)
-{
-
-    if (infoObjec == undefined)
+     * @param infoObjec
+     * @param envObject
+     * @returns {number}
+     */
+    Libs.quick_derive_matrix = function (infoObjec, envObject)
     {
-        return;
-    }
 
-    var col = 1;
-    var row = 1;
-
-
-    if (infoObjec.col != undefined && infoObjec.col > 0)
-    {
-        col = infoObjec.col;
-    }
-
-    if (infoObjec.row != undefined && infoObjec.row > 0)
-    {
-        row = infoObjec.row;
-    }
-
-    var len = row * col
-
-
-    var ids = Kinase.layer.getTargetLayersID()
-    if (ids == undefined || ids.length === 0)
-    {
-        return 0;
-    } else if (ids.length == 1)
-    {
-        var bounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
-        var orgX = bounds.w
-        var orgY = bounds.h
-
-
-    } else
-    {
-        var bounds = Kinase.layer.getLayersRange(ids)
-        var orgX = bounds.w
-        var orgY = bounds.h
-    }
-
-
-    function _func()
-    {
-        if (infoObjec.rename != undefined && infoObjec.rename > 0)
+        if (infoObjec == undefined)
         {
-            var orgName = Kinase.layer.getLayerName_byActive()
-
-            if (+infoObjec.rename == 1)
-            {
-                Kinase.layer.setLayerName_byActive(orgName + " -1")
-            } else if (+infoObjec.rename == 2)
-            {
-                Kinase.layer.setLayerName_byActive(orgName + " -1-1")
-            }
-
+            return;
         }
 
-        var offset = {x: infoObjec.dX + orgX, y: 0}
-        var time = 0
-        for (var r = 0; r < row; r++)
+        var col = 1;
+        var row = 1;
+
+
+        if (infoObjec.col != undefined && infoObjec.col > 0)
         {
-            for (var c = 0; c < col; c++)
-            {
-                time++;
-                if (r == 0 && c == 0)
-                {
-                    continue;
-                }
-
-                if (c > 0)
-                {
-                    var offset = {x: infoObjec.dX + orgX, y: 0}
-                }
-                Kinase.layer.copyLayer_byActive()
-                Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
-                if (infoObjec.rename != undefined && +infoObjec.rename == 1)
-                {
-                    Kinase.layer.setLayerName_byActive(orgName + " -" + time)
-
-                } else if (infoObjec.rename != undefined && +infoObjec.rename == 2)
-                {
-                    Kinase.layer.setLayerName_byActive(orgName + " -" + (r + 1) + "-" + (c + 1))
-                }
-
-            }
-            // $.writeln("r::::" + -(infoObjec.dX * (col - 1))+","+infoObjec.dY)
-            // $.writeln("r::::" + -(infoObjec.dX * (col - 1))+","+infoObjec.dY)
-            var offset = {x: -((infoObjec.dX + orgX) * (col - 1 )), y: infoObjec.dY + orgY}
-
+            col = infoObjec.col;
         }
-    }
 
-    Proteins.doCon(_func, " 派生阵列", false)
-    return 0
-}
+        if (infoObjec.row != undefined && infoObjec.row > 0)
+        {
+            row = infoObjec.row;
+        }
+
+        var len = row * col
 
 
-/**
- * 派生镜像
- * {
- * direction:0,//水平镜像，垂直镜像
- * }
- * @returns {number}
- */
-Libs.quick_derive_mirror = function (infoObjec, envObject)
-{
-    function _func()
-    {
         var ids = Kinase.layer.getTargetLayersID()
         if (ids == undefined || ids.length === 0)
         {
@@ -134,226 +50,627 @@ Libs.quick_derive_mirror = function (infoObjec, envObject)
         } else if (ids.length == 1)
         {
             var bounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
-            var selectW = bounds.w
-            var selectH = bounds.h
+            var orgX = bounds.w
+            var orgY = bounds.h
 
 
         } else
         {
             var bounds = Kinase.layer.getLayersRange(ids)
-            var selectW = bounds.w
-            var selectH = bounds.h
-        }
-
-        if (infoObjec.direction != undefined && (infoObjec.direction == 1))
-        {//垂直
-            var offset = {x: 0, y: selectH}
-
-        } else
-        {//水平
-            var offset = {x: selectW, y: 0}
+            var orgX = bounds.w
+            var orgY = bounds.h
         }
 
 
-        Kinase.layer.copyLayer_byActive()
-        Kinase.layer.mirrorLayer_byActive(infoObjec.direction)
-        Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
-    }
-
-    Proteins.doCon(_func, "派生镜像", false)
-    return 0
-
-}
-
-
-Libs.quick_derive_longShadow = function (infoObjec, envObject)
-{
-
-    var count = 0
-    var notRezShape = false;//不栅格化
-    if (infoObjec['notRezShape'])
-    {
-        notRezShape = true
-    }
-    var setOpacity = false;
-    if (infoObjec['setOpacity'])
-    {
-        setOpacity = true
-    }
-
-
-    function _func()
-    {
-        var ids = Kinase.layer.getTargetLayersID()
-        if (ids == undefined || ids.length != 1)
+        function _func()
         {
-            return 0
-        }
-        var orgItemIndex = Kinase.layer.getItemIndexBylayerID(ids[0])
-
-
-        var len = infoObjec['length'] || 3;
-
-
-        var offset = {x: 1, y: 1}
-        offset = setOffsetByAngle(infoObjec.angle || 0, offset)
-
-        $.writeln("offset: " + json(offset))
-        var orgOffset = {
-            x: offset.x,
-            y: offset.y,
-        }
-        var stepLengt = 1
-
-        if (infoObjec['stepByStep'])//逐步完成
-        {
-            doEvery()
-        } else
-        {
-            doFastSample()
-        }
-
-
-        function doEvery()
-        {
-            var newIds = []
-            for (var i = 0; i < len; i++)
+            if (infoObjec.rename != undefined && infoObjec.rename > 0)
             {
-                var ids = stepOnce()
-                for (var x in ids)
+                var orgName = Kinase.layer.getLayerName_byActive()
+
+                if (+infoObjec.rename == 1)
                 {
-                    newIds.push(ids[x])
+                    Kinase.layer.setLayerName_byActive(orgName + " -1")
+                } else if (+infoObjec.rename == 2)
+                {
+                    Kinase.layer.setLayerName_byActive(orgName + " -1-1")
                 }
+
             }
 
-            Kinase.layer.selectLoad(newIds)
-            Kinase.layer.mergeLayer_byActive()
-            if (notRezShape != true)
+            var offset = {x: infoObjec.dX + orgX, y: 0}
+            var time = 0
+            for (var r = 0; r < row; r++)
             {
-                Kinase.layer.rasterizeLayer_byActive()
-            }
+                for (var c = 0; c < col; c++)
+                {
+                    time++;
+                    if (r == 0 && c == 0)
+                    {
+                        continue;
+                    }
 
+                    if (c > 0)
+                    {
+                        var offset = {x: infoObjec.dX + orgX, y: 0}
+                    }
+                    Kinase.layer.copyLayer_byActive()
+                    Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
+                    if (infoObjec.rename != undefined && +infoObjec.rename == 1)
+                    {
+                        Kinase.layer.setLayerName_byActive(orgName + " -" + time)
+
+                    } else if (infoObjec.rename != undefined && +infoObjec.rename == 2)
+                    {
+                        Kinase.layer.setLayerName_byActive(orgName + " -" + (r + 1) + "-" + (c + 1))
+                    }
+
+                }
+                // $.writeln("r::::" + -(infoObjec.dX * (col - 1))+","+infoObjec.dY)
+                // $.writeln("r::::" + -(infoObjec.dX * (col - 1))+","+infoObjec.dY)
+                var offset = {x: -((infoObjec.dX + orgX) * (col - 1 )), y: infoObjec.dY + orgY}
+
+            }
         }
 
-        function doFastSample()
+        Proteins.doCon(_func, " 派生阵列", false)
+        return 0
+    }
+
+    /**
+     * 派生镜像
+     * {
+ * direction:0,//水平镜像，垂直镜像
+ * }
+     * @returns {number}
+     */
+    Libs.quick_derive_mirror = function (infoObjec, envObject)
+    {
+        function _func()
         {
-            if (len < 3)
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined || ids.length === 0)
             {
-                doEvery();
                 return 0;
-            }
-
-            var newQueueIds = []
-
-            var id = stepQueue(3)
-            newQueueIds.push(id)
-            for (var i = 0; (count + stepLengt ) < len; i++)
+            } else if (ids.length == 1)
             {
-                id = stepQueue(3)
-                newQueueIds.push(id)
-            }
+                var bounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
+                var selectW = bounds.w
+                var selectH = bounds.h
 
-            offset.x = orgOffset.x * (len - count)
-            offset.y = orgOffset.y * (len - count)
-            stepLengt = (len - count)
-            $.writeln(" -stepLengt:" + stepLengt)
-            var ids = stepOnce()
-            for (var x in ids)
+
+            } else
             {
-                newQueueIds.push(ids[x])
-            }
-            Kinase.layer.selectLoad(newQueueIds)
-            Kinase.layer.mergeLayer_byActive()
-            if (notRezShape != true)
-            {
-                Kinase.layer.rasterizeLayer_byActive()
+                var bounds = Kinase.layer.getLayersRange(ids)
+                var selectW = bounds.w
+                var selectH = bounds.h
             }
 
-        }
+            if (infoObjec.direction != undefined && (infoObjec.direction == 1))
+            {//垂直
+                var offset = {x: 0, y: selectH}
 
-        function setOffsetByAngle(angle, offset)
-        {
-            var des = EnzJSX._psShadow2CssShadow(angle, 1, 9, 9)
-            $.writeln(" -des:" + json(des))
-
-            offset.x = des.x;
-            offset.y = des.y;
-            return normalize(offset)
-
-            function normalize(offset)
-            {
-                if (offset.x == 0)
-                {
-                    offset.x = 1;
-                }
-                var ratio = Math.abs(1 / offset.x);
-
-
-                offset.x = offset.x < 0 ? -1 : 1;
-
-                offset.y = offset.y * ratio
-
-
-                return offset
+            } else
+            {//水平
+                var offset = {x: selectW, y: 0}
             }
 
-        }
 
-        function stepOnce()
-        {
-            count += stepLengt;
-            var ids = Kinase.layer.copyLayer_byActive()
+            Kinase.layer.copyLayer_byActive()
+            Kinase.layer.mirrorLayer_byActive(infoObjec.direction)
             Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
-            Kinase.layer.moveActiveLayerOrder(orgItemIndex)
-            if (notRezShape != true)
-            {
-                Kinase.layer.rasterizeLayer_byActive()
-            }
-            if (setOpacity == true)
-            {
-                var initOpacity = 100;
-                if (infoObjec['initOpacity'] != undefined && infoObjec['initOpacity'] > 0)
-                {
-                    initOpacity = infoObjec['initOpacity'];
-                }
-
-                Kinase.layer.setAppearance_byActive({opacity: initOpacity * (1 - (count / len))})
-            }
-
-            return ids
         }
 
+        Proteins.doCon(_func, "派生镜像", false)
+        return 0
 
-        function stepQueue(length)
-        {
-            var newIds = []
-            for (var i = 0; i < ( length || 5); i++)
-            {
-                var ids = stepOnce()
-
-                for (var x in ids)
-                {
-                    newIds.push(ids[x])
-                }
-            }
-
-            Kinase.layer.selectLoad(newIds)
-            Kinase.layer.mergeLayer_byActive()
-            offset.x = offset.x * length;
-            offset.y = offset.y * length
-            stepLengt = stepLengt * length
-            $.writeln(" -stepLengt:" + stepLengt)
-            return Kinase.layer.getLayerIdByActive()
-        }
-
-        $.writeln("stepLengt:" + stepLengt)
     }
 
 
-    Proteins.doCon(_func, "派生长阴影", false)
+    var EFFECT_longShadow_gradient = {
+        "value": {
+            "scale": {
+                "value": {
+                    "doubleType": "percentUnit",
+                    "doubleValue": 100
+                },
+                "type": "DescValueType.UNITDOUBLE"
+            },
+            "gradientFill": {
+                "value": {
+                    "enabled": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "present": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "showInDialog": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "mode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "normal"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "opacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "gradient": {
+                        "value": {
+                            "name": {
+                                "value": "$$$/DefaultGradient/ForegroundToTransparent=Foreground to Transparent",
+                                "type": "DescValueType.STRINGTYPE"
+                            },
+                            "gradientForm": {
+                                "value": {
+                                    "enumerationType": "gradientForm",
+                                    "enumerationValue": "customStops"
+                                },
+                                "type": "DescValueType.ENUMERATEDTYPE"
+                            },
+                            "interfaceIconFrameDimmed": {
+                                "value": 4096,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "colors": {
+                                "value": {
+                                    "0": {
+                                        "value": {
+                                            "color": {
+                                                "value": {
+                                                    "red": {
+                                                        "value": 0,
+                                                        "type": "DescValueType.DOUBLETYPE"
+                                                    },
+                                                    "grain": {
+                                                        "value": 0,
+                                                        "type": "DescValueType.DOUBLETYPE"
+                                                    },
+                                                    "blue": {
+                                                        "value": 0,
+                                                        "type": "DescValueType.DOUBLETYPE"
+                                                    }
+                                                },
+                                                "type": "DescValueType.OBJECTTYPE",
+                                                "objectType": "RGBColor"
+                                            },
+                                            "type": {
+                                                "value": {
+                                                    "enumerationType": "colorStopType",
+                                                    "enumerationValue": "userStop"
+                                                },
+                                                "type": "DescValueType.ENUMERATEDTYPE"
+                                            },
+                                            "location": {
+                                                "value": 0,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            },
+                                            "midpoint": {
+                                                "value": 50,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "colorStop"
+                                    },
+                                    "1": {
+                                        "value": {
+                                            "color": {
+                                                "value": {
+                                                    "red": {
+                                                        "value": 0,
+                                                        "type": "DescValueType.DOUBLETYPE"
+                                                    },
+                                                    "grain": {
+                                                        "value": 0,
+                                                        "type": "DescValueType.DOUBLETYPE"
+                                                    },
+                                                    "blue": {
+                                                        "value": 0,
+                                                        "type": "DescValueType.DOUBLETYPE"
+                                                    }
+                                                },
+                                                "type": "DescValueType.OBJECTTYPE",
+                                                "objectType": "RGBColor"
+                                            },
+                                            "type": {
+                                                "value": {
+                                                    "enumerationType": "colorStopType",
+                                                    "enumerationValue": "userStop"
+                                                },
+                                                "type": "DescValueType.ENUMERATEDTYPE"
+                                            },
+                                            "location": {
+                                                "value": 4096,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            },
+                                            "midpoint": {
+                                                "value": 50,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "colorStop"
+                                    }
+                                },
+                                "type": "DescValueType.LISTTYPE"
+                            },
+                            "transparency": {
+                                "value": {
+                                    "0": {
+                                        "value": {
+                                            "opacity": {
+                                                "value": {
+                                                    "doubleType": "percentUnit",
+                                                    "doubleValue": 100
+                                                },
+                                                "type": "DescValueType.UNITDOUBLE"
+                                            },
+                                            "location": {
+                                                "value": 0,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            },
+                                            "midpoint": {
+                                                "value": 50,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "transferSpec"
+                                    },
+                                    "1": {
+                                        "value": {
+                                            "opacity": {
+                                                "value": {
+                                                    "doubleType": "percentUnit",
+                                                    "doubleValue": 0
+                                                },
+                                                "type": "DescValueType.UNITDOUBLE"
+                                            },
+                                            "location": {
+                                                "value": 4096,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            },
+                                            "midpoint": {
+                                                "value": 50,
+                                                "type": "DescValueType.INTEGERTYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "transferSpec"
+                                    }
+                                },
+                                "type": "DescValueType.LISTTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "gradientClassEvent"
+                    },
+                    "angle": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": -45
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "type": {
+                        "value": {
+                            "enumerationType": "gradientType",
+                            "enumerationValue": "linear"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "reverse": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "dither": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "align": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "scale": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 100
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "offset": {
+                        "value": {
+                            "horizontal": {
+                                "value": {
+                                    "doubleType": "percentUnit",
+                                    "doubleValue": 0
+                                },
+                                "type": "DescValueType.UNITDOUBLE"
+                            },
+                            "vertical": {
+                                "value": {
+                                    "doubleType": "percentUnit",
+                                    "doubleValue": 0
+                                },
+                                "type": "DescValueType.UNITDOUBLE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "paint"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "gradientFill"
+            },
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "null"
+    }
+    /**
+     * 派生长阴影
+     * {
+ *      notRezShape:false,//不栅格化图层
+ *      angle:135, //阴影角度
+ *      length:10, //阴影长度
+ *      opacity:89,//阴影不透明度
+ *      effect:true,//样式
+ *      stepByStep:false,//逐步产生阴影
+ *      initOpacity:100,//逐步产生阴影-起始不透明度
+ *
+ *
+ * }
+     * @param infoObjec
+     * @param envObject
+     * @returns {number}
+     */
+    Libs.quick_derive_longShadow = function (infoObjec, envObject)
+    {
 
-    return count
-}
+
+        function _func()
+        {
+
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined)
+            {
+                return 0
+            } else if (ids.length > 1)
+            {
+                for (var i = 0; i < ids.length; i++)
+                {
+                    Kinase.layer.selectLayer_byID(ids[i])
+                    execOnceLayer()
+                }
+            }else
+            {
+                execOnceLayer()
+            }
+
+
+            function execOnceLayer()
+            {
+
+                var count = 0
+                var notRezShape = false;//不栅格化
+                if (infoObjec['notRezShape'])
+                {
+                    notRezShape = true
+                }
+                var setOpacity = false;
+                if (infoObjec['opacity'] != undefined && infoObjec['opacity'] < 100)
+                {
+                    setOpacity = true
+                }
+
+
+                var orgItemIndex = Kinase.layer.getItemIndexBylayerID(ids[0])
+                var orgName = Kinase.layer.getLayerName_byActive()
+
+                var len = infoObjec['length'] || 3;
+
+
+                var offset = {x: 1, y: 1}
+                offset = setOffsetByAngle(infoObjec.angle || 0, offset)
+
+                $.writeln("offset: " + json(offset))
+                var orgOffset = {
+                    x: offset.x,
+                    y: offset.y,
+                }
+                var stepLengt = 1
+
+                if (infoObjec['stepByStep'])//逐步完成
+                {
+                    doEvery()
+                } else
+                {
+                    doFastSample()
+                }
+
+                if (orgName == undefined)
+                {
+                    orgName = Kinase.layer.getLayerName_byActive()
+                }
+                Kinase.layer.setLayerName_byActive("_" + orgName + "[" + infoObjec['angle'] + "°]")
+
+                if (infoObjec["effect"])
+                {
+                    EFFECT_longShadow_gradient.value.gradientFill.value.angle.value.doubleValue = +infoObjec.angle
+                    Kinase.layer.removeLayerEffects_byActive()
+                    Kinase.layer.setLayerEffectsObject(EFFECT_longShadow_gradient, Kinase.REF_ActiveLayer, null)
+                    Kinase.layer.setAppearance_byActive({
+                        fillOpacity: 0,
+                        opacity: 25,
+                    })
+                }
+
+                function doEvery()
+                {
+                    var newIds = []
+                    for (var i = 0; i < len; i++)
+                    {
+                        var ids = stepOnce()
+                        for (var x in ids)
+                        {
+                            newIds.push(ids[x])
+                        }
+                    }
+
+                    Kinase.layer.selectLoad(newIds)
+                    Kinase.layer.mergeLayer_byActive()
+                    if (notRezShape != true)
+                    {
+                        Kinase.layer.rasterizeLayer_byActive()
+                    }
+
+                }
+
+                function doFastSample()
+                {
+                    if (len < 3)
+                    {
+                        doEvery();
+                        return 0;
+                    }
+
+                    var newQueueIds = []
+
+                    var id = stepQueue(3)
+                    newQueueIds.push(id)
+                    for (var i = 0; (count + stepLengt ) < len; i++)
+                    {
+                        id = stepQueue(3)
+                        newQueueIds.push(id)
+                    }
+
+                    offset.x = orgOffset.x * (len - count)
+                    offset.y = orgOffset.y * (len - count)
+                    stepLengt = (len - count)
+                    // $.writeln(" -stepLengt:" + stepLengt)
+                    var ids = stepOnce()
+                    for (var x in ids)
+                    {
+                        newQueueIds.push(ids[x])
+                    }
+                    Kinase.layer.selectLoad(newQueueIds)
+                    Kinase.layer.mergeLayer_byActive()
+                    if (notRezShape != true)
+                    {
+                        Kinase.layer.rasterizeLayer_byActive()
+                    }
+
+                    if (setOpacity)
+                    {
+                        Kinase.layer.setAppearance_byActive({opacity: infoObjec['opacity']});
+                    }
+                }
+
+                function setOffsetByAngle(angle, offset)
+                {
+                    var des = EnzJSX._psShadow2CssShadow(angle, 1, 9, 9)
+                    // $.writeln(" -des:" + json(des))
+
+
+                    offset.x = des.x;
+                    offset.y = des.y;
+
+                    if (des.x == 0)
+                    {
+                        return offset
+                    }
+                    return normalize(offset)
+
+                    function normalize(offset)
+                    {
+                        if (offset.x == 0)
+                        {
+                            offset.x = 1;
+                        }
+                        var ratio = Math.abs(1 / offset.x);
+
+
+                        offset.x = offset.x < 0 ? -1 : 1;
+
+                        offset.y = offset.y * ratio
+
+
+                        return offset
+                    }
+
+                }
+
+                function stepOnce()
+                {
+                    count += stepLengt;
+                    var ids = Kinase.layer.copyLayer_byActive()
+                    Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
+                    Kinase.layer.moveActiveLayerOrder(orgItemIndex)
+                    if (notRezShape != true)
+                    {
+                        Kinase.layer.rasterizeLayer_byActive()
+                    }
+                    if (infoObjec['stepByStep'] && infoObjec['initOpacity'] < 100)
+                    {
+                        var initOpacity = 100;
+                        if (infoObjec['initOpacity'] != undefined && infoObjec['initOpacity'] > 0)
+                        {
+                            initOpacity = infoObjec['initOpacity'];
+                        }
+
+                        Kinase.layer.setAppearance_byActive({opacity: initOpacity * (1 - (count / len))})
+                    }
+
+                    return ids
+                }
+
+
+                function stepQueue(length)
+                {
+                    var newIds = []
+                    for (var i = 0; i < ( length || 5); i++)
+                    {
+                        var ids = stepOnce()
+
+                        for (var x in ids)
+                        {
+                            newIds.push(ids[x])
+                        }
+                    }
+
+                    Kinase.layer.selectLoad(newIds)
+                    Kinase.layer.mergeLayer_byActive()
+                    offset.x = offset.x * length;
+                    offset.y = offset.y * length
+                    stepLengt = stepLengt * length
+                    // $.writeln(" -stepLengt:" + stepLengt)
+                    return Kinase.layer.getLayerIdByActive()
+                }
+
+                // $.writeln("stepLengt:" + stepLengt)
+            }
+
+
+        }
+
+
+        Proteins.doCon(_func, "派生长阴影", true)
+
+        return count
+    }
+
+
+})()
+
 
 
 
