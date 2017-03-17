@@ -416,6 +416,432 @@
         "type": "DescValueType.OBJECTTYPE",
         "objectType": "null"
     }
+    var EFFECT_3D_depth_bottom = {
+        "value": {
+            "scale": {
+                "value": {
+                    "doubleType": "percentUnit",
+                    "doubleValue": 100
+                },
+                "type": "DescValueType.UNITDOUBLE"
+            },
+
+
+            "bevelEmboss": {
+                "value": {
+                    "enabled": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "present": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "showInDialog": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "highlightMode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "multiply"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "highlightColor": {
+                        "value": {
+                            "red": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "highlightOpacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "shadowMode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "multiply"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "shadowColor": {
+                        "value": {
+                            "red": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "shadowOpacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 50
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "bevelTechnique": {
+                        "value": {
+                            "enumerationType": "bevelTechnique",
+                            "enumerationValue": "softMatte"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "bevelStyle": {
+                        "value": {
+                            "enumerationType": "bevelEmbossStyle",
+                            "enumerationValue": "innerBevel"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "useGlobalAngle": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "localLightingAngle": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "localLightingAltitude": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 10
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "strengthRatio": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 1000
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "blur": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 2
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "bevelDirection": {
+                        "value": {
+                            "enumerationType": "bevelEmbossStampStyle",
+                            "enumerationValue": "in"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "transferSpec": {
+                        "value": {
+                            "name": {
+                                "value": "Linear",
+                                "type": "DescValueType.STRINGTYPE"
+                            },
+                            "curve": {
+                                "value": {
+                                    "0": {
+                                        "value": {
+                                            "horizontal": {
+                                                "value": 0,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            },
+                                            "vertical": {
+                                                "value": 0,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "curvePoint"
+                                    },
+                                    "1": {
+                                        "value": {
+                                            "horizontal": {
+                                                "value": 255,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            },
+                                            "vertical": {
+                                                "value": 255,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "curvePoint"
+                                    }
+                                },
+                                "type": "DescValueType.LISTTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "shapeCurveType"
+                    },
+                    "antialiasGloss": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "softness": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "useShape": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "useTexture": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "bevelEmboss"
+            },
+
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "null"
+    }
+    var EFFECT_3D_depth_top = {
+        "value": {
+            "scale": {
+                "value": {
+                    "doubleType": "percentUnit",
+                    "doubleValue": 100
+                },
+                "type": "DescValueType.UNITDOUBLE"
+            },
+
+            "bevelEmboss": {
+                "value": {
+                    "enabled": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "present": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "showInDialog": {
+                        "value": true,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "highlightMode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "multiply"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "highlightColor": {
+                        "value": {
+                            "red": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "highlightOpacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "shadowMode": {
+                        "value": {
+                            "enumerationType": "blendMode",
+                            "enumerationValue": "multiply"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "shadowColor": {
+                        "value": {
+                            "red": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "grain": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            },
+                            "blue": {
+                                "value": 0,
+                                "type": "DescValueType.DOUBLETYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "RGBColor"
+                    },
+                    "shadowOpacity": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 25
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "bevelTechnique": {
+                        "value": {
+                            "enumerationType": "bevelTechnique",
+                            "enumerationValue": "softMatte"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "bevelStyle": {
+                        "value": {
+                            "enumerationType": "bevelEmbossStyle",
+                            "enumerationValue": "innerBevel"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "useGlobalAngle": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "localLightingAngle": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 180
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "localLightingAltitude": {
+                        "value": {
+                            "doubleType": "angleUnit",
+                            "doubleValue": 10
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "strengthRatio": {
+                        "value": {
+                            "doubleType": "percentUnit",
+                            "doubleValue": 1000
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "blur": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 2
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "bevelDirection": {
+                        "value": {
+                            "enumerationType": "bevelEmbossStampStyle",
+                            "enumerationValue": "in"
+                        },
+                        "type": "DescValueType.ENUMERATEDTYPE"
+                    },
+                    "transferSpec": {
+                        "value": {
+                            "name": {
+                                "value": "Linear",
+                                "type": "DescValueType.STRINGTYPE"
+                            },
+                            "curve": {
+                                "value": {
+                                    "0": {
+                                        "value": {
+                                            "horizontal": {
+                                                "value": 0,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            },
+                                            "vertical": {
+                                                "value": 0,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "curvePoint"
+                                    },
+                                    "1": {
+                                        "value": {
+                                            "horizontal": {
+                                                "value": 255,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            },
+                                            "vertical": {
+                                                "value": 255,
+                                                "type": "DescValueType.DOUBLETYPE"
+                                            }
+                                        },
+                                        "type": "DescValueType.OBJECTTYPE",
+                                        "objectType": "curvePoint"
+                                    }
+                                },
+                                "type": "DescValueType.LISTTYPE"
+                            }
+                        },
+                        "type": "DescValueType.OBJECTTYPE",
+                        "objectType": "shapeCurveType"
+                    },
+                    "antialiasGloss": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "softness": {
+                        "value": {
+                            "doubleType": "pixelsUnit",
+                            "doubleValue": 0
+                        },
+                        "type": "DescValueType.UNITDOUBLE"
+                    },
+                    "useShape": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    },
+                    "useTexture": {
+                        "value": false,
+                        "type": "DescValueType.BOOLEANTYPE"
+                    }
+                },
+                "type": "DescValueType.OBJECTTYPE",
+                "objectType": "bevelEmboss"
+            }
+        },
+        "type": "DescValueType.OBJECTTYPE",
+        "objectType": "null"
+    }
+
+
     /**
      * 派生长阴影
      * {
@@ -449,15 +875,15 @@
                 for (var i = 0; i < ids.length; i++)
                 {
                     Kinase.layer.selectLayer_byID(ids[i])
-                    execOnceLayer()
+                    execOnceLayer(ids[i])
                 }
-            }else
+            } else
             {
-                execOnceLayer()
+                execOnceLayer(ids[0])
             }
 
 
-            function execOnceLayer()
+            function execOnceLayer(id)
             {
 
                 var count = 0
@@ -473,7 +899,7 @@
                 }
 
 
-                var orgItemIndex = Kinase.layer.getItemIndexBylayerID(ids[0])
+                var orgItemIndex = Kinase.layer.getItemIndexBylayerID(id)
                 var orgName = Kinase.layer.getLayerName_byActive()
 
                 var len = infoObjec['length'] || 3;
@@ -663,12 +1089,150 @@
         }
 
 
-        Proteins.doCon(_func, "派生长阴影", true)
+        Proteins.doCon(_func, "派生长阴影", false)
 
-        return count
+        return 0
     }
 
 
+    /**
+     * 派生厚度层
+     * {
+     *      angle:90, //角度
+     *      length:20, //厚度
+     *      bevelDirection:0,//斜面方向 0:in 1:stampOut
+     *      bottomShadowOpacity:25,//下部阴影不透明度
+     *      topShadowOpacity:25,//上部阴影不透明度
+     *      smooth:true,//表面平滑
+     *
+     *
+     * }
+     */
+    Libs.quick_derive_3Ddepth = function (infoObjec, envObject)
+    {
+        function _func()
+        {
+
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined)
+            {
+                return 0
+            } else if (ids.length > 1)
+            {
+                for (var i = 0; i < ids.length; i++)
+                {
+                    Kinase.layer.selectLayer_byID(ids[i])
+                    execOnceLayer(ids[i])
+                }
+            } else
+            {
+                execOnceLayer(ids[0])
+            }
+
+
+            function execOnceLayer(id)
+            {
+
+                var count = 0
+                var orgItemIndex = Kinase.layer.getItemIndexBylayerID(id)
+                var orgName = Kinase.layer.getLayerName_byActive()
+
+                var newIds = []
+                var ids = Kinase.layer.copyLayer_byActive()
+                Kinase.layer.removeLayerEffects_byActive()
+
+                if (infoObjec["bevelDirection"] == "stampOut")
+                {
+                    var bevelDirection = "stampOut"
+                } else
+                {
+                    var bevelDirection = "in"
+                }
+
+                EFFECT_3D_depth_bottom.value.bevelEmboss.value.bevelDirection.value.enumerationValue = bevelDirection;
+                EFFECT_3D_depth_bottom.value.bevelEmboss.value.shadowOpacity.value.doubleValue = +(infoObjec["bottomShadowOpacity"] || 25);
+                Kinase.layer.setLayerEffectsObject(EFFECT_3D_depth_bottom, Kinase.REF_ActiveLayer, null)
+                if (ids.length > 0) newIds.push(ids[0]);
+
+                ids = Kinase.layer.copyLayer_byActive()
+                Kinase.layer.removeLayerEffects_byActive()
+
+                EFFECT_3D_depth_top.value.bevelEmboss.value.bevelDirection.value.enumerationValue = bevelDirection;
+                EFFECT_3D_depth_top.value.bevelEmboss.value.shadowOpacity.value.doubleValue = +(infoObjec["topShadowOpacity"] || 50);
+                Kinase.layer.setLayerEffectsObject(EFFECT_3D_depth_top, Kinase.REF_ActiveLayer, null)
+                Kinase.layer.setAppearance_byActive({
+                    fillOpacity: 0,
+                    opacity: 100,
+                })
+                if (ids.length > 0) newIds.push(ids[0]);
+
+                Kinase.layer.selectLoad(newIds)
+                Kinase.layer.mergeLayer_byActive()
+
+
+                Kinase.layer.moveActiveLayerOrder(orgItemIndex)
+                var tempIds = [Kinase.layer.getLayerIdByActive()]
+                Libs.quick_derive_longShadow({
+                    "notRezShape": false,
+                    "angle": _value(infoObjec["angle"], 90),
+                    "length": _value(infoObjec["length"], 20),
+                    "effect": false,
+                    "opacity": "100",
+                    "stepByStep": false,
+                    "initOpacity": 95
+                })
+                Kinase.layer.moveActiveLayerOrder(orgItemIndex)
+                tempIds.push(Kinase.layer.getLayerIdByActive())
+                Kinase.layer.selectLoad(tempIds)
+                Kinase.layer.mergeLayer_byActive()
+
+                if (infoObjec["smooth"])
+                {
+                    Kinase.layer.loadSelection_byActive()
+                    surfaceBlur();
+                    Kinase.layer.cancelSelection_byActive()
+                }
+
+
+                // function stepOnce()
+                // {
+                //     count += stepLengt;
+                //     var ids = Kinase.layer.copyLayer_byActive()
+                //     Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
+                //     Kinase.layer.moveActiveLayerOrder(orgItemIndex)
+                //
+                //     return ids
+                // }
+
+            }
+
+
+        }
+
+
+        Proteins.doCon(_func, "派生3D厚度", false)
+
+        return
+    }
+
+
+    function surfaceBlur(radius, threshold)
+    {
+        if (radius === undefined)
+        {
+            radius = 32
+        }
+
+        if (threshold === undefined)
+        {
+            threshold = 24
+        }
+
+        var ad = new ActionDescriptor();
+        ad.putUnitDouble(charIDToTypeID("Rds "), charIDToTypeID("#Pxl"), radius);
+        ad.putInteger(charIDToTypeID("Thsh"), threshold);
+        executeAction(stringIDToTypeID("surfaceBlur"), ad, DialogModes.NO);
+    }
 })()
 
 

@@ -5201,7 +5201,7 @@ Kinase.layer.setLayerEffects_ByList = function (listFunction, list, targetRefere
 /**
  * 清楚当前选中图层图层样式
  */
-Kinase.layer.removeLayerEffects_byActive  = function ( )
+Kinase.layer.removeLayerEffects_byActive = function ()
 {
     var adOb = {
         "null": {
@@ -5215,7 +5215,7 @@ Kinase.layer.removeLayerEffects_byActive  = function ( )
         }
     }
 
-    mu.executeActionObjcet(stringIDToTypeID( "disableLayerStyle" ), adOb)
+    mu.executeActionObjcet(stringIDToTypeID("disableLayerStyle"), adOb)
 }
 
 
@@ -6141,12 +6141,62 @@ Kinase.layer.creatNewShapeLayerBackBox_ByActive = function (layerName, padding, 
 }
 
 /**
+ * 载入选区，从当前图层载入选区
+ */
+Kinase.layer.loadSelection_byActive = function ()
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {"container": {}},
+                "form": "ReferenceFormType.PROPERTY",
+                "desiredClass": "channel",
+                "property": "selection"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {
+                "container": {"container": {}},
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "channel",
+                "enumeratedType": "channel",
+                "enumeratedValue": "transparencyEnum"
+            }, "type": "DescValueType.REFERENCETYPE"
+        }
+    }
+
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+}
+
+
+Kinase.layer.cancelSelection_byActive = function ()
+{
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {"container": {}},
+                "form": "ReferenceFormType.PROPERTY",
+                "desiredClass": "channel",
+                "property": "selection"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {"enumerationType": "ordinal", "enumerationValue": "none"},
+            "type": "DescValueType.ENUMERATEDTYPE"
+        }
+    }
+
+
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
+}
+
+
+/**
  * 复制当前选中图层, 返回新图层 id 数组
  * @returns {Array}
  */
 Kinase.layer.copyLayer_byActive = function ()
 {
-
     try
     {
         var ad = new ActionDescriptor();
@@ -6370,7 +6420,10 @@ Kinase.layer.ungroupLayers_byActive = function ()
 
 }
 
-
+/**
+ * 为当前选中图层创建图层组
+ * @param name
+ */
 Kinase.layer.groupLayers_byActive = function (name)
 {
     var ad = new ActionDescriptor();
