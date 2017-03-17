@@ -93,6 +93,46 @@ DataCaryon.prototype.addLayer = function (layerListItem)
 }
 
 
+/**
+ * 复制一份 dataCaryonLayer ，给一个指定 id ，如果指定 id 已有 dataCaryon 将覆盖
+ * @param dataCaryonLayerId
+ * @param newId
+ * @returns {Promise.<null>}
+ */
+DataCaryon.prototype.copyLayerToNewId = async function (dataCaryonLayerId, newId)
+{
+
+    if (this.layers[dataCaryonLayerId] == undefined)
+    {
+        return null;
+    }
+
+    var temp = _.cloneDeep(this.layers[dataCaryonLayerId])
+    temp.name = await enzymes.getLayerName_byID(newId)
+    temp.id = newId
+    temp.index = await enzymes.getItemIndexBylayerID(newId)
+    this.layers[newId] = temp
+
+}
+
+/**
+ * 清除不存在图层的 dataCaryon
+ */
+DataCaryon.prototype.cleanLayers = async function ()
+{
+    var allIds = await enzymes.getAllLayerArray("id")
+
+    for (var x in this.layers)
+    {
+        if ( ARR.hasMember(allIds, this.layers[x].id)==false)
+        {
+            console.info(`[[delete dataCaryonLayer ]]id:${this.layers[x].id} , name:${this.layers[x].name}`)
+            delete this.layers[x]
+        }
+    }
+}
+
+
 DataCaryon.prototype.save = async function ()
 {
     this.info.status.saving = true;
@@ -541,9 +581,10 @@ DataCaryon.prototype.layerTags_addTags = function (layerId, tag)
     }
 
 
-    if(this.layerTags_hasTag(layerId, tag))
+    if (this.layerTags_hasTag(layerId, tag))
     {
-        return null /*已存在*/
+        return null
+        /*已存在*/
     }
 
     var tagsText = this.layers[layerId].more.$tags

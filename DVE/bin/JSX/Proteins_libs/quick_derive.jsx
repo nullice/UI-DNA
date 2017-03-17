@@ -26,6 +26,7 @@
             return;
         }
 
+        var newIds = [];
         var col = 1;
         var row = 1;
 
@@ -94,7 +95,9 @@
                     {
                         var offset = {x: infoObjec.dX + orgX, y: 0}
                     }
-                    Kinase.layer.copyLayer_byActive()
+
+                    var ids = Kinase.layer.copyLayer_byActive()
+                    newIds.push(ids)
                     Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
                     if (infoObjec.rename != undefined && +infoObjec.rename == 1)
                     {
@@ -114,7 +117,7 @@
         }
 
         Proteins.doCon(_func, " 派生阵列", false)
-        return 0
+        return newIds
     }
 
     /**
@@ -1192,6 +1195,8 @@
                     surfaceBlur();
                     Kinase.layer.cancelSelection_byActive()
                 }
+
+                Kinase.layer.setLayerName_byActive("_" + orgName + "[" + infoObjec["length"] + "dp]")
 
 
                 // function stepOnce()

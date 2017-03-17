@@ -34,14 +34,22 @@
                               <i class="icon-diamonds " style="font-size: 13px;line-height: 13px;"
                               ></i>
                     </span>
-
                 </quick-icon-button>
 
-                icon-diamonds
+
+                <quick-icon-button v-bind:title="Lang.from('派生厚度层')" name="derive_3D_depth"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.derive_3D_depth"
+                                   v-bind:func="func_derive_3Ddepth">
+                    <i class="iconfont icon-mianfenge derive-3ddepth-icon {{'deg'+o_derive_derive_3D_depth_direction}}"
+                       style="  display: inline-block; transition: all .2s;transform: rotate({{o_style_3ddepth_angle}}deg);line-height: 13px; font-size: 14px;"></i>
+                </quick-icon-button>
+
             </div>
 
 
             <div class="quick_mores">
+                <!--派生阵列-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_matrix}">
                     <div class="info">
                         按指定行列重复复制选中图层并排布 <br><span class="sub"></span>
@@ -87,12 +95,24 @@
                             <option value="1"> {{"原名 -序号"|lang}}</option>
                             <option value="2"> {{"原名 -行号-列号"|lang}}</option>
                         </select>
+                    </div>
 
+
+                    <div class="info">
+                        <div class="exmo_checkbox">
+                            <input type="checkbox" id="quick_derive_longShadow4"
+                                   v-model="o_derive_matrix_copyDataCaryon">
+                            <div class="exmo_checkbox_shadow"></div>
+                            <label for="quick_derive_longShadow4">
+                                复制 UI-DNA 属性
+                            </label>
+                        </div>
                     </div>
 
 
                 </div>
 
+                <!--派生镜像-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_mirror}">
                     <div class="info">
                         镜像方向
@@ -113,11 +133,10 @@
 
                 </div>
 
-
+                <!--派生长阴影-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_longShadow}">
                     <div class="info">
                         长阴影方向
-
                     </div>
 
                     <div class="exmo_inbox min">
@@ -135,7 +154,6 @@
                             </label>
                         </div>
                     </div>
-
 
                     <div class="exmo_inbox min">
                         <div class="exmo_box_name">距离</div>
@@ -179,7 +197,6 @@
 
                     <div class="info">
                         <span title="派生速度较慢，请谨慎选择距离">拖影*</span>
-
                         <div class="func_enable">
                             <div class="exmo_checkbox">
                                 <input type="checkbox" id="quick_derive_longShadow1"
@@ -191,9 +208,7 @@
                             </div>
                         </div>
 
-
                         <div v-show="o_derive_longShadow_stepByStep">
-
                             <div class="exmo_inbox  longtext">
                                 <div class="exmo_box_name">初始不透明度</div>
                                 <input type="text" class="exmo_input_text"
@@ -201,12 +216,73 @@
                                 >
                             </div>
                         </div>
+                    </div>
+
+                </div>
+
+                <!--派生厚度-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_3D_depth}">
+                    <div class="info">
+                        厚度层方向
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">角度</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_derive_3D_depth_direction"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="inline-but-bar">
+                            <label class="exmo_button_icon mini" v-on:click="func_derive_3D_depth_selectDirection">
+                                <i class="icon-rotation" style="font-size: 15px;line-height: 15px;"></i>
+
+                            </label>
+                        </div>
+                    </div>
 
 
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">距离</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_derive_3D_depth_length"
+                        >
+                    </div>
+
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">平滑斜面</div>
+                        <div class="exmo_checkbox">
+                            <input type="checkbox" id="quick_derive_longShadow3"
+                                   v-model="o_derive_derive_3D_depth_smooth">
+                            <div class="exmo_checkbox_shadow"></div>
+                            <label for="quick_derive_longShadow3">
+                                启用
+                            </label>
+                        </div>
+                    </div>
+
+                    <br>
+                    <div class="info">
+                        斜面不透明度
+                    </div>
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">顶部</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_derive_3D_depth_topShadowOpacity"
+                        >
+                    </div>
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">底部</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_derive_3D_depth_bottomShadowOpacity"
+                        >
                     </div>
 
 
                 </div>
+
             </div>
 
 
@@ -285,8 +361,6 @@
                     <br>
                     <div class="info">
                         行内垂直对齐方式
-
-
                         <div class="inline-but-bar"><input type="radio" class="exmo_icon_cheackbox"
                                                            id="quick_permute_01"
                                                            value="top" name="group_permut_spacing0"
@@ -846,6 +920,8 @@
                     derive_matrix: false,
                     derive_mirror: false,
                     derive_longShadow: false,
+                    derive_3D_depth: false,
+
 
                 },
                 Lang: Lang,
@@ -1007,6 +1083,7 @@
                 o_derive_matrix_dX: 10,
                 o_derive_matrix_dY: 10,
                 o_derive_matrix_rename: 0,
+                o_derive_matrix_copyDataCaryon: true,
                 o_derive_mirror_direction: 0,
                 o_derive_longShadow_direction: -135,
                 o_derive_longShadow_length: 20,
@@ -1015,6 +1092,14 @@
                 o_derive_longShadow_effect: true,
                 o_derive_longShadow_opacity: 80,
                 o_derive_longShadow_notRezShape: false,
+                o_derive_derive_3D_depth_direction: 90,
+                o_derive_derive_3D_depth_length: 20,
+                o_derive_derive_3D_depth_bevelDirection: 0,
+                o_derive_derive_3D_depth_bottomShadowOpacity: 50,
+                o_derive_derive_3D_depth_topShadowOpacity: 25,
+                o_derive_derive_3D_depth_smooth: true,
+
+
             }
 
         },
@@ -1382,9 +1467,10 @@
                 await Proteins.exec("quick_permute_doPermuteByMatrixGrid", paramOb)
                 this.func_permute_updateSpacingGird()
             },
-            func_derive_matrix: function ()
+            func_derive_matrix: async function ()
             {
-                Proteins.exec("quick_derive_matrix", {
+                var oldIds = await enzymes.getSelectLayerArray("id")
+                var newIds = await Proteins.exec("quick_derive_matrix", {
 
                         col: this.o_derive_matrix_col, //列数
                         row: this.o_derive_matrix_row, //行数
@@ -1393,7 +1479,32 @@
                         rename: this.o_derive_matrix_rename //重命名模式
                     }
                 )
+
+                if (this.o_derive_matrix_copyDataCaryon)
+                {
+                    this.deriveSyncdataCaryon(oldIds, newIds)
+                }
+
+
             },
+            deriveSyncdataCaryon: function (oldIds, newIds)
+            {
+                if (oldIds.length != undefined)
+                {
+                    for (var i = 0; i < newIds.length; i++)
+                    {
+                        for (var z = 0; z < newIds[i].length; z++)
+                        {
+                            if (oldIds[z] != undefined)
+                            {
+                                dataCaryon.copyLayerToNewId(oldIds[z], newIds[i][z])
+                            }
+                        }
+                    }
+                }
+
+            },
+
             func_derive_mirror: function ()
             {
                 Proteins.exec("quick_derive_mirror", {
@@ -1401,40 +1512,59 @@
                     }
                 )
             },
+
+            func_angle_switch: function (angle)
+            {
+                if (angle % 45 != 0)
+                {
+                    var intNum = Math.floor(angle / 45)
+
+                    angle = intNum * 45
+                }
+                angle = angle - 45
+
+                if (angle <= -180)
+                {
+                    angle = 180
+                }
+
+                return angle
+            },
+
             func_derive_longShadow_selectDirection: function ()
             {
-
-                if (this.o_derive_longShadow_direction % 45 != 0)
-                {
-                    var intNum = Math.floor(this.o_derive_longShadow_direction / 45)
-
-                    this.o_derive_longShadow_direction = intNum * 45
-                }
-
-                this.o_derive_longShadow_direction = this.o_derive_longShadow_direction - 45
-
-                if (this.o_derive_longShadow_direction <= -180)
-                {
-                    this.o_derive_longShadow_direction = 180
-                }
+                this.o_derive_longShadow_direction = this.func_angle_switch(this.o_derive_longShadow_direction)
+            },
+            func_derive_3D_depth_selectDirection: function ()
+            {
+                this.o_derive_derive_3D_depth_direction = this.func_angle_switch(this.o_derive_derive_3D_depth_direction)
 
 
             },
-
             func_derive_longShadow: function ()
             {
                 Proteins.exec("quick_derive_longShadow", {
                         notRezShape: this.o_derive_longShadow_notRezShape || false,//不栅格化图层
                         angle: this.o_derive_longShadow_direction, //阴影角度
                         length: this.o_derive_longShadow_length, //阴影长度
-                    effect: this.o_derive_longShadow_effect,//渐变
+                        effect: this.o_derive_longShadow_effect,//渐变
                         opacity: this.o_derive_longShadow_opacity,//阴影不透明度
                         stepByStep: this.o_derive_longShadow_stepByStep,//逐步产生阴影
                         initOpacity: this.o_derive_longShadow_initOpacity,//逐步产生阴影-起始不透明
                     }
                 )
-
-
+            },
+            func_derive_3Ddepth: function ()
+            {
+                Proteins.exec("quick_derive_3Ddepth", {
+                        angle: this.o_derive_derive_3D_depth_direction,
+                        length: this.o_derive_derive_3D_depth_length,
+                        bevelDirection: this.o_derive_derive_3D_depth_bevelDirection,
+                        bottomShadowOpacity: this.o_derive_derive_3D_depth_bottomShadowOpacity,
+                        topShadowOpacity: this.o_derive_derive_3D_depth_topShadowOpacity,
+                        smooth: this.o_derive_derive_3D_depth_smooth,
+                    }
+                )
             }
 
 
@@ -1473,6 +1603,29 @@
                 {
                     return this.Gob.selectTypes["shape"]
 
+                },
+            },
+            o_style_3ddepth_angle: {
+                get: function ()
+                {
+
+                    var x = this.o_derive_derive_3D_depth_direction
+                    x = (-(x - 90) - 30)
+
+                    if (this.o_derive_derive_3D_depth_direction == 180 || this.o_derive_derive_3D_depth_direction == -180)
+                    {
+                        return 240
+                    }
+
+                    if (this.o_derive_derive_3D_depth_direction == 135)
+                    {
+                        return 285
+                    }
+
+
+                    285
+
+                    return x
                 },
             }
 

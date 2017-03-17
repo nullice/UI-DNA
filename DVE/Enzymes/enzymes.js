@@ -248,6 +248,24 @@ Enzymes.prototype.getLayerName_byID = async function (layerID)
 
 
 /**
+ * 获取图层 ItemIndex ，根据图层 ID
+ * @param layerID
+ * @returns {Promise}
+ */
+Enzymes.prototype.getItemIndexBylayerID = async function (layerID)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `Kinase.layer.getItemIndexBylayerID(${layerID})`
+        evalScript(
+            _jsxCode
+            ,
+            (r) => {resolve(jsxBackCheck(r, _jsxCode))})
+    })
+}
+
+
+/**
  * 根据图层 ID 获取图层类型
  *
  * bitmap: 像素图层 layerKind:1
