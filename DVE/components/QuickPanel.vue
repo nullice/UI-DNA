@@ -48,7 +48,6 @@
 
             </div>
 
-
             <div class="quick_mores">
                 <!--变换平面角度-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_angle}">
@@ -97,8 +96,6 @@
                 </div>
 
             </div>
-
-
         </div>
 
 
@@ -729,6 +726,40 @@
         </div>
 
 
+        <!--文本-->
+        <div   v-show="show_text"  class="quick_funcs_box">
+            <h4>文本</h4>
+            <div class="quick_buts">
+                <quick-icon-button v-bind:title="Lang.from('最小化文本框')" name="text_minBounds"
+                                   v-bind:func="func_text_minBounds">
+                    <i class="icon-shrink"></i>
+                </quick-icon-button>
+
+
+
+            </div>
+
+            <div class="quick_mores">
+                <!--变换平面角度-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_angle}">
+                    <div class="info">
+                        变换平面角度
+                    </div>
+
+                    <div class="exmo_inbox " title="为 0 时自动计算">
+                        <div class="exmo_box_name">变换角</div>
+                        <select class="exmo_select" v-model="o_tansform_anglePanel" style="width: 126px;">
+                            <option value="0"> {{"左"|lang}}</option>
+                            <option value="1"> {{"右"|lang}}</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
     </a-area>
 
 
@@ -866,7 +897,7 @@
 
         .quick_buts {
             font-size: 0;
-            padding-left: 24px;
+            padding-left: 30px;
 
         }
 
@@ -1883,8 +1914,13 @@
                         centerState: this.o_tansform_rotation_centerState
                     }
                 )
-            }
+            },
+            func_text_minBounds: function ()
+            {
+                Proteins.exec("quick_text_minBounds", {})
+            },
 
+            
 
         },
         computed: {
@@ -1920,6 +1956,14 @@
                 get: function ()
                 {
                     return this.Gob.selectTypes["shape"]
+
+                },
+            },
+
+            show_text: {
+                get: function ()
+                {
+                    return this.Gob.selectTypes["text"]
 
                 },
             },

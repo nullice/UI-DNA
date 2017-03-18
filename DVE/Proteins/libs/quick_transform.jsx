@@ -140,26 +140,47 @@
         function _func()
         {
 
-            var orgBounds = Kinase.layer.getLayersRange(Kinase.layer.getTargetLayersID())
-            if (infoObjec["angleIndex"] == 1)
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined)
             {
-                var ad = adOb_rigth;
+                return 0
+            } else if (ids.length > 1)
+            {
+                for (var i = 0; i < ids.length; i++)
+                {
+                    Kinase.layer.selectLayer_byID(ids[i])
+                    angleOnce()
+                }
             } else
             {
-                var ad = adOb_left;
+                angleOnce()
             }
-            mu.executeActionObjcet(stringIDToTypeID("transform"), ad)
-
-            var newBounds = Kinase.layer.getLayersRange(Kinase.layer.getTargetLayersID())
 
 
-            Kinase.layer.setLayerBounds_byActive({
-                x: orgBounds.x + (orgBounds.w / 2) - (newBounds.w / 2)
-            })
+
+            function angleOnce()
+            {
+                var orgBounds = Kinase.layer.getLayersRange(Kinase.layer.getTargetLayersID())
+                if (infoObjec["angleIndex"] == 1)
+                {
+                    var ad = adOb_rigth;
+                } else
+                {
+                    var ad = adOb_left;
+                }
+                mu.executeActionObjcet(stringIDToTypeID("transform"), ad)
+
+                var newBounds = Kinase.layer.getLayersRange(Kinase.layer.getTargetLayersID())
+
+
+                Kinase.layer.setLayerBounds_byActive({
+                    x: orgBounds.x + (orgBounds.w / 2) - (newBounds.w / 2)
+                })
+            }
 
         }
 
-        Proteins.doCon(_func, "平面角度", false)
+        Proteins.doCon(_func, "平面角度", true)
         return 0
     }
 

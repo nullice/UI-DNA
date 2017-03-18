@@ -954,6 +954,9 @@ Kinase.layer.setLayerText_Quick = function (text, targetReference, target)
  */
 Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
 {
+
+    Kinase.layer.setLayerTextInfo({bounds: {w: 9999, h: 9999}}, targetReference, target)
+
     var layerKind = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     if (layerKind.layerKind.value != 3)
     {
