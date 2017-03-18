@@ -36,6 +36,10 @@
                     {{item.note}}{{{item.html}}}
                 </div>
 
+                <div class="notetext" v-if="(item.type=='notetext') "  >
+                    {{item.note}}{{{item.html}}}
+                </div>
+
                 <div class="value_input_textarea_box" >
 
                           <textarea

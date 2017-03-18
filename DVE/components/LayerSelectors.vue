@@ -193,6 +193,14 @@
                     },
                     {hr: true},
                     {
+                        value: 'rename_rename',
+                        label: '重命名图层',
+                        title: "重命名选中图层",
+                        selected_func: this.rename_rename,
+                        button: true,
+                        block: true,
+                    },
+                    {
                         value: 'rename_replace',
                         label: '图层名称替换',
                         title: "在选中图层中替换图层名称",
@@ -229,7 +237,7 @@
                     {
                         value: 'selectShot',
                         label: '记录',
-                        title: "根据图层名称寻找并选中图层",
+                        title: "记录当前所有图层选中状态",
                         selected_func: this.selectShot,
                         button: true,
 
@@ -237,10 +245,10 @@
                     {
                         value: 'selectRepaly',
                         label: '还原',
-                        title: "根据图层名称寻找并选中图层",
+                        title: "还原图层选中状态的记录",
                         selected_func: this.selectRepaly,
                         button: true,
-                        class:"rigth-but",
+                        class: "rigth-but",
 
                     },
 //
@@ -272,6 +280,28 @@
             {
                 Proteins.exec("quick_permute_doSelectLayersInveroOrder", {byName: true})
             },
+            rename_rename: async function ()
+            {
+                var data = [
+                    {name: "新名称", type: "text", value: "图层 $i"},
+                    {name: "", type: "notetext", html: "原名：$& <br>计数：$i <br>倒序计数：$-i"},
+//                    {name: "事实上", type: "textarea"},
+                ]
+
+                async function ok_func(data, doneFunc)
+                {
+//                    alert(data[0].value + data[1].value + data[2].checked)
+                    var time = await Proteins.exec("layersRename_replace", {
+                        findText: ".*",
+                        replace: data[0].value,
+                        useReg: true,
+                    })
+                    UI_action.show_message_bubble("layer_selector", "", Lang.from("已替换 ") + time + Lang.from(" 个图层"), "")
+                    doneFunc()
+                }
+
+                UI_action.show_message_input("layer_selector", "重命名图层", data, ok_func)
+            },
             rename_replace: async function ()
             {
                 var data = [
@@ -285,17 +315,17 @@
                 async function ok_func(data, doneFunc)
                 {
 //                    alert(data[0].value + data[1].value + data[2].checked)
-                    var time = await  Proteins.exec("layersRename_replace", {
+                    var param = {
                         findText: data[0].value,
                         replace: data[1].value,
                         useReg: data[2].checked,
-                    })
+                    }
+                    var time = await Proteins.exec("layersRename_replace", param);
                     UI_action.show_message_bubble("layer_selector", "", Lang.from("已替换 ") + time + Lang.from(" 个图层"), "")
                     doneFunc()
                 }
 
                 UI_action.show_message_input("layer_selector", "图层名称替换", data, ok_func)
-
             },
             find_select: async function ()
             {
@@ -393,12 +423,14 @@
                 ]
 
 
-                async function ok_func(data, doneFunc)
+                async
+                function ok_func(data, doneFunc)
                 {
-                    if(data[0].value=="")
+                    if (data[0].value == "")
                     {
                         UI_action.show_message_bubble("input_box", "", Lang.from("记录名不能为空"), "red");
-                    }else {
+                    } else
+                    {
                         dataCaryon["doc"]["selectShots"][data[0].value] = data[1].value
                         doneFunc()
                     }
@@ -437,7 +469,8 @@
                 }
                 data[0].select = x;
 
-                async function ok_func(data, doneFunc)
+                async
+                function ok_func(data, doneFunc)
                 {
 
                     if (data[0].select == undefined || data[0].select === "")
@@ -445,40 +478,40 @@
                         doneFunc()
 
                     }
-                        if (data[1].select == "repaly")
-                        {
-                            var selectIds = []
-                            try
-                            {
-                                if (dataCaryon["doc"]["selectShots"][data[0].select] != undefined)
-                                {
-                                    var selectJson = dataCaryon["doc"]["selectShots"][data[0].select]
-                                    selectIds = JSON.parse(selectJson)
-                                }
-                            } catch (e)
-                            {
-                            }
-
-                            if (selectIds["length"] != undefined)
-                            {
-                                enzymes.selectLoad(selectIds)
-                            }
-                        }
-                        else if (data[1].select == "rewrite")
-                        {
-                            var selectIds = []
-                            Gob.selectList.forEach(function (x) {selectIds.push(x.id)})
-                            var selectIdsJson = JSON.stringify(selectIds)
-                            dataCaryon["doc"]["selectShots"][data[0].select] = selectIdsJson
-                        }
-                        else if (data[1].select == "delete")
+                    if (data[1].select == "repaly")
+                    {
+                        var selectIds = []
+                        try
                         {
                             if (dataCaryon["doc"]["selectShots"][data[0].select] != undefined)
                             {
-                                delete  dataCaryon["doc"]["selectShots"][data[0].select];
+                                var selectJson = dataCaryon["doc"]["selectShots"][data[0].select]
+                                selectIds = JSON.parse(selectJson)
                             }
-                            doneFunc();
+                        } catch (e)
+                        {
                         }
+
+                        if (selectIds["length"] != undefined)
+                        {
+                            enzymes.selectLoad(selectIds)
+                        }
+                    }
+                    else if (data[1].select == "rewrite")
+                    {
+                        var selectIds = []
+                        Gob.selectList.forEach(function (x) {selectIds.push(x.id)})
+                        var selectIdsJson = JSON.stringify(selectIds)
+                        dataCaryon["doc"]["selectShots"][data[0].select] = selectIdsJson
+                    }
+                    else if (data[1].select == "delete")
+                    {
+                        if (dataCaryon["doc"]["selectShots"][data[0].select] != undefined)
+                        {
+                            delete  dataCaryon["doc"]["selectShots"][data[0].select];
+                        }
+                        doneFunc();
+                    }
 
                 }
 
