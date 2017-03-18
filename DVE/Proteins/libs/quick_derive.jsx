@@ -1142,6 +1142,7 @@
 
                 var newIds = []
                 var ids = Kinase.layer.copyLayer_byActive()
+                Kinase.layer.rasterizeLayer_byActive()
                 Kinase.layer.removeLayerEffects_byActive()
 
                 if (infoObjec["bevelDirection"] == "stampOut")
