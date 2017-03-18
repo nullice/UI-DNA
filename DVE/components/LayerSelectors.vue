@@ -99,6 +99,9 @@
         color: #666;
         margin: 4px 0;
         padding-bottom: 6px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         &:not(:nth-last-of-type(1)) {
             border-bottom: 1px solid rgba(0, 0, 0, 0.04);
