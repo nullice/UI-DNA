@@ -1,21 +1,60 @@
+<link rel="stylesheet" href="../bin/CSS/Vendor/animate.css">
 <template>
 
     <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true">
         <!--<pre> {{Gob_selectTypes|json}}</pre>-->
 
 
+        <!--变换-->
+        <div class="quick_funcs_box">
+            <h4>变换</h4>
+            <div class="quick_buts">
+                <quick-icon-button v-bind:title="Lang.from('变换平面角度')" name="transform_angle"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.transform_angle"
+                                   v-bind:func="func_tansform_anglePanel">
+
+                    <i class="icon-libraries-addSwatch transform-ap-icon a{{o_tansform_anglePanel}}"></i>
+                </quick-icon-button>
+            </div>
+
+
+            <div class="quick_mores">
+                <!--变换平面角度-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_angle}">
+                    <div class="info">
+                        变换平面角度
+                    </div>
+
+                    <div class="exmo_inbox " title="为 0 时自动计算">
+                        <div class="exmo_box_name">列数</div>
+                        <select class="exmo_select" v-model="o_tansform_anglePanel" style="width: 126px;">
+                            <option value="0"> {{"左"|lang}}</option>
+                            <option value="1"> {{"右"|lang}}</option>
+
+                        </select>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
         <!--派生-->
         <div class="quick_funcs_box">
             <h4>派生</h4>
             <div class="quick_buts">
-
                 <quick-icon-button v-bind:title="Lang.from('派生一个图层')"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:func="func_derive_copyOnce">
                     <i class="iconfont icon-fuzhi"
                        style="font-size: 15px;line-height: 13px; display: inline-block;margin-bottom: -2px;"></i>
                 </quick-icon-button>
-
 
                 <quick-icon-button v-bind:title="Lang.from('派生阵列')" name="derive_matrix"
                                    v-bind:click_more_func="click_onecMore"
@@ -33,7 +72,6 @@
                        v-bind:class="{'icon-flip-horizontal':o_derive_mirror_direction==0,  'icon-flip-vertical':o_derive_mirror_direction==1, }"></i>
                 </quick-icon-button>
 
-
                 <quick-icon-button v-bind:title="Lang.from('派生长阴影')" name="derive_longShadow"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_longShadow"
@@ -45,7 +83,6 @@
                     </span>
                 </quick-icon-button>
 
-
                 <quick-icon-button v-bind:title="Lang.from('派生厚度层')" name="derive_3D_depth"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_3D_depth"
@@ -53,10 +90,7 @@
                     <i class="iconfont icon-mianfenge derive-3ddepth-icon {{'deg'+o_derive_derive_3D_depth_direction}}"
                        style="  display: inline-block; transition: all .2s;transform: rotate({{o_style_3ddepth_angle}}deg);line-height: 13px; font-size: 14px;"></i>
                 </quick-icon-button>
-
             </div>
-
-
             <div class="quick_mores">
                 <!--派生阵列-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_matrix}">
@@ -293,8 +327,6 @@
                 </div>
 
             </div>
-
-
         </div>
 
 
@@ -325,8 +357,6 @@
                 <!--</quick-icon-button>-->
 
             </div>
-
-
             <div class="quick_mores">
                 <!--间距排列-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.permute_spacing}">
@@ -456,7 +486,6 @@
         <!--形状-->
         <div v-show="show_shape" class="quick_funcs_box">
             <h4>形状</h4>
-
             <div class="quick_buts">
 
                 <quick-icon-button v-bind:func="func_shape_combine" v-bind:in_title="Lang.from('合并形状')">
@@ -488,7 +517,6 @@
                 </quick-icon-button>
 
             </div>
-
             <div class="quick_mores ">
 
                 <!--圆角-->
@@ -635,8 +663,6 @@
                 </div>
 
             </div>
-
-
         </div>
 
 
@@ -716,6 +742,26 @@
         &.deg135 i {
             text-shadow: 2px 4px rgba(0, 0, 0, 0.29);
         }
+
+    }
+
+    .transform-ap-icon {
+
+        font-size: 4px;
+        line-height: 13px;
+        display: inline-block;
+        margin-bottom: -2px;
+        transition: all .3s;
+        -webkit-transform: rotatex(52deg) rotateY(9deg) rotateZ(36deg);
+
+        &.a0{
+            -webkit-transform: rotatex(52deg) rotateY(9deg) rotateZ(36deg);
+        }
+        &.a1{
+
+            -webkit-transform: rotatex(58deg) rotateY(-17deg) rotateZ(59deg);
+        }
+
 
     }
 
@@ -930,6 +976,7 @@
                     derive_mirror: false,
                     derive_longShadow: false,
                     derive_3D_depth: false,
+                    transform_angle: false
 
 
                 },
@@ -1107,7 +1154,7 @@
                 o_derive_derive_3D_depth_bottomShadowOpacity: 50,
                 o_derive_derive_3D_depth_topShadowOpacity: 25,
                 o_derive_derive_3D_depth_smooth: true,
-
+                o_tansform_anglePanel: 0,
 
             }
 
@@ -1593,6 +1640,13 @@
                         smooth: this.o_derive_derive_3D_depth_smooth,
                     }
                 )
+            },
+            func_tansform_anglePanel:function ()
+            {
+                Proteins.exec("quick_transform_anglePanel", {
+                    angleIndex:   this.o_tansform_anglePanel,
+                    }
+                )
             }
 
 
@@ -1649,13 +1703,10 @@
                     {
                         return 285
                     }
-
-
-                    285
-
                     return x
                 },
-            }
+            },
+
 
 
         },
