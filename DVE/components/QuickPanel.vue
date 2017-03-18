@@ -12,7 +12,9 @@
                 <quick-icon-button v-bind:title="Lang.from('变换平面角度')" name="transform_angle"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.transform_angle"
-                                   v-bind:func="func_tansform_anglePanel">
+                                   v-bind:func="func_tansform_anglePanel"
+                                   v-bind:func_right="func_tansform_anglePanel_switch">
+
                     <i class="icon-libraries-addSwatch transform-ap-icon a{{o_tansform_anglePanel}}"></i>
                 </quick-icon-button>
 
@@ -38,8 +40,8 @@
                 <quick-icon-button v-bind:title="Lang.from('旋转图层')" name="transform_rotation"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.transform_rotation"
-                                   v-bind:func="func_transform_rotation">
-
+                                   v-bind:func="func_transform_rotation"
+                                   v-bind:func_right="func_transform_rotation_cb">
                     <i class="icon-rotation"></i>
                 </quick-icon-button>
 
@@ -59,7 +61,6 @@
                         <select class="exmo_select" v-model="o_tansform_anglePanel" style="width: 126px;">
                             <option value="0"> {{"左"|lang}}</option>
                             <option value="1"> {{"右"|lang}}</option>
-
                         </select>
                     </div>
                 </div>
@@ -123,7 +124,10 @@
                 <quick-icon-button v-bind:title="Lang.from('派生镜像')" name="derive_mirror"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_mirror"
-                                   v-bind:func="func_derive_mirror">
+                                   v-bind:func="func_derive_mirror"
+                                   v-bind:func_right="func_derive_mirror_switch"
+
+                >
                     <i class="" style="  font-size: 16px;line-height: 13px;"
                        v-bind:class="{'icon-flip-horizontal':o_derive_mirror_direction==0,  'icon-flip-vertical':o_derive_mirror_direction==1, }"></i>
                 </quick-icon-button>
@@ -131,7 +135,11 @@
                 <quick-icon-button v-bind:title="Lang.from('派生长阴影')" name="derive_longShadow"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_longShadow"
-                                   v-bind:func="func_derive_longShadow">
+                                   v-bind:func="func_derive_longShadow"
+                                   v-bind:func_right="func_derive_longShadow_selectDirection"
+
+
+                >
 
                     <span class="long-shadow-icon {{'deg'+o_derive_longShadow_direction}}">
                               <i class="icon-diamonds " style="font-size: 13px;line-height: 13px;"
@@ -142,7 +150,9 @@
                 <quick-icon-button v-bind:title="Lang.from('派生厚度层')" name="derive_3D_depth"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_3D_depth"
-                                   v-bind:func="func_derive_3Ddepth">
+                                   v-bind:func="func_derive_3Ddepth"
+                                   v-bind:func_right="func_derive_3D_depth_selectDirection"
+                >
                     <i class="iconfont icon-mianfenge derive-3ddepth-icon {{'deg'+o_derive_derive_3D_depth_direction}}"
                        style="  display: inline-block; transition: all .2s;transform: rotate({{o_style_3ddepth_angle}}deg);line-height: 13px; font-size: 14px;"></i>
                 </quick-icon-button>
@@ -826,7 +836,7 @@
             line-height: 13px;
             margin: 0;
             padding: 0 3px;
-            padding-bottom: 2px;
+            padding-bottom: 0px;
             margin-top: -5px;
             width: 22px;
             text-align: right;
@@ -834,14 +844,13 @@
             font-weight: 900;
             color: rgba(41, 41, 41, 0.45);
 
-            &:hover{
+            &:hover {
                 border-bottom: 1px solid rgba(173, 173, 173, .4);
             }
 
-            &:focus{
+            &:focus {
                 border-bottom: 1px solid rgba(44, 115, 255, 0.94);
             }
-
 
         }
     }
@@ -1728,6 +1737,16 @@
                     }
                 )
             },
+            func_derive_mirror_switch: function ()
+            {
+                if (this.o_derive_mirror_direction == 1)
+                {
+                    this.o_derive_mirror_direction = 0
+                } else
+                {
+                    this.o_derive_mirror_direction = 1
+                }
+            },
 
             func_angle_switch: function (angle)
             {
@@ -1789,6 +1808,16 @@
                     }
                 )
             },
+            func_tansform_anglePanel_switch: function ()
+            {
+                if (this.o_tansform_anglePanel == 1)
+                {
+                    this.o_tansform_anglePanel = 0
+                } else
+                {
+                    this.o_tansform_anglePanel = 1
+                }
+            },
             func_tansform_scale: function ()
             {
                 if (this.o_tansform_scale_scale == undefined || this.o_tansform_scale_scale == "")
@@ -1835,6 +1864,22 @@
 
                 Proteins.exec("quick_transform_rotation", {
                         angle: angle,
+                        centerState: this.o_tansform_rotation_centerState
+                    }
+                )
+            },
+            func_transform_rotation_cb: function ()
+            {
+                if (this.o_tansform_rotation_angle == undefined || this.o_tansform_rotation_angle == "")
+                {
+                    var angle = 45;
+                } else
+                {
+                    var angle = this.o_tansform_rotation_angle
+                }
+
+                Proteins.exec("quick_transform_rotation", {
+                        angle: -angle,
                         centerState: this.o_tansform_rotation_centerState
                     }
                 )
