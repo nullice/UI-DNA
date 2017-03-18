@@ -8,6 +8,15 @@
         <div class="quick_funcs_box">
             <h4>派生</h4>
             <div class="quick_buts">
+
+                <quick-icon-button v-bind:title="Lang.from('派生一个图层')"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:func="func_derive_copyOnce">
+                    <i class="iconfont icon-fuzhi"
+                       style="font-size: 15px;line-height: 13px; display: inline-block;margin-bottom: -2px;"></i>
+                </quick-icon-button>
+
+
                 <quick-icon-button v-bind:title="Lang.from('派生阵列')" name="derive_matrix"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_matrix"
@@ -1467,6 +1476,25 @@
                 await Proteins.exec("quick_permute_doPermuteByMatrixGrid", paramOb)
                 this.func_permute_updateSpacingGird()
             },
+            func_derive_copyOnce: async function ()
+            {
+                var oldIds = await enzymes.getSelectLayerArray("id")
+                var newIds = await Proteins.exec("quick_derive_matrix", {
+
+                        col: 2, //列数
+                        row: 1, //行数
+                        dX: 30, //x 间距
+                        dY: 30, //y 间距
+                        rename: 0 //重命名模式
+                    }
+                )
+
+                if (this.o_derive_matrix_copyDataCaryon)
+                {
+                    this.deriveSyncdataCaryon(oldIds, newIds)
+                }
+            },
+
             func_derive_matrix: async function ()
             {
                 var oldIds = await enzymes.getSelectLayerArray("id")
