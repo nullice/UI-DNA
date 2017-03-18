@@ -2476,8 +2476,8 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
 
         if (typeof  boundsInfo.h == "string" && boundsInfo.h.toLowerCase()[boundsInfo.h.length - 1] == "x")
         {
-            var offset = +(boundsInfo.h.slice(0, boundsInfo.h.length - 1))*100;
-        }else
+            var offset = +(boundsInfo.h.slice(0, boundsInfo.h.length - 1)) * 100;
+        } else
         {
             var offset = (boundsInfo.h / oldradianInfo.h) * 100;
         }
@@ -2495,8 +2495,8 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
     {
         if (typeof  boundsInfo.w == "string" && boundsInfo.w.toLowerCase()[boundsInfo.w.length - 1] == "x")
         {
-            var offset = +(boundsInfo.w.slice(0, boundsInfo.w.length - 1))*100;
-        }else
+            var offset = +(boundsInfo.w.slice(0, boundsInfo.w.length - 1)) * 100;
+        } else
         {
             var offset = (boundsInfo.w / oldradianInfo.w) * 100;
         }
@@ -2532,7 +2532,64 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
 
 }
 
+/**
+ * 旋转当前选择图层
+ * @param boundsInfo { angle：角度，centerState：锚点位置（默认左上角，8为中心）}
+ */
+Kinase.layer.rotationLayer_byActive = function (boundsInfo)
+{
 
+    //描点位置
+    // ----------------------------------------------------------
+    // | (0):QCSCorner0   | (1):QCSSide0   |  (2):QCSCorner1    |
+    // | (7):QCSSide3     | (8):QCSAverage |  (3):QCSSide1      |
+    // | (6):QCSCorner3   | (5):QCSSide2   |  (4):QCSCorner2    |
+    // ----------------------------------------------------------
+    if (boundsInfo.centerState == undefined) boundsInfo.centerState = 0;
+    var centerStatelist = ["QCSCorner0", "QCSSide0", "QCSCorner1", "QCSSide1", "QCSCorner2", "QCSSide2", "QCSCorner3", "QCSSide3", "QCSAverage"]
+    var centerStateStr = centerStatelist[boundsInfo.centerState]
+
+
+    var adOb = {
+        "null": {
+            "value": {
+                "container": {"container": {}},
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "layer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "freeTransformCenterState": {
+            "value": {"enumerationType": "quadCenterState", "enumerationValue": centerStateStr},
+            "type": "DescValueType.ENUMERATEDTYPE"
+        },
+        "offset": {
+            "value": {
+                "horizontal": {
+                    "value": {"doubleType": "pixelsUnit", "doubleValue": 0},
+                    "type": "DescValueType.UNITDOUBLE"
+                },
+                "vertical": {
+                    "value": {"doubleType": "pixelsUnit", "doubleValue": 0},
+                    "type": "DescValueType.UNITDOUBLE"
+                }
+            }, "type": "DescValueType.OBJECTTYPE", "objectType": "offset"
+        },
+        "angle": {
+            "value": {"doubleType": "angleUnit", "doubleValue": +boundsInfo.angle},
+            "type": "DescValueType.UNITDOUBLE"
+        },
+        "interfaceIconFrameDimmed": {
+            "value": {"enumerationType": "interpolationType", "enumerationValue": "bicubic"},
+            "type": "DescValueType.ENUMERATEDTYPE"
+        }
+    }
+
+    mu.executeActionObjcet(charIDToTypeID("Trnf"), adOb);
+
+
+}
 Kinase._rltb2xywh = function (boundsInfo)
 {
 // {x: null, y: null, w: null, h: null,centerStatea,}

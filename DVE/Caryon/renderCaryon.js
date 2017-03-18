@@ -93,6 +93,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 var ob = {};
                 ob[item] = value;
 
+                ob.centerState = Gob.position.$anchor
                 Gob.stopSelectEvent = true;//渲染开始，关闭图层选中事件监听
                 await enzymes.selectLayer_byID(layerId);
                 logger.pin("enzymes", "RenderCaryon.prototype.renderPatch ", `enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)

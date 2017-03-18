@@ -166,7 +166,7 @@ GobCaryon.prototype.__new_position = function ()
         y: null,
         w: null,
         h: null,
-        $anchor: 0,
+        $anchor: null,
         assignment: {x: null, y: null, w: null, h: null, $anchor: null},
         enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
     }

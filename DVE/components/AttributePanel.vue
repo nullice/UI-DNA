@@ -1017,17 +1017,17 @@
                         br: true,
                     },
                     {
-                        value: '3',
+                        value: '7',
                         label_html: '<i class="icon-reference-cl " style="font-size: 21px;">',
                         label: ''
                     },
                     {
-                        value: '4',
+                        value: '8',
                         label_html: '<i class="icon-reference-cm" style="font-size: 21px;">',
                         label: ''
                     },
                     {
-                        value: '5',
+                        value: '3',
                         label_html: '<i class="icon-reference-cr" style="font-size: 21px;">',
                         label: ''
                     }, {
@@ -1040,13 +1040,13 @@
                         label: ''
                     },
                     {
-                        value: '7',
+                        value: '5',
                         label_html: '<i class="icon-reference-bm" style="font-size: 21px;">',
                         label: ''
                     }
                     ,
                     {
-                        value: '8',
+                        value: '4',
                         label_html: '<i class="icon-reference-br" style="font-size: 21px;">',
                         label: ''
                     }

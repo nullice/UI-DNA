@@ -2,7 +2,9 @@
 
     <div class="quick_but {{in_class}}">
         <div class="exmo_button_icon quick_but_icon" v-bind:class="{'more_on':more_onoff}"
-        v-on:click="func" v-bind:title="in_title">
+             v-on:click="func" v-on:contextmenu.prevent="click_right"
+
+             v-bind:title="in_title">
             <slot></slot>
         </div>
 
@@ -19,7 +21,7 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
     .quick_buts {
-        .hidden{
+        .hidden {
             visibility: hidden;
         }
 
@@ -54,7 +56,6 @@
                     background: linear-gradient(0deg, rgba(30, 118, 227, 0.56), rgba(49, 118, 227, 0));
                 }
 
-
                 i {
                     transform: rotate(90deg);
                     display: inline-block;
@@ -76,7 +77,7 @@
 </style>
 <script>
     export default{
-        props: ["func", "in_class","in_title", "click_more_func", "more_onoff","name"],
+        props: ["func", "func_right", "in_class", "in_title", "click_more_func", "more_onoff", "name"],
         data(){
             return {}
         },
@@ -87,15 +88,24 @@
                 {
                     this.click_more_func(this.name)
                 }
-            }
+            },
+            click_right: function ()
+            {
+                if (this.func_right != undefined)
+                {
+                    this.func_right()
+                }
+            },
+
+
         },
         computed: {
-            show_more:function ()
+            show_more: function ()
             {
-                if(this.more_onoff != undefined)
+                if (this.more_onoff != undefined)
                 {
                     return true
-                }else
+                } else
                 {
                     return false
                 }

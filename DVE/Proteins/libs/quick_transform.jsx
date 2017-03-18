@@ -191,14 +191,68 @@
 
             function scaleOnce()
             {
-                Kinase.layer.setLayerBounds_byActive({w: infoObjec.scale+"x", h: infoObjec.scale+"x", centerState: 8})
+                Kinase.layer.setLayerBounds_byActive({
+                    w: infoObjec.scale + "x",
+                    h: infoObjec.scale + "x",
+                    centerState: 8
+                })
 
+                if (infoObjec.scaleEffect)
+                {
+                    scaleEffect(infoObjec.scale)
+                }
+            }
+
+            function scaleEffect(scale)
+            {
+                var ad = new ActionDescriptor();
+                ad.putUnitDouble(charIDToTypeID("Scl "), charIDToTypeID("#Prc"), (+scale) * 100);
+                executeAction(stringIDToTypeID("scaleEffectsEvent"), ad, DialogModes.NO);
             }
 
         }
 
 
         Proteins.doCon(_func, "缩放", false)
+    }
+
+
+    Libs.quick_transform_rotation = function (infoObjec, envObject)
+    {
+
+        function _func()
+        {
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined)
+            {
+                return 0
+            } else if (ids.length > 1)
+            {
+                for (var i = 0; i < ids.length; i++)
+                {
+                    Kinase.layer.selectLayer_byID(ids[i])
+                    rotationOnce()
+                }
+            } else
+            {
+                rotationOnce()
+            }
+
+            function rotationOnce()
+            {
+               Kinase.layer.rotationLayer_byActive({
+                   angle :infoObjec.angle||0,
+                   centerState:infoObjec.centerState,
+
+               })
+            }
+
+
+        }
+
+
+        Proteins.doCon(_func, "旋转", false)
+
     }
 
 

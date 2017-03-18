@@ -16,18 +16,31 @@
                     <i class="icon-libraries-addSwatch transform-ap-icon a{{o_tansform_anglePanel}}"></i>
                 </quick-icon-button>
 
-                <div class="exmo_inbox inline-icon-input">
+                <div class="exmo_inbox inline-icon-input" title="{{'缩放比例'|lang}}">
                     <input type="text" class="exmo_input_text" placeholder="2"
-                           v-model="o_tansform_scale_scale"
-                           v-on:input="func_shape_radius">
+                           v-model="o_tansform_scale_scale">
                 </div>
 
-                <quick-icon-button v-bind:title="Lang.from('比例变换')" name="transform_angle"
+                <quick-icon-button v-bind:title="Lang.from('比例变换')" name="transform_scale"
                                    v-bind:click_more_func="click_onecMore"
-                                   v-bind:more_onoff="more_onoff.transform_angle"
+                                   v-bind:more_onoff="more_onoff.transform_scale"
+                                   v-bind:func_right="func_tansform_scale_cb"
                                    v-bind:func="func_tansform_scale">
 
                     <i class="iconfont  icon-jia-yuankuang"></i>
+                </quick-icon-button>
+
+                <div class="exmo_inbox inline-icon-input" title="{{'旋转角度'|lang}}">
+                    <input type="text" class="exmo_input_text" placeholder="45"
+                           v-model="o_tansform_rotation_angle">
+                </div>
+
+                <quick-icon-button v-bind:title="Lang.from('旋转图层')" name="transform_rotation"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.transform_rotation"
+                                   v-bind:func="func_transform_rotation">
+
+                    <i class="icon-rotation"></i>
                 </quick-icon-button>
 
 
@@ -49,10 +62,38 @@
 
                         </select>
                     </div>
-
-
                 </div>
 
+                <!--缩放-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_scale}">
+
+                    <div class="info">左键比例缩放，右键比例倒数缩放</div>
+                    <div class="info">
+                        <div class="exmo_checkbox">
+                            <input type="checkbox" id="quick_tansform_scale1"
+                                   v-model="o_tansform_scale_scaleEffect">
+                            <div class="exmo_checkbox_shadow"></div>
+                            <label for="quick_tansform_scale1">
+                                缩放图层样式
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!--旋转-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_rotation}">
+
+                    <div class="info">旋转锚点</div>
+                    <select-input block="true" default_value="0"
+                                  v-bind:value.sync="o_tansform_rotation_centerState"
+                                  v-bind:select_style="{width:'69px'}"
+                                  v-bind:list_style="{width:'147px'}"
+                                  v-bind:options="o_tansform_rotation_options"
+                                  in_class="permute_matrix_anchor"
+                    >
+                    </select-input>
+                    <div class="permute_matrix_anchor_shadw"></div>
+                </div>
 
             </div>
 
@@ -533,14 +574,12 @@
 
             </div>
             <div class="quick_mores ">
-
                 <!--圆角-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.radius}">
                     <div class="fun_block">
                         <div class="info">
                             设置圆角 {{o_radius_now}}
                         </div>
-
 
                         <div class="exmo_inbox">
                             <div class="exmo_box_name">圆角</div>
@@ -603,7 +642,6 @@
                                 </div>
 
                             </div>
-
 
                             <div class="exmo_inbox">
                                 <div class="exmo_checkbox">
@@ -782,14 +820,29 @@
     .inline-icon-input {
         vertical-align: top;
         padding: 8px 6px;
-        width: 22px;
+        width: 28px;
 
         input.exmo_input_text {
             line-height: 13px;
             margin: 0;
             padding: 0 3px;
-            width: 28px;
+            padding-bottom: 2px;
+            margin-top: -5px;
+            width: 22px;
             text-align: right;
+            border-bottom: 1px solid rgba(173, 173, 173, 0);
+            font-weight: 900;
+            color: rgba(41, 41, 41, 0.45);
+
+            &:hover{
+                border-bottom: 1px solid rgba(173, 173, 173, .4);
+            }
+
+            &:focus{
+                border-bottom: 1px solid rgba(44, 115, 255, 0.94);
+            }
+
+
         }
     }
 
@@ -1004,9 +1057,9 @@
                     derive_mirror: false,
                     derive_longShadow: false,
                     derive_3D_depth: false,
-                    transform_angle: false
-
-
+                    transform_angle: false,
+                    transform_scale: false,
+                    transform_rotation: false,
                 },
                 Lang: Lang,
                 Gob: Gob,
@@ -1184,6 +1237,66 @@
                 o_derive_derive_3D_depth_smooth: true,
                 o_tansform_anglePanel: 0,
                 o_tansform_scale_scale: 2,
+                o_tansform_scale_scaleEffect: true,
+                o_tansform_rotation_angle: 45,
+                o_tansform_rotation_centerState: 6,
+                o_tansform_rotation_options: [
+                    {
+                        value: '0',
+                        label_html: '<i class="icon-reference-tl" style="font-size: 21px;">',
+                        label: "",
+                        selected: true,
+                    },
+                    {
+                        value: '1',
+                        label_html: '<i class="icon-reference-tm" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '2',
+                        label_html: '<i class="icon-reference-tr" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        br: true,
+                    },
+                    {
+                        value: '7',
+                        label_html: '<i class="icon-reference-cl " style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '8',
+                        label_html: '<i class="icon-reference-cm" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '3',
+                        label_html: '<i class="icon-reference-cr" style="font-size: 21px;">',
+                        label: ''
+                    }, {
+
+                        br: true,
+                    },
+                    {
+                        value: '6',
+                        label_html: '<i class="icon-reference-bl" style="font-size: 21px;">',
+                        label: ''
+                    },
+                    {
+                        value: '5',
+                        label_html: '<i class="icon-reference-bm" style="font-size: 21px;">',
+                        label: ''
+                    }
+                    ,
+                    {
+                        value: '4',
+                        label_html: '<i class="icon-reference-br" style="font-size: 21px;">',
+                        label: ''
+                    }
+
+                ],
+
             }
 
         },
@@ -1678,8 +1791,51 @@
             },
             func_tansform_scale: function ()
             {
+                if (this.o_tansform_scale_scale == undefined || this.o_tansform_scale_scale == "")
+                {
+                    var scale = 2;
+                } else
+                {
+                    var scale = this.o_tansform_scale_scale
+                }
+
                 Proteins.exec("quick_transform_scale", {
-                        scale: this.o_tansform_scale_scale,
+                        scale: scale,
+                        scaleEffect: this.o_tansform_scale_scaleEffect
+                    }
+                )
+            },
+            func_tansform_scale_cb: function ()
+            {
+                if (this.o_tansform_scale_scale == undefined || this.o_tansform_scale_scale == "")
+                {
+                    var scale = 2;
+                } else
+                {
+                    var scale = this.o_tansform_scale_scale
+                }
+
+
+                Proteins.exec("quick_transform_scale", {
+                        scale: 1 / scale,
+                        scaleEffect: this.o_tansform_scale_scaleEffect
+                    }
+                )
+            },
+            func_transform_rotation: function ()
+            {
+
+                if (this.o_tansform_rotation_angle == undefined || this.o_tansform_rotation_angle == "")
+                {
+                    var angle = 45;
+                } else
+                {
+                    var angle = this.o_tansform_rotation_angle
+                }
+
+                Proteins.exec("quick_transform_rotation", {
+                        angle: angle,
+                        centerState: this.o_tansform_rotation_centerState
                     }
                 )
             }
