@@ -13,9 +13,24 @@
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.transform_angle"
                                    v-bind:func="func_tansform_anglePanel">
-
                     <i class="icon-libraries-addSwatch transform-ap-icon a{{o_tansform_anglePanel}}"></i>
                 </quick-icon-button>
+
+                <div class="exmo_inbox inline-icon-input">
+                    <input type="text" class="exmo_input_text" placeholder="2"
+                           v-model="o_tansform_scale_scale"
+                           v-on:input="func_shape_radius">
+                </div>
+
+                <quick-icon-button v-bind:title="Lang.from('比例变换')" name="transform_angle"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.transform_angle"
+                                   v-bind:func="func_tansform_scale">
+
+                    <i class="iconfont  icon-jia-yuankuang"></i>
+                </quick-icon-button>
+
+
             </div>
 
 
@@ -27,7 +42,7 @@
                     </div>
 
                     <div class="exmo_inbox " title="为 0 时自动计算">
-                        <div class="exmo_box_name">列数</div>
+                        <div class="exmo_box_name">变换角</div>
                         <select class="exmo_select" v-model="o_tansform_anglePanel" style="width: 126px;">
                             <option value="0"> {{"左"|lang}}</option>
                             <option value="1"> {{"右"|lang}}</option>
@@ -754,15 +769,28 @@
         transition: all .3s;
         -webkit-transform: rotatex(52deg) rotateY(9deg) rotateZ(36deg);
 
-        &.a0{
+        &.a0 {
             -webkit-transform: rotatex(52deg) rotateY(9deg) rotateZ(36deg);
         }
-        &.a1{
+        &.a1 {
 
             -webkit-transform: rotatex(58deg) rotateY(-17deg) rotateZ(59deg);
         }
 
+    }
 
+    .inline-icon-input {
+        vertical-align: top;
+        padding: 8px 6px;
+        width: 22px;
+
+        input.exmo_input_text {
+            line-height: 13px;
+            margin: 0;
+            padding: 0 3px;
+            width: 28px;
+            text-align: right;
+        }
     }
 
     .quick_funcs_box {
@@ -1155,7 +1183,7 @@
                 o_derive_derive_3D_depth_topShadowOpacity: 25,
                 o_derive_derive_3D_depth_smooth: true,
                 o_tansform_anglePanel: 0,
-
+                o_tansform_scale_scale: 2,
             }
 
         },
@@ -1641,10 +1669,17 @@
                     }
                 )
             },
-            func_tansform_anglePanel:function ()
+            func_tansform_anglePanel: function ()
             {
                 Proteins.exec("quick_transform_anglePanel", {
-                    angleIndex:   this.o_tansform_anglePanel,
+                        angleIndex: this.o_tansform_anglePanel,
+                    }
+                )
+            },
+            func_tansform_scale: function ()
+            {
+                Proteins.exec("quick_transform_scale", {
+                        scale: this.o_tansform_scale_scale,
                     }
                 )
             }
@@ -1706,7 +1741,6 @@
                     return x
                 },
             },
-
 
 
         },

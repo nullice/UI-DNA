@@ -2473,7 +2473,16 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
     if (boundsInfo.y != undefined) adOb.offset.value.vertical.value.doubleValue = boundsInfo.y - oldradianInfo.y;
     if (boundsInfo.h != undefined)
     {
-        var offset = (boundsInfo.h / oldradianInfo.h) * 100;
+
+        if (typeof  boundsInfo.h == "string" && boundsInfo.h.toLowerCase()[boundsInfo.h.length - 1] == "x")
+        {
+            var offset = +(boundsInfo.h.slice(0, boundsInfo.h.length - 1))*100;
+        }else
+        {
+            var offset = (boundsInfo.h / oldradianInfo.h) * 100;
+        }
+
+
         adOb.height = {
             "value": {
                 "doubleType": "percentUnit",
@@ -2484,7 +2493,15 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
     }
     if (boundsInfo.w != undefined)
     {
-        var offset = (boundsInfo.w / oldradianInfo.w) * 100;
+        if (typeof  boundsInfo.w == "string" && boundsInfo.w.toLowerCase()[boundsInfo.w.length - 1] == "x")
+        {
+            var offset = +(boundsInfo.w.slice(0, boundsInfo.w.length - 1))*100;
+        }else
+        {
+            var offset = (boundsInfo.w / oldradianInfo.w) * 100;
+        }
+
+
         adOb.width = {
             "value": {
                 "doubleType": "percentUnit",

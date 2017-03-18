@@ -163,6 +163,44 @@
         return 0
     }
 
+    /**
+     * 缩放图层
+     * @param infoObjec {scale:2}
+     * @param envObject
+     */
+    Libs.quick_transform_scale = function (infoObjec, envObject)
+    {
+
+        function _func()
+        {
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined)
+            {
+                return 0
+            } else if (ids.length > 1)
+            {
+                for (var i = 0; i < ids.length; i++)
+                {
+                    Kinase.layer.selectLayer_byID(ids[i])
+                    scaleOnce()
+                }
+            } else
+            {
+                scaleOnce()
+            }
+
+            function scaleOnce()
+            {
+                Kinase.layer.setLayerBounds_byActive({w: infoObjec.scale+"x", h: infoObjec.scale+"x", centerState: 8})
+
+            }
+
+        }
+
+
+        Proteins.doCon(_func, "缩放", false)
+    }
+
 
 })()
 
