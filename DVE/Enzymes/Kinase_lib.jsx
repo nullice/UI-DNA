@@ -6213,7 +6213,7 @@ Kinase.layer.creatNewShapeLayerBackBox_ByActive = function (layerName, padding, 
     shapeInfo.h = boxBounds_xywh.h
 
     Kinase.layer.creatNewShapeLayerSquarenss_ByActive(layerName, shapeInfo)
-    Kinase.layer.moveActiveLayerOrder(Kinase.layer.getItemIndexBylayerID(trgetId) - 1)
+    Kinase.layer.moveActiveLayerOrder(Kinase.layer.getItemIndexBylayerID(trgetId) )
 
 }
 

@@ -864,11 +864,8 @@
      */
     Libs.quick_derive_longShadow = function (infoObjec, envObject)
     {
-
-
         function _func()
         {
-
             var ids = Kinase.layer.getTargetLayersID()
             if (ids == undefined)
             {
@@ -1239,6 +1236,56 @@
         ad.putInteger(charIDToTypeID("Thsh"), threshold);
         executeAction(stringIDToTypeID("surfaceBlur"), ad, DialogModes.NO);
     }
+
+
+    /**
+     * 创建背板
+     * @param infoObjec
+     * @param envObject
+     */
+    Libs.quick_derive_padding = function (infoObjec, envObject)
+    {
+        function _func()
+        {
+
+            var ids = Kinase.layer.getTargetLayersID()
+            if (ids == undefined)
+            {
+                return 0
+            } else if (ids.length > 1)
+            {
+                for (var i = 0; i < ids.length; i++)
+                {
+                    Kinase.layer.selectLayer_byID(ids[i])
+                    paddingOnce(ids[i])
+                }
+            } else
+            {
+                paddingOnce(ids[0])
+            }
+
+
+            function paddingOnce(id)
+            {
+                Kinase.layer.creatNewShapeLayerBackBox_ByActive("_padding_", {
+                    left: infoObjec["left"],
+                    top: infoObjec["top"],
+                    right: infoObjec["right"],
+                    bottom: infoObjec["bottom"],
+                })
+                Libs.quick_shape_advance_pasetShapeProperty()
+
+
+            }
+
+
+        }
+
+        Proteins.doCon(_func, "派生背板", false)
+        return
+    }
+
+
 })()
 
 

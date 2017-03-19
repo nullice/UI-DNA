@@ -129,6 +129,15 @@
                        v-bind:class="{'icon-flip-horizontal':o_derive_mirror_direction==0,  'icon-flip-vertical':o_derive_mirror_direction==1, }"></i>
                 </quick-icon-button>
 
+                <quick-icon-button v-bind:title="Lang.from('派生背板')" name="derive_padding"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.derive_padding"
+                                   v-bind:func="func_derive_padding">
+                    <i class="iconfont  icon-tuceng"
+                       style="  font-size: 16px; line-height: 13px;"></i>
+                </quick-icon-button>
+
+
                 <quick-icon-button v-bind:title="Lang.from('派生长阴影')" name="derive_longShadow"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.derive_longShadow"
@@ -153,6 +162,11 @@
                     <i class="iconfont icon-mianfenge derive-3ddepth-icon {{'deg'+o_derive_derive_3D_depth_direction}}"
                        style="  display: inline-block; transition: all .2s;transform: rotate({{o_style_3ddepth_angle}}deg);line-height: 13px; font-size: 14px;"></i>
                 </quick-icon-button>
+
+
+
+
+
             </div>
             <div class="quick_mores">
                 <!--派生阵列-->
@@ -388,6 +402,50 @@
 
 
                 </div>
+
+                <!--派生背板-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_padding}">
+                    <div class="info">
+                        派生一个位于目标底部的背板图层<br><span class="sub">会自动粘贴形状属性</span>
+                    </div>
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">上边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_padding_top"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">右边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_padding_right"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">下边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_padding_bottom"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">左边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_padding_left"
+                        >
+                    </div>
+
+
+                    <div class="exmo_inbox ">
+                        <div class="exmo_box_name">padding</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_derive_padding_padding"
+                        >
+                    </div>
+
+                </div>
+
 
             </div>
         </div>
@@ -1166,6 +1224,7 @@
                     derive_mirror: false,
                     derive_longShadow: false,
                     derive_3D_depth: false,
+                    derive_padding: false,
                     transform_angle: false,
                     transform_scale: false,
                     transform_rotation: false,
@@ -1352,6 +1411,10 @@
                 o_derive_derive_3D_depth_bottomShadowOpacity: 50,
                 o_derive_derive_3D_depth_topShadowOpacity: 25,
                 o_derive_derive_3D_depth_smooth: true,
+                o_derive_padding_top: 30,
+                o_derive_padding_right: 30,
+                o_derive_padding_bottom: 30,
+                o_derive_padding_left: 30,
                 o_tansform_anglePanel: 0,
                 o_tansform_scale_scale: 2,
                 o_tansform_scale_scaleEffect: true,
@@ -2037,6 +2100,16 @@
             {
                 Proteins.exec("quick_text_minBounds", {})
             },
+            func_derive_padding:function ()
+            {
+                Proteins.exec("quick_derive_padding",  {
+                    left: this.o_derive_padding_left,
+                    top: this.o_derive_padding_top,
+                    right: this.o_derive_padding_right,
+                    bottom: this.o_derive_padding_bottom,
+                })
+            }
+
 
 
         },
@@ -2110,8 +2183,15 @@
                     {
                         left = this.o_permute_padding_left_calc
                     }
+                    if (left == right && top == bottom)
+                    {
+                        var str = (top + unit + " " + right + unit )
 
-                    var str = (top + unit + " " + left + unit + " " + bottom + unit + " " + right + unit)
+                    } else
+                    {
+
+                        var str = (top + unit + " " + left + unit + " " + bottom + unit + " " + right + unit)
+                    }
 
                     return str
                 },
@@ -2120,9 +2200,9 @@
                     if (value != undefined && value.split != undefined)
                     {
                         var arrStr = value.split(" ")
-                        arrStr= arrStr.map(function (val)
+                        arrStr = arrStr.map(function (val)
                         {
-                            var reg =/[0-9]*/g
+                            var reg = /[0-9]*/g
                             return reg.exec(val)[0]
                         })
 
@@ -2153,8 +2233,64 @@
                     }
                 }
             },
+            o_derive_padding_padding: {
+                get: function ()
+                {
+                    var unit = "px"
+                    var top = this.o_derive_padding_top
+                    var bottom = this.o_derive_padding_bottom
+                    var left = this.o_derive_padding_left
+                    var right = this.o_derive_padding_right
 
+                    if (left == right && top == bottom)
+                    {
+                        var str = (top + unit + " " + right + unit )
 
+                    } else
+                    {
+                        var str = (top + unit + " " + left + unit + " " + bottom + unit + " " + right + unit)
+                    }
+
+                    return str
+                },
+                set: function (value)
+                {
+                    if (value != undefined && value.split != undefined)
+                    {
+                        var arrStr = value.split(" ")
+                        arrStr = arrStr.map(function (val)
+                        {
+                            var reg = /[0-9]*/g
+                            return reg.exec(val)[0]
+                        })
+
+                        if (arrStr.length == 1)
+                        {
+                            this.o_derive_padding_top = arrStr[0]
+                            this.o_derive_padding_bottom = arrStr[0]
+                            this.o_derive_padding_left = arrStr[0]
+                            this.o_derive_padding_right = arrStr[0]
+
+                        } else if (arrStr.length == 2)
+                        {
+                            this.o_derive_padding_top = arrStr[0]
+                            this.o_derive_padding_bottom = arrStr[0]
+                            this.o_derive_padding_left = arrStr[1]
+                            this.o_derive_padding_right = arrStr[1]
+
+                        }
+                        else if (arrStr.length == 4)
+                        {
+                            this.o_derive_padding_top = arrStr[0]
+                            this.o_derive_padding_bottom = arrStr[2]
+                            this.o_derive_padding_left = arrStr[1]
+                            this.o_derive_padding_right = arrStr[3]
+
+                        }
+
+                    }
+                }
+            },
             o_style_3ddepth_angle: {
                 get: function ()
                 {

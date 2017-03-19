@@ -39,7 +39,6 @@ Libs.quick_shape_advance_pasetShapeProperty = function (infoObjec, envObject)
 {
     try
     {
-
         var idshapeClipboardOperation = stringIDToTypeID( "shapeClipboardOperation" );
         var desc926 = new ActionDescriptor();
         var idshapeClipboardOperation = stringIDToTypeID( "shapeClipboardOperation" );
