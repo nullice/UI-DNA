@@ -148,15 +148,15 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="renderCaryon.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="renderCaryon.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="39" />
+                <state relative-caret-position="183">
+                  <caret line="563" column="74" lean-forward="true" selection-start-line="563" selection-start-column="74" selection-end-line="563" selection-end-column="74" />
                   <folding>
-                    <element signature="e#4031#4958#0" expanded="false" />
-                    <element signature="e#5007#5710#0" expanded="false" />
-                    <element signature="e#6684#7177#0" expanded="false" />
+                    <element signature="e#4033#4960#0" expanded="false" />
+                    <element signature="e#5009#5712#0" expanded="false" />
+                    <element signature="e#6686#7179#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -212,7 +212,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="288">
@@ -526,8 +526,8 @@
       <find>fillColor</find>
       <find>show_text</find>
       <find>$anchor</find>
-      <find>u11FF</find>
       <find>console.log(verify)</find>
+      <find>u11FF</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -589,13 +589,13 @@
         <option value="$PROJECT_DIR$/Proteins/libs/quick_derive.jsx" />
         <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
-        <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
         <option value="$PROJECT_DIR$/components/MessageBox/InputBox.vue" />
         <option value="$PROJECT_DIR$/components/VarPanel.vue" />
         <option value="$PROJECT_DIR$/components/EditTextLabel.vue" />
         <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
+        <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
       </list>
     </option>
   </component>
@@ -1087,12 +1087,12 @@
       <workItem from="1489560562415" duration="9774000" />
       <workItem from="1489627437079" duration="60006000" />
       <workItem from="1489798936021" duration="28307000" />
-      <workItem from="1489892634606" duration="29751000" />
+      <workItem from="1489892634606" duration="30169000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2767248000" />
+    <option name="totallyTimeSpent" value="2767666000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1104,7 +1104,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23234984" sideWeight="0.43770313" order="1" side_tool="true" content_ui="combo" />
@@ -1639,18 +1639,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="106" column="39" lean-forward="false" selection-start-line="106" selection-start-column="32" selection-end-line="106" selection-end-column="39" />
-          <folding>
-            <element signature="e#4031#4958#0" expanded="false" />
-            <element signature="e#5007#5710#0" expanded="false" />
-            <element signature="e#6684#7177#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1968">
@@ -1737,6 +1725,18 @@
           <caret line="377" column="110" lean-forward="false" selection-start-line="377" selection-start-column="102" selection-end-line="377" selection-end-column="110" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="563" column="74" lean-forward="true" selection-start-line="563" selection-start-column="74" selection-end-line="563" selection-end-column="74" />
+          <folding>
+            <element signature="e#4033#4960#0" expanded="false" />
+            <element signature="e#5009#5712#0" expanded="false" />
+            <element signature="e#6686#7179#0" expanded="false" />
           </folding>
         </state>
       </provider>

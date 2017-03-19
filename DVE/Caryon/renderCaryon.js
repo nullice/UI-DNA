@@ -104,7 +104,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notS
                 ob[item] = value;
 
 
-                if(Gob.position.$anchor !=Gob.MULT)
+                if (Gob.position.$anchor != Gob.MULT)
                 {
                     ob.centerState = Gob.position.$anchor
                 }
@@ -244,7 +244,7 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notS
 
 
         Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
-        Gob.stopSelectEvent  = false
+        Gob.stopSelectEvent = false
         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---")
     }
 
@@ -563,6 +563,11 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                                 var _varNames = assignmentValue.split((/[,，]/));//-----多个赋值："xx,ddd，cc"
                                 for (var i = 0; i < _varNames.length; i++)
                                 {
+                                    if (varSystem.vars[_varNames[i]] == undefined)//变量不存在时尝试创建
+                                    {
+                                        varSystem.addVar(_varNames[i], "")
+                                    }
+
                                     if (varSystem.vars[_varNames[i]] != undefined)
                                     {
                                         console.log("_doAssign: setVarr:" + _varNames[i] + "=" + getValue)
