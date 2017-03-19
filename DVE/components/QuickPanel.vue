@@ -413,6 +413,14 @@
                 </quick-icon-button>
 
 
+                <quick-icon-button v-bind:title="Lang.from('内边距排列')" name="permute_padding"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.permute_padding"
+                                   v-bind:func="func_permute_padding">
+                    <i class="iconfont icon-anniu1"
+                       style="  font-size: 18px;line-height: 13px;margin-bottom: -2px;display: inline-block;"></i>
+                </quick-icon-button>
+
                 <!--<quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"-->
                 <!--v-bind:click_more_func="click_onecMore"-->
                 <!--v-bind:more_onoff="more_onoff.shape_advance" v-bind:func="func_shape_shape_advance">-->
@@ -539,6 +547,53 @@
                     </select-input>
                     <div class="permute_matrix_anchor_shadw"></div>
 
+
+                </div>
+
+                <!--内边距排列-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.permute_padding}">
+                    <div class="info">
+                        选定 2 个图层，以上端图层为基准以内边距排列<br><span class="sub">可选多组图层</span>
+                    </div>
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">上边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_permute_padding_top"
+                               v-bind:placeholder="o_permute_padding_top_calc"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">右边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-bind:placeholder="o_permute_padding_right_calc"
+                               v-model="o_permute_padding_right"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">下边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_permute_padding_bottom"
+                               v-bind:placeholder="o_permute_padding_bottom_calc"
+                        >
+                    </div>
+
+                    <div class="exmo_inbox min">
+                        <div class="exmo_box_name">左边距</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_permute_padding_left"
+                               v-bind:placeholder="o_permute_padding_left_calc"
+                        >
+                    </div>
+
+
+                    <div class="exmo_inbox ">
+                        <div class="exmo_box_name">padding</div>
+                        <input type="text" class="exmo_input_text"
+                               v-model="o_permute_padding_padding"
+                        >
+                    </div>
 
                 </div>
 
@@ -727,14 +782,13 @@
 
 
         <!--文本-->
-        <div   v-show="show_text"  class="quick_funcs_box">
+        <div v-show="show_text" class="quick_funcs_box">
             <h4>文本</h4>
             <div class="quick_buts">
                 <quick-icon-button v-bind:title="Lang.from('最小化文本框')" name="text_minBounds"
                                    v-bind:func="func_text_minBounds">
                     <i class="icon-shrink"></i>
                 </quick-icon-button>
-
 
 
             </div>
@@ -757,7 +811,6 @@
 
             </div>
         </div>
-
 
 
     </a-area>
@@ -1065,6 +1118,13 @@
                 {
                     this.func_permute_updateSpacingGird()
                 }
+
+                if (this.more_onoff.permute_padding)
+                {
+                    this.func_permute_updatePadding()
+                }
+
+
             },
             "more_onoff.permute_spacing": function ()
             {
@@ -1081,6 +1141,14 @@
                     this.func_permute_updateSpacingGird()
                 }
             }
+            ,
+            "more_onoff.permute_padding": function ()
+            {
+                if (this.more_onoff.permute_padding)
+                {
+                    this.func_permute_updatePadding()
+                }
+            }
 
         },
 
@@ -1093,6 +1161,7 @@
                     shape_advance: false,
                     permute_spacing: false,
                     permute_matrix: false,
+                    permute_padding: false,
                     derive_matrix: false,
                     derive_mirror: false,
                     derive_longShadow: false,
@@ -1255,6 +1324,14 @@
                     }
 
                 ],
+                o_permute_padding_top: null,
+                o_permute_padding_right: null,
+                o_permute_padding_bottom: null,
+                o_permute_padding_left: null,
+                o_permute_padding_top_calc: 0,
+                o_permute_padding_right_calc: 0,
+                o_permute_padding_bottom_calc: 0,
+                o_permute_padding_left_calc: 0,
                 o_derive_matrix_col: 2,
                 o_derive_matrix_row: 2,
                 o_derive_matrix_dX: 10,
@@ -1642,6 +1719,15 @@
 
 
             },
+            func_permute_updatePadding: async function ()
+            {
+                console.info("func_permute_updatePadding")
+                var info = await Proteins.exec("quick_permute_getLayerPadding")
+                this.o_permute_padding_top_calc = info.suggestPadding_top || 0
+                this.o_permute_padding_right_calc = info.suggestPadding_right || 0
+                this.o_permute_padding_bottom_calc = info.suggestPadding_bottom || 0
+                this.o_permute_padding_left_calc = info.suggestPadding_left || 0
+            },
             func_permute_doSpacingGird: async function ()
             {
                 var paramOb = {
@@ -1704,6 +1790,38 @@
                 await Proteins.exec("quick_permute_doPermuteByMatrixGrid", paramOb)
                 this.func_permute_updateSpacingGird()
             },
+
+            func_permute_padding: async function ()
+            {
+                var paramOb = {
+                    padding_right: this.o_permute_padding_right, /*行数*/
+                    padding_bottom: this.o_permute_padding_bottom, /*列数*/
+                    padding_left: this.o_permute_padding_left, /* x 间距*/
+                    padding_top: this.o_permute_padding_top, /* Y 间距*/
+                }
+
+
+                if (paramOb.padding_top == undefined || paramOb.padding_top == "")
+                {
+                    paramOb.padding_top = this.o_permute_padding_top_calc
+                }
+                if (paramOb.padding_right == undefined || paramOb.padding_right == "")
+                {
+                    paramOb.padding_right = this.o_permute_padding_right_calc
+                }
+                if (paramOb.padding_bottom == undefined || paramOb.padding_bottom == "")
+                {
+                    paramOb.padding_bottom = this.o_permute_padding_bottom_calc
+                }
+                if (paramOb.padding_left == undefined || paramOb.padding_left == "")
+                {
+                    paramOb.padding_left = this.o_permute_padding_left_calc
+                }
+
+                await Proteins.exec("quick_permute_doPermuteByPadding", paramOb)
+                this.func_permute_updatePadding()
+            },
+
             func_derive_copyOnce: async function ()
             {
                 var oldIds = await enzymes.getSelectLayerArray("id")
@@ -1920,7 +2038,6 @@
                 Proteins.exec("quick_text_minBounds", {})
             },
 
-            
 
         },
         computed: {
@@ -1960,6 +2077,7 @@
                 },
             },
 
+
             show_text: {
                 get: function ()
                 {
@@ -1967,6 +2085,76 @@
 
                 },
             },
+            o_permute_padding_padding: {
+                get: function ()
+                {
+                    var unit = "px"
+                    var top = this.o_permute_padding_top
+                    var bottom = this.o_permute_padding_bottom
+                    var left = this.o_permute_padding_left
+                    var right = this.o_permute_padding_right
+
+                    if (top == undefined || top == "")
+                    {
+                        top = this.o_permute_padding_top_calc
+                    }
+                    if (right == undefined || right == "")
+                    {
+                        right = this.o_permute_padding_right_calc
+                    }
+                    if (bottom == undefined || bottom == "")
+                    {
+                        bottom = this.o_permute_padding_bottom_calc
+                    }
+                    if (left == undefined || left == "")
+                    {
+                        left = this.o_permute_padding_left_calc
+                    }
+
+                    var str = (top + unit + " " + left + unit + " " + bottom + unit + " " + right + unit)
+
+                    return str
+                },
+                set: function (value)
+                {
+                    if (value != undefined && value.split != undefined)
+                    {
+                        var arrStr = value.split(" ")
+                        arrStr= arrStr.map(function (val)
+                        {
+                            var reg =/[0-9]*/g
+                            return reg.exec(val)[0]
+                        })
+
+                        if (arrStr.length == 1)
+                        {
+                            this.o_permute_padding_top = arrStr[0]
+                            this.o_permute_padding_bottom = arrStr[0]
+                            this.o_permute_padding_left = arrStr[0]
+                            this.o_permute_padding_right = arrStr[0]
+
+                        } else if (arrStr.length == 2)
+                        {
+                            this.o_permute_padding_top = arrStr[0]
+                            this.o_permute_padding_bottom = arrStr[0]
+                            this.o_permute_padding_left = arrStr[1]
+                            this.o_permute_padding_right = arrStr[1]
+
+                        }
+                        else if (arrStr.length == 4)
+                        {
+                            this.o_permute_padding_top = arrStr[0]
+                            this.o_permute_padding_bottom = arrStr[2]
+                            this.o_permute_padding_left = arrStr[1]
+                            this.o_permute_padding_right = arrStr[3]
+
+                        }
+
+                    }
+                }
+            },
+
+
             o_style_3ddepth_angle: {
                 get: function ()
                 {

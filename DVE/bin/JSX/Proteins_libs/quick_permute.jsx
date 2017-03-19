@@ -16,8 +16,6 @@
      */
     Libs.quick_permute_getLayerGrid = function (infoObjec, envObject)
     {
-
-
         var grid = calcLayersGrid()
         var meterDxy = calcLayerMeterDxy(grid.RowColIds, grid.LayerPool)
 
@@ -77,7 +75,6 @@
 
         function _func()
         {
-
             try
             {
                 var grid = calcLayersGrid()
@@ -873,6 +870,202 @@
 //     return 0
 
 // }
+
+    /**
+     * 预测选中图层的 padding
+     * @param infoObjec
+     * @param envObject
+     * @returns {{rowNumber: Number, colNumber: *, suggestDY: *, suggestDX: *, suggestMxtX: *, suggestMxtY: *}}
+     */
+    Libs.quick_permute_getLayerPadding = function (infoObjec, envObject)
+    {
+        var paddingInfo = calcLayersPadding()
+
+        var re = null
+
+        if (paddingInfo != undefined)
+        {
+            re = {
+                "suggestPadding_top": paddingInfo.suggestPadding_top,
+                "suggestPadding_bottom": paddingInfo.suggestPadding_bottom,
+                "suggestPadding_right": paddingInfo.suggestPadding_right,
+                "suggestPadding_left": paddingInfo.suggestPadding_left,
+            }
+
+        }
+
+        return re
+    }
+
+
+    function calcLayersPadding()
+    {
+        var layerIds = Kinase.layer.getTargetLayersID()
+        if (layerIds.length == 0)
+        {
+            return null
+        }
+        var layerPool = []
+        for (var i = 0; i < layerIds.length; i++)
+        {
+
+            if (Kinase.layer.isLayerSet(Kinase.REF_LayerID, layerIds[i]))
+            {
+                var childIds = Kinase.layer.getChildLayerID_byItemIndex(Kinase.layer.getItemIndexBylayerID(layerIds[i]))
+                if (childIds != undefined && childIds.length > 1)
+                {
+                    _pushOnce(childIds[0])
+                    _pushOnce(childIds[1])
+                }
+            }
+            else
+            {
+
+                _pushOnce(layerIds[i])
+            }
+
+        }
+
+        layerPool = sortObjectArray(layerPool, "itemIndex", true)
+
+        return calcLayerMetePadding(layerPool)
+
+        function _pushOnce(id)
+        {
+            var bounds = Kinase.layer.getLayerBounds(Kinase.REF_LayerID, id)
+            var layerItem = {
+                // name: Kinase.layer.getLayerName_byID(layerIds[i]),//仅测试时使用
+                name: "",
+                id: id,
+                itemIndex: Kinase.layer.getItemIndexBylayerID(id),
+                x: bounds.x, y: bounds.y, w: bounds.w, h: bounds.h,
+                right: bounds.right, bottom: bounds.bottom,
+            }
+            layerPool.push(layerItem)
+        }
+
+        function calcLayerMetePadding(layerPool)
+        {
+            var meterPadding_top = []
+            var meterPadding_bottom = []
+            var meterPadding_right = []
+            var meterPadding_left = []
+
+            for (var i = 0; i < Math.floor(layerPool.length / 2); i++)
+            {
+                var pading = getPadding(layerPool[i*2], layerPool[i*2 + 1])
+                _checMetrt(meterPadding_top, pading.padding_top)
+                _checMetrt(meterPadding_bottom, pading.padding_bottom)
+                _checMetrt(meterPadding_right, pading.padding_right)
+                _checMetrt(meterPadding_left, pading.padding_left)
+
+            }
+
+            var suggestPadding_top = getSuggest(meterPadding_top)
+            var suggestPadding_bottom = getSuggest(meterPadding_bottom)
+            var suggestPadding_right = getSuggest(meterPadding_right)
+            var suggestPadding_left = getSuggest(meterPadding_left)
+
+            return {
+                "suggestPadding_top": suggestPadding_top,
+                "suggestPadding_bottom": suggestPadding_bottom,
+                "suggestPadding_right": suggestPadding_right,
+                "suggestPadding_left": suggestPadding_left,
+                layerPool: layerPool,
+            }
+
+            function getSuggest(meterArr)
+            {
+                if (meterArr.length > 0)
+                {
+                    meterArr = sortObjectArray(meterArr, "time", true)
+                    return meterArr[0].value
+                } else
+                {
+                    return null
+                }
+            }
+
+            function _checMetrt(meterArr, value)
+            {
+                var t = getByKey(meterArr, "value", value)
+                if (t == undefined)
+                {
+                    meterArr.push({value: value, time: 0})
+                } else
+                {
+                    t.time++;
+                }
+            }
+
+        }
+
+        function getPadding(layer1, layer2)
+        {
+            var result = {
+                padding_top: layer1.y - layer2.y,
+                padding_bottom: layer2.bottom - layer1.bottom,
+                padding_right: layer2.right - layer1.right,
+                padding_left: layer1.x - layer2.x,
+
+            }
+            return result
+
+        }
+
+    }
+
+    Libs.quick_permute_doPermuteByPadding = function (infoObjec, envObject)
+    {
+        function _func()
+        {
+            try
+            {
+
+                var padding_top = +(infoObjec["padding_top"] || 0)
+                var padding_right = +(infoObjec["padding_right"] || 0)
+                var padding_bottom = +(infoObjec["padding_bottom"] || 0)
+                var padding_left = +(infoObjec["padding_left"] || 0)
+
+
+                var paddingInfo = calcLayersPadding()
+
+
+                if (paddingInfo == undefined || paddingInfo.layerPool.length < 1)
+                {
+                    return 0;
+                }
+
+                for (var i = 0; i < Math.floor(paddingInfo.layerPool.length / 2); i++)
+                {
+                    setPadding(paddingInfo.layerPool[i*2], paddingInfo.layerPool[i*2 + 1])
+                }
+
+
+                function setPadding(layer1, layer2)
+                {
+                    $.writeln("layer2.id:" + layer2.id)
+                    Kinase.layer.selectLayer_byID(layer2.id)
+                    Kinase.layer.setLayerBounds_byActive({
+                        y: layer1.y - padding_top,
+                        x: layer1.x - padding_left,
+                        w: layer1.w + padding_right + padding_left,
+                        h: layer1.h + padding_top + padding_bottom,
+
+                    })
+
+                }
+
+
+            } catch (e)
+            {
+                alert("err quick_permute_doPermuteByPadding:+\n" + e)
+            }
+        }
+
+        Proteins.doCon(_func, "内行距排列", true)
+
+    }
 
 
 })()
