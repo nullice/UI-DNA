@@ -366,16 +366,25 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                 if (varList[i].name[0] == "@")
                 {
                     var varArr = varList[i].name.split(".")
-                    if( varArr.length >1)
+                    if (varArr.length > 1)
                     {
-                        var _this_var =
-                            {value: OBJ.getObjectValueByNames(this.vars[varArr[0]].value, varArr.slice(1))};
 
+                        var resultValue = OBJ.getObjectValueByNames(this.vars[varArr[0]].value, varArr.slice(1))
+
+                        if (resultValue == undefined && varArr.length == 2)
+                        {
+                            if (ARR.hasMember(["x", "y", "w", "h"], varArr[1]))
+                            {
+                                resultValue = OBJ.getObjectValueByNames(this.vars[varArr[0]].value, ["position", varArr[1]])
+                            }
+                        }
+                        var _this_var = {value: resultValue};
                     }
                     else
                     {
+                        var resultValue = OBJ.getObjectValueByNames(this.vars[varList[i].name].value, names)
                         var _this_var =
-                            {value: OBJ.getObjectValueByNames(this.vars[varList[i].name].value, names)};
+                            {value: resultValue};
 
                     }
 
