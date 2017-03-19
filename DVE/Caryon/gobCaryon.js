@@ -14,8 +14,6 @@ import TYP from "./Richang_JSEX/typeTYP.js"
  */
 var GobCaryon = function ()
 {
-
-
     this.selectList = [];
     this.selectTypes = {
         bitmap: false,
@@ -514,9 +512,9 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
             /************************/
             flag_writeDataCaryon = true;
             /************************/
-        } else
+        }
         //1. 文本值-------------------------------------------------
-        if (_lastName == "text") //文本
+        else if (_lastName == "text") //文本
         {
             if (TYP.type(value) == "string")
             {
@@ -572,7 +570,12 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                 {
                     this.text.text = ""
                 }
+            }
 
+
+            if (_lastName == "$anchor")
+            {
+                setSystem.gob.$anchor = +value
             }
 
 
@@ -659,6 +662,15 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                         }
                     }
                 },
+                rgnColor: {
+                    type: "rgnColor",
+                    nameList: ["r", "g", 'b'],
+                    valueEnum: null,
+                    judgementFunc: function (value)
+                    {
+                        return true
+                    }
+                },
                 mode: {
                     type: "mode",
                     nameList: ["mode"],
@@ -728,7 +740,9 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
             /**/
         }
     }
-
+    // console.log("flag_writeDataCaryon", flag_writeDataCaryon)
+    // console.log("isFormula", isFormula)
+    // console.log("isTypeText", isTypeText)
 
     //-------- 【3】. 把值分发到每个选中图层的 dataCaryon ，;
     var rendered = false;
@@ -748,22 +762,32 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
 
         var changeValue_dataCaryon = false;// 是否改变了 dataCaryon 里原有的值
         //写入 dataCaryon
-        if (flag_writeDataCaryon && value != undefined)
+        if (flag_writeDataCaryon === true && (value != undefined))
         {
-            console.info("[[[writeDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
+            console.info("[[[writeDataCaryon]]]]]" + this.selectList[i].id, ":[", names, "] ", value)
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);
             }
             changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
+            if (changeValue_dataCaryon === "delete")
+            {
+                console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
+            }
+
+
         }
         else//删除 dataCaryon 值
         {
-            console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
 
             if (dataCaryon.layers[this.selectList[i].id] != undefined)
             {
-                _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, "", null, true)
+                var result = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, "", null, true)
+                if (result === "delete")
+                {
+                    console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
+                }
+
             }
 
         }
@@ -774,7 +798,100 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         // console.log(changeValue_dataCaryon, changeValue_Gob, isFormula)
         // console.log("this.nowSwitching =" + this.nowSwitching + "    " + names + "=>" + value)
 
+        //统一渲染
+        var renderOnce = false
+        if (ARR.hasMember(["text", "shape",], names[0]))
+        {
+            renderOnce = true
+        }
+        if (ARR.hasMember(["layerColor", "opacity", "fillOpacity", "mode", "visible"], _lastName))
+        {
+            renderOnce = true
+        }
 
+
+        if (renderOnce == false)
+        {
+            if ((this.nowSwitching == false) && (this.disableRender != true) && (value != Gob.MULT))
+            {
+                if (names[1] != "assignment" && names[1] != "enableAssigns")
+                {
+                    if (changeValue_dataCaryon || changeValue_Gob)
+                    {
+                        doDocumentRender = true;
+                        if ((isAssignment != true) && (isVoidValue != true))
+                        {
+                            console.log("【START】renderPatch--------" + names + "=>" + value)
+                            rendered = true;
+
+                            //-----------------------------------------------------------------
+                            if (isFormula) //如果是变量表达式先解析"普通变量"
+                            {
+                                var finValue = await varSystem.evalVar(value, this.selectList[i].id, names)
+                            }
+                            else if (_enableTextFormula)
+                            {
+                                console.info("_enableTextFormula", _enableTextFormula)
+                                var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
+                            }
+                            else
+                            {
+                                var finValue = value;
+                            }
+                            //-----------------------------------------------------------------
+
+                            console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
+
+                            try
+                            {
+                                var re = await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, false)
+                                if (re != undefined && re.newId != undefined && re.newId != this.selectList[i].id)
+                                {
+                                    var layerId = this.selectList[i].id
+                                    Gob.selectList.map(function (x)
+                                    {
+                                        if (x.id == layerId)
+                                        {
+                                            x.id = re.newId
+                                            x.type.typeName = "smartObject"
+                                            x.type.layerKind = 5
+
+                                        }
+                                    })
+
+                                    if (save != undefined)
+                                    {
+                                        save = save.map(function (x)
+                                        {
+                                            if (x == layerId)
+                                            {
+                                                return re.newId
+                                            } else
+                                            {
+                                                return x
+                                            }
+                                        })
+                                    }
+                                }
+                            } catch (e)
+                            {
+                                logger.err("Gob._set()", e)
+                            }
+
+
+                            console.log("【END】renderPatch------" + names + "=>" + finValue)
+                        }
+
+                    }
+                }
+            }
+        }
+
+    }
+
+
+    if (renderOnce)
+    {
         if ((this.nowSwitching == false) && (this.disableRender != true) && (value != Gob.MULT))
         {
             if (names[1] != "assignment" && names[1] != "enableAssigns")
@@ -784,7 +901,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                     doDocumentRender = true;
                     if ((isAssignment != true) && (isVoidValue != true))
                     {
-                        console.log("【START】renderPatch--------" + names + "=>" + value)
+                        console.log("【START】[renderOnce] renderPatch--------" + names + "=>" + value)
                         rendered = true;
 
                         //-----------------------------------------------------------------
@@ -802,47 +919,15 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                             var finValue = value;
                         }
                         //-----------------------------------------------------------------
-
-                        console.log(`renderCaryon.renderPatch(${this.selectList[i].id}, ${names}, ${finValue}, ${true})`)
+                        console.log(`[renderOnce] renderCaryon.renderPatch(${0}, ${names}, ${finValue}, ${true})`)
                         try
                         {
-                            var re = await renderCaryon.renderPatch(this.selectList[i].id, names, finValue, true)
-                            if (re != undefined && re.newId != undefined && re.newId != this.selectList[i].id)
-                            {
-                                var layerId = this.selectList[i].id
-                                Gob.selectList.map(function (x)
-                                {
-                                    if (x.id == layerId)
-                                    {
-                                        x.id = re.newId
-                                        x.type.typeName = "smartObject"
-                                        x.type.layerKind = 5
-
-                                    }
-                                })
-
-                                if (save != undefined)
-                                {
-                                    save = save.map(function (x)
-                                    {
-                                        if (x == layerId)
-                                        {
-                                            return re.newId
-                                        } else
-                                        {
-                                            return x
-                                        }
-                                    })
-                                }
-                            }
-
-
+                            await renderCaryon.renderPatch(0, names, finValue, true)
                         } catch (e)
                         {
-                            logger.err("Gob._set()", e)
+                            logger.err("[renderOnce] Gob._set()", e)
                         }
-
-                        console.log("【END】renderPatch------" + names + "=>" + finValue)
+                        console.log("【END】[renderOnce] renderPatch------" + names + "=>" + finValue)
                     }
 
                 }
@@ -1012,7 +1097,14 @@ GobCaryon.prototype.updateSelect = async function ()
     } else
     {
         //******************
-        await this.updateGob();
+        try
+        {
+            await this.updateGob();
+        } catch (e)
+        {
+            logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob")
+        }
+
         //******************
     }
 
@@ -1264,7 +1356,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     {
 
         _setObejctAll(temp, Gob.MULT)
-        console.info("sssss", temp)
+        Gob.position.$anchor = setSystem.gob.$anchor;
 
         function _setObejctAll(object, value)
         {
@@ -1612,7 +1704,7 @@ function _valueToObject(toObject, objectNames, nameIndex, value, prefix, deleteN
 
                 }
 
-                return true;
+                return "delete";
             }
             var change = ( toObject[objectNames[nameIndex]] != value);
             toObject[objectNames[nameIndex]] = value;

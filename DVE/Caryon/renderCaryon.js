@@ -40,7 +40,7 @@ RenderCaryon.prototype.test = async function (x)
  * @param value
  * @param indepenSelect
  */
-RenderCaryon.prototype.renderPatch = async function (layerId, names, value, indepenSelect)
+RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notSelectLayer)
 {
     if (Gob._unripe)
     {
@@ -85,6 +85,16 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
     }
     else //执行本次渲染
     {
+        Gob.stopSelectEvent = true;//渲染开始，关闭图层选中事件监听
+        Gob.disableSelectEvent = true
+        if (notSelectLayer)
+        {
+
+        } else
+        {
+            await enzymes.selectLayer_byID(layerId);
+        }
+
         if (names[0] === "position")
         {
             logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[start:RenderCaryon：position:" + layerId + "]---")
@@ -93,15 +103,17 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 var ob = {};
                 ob[item] = value;
 
-                ob.centerState = Gob.position.$anchor
-                Gob.stopSelectEvent = true;//渲染开始，关闭图层选中事件监听
-                await enzymes.selectLayer_byID(layerId);
+
+                if(Gob.position.$anchor !=Gob.MULT)
+                {
+                    ob.centerState = Gob.position.$anchor
+                }
+
+
                 logger.pin("enzymes", "RenderCaryon.prototype.renderPatch ", `enzymes.setLayerInfo_position_byId(${JSON.stringify(ob)}, ${layerId})`)
                 /*****************************************************/
                 await enzymes.setLayerInfo_position_byId(ob, layerId)
                 /*****************************************************/
-                Gob.stopSelectEvent = false;//渲染结束，关闭图层选中事件监听
-
             }
         }
         if (names[0] === "text")
@@ -127,14 +139,10 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
 
             }
 
-            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
-            await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_text_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
             await enzymes.setLayerInfo_text_byId(ob, layerId)
             /************************************************/
-            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
-
 
         }
         if (names[0] === "shape")
@@ -160,14 +168,10 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 }
             }
 
-            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
-            await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_shape_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
             await enzymes.setLayerInfo_shape_byId(ob, layerId)
             /************************************************/
-            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
-
 
         }
         if (names[0] === "smartObject")
@@ -184,13 +188,10 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 ob.linked = true
             }
 
-            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
-            await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_smartObject_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
             var newId = await enzymes.setLayerInfo_smartObject_byId(ob, layerId, true)
             /************************************************/
-            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
             // Gob.updateGob(true);
             var needUpdateGob = true
 
@@ -199,7 +200,6 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
         if (names[0] === "quickEffect")
         {
             console.log("----[start:RenderCaryon：quickEffect:" + layerId + "]---")
-
             if (names.length > 2)
             {
                 var ob = {};
@@ -220,18 +220,13 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 ob[item] = value;
             }
 
-            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
-            await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_quickEffect_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
             await enzymes.setLayerInfo_quickEffect_byId(ob, layerId)
             /************************************************/
-            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
         }
         if (names[0] === "more")
         {
-
-
             console.log("----[start:RenderCaryon：more:" + layerId + "]---")
             if (namesLen == 2)
             {
@@ -239,17 +234,17 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, inde
                 ob[item] = value;
             }
 
-
-            Gob.disableSelectEvent = true;//渲染开始，关闭图层选中事件监听
-            await enzymes.selectLayer_byID(layerId);
             console.log(`enzymes.setLayerInfo_more_byId(${JSON.stringify(ob)}, ${layerId})`)
             /************************************************/
             await enzymes.setLayerInfo_more_byId(ob, layerId)
             /************************************************/
-            Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
+
 
         }
 
+
+        Gob.disableSelectEvent = false;//渲染结束，关闭图层选中事件监听
+        Gob.stopSelectEvent  = false
         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---")
     }
 

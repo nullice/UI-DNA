@@ -6,47 +6,50 @@ var fs = require("fs")
 var path = require("path")
 
 
-
 var SetSystem = function ()
 {
     //定义设置项
 
     this.ui = {
-        panel:{
-            main:{
-                tagsActive:{
-                    position:true,
-                    shape:false,
-                    text:false,
-                    smartobject:false,
-                    style:false,
-                    more:false,
+        panel: {
+            main: {
+                tagsActive: {
+                    position: true,
+                    shape: false,
+                    text: false,
+                    smartobject: false,
+                    style: false,
+                    more: false,
                 },
-                nameGroupTitle:{
-                    "0":"0",
-                    "1":"1",
-                    "2":"2",
-                    "3":"3",
-                    "4":"4",
-                    "5":"5",
-                    "6":"6",
-                    "7":"7",
-                    "8":"8",
-                    "9":"9",
+                nameGroupTitle: {
+                    "0": "0",
+                    "1": "1",
+                    "2": "2",
+                    "3": "3",
+                    "4": "4",
+                    "5": "5",
+                    "6": "6",
+                    "7": "7",
+                    "8": "8",
+                    "9": "9",
 
                 }
             }
         },
-        quick:{
-            shape_radius:"",
-            shape_enable_curnerEditor:false,
-            shape_use_svgo:true
-
-        }
-
+        quick: {
+            shape_radius: "",
+            shape_enable_curnerEditor: false,
+            shape_use_svgo: true
+        },
     }
-    this.inset={
-        selectMax:6,/*最大选中图层数，大于这个数，选中图层时 Gob 将不从实际图层拉取数据而是仅显示“多值”*/
+
+    this.gob = {
+        $anchor: 0,
+    }
+
+
+    this.inset = {
+        selectMax: 6, /*最大选中图层数，大于这个数，选中图层时 Gob 将不从实际图层拉取数据而是仅显示“多值”*/
     }
 
     this.autoRender = false;
@@ -89,7 +92,7 @@ SetSystem.prototype.init = function ()
 
 
     logger.pin("setting", "settingCaryon.js:SetSystem.prototype.init",
-       "初始化目录", {"seriesDir": seriesDir, "appDir": appDir, "userDataDir": userDataDir})
+        "初始化目录", {"seriesDir": seriesDir, "appDir": appDir, "userDataDir": userDataDir})
 
 
     //END ----------------------------
