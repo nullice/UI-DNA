@@ -1,8 +1,6 @@
 <template>
 
 
-
-
     <input-box
             v-if="o_msg_input.var_panel.show"
             v-bind:msg_title="o_msg_input.var_panel.title"
@@ -25,10 +23,6 @@
     </input-box>
 
 
-
-
-
-
     <a-area area_title="变量列表" area_id="var_panel"
             v-bind:area_suspend="true"
             v-bind:area_disable_fixbut="true"
@@ -41,8 +35,6 @@
                     v-bind:msg_title="o_msg_bubble.var_panel.title"
                     v-bind:msg_color="o_msg_bubble.var_panel.color"
         ></bubble-box>
-
-
 
 
         <div class="var_tool">
@@ -63,8 +55,6 @@
                         edit_class="var_name cell"
                         v-bind:edit_set_func="o_set_func_name"
                 ></edit-text-label>
-
-
 
 
                 <edit-text-label
@@ -293,7 +283,7 @@
                         name: "类型", type: "select", options: [
 //                        {text: Lang.from('模板变量'), value: 'template'},
                         {text: Lang.from('普通变量'), value: 'normal'},
-//                        {text: Lang.from('脚本变量'), value: 'script'}
+                        {text: Lang.from('对象变量'), value: 'object'}
                     ], select: "normal"
                     },
 //                    {name: "事实上", type: "textarea"},
@@ -301,13 +291,45 @@
                 ]
 
 
-
-
                 var ok_func = function (data, doneFunc)
                 {
+                    if (data[2].select == "object")
+                    {
+                        if (data[0].value[0] != "@")
+                        {
+                            data[0].value = "@" + data[0].value;
+                        }
+                    }
+
+
                     if (varify_varName(data[0].value))
                     {
-                        varSystem.addVar(data[0].value, data[1].value)
+                        var varValue = data[1].value;
+                        if (data[2].select == "object")
+                        {
+                            try
+                            {
+                                varValue = JSON.parse(varValue)
+                            } catch (e)
+                            {
+                                console.info("new var :err :object - JSON", e)
+                                try
+                                {
+
+                                    eval("varValue=" + varValue)
+                                } catch (e)
+                                {
+                                    console.info("new var :err :object - eval", e)
+                                }
+
+                            }
+
+
+                        }
+
+                        console.info(varValue)
+
+                        varSystem.addVar(data[0].value, varValue)
                         if (doneFunc != undefined)
                         {
                             doneFunc();

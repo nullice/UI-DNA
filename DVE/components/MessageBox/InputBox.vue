@@ -197,7 +197,7 @@
             change_verify:function (verify,value, $event)
             {
 
-                console.log(verify)
+//                console.log(verify)
                 if(typeof verify == "function")
                 {
                     verify(value,$event)

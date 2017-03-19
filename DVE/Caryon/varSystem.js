@@ -365,9 +365,19 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
             {
                 if (varList[i].name[0] == "@")
                 {
+                    var varArr = varList[i].name.split(".")
+                    if( varArr.length >1)
+                    {
+                        var _this_var =
+                            {value: OBJ.getObjectValueByNames(this.vars[varArr[0]].value, varArr.slice(1))};
 
-                    var _this_var =
-                        {value: OBJ.getObjectValueByNames(this.vars[varList[i].name].value, names)};
+                    }
+                    else
+                    {
+                        var _this_var =
+                            {value: OBJ.getObjectValueByNames(this.vars[varList[i].name].value, names)};
+
+                    }
 
 
                 } else
@@ -543,7 +553,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
     // 日文平假名：3040-309F
     // 日文片假名：30A0-30FF
 
-    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$\@￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9]*/g;
+    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$\@￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]*/g;
     var varList = [];
     var resullt;
 

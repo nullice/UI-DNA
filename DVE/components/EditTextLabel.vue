@@ -77,7 +77,29 @@
 
                         if (isObject)
                         {
-                            self.in_value = JSON.parse(data[0].value)
+
+
+                            try
+                            {
+                                self.in_value = JSON.parse(data[0].value)
+                            } catch (e)
+                            {
+                                console.info("edit-text-label var :err :object - JSON", e)
+                                try
+                                {
+                                    eval("self.in_value =" + data[0].value)
+                                } catch (e)
+                                {
+                                    console.info("edit-text-label var :err :object - eval", e)
+                                }
+
+                            }
+
+
+
+                            
+
+
                         } else
                         {
                             self.in_value = data[0].value
