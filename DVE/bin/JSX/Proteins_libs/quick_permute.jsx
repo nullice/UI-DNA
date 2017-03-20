@@ -385,6 +385,12 @@
         {
             return null
         }
+
+        if (onylTextLayer === "onlyTextLayer")
+        {
+            layerIds =  Kinase.layer.getAllContainLayerID_byIds(layerIds)
+        }
+
         var layerPool = []
         for (var i = 0; i < layerIds.length; i++)
         {

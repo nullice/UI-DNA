@@ -6213,7 +6213,7 @@ Kinase.layer.creatNewShapeLayerBackBox_ByActive = function (layerName, padding, 
     shapeInfo.h = boxBounds_xywh.h
 
     Kinase.layer.creatNewShapeLayerSquarenss_ByActive(layerName, shapeInfo)
-    Kinase.layer.moveActiveLayerOrder(Kinase.layer.getItemIndexBylayerID(trgetId) )
+    Kinase.layer.moveActiveLayerOrder(Kinase.layer.getItemIndexBylayerID(trgetId))
 
 }
 
@@ -6865,8 +6865,41 @@ Kinase.layer.getChildLayerID_byItemIndex = function (itemIndex, getLayerList)
     {
         return null;
     }
+}
 
+/**
+ * 展开 id 数组中的图层组，得到除了图层组外所有图层 id
+ * @param layerIds id 数组
+ * @returns {Array}
+ */
+Kinase.layer.getAllContainLayerID_byIds = function (layerIds)
+{
+    var allIds = []
+    _scan(layerIds)
+    function _scan(ids)
+    {
+        for (var i = 0; i < ids.length; i++)
+        {
+            var id = ids[i]
+            var type = Kinase.layer.getLayerType(Kinase.REF_LayerID, id)
 
+            if (type.typeName == "layerSet")
+            {
+                var child = Kinase.layer.getChildLayerID_byItemIndex(Kinase.layer.getItemIndexBylayerID(id))
+
+                if (child != undefined)
+                {
+                    _scan(child)
+                }
+
+            }else {
+
+                allIds.push(id)
+            }
+        }
+    }
+
+return allIds
 }
 
 

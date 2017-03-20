@@ -25,18 +25,36 @@
             {
                 for (var i = 0; i < ids.length; i++)
                 {
-                    Kinase.layer.selectLayer_byID(ids[i])
-                    minOnce()
+                    minOnce(ids[i])
                 }
             } else
             {
-                minOnce()
+                minOnce(ids[0])
             }
 
 
-            function minOnce()
+            function minOnce(id)
             {
-                Kinase.layer.setLayerTextMinBounds_Quick(Kinase.REF_ActiveLayer, null)
+
+                var type = Kinase.layer.getLayerType(Kinase.REF_LayerID, id)
+
+                if (type.typeName == "text")
+                {
+                    Kinase.layer.selectLayer_byID(id)
+                    Kinase.layer.setLayerTextMinBounds_Quick(Kinase.REF_ActiveLayer, null)
+                } else if (type.typeName == "layerSet")
+                {
+                    var child = Kinase.layer.getChildLayerID_byItemIndex(Kinase.layer.getItemIndexBylayerID(id))
+
+                    if (child != undefined)
+                    {
+                        for (var z = 0; z < child.length; z++)
+                        {
+                            minOnce(child[z])
+                        }
+                    }
+
+                }
             }
 
         }
@@ -52,7 +70,6 @@
         var meterDxy = Libs.quick_permute_calcLayerMeterDxy(grid.RowColIds, grid.LayerPool)
 
         var textLayerTable = []
-
 
         var RowColIds = grid.RowColIds
         for (var r = 0; r < RowColIds.length; r++)
@@ -71,6 +88,7 @@
                 var textLayerCell = {
                     id: id,
                     text: text,
+                    name: Kinase.layer.getLayerName_byID(id),
                 }
                 row.push(textLayerCell)
             }
@@ -96,7 +114,7 @@
                 var row = []
                 for (var c = 0; c < textTable[r].length; c++)
                 {
-                    var id = textTable[r][c]
+                    var id = textTable[r][c].id
                     var text = ""
                     if (textTable[r][c].text != undefined)
                     {

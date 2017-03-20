@@ -143,8 +143,6 @@
                                    v-bind:more_onoff="more_onoff.derive_longShadow"
                                    v-bind:func="func_derive_longShadow"
                                    v-bind:func_right="func_derive_longShadow_selectDirection"
-
-
                 >
 
                     <span class="long-shadow-icon {{'deg'+o_derive_longShadow_direction}}">
@@ -162,9 +160,6 @@
                     <i class="iconfont icon-mianfenge derive-3ddepth-icon {{'deg'+o_derive_derive_3D_depth_direction}}"
                        style="  display: inline-block; transition: all .2s;transform: rotate({{o_style_3ddepth_angle}}deg);line-height: 13px; font-size: 14px;"></i>
                 </quick-icon-button>
-
-
-
 
 
             </div>
@@ -847,25 +842,30 @@
                                    v-bind:func="func_text_minBounds">
                     <i class="icon-shrink"></i>
                 </quick-icon-button>
-
+                <quick-icon-button v-bind:title="Lang.from('多文本框编辑')" name="text_multEditor"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.text_multEditor"
+                                   v-bind:func="func_text_advance">
+                    <i class="icon-insert-template"
+                       style=" font-size: 16px;line-height: 13px;"></i>
+                </quick-icon-button>
 
             </div>
 
             <div class="quick_mores">
-                <!--变换平面角度-->
-                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_angle}">
+                <!--多文本框编辑-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.text_multEditor}">
                     <div class="info">
-                        变换平面角度
+                        多文本框编辑
+                        <div class="more_button_bar_big inline">
+                            <button class="exmo_button_ghost" v-on:click="func_text_multEditor_render">应用</button>
+                        </div>
                     </div>
-
-                    <div class="exmo_inbox " title="为 0 时自动计算">
-                        <div class="exmo_box_name">变换角</div>
-                        <select class="exmo_select" v-model="o_tansform_anglePanel" style="width: 126px;">
-                            <option value="0"> {{"左"|lang}}</option>
-                            <option value="1"> {{"右"|lang}}</option>
-                        </select>
-                    </div>
+                    <quick-mult-editor v-bind:text_table.sync="o_text_multTextTable"></quick-mult-editor>
+                  <!--  o_text_multTextTable：{{o_text_multTextTable|json}}-->
                 </div>
+                <!--<pre>{{o_text_multTextTable|json}}</pre>-->
+
 
             </div>
         </div>
@@ -1162,6 +1162,8 @@
     import SelectInput from "./AttributePanel_selectInput.vue"
     import AttrTextarea from "./AttributePanel_textarea.vue"
     import QuickIconButton from "./QuickPanel_iconButton.vue"
+    import QuickMultEditor from "./QuickPanel_multEditor.vue"
+
 
     export default{
         watch: {
@@ -1180,6 +1182,12 @@
                 if (this.more_onoff.permute_padding)
                 {
                     this.func_permute_updatePadding()
+                }
+
+
+                if (this.more_onoff.text_multEditor)
+                {
+                    this.func_text_updateMultTextTable()
                 }
 
 
@@ -1207,6 +1215,15 @@
                     this.func_permute_updatePadding()
                 }
             }
+            ,
+            "more_onoff.text_multEditor": function ()
+            {
+                if (this.more_onoff.text_multEditor)
+                {
+                    this.func_text_updateMultTextTable()
+                }
+            }
+
 
         },
 
@@ -1228,6 +1245,8 @@
                     transform_angle: false,
                     transform_scale: false,
                     transform_rotation: false,
+                    text_multEditor: false,
+
                 },
                 Lang: Lang,
                 Gob: Gob,
@@ -1476,7 +1495,7 @@
                     }
 
                 ],
-
+                o_text_multTextTable: null,
             }
 
         },
@@ -1784,7 +1803,7 @@
             },
             func_permute_updatePadding: async function ()
             {
-                console.info("func_permute_updatePadding")
+//                console.info("func_permute_updatePadding")
                 var info = await Proteins.exec("quick_permute_getLayerPadding")
                 this.o_permute_padding_top_calc = info.suggestPadding_top || 0
                 this.o_permute_padding_right_calc = info.suggestPadding_right || 0
@@ -1959,7 +1978,6 @@
                     this.o_derive_mirror_direction = 1
                 }
             },
-
             func_angle_switch: function (angle)
             {
                 if (angle % 45 != 0)
@@ -1977,7 +1995,6 @@
 
                 return angle
             },
-
             func_derive_longShadow_selectDirection: function ()
             {
                 this.o_derive_longShadow_direction = this.func_angle_switch(this.o_derive_longShadow_direction)
@@ -2100,17 +2117,35 @@
             {
                 Proteins.exec("quick_text_minBounds", {})
             },
-            func_derive_padding:function ()
+            func_derive_padding: function ()
             {
-                Proteins.exec("quick_derive_padding",  {
+                Proteins.exec("quick_derive_padding", {
                     left: this.o_derive_padding_left,
                     top: this.o_derive_padding_top,
                     right: this.o_derive_padding_right,
                     bottom: this.o_derive_padding_bottom,
                 })
-            }
+            },
+            func_text_updateMultTextTable: async function ()
+            {
+//                console.info("func_permute_updatePadding")
+                var textTable = await Proteins.exec("quick_text_calcTextTable")
+//                this.o_text_multTextTable = textTable
+                Vue.set(this, "o_text_multTextTable", textTable)
+//                console.info(textTable)
 
+            },
+            func_text_advance: function ()
+            {
+                this.click_onecMore("text_multEditor")
+            },
+            func_text_multEditor_render: function ()
+            {
+                Proteins.exec("quick_text_textTableRender", {
+                    textTable: this.o_text_multTextTable,
 
+                })
+            },
 
         },
         computed: {
@@ -2154,7 +2189,11 @@
             show_text: {
                 get: function ()
                 {
-                    return this.Gob.selectTypes["text"]
+
+                   if(this.Gob.selectTypes["text"] || this.Gob.selectTypes["layerSet"])
+                   {
+                       return true
+                   }
 
                 },
             },
@@ -2320,8 +2359,8 @@
             "attr-select": AttrSelect,
             "select-input": SelectInput,
             "attr-textarea": AttrTextarea,
-            "quick-icon-button": QuickIconButton
-
+            "quick-icon-button": QuickIconButton,
+            "quick-mult-editor": QuickMultEditor,
         }
 
 
