@@ -115,7 +115,7 @@
                                    v-bind:more_onoff="more_onoff.derive_matrix"
                                    v-bind:func="func_derive_matrix">
                     <i class="iconfont  icon-bk-dot"
-                       style="font-size: 13px; display: inline-block;margin-bottom: -2px;"></i>
+                       style="  margin-left: 1px;font-size: 13px; display: inline-block;margin-bottom: -2px;"></i>
                 </quick-icon-button>
 
                 <quick-icon-button v-bind:title="Lang.from('派生镜像')" name="derive_mirror"
@@ -471,7 +471,7 @@
                                    v-bind:more_onoff="more_onoff.permute_padding"
                                    v-bind:func="func_permute_padding">
                     <i class="iconfont icon-anniu1"
-                       style="  font-size: 18px;line-height: 13px;margin-bottom: -2px;display: inline-block;"></i>
+                       style="   margin-left: -1px; font-size: 18px;line-height: 13px;margin-bottom: -2px;display: inline-block;"></i>
                 </quick-icon-button>
 
                 <!--<quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"-->
@@ -541,7 +541,8 @@
                                    value="vetically" name="group_permut_spacing0"
                                    v-model="o_permute_spacing_inLineAlign">
                             <label class="exmo_button_icon mini" for="quick_permute_03">
-                                <i class="icon-align-middle"></i></label></div>
+                                <i class="icon-align-middle"></i></label>
+                        </div>
                     </div>
 
 
@@ -845,9 +846,17 @@
                 <quick-icon-button v-bind:title="Lang.from('多文本框编辑')" name="text_multEditor"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.text_multEditor"
-                                   v-bind:func="func_text_advance">
+                                   v-bind:func="func_text_advance_multEditor">
                     <i class="icon-insert-template"
                        style=" font-size: 16px;line-height: 13px;"></i>
+                </quick-icon-button>
+
+                <quick-icon-button v-bind:title="Lang.from('多文本框数据化编辑（JSON\CVS）')" name="text_dataEditor"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.text_dataEditor"
+                                   v-bind:func="func_text_advance_dataEditor">
+                    <i class="iconfont  icon-zidongpingjia"
+                       style=" font-size: 19px;  margin-left: -2px;line-height: 13px;"></i>
                 </quick-icon-button>
 
             </div>
@@ -862,10 +871,53 @@
                         </div>
                     </div>
                     <quick-mult-editor v-bind:text_table.sync="o_text_multTextTable"></quick-mult-editor>
-                  <!--  o_text_multTextTable：{{o_text_multTextTable|json}}-->
+
                 </div>
                 <!--<pre>{{o_text_multTextTable|json}}</pre>-->
 
+
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.text_dataEditor}">
+                    <div class="info">
+                        数据化编辑
+
+                        <div class="inline-but-bar data-editor-mode ">
+                            <input type="radio" class="exmo_icon_cheackbox"
+                                   id="quick_text_data_01"
+                                   value="CSV" name="group_text_data1"
+                                   v-model="o_text_dataEditor_mode">
+                            <label class="exmo_button_icon mini" for="quick_text_data_01">
+                                <span>CSV</span></label>
+
+                            <input type="radio" class="exmo_icon_cheackbox" id="quick_text_data_02"
+                                   value="JSON" name="group_text_data1"
+                                   v-model="o_text_dataEditor_mode">
+                            <label class="exmo_button_icon mini" for="quick_text_data_02">
+                                <span>JSON</span></label>
+                        </div>
+
+
+                        <div class="more_button_bar_big inline">
+                            <button class="exmo_button_ghost" v-on:click="func_text_dataEditor_render">应用</button>
+                        </div>
+                    </div>
+
+
+                    <div class="data_editor_box">
+                         <textarea class="exmo_inbox value_input_box quick_data_editor"
+                                   v-model="o_text_dataEditor_input"
+                         >
+                     </textarea>
+                    </div>
+
+                    <div class="more_button_bar_big oneline">
+                        <button class="exmo_button_ghost" v-on:click="func_text_multEditor_copy">复制</button>
+                        <button class="exmo_button_ghost" v-on:click="func_text_multEditor_paste">粘贴</button>
+                        <button class="exmo_button_ghost" v-on:click="func_text_multEditor_export">导出</button>
+                        <button class="exmo_button_ghost" v-on:click="func_text_multEditor_import">导入</button>
+
+                    </div>
+
+                </div>
 
             </div>
         </div>
@@ -876,6 +928,28 @@
 
 </template>
 <style lang="scss" rel="stylesheet/scss">
+
+
+    .inline-but-bar.data-editor-mode {
+        right: 85px !important;
+        top: 4px !important;
+        z-index: 3;
+
+        span {
+            display: inline-block;
+        }
+    }
+
+    .exmo_inbox.quick_data_editor {
+        height: 128px;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        white-space: pre-wrap;
+    }
+
+    .data_editor_box {
+        padding-right: 8px;
+    }
 
     .exmo_inbox.longtext {
         .exmo_box_name {
@@ -1071,9 +1145,16 @@
                     right: 0;
                 }
 
+                &.oneline {
+                    white-space: nowrap;
+                    button.exmo_button_ghost {
+                        margin: 0 4px;
+                    }
+                }
+
                 button.exmo_button_ghost {
                     font-size: 12px;
-                    padding: 3px 20px;
+                    padding: 3px 12px;
                     margin: 0 8px;
                 }
             }
@@ -1185,9 +1266,18 @@
                 }
 
 
-                if (this.more_onoff.text_multEditor)
+                if (this.more_onoff.text_multEditor || this.more_onoff.text_dataEditor)
                 {
-                    this.func_text_updateMultTextTable()
+
+                    if (this.more_onoff.text_dataEditor)
+                    {
+                        await this.func_text_updateMultTextTable()
+                        this.o_text_dataEditor_input = this.o_text_dataEditor_dataStr
+                    } else
+                    {
+                        this.func_text_updateMultTextTable()
+                    }
+
                 }
 
 
@@ -1222,6 +1312,19 @@
                 {
                     this.func_text_updateMultTextTable()
                 }
+            },
+            "more_onoff.text_dataEditor": async function ()
+            {
+                if (this.more_onoff.text_dataEditor)
+                {
+                    await this.func_text_updateMultTextTable()
+                    this.o_text_dataEditor_input = this.o_text_dataEditor_dataStr
+                }
+            },
+            "o_text_dataEditor_mode": function ()
+            {
+
+                this.o_text_dataEditor_input = this.o_text_dataEditor_dataStr
             }
 
 
@@ -1246,6 +1349,7 @@
                     transform_scale: false,
                     transform_rotation: false,
                     text_multEditor: false,
+                    text_dataEditor: false,
 
                 },
                 Lang: Lang,
@@ -1496,6 +1600,8 @@
 
                 ],
                 o_text_multTextTable: null,
+                o_text_dataEditor_mode: "CSV",
+                o_text_dataEditor_input: "",
             }
 
         },
@@ -1753,11 +1859,8 @@
                                 window.cep.fs.writeFile(writePath, svgFin[i]);
 
                             }
-
                         }
                     }
-
-
                 }
 
 
@@ -1792,8 +1895,9 @@
             {
                 console.info("func_permute_updateSpacingGird")
                 var info = await Proteins.exec("quick_permute_getLayerGrid")
-                this.o_permute_spacing_col_calc = info.colNumber
-                this.o_permute_spacing_row_calc = info.rowNumber = info.rowNumber
+
+                this.o_permute_spacing_col_calc = info.colNumber || 0
+                this.o_permute_spacing_row_calc = info.rowNumber || 0
                 this.o_permute_spacing_dX_calc = info.suggestDX || 0
                 this.o_permute_spacing_dY_calc = info.suggestDY || 0
                 this.o_permute_spacing_dMxtX_calc = info.suggestMxtX || 0
@@ -2130,24 +2234,160 @@
             {
 //                console.info("func_permute_updatePadding")
                 var textTable = await Proteins.exec("quick_text_calcTextTable")
+                if (typeof textTable === "object")
+                {
+                    Vue.set(this, "o_text_multTextTable", textTable)
+                } else
+                {
+                    Vue.set(this, "o_text_multTextTable", null)
+                }
 //                this.o_text_multTextTable = textTable
-                Vue.set(this, "o_text_multTextTable", textTable)
+
 //                console.info(textTable)
 
             },
-            func_text_advance: function ()
+            func_text_advance_multEditor: function ()
             {
                 this.click_onecMore("text_multEditor")
             },
+            func_text_advance_dataEditor: function ()
+            {
+                this.click_onecMore("text_dataEditor")
+            },
+
             func_text_multEditor_render: function ()
             {
                 Proteins.exec("quick_text_textTableRender", {
                     textTable: this.o_text_multTextTable,
-
                 })
             },
+            func_text_dataEditor_render: function ()
+            {
 
-        },
+                var self = this;
+                if (this.o_text_dataEditor_mode == "JSON")
+                {
+                    renderJson(self.o_text_dataEditor_input)
+
+                } else if (this.o_text_dataEditor_mode == "CSV")
+                {
+
+                    var csv = self.o_text_dataEditor_input
+                    var newArr = nodeCsvReader.parse(csv)
+                    toTextTable(newArr)
+                    Proteins.exec("quick_text_textTableRender", {
+                        textTable: self.o_text_multTextTable,
+                    })
+
+                }
+
+                function renderJson(json)
+                {
+                    var newArr = null;
+                    try
+                    {
+                        var newArr = JSON.parse(json)
+                    } catch (e)
+                    {
+                        alert(Lang.from("无效 JSON"))
+                        return;
+                    }
+
+
+                    toTextTable(newArr)
+                    Proteins.exec("quick_text_textTableRender", {
+                        textTable: self.o_text_multTextTable,
+                    })
+                }
+
+                function toTextTable(newArr)
+                {
+                    if (newArr != undefined && newArr.length != undefined)
+                    {
+                        if (self.o_text_multTextTable != undefined)
+                        {
+                            var textTable = self.o_text_multTextTable
+                            for (var r = 0; r < textTable.length; r++)
+                            {
+                                for (var c = 0; c < textTable[r].length; c++)
+                                {
+                                    if (newArr[r] != undefined)
+                                    {
+                                        if (newArr[r][c] != undefined)
+                                        {
+                                            textTable[r][c].text = newArr[r][c]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+
+            },
+            func_text_multEditor_copy: function ()
+            {
+                NodeCopy.copy(this.o_text_dataEditor_input)
+            },
+
+            func_text_multEditor_paste: function ()
+            {
+                this.o_text_dataEditor_input = NodeCopy.paste()
+            },
+
+            func_text_multEditor_export: function ()
+            {
+                var prefix = this.o_text_dataEditor_mode;
+                prefix = prefix.toLowerCase()
+
+                var result = window.cep.fs.showSaveDialogEx("保存 " + prefix, "", [prefix], "text-" + prefix + "." + prefix, prefix);
+                if (0 == result.err)
+                {
+                    if (result.data.length == 0)
+                    {
+                        console.log("用户放弃了保存");
+                    }
+                    else
+                    {
+                        var svaeResult = window.cep.fs.writeFile(result.data, this.o_text_dataEditor_input);
+                    }
+                }
+            },
+
+            func_text_multEditor_import: function ()
+            {
+                var prefix = this.o_text_dataEditor_mode;
+                prefix = prefix.toLowerCase()
+
+                var result = window.cep.fs.showOpenDialogEx(false, false, "打开 " + prefix, "", [prefix], prefix);
+                if (0 == result.err)
+                {
+                    if (result.data.length == 0)
+                    {
+                        console.log("用户放弃了保存");
+                    }
+                    else
+                    {
+                        var readResult = window.cep.fs.readFile(result.data[0]);
+                        if (0 == readResult.err)// err 为 0 读取成功
+                        {
+                            console.log("readResult.data", readResult.data)
+                            this.o_text_dataEditor_input = readResult.data
+                        }
+                        else
+                        {
+                            console.log("读取错误：" + readResult.err);// 失败
+                        }
+
+
+                    }
+                }
+            },
+
+
+        }
+        ,
         computed: {
             // 一个计算属性的 getter
             o_range_style: {
@@ -2165,8 +2405,10 @@
                             width: "90px"
                         }
                     }
-                },
-            },
+                }
+                ,
+            }
+            ,
             o_radius_now: {
                 get: function ()
                 {
@@ -2176,27 +2418,32 @@
                         + this.Gob.shape.radian.bottomRight + ","
                         + this.Gob.shape.radian.bottomLeft
                 }
-            },
+            }
+            ,
             show_shape: {
                 get: function ()
                 {
                     return this.Gob.selectTypes["shape"]
 
-                },
-            },
+                }
+                ,
+            }
+            ,
 
 
             show_text: {
                 get: function ()
                 {
 
-                   if(this.Gob.selectTypes["text"] || this.Gob.selectTypes["layerSet"])
-                   {
-                       return true
-                   }
+                    if (this.Gob.selectTypes["text"] || this.Gob.selectTypes["layerSet"])
+                    {
+                        return true
+                    }
 
-                },
-            },
+                }
+                ,
+            }
+            ,
             o_permute_padding_padding: {
                 get: function ()
                 {
@@ -2233,7 +2480,8 @@
                     }
 
                     return str
-                },
+                }
+                ,
                 set: function (value)
                 {
                     if (value != undefined && value.split != undefined)
@@ -2271,7 +2519,8 @@
 
                     }
                 }
-            },
+            }
+            ,
             o_derive_padding_padding: {
                 get: function ()
                 {
@@ -2291,7 +2540,8 @@
                     }
 
                     return str
-                },
+                }
+                ,
                 set: function (value)
                 {
                     if (value != undefined && value.split != undefined)
@@ -2329,7 +2579,8 @@
 
                     }
                 }
-            },
+            }
+            ,
             o_style_3ddepth_angle: {
                 get: function ()
                 {
@@ -2347,11 +2598,59 @@
                         return 285
                     }
                     return x
-                },
-            },
+                }
+                ,
+            }
+            ,
+            o_text_dataEditor_dataStr: {
+                get: function ()
+                {
+                    if (this.o_text_multTextTable == undefined)
+                    {
+                        return ""
+                    }
+
+                    function textTableToCsvArr(textTable)
+                    {
+                        if (textTable == undefined || textTable.length == undefined)
+                        {
+                            return null
+                        }
+                        var csvArr = []
+                        for (var r = 0; r < textTable.length; r++)
+                        {
+                            var row = []
+                            for (var c = 0; c < textTable[r].length; c++)
+                            {
+                                var text = ""
+                                if (textTable[r][c].text != undefined)
+                                {
+                                    text = textTable[r][c].text
+                                }
+                                row.push(text)
+                            }
+                            csvArr.push(row)
+                        }
+
+                        return csvArr
+                    }
+
+                    var dataStr = textTableToCsvArr(this.o_text_multTextTable)
+                    if (this.o_text_dataEditor_mode == "CSV")
+                    {
+                        dataStr = nodeCsvWriter.write(dataStr)
+                    } else
+                    {
+                        dataStr = JSON.stringify(dataStr)
+                    }
+
+                    return dataStr
+                }
+            }
 
 
-        },
+        }
+        ,
         components: {
             "attr-option": AttrOption,
             "value-input": ValueInput,

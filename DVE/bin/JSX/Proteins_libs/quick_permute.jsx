@@ -17,6 +17,11 @@
     Libs.quick_permute_getLayerGrid = function (infoObjec, envObject)
     {
         var grid = calcLayersGrid()
+
+        if (grid == undefined)
+        {
+            return 0;
+        }
         var meterDxy = calcLayerMeterDxy(grid.RowColIds, grid.LayerPool)
 
         // $.writeln(json(meterDxy))
@@ -388,7 +393,7 @@
 
         if (onylTextLayer === "onlyTextLayer")
         {
-            layerIds =  Kinase.layer.getAllContainLayerID_byIds(layerIds)
+            layerIds = Kinase.layer.getAllContainLayerID_byIds(layerIds)
         }
 
         var layerPool = []
@@ -396,7 +401,7 @@
         {
             if (onylTextLayer === "onlyTextLayer")
             {
-                var type = Kinase.layer.getLayerType(Kinase.REF_LayerID,layerIds[i]);
+                var type = Kinase.layer.getLayerType(Kinase.REF_LayerID, layerIds[i]);
                 if (type != undefined && type.typeName != "text")
                 {
                     continue;
@@ -416,6 +421,12 @@
                 rank_x: null, rank_y: null, rank_right: null, rank_bottom: null, rank_xy: null, rank_x_y: null
             }
             layerPool.push(layerItem)
+        }
+
+        if (layerPool.length < 1)
+        {
+            return null
+
         }
 
         var rankIds_x = []

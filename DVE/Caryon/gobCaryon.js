@@ -764,7 +764,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         //写入 dataCaryon
         if (flag_writeDataCaryon === true && (value != undefined))
         {
-            console.info("[[[writeDataCaryon]]]]]" + this.selectList[i].id, ":[", names, "] ", value)
+            // console.info("[[[writeDataCaryon]]]]]" + this.selectList[i].id, ":[", names, "] ", value)
             if (dataCaryon.layers[this.selectList[i].id] == undefined)//如果 dataCaryon 图层不存在，就创建
             {
                 dataCaryon.addLayer(this.selectList[i]);
@@ -772,7 +772,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
             changeValue_dataCaryon = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, value)
             if (changeValue_dataCaryon === "delete")
             {
-                console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
+                // console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
             }
 
 
@@ -785,7 +785,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                 var result = _valueToObject(dataCaryon.layers[this.selectList[i].id], names, 0, "", null, true)
                 if (result === "delete")
                 {
-                    console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
+                    // console.info("[[[deleteDataCaryon]]]]]", dataCaryon.layers[this.selectList[i].id] == undefined, "id:", this.selectList[i].id, ":[", names, "] ", value)
                 }
 
             }

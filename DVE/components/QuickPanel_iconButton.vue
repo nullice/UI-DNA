@@ -30,11 +30,13 @@
         .quick_but {
             display: inline-block;
             margin-left: -1px;
+            width: 40px;
 
             .quick_but_icon {
                 display: inline-block;
                 padding: 5px 12px;
                 margin: 0px;
+                width: 14px;
                 i {
                     font-size: 14px;
                 }

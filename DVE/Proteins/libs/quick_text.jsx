@@ -67,6 +67,11 @@
     Libs.quick_text_calcTextTable = function (infoObjec, envObject)
     {
         var grid = Libs.quick_permute_calcLayersGrid("onlyTextLayer")
+        if (grid == undefined)
+        {
+            return 0;
+        }
+
         var meterDxy = Libs.quick_permute_calcLayerMeterDxy(grid.RowColIds, grid.LayerPool)
 
         var textLayerTable = []
