@@ -378,7 +378,7 @@
     }
 
 
-    function calcLayersGrid()
+    function calcLayersGrid(onylTextLayer)
     {
         var layerIds = Kinase.layer.getTargetLayersID()
         if (layerIds.length == 0)
@@ -388,6 +388,15 @@
         var layerPool = []
         for (var i = 0; i < layerIds.length; i++)
         {
+            if (onylTextLayer === "onlyTextLayer")
+            {
+                var type = Kinase.layer.getLayerType(Kinase.REF_LayerID,layerIds[i]);
+                if (type != undefined && type.typeName != "text")
+                {
+                    continue;
+                }
+            }
+
             var bounds = Kinase.layer.getLayerBounds(Kinase.REF_LayerID, layerIds[i])
 
             var layerItem = {
@@ -559,6 +568,7 @@
 
     }
 
+    Libs.quick_permute_calcLayersGrid = calcLayersGrid;
 
     function calcLayerMeterDxy(rowColIds, layerPool)
     {
@@ -673,6 +683,7 @@
 
     }
 
+    Libs.quick_permute_calcLayerMeterDxy = calcLayerMeterDxy;
 
     /**
      * 排列，指定上下间距
@@ -953,7 +964,7 @@
 
             for (var i = 0; i < Math.floor(layerPool.length / 2); i++)
             {
-                var pading = getPadding(layerPool[i*2], layerPool[i*2 + 1])
+                var pading = getPadding(layerPool[i * 2], layerPool[i * 2 + 1])
                 _checMetrt(meterPadding_top, pading.padding_top)
                 _checMetrt(meterPadding_bottom, pading.padding_bottom)
                 _checMetrt(meterPadding_right, pading.padding_right)
@@ -1038,7 +1049,7 @@
 
                 for (var i = 0; i < Math.floor(paddingInfo.layerPool.length / 2); i++)
                 {
-                    setPadding(paddingInfo.layerPool[i*2], paddingInfo.layerPool[i*2 + 1])
+                    setPadding(paddingInfo.layerPool[i * 2], paddingInfo.layerPool[i * 2 + 1])
                 }
 
 

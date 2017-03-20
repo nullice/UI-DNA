@@ -802,7 +802,11 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         var renderOnce = false
         if (ARR.hasMember(["text", "shape",], names[0]))
         {
-            renderOnce = true
+            if (_lastName != "text")
+            {
+                renderOnce = true
+            }
+
         }
         if (ARR.hasMember(["layerColor", "opacity", "fillOpacity", "mode", "visible"], _lastName))
         {
@@ -907,22 +911,22 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                         //-----------------------------------------------------------------
                         if (isFormula) //如果是变量表达式先解析"普通变量"
                         {
-                            var finValue = await varSystem.evalVar(value, this.selectList[i].id, names)
+                            var finValue = await varSystem.evalVar(value, this.selectList[0].id, names)
                         }
                         else if (_enableTextFormula)
                         {
                             console.info("_enableTextFormula", _enableTextFormula)
-                            var finValue = await varSystem.evalFormulasInText(value, this.selectList[i].id)
+                            var finValue = await varSystem.evalFormulasInText(value, this.selectList[0].id)
                         }
                         else
                         {
                             var finValue = value;
                         }
                         //-----------------------------------------------------------------
-                        console.log(`[renderOnce] renderCaryon.renderPatch(${0}, ${names}, ${finValue}, ${true})`)
+                        console.log(`[renderOnce] renderCaryon.renderPatch(${-1020}, ${names}, ${finValue}, ${true})`)
                         try
                         {
-                            await renderCaryon.renderPatch(0, names, finValue, true)
+                            await renderCaryon.renderPatch(-1020, names, finValue, true)
                         } catch (e)
                         {
                             logger.err("[renderOnce] Gob._set()", e)

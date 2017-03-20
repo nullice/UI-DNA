@@ -612,7 +612,15 @@ EnzJSX.setLayerInfo_text_byId = function (textInfo, id, doSelect)
     {
         ki.layer.selectLayer_byID(id)
     }
-    return ki.layer.setLayerTextInfo(textInfo, Kinase.REF_LayerID, id)
+
+    if(id === -1020)//当前选中图层
+    {
+        return ki.layer.setLayerTextInfo(textInfo, Kinase.REF_ActiveLayer, null)
+    }else
+    {
+        return ki.layer.setLayerTextInfo(textInfo, Kinase.REF_LayerID, id)
+    }
+
 }
 
 

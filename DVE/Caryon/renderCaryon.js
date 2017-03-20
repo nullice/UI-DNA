@@ -40,7 +40,7 @@ RenderCaryon.prototype.test = async function (x)
  * @param value
  * @param indepenSelect
  */
-RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notSelectLayer)
+RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notSelectLayer, activeLayer)
 {
     if (Gob._unripe)
     {
