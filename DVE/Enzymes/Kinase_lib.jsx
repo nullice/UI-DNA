@@ -953,7 +953,7 @@ Kinase.textLR2CR = function (text)
 {
     if (text != undefined)
     {
-        var reg = /(\r){0,1}\n/
+        var reg = /(\r){0,1}\n/g
         if (text.replace != undefined)
         {
             text = text.replace(reg, '\r')
