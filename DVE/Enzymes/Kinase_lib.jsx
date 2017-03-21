@@ -911,6 +911,7 @@ Kinase.layer.setLayerText_Quick = function (text, targetReference, target)
 {
 
     text = Kinase.textLR2CR(text)
+
     var adOb = {
         "null": {
             "value": {
@@ -952,7 +953,7 @@ Kinase.textLR2CR = function (text)
 {
     if (text != undefined)
     {
-        var reg = /\n(\r){0,1}/
+        var reg = /(\r){0,1}\n/
         if (text.replace != undefined)
         {
             text = text.replace(reg, '\r')
