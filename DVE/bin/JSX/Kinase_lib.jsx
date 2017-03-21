@@ -909,6 +909,8 @@ Kinase.layer.getLayerTextInfo = function (targetReference, target)
  */
 Kinase.layer.setLayerText_Quick = function (text, targetReference, target)
 {
+
+    text = Kinase.textLR2CR(text)
     var adOb = {
         "null": {
             "value": {
@@ -946,6 +948,18 @@ Kinase.layer.setLayerText_Quick = function (text, targetReference, target)
 
 }
 
+Kinase.textLR2CR = function (text)
+{
+    if (text != undefined)
+    {
+        var reg = /\n(\r){0,1}/
+        if (text.replace != undefined)
+        {
+            text = text.replace(reg, '\r')
+        }
+    }
+    return text
+}
 
 /**
  * 设置文本图层文本范围为最小
@@ -1606,8 +1620,9 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
     if (textInfo.text != undefined)
     {
         // \r 表示换行符。
+
         adOb.to.value.textKey = {
-            "value": textInfo.text.replace("\n", "\r"),
+            "value": Kinase.textLR2CR(textInfo.text),
             "type": "DescValueType.STRINGTYPE"
         }
     }
@@ -6892,14 +6907,15 @@ Kinase.layer.getAllContainLayerID_byIds = function (layerIds)
                     _scan(child)
                 }
 
-            }else {
+            } else
+            {
 
                 allIds.push(id)
             }
         }
     }
 
-return allIds
+    return allIds
 }
 
 
