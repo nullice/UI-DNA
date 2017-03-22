@@ -30,7 +30,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.83510125">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="QuickPanel.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="QuickPanel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/QuickPanel.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="153">
@@ -169,12 +169,36 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="quick_text.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="quick_text.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_text.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="137">
-                  <caret line="80" column="32" lean-forward="true" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
+                <state relative-caret-position="61">
+                  <caret line="19" column="2" lean-forward="false" selection-start-line="19" selection-start-column="2" selection-end-line="33" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#370#410#0" expanded="false" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="quick_create.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_create.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="336">
+                  <caret line="41" column="36" lean-forward="false" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="quick_permute.jsx" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_permute.jsx">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="126">
+                  <caret line="702" column="4" lean-forward="false" selection-start-line="702" selection-start-column="4" selection-end-line="702" selection-end-column="4" />
+                  <folding>
+                    <element signature="e#2017#3494#0" expanded="false" />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -246,8 +270,8 @@
           <file leaf-file-name="QuickPanel_fillText.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="87">
-                  <caret line="40" column="45" lean-forward="false" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
+                <state relative-caret-position="129">
+                  <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
                   <folding>
                     <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#style#0;n#!!top" expanded="false" />
@@ -419,7 +443,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/AppData/Local/Temp/Rar$DRa0.864/Corner Editor 2/Corner Editor.jsx" />
         <option value="$PROJECT_DIR$/bin/node_modules/svgo/package.json" />
         <option value="$PROJECT_DIR$/bin/node_modules/svgo/plugins/cleanupIDs.js" />
         <option value="$PROJECT_DIR$/bin/node_modules/svgo/lib/svgo/config.js" />
@@ -470,6 +493,7 @@
         <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
         <option value="$PROJECT_DIR$/components/QuickPanel_fillText.vue" />
         <option value="$PROJECT_DIR$/Proteins/libs/quick_text.jsx" />
+        <option value="$PROJECT_DIR$/Proteins/libs/quick_create.jsx" />
       </list>
     </option>
   </component>
@@ -773,19 +797,19 @@
     <property name="javascript.nodejs.core.library.configured.version" value="5.2.0" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\Work\GitHub\UI-DNA\DVE\components" />
-      <recent name="E:\Work\GitHub\UI-DNA\DVE\Proteins\libs" />
-      <recent name="E:\Work\GitHub\UI-DNA\DVE\Caryon\Richang_JSEX" />
-      <recent name="E:\Work\GitHub\UI-DNA\DVE\bin\JSX" />
-      <recent name="E:\Work\GitHub\UI-DNA\DVE\Enzymes\test" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\Work\GitHub\UI-DNA\DVE\components" />
       <recent name="E:\Work\GitHub\UI-DNA\DVE\Caryon\RICHANG_EX_JS" />
       <recent name="E:\Work\GitHub\UI-DNA\DVE\test" />
       <recent name="E:\Work\GitHub\UI-DNA\DVE\Caryon" />
       <recent name="E:\Work\GitHub\UI-DNA\DVE\Muclease\test" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Work\GitHub\UI-DNA\DVE\Proteins\libs" />
+      <recent name="E:\Work\GitHub\UI-DNA\DVE\components" />
+      <recent name="E:\Work\GitHub\UI-DNA\DVE\Caryon\Richang_JSEX" />
+      <recent name="E:\Work\GitHub\UI-DNA\DVE\bin\JSX" />
+      <recent name="E:\Work\GitHub\UI-DNA\DVE\Enzymes\test" />
     </key>
   </component>
   <component name="RunManager" selected="Node.js.string">
@@ -963,12 +987,12 @@
       <workItem from="1489798936021" duration="28307000" />
       <workItem from="1489892634606" duration="71992000" />
       <workItem from="1490066543517" duration="18013000" />
-      <workItem from="1490145261169" duration="12359000" />
+      <workItem from="1490145261169" duration="14269000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2839861000" />
+    <option name="totallyTimeSpent" value="2841771000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -991,7 +1015,7 @@
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21548998" sideWeight="0.40411702" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22842261" sideWeight="0.17184943" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33387887" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.021276595" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29985118" sideWeight="0.44026187" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1075,13 +1099,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Caryon/Richang_JSEX/fileFIL.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="36" column="18" lean-forward="false" selection-start-line="36" selection-start-column="4" selection-end-line="36" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-5649">
@@ -1443,6 +1460,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="965" column="16" lean-forward="true" selection-start-line="965" selection-start-column="16" selection-end-line="965" selection-end-column="16" />
+          <folding>
+            <element signature="e#14765#16433#0" expanded="false" />
+            <element signature="e#16500#20620#0" expanded="false" />
+            <element signature="e#21339#25612#0" expanded="false" />
+            <element signature="e#27819#28360#0" expanded="false" />
+            <element signature="e#29273#29991#0" expanded="false" />
+            <element signature="e#56552#59237#0" expanded="false" />
+            <element signature="e#94883#96385#0" expanded="false" />
+            <element signature="e#96395#97976#0" expanded="false" />
+            <element signature="e#107372#108519#0" expanded="false" />
+            <element signature="e#112700#113766#0" expanded="false" />
+            <element signature="e#113858#116421#0" expanded="false" />
+            <element signature="e#116508#140601#0" expanded="false" />
+            <element signature="e#140884#141490#0" expanded="false" />
+            <element signature="e#141492#141589#0" expanded="false" />
+            <element signature="e#141676#198950#0" expanded="false" />
+            <element signature="e#199025#200210#0" expanded="false" />
+            <element signature="e#200695#201048#0" expanded="false" />
+            <element signature="e#210296#225743#0" expanded="false" />
+            <element signature="e#210681#223967#0" expanded="false" />
+            <element signature="e#227282#234529#0" expanded="false" />
+            <element signature="e#244476#245005#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proteins/Proteins_lib.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="161" column="9" lean-forward="false" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="129">
+          <caret line="42" column="9" lean-forward="false" selection-start-line="42" selection-start-column="9" selection-end-line="42" selection-end-column="9" />
+          <folding>
+            <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <element signature="e#4482#4787#0" expanded="false" />
+            <element signature="e#4957#5081#0" expanded="false" />
+            <element signature="e#5103#5903#0" expanded="false" />
+            <element signature="e#6140#9140#0" expanded="false" />
+            <element signature="e#6416#7181#0" expanded="false" />
+            <element signature="e#7248#7913#0" expanded="false" />
+            <element signature="e#7975#8855#0" expanded="false" />
+            <element signature="e#9216#9732#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_permute.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="702" column="4" lean-forward="false" selection-start-line="702" selection-start-column="4" selection-end-line="702" selection-end-column="4" />
+          <folding>
+            <element signature="e#2017#3494#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_text.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="61">
+          <caret line="19" column="2" lean-forward="false" selection-start-line="19" selection-start-column="2" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#370#410#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_create.jsx">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="41" column="36" lean-forward="false" selection-start-line="41" selection-start-column="36" selection-end-line="41" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/QuickPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1535,81 +1637,6 @@
             <marker date="1490150520414" expanded="true" signature="65059:65075" ph="..." />
             <marker date="1490150520414" expanded="true" signature="65289:65305" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="965" column="16" lean-forward="true" selection-start-line="965" selection-start-column="16" selection-end-line="965" selection-end-column="16" />
-          <folding>
-            <element signature="e#14765#16433#0" expanded="false" />
-            <element signature="e#16500#20620#0" expanded="false" />
-            <element signature="e#21339#25612#0" expanded="false" />
-            <element signature="e#27819#28360#0" expanded="false" />
-            <element signature="e#29273#29991#0" expanded="false" />
-            <element signature="e#56552#59237#0" expanded="false" />
-            <element signature="e#94883#96385#0" expanded="false" />
-            <element signature="e#96395#97976#0" expanded="false" />
-            <element signature="e#107372#108519#0" expanded="false" />
-            <element signature="e#112700#113766#0" expanded="false" />
-            <element signature="e#113858#116421#0" expanded="false" />
-            <element signature="e#116508#140601#0" expanded="false" />
-            <element signature="e#140884#141490#0" expanded="false" />
-            <element signature="e#141492#141589#0" expanded="false" />
-            <element signature="e#141676#198950#0" expanded="false" />
-            <element signature="e#199025#200210#0" expanded="false" />
-            <element signature="e#200695#201048#0" expanded="false" />
-            <element signature="e#210296#225743#0" expanded="false" />
-            <element signature="e#210681#223967#0" expanded="false" />
-            <element signature="e#227282#234529#0" expanded="false" />
-            <element signature="e#244476#245005#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Proteins/Proteins_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="161" column="9" lean-forward="false" selection-start-line="161" selection-start-column="9" selection-end-line="161" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_permute.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="116">
-          <caret line="41" column="35" lean-forward="false" selection-start-line="41" selection-start-column="26" selection-end-line="41" selection-end-column="35" />
-          <folding>
-            <element signature="e#2017#3494#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="87">
-          <caret line="40" column="45" lean-forward="false" selection-start-line="40" selection-start-column="45" selection-end-line="40" selection-end-column="45" />
-          <folding>
-            <element signature="n#div#1;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <element signature="e#4482#4787#0" expanded="false" />
-            <element signature="e#4957#5081#0" expanded="false" />
-            <element signature="e#5103#5903#0" expanded="false" />
-            <element signature="e#6140#9140#0" expanded="false" />
-            <element signature="e#6416#7181#0" expanded="false" />
-            <element signature="e#7248#7913#0" expanded="false" />
-            <element signature="e#7975#8855#0" expanded="false" />
-            <element signature="e#9216#9732#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_text.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="137">
-          <caret line="80" column="32" lean-forward="true" selection-start-line="80" selection-start-column="32" selection-end-line="80" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
