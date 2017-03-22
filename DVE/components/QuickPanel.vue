@@ -863,7 +863,7 @@
                 <quick-icon-button v-bind:title="Lang.from('文本填充')" name="text_fill"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.text_fill"
-                                   v-bind:func="func_text_advance_dataEditor">
+                                   v-bind:func="func_text_advance_textFill">
                     <i class="icon-menu-commands"
                        style="font-size: 16px;margin-bottom: -0px;line-height: 13px;display: inline-block;"></i>
                 </quick-icon-button>
@@ -2270,7 +2270,10 @@
             {
                 this.click_onecMore("text_dataEditor")
             },
-
+            func_text_advance_fillText: function ()
+            {
+                this.click_onecMore("text_fill")
+            },
             func_text_multEditor_render: function ()
             {
                 Proteins.exec("quick_text_textTableRender", {
