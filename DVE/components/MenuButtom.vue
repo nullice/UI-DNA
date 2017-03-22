@@ -8,7 +8,7 @@
             <!--<label class="exmo_button_icon mini" for="check_btn_memu_name{{memu_name}}_1">-->
             <!--<slot></slot>-->
             <!--</label>-->
-            <label class="exmo_button_icon mini" v-on:click="click_menu_button" >
+            <label class="exmo_button_icon mini" v-on:click="click_menu_button">
                 <slot v-on:click="click_menu_button"></slot>
             </label>
 
@@ -206,17 +206,24 @@
         },
         methods: {
 
-            click_menu_button:function ()
+            click_menu_button: function ()
             {
 //                alert(1)
-                this.o_onoff_on=true
+                this.o_onoff_on = true
             },
 
             click_menu_func: function (func)
             {
                 if (func != undefined)
                 {
-                    func()
+                    if (func.param != undefined && func.func != undefined)
+                    {
+                        func.func(func.param)
+                    } else
+                    {
+                          func()
+                    }
+
                     this.o_onoff_on = false
                     this.click_hidden = true;
 

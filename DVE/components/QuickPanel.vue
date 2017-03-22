@@ -1,3 +1,4 @@
+<!--suppress ALL -->
 <link rel="stylesheet" href="../bin/CSS/Vendor/animate.css">
 <template>
 
@@ -859,6 +860,14 @@
                        style=" font-size: 19px;  margin-left: -2px;line-height: 13px;"></i>
                 </quick-icon-button>
 
+                <quick-icon-button v-bind:title="Lang.from('文本填充')" name="text_fill"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.text_fill"
+                                   v-bind:func="func_text_advance_dataEditor">
+                    <i class="icon-menu-commands"
+                       style="font-size: 16px;margin-bottom: -0px;line-height: 13px;display: inline-block;"></i>
+                </quick-icon-button>
+
             </div>
 
             <div class="quick_mores">
@@ -871,11 +880,8 @@
                         </div>
                     </div>
                     <quick-mult-editor v-bind:text_table.sync="o_text_multTextTable"></quick-mult-editor>
-
                 </div>
-                <!--<pre>{{o_text_multTextTable|json}}</pre>-->
-
-
+                <!--数据化编辑-->
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.text_dataEditor}">
                     <div class="info">
                         数据化编辑
@@ -919,6 +925,12 @@
 
                 </div>
 
+                <!--文本填充-->
+                <div class="quick_more_item text_fill" v-bind:class="{'more_on':more_onoff.text_fill}">
+                    <quick-fill-text ></quick-fill-text>
+                </div>
+
+
             </div>
         </div>
 
@@ -929,7 +941,9 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-
+.exmo_button_icon span{
+    padding: 0 4px;
+}
     .inline-but-bar.data-editor-mode {
         right: 85px !important;
         top: 4px !important;
@@ -1244,6 +1258,7 @@
     import AttrTextarea from "./AttributePanel_textarea.vue"
     import QuickIconButton from "./QuickPanel_iconButton.vue"
     import QuickMultEditor from "./QuickPanel_multEditor.vue"
+    import QuickFillText from "./QuickPanel_fillText.vue"
 
 
     export default{
@@ -1350,6 +1365,7 @@
                     transform_rotation: false,
                     text_multEditor: false,
                     text_dataEditor: false,
+                    text_fill: false,
 
                 },
                 Lang: Lang,
@@ -2660,6 +2676,7 @@
             "attr-textarea": AttrTextarea,
             "quick-icon-button": QuickIconButton,
             "quick-mult-editor": QuickMultEditor,
+            "quick-fill-text": QuickFillText,
         }
 
 

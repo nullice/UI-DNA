@@ -76,7 +76,19 @@
 
         var textLayerTable = []
 
-        var RowColIds = grid.RowColIds
+        if (grid.RowNumber * grid.ColNumber < grid.LayerPool.length)
+        {
+            var RowColIds = [[]]
+            for (var i = 0; i < grid.LayerPool.length; i++)
+            {
+                RowColIds[0].push(grid.LayerPool[i].id)
+            }
+        } else
+        {
+            var RowColIds = grid.RowColIds
+        }
+
+
         for (var r = 0; r < RowColIds.length; r++)
         {
             var row = []
