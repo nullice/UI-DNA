@@ -927,23 +927,45 @@
 
                 <!--文本填充-->
                 <div class="quick_more_item text_fill" v-bind:class="{'more_on':more_onoff.text_fill}">
-                    <quick-fill-text ></quick-fill-text>
+                    <quick-fill-text></quick-fill-text>
                 </div>
 
 
             </div>
         </div>
 
+        <!--创建-->
+        <div v-show="show_create" class="quick_funcs_box">
+            <h4>创建</h4>
+            <div class="quick_buts">
+                <quick-icon-button v-bind:title="Lang.from('从现有图层创建链接对象')" name="create_smartlinkFrom"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.create_smartlinkFrom"
+                                   v-bind:func="func_text_advance_multEditor">
+                    <i class="icon-images"></i>
+                </quick-icon-button>
 
+
+            </div>
+
+            <div class="quick_mores">
+                <!--从现有图层创建链接对象-->
+                <div class="quick_more_item text_fill" v-bind:class="{'more_on':more_onoff.create_smartlinkFrom}">
+                    从现有图层创建链接对象
+                    <quick-smartlink></quick-smartlink>
+                </div>
+            </div>
+        </div>
     </a-area>
 
 
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-.exmo_button_icon span{
-    padding: 0 4px;
-}
+    .exmo_button_icon span {
+        padding: 0 4px;
+    }
+
     .inline-but-bar.data-editor-mode {
         right: 85px !important;
         top: 4px !important;
@@ -1259,7 +1281,7 @@
     import QuickIconButton from "./QuickPanel_iconButton.vue"
     import QuickMultEditor from "./QuickPanel_multEditor.vue"
     import QuickFillText from "./QuickPanel_fillText.vue"
-
+    import QuickSmartLink from "./QuickPanel_createSmartlink.vue"
 
     export default{
         watch: {
@@ -1366,6 +1388,8 @@
                     text_multEditor: false,
                     text_dataEditor: false,
                     text_fill: false,
+                    create_smartlinkFrom: false,
+
 
                 },
                 Lang: Lang,
@@ -2446,9 +2470,16 @@
 
                 }
                 ,
+            },
+            show_create: {
+                get: function ()
+                {
+                    return true
+
+                }
+                ,
             }
             ,
-
 
             show_text: {
                 get: function ()
@@ -2680,6 +2711,7 @@
             "quick-icon-button": QuickIconButton,
             "quick-mult-editor": QuickMultEditor,
             "quick-fill-text": QuickFillText,
+            "quick-smartlink": QuickSmartLink
         }
 
 

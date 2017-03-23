@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "webpack"
+    "test": "webpack",
+    "webpack":"webpack",
+    "webpack-w":"webpack -w"
+
   },
   "author": "nullice",
   "license": "LGPL",

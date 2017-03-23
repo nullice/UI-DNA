@@ -5497,6 +5497,61 @@ Kinase.layer.embedSmartLink_ByActive = function ()
 
 // END===========================[智能对象]========================
 
+// ===========================[图层链接]========================
+
+/**
+ * 为当前选中图层创建图层链接
+ */
+Kinase.layer.linkLayers_ByActive = function ()
+{
+    try
+    {
+        var ad = new ActionDescriptor();
+        var af = new ActionReference();
+        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        ad.putReference(charIDToTypeID("null"), af);
+        executeAction(stringIDToTypeID("linkSelectedLayers"), ad, DialogModes.NO);
+    } catch (e)
+    {
+
+        $.writeln("err: Kinase.layer.linkLayers_ByActive :" + e)
+    }
+}
+
+Kinase.layer.linkLayers_ByActive = function ()
+{
+    try
+    {
+        var ad = new ActionDescriptor();
+        var af = new ActionReference();
+        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        ad.putReference(charIDToTypeID("null"), af);
+        executeAction(stringIDToTypeID("linkSelectedLayers"), ad, DialogModes.NO);
+    } catch (e)
+    {
+
+        $.writeln("err: Kinase.layer.linkLayers_ByActive :" + e)
+    }
+}
+
+
+
+
+// END===========================[图层链接]========================
+
+
+var idselectLinkedLayers = stringIDToTypeID("selectLinkedLayers");
+var desc110 = new ActionDescriptor();
+var idnull = charIDToTypeID("null");
+var ref47 = new ActionReference();
+var idLyr = charIDToTypeID("Lyr ");
+var idOrdn = charIDToTypeID("Ordn");
+var idTrgt = charIDToTypeID("Trgt");
+ref47.putEnumerated(idLyr, idOrdn, idTrgt);
+desc110.putReference(idnull, ref47);
+executeAction(idselectLinkedLayers, desc110, DialogModes.NO);
+
+
 // ===========================[拾色器]========================
 
 /*创建拾色器*/
@@ -6262,6 +6317,9 @@ Kinase.layer.loadSelection_byActive = function ()
 }
 
 
+/**
+ * 取消图层选择
+ */
 Kinase.layer.cancelSelection_byActive = function ()
 {
     var adOb = {
@@ -6321,6 +6379,27 @@ Kinase.layer.copyLayer_byActive = function ()
     }
 }
 
+
+/**
+ * 创建剪贴蒙版
+ * @returns {null}
+ */
+Kinase.layer.createCMask_byActive = function ()
+{
+    try
+    {
+        var ad = new ActionDescriptor();
+        var af = new ActionReference();
+        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        ad.putReference(charIDToTypeID("null"), af);
+        executeAction(charIDToTypeID("GrpL"), ad, DialogModes.NO);
+
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.createCMask_byActive:" + e)
+        return null
+    }
+}
 
 /**
  * 删除选中图层

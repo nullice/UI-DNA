@@ -4,14 +4,13 @@
 
         <div class="fun_block">
             <div class="info">
-                文本填充
+                从选择图层创建链接对象
                 <div class="inline-but-bar">
 
-
-                    <input type="checkbox" class="exmo_icon_cheackbox" id="quick_text_fill_02"
+                    <input type="checkbox" class="exmo_icon_cheackbox" id="quick_create_1"
                            name="group_derive_mirror"
                            v-model="random">
-                    <label class="exmo_button_icon mini" for="quick_text_fill_02">
+                    <label class="exmo_button_icon mini" for="quick_create_1">
                         <span>{{'随机'|lang}}</span></label>
                 </div>
             </div>
@@ -48,6 +47,11 @@
                     </button>
                 </div>
             </div>
+
+            4
+            <pre>
+                {{fill_data_item_list | json }}
+            </pre>
 
 
         </div>
@@ -112,37 +116,14 @@
                 fill_data_item_list: [],
                 fill_data_item_list_org: [
                     {
-                        name: "士大夫撒",
-                        title: "",
-                        fillData: ["阿萨德发", "sdaf1发士大夫", "sadf1", "sdf"],
-                    },
-                    {
-                        name: "人名",
+                        name: "调试",
                         title: "",
                         fillData: "all",
                         moreData: {
-                            "A型": ["CE", "CE", "C6"],
-                            "B型": ["C1", "C2", "C3"],
-                            "C型": ["CC", "CC", "C2"],
+                            "A型": ["啊"],
+                            "B型": ["b"],
+                            "C型": ["从"],
                         }
-                    },
-                    {
-                        name: "数字序列",
-                        title: "",
-                        fillData: "(_%/count%_)",
-
-                    },
-                    {
-                        name: "电话号码占位",
-                        title: "",
-                        fillData: "all",
-                        moreData: {
-                            "中国大陆": ["(_%/phone_cn%_)"],
-                            "台湾": ["(_%/phone_tw%_)"],
-                            "美国": ["(_%/phone_us%_)"],
-                        }
-
-
                     },
 
 
@@ -170,7 +151,7 @@
                 {
 
                     var data = this.fill_data_item_list[option].fillData;
-                    console.info("click_option_fillData", data)
+//
                     if (data === "all")
                     {
                         data = []
@@ -191,9 +172,70 @@
 
                 }
 
-                this.func_text_fillText(data)
+                console.info("click_option data", data)
+
+
+                var fileArr = []
+                var fillDataPath = path.join(setSystem._path_userDataDir, "FillImage")
+                for (var i = 0; i < data.length; i++)
+                {
+                    var filePath = null;
+                    if (fs.existsSync(data[i]))
+                    {
+                        var filePath = data[i]
+                    } else
+                    {
+                        var testPath = path.join(fillDataPath, data[i])
+
+                        if (fs.existsSync(testPath))
+                        {
+                            var filePath = testPath
+                        } else
+                        {
+                            console.info("filePath existes not:" + testPath)
+                        }
+                    }
+
+                    if (filePath != undefined)
+                    {
+                        var result = this.isDir(filePath)
+                        if (result === false)
+                        {
+                            fileArr.push(filePath)
+                        } else
+                        {
+                            result = result.map(function (x) {return path.join(filePath, x)})
+                            fileArr = fileArr.concat(result)
+
+                        }
+                    }
+
+                }
+
+
+//                console.info("fin:", fileArr)
+
+                this.func_create_smartlink(fileArr)
+
+
             },
 
+            /**
+             * 判断是否是文件夹，否返回 false ，是则返回目录下文件数组
+             * @param filePath
+             * @returns {boolean}
+             */
+            isDir: function (filePath)
+            {
+                try
+                {
+                    var fileArr = fs.readdirSync(filePath)
+                    return fileArr
+                } catch (e)
+                {
+                    return false
+                }
+            },
             click_refur: function ()
             {
                 this.importFillDataFromFile()
@@ -201,94 +243,73 @@
 
             importFillDataFromFile: function ()
             {
-                this.fill_data_item_list = this.fill_data_item_list_org.slice(0)
                 var self = this;
-                var textFillDataPath = path.join(setSystem._path_userDataDir, "FillTxet")
+                self.fill_data_item_list = this.fill_data_item_list_org.slice(0)
 
-                if (fs.existsSync(textFillDataPath))
+                var imageFillDataPath = path.join(setSystem._path_userDataDir, "FillImage")
+                if (fs.existsSync(imageFillDataPath))
                 {
-
-                    var dir = fs.readdirSync(textFillDataPath)
+                    var dir = fs.readdirSync(imageFillDataPath)
                     if (dir != undefined && dir.length > 0)
                     {
                         for (var i = 0; i < dir.length; i++)
                         {
-
-
-                            if (path.extname(dir[i]).toLowerCase() == ".txt")
+                            var result = self.isDir(path.join(imageFillDataPath, dir[i]));
+                            if (result !== false)
                             {
-                                readTxt(path.join(textFillDataPath, dir[i]), path.parse(dir[i]).name)
-                            }
-                            else if (path.extname(dir[i]).toLowerCase() == ".json")
-                            {
-
-                                readJson(path.join(textFillDataPath, dir[i]))
+                                pushItem(dir[i], result)
                             }
                         }
                     }
                 }
 
-                function readTxt(filePath, name)
-                {
-                    var readResult = window.cep.fs.readFile(filePath);
-                    if (0 == readResult.err)// err 为 0 读取成功
-                    {
-                        var txt = readResult.data
-                        var dataArr = txt.split(/\r\n|\n/)
-                        if (dataArr.length === 1 && txt.length > 1)
-                        {
-                            dataArr = txt.split(/[,，]/)
-                        }
-
-                        pushItem(name, dataArr)
-                    }
-                    else
-                    {
-                        console.log("读取错误：" + readResult.err);// 失败
-                    }
-                }
-
-                function readJson(filePath)
-                {
-                    var readResult = window.cep.fs.readFile(filePath);
-                    if (0 == readResult.err)// err 为 0 读取成功
-                    {
-                        var jsonText = readResult.data
-                        var item = null
-                        try
-                        {
-                            item = JSON.parse(jsonText)
-                        } catch (e)
-                        {
-                            console.error("err: readJson()", e, ":", filePath, readResult)
-                        }
-
-                        if (item != undefined)
-                        {
-
-                            self.fill_data_item_list.push(item)
-                        }
-                    }
-                    else
-                    {
-                        console.log("读取错误：" + readResult.err);// 失败
-                    }
-                }
 
                 function pushItem(name, data)
                 {
-                    var item = {
-                        name: name,
-                        fillData: data,
+                    var rootFile = []
+                    var moreData = {}
+                    var moreLengt = 0;
+
+                    for (var i = 0; i < data.length; i++)
+                    {
+                        var itemValue = path.join(name, data[i])
+
+                        var result = self.isDir(path.join(imageFillDataPath, itemValue));
+                        if (result !== false)
+                        {
+                            moreData[data[i]] = [itemValue]
+                            moreLengt++;
+                        } else
+                        {
+                            rootFile.push(itemValue)
+                        }
                     }
 
+
+                    if (moreLengt > 0)
+                    {
+                        moreData[Lang.from('根目录')] = rootFile
+                        moreLengt++;
+
+                        var item = {
+                            name: name,
+                            fillData: "all",
+                            moreData: moreData
+                        }
+                    } else
+                    {
+                        var item = {
+                            name: name,
+                            fillData: [name],
+
+                        }
+                    }
                     self.fill_data_item_list.push(item)
                 }
             },
 
             creatMenuOptions: function (dataIndex, moreData)
             {
-
 
                 var options = []
 
@@ -309,73 +330,44 @@
 
             },
 
-            func_text_fillText: async function (fillData)
+            func_create_smartlink: async function (fillData)
             {
-                var textTable = await Proteins.exec("quick_text_calcTextTable")
+                var imagePoll = []
+
+                console.info("func_create_smartlink：fillData",fillData)
+
+                var selectLength = Gob.selectList.length
                 var z = 0;
-                var count = 1;
-                console.info("fillData", fillData)
-
-                if (textTable != undefined)
+                for (var i = 0; i < selectLength; i++)
                 {
-                    for (var r = 0; r < textTable.length; r++)
+                    if (this.random)
                     {
-                        for (var c = 0; c < textTable[r].length; c++)
-                        {
-                            var newText = getOneFromFillData()
-                            if (newText != undefined)
-                            {
-                                textTable[r][c].text = newText
-                            }
-                        }
-                    }
-                }
-                Proteins.exec("quick_text_textTableRender", {
-                    textTable: textTable,
-                })
+                        var randomIndex = Math.floor(Math.random() * (fillData.length - 1));
+                        console.info()
 
-                function getOneFromFillData()
-                {
-                    var getValue = null;
-
-                    console.info("self.random")
-                    if (self.random)
-                    {
-                        var index = Math.floor(Math.random() * (fillData.length - 1))
-                        getValue = fillData[index]
-
-                    }
-                    else
+                        imagePoll.push(fillData[randomIndex])
+                    } else
                     {
                         if (z >= fillData.length)
                         {
                             z = 0;
                         }
-                        getValue = fillData[z++]
-
+                        imagePoll.push(fillData[z])
+                        z++;
                     }
-
-                    if (getValue === "(_%/count%_)")
-                    {
-                        getValue = (count) + "";
-                        count++;
-                    } else if (getValue === "(_%/phone_cn%_)")
-                    {
-                        var a = [156, 181, 171, 136, 219]
-                        var b = "xxxx"
-                        var c = Math.floor(1000 + Math.random() * (9999 - 1000 + 1))
-                        getValue = a[Math.floor(Math.random() * (a.length - 1))] + b + c
-                    }
-                    else if (getValue === "(_%/phone_tw%_)")
-                    {
-                        var a = [156, 181, 171, 136, 219]
-                        var b = "xxxx"
-                        var c = Math.floor(1000 + Math.random() * (9999 - 1000 + 1))
-                        getValue = a[Math.floor(Math.random() * (a.length - 1))] + b + c
-                    }
-
-                    return getValue
                 }
+
+                if(imagePoll.length<1)
+                {
+
+                    return
+                }
+                Proteins.exec("quick_create_smartlink_fromShape", {
+                    images: imagePoll,
+                })
+
+
+//                alert(JSON.stringify(fillData))
             }
         },
         computed: {},
