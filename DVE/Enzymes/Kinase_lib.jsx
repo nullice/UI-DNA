@@ -166,6 +166,29 @@ Kinase.document.hasArtBoard = function (returnArtBoard)
     }
 }
 
+// Kinase.selection
+// 选区相关功能  ====================================================================================================
+Kinase.selection = {}
+
+/**
+ * 从选择的图层创建选区
+ */
+Kinase.selection.createSelection_byActive = function ()
+{
+
+    var ad = new ActionDescriptor();
+    var af = new ActionReference();
+    af.putProperty( charIDToTypeID( "Chnl" ), charIDToTypeID( "fsel" ) );
+    ad.putReference( charIDToTypeID( "null" ), af );
+    var af2 = new ActionReference();
+    af2.putEnumerated( charIDToTypeID( "Chnl" ), charIDToTypeID( "Chnl" ), charIDToTypeID( "Trsp" ) );
+    ad.putReference( charIDToTypeID( "T   " ), af2 );
+    executeAction( charIDToTypeID( "setd" ), ad, DialogModes.NO );
+}
+
+
+
+
 
 // Kinase.layer
 // 图层相关功能  ====================================================================================================
@@ -5527,9 +5550,9 @@ Kinase.layer.slecteLinkLayers_ByActive = function ()
     {
         var ad = new ActionDescriptor();
         var af = new ActionReference();
-        af.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
-        ad.putReference( charIDToTypeID( "null" ), af );
-        executeAction(  stringIDToTypeID( "selectLinkedLayers" ), ad, DialogModes.NO );
+        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        ad.putReference(charIDToTypeID("null"), af);
+        executeAction(stringIDToTypeID("selectLinkedLayers"), ad, DialogModes.NO);
     } catch (e)
     {
 
@@ -5547,18 +5570,15 @@ Kinase.layer.cancelLinkLayers_ByActive = function ()
     {
         var ad = new ActionDescriptor();
         var af = new ActionReference();
-        af.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
-        ad.putReference( charIDToTypeID( "null" ), af );
-        executeAction( stringIDToTypeID( "unlinkSelectedLayers" ), ad, DialogModes.NO );
+        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
+        ad.putReference(charIDToTypeID("null"), af);
+        executeAction(stringIDToTypeID("unlinkSelectedLayers"), ad, DialogModes.NO);
     } catch (e)
     {
 
         $.writeln("err: Kinase.layer.cancelLinkLayers_ByActive :" + e)
     }
 }
-
-
-
 
 
 // END===========================[图层链接]========================
@@ -6425,6 +6445,61 @@ Kinase.layer.createCMask_byActive = function ()
     }
 }
 
+
+/**创建图层蒙版
+ * @returns {null}
+ */
+Kinase.layer.createMask_byActive = function ()
+{
+    try
+    {
+        var ad = new ActionDescriptor();
+        ad.putClass( charIDToTypeID( "Nw  " ), charIDToTypeID( "Chnl" ));
+        var af = new ActionReference();
+        af.putEnumerated( charIDToTypeID( "Chnl" ), charIDToTypeID( "Chnl" ), charIDToTypeID( "Msk " ) );
+        ad.putReference( charIDToTypeID( "At  " ), af );
+        ad.putEnumerated( charIDToTypeID( "Usng" ), charIDToTypeID( "UsrM" ), charIDToTypeID( "RvlS" ) );
+        executeAction( charIDToTypeID( "Mk  " ), ad, DialogModes.NO );
+
+
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.createCMask_byActive:" + e)
+        return null
+    }
+}
+
+/**应用蒙版
+ *
+ * @returns {null}
+ */
+Kinase.layer.applyMask_byActive = function ()
+{
+    try
+    {
+        var ad = new ActionDescriptor();
+        var af = new ActionReference();
+        af.putEnumerated( charIDToTypeID( "Chnl" ),  charIDToTypeID( "Chnl" ), charIDToTypeID( "Msk " ) );
+        ad.putReference(  charIDToTypeID( "null" ), af );
+        ad.putBoolean( charIDToTypeID( "Aply" ), true );
+        executeAction( charIDToTypeID( "Dlt " ), ad, DialogModes.NO );
+
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.deleteMask_byActive:" + e)
+        return null
+    }
+}
+
+
+
+
+
+
+
+
+
+
 /**
  * 删除选中图层
  */
@@ -6710,11 +6785,11 @@ Kinase.layer.selectLayer_byID = function (layerID)
 
     try
     {
-    var ref = new ActionReference();
-    ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
-    var desc = new ActionDescriptor();
-    desc.putReference(charIDToTypeID("null"), ref);
-    executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
+        var ref = new ActionReference();
+        ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
+        var desc = new ActionDescriptor();
+        desc.putReference(charIDToTypeID("null"), ref);
+        executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
     } catch (e)
     {
         $.writeln("Kinase.layer.selectLayer_byID:" + e)

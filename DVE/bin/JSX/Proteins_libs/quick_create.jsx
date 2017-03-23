@@ -11,6 +11,8 @@
      *      maskType:"CM","CM",//蒙版类型，"CM"：剪贴蒙版，"SM"：形状蒙版或栅格蒙版
      *      linkLayer:true,//链接图层
      *      deleteOrgMask:true,//删除用来生成蒙版的原图层
+     *      rasterizeLayer:false,//栅格化图层
+     *
      *
      *
      * }
@@ -23,7 +25,6 @@
         {
             return
         }
-
 
 
         function _func()
@@ -69,14 +70,13 @@
                     var newId = Kinase.layer.getLayerIdByActive()
                     Kinase.layer.selectLayer_byID(id)
 
-                   var type = Kinase.layer.getLayerType(Kinase.REF_ActiveLayer,null)
-                    if(type.typeName=="shape")
+                    var type = Kinase.layer.getLayerType(Kinase.REF_ActiveLayer, null)
+                    if (type.typeName == "shape")
                     {
-                        setShapeMask(newId, infoObjec["deleteOrgMask"])
-                    }else
-
+                        setShapeMask(newId, infoObjec["deleteOrgMask"], infoObjec["rasterizeLayer"])
+                    } else
                     {
-
+                        setBitmapMask(newId, infoObjec["deleteOrgMask"], infoObjec["rasterizeLayer"])
                     }
 
 
@@ -118,7 +118,7 @@
      * @param targetLayerId
      * @param deleteOrgMask
      */
-    function setShapeMask(targetLayerId,deleteOrgMask)
+    function setShapeMask(targetLayerId, deleteOrgMask,rasterizeLayer)
     {
         //创建当前形状的路径，并重命名，作为临时路径
         var adOb_createPath = {
@@ -215,12 +215,36 @@
             }
         }
         mu.executeActionObjcet(charIDToTypeID("Dlt "), adOb_deleteVP)
+
+
+      //栅格化图层
+        if (rasterizeLayer)
+        {
+            Kinase.layer.rasterizeLayer_byActive();
+            Kinase.layer.applyMask_byActive();
+        }
     }
 
 
-    function setBitmapMask(targetLayerId,deleteOrgMask)
+    function setBitmapMask(targetLayerId, deleteOrgMask, rasterizeLayer)
     {
-        // Kinase.layer.sele
+        Kinase.selection.createSelection_byActive()
+
+        if (deleteOrgMask)
+        {
+            Kinase.layer.deleteLayer_ByActive()
+        }
+
+        Kinase.layer.selectLayer_byID(targetLayerId)
+
+        Kinase.layer.createMask_byActive()
+
+        if (rasterizeLayer)
+        {
+            Kinase.layer.rasterizeLayer_byActive();
+            Kinase.layer.applyMask_byActive();
+        }
+
 
     }
 
