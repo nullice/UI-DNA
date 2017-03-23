@@ -5518,21 +5518,45 @@ Kinase.layer.linkLayers_ByActive = function ()
     }
 }
 
-Kinase.layer.linkLayers_ByActive = function ()
+/**
+ * 选中链接图层的所有链接的图层
+ */
+Kinase.layer.slecteLinkLayers_ByActive = function ()
 {
     try
     {
         var ad = new ActionDescriptor();
         var af = new ActionReference();
-        af.putEnumerated(charIDToTypeID("Lyr "), charIDToTypeID("Ordn"), charIDToTypeID("Trgt"));
-        ad.putReference(charIDToTypeID("null"), af);
-        executeAction(stringIDToTypeID("linkSelectedLayers"), ad, DialogModes.NO);
+        af.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
+        ad.putReference( charIDToTypeID( "null" ), af );
+        executeAction(  stringIDToTypeID( "selectLinkedLayers" ), ad, DialogModes.NO );
     } catch (e)
     {
 
-        $.writeln("err: Kinase.layer.linkLayers_ByActive :" + e)
+        $.writeln("err: Kinase.layer.slecteLinkLayers_ByActive :" + e)
     }
 }
+
+
+/**
+ * 取消当前图层的图层链接
+ */
+Kinase.layer.cancelLinkLayers_ByActive = function ()
+{
+    try
+    {
+        var ad = new ActionDescriptor();
+        var af = new ActionReference();
+        af.putEnumerated( charIDToTypeID( "Lyr " ), charIDToTypeID( "Ordn" ), charIDToTypeID( "Trgt" ) );
+        ad.putReference( charIDToTypeID( "null" ), af );
+        executeAction( stringIDToTypeID( "unlinkSelectedLayers" ), ad, DialogModes.NO );
+    } catch (e)
+    {
+
+        $.writeln("err: Kinase.layer.cancelLinkLayers_ByActive :" + e)
+    }
+}
+
 
 
 
@@ -6684,17 +6708,17 @@ Kinase.layer.selectLayer_byID = function (layerID)
         return;
     }
 
-    // try
-    // {
+    try
+    {
     var ref = new ActionReference();
     ref.putIdentifier(charIDToTypeID("Lyr "), layerID);
     var desc = new ActionDescriptor();
     desc.putReference(charIDToTypeID("null"), ref);
     executeAction(charIDToTypeID("slct"), desc, DialogModes.NO);
-    // } catch (e)
-    // {
-    //     $.writeln("Kinase.layer.selectLayer_byID:" + e)
-    // }
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.selectLayer_byID:" + e)
+    }
 }
 
 /**

@@ -364,6 +364,8 @@
                 }
                 Proteins.exec("quick_create_smartlink_fromShape", {
                     images: imagePoll,
+                    linkLayer:true,
+                    maskType:"CM"
                 })
 
 

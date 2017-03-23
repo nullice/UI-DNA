@@ -8,8 +8,9 @@
      * 以现有图层为蒙版创建链接对象
      * {
      *      images:[], //图片文件地址数组
-     *      maskType:"CM","CM",//蒙版类型，"CM"：剪贴蒙版，
+     *      maskType:"CM","CM",//蒙版类型，"CM"：剪贴蒙版，"SM"：形状蒙版或栅格蒙版
      *      linkLayer:true,//链接图层
+     *      deleteOrgMask:true,//删除用来生成蒙版的原图层
      *
      *
      * }
@@ -22,6 +23,8 @@
         {
             return
         }
+
+
 
         function _func()
         {
@@ -46,24 +49,198 @@
             function createOnce(id, i)
             {
                 Kinase.layer.selectLayer_byID(id)
+                var OldBounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
                 Kinase.layer.copyLayer_byActive()
                 Kinase.layer.setLayerToSmart_ByActive()
                 Kinase.layer.setLayerSmartInfo_ByActive({linked: true, link: imagesPool[i]})
+                setBounds_byActive(OldBounds)
 
-
-                if (infoObjec["maskType"] == "CM") {
+                if (infoObjec["maskType"] == "CM")
+                {
                     Kinase.layer.createCMask_byActive()
-                    Kinase.layer.selectMultLayers_byID([id])
 
+                    if (infoObjec["linkLayer"])
+                    {
+                        Kinase.layer.selectMultLayers_byID([id])
+                        Kinase.layer.linkLayers_ByActive()
+                    }
+                } else if (infoObjec["maskType"] == "SM")
+                {
+                    var newId = Kinase.layer.getLayerIdByActive()
+                    Kinase.layer.selectLayer_byID(id)
+
+                   var type = Kinase.layer.getLayerType(Kinase.REF_ActiveLayer,null)
+                    if(type.typeName=="shape")
+                    {
+                        setShapeMask(newId, infoObjec["deleteOrgMask"])
+                    }else
+
+                    {
+
+                    }
+
+
+                }
+
+                function setBounds_byActive(OldBounds)
+                {
+                    var newBounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
+
+                    if (newBounds.h < newBounds.w)
+                    {
+                        var newH = OldBounds.h
+                        var ratio = newH / newBounds.h
+                        var newW = newBounds.w * ratio
+                    } else
+                    {
+                        var newW = OldBounds.w
+                        var ratio = newW / newBounds.w
+                        var newH = newBounds.h * ratio
+                    }
+
+
+                    var newX = (OldBounds.x + OldBounds.w / 2) - newW / 2
+                    var newY = (OldBounds.y + OldBounds.h / 2) - newH / 2
+
+                    Kinase.layer.setLayerBounds_byActive({x: newX, y: newY, h: newH, w: newW})
                 }
             }
 
 
         }
 
-        Proteins.doCon(_func, "从现有图层创建链接对象", true)
+        Proteins.doCon(_func, "从现有图层创建链接对象", false)
     }
 
+
+    /**
+     *  创建矢量蒙版
+     * @param targetLayerId
+     * @param deleteOrgMask
+     */
+    function setShapeMask(targetLayerId,deleteOrgMask)
+    {
+        //创建当前形状的路径，并重命名，作为临时路径
+        var adOb_createPath = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.CLASSTYPE",
+                    "desiredClass": "path"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "from": {
+                "value": {
+                    "container": {
+                        "container": {"container": {}},
+                        "form": "ReferenceFormType.ENUMERATED",
+                        "desiredClass": "layer",
+                        "enumeratedType": "ordinal",
+                        "enumeratedValue": "targetEnum"
+                    },
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "path",
+                    "enumeratedType": "path",
+                    "enumeratedValue": "vectorMask"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "duplicate": {"value": true, "type": "DescValueType.BOOLEANTYPE"}
+        }
+        mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb_createPath)
+        renamePathitem_ByActive("_UIDNA_TEMP_VM_ONCE_")
+
+        //删除形状图层
+        if (deleteOrgMask)
+        {
+            Kinase.layer.deleteLayer_ByActive()
+        }
+
+        //选中目标图层
+        Kinase.layer.selectLayer_byID(targetLayerId)
+
+        //创建矢量蒙版
+        var adOb_createShapeMask = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.CLASSTYPE",
+                    "desiredClass": "path"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "at": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "path",
+                    "enumeratedType": "path",
+                    "enumeratedValue": "vectorMask"
+                }, "type": "DescValueType.REFERENCETYPE"
+            },
+            "using": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "path",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb_createShapeMask)
+
+        //选中临时路径
+        var vp_name = "_UIDNA_TEMP_VM_ONCE_";
+        var adOb_selectLayer = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.NAME",
+                    "desiredClass": "path",
+                    "name": vp_name,
+                }, "type": "DescValueType.REFERENCETYPE"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("slct"), adOb_selectLayer)
+
+        //删除临时路径
+        var adOb_deleteVP = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "path",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            }
+        }
+        mu.executeActionObjcet(charIDToTypeID("Dlt "), adOb_deleteVP)
+    }
+
+
+    function setBitmapMask(targetLayerId,deleteOrgMask)
+    {
+        // Kinase.layer.sele
+
+    }
+
+    function renamePathitem_ByActive(name)
+    {
+        var adOb = {
+            "null": {
+                "value": {
+                    "container": {"container": {}},
+                    "form": "ReferenceFormType.ENUMERATED",
+                    "desiredClass": "path",
+                    "enumeratedType": "ordinal",
+                    "enumeratedValue": "targetEnum"
+                }, "type": "DescValueType.REFERENCETYPE"
+            }, "to": {"value": name, "type": "DescValueType.STRINGTYPE"}
+        }
+
+        mu.executeActionObjcet(charIDToTypeID("Rnm "), adOb)
+
+    }
 
     // Libs.quick_text_textTableToCsvArr= function (infoObjec, envObject)
     // {

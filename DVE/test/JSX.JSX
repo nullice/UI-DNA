@@ -12,28 +12,12 @@ Proteins.evalJsxFolder("E:/Work/GitHub/UI-DNA/DVE/Proteins/libs")
   //    var ob = Kinase.layer.get_XXX_Objcet(Kinase.REF_ActiveLayer, null, "layerEffects")
 
 //var ob = Kinase.layer.getLayerInfoObject_byActiveLayer ()
-
-var a = "啥地方\n111\n\c23"
-Kinase.layer.setLayerText_Quick(a, Kinase.REF_ActiveLayer, null)
-textLR2CR = function (text)
-{
-    if (text != undefined)
-    {
-    var reg = /\n(\r){0,1}/
-        if (text.replace != undefined)
-        {
-            text = text.replace(reg, '\r')
-        }
-    }
-    return text
-}
-
-var ob = textLR2CR(a)
+Proteins.exec('quick_create_smartlink_fromShape',{linkLayer:true,maskType:"CM","images":["C:\\Users\\nullice\\AppData\\Roaming\\nullice.designEnzyme\\UI-DNA\\UserData\\FillImage\\GS\\X1\\X11 (1).png","C:\\Users\\nullice\\AppData\\Roaming\\nullice.designEnzyme\\UI-DNA\\UserData\\FillImage\\GS\\C1\\C1 (1).png","C:\\Users\\nullice\\AppData\\Roaming\\nullice.designEnzyme\\UI-DNA\\UserData\\FillImage\\GS\\C1\\C1 (2).png","C:\\Users\\nullice\\AppData\\Roaming\\nullice.designEnzyme\\UI-DNA\\UserData\\FillImage\\GS\\C1\\C1 (1).png"]})
 //EnzJSX.setLayerInfo_more_byId({"visible":false} ,420 )
 
 ///  ob=Kinase.layer.getEffectsList_universal (ob,"dropShadow")
 //EnzJSX.setLayerInfo_quickEffect_byId({"dropShadow":{"color":{"r":79,"g":219,"b":95}}} ,423 )
  //typeof EnzJSX.getSelectLayerArray
 
-log(json(ob))
+//log(json(ob))
 
