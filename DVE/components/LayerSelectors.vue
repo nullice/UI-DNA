@@ -164,7 +164,7 @@
 <script>
     import ValueInput from '../components/AttributePanel_valueInput.vue';
     import Area from '../components/area.vue';
-    import  MenuButtom from '../components/MenuButtom.vue'
+    import MenuButtom from '../components/MenuButtom.vue'
     import BubbleBox from '../components/MessageBox/BubbleBox.vue';
     import InputBox from '../components/MessageBox/InputBox.vue';
     //import CompA from '../components/A.vue'
@@ -515,7 +515,6 @@
                         }
                         doneFunc();
                     }
-
                 }
 
                 UI_action.show_message_input("layer_selector", "图层选中状态记录", data, ok_func)

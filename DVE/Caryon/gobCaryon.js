@@ -3,7 +3,7 @@
  */
 import ARR from "./Richang_JSEX/arrayARR.js"
 import TYP from "./Richang_JSEX/typeTYP.js"
-
+var zlib = require("zlib")
 
 /**
  * Gob，选中图层。接管对选中图层的操作，把对 Gob 的操作分发给每个选中图层
@@ -1653,6 +1653,185 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
 
 }
+
+
+//
+//segment：
+
+/**
+ * 导出 Gob 各项的 json 文本
+ * @param segment Gob 项
+ * @param enableAssign 是否导出 Assign 内容
+ *
+ */
+GobCaryon.prototype.exportGobRNA = function (segment, enableAssign)
+{
+    var segment = segment.toLowerCase()
+    if (segment === "position")
+    {
+        var ob = {}
+        _copyOb(Gob.position, ob)
+        return JSON.stringify({position: ob})
+    }
+    else if (segment === "text")
+    {
+        var ob = {}
+        _copyOb(Gob.text, ob)
+        return JSON.stringify({text: ob})
+    }
+    else if (segment === "shape")
+    {
+        var ob = {}
+        _copyOb(Gob.shape, ob)
+        return JSON.stringify({shape: ob})
+    }
+    else if (segment === "smartObject")
+    {
+        var ob = {}
+        _copyOb(Gob.smartObject, ob)
+        return JSON.stringify({smartObject: ob})
+    }
+    else if (segment.toLowerCase() === "quickEffect")
+    {
+        var ob = {}
+        _copyOb(Gob.quickEffect, ob)
+        return JSON.stringify({quickEffect: ob})
+    }
+    else if (segment === "more")
+    {
+        var ob = {}
+        _copyOb(Gob.more, ob)
+        return JSON.stringify({more: ob})
+    }
+
+    function _copyOb(ob, newOb)
+    {
+        for (var x in ob)
+        {
+            if (x[0] != undefined && x[0] != "_")
+            {
+                if (enableAssign)
+                {
+                } else
+                {
+                    if (x == "assignment" || x == "enableAssigns")
+                    {
+                        continue
+                    }
+                }
+
+
+                if (TYP.type(ob[x]) === "object")
+                {
+                    newOb[x] = {}
+                    _copyOb(ob[x], newOb[x])
+
+                } else
+                {
+                    newOb[x] = ob[x]
+                }
+            }
+        }
+
+    }
+}
+
+
+GobCaryon.prototype.exportEffectRNA = async function (mRNA)
+{
+    if (Gob.selectList[0] != undefined)
+    {
+        var id = Gob.selectList[0].id;
+        var quickEffect = await Gob.getLayerInfoObejct_quickEffect(id, true);
+        var ob = JSON.parse(quickEffect.copyEffect_All)
+
+
+        //删除无用项
+        if (ob != undefined && typeof ob.value === "object")
+        {
+            for (var x in  ob.value)
+            {
+                if (ob.value[x].value != undefined)
+                {
+                    if (ob.value[x].value["enabled"] != undefined)
+                    {
+                        if (ob.value[x].value.enabled.value === false)
+                        {
+                            delete  ob.value[x]
+                        }
+                    } else
+                    {
+                        for (var i in  ob.value[x].value)
+                        {
+                            if (ob.value[x].value[i].value != undefined && ob.value[x].value[i].value["enabled"] != undefined)
+                            {
+                                if (ob.value[x].value[i].value["enabled"].value === false)
+                                {
+                                    delete  ob.value[x].value[i]
+                                }
+
+                            }
+                        }
+
+                        if (OBJ.isEmptyObject(ob.value[x].value))
+                        {
+                            delete   ob.value[x]
+                        }
+
+                    }
+                }
+            }
+        }
+
+        var rna = JSON.stringify(ob)
+        if(mRNA)
+        {
+            rna = this.mRNA_encode(rna,"Effect")
+        }
+        return rna
+
+
+    }
+}
+
+
+//压缩字符串
+GobCaryon.prototype.mRNA_encode = function (text, signMark)
+{
+    //添加标识文本
+    if (signMark != undefined)
+    {
+        text = "UI-mRNA-" + signMark + ":{" + text + "}"
+    }
+
+    var buffer = zlib.deflateSync(text)
+    var rnaStr = base65536.encode(buffer);
+    return rnaStr;
+}
+
+//解压字符串
+GobCaryon.prototype.mRNA_decode = function (rnaStr)
+{
+    //忽略标识文本
+    if (rnaStr.length > 8)
+    {
+        var head = rnaStr.slice(0, 7);
+        var last = rnaStr.slice(-1);
+        if ((head === "UI-mRNA" || head === "UI-DNA-") && last === "}")
+        {
+            var firstM = rnaStr.search("{")
+            rnaStr = rnaStr.slice(firstM + 1, -1)
+        }
+    }
+
+
+    var buffer = base65536.decode(rnaStr);
+    var rawBuffer = zlib.unzipSync(buffer)
+    return rawBuffer.toString();
+}
+
+
+// GobCaryon.prototype.exportGobRNA
 
 
 // 代表多值的常量

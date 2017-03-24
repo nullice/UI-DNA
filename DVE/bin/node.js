@@ -9,3 +9,5 @@ window.svgo = new SVGO()
 window.nodeCsvReader =  require("node-csv").createParser();
 window.nodeCsvWriter =  require("node-csv").createWriter();
 //var csv = require('node-csv').createParser('\t', '"', '\\')
+//----------------------------------------
+window.base65536 = require("base65536");

@@ -12,6 +12,7 @@
 
     <a-area area_title="UI-DNA 属性" area_id="attr_panel" v-bind:area_disable_fixbut="true"
             v-bind:area_opened.sync="o_attr_open">
+        <attr-option-menu></attr-option-menu>
 
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position"
@@ -936,6 +937,7 @@
     import VueColorCylinder from "./vue-color-cylinder/vue-color-cylinder.vue"
     import ColorInput from '../components/AttributePanel_color.vue';
     import DebugPanel from "./DebugPanel.vue"
+    import AttrOptionMenu from "./AttributePanel_optionMenu.vue"
 
     //import CompA from '../components/A.vue'
 
@@ -1162,7 +1164,8 @@
             "attr-textarea": AttrTextarea,
             "vue-color-cylinder": VueColorCylinder,
             "color-input": ColorInput,
-            "debug-microscope": DebugPanel
+            "debug-microscope": DebugPanel,
+            "attr-option-menu":AttrOptionMenu,
 //        "comp-a":ValueInput
         }
     };

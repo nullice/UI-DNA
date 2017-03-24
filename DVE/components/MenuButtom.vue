@@ -44,8 +44,8 @@
 <style lang="scss" rel="stylesheet/scss">
 
 
-    .menu-buttom-box {
 
+    .menu-buttom-box {
         .menu-box {
             max-height: 0px;
             transition: all .5s;
@@ -71,9 +71,9 @@
 
             .exmo_button_icon {
                 font-size: 11px;
-                color: rgba(0, 0, 0, 0.36);
 
                 i {
+                    color: rgba(0, 0, 0, 0.4);
                     font-size: 12px;
                 }
             }
@@ -221,7 +221,7 @@
                         func.func(func.param)
                     } else
                     {
-                          func()
+                        func()
                     }
 
                     this.o_onoff_on = false
