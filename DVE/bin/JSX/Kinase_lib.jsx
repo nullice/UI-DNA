@@ -5584,17 +5584,6 @@ Kinase.layer.cancelLinkLayers_ByActive = function ()
 // END===========================[图层链接]========================
 
 
-var idselectLinkedLayers = stringIDToTypeID("selectLinkedLayers");
-var desc110 = new ActionDescriptor();
-var idnull = charIDToTypeID("null");
-var ref47 = new ActionReference();
-var idLyr = charIDToTypeID("Lyr ");
-var idOrdn = charIDToTypeID("Ordn");
-var idTrgt = charIDToTypeID("Trgt");
-ref47.putEnumerated(idLyr, idOrdn, idTrgt);
-desc110.putReference(idnull, ref47);
-executeAction(idselectLinkedLayers, desc110, DialogModes.NO);
-
 
 // ===========================[拾色器]========================
 
@@ -6490,12 +6479,6 @@ Kinase.layer.applyMask_byActive = function ()
         return null
     }
 }
-
-
-
-
-
-
 
 
 
