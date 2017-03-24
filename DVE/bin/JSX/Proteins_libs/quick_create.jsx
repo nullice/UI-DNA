@@ -46,7 +46,9 @@
 
             function createOnce(id, i)
             {
+
                 Kinase.layer.selectLayer_byID(id)
+                var orgName = Kinase.layer.getLayerName_byActive()
                 var OldBounds = Kinase.layer.getLayerBounds(Kinase.REF_ActiveLayer, null)
                 Kinase.layer.copyLayer_byActive()
                 Kinase.layer.setLayerToSmart_ByActive()
@@ -62,6 +64,14 @@
                         Kinase.layer.selectMultLayers_byID([id])
                         Kinase.layer.linkLayers_ByActive()
                     }
+
+                    if (infoObjec["rasterizeLayer"])
+                    {
+                        Kinase.layer.selectMultLayers_byID([id])
+                        Kinase.layer.rasterizeLayer_byActive();
+                        Kinase.layer.mergeLayer_byActive()
+                    }
+
                 } else if (infoObjec["maskType"] == "SM")
                 {
                     var newId = Kinase.layer.getLayerIdByActive()
@@ -70,14 +80,16 @@
                     var type = Kinase.layer.getLayerType(Kinase.REF_ActiveLayer, null)
                     if (type.typeName == "shape")
                     {
+
                         setShapeMask(newId, infoObjec["deleteOrgMask"], infoObjec["rasterizeLayer"])
                     } else
                     {
+
                         setBitmapMask(newId, infoObjec["deleteOrgMask"], infoObjec["rasterizeLayer"])
                     }
-
-
                 }
+
+                Kinase.layer.setLayerName_byActive(orgName)
 
                 function setBounds_byActive(OldBounds)
                 {
@@ -115,9 +127,10 @@
      * @param targetLayerId
      * @param deleteOrgMask
      */
-    function setShapeMask(targetLayerId, deleteOrgMask,rasterizeLayer)
+    function setShapeMask(targetLayerId, deleteOrgMask, rasterizeLayer)
     {
         //创建当前形状的路径，并重命名，作为临时路径
+        var orgId = Kinase.layer.getLayerIdByActive()
         var adOb_createPath = {
             "null": {
                 "value": {
@@ -214,7 +227,7 @@
         mu.executeActionObjcet(charIDToTypeID("Dlt "), adOb_deleteVP)
 
 
-      //栅格化图层
+        //栅格化图层
         if (rasterizeLayer)
         {
             Kinase.layer.rasterizeLayer_byActive();

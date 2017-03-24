@@ -941,7 +941,7 @@
                 <quick-icon-button v-bind:title="Lang.from('从现有图层创建链接对象')" name="create_smartlinkFrom"
                                    v-bind:click_more_func="click_onecMore"
                                    v-bind:more_onoff="more_onoff.create_smartlinkFrom"
-                                   v-bind:func="func_text_advance_multEditor">
+                                   v-bind:func="func_text_advance_smartlinkFrom">
                     <i class="icon-images"></i>
                 </quick-icon-button>
 
@@ -951,7 +951,6 @@
             <div class="quick_mores">
                 <!--从现有图层创建链接对象-->
                 <div class="quick_more_item text_fill" v-bind:class="{'more_on':more_onoff.create_smartlinkFrom}">
-                    从现有图层创建链接对象
                     <quick-smartlink></quick-smartlink>
                 </div>
             </div>
@@ -1314,9 +1313,7 @@
                     {
                         this.func_text_updateMultTextTable()
                     }
-
                 }
-
 
             },
             "more_onoff.permute_spacing": function ()
@@ -2294,10 +2291,16 @@
             {
                 this.click_onecMore("text_dataEditor")
             },
-            func_text_advance_fillText: function ()
+            func_text_advance_textFill: function ()
             {
                 this.click_onecMore("text_fill")
             },
+
+            func_text_advance_smartlinkFrom: function ()
+            {
+                this.click_onecMore("create_smartlinkFrom")
+            },
+
             func_text_multEditor_render: function ()
             {
                 Proteins.exec("quick_text_textTableRender", {

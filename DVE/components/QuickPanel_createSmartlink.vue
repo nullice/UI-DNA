@@ -87,14 +87,14 @@
             </div>
 
 
-            <div class="exmo_checkbox" v-show="o_mask_type=='SM'">
-                <input type="checkbox" id="quick_create_fsl3"
-                       v-model="o_deleteOrgMask">
-                <div class="exmo_checkbox_shadow"></div>
-                <label for="quick_create_fsl3" title="删除用来生成蒙版的原图层">
-                    删除原图层
-                </label>
-            </div>
+            <!--<div class="exmo_checkbox" v-show="o_mask_type=='SM'">-->
+                <!--<input type="checkbox" id="quick_create_fsl3"-->
+                       <!--v-model="o_deleteOrgMask">-->
+                <!--<div class="exmo_checkbox_shadow"></div>-->
+                <!--<label for="quick_create_fsl3" title="删除用来生成蒙版的原图层">-->
+                    <!--删除原图层-->
+                <!--</label>-->
+            <!--</div>-->
 
             <br>
 
@@ -361,7 +361,7 @@
 
             creatMenuOptions: function (dataIndex, moreData)
             {
-
+                path
                 var options = []
 
                 for (var x in moreData)
