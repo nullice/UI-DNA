@@ -48,10 +48,55 @@
                 </div>
             </div>
 
-            4
-            <pre>
-                {{fill_data_item_list | json }}
-            </pre>
+            <!--4-->
+            <!--<pre>-->
+            <!--{{fill_data_item_list | json }}-->
+            <!--</pre>-->
+
+
+        </div>
+
+
+        <div class="fun_block">
+            <div class="exmo_inbox " title="新图层覆盖原有图层的方式">
+                <div class="exmo_box_name">{{'覆盖方式'|lang}}</div>
+                <select class="exmo_select" v-model="o_mask_type" style="width: 126px;">
+                    <option value="CM"> {{"剪贴蒙版"|lang}}</option>
+                    <option value="SM"> {{"蒙版"|lang}}</option>
+                </select>
+            </div>
+
+            <div class="exmo_checkbox">
+                <input type="checkbox" id="quick_create_fsl2"
+                       v-model="o_rasterizeLayer">
+                <div class="exmo_checkbox_shadow"></div>
+                <label for="quick_create_fsl2" title="把新图层栅格化，能减少文档大小">
+                    栅格化
+                </label>
+            </div>
+
+            <span>  </span>
+
+            <div class="exmo_checkbox" v-show="o_mask_type=='CM'">
+                <input type="checkbox" id="quick_create_fsl1"
+                       v-model="o_linkLayer">
+                <div class="exmo_checkbox_shadow"></div>
+                <label for="quick_create_fsl1">
+                    链接图层
+                </label>
+            </div>
+
+
+            <div class="exmo_checkbox" v-show="o_mask_type=='SM'">
+                <input type="checkbox" id="quick_create_fsl3"
+                       v-model="o_deleteOrgMask">
+                <div class="exmo_checkbox_shadow"></div>
+                <label for="quick_create_fsl3" title="删除用来生成蒙版的原图层">
+                    删除原图层
+                </label>
+            </div>
+
+            <br>
 
 
         </div>
@@ -113,6 +158,12 @@
             return {
                 setSystem: setSystem,
                 random: true,
+                o_mask_type: "CM",
+                o_linkLayer: true,
+                o_deleteOrgMask: true,
+                o_rasterizeLayer: false,
+
+
                 fill_data_item_list: [],
                 fill_data_item_list_org: [
                     {
@@ -334,7 +385,7 @@
             {
                 var imagePoll = []
 
-                console.info("func_create_smartlink：fillData",fillData)
+                console.info("func_create_smartlink：fillData", fillData)
 
                 var selectLength = Gob.selectList.length
                 var z = 0;
@@ -357,15 +408,17 @@
                     }
                 }
 
-                if(imagePoll.length<1)
+                if (imagePoll.length < 1)
                 {
 
                     return
                 }
                 Proteins.exec("quick_create_smartlink_fromShape", {
                     images: imagePoll,
-                    linkLayer:true,
-                    maskType:"CM"
+                    linkLayer: this.o_linkLayer,
+                    maskType: this.o_mask_type,
+                    deleteOrgMask: this.o_deleteOrgMask,
+                    rasterizeLayer: this.o_rasterizeLayer,
                 })
 
 

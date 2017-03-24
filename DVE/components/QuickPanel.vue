@@ -204,8 +204,8 @@
                     </div>
 
 
-                    <div class="exmo_inbox " title="为 0 时自动计算">
-                        <div class="exmo_box_name">列数</div>
+                    <div class="exmo_inbox " title="新图层的命名方式">
+                        <div class="exmo_box_name">命名</div>
                         <select class="exmo_select" v-model="o_derive_matrix_rename" style="width: 126px;">
                             <option value="0"> {{"默认"|lang}}</option>
                             <option value="1"> {{"原名 -序号"|lang}}</option>

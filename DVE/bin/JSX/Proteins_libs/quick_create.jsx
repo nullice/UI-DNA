@@ -12,9 +12,6 @@
      *      linkLayer:true,//链接图层
      *      deleteOrgMask:true,//删除用来生成蒙版的原图层
      *      rasterizeLayer:false,//栅格化图层
-     *
-     *
-     *
      * }
      * @param infoObjec
      * @param envObject
