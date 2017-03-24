@@ -21,14 +21,13 @@
                          v-bind:in_class="block?'inline_block':''"
                          v-bind:in_class2="item.class?item.class:''"
             >
-
-                <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
-                <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state"
-                                                                               class="icon-checkmark"></i>
-                </div>
-
-
             </attr-option>
+            <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
+            <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state"
+                                                                           class="icon-checkmark"></i>
+            </div>
+
+
 
 
         </div>

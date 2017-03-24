@@ -14,7 +14,7 @@
 </template>
 <style>
 
-    .attr_option.rigth-but{
+    .attr_option.rigth-but {
         position: absolute;
         right: 0;
     }
@@ -30,10 +30,14 @@
         background: rgba(192, 192, 192, 0.4);
     }
 
-    .attr_option:hover {
+    .attr_option:not(.onlytext):hover {
         background: #41A4FF;
         color: #fff;
         transition: .4s all;
+    }
+
+    .attr_option.onlytext {
+        min-width:60px;
     }
 
     .option_hr {
@@ -45,7 +49,7 @@
     export default{
 
         props: ['value', "label_html", 'label', "selected", "selected_value",
-               "selected_func",  "selected_func_param","state", "hr", "br", "in_class", "in_title", 'button',"in_class2"],
+            "selected_func", "selected_func_param", "state", "hr", "br", "in_class", "in_title", 'button', "in_class2"],
         methods: {
             doSelect: function ()
             {
@@ -66,6 +70,7 @@
                 }
                 if (this.selected_func != undefined)
                 {
+
                     this.selected_func(this.selected_func_param);
                 }
             },

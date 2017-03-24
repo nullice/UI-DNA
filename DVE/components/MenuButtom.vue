@@ -30,9 +30,16 @@
                              v-bind:in_class="(inline_block&&!item.block)?'inline_block':''"
                              v-bind:button="item.button"
                              v-bind:in_class2="item.class?item.class:''"
+                             v-bind:state.sync="item.state"
                 >
 
+
+                    <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
+                    <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state"
+                                                                                   class="icon-checkmark"></i>
+                    </div>
                 </attr-option>
+
             </div>
         </div>
 
@@ -81,6 +88,8 @@
 
         .menu-box {
 
+
+
             position: absolute;
             z-index: 44;
             background: whitesmoke;
@@ -92,7 +101,30 @@
 
             .attr_option.inline_block {
                 display: inline-block;
+
             }
+            .attr_option
+            {
+                position: relative;
+            }
+
+            .checked_sign_shadow {
+                width: 30px;
+                display: inline-block;
+            }
+            .checked_sign {
+                display: inline-block;
+                position: absolute;
+                right: 10px;
+                top: 0;
+                bottom: 0;
+                margin: auto;
+                text-align: right;
+                i {
+                    line-height: 30px;
+                }
+            }
+
 
         }
     }

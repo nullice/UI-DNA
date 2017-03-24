@@ -3,18 +3,34 @@
     >
         <i class="icon-briefcase"></i>
     </menu-buttom>
-
+{{options[options.length-1].state}}
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-     .menu-buttom-box.attribute_panel_option .menu-buttom{
+    .exmo_area:hover .attribute_panel_option{
+        visibility: visible;
+    }
+    .exmo_area .attribute_panel_option{
+        visibility: hidden;
+    }
+
+
+    .menu-buttom-box.attribute_panel_option .menu-buttom{
         margin-top: -34px;
     }
 
      .menu-buttom-box.attribute_panel_option .menu-box{
          margin-top: -12px;
      }
-
+     .attr_option.inline_block.subbut {
+         /* display: none; */
+         width: 29px;
+         text-align: center;
+         white-space: nowrap;
+         padding: 6px 9px;
+         /* padding-left: 2px; */
+         /* color: rgba(0, 0, 0, 0.55); */
+     }
 
 
 </style>
@@ -28,16 +44,17 @@
         data(){
             return {
 
+                o_use_mRNA:false,
+
                 options: [
                     {
                         value: 'inver_order_layers',
-                        label: '位置信息',
+                        label: '图层样式',
                         title: "把所选图层的层叠顺序颠倒",
-                        selected_func: function ()
-                        {
-
-                        },
+                        selected_func: null,
                         button: true,
+                        class:"onlytext",
+
 
                     },
                     {
@@ -46,6 +63,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
+                        class:"subbut",
                     },
                     ,
                     {
@@ -54,84 +72,194 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
+                        class:"subbut",
                     },
                     {hr: true},
+                    {br: true},
+                    //-------------------------------
                     {
-                        value: 'rename_rename',
-                        label: '重命名图层',
-                        title: "重命名选中图层",
-                        selected_func: this.rename_rename,
+                        value: 'inver_order_layers',
+                        label: '位置参数',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: null,
                         button: true,
-                        block: true,
-                    },
-                    {
-                        value: 'rename_replace',
-                        label: '图层名称替换',
-                        title: "在选中图层中替换图层名称",
-                        selected_func: this.rename_replace,
-                        button: true,
-                        block: true,
-                    },
-                    {
-                        value: 'find_select',
-                        label: '寻找图层',
-                        title: "根据图层名称寻找并选中图层",
-                        selected_func: this.find_select,
-                        button: true,
-                        block: true,
-                    },
-                    {
-                        value: 'tag_select',
-                        label: '寻找标签',
-                        title: "根据图层标签寻找并选中图层",
-                        selected_func: this.tag_select,
-                        button: true,
-                        block: true,
-                    },
+                        class:"onlytext",
 
+
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '复制',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    ,
+                    {
+                        value: 'name_order_layers',
+                        label: '粘贴',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    {br: true},
+                    //-------------------------------
+                    {
+                        value: 'inver_order_layers',
+                        label: '形状参数',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: null,
+                        button: true,
+                        class:"onlytext",
+
+
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '复制',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    ,
+                    {
+                        value: 'name_order_layers',
+                        label: '粘贴',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    {br: true},
+                    //-------------------------------
+                    {
+                        value: 'inver_order_layers',
+                        label: '文本参数',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: null,
+                        button: true,
+                        class:"onlytext",
+
+
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '复制',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    ,
+                    {
+                        value: 'name_order_layers',
+                        label: '粘贴',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    {br: true},
+                    //-------------------------------
+                    {
+                        value: 'inver_order_layers',
+                        label: '对象参数',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: null,
+                        button: true,
+                        class:"onlytext",
+
+
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '复制',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    ,
+                    {
+                        value: 'name_order_layers',
+                        label: '粘贴',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    {br: true},
+                    //-------------------------------
+                    {
+                        value: 'inver_order_layers',
+                        label: '样式参数',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: null,
+                        button: true,
+                        class:"onlytext",
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '复制',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    ,
+                    {
+                        value: 'name_order_layers',
+                        label: '粘贴',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    {br: true},
+                    //-------------------------------
+                    {
+                        value: 'inver_order_layers',
+                        label: '更多参数',
+                        title: "把所选图层的层叠顺序颠倒",
+                        selected_func: null,
+                        button: true,
+                        class:"onlytext",
+                    },
+                    {
+                        value: 'name_order_layers',
+                        label: '复制',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    ,
+                    {
+                        value: 'name_order_layers',
+                        label: '粘贴',
+                        title: "将图层层叠顺序按名称排列",
+                        selected_func: this.name_order_layers,
+                        button: true,
+                        class:"subbut",
+                    },
+                    {br: true},
                     {hr: true},
+                    //-------------------------------
                     {
-                        value: 'i_select_layers',
-                        label: '反选图层',
-                        title: "根据图层名称寻找并选中图层",
-                        selected_func: this.i_select_layers,
                         button: true,
-                        block: true,
+                        value: 'usemRNA',
+                        label: '压缩复制的文本',
+                        title: "把复制的参数文本压缩成 mRNA 短文本",
+                        selected_func: this.name_order_layers,
+                        state:true,
+                        block:true,
+                        type:"multi_select",
                     },
-                    {
-                        value: 'selectShot',
-                        label: '记录',
-                        title: "记录当前所有图层选中状态",
-                        selected_func: this.selectShot,
-                        button: true,
 
-                    },
-                    {
-                        value: 'selectRepaly',
-                        label: '还原',
-                        title: "还原图层选中状态的记录",
-                        selected_func: this.selectRepaly,
-                        button: true,
-                        class: "rigth-but",
 
-                    },
-//
-//                    {hr: true},
-//
-//                    {
-//                        value: 'radian_all',
-//                        label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
-//                        title: "应用到所有圆角",
-//                        selected_func: this.open_file,
-//                        button: true
-//                    },
-//                    {
-//                        value: 'info_pin',
-//                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
-//                        title: "创建变量标注",
-//                        selected_func: this.info_pin,
-//                        button: true
-//                    }
                 ]
             }
         },

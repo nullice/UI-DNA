@@ -1798,14 +1798,14 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA)
 //压缩字符串
 GobCaryon.prototype.mRNA_encode = function (text, signMark)
 {
+    var buffer = zlib.deflateSync(text)
+    var rnaStr = base65536.encode(buffer);
+
     //添加标识文本
     if (signMark != undefined)
     {
-        text = "UI-mRNA-" + signMark + ":{" + text + "}"
+        rnaStr = "UI-mRNA-" + rnaStr + ":{" + signMark + "}"
     }
-
-    var buffer = zlib.deflateSync(text)
-    var rnaStr = base65536.encode(buffer);
     return rnaStr;
 }
 
