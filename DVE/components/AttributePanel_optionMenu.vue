@@ -264,6 +264,10 @@
             }
         },
         methods: {
+            func_:function ()
+            {
+
+            }
 
         },
         computed: {},

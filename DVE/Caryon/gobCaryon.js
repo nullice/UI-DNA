@@ -1275,7 +1275,7 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color)
 GobCaryon.prototype.updateGob = async function (disableRender)
 {
 
-
+    var _objectToObject = GobCaryon._objectToObject()
     logger.group("[updateGob]")
     console.time("updateGob 耗时")
     this.disableRender = disableRender || false;
@@ -1574,51 +1574,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
 
 
-    function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
-    {
-
-        for (var x in object)
-        {
-            // console.log(" x in object：", x)
-            if ((object[x] != undefined) && (object[x].constructor == Object))
-            {
-                if (sameObject[x] == undefined)
-                {
-                    sameObject[x] = {};
-                }
-
-                // console.log(
-                //     "【_objectToObject-2】:", object[x], sameObject[x], {
-                //         x: x,
-                //         "object[x]": object[x],
-                //         "sameObject[x]": sameObject[x]
-                //     }
-                // )
-                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
-            } else
-            {
-                // if (asyncCounter)
-                // {
-                //     if (sameObject[x] != object[x])
-                //     {
-                //         Gob._asyncSetCounter++;
-                //         console.log("[+]" + x, "   " + Gob._asyncSetCounter)
-                //     }
-                // }
-
-                if (checkMUTI)
-                {
-                    sameObject[x] = _setValue(sameObject[x], object[x], ignoreNull)
-                } else
-                {
-                    sameObject[x] = object[x]
-                }
-
-            }
-        }
-
-    }
-
     function _objectToObject_asyncSetCounter(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
     {
         var _temp = 0
@@ -1655,7 +1610,53 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 }
 
 
-//
+GobCaryon._objectToObject = function (object, sameObject, checkMUTI, ignoreNull, asyncCounter)
+{
+
+    for (var x in object)
+    {
+        // console.log(" x in object：", x)
+        if ((object[x] != undefined) && (object[x].constructor == Object))
+        {
+            if (sameObject[x] == undefined)
+            {
+                sameObject[x] = {};
+            }
+
+            // console.log(
+            //     "【_objectToObject-2】:", object[x], sameObject[x], {
+            //         x: x,
+            //         "object[x]": object[x],
+            //         "sameObject[x]": sameObject[x]
+            //     }
+            // )
+            _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
+        } else
+        {
+            // if (asyncCounter)
+            // {
+            //     if (sameObject[x] != object[x])
+            //     {
+            //         Gob._asyncSetCounter++;
+            //         console.log("[+]" + x, "   " + Gob._asyncSetCounter)
+            //     }
+            // }
+
+            if (checkMUTI)
+            {
+                sameObject[x] = _setValue(sameObject[x], object[x], ignoreNull)
+            } else
+            {
+                sameObject[x] = object[x]
+            }
+
+        }
+    }
+
+}
+
+
+//----------------------------------------------------------------------------
 //segment：
 
 /**
@@ -1737,6 +1738,18 @@ GobCaryon.prototype.exportGobRNA = function (segment, enableAssign)
 }
 
 
+GobCaryon.prototype.importGobRNA = function (segment, gobRNA)
+{
+    var segment = segment.toLowerCase()
+    if (segment === "position")
+    {
+        var ob = {}
+        _copyOb(Gob.position, ob)
+        return JSON.stringify({position: ob})
+    }
+}
+
+
 GobCaryon.prototype.exportEffectRNA = async function (mRNA)
 {
     if (Gob.selectList[0] != undefined)
@@ -1784,9 +1797,9 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA)
         }
 
         var rna = JSON.stringify(ob)
-        if(mRNA)
+        if (mRNA)
         {
-            rna = this.mRNA_encode(rna,"Effect")
+            rna = this.mRNA_encode(rna, "Effect")
         }
         return rna
 
