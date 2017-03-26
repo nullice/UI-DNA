@@ -945,6 +945,12 @@
                     <i class="icon-images"></i>
                 </quick-icon-button>
 
+                <quick-icon-button v-bind:title="Lang.from('创建文本表格')" name="create_textTable"
+                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:more_onoff="more_onoff.create_textTable"
+                                   v-bind:func="func_ceate_textTable">
+                    <i class="icon-table" style="  font-size: 16px;line-height: 13px;"></i>
+                </quick-icon-button>
 
             </div>
 
@@ -952,6 +958,36 @@
                 <!--从现有图层创建链接对象-->
                 <div class="quick_more_item text_fill" v-bind:class="{'more_on':more_onoff.create_smartlinkFrom}">
                     <quick-smartlink></quick-smartlink>
+                </div>
+
+                <!--创建文本表格-->
+                <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.create_textTable}">
+                    <div class="info">
+                        创建文本表格
+                        <div class="inline-but-bar data-editor-mode ">
+                            <input type="radio" class="exmo_icon_cheackbox"
+                                   id="quick_ceate_t01"
+                                   value="CSV" name="group_ceate_data1"
+                                   v-model="o_ceate_textTable_mode">
+                            <label class="exmo_button_icon mini" for="quick_ceate_t01">
+                                <span>CSV</span></label>
+
+                            <input type="radio" class="exmo_icon_cheackbox" id="quick_ceate_t02"
+                                   value="JSON" name="group_ceate_data1"
+                                   v-model="o_ceate_textTable_mode">
+                            <label class="exmo_button_icon mini" for="quick_ceate_t02">
+                                <span>JSON</span></label>
+                        </div>
+                    </div>
+
+
+                    <div class="data_editor_box">
+                         <textarea class="exmo_inbox value_input_box quick_data_editor"
+                                   v-model="o_ceate_textTable_input"
+                         >
+                     </textarea>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -1386,7 +1422,7 @@
                     text_dataEditor: false,
                     text_fill: false,
                     create_smartlinkFrom: false,
-
+                    create_textTable: false,
 
                 },
                 Lang: Lang,
@@ -1639,6 +1675,9 @@
                 o_text_multTextTable: null,
                 o_text_dataEditor_mode: "CSV",
                 o_text_dataEditor_input: "",
+                o_ceate_textTable_mode: "CSV",
+                o_ceate_textTable_input: "",
+
             }
 
         },
@@ -2271,8 +2310,9 @@
             {
 //                console.info("func_permute_updatePadding")
                 var textTable = await Proteins.exec("quick_text_calcTextTable")
-                if (typeof textTable === "object")
+                if (TYP.type(textTable) === "array")
                 {
+
                     Vue.set(this, "o_text_multTextTable", textTable)
                 } else
                 {
@@ -2430,6 +2470,27 @@
                     }
                 }
             },
+
+            func_ceate_textTable: function ()
+            {
+                var textArray = null
+                if (this.o_ceate_textTable_mode === "CSV")
+                {
+                    console.info(this.o_ceate_textTable_input)
+                    textArray = nodeCsvReader.parse(this.o_ceate_textTable_input)
+                } else if (this.o_ceate_textTable_mode === "JSON")
+                {
+                    textArray = JSON.parse(this.o_ceate_textTable_input)
+                }
+
+                if (textArray != undefined)
+                {
+                    Proteins.exec("quick_create_textTable", {
+                        textArray: textArray,
+                    })
+                }
+
+            }
 
 
         }

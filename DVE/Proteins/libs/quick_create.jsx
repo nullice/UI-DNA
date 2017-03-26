@@ -306,6 +306,97 @@
     // }
 
 
+    Libs.quick_create_textTable = function (infoObjec, envObject)
+    {
+        if (infoObjec["textArray"] == undefined)
+        {
+            return
+        }
+
+        function _func()
+        {
+            var textArray = infoObjec["textArray"]
+
+            var range = getNowRange()
+
+            var row_number = 0
+            var col_number = 0
+            for (var r in textArray)
+            {
+                row_number++
+                for (var c in textArray[r])
+                {
+                    col_number++
+                }
+            }
+
+
+            if (range == undefined)
+            {
+                range = {x: 0, y: 0, h: 500, w: 500}
+            }
+            var rangeX = range.x
+            var rangeY = range.y
+            var nowX = rangeX
+            var nowY = rangeY
+
+
+            var w = range.w / col_number
+
+            for (var r in textArray)
+            {
+                for (var c in textArray[r])
+                {
+                    Kinase.layer.creatNewTextLayer_ByActive("" + r + "-" + c, w, 20, textArray[r][c])
+                    Kinase.layer.setLayerTextInfo({bounds: {x: nowX, y: nowY}, size: "10"},Kinase.REF_ActiveLayer,null)
+                    nowX = nowX + w;
+                }
+                nowY = nowY + 20
+                var nowX = rangeX
+            }
+
+        }
+
+
+        Proteins.doCon(_func, "创建文本表格", false)
+    }
+
+
+    function getNowRange()
+    {
+        var selectBounds = null;
+        try
+        {
+            var selectBounds = activeDocument.selection.bounds
+            if (selectBounds != undefined)
+            {
+                selectBounds = Kinase._rltb2xywh({
+                    left: selectBounds[0].value,
+                    top: selectBounds[1].value,
+                    right: selectBounds[2].value,
+                    bottom: selectBounds[3].value,
+                })
+            }
+        } catch (e)
+        {
+        }
+
+        if (selectBounds != undefined)
+        {
+            return selectBounds
+        }
+
+
+        var ids = Kinase.layer.getTargetLayersID()
+        if (ids != undefined)
+        {
+            return Kinase.layer.getLayersRange(ids)
+        }
+
+
+    }
+
+
 })()
 
 

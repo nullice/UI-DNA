@@ -3,7 +3,7 @@
     >
         <i class="icon-briefcase"></i>
     </menu-buttom>
-    {{options[options.length-1].state}}
+
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
@@ -149,7 +149,6 @@
                         button: true,
                         class: "subbut",
                     },
-                    ,
                     {
                         value: 'paste_text',
                         label: '粘贴',
@@ -176,7 +175,6 @@
                         button: true,
                         class: "subbut",
                     },
-                    ,
                     {
                         value: 'paste_smartObject',
                         label: '粘贴',
@@ -203,7 +201,6 @@
                         button: true,
                         class: "subbut",
                     },
-                    ,
                     {
                         value: 'paste_quickEffect',
                         label: '粘贴',
@@ -230,7 +227,6 @@
                         button: true,
                         class: "subbut",
                     },
-                    ,
                     {
                         value: 'paste_more',
                         label: '粘贴',
