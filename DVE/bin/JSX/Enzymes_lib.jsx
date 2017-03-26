@@ -613,10 +613,10 @@ EnzJSX.setLayerInfo_text_byId = function (textInfo, id, doSelect)
         ki.layer.selectLayer_byID(id)
     }
 
-    if(id === -1020)//当前选中图层
+    if (id === -1020)//当前选中图层
     {
         return ki.layer.setLayerTextInfo(textInfo, Kinase.REF_ActiveLayer, null)
-    }else
+    } else
     {
         return ki.layer.setLayerTextInfo(textInfo, Kinase.REF_LayerID, id)
     }
@@ -1054,7 +1054,16 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
     {
         try
         {
-            var obALL = JSON.parse(quickEffect.copyEffect_All)
+            if (typeof quickEffect.copyEffect_All.value  === "object")
+            {
+                var obALL = quickEffect.copyEffect_All
+
+            }else{
+                var obALL = JSON.parse(quickEffect.copyEffect_All)
+            }
+
+
+
             if (obALL.value != undefined)
             {
                 Kinase.layer.setLayerEffectsObject(obALL, Kinase.REF_LayerID, id)

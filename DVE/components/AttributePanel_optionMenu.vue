@@ -3,34 +3,35 @@
     >
         <i class="icon-briefcase"></i>
     </menu-buttom>
-{{options[options.length-1].state}}
+    {{options[options.length-1].state}}
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
-    .exmo_area:hover .attribute_panel_option{
+    .exmo_area:hover .attribute_panel_option {
         visibility: visible;
     }
-    .exmo_area .attribute_panel_option{
+
+    .exmo_area .attribute_panel_option {
         visibility: hidden;
     }
 
-
-    .menu-buttom-box.attribute_panel_option .menu-buttom{
+    .menu-buttom-box.attribute_panel_option .menu-buttom {
         margin-top: -34px;
     }
 
-     .menu-buttom-box.attribute_panel_option .menu-box{
-         margin-top: -12px;
-     }
-     .attr_option.inline_block.subbut {
-         /* display: none; */
-         width: 29px;
-         text-align: center;
-         white-space: nowrap;
-         padding: 6px 9px;
-         /* padding-left: 2px; */
-         /* color: rgba(0, 0, 0, 0.55); */
-     }
+    .menu-buttom-box.attribute_panel_option .menu-box {
+        margin-top: -12px;
+    }
+
+    .attr_option.inline_block.subbut {
+        /* display: none; */
+        width: 29px;
+        text-align: center;
+        white-space: nowrap;
+        padding: 6px 9px;
+        /* padding-left: 2px; */
+        /* color: rgba(0, 0, 0, 0.55); */
+    }
 
 
 </style>
@@ -44,35 +45,32 @@
         data(){
             return {
 
-                o_use_mRNA:false,
+                o_use_mRNA: false,
 
                 options: [
                     {
-                        value: 'inver_order_layers',
+                        value: 'layer_effectall',
                         label: '图层样式',
-                        title: "把所选图层的层叠顺序颠倒",
+                        title: "",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
-
-
+                        class: "onlytext",
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_effect',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "以文本形式复制图层样式",
+                        selected_func: this.copy_effect,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
-                    ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_effect',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用文本形式的图层样式",
+                        selected_func: this.paste_effect,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {hr: true},
                     {br: true},
@@ -83,7 +81,7 @@
                         title: "把所选图层的层叠顺序颠倒",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
+                        class: "onlytext",
 
 
                     },
@@ -93,7 +91,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     ,
                     {
@@ -102,7 +100,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {br: true},
                     //-------------------------------
@@ -112,7 +110,7 @@
                         title: "把所选图层的层叠顺序颠倒",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
+                        class: "onlytext",
 
 
                     },
@@ -122,7 +120,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     ,
                     {
@@ -131,7 +129,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {br: true},
                     //-------------------------------
@@ -141,7 +139,7 @@
                         title: "把所选图层的层叠顺序颠倒",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
+                        class: "onlytext",
 
 
                     },
@@ -151,7 +149,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     ,
                     {
@@ -160,7 +158,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {br: true},
                     //-------------------------------
@@ -170,7 +168,7 @@
                         title: "把所选图层的层叠顺序颠倒",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
+                        class: "onlytext",
 
 
                     },
@@ -180,7 +178,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     ,
                     {
@@ -189,7 +187,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {br: true},
                     //-------------------------------
@@ -199,7 +197,7 @@
                         title: "把所选图层的层叠顺序颠倒",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
+                        class: "onlytext",
                     },
                     {
                         value: 'name_order_layers',
@@ -207,7 +205,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     ,
                     {
@@ -216,7 +214,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {br: true},
                     //-------------------------------
@@ -226,7 +224,7 @@
                         title: "把所选图层的层叠顺序颠倒",
                         selected_func: null,
                         button: true,
-                        class:"onlytext",
+                        class: "onlytext",
                     },
                     {
                         value: 'name_order_layers',
@@ -234,7 +232,7 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     ,
                     {
@@ -243,34 +241,64 @@
                         title: "将图层层叠顺序按名称排列",
                         selected_func: this.name_order_layers,
                         button: true,
-                        class:"subbut",
+                        class: "subbut",
                     },
                     {br: true},
                     {hr: true},
                     //-------------------------------
                     {
                         button: true,
+                        value: 'useAssign',
+                        label: '复制赋值参数',
+                        title: "把复制的参数文本压缩成 mRNA 短文本",
+                        state: true,
+                        block: true,
+                        type: "multi_select",
+                    },
+                    {br: true},
+                    {
+                        button: true,
                         value: 'usemRNA',
                         label: '压缩复制的文本',
                         title: "把复制的参数文本压缩成 mRNA 短文本",
-                        selected_func: this.name_order_layers,
-                        state:true,
-                        block:true,
-                        type:"multi_select",
+                        state: true,
+                        block: true,
+                        type: "multi_select",
                     },
-
-
                 ]
             }
         },
         methods: {
-            func_:function ()
+            copy_effect: async function ()
             {
+                var str = await Gob.exportEffectRNA(this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_effect:  function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importEffectRNA(str)
 
-            }
+            },
+
 
         },
-        computed: {},
+        computed: {
+
+            use_mRNA: {
+                get: function ()
+                {
+                    return this.options[this.options.length - 1].state;
+                }
+            },
+            use_Assign: {
+                get: function ()
+                {
+                    return this.options[this.options.length - 2].state;
+                }
+            },
+
+        },
         components: {
             "menu-buttom": MenuButtom,
             "bubble-box": BubbleBox,

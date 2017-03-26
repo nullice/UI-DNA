@@ -11,3 +11,5 @@ window.nodeCsvWriter =  require("node-csv").createWriter();
 //var csv = require('node-csv').createParser('\t', '"', '\\')
 //----------------------------------------
 window.base65536 = require("base65536");
+//----------------------------------------
+window.opn = require('opn');

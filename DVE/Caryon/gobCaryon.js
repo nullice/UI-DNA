@@ -1275,7 +1275,6 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color)
 GobCaryon.prototype.updateGob = async function (disableRender)
 {
 
-    var _objectToObject = GobCaryon._objectToObject()
     logger.group("[updateGob]")
     console.time("updateGob 耗时")
     this.disableRender = disableRender || false;
@@ -1548,6 +1547,52 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
 
 
+    function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
+    {
+
+        for (var x in object)
+        {
+            // console.log(" x in object：", x)
+            if ((object[x] != undefined) && (object[x].constructor == Object))
+            {
+                if (sameObject[x] == undefined)
+                {
+                    sameObject[x] = {};
+                }
+
+                // console.log(
+                //     "【_objectToObject-2】:", object[x], sameObject[x], {
+                //         x: x,
+                //         "object[x]": object[x],
+                //         "sameObject[x]": sameObject[x]
+                //     }
+                // )
+                _objectToObject(object[x], sameObject[x], checkMUTI, ignoreNull, asyncCounter)
+            } else
+            {
+                // if (asyncCounter)
+                // {
+                //     if (sameObject[x] != object[x])
+                //     {
+                //         Gob._asyncSetCounter++;
+                //         console.log("[+]" + x, "   " + Gob._asyncSetCounter)
+                //     }
+                // }
+
+                if (checkMUTI)
+                {
+                    sameObject[x] = _setValue(sameObject[x], object[x], ignoreNull)
+                } else
+                {
+                    sameObject[x] = object[x]
+                }
+
+            }
+        }
+
+    }
+
+
     async function _objectToGob_async(srcObject, names, gobThis)
     {
 
@@ -1610,7 +1655,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 }
 
 
-GobCaryon._objectToObject = function (object, sameObject, checkMUTI, ignoreNull, asyncCounter)
+function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
 {
 
     for (var x in object)
@@ -1743,15 +1788,59 @@ GobCaryon.prototype.importGobRNA = function (segment, gobRNA)
     var segment = segment.toLowerCase()
     if (segment === "position")
     {
-        var ob = {}
-        _copyOb(Gob.position, ob)
-        return JSON.stringify({position: ob})
+        var ob = JSON.parse(gobRNA)
+        if (typeof ob.position === "object")
+        {
+            _objectToObject(ob.position, this.position, false, true)
+        }
     }
+    else if (segment === "text")
+    {
+        var ob = JSON.parse(gobRNA)
+        if (typeof ob.text === "object")
+        {
+            _objectToObject(ob.text, this.text, false, true)
+        }
+    }
+    else if (segment === "shape")
+    {
+        var ob = JSON.parse(gobRNA)
+        if (typeof ob.shape === "object")
+        {
+            _objectToObject(ob.shape, this.shape, false, true)
+        }
+    }
+    else if (segment === "smartObject")
+    {
+        var ob = JSON.parse(gobRNA)
+        if (typeof ob.smartObject === "object")
+        {
+            _objectToObject(ob.smartObject, this.smartObject, false, true)
+        }
+    }
+    else if (segment === "quickEffect")
+    {
+        var ob = JSON.parse(gobRNA)
+        if (typeof ob.quickEffect === "object")
+        {
+            _objectToObject(ob.quickEffect, this.quickEffect, false, true)
+        }
+    }
+    else if (segment === "more")
+    {
+        var ob = JSON.parse(gobRNA)
+        if (typeof ob.more === "object")
+        {
+            _objectToObject(ob.more, this.more, false, true)
+        }
+    }
+
 }
 
 
-GobCaryon.prototype.exportEffectRNA = async function (mRNA)
+GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode)
 {
+
     if (Gob.selectList[0] != undefined)
     {
         var id = Gob.selectList[0].id;
@@ -1796,15 +1885,74 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA)
             }
         }
 
+
+        var more = await Gob.getLayerInfoObejct_more(id);
+
+        ob = {
+            copyEffect_All: ob,
+            more: {
+                mode: more.mode,
+                opacity: more.opacity,
+                fillOpacity: more.fillOpacity,
+            }
+        }
+
         var rna = JSON.stringify(ob)
-        if (mRNA)
+        if (mRNA_encode)
         {
             rna = this.mRNA_encode(rna, "Effect")
         }
         return rna
+    }
+}
 
+GobCaryon.prototype.importEffectRNA = async function (str)
+{
+    console.log("importEffectRNA", str)
+    if (str.length > 8)
+    {
+        var head = str.slice(0, 7);
+        if ((head === "UI-mRNA" || head === "UI-DNA-"))
+        {
+            str = this.mRNA_decode(str)
+        }
+
+        var ob = JSON.parse(str)
+
+        if (typeof ob.copyEffect_All === "object")
+        {
+            if (this.selectList.length > 1)
+            {
+                var save = await enzymes.selectSave();
+            }
+
+
+            this.stopSelectEvent =true
+            for (var x in this.selectList)
+            {
+                await  enzymes.selectLayer_byID(this.selectList[x].id)
+                await enzymes.setLayerInfo_quickEffect_byId(ob, this.selectList[x].id)
+
+                console.log(ob.more )
+                if (typeof ob.more === "object")
+                {
+                    await enzymes.setLayerInfo_more_byId(ob.more, this.selectList[x].id)
+                }
+
+            }
+
+            if (this.selectList.length > 1)
+            {
+                await enzymes.selectLoad(save);
+            }
+            this.stopSelectEvent =false
+            this.updateGob(true)
+
+        }
 
     }
+
+
 }
 
 
@@ -1817,7 +1965,7 @@ GobCaryon.prototype.mRNA_encode = function (text, signMark)
     //添加标识文本
     if (signMark != undefined)
     {
-        rnaStr = "UI-mRNA-" + rnaStr + ":{" + signMark + "}"
+        rnaStr = "UI-mRNA-" + signMark + ":{" + rnaStr + "}"
     }
     return rnaStr;
 }

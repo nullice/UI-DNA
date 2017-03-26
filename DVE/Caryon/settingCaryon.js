@@ -113,7 +113,6 @@ SetSystem.prototype.init = function ()
 
 }
 
-
 //---------------------------
 
 export default SetSystem;
