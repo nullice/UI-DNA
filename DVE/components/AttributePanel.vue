@@ -567,30 +567,6 @@
         <div class="tag-box tag-more" v-show="tagsActive.more" v-bind:class="{active:tagsActive.more}"
              transition="trans-fade">
 
-            <h3><span> {{'信息' |lang}} </span></h3>
-            <value-input v-bind:name="Lang.from('名称')"
-                         v-bind:title="Lang.from('图层名称')"
-                         v-bind:edit_value.sync="Gob.more.layerName"
-                         v-bind:out_value.sync="Gob.more.assignment.layerName"
-                         v-bind:enable_assign.sync="Gob.more.enableAssigns.layerName"
-            ></value-input>
-
-            <select-input v-bind:block="false" default_value=""
-                          v-bind:name="Lang.from('颜色')"
-                          v-bind:title="Lang.from('图层备注颜色')"
-                          v-bind:value.sync="Gob.more.layerColor"
-                          v-bind:select_style="{width:'30px'}"
-                          v-bind:options="o_more_layercolor_options"
-                          in_class="namegroup"
-            >
-                <value-input v-bind:name="Lang.from('')"
-                             v-bind:title="Lang.from('图层备注颜色')"
-                             v-bind:edit_value.sync="Gob.more.layerColor"
-                             v-bind:out_value.sync="Gob.more.assignment.layerColor"
-                             v-bind:enable_assign.sync="Gob.more.enableAssigns.layerColor"
-                             mini="true"></value-input>
-
-            </select-input>
 
 
             <h3><span> {{'外观' |lang}} </span></h3>
@@ -625,7 +601,7 @@
                           v-bind:options="o_more_mode_options"
                           in_class="text_antiAlias"
             >
-                <value-input v-bind:name="Lang.from('锯齿')"
+                <value-input v-bind:name="Lang.from('混合')"
                              v-bind:edit_value.sync="Gob.more.mode"
                              v-bind:out_value.sync="Gob.more.assignment.mode"
                              v-bind:enable_assign.sync="Gob.more.enableAssigns.mode"
@@ -641,6 +617,34 @@
                     {{'图层可视' | lang}}
                 </label>
             </div>
+
+
+            <h3><span> {{'信息' |lang}} </span></h3>
+            <value-input v-bind:name="Lang.from('名称')"
+                         v-bind:title="Lang.from('图层名称')"
+                         v-bind:edit_value.sync="Gob.more.layerName"
+                         v-bind:out_value.sync="Gob.more.assignment.layerName"
+                         v-bind:enable_assign.sync="Gob.more.enableAssigns.layerName"
+            ></value-input>
+
+            <select-input v-bind:block="false" default_value=""
+                          v-bind:name="Lang.from('颜色')"
+                          v-bind:title="Lang.from('图层备注颜色')"
+                          v-bind:value.sync="Gob.more.layerColor"
+                          v-bind:select_style="{width:'30px'}"
+                          v-bind:options="o_more_layercolor_options"
+                          in_class="namegroup"
+            >
+                <value-input v-bind:name="Lang.from('')"
+                             v-bind:title="Lang.from('图层备注颜色')"
+                             v-bind:edit_value.sync="Gob.more.layerColor"
+                             v-bind:out_value.sync="Gob.more.assignment.layerColor"
+                             v-bind:enable_assign.sync="Gob.more.enableAssigns.layerColor"
+                             mini="true"></value-input>
+
+            </select-input>
+
+
 
 
             <h3><span> {{'自定义' |lang}} </span></h3>

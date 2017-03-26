@@ -1710,44 +1710,62 @@ function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter
  * @param enableAssign 是否导出 Assign 内容
  *
  */
-GobCaryon.prototype.exportGobRNA = function (segment, enableAssign)
+GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA)
 {
+    var self = this;
     var segment = segment.toLowerCase()
     if (segment === "position")
     {
         var ob = {}
         _copyOb(Gob.position, ob)
-        return JSON.stringify({position: ob})
+        return    returnFilter(JSON.stringify({position: ob}))
     }
     else if (segment === "text")
     {
         var ob = {}
         _copyOb(Gob.text, ob)
-        return JSON.stringify({text: ob})
+        return   returnFilter(JSON.stringify({text: ob}))
     }
     else if (segment === "shape")
     {
         var ob = {}
         _copyOb(Gob.shape, ob)
-        return JSON.stringify({shape: ob})
+
+        delete ob.shapeSize;
+        return  returnFilter(JSON.stringify({shape: ob}))
     }
     else if (segment === "smartObject")
     {
         var ob = {}
         _copyOb(Gob.smartObject, ob)
-        return JSON.stringify({smartObject: ob})
+        return   returnFilter(JSON.stringify({smartObject: ob}))
     }
     else if (segment.toLowerCase() === "quickEffect")
     {
         var ob = {}
         _copyOb(Gob.quickEffect, ob)
-        return JSON.stringify({quickEffect: ob})
+        return   returnFilter(JSON.stringify({quickEffect: ob}))
     }
     else if (segment === "more")
     {
         var ob = {}
         _copyOb(Gob.more, ob)
-        return JSON.stringify({more: ob})
+        return  returnFilter(JSON.stringify({more: ob}))
+    }
+
+    function returnFilter(value)
+    {
+
+        if (use_mRNA)
+        {
+            return self.mRNA_encode(value, segment)
+
+        } else
+        {
+            return value
+        }
+
+
     }
 
     function _copyOb(ob, newOb)
@@ -1786,6 +1804,18 @@ GobCaryon.prototype.exportGobRNA = function (segment, enableAssign)
 GobCaryon.prototype.importGobRNA = function (segment, gobRNA)
 {
     var segment = segment.toLowerCase()
+
+
+    if (gobRNA.length > 8)
+    {
+        var head = gobRNA.slice(0, 7);
+        if ((head === "UI-mRNA" || head === "UI-DNA-"))
+        {
+            gobRNA = this.mRNA_decode(gobRNA)
+        }
+    }
+
+
     if (segment === "position")
     {
         var ob = JSON.parse(gobRNA)
@@ -1927,13 +1957,13 @@ GobCaryon.prototype.importEffectRNA = async function (str)
             }
 
 
-            this.stopSelectEvent =true
+            this.stopSelectEvent = true
             for (var x in this.selectList)
             {
                 await  enzymes.selectLayer_byID(this.selectList[x].id)
                 await enzymes.setLayerInfo_quickEffect_byId(ob, this.selectList[x].id)
 
-                console.log(ob.more )
+                console.log(ob.more)
                 if (typeof ob.more === "object")
                 {
                     await enzymes.setLayerInfo_more_byId(ob.more, this.selectList[x].id)
@@ -1945,7 +1975,7 @@ GobCaryon.prototype.importEffectRNA = async function (str)
             {
                 await enzymes.selectLoad(save);
             }
-            this.stopSelectEvent =false
+            this.stopSelectEvent = false
             this.updateGob(true)
 
         }

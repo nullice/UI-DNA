@@ -78,7 +78,7 @@
                     {
                         value: 'inver_order_layers',
                         label: '位置参数',
-                        title: "把所选图层的层叠顺序颠倒",
+                        title: "",
                         selected_func: null,
                         button: true,
                         class: "onlytext",
@@ -86,19 +86,19 @@
 
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_position',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "复制位置参数",
+                        selected_func: this.copy_position,
                         button: true,
                         class: "subbut",
                     },
                     ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_position',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用形状参数",
+                        selected_func: this.paste_position,
                         button: true,
                         class: "subbut",
                     },
@@ -107,7 +107,7 @@
                     {
                         value: 'inver_order_layers',
                         label: '形状参数',
-                        title: "把所选图层的层叠顺序颠倒",
+                        title: "",
                         selected_func: null,
                         button: true,
                         class: "onlytext",
@@ -115,19 +115,19 @@
 
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_shape',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "复制形状参数",
+                        selected_func: this.copy_shape,
                         button: true,
                         class: "subbut",
                     },
                     ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_shape',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用形状参数",
+                        selected_func: this.paste_shape,
                         button: true,
                         class: "subbut",
                     },
@@ -136,27 +136,25 @@
                     {
                         value: 'inver_order_layers',
                         label: '文本参数',
-                        title: "把所选图层的层叠顺序颠倒",
+                        title: "",
                         selected_func: null,
                         button: true,
                         class: "onlytext",
-
-
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_text',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "复制文本参数",
+                        selected_func: this.copy_text,
                         button: true,
                         class: "subbut",
                     },
                     ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_text',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用文本参数",
+                        selected_func: this.paste_text,
                         button: true,
                         class: "subbut",
                     },
@@ -165,27 +163,25 @@
                     {
                         value: 'inver_order_layers',
                         label: '对象参数',
-                        title: "把所选图层的层叠顺序颠倒",
+                        title: "",
                         selected_func: null,
                         button: true,
                         class: "onlytext",
-
-
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_smartObject',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "复制智能对象参数",
+                        selected_func: this.copy_smartObject,
                         button: true,
                         class: "subbut",
                     },
                     ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_smartObject',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用智能对象参数",
+                        selected_func: this.paste_smartObject,
                         button: true,
                         class: "subbut",
                     },
@@ -194,25 +190,25 @@
                     {
                         value: 'inver_order_layers',
                         label: '样式参数',
-                        title: "把所选图层的层叠顺序颠倒",
+                        title: "",
                         selected_func: null,
                         button: true,
                         class: "onlytext",
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_quickEffect',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "复制样式参数",
+                        selected_func: this.copy_quickEffect,
                         button: true,
                         class: "subbut",
                     },
                     ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_quickEffect',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用样式参数",
+                        selected_func: this.paste_quickEffect,
                         button: true,
                         class: "subbut",
                     },
@@ -227,19 +223,19 @@
                         class: "onlytext",
                     },
                     {
-                        value: 'name_order_layers',
+                        value: 'copy_more',
                         label: '复制',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "复制更多参数",
+                        selected_func: this.copy_more,
                         button: true,
                         class: "subbut",
                     },
                     ,
                     {
-                        value: 'name_order_layers',
+                        value: 'paste_more',
                         label: '粘贴',
-                        title: "将图层层叠顺序按名称排列",
-                        selected_func: this.name_order_layers,
+                        title: "粘贴并应用更多参数",
+                        selected_func: this.paste_more,
                         button: true,
                         class: "subbut",
                     },
@@ -280,7 +276,66 @@
                 Gob.importEffectRNA(str)
 
             },
-
+            copy_position: async function ()
+            {
+                var str = await Gob.exportGobRNA("position",this.use_Assign,this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_position: async function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importGobRNA("position",str)
+            },
+            copy_shape: async function ()
+            {
+                var str = await Gob.exportGobRNA("shape",this.use_Assign,this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_shape: async function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importGobRNA("shape",str)
+            },
+            copy_text: async function ()
+            {
+                var str = await Gob.exportGobRNA("text",this.use_Assign,this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_text: async function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importGobRNA("text",str)
+            },
+            copy_smartObject: async function ()
+            {
+                var str = await Gob.exportGobRNA("smartObject",this.use_Assign,this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_smartObject: async function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importGobRNA("smartObject",str)
+            },
+            copy_quickEffect: async function ()
+            {
+                var str = await Gob.exportGobRNA("quickEffect",this.use_Assign,this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_quickEffect: async function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importGobRNA("quickEffect",str)
+            },
+            copy_more: async function ()
+            {
+                var str = await Gob.exportGobRNA("more",this.use_Assign,this.use_mRNA)
+                NodeCopy.copy(str)
+            },
+            paste_more: async function ()
+            {
+                var str = NodeCopy.paste();
+                Gob.importGobRNA("more",str)
+            },
 
         },
         computed: {
