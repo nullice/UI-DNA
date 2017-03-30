@@ -5,7 +5,6 @@
     <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true">
         <!--<pre> {{Gob_selectTypes|json}}</pre>-->
 
-
         <!--变换-->
         <div class="quick_funcs_box">
             <h4>变换</h4>
