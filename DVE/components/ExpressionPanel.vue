@@ -13,18 +13,26 @@
         <!--</div>-->
 
 
-        <div class="auto_express">
-            <input v-model:value="o_setting.autoRender" type="checkbox" class="exmo_icon_cheackbox" id="auto_express_check_btn2" autocomplete="off" >
-            <label class="exmo_button_icon mini" for="auto_express_check_btn2" title="{{'自动渲染'|lang}}"><i
-                    class="icon-spinner9"></i></label>
+        <!--<div class="auto_express">-->
+        <!--<input v-model:value="o_setting.autoRender" type="checkbox" class="exmo_icon_cheackbox" id="auto_express_check_btn2" autocomplete="off" >-->
+        <!--<label class="exmo_button_icon mini" for="auto_express_check_btn2" title="{{'自动渲染'|lang}}"><i-->
+        <!--class="icon-spinner9"></i></label>-->
+        <!--</div>-->
+
+
+        <div class="data_caryon_fresh">
+            <button v-on:click="doFreshen" class="exmo_button_icon mini" title="{{'刷新'|lang}}">
+                <i class="icon-spinner9"></i>
+            </button>
         </div>
+
 
         <button v-on:click="doDNAExpression" class="express_but exmo_button ">
             <span>{{"渲染" | lang}}</span>
             <express-effect v-show="o_render_status.rendering"></express-effect>
         </button>
 
-        <div class="dataCaryonSave">
+        <div class="data_caryon_save">
             <button v-on:click="doDataSave" class="exmo_button_icon mini">
                 <i v-bind:class="{eff_animation_flip:o_data_status.status.saving}" class="icon-floppy-disk"></i>
             </button>
@@ -39,7 +47,6 @@
             <!--</div>-->
         </div>
     </div>
-
 
 
 </template>
@@ -105,7 +112,7 @@
             }
         }
 
-        .dataCaryonSave {
+        .data_caryon_save {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -149,6 +156,24 @@
                 left: 16px;
             }
         }
+
+        .data_caryon_fresh {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 10%;
+            margin: auto;
+            height: 24px;
+            margin-top: 10px;
+
+            .exmo_button_icon.mini {
+                padding: 6px 7px;
+                padding-top: 7px;
+            }
+        }
+
+
+
     }
 
     .bottom_pad {
@@ -196,7 +221,7 @@
                 o_setting: setSystem,
 
 
-        }
+            }
         },
 
         methods: {
@@ -208,7 +233,11 @@
             {
                 dataCaryon.save();
             }
-
+            ,
+            doFreshen: function ()
+            {
+                Gob.updateSelect()
+            }
 
         },
         components: {
