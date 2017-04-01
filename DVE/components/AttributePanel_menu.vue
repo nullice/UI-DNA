@@ -4,6 +4,7 @@
         <div v-bind:style="menu_style" class="menu_input {{in_class}}">
             <div class="menu_input_label">
                 {{{label_html}}} {{label}}
+
                 <slot></slot>
             </div>
         </div>
@@ -17,16 +18,14 @@
                          v-bind:label="item.name"
                          v-bind:label_html="item.label_html"
                          v-bind:selected_func="selected_func"
+                         v-bind:selected_func_param="item.selected_func"
                          v-bind:selected_value.sync="value"
                          v-bind:in_class="block?'inline_block':''"
                          v-bind:in_class2="item.class?item.class:''"
             >
+                <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
+                <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state" class="icon-checkmark"></i></div>
             </attr-option>
-            <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
-            <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state"
-                                                                           class="icon-checkmark"></i>
-            </div>
-
 
 
 
@@ -137,14 +136,31 @@
 
             },
 
-            selected_func: function ()
+            selected_func: function (func)
             {
                 this.show_list = false;
+
+
                 var _this = this;
+
+
                 setTimeout(function ()
                 {
                     _this.show_list = true;
                 }, 200)
+
+
+                if (func != undefined)
+                {
+                    if (func.param != undefined && func.func != undefined)
+                    {
+                        func.func(func.param)
+                    } else
+                    {
+                        func()
+                    }
+                }
+
             }
 
 

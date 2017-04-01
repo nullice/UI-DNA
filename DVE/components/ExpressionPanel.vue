@@ -18,13 +18,18 @@
         <!--<label class="exmo_button_icon mini" for="auto_express_check_btn2" title="{{'自动渲染'|lang}}"><i-->
         <!--class="icon-spinner9"></i></label>-->
         <!--</div>-->
+        <menu-box
+                v-bind:menu_data="o_menu_setting"
+                in_class="expresspanel_setting"
+        >
+            <div class="data_caryon_setting">
+                <button v-on:click="doFreshen" class="exmo_button_icon mini" title="{{'设置'|lang}}">
+                    <i class="icon-settings"></i>
+                </button>
+            </div>
+        </menu-box>
 
 
-        <div class="data_caryon_fresh">
-            <button v-on:click="doFreshen" class="exmo_button_icon mini" title="{{'刷新'|lang}}">
-                <i class="icon-spinner9"></i>
-            </button>
-        </div>
 
 
         <button v-on:click="doDNAExpression" class="express_but exmo_button ">
@@ -45,6 +50,7 @@
             <!--自动保存-->
             <!--</label>-->
             <!--</div>-->
+
         </div>
     </div>
 
@@ -59,8 +65,25 @@
         bottom: 0;
         background: inherit;
         border-top: 2px solid rgba(0, 0, 0, 0.08);
-        overflow: hidden;
+        overflow: visible;
         z-index: 10;
+
+
+        .menu_box{
+            .option_list.menu {
+                bottom: -8px;
+            }
+            .option_list.menu.expresspanel_setting {
+                right: calc(10% - 24px);
+            }
+
+        }
+
+
+
+
+
+
 
         .more_option {
             position: absolute;
@@ -116,7 +139,7 @@
             position: absolute;
             top: 0;
             bottom: 0;
-            right: 10%;
+            left: 10%;
             margin: auto;
             height: 24px;
             margin-top: 10px;
@@ -157,11 +180,11 @@
             }
         }
 
-        .data_caryon_fresh {
+        .data_caryon_setting {
             position: absolute;
             top: 0;
             bottom: 0;
-            left: 10%;
+            right: 10%;
             margin: auto;
             height: 24px;
             margin-top: 10px;
@@ -170,6 +193,8 @@
                 padding: 6px 7px;
                 padding-top: 7px;
             }
+
+
         }
 
 
@@ -211,6 +236,8 @@
 <script>
 
     import expressEffect from "./ExpressionPanel_expressEffect.vue"
+    import  Menu from "./AttributePanel_menu.vue"
+
 
     export default{
         data(){
@@ -219,7 +246,142 @@
                 o_data_status: dataCaryon.info,
                 o_render_status: renderCaryon.status,
                 o_setting: setSystem,
+                o_menu_setting: {
 
+                    more: {
+                        type: "multi_select",
+                        state: true,
+                        hr: true,
+                        child: {
+                            rgba: true,
+                            rgb: false,
+                            hex: true,
+                            int: false,
+
+                        }
+                    },
+                    setting: {
+                        name: Lang.from("重启 UI-DNA"),
+                        type: "select",
+                        state: false,
+                        selected_func:function ()
+                        {
+                            alert(123)
+                        },
+
+                    },
+                },
+                o_menu_save: {
+                    hue: {
+                        name: "Hue",
+                        type: "multi_select",
+                        state: true,
+                    },
+                    hr: {
+                        type: "multi_select",
+                        state: true,
+                        hr: true,
+                    },
+                    hsl: {
+                        name: "HSL",
+                        type: "multi_select",
+                        state: true,
+                        child: {
+                            h: true,
+                            s: true,
+                            l: true,
+                        }
+                    },
+                    hsl255: {
+                        name: "HSL 255",
+                        type: "multi_select",
+                        state: false,
+                        child: {
+                            h: true,
+                            s: true,
+                            l: true,
+                        }
+                    },
+                    hsl240: {
+                        name: "HSL 240",
+                        type: "multi_select",
+                        state: false,
+                        child: {
+                            h: true,
+                            s: true,
+                            l: true,
+                        }
+                    },
+                    hsv: {
+                        name: "HSB",
+                        type: "multi_select",
+                        state: false,
+                        child: {
+                            h: true,
+                            s: true,
+                            v: true,
+                        }
+                    },
+                    hwb: {
+                        name: "HWB",
+                        type: "multi_select",
+                        state: false,
+                        child: {
+                            h: true,
+                            w: true,
+                            b: true,
+                        }
+                    },
+                    rgb: {
+                        name: "RGB",
+                        type: "multi_select",
+                        state: true,
+                        child: {
+                            r: true,
+                            g: true,
+                            b: true,
+                        }
+                    },
+                    labPs: {
+                        name: "Lab",
+                        type: "multi_select",
+                        state: false,
+                        child: {
+                            l: true,
+                            a: true,
+                            b: true,
+                        }
+                    },
+                    xyz: {
+                        name: "XYZ",
+                        type: "multi_select",
+
+                        state: false,
+                        child: {
+                            x: true,
+                            y: true,
+                            z: true,
+                        }
+                    },
+                    more: {
+                        type: "multi_select",
+                        state: true,
+                        hr: true,
+                        child: {
+                            rgba: true,
+                            rgb: false,
+                            hex: true,
+                            int: false,
+
+                        }
+                    },
+                    setting: {
+                        name: "更多设置",
+                        type: "select",
+                        state: false,
+
+                    },
+                },
 
             }
         },
@@ -241,7 +403,7 @@
 
         },
         components: {
-
+            "menu-box": Menu,
             "express-effect": expressEffect
         }
     }
