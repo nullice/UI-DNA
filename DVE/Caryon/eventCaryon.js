@@ -205,6 +205,19 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
 }
 
 
+/**
+ * 简单的发送事件方法
+ * @param type
+ * @param data
+ */
+EventCaryon.prototype.sampleEventSend =function (type,data)
+{
+    var event = new CSEvent(type, "APPLICATION");
+    event.extensionId = cs.getExtensionID();
+    event.data = data;
+    cs.dispatchEvent(event);
+}
+
 
 function CSEvent(type, scope, appId, extensionId)
 {

@@ -96,8 +96,6 @@ window.svgoAsync = async function (svg)
 
 
 
-
-
 //日志记录系统 -------------------------------------
 import  LoggerCaryon  from "./Caryon/loggerCaryon.js";
 var logger = new LoggerCaryon();
