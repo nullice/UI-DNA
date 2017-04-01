@@ -266,7 +266,7 @@
                         state: false,
                         selected_func:function ()
                         {
-                            alert(123)
+                           appCaryon.restar_UI_DNA()
                         },
 
                     },

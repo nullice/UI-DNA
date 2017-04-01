@@ -6,12 +6,17 @@ var cs = new CSInterface();
 
 
 /**
- * 重启事件，800 毫秒秒后打开扩展 UI-DNA
+ * 重启事件，200 毫秒秒后打开扩展 UI-DNA
  */
-cs.addEventListener("com.nullice.ui-dna_restart",
+cs.addEventListener("UI-DNA-Shadow:restart",
     function (data)
     {
+        console.log("EventListener:UI-DNA-Shadow:restart", data)
 
+        setTimeout(function ()
+        {
+            cs.requestOpenExtension("UI-DNA")
+        },200)
 
     }
 );
