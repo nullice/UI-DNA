@@ -262,7 +262,7 @@
                     },
                     setting: {
                         name: Lang.from("重启 UI-DNA"),
-                        type: "select",
+                        type: "button",
                         state: false,
                         selected_func:function ()
                         {

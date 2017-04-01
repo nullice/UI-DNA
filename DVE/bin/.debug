@@ -3,7 +3,13 @@
     <Extension Id="UI-DNA">
         <HostList>
             <Host Name="PHXS" Port="9217"/>
-            <Host Name="PHSP" Port="9218"/>
         </HostList>
     </Extension>
+
+        <Extension Id="UI-DNA-Shadow">
+            <HostList>
+                <Host Name="PHXS" Port="9216"/>
+            </HostList>
+        </Extension>
+
 </ExtensionList>

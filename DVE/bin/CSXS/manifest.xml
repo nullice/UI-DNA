@@ -2,6 +2,7 @@
 <ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="UI-DNA" ExtensionBundleVersion="1.0" Version="6.0"> <!-- MAJOR-VERSION-UPDATE-MARKER -->
     <ExtensionList>
         <Extension Id="UI-DNA" Version="1.0"/> <!-- 设置扩展 ID-->
+        <Extension Id="UI-DNA-Shadow" Version="1.0"/> <!-- 设置扩展 ID-->
     </ExtensionList>
 
     <ExecutionEnvironment>
@@ -64,7 +65,33 @@
 
             </DispatchInfo>
         </Extension>
+
+
+        <Extension Id="UI-DNA-Shadow">
+            <DispatchInfo>
+                <Resources>
+                    <MainPath>./MIX/Shadow/index.html</MainPath>
+                </Resources>
+                <Lifecycle>
+                    <AutoVisible>false</AutoVisible>
+                    <StartOn>
+                        <Event>applicationActivate</Event>
+                    </StartOn>
+                </Lifecycle>
+                <UI>
+                    <Type>Custom</Type>
+                    <Geometry>
+                        <Size>
+                            <Height>100</Height>
+                            <Width>100</Width>
+                        </Size>
+                    </Geometry>
+                </UI>
+            </DispatchInfo>
+        </Extension>
+
     </DispatchInfoList>
+
 
     <Author>nullice</Author> <!-- 作者信息-->
     <Abstract>UI-DNA, nullice.com</Abstract> <!-- 扩展描述-->

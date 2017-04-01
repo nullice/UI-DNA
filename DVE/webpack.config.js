@@ -29,7 +29,7 @@ module.exports = {
     plugins: [
         new webpack.BannerPlugin("---------nullice--------Banner 注释"),
         // new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
-        // new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}})
+        // new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
         new CopyWebpackPlugin(
             [{ context: 'Enzymes/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' },
                 { context: 'Proteins/', from:"*_lib.jsx", to: __dirname+'/bin/JSX' },
@@ -49,7 +49,7 @@ module.exports = {
     babel: {
         // enable stage 0 babel transforms.
         presets: ['es2015', 'stage-0'],
-        plugins: ['transform-runtime']
+        plugins: ['transform-runtime',/*"transform-remove-console"*/]
     }
     
 
