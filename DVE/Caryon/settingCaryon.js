@@ -13,6 +13,7 @@ var SetSystem = function ()
     this.ui = {
         panel: {
             main: {
+                settingPanel: false,
                 tagsActive: {
                     position: true,
                     shape: false,

@@ -69,8 +69,6 @@ var path = require('path')
 window.path = path;
 
 
-
-
 // javascript 常用库
 
 import ARR from "./Caryon/Richang_JSEX/arrayARR.js"
@@ -93,7 +91,6 @@ window.svgoAsync = async function (svg)
         window.svgo.optimize(svg, (r) => {resolve(r)})
     })
 }
-
 
 
 //日志记录系统 -------------------------------------
@@ -200,7 +197,7 @@ import LayerSelectors from "./components/LayerSelectors.vue";
 import VarPanel from "./components/VarPanel.vue";
 import ExpressionPanel from  "./components/ExpressionPanel.vue"
 import QuickPanel from  "./components/QuickPanel.vue"
-
+import SettingPanel from  "./components/SettingPanel.vue"
 
 
 var mainVue = new Vue({
@@ -213,26 +210,12 @@ var mainVue = new Vue({
         "layers-panel": LayerSelectors,
         "var-panel": VarPanel,
         "expression-panel": ExpressionPanel,
-        "quick-panel":QuickPanel
+        "quick-panel": QuickPanel,
+        "setting-panel": SettingPanel,
     }
 })
 
 window.mainVue = mainVue
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 //测试 ----------------------
@@ -267,7 +250,6 @@ async function asyncTask()
 
     return 2016
 }
-
 
 
 var __result = asyncTask()

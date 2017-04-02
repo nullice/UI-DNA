@@ -23,13 +23,11 @@
                 in_class="expresspanel_setting"
         >
             <div class="data_caryon_setting">
-                <button v-on:click="doFreshen" class="exmo_button_icon mini" title="{{'设置'|lang}}">
+                <button v-on:click="doOpenSettingPanel" class="exmo_button_icon mini" title="{{'设置'|lang}}">
                     <i class="icon-settings"></i>
                 </button>
             </div>
         </menu-box>
-
-
 
 
         <button v-on:click="doDNAExpression" class="express_but exmo_button ">
@@ -68,8 +66,7 @@
         overflow: visible;
         z-index: 10;
 
-
-        .menu_box{
+        .menu_box {
             .option_list.menu {
                 bottom: -8px;
             }
@@ -78,12 +75,6 @@
             }
 
         }
-
-
-
-
-
-
 
         .more_option {
             position: absolute;
@@ -194,10 +185,7 @@
                 padding-top: 7px;
             }
 
-
         }
-
-
 
     }
 
@@ -264,9 +252,9 @@
                         name: Lang.from("重启 UI-DNA"),
                         type: "button",
                         state: false,
-                        selected_func:function ()
+                        selected_func: function ()
                         {
-                           appCaryon.restar_UI_DNA()
+                            appCaryon.restar_UI_DNA()
                         },
 
                     },
@@ -400,6 +388,12 @@
             {
                 Gob.updateSelect()
             }
+            ,
+            doOpenSettingPanel: function ()
+            {
+                setSystem.ui.panel.main.settingPanel = true
+            }
+
 
         },
         components: {
