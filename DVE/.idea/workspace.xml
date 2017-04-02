@@ -65,12 +65,22 @@
           <file leaf-file-name="ExpressionPanel.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/ExpressionPanel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="151">
-                  <caret line="59" column="1" lean-forward="false" selection-start-line="59" selection-start-column="1" selection-end-line="67" selection-end-column="0" />
+                <state relative-caret-position="1134">
+                  <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
                   <folding>
                     <element signature="e#5707#5770#0" expanded="true" />
                     <element signature="e#6869#10525#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="SettingPanel_About.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="42">
+                  <caret line="2" column="56" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="56" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -85,11 +95,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="SettingPanel.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SettingPanel.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/SettingPanel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="42">
-                  <caret line="2" column="77" lean-forward="false" selection-start-line="2" selection-start-column="77" selection-end-line="2" selection-end-column="77" />
+                <state relative-caret-position="294">
+                  <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -98,8 +108,8 @@
           <file leaf-file-name="animate.css" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/bin/CSS/Vendor/animate.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="224">
-                  <caret line="277" column="6" lean-forward="false" selection-start-line="277" selection-start-column="1" selection-end-line="277" selection-end-column="6" />
+                <state relative-caret-position="357">
+                  <caret line="50" column="7" lean-forward="true" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
                   <folding />
                 </state>
               </provider>
@@ -211,7 +221,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Proteins/Proteins_lib.jsx" />
         <option value="$PROJECT_DIR$/components/MessageBox/BubbleBox.vue" />
         <option value="$PROJECT_DIR$/components/UI_model/UI_model.js" />
         <option value="$PROJECT_DIR$/Proteins/libs/layerSelectors.jsx" />
@@ -223,7 +232,6 @@
         <option value="$PROJECT_DIR$/Proteins/libs/quick_shape_advance.jsx" />
         <option value="$PROJECT_DIR$/Proteins/libs/quick_derive.jsx" />
         <option value="$PROJECT_DIR$/components/MessageBox/InputBox.vue" />
-        <option value="$PROJECT_DIR$/components/VarPanel.vue" />
         <option value="$PROJECT_DIR$/components/EditTextLabel.vue" />
         <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
         <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
@@ -261,7 +269,9 @@
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/components/ExpressionPanel.vue" />
+        <option value="$PROJECT_DIR$/components/VarPanel.vue" />
         <option value="$PROJECT_DIR$/components/SettingPanel.vue" />
+        <option value="$PROJECT_DIR$/components/SettingPanel_About.vue" />
       </list>
     </option>
   </component>
@@ -743,12 +753,12 @@
       <workItem from="1490769688998" duration="35000" />
       <workItem from="1490772120425" duration="923000" />
       <workItem from="1490847718503" duration="2321000" />
-      <workItem from="1490972270756" duration="23666000" />
+      <workItem from="1490972270756" duration="25786000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2966233000" />
+    <option name="totallyTimeSpent" value="2968353000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -855,20 +865,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Proteins/libs/inputAssist.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1848">
-          <caret line="90" column="41" lean-forward="false" selection-start-line="90" selection-start-column="41" selection-end-line="90" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Proteins/Proteins_lib.jsx">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1512">
-          <caret line="72" column="4" lean-forward="false" selection-start-line="72" selection-start-column="4" selection-end-line="72" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/5.2.0/core-modules/zlib.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="326">
@@ -1144,7 +1140,7 @@
         <state relative-caret-position="99">
           <caret line="611" column="0" lean-forward="false" selection-start-line="619" selection-start-column="11" selection-end-line="729" selection-end-column="18" />
           <folding>
-            <element signature="e#23299#23369#0" expanded="true" />
+            <element signature="e#23299#23369#0" expanded="false" />
             <element signature="e#24901#28557#0" expanded="false" />
           </folding>
         </state>
@@ -1431,14 +1427,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2690">
-          <caret line="386" column="0" lean-forward="true" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/settingCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="441">
@@ -1449,10 +1437,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2690">
+          <caret line="386" column="0" lean-forward="true" selection-start-line="386" selection-start-column="0" selection-end-line="386" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/CSS/Vendor/animate.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="50" column="7" lean-forward="true" selection-start-line="50" selection-start-column="7" selection-end-line="50" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/VarPanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="19" column="50" lean-forward="true" selection-start-line="19" selection-start-column="50" selection-end-line="19" selection-end-column="50" />
+          <folding>
+            <element signature="e#5349#5418#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/components/ExpressionPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="151">
-          <caret line="59" column="1" lean-forward="false" selection-start-line="59" selection-start-column="1" selection-end-line="67" selection-end-column="0" />
+        <state relative-caret-position="1134">
+          <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding>
             <element signature="e#5707#5770#0" expanded="true" />
             <element signature="e#6869#10525#0" expanded="false" />
@@ -1460,18 +1474,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/CSS/Vendor/animate.css">
+    <entry file="file://$PROJECT_DIR$/components/SettingPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="224">
-          <caret line="277" column="6" lean-forward="false" selection-start-line="277" selection-start-column="1" selection-end-line="277" selection-end-column="6" />
+        <state relative-caret-position="294">
+          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/SettingPanel.vue">
+    <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="42">
-          <caret line="2" column="77" lean-forward="false" selection-start-line="2" selection-start-column="77" selection-end-line="2" selection-end-column="77" />
+          <caret line="2" column="56" lean-forward="false" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="56" />
           <folding />
         </state>
       </provider>

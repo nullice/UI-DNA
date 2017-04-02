@@ -1,6 +1,8 @@
 <template>
 
+
     <div v-show="setSystem.ui.panel.main.settingPanel" class="setting_panel ">
+
 
         asdfsadf3sdfsdf
             123123123
@@ -8,6 +10,9 @@
 
 
 
+
+
+        <about-area></about-area>
         <div class="buttom_bar">
 
 
@@ -18,12 +23,59 @@
             </div>
 
         </div>
+
+
+        <div class="set_logo">
+            <i class="icon-settings"></i>
+        </div>
+
+        <div class="set_logo right">
+            <i class="icon-settings"></i>
+        </div>
     </div>
 
 
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
+
+    .set_logo {
+        z-index: 1;
+    }
+
+    .set_logo i {
+        font-size: 145px;
+        position: absolute;
+        opacity: .1;
+        margin-left: -72px;
+        margin-top: -86px;
+        display: inline-block;
+        animation-iteration-count: infinite;
+        -webkit-animation-duration: 3s;
+        animation-name: rotate;
+        -webkit-animation-timing-function: linear;
+        animation-timing-function: linear;
+    }
+
+    .set_logo.right i {
+        font-size: 200px;
+        opacity: .1;
+        right: 0;
+        bottom: 0;
+        margin-right: -106px;
+        margin-bottom: -96px;
+        -webkit-animation-duration: 4s;
+
+    }
+
+    @-webkit-keyframes rotate {
+        from {
+            -webkit-transform: rotate(0deg);
+        }
+        to {
+            -webkit-transform: rotate(360deg);
+        }
+    }
 
     .setting_panel {
         position: absolute;
@@ -35,12 +87,12 @@
         background: rgba(240, 240, 240, 1);
 
         .buttom_bar {
+            z-index: 10;
             height: 50px;
             width: 100%;
             position: absolute;
             bottom: 0;
             border-top: 2px solid rgba(0, 0, 0, 0.08);
-
 
             .data_caryon_setting {
                 position: absolute;
@@ -63,6 +115,8 @@
 
 </style>
 <script>
+
+    import AboutArea from './SettingPanel_About.vue';
     export default{
         ready: function ()
         {
@@ -77,12 +131,12 @@
         methods: {
             doReturn: function ()
             {
-                setSystem.ui.panel.main.settingPanel =false
+                setSystem.ui.panel.main.settingPanel = false
             }
 
 
         },
         computed: {},
-        components: {}
+        components: {"about-area": AboutArea}
     }
 </script>
