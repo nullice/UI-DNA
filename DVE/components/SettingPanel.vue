@@ -4,21 +4,12 @@
     <div v-show="setSystem.ui.panel.main.settingPanel" class="setting_panel ">
 
 
-        asdfsadf3sdfsdf
-            123123123
-        1302828489
-
-
-
-
-
+        <set-area></set-area>
         <about-area></about-area>
         <div class="buttom_bar">
-
-
             <div class="data_caryon_setting">
                 <button v-on:click="doReturn" class="exmo_button_icon mini" title="{{'返回'|lang}}">
-                    <i class="icon-settings"></i>
+                    <i class="icon-reply"></i>
                 </button>
             </div>
 
@@ -116,6 +107,7 @@
 </style>
 <script>
 
+    import SetArea from './SettingPanel_Set.vue';
     import AboutArea from './SettingPanel_About.vue';
     export default{
         ready: function ()
@@ -137,6 +129,7 @@
 
         },
         computed: {},
-        components: {"about-area": AboutArea}
+        components: {"about-area": AboutArea,
+        "set-area":SetArea}
     }
 </script>

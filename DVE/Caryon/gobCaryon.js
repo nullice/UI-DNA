@@ -1710,21 +1710,31 @@ function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter
  * @param enableAssign 是否导出 Assign 内容
  *
  */
-GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA)
+GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA, format)
 {
     var self = this;
     var segment = segment.toLowerCase()
+
+
+    if (format == true)
+    {
+        var format = 2;
+    }else
+    {
+        var format = 0;
+    }
+
     if (segment === "position")
     {
         var ob = {}
         _copyOb(Gob.position, ob)
-        return    returnFilter(JSON.stringify({position: ob}))
+        return returnFilter(JSON.stringify({position: ob}, null, format))
     }
     else if (segment === "text")
     {
         var ob = {}
         _copyOb(Gob.text, ob)
-        return   returnFilter(JSON.stringify({text: ob}))
+        return returnFilter(JSON.stringify({text: ob}, null, format))
     }
     else if (segment === "shape")
     {
@@ -1732,25 +1742,25 @@ GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA)
         _copyOb(Gob.shape, ob)
 
         delete ob.shapeSize;
-        return  returnFilter(JSON.stringify({shape: ob}))
+        return returnFilter(JSON.stringify({shape: ob}, null, format))
     }
     else if (segment === "smartObject")
     {
         var ob = {}
         _copyOb(Gob.smartObject, ob)
-        return   returnFilter(JSON.stringify({smartObject: ob}))
+        return returnFilter(JSON.stringify({smartObject: ob}, null, format))
     }
     else if (segment.toLowerCase() === "quickEffect")
     {
         var ob = {}
         _copyOb(Gob.quickEffect, ob)
-        return   returnFilter(JSON.stringify({quickEffect: ob}))
+        return returnFilter(JSON.stringify({quickEffect: ob}, null, format))
     }
     else if (segment === "more")
     {
         var ob = {}
         _copyOb(Gob.more, ob)
-        return  returnFilter(JSON.stringify({more: ob}))
+        return returnFilter(JSON.stringify({more: ob}, null, format))
     }
 
     function returnFilter(value)
@@ -1868,8 +1878,18 @@ GobCaryon.prototype.importGobRNA = function (segment, gobRNA)
 }
 
 
-GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode)
+GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format)
 {
+
+    if (format == true)
+    {
+        var format = 2;
+    }else
+    {
+        var format = 0;
+    }
+
+
 
     if (Gob.selectList[0] != undefined)
     {
@@ -1926,8 +1946,8 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode)
                 fillOpacity: more.fillOpacity,
             }
         }
-
-        var rna = JSON.stringify(ob)
+        
+        var rna = JSON.stringify(ob,null,format)
         if (mRNA_encode)
         {
             rna = this.mRNA_encode(rna, "Effect")

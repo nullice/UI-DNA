@@ -956,7 +956,6 @@
             {
                 for (var x in this.tagsActive)
                 {
-
                     if (x == tagName)
                     {
                         this.tagsActive[x] = true;
