@@ -44,6 +44,7 @@ import App from "./components/area.vue";
 var UIDNA = {
     name: "UI-DNA",
     version: "0.0.1",
+    varData:"2017/4/3",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://nullice.com",

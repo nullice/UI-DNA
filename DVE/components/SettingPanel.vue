@@ -78,7 +78,7 @@
     }
 
     .setting_panel {
-        position: absolute;
+        position: fixed;
         z-index: 10;
         top: 0px;
         right: 0px;
