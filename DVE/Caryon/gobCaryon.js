@@ -1700,7 +1700,6 @@ function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter
 
 }
 
-
 //----------------------------------------------------------------------------
 //segment：
 
@@ -1946,7 +1945,7 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format)
                 fillOpacity: more.fillOpacity,
             }
         }
-        
+
         var rna = JSON.stringify(ob,null,format)
         if (mRNA_encode)
         {

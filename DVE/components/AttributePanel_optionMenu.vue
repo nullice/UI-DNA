@@ -263,7 +263,7 @@
         methods: {
             copy_effect: async function ()
             {
-                var str = await Gob.exportEffectRNA(this.use_mRNA)
+                var str = await Gob.exportEffectRNA(this.use_mRNA,!this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_effect:  function ()
@@ -274,7 +274,7 @@
             },
             copy_position: async function ()
             {
-                var str = await Gob.exportGobRNA("position",this.use_Assign,this.use_mRNA)
+                var str = await Gob.exportGobRNA("position",this.use_Assign,this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_position: async function ()
@@ -284,7 +284,7 @@
             },
             copy_shape: async function ()
             {
-                var str = await Gob.exportGobRNA("shape",this.use_Assign,this.use_mRNA)
+                var str = await Gob.exportGobRNA("shape",this.use_Assign,this.use_mRNA,!this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_shape: async function ()
@@ -294,7 +294,7 @@
             },
             copy_text: async function ()
             {
-                var str = await Gob.exportGobRNA("text",this.use_Assign,this.use_mRNA)
+                var str = await Gob.exportGobRNA("text",this.use_Assign,this.use_mRNA,!this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_text: async function ()
@@ -304,7 +304,7 @@
             },
             copy_smartObject: async function ()
             {
-                var str = await Gob.exportGobRNA("smartObject",this.use_Assign,this.use_mRNA)
+                var str = await Gob.exportGobRNA("smartObject",this.use_Assign,this.use_mRNA,!this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_smartObject: async function ()
@@ -314,7 +314,7 @@
             },
             copy_quickEffect: async function ()
             {
-                var str = await Gob.exportGobRNA("quickEffect",this.use_Assign,this.use_mRNA)
+                var str = await Gob.exportGobRNA("quickEffect",this.use_Assign,this.use_mRNA,!this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_quickEffect: async function ()
@@ -324,7 +324,7 @@
             },
             copy_more: async function ()
             {
-                var str = await Gob.exportGobRNA("more",this.use_Assign,this.use_mRNA)
+                var str = await Gob.exportGobRNA("more",this.use_Assign,this.use_mRNA,!this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_more: async function ()
