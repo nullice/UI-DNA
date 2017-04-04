@@ -38,8 +38,9 @@
         font-size: 145px;
         position: absolute;
         opacity: .1;
+        top:0;
         margin-left: -72px;
-        margin-top: -86px;
+        margin-top: -72px;
         display: inline-block;
         animation-iteration-count: infinite;
         -webkit-animation-duration: 3s;
@@ -48,10 +49,14 @@
         animation-timing-function: linear;
     }
 
+
+
+
     .set_logo.right i {
         font-size: 200px;
         opacity: .1;
         right: 0;
+        top: initial;
         bottom: 0;
         margin-right: -106px;
         margin-bottom: -96px;
@@ -83,7 +88,7 @@
             width: 100%;
             position: absolute;
             bottom: 0;
-            border-top: 2px solid rgba(0, 0, 0, 0.08);
+
 
             .data_caryon_setting {
                 position: absolute;

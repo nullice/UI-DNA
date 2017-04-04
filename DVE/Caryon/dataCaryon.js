@@ -133,6 +133,7 @@ DataCaryon.prototype.cleanLayers = async function ()
 }
 
 
+
 DataCaryon.prototype.save = async function ()
 {
     this.info.status.saving = true;
@@ -145,7 +146,6 @@ DataCaryon.prototype.save = async function ()
     }
 
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(dataOb));
-
 
     this.info.status.saved = true;
     this.info.status.saving = false;

@@ -77,6 +77,8 @@ import OBJ from "./Caryon/Richang_JSEX/objectOBJ.js"
 import TYP from "./Caryon/Richang_JSEX/typeTYP"
 import STR from "./Caryon/Richang_JSEX/stringSTR"
 import FIL from "./Caryon/Richang_JSEX/fileFIL"
+
+
 window.ARR = ARR
 window.OBJ = OBJ
 window.TYP = TYP
@@ -129,6 +131,12 @@ import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
 window.ColorRNA = ColorRNA;
 
 
+
+//设置系统-------------------------------------
+import  SetSystem  from "./Caryon/settingCaryon";
+var setSystem = new SetSystem();
+window.setSystem = setSystem;
+
 //渲染系统-------------------------------------
 import  RenderCaryon  from "./Caryon/renderCaryon";
 var renderCaryon = new RenderCaryon();
@@ -142,10 +150,7 @@ window.dataCaryon = dataCaryon;
 import  VarSystem  from "./Caryon/varSystem";
 var varSystem = new VarSystem();
 window.varSystem = varSystem;
-//设置系统-------------------------------------
-import  SetSystem  from "./Caryon/settingCaryon";
-var setSystem = new SetSystem();
-window.setSystem = setSystem;
+
 //测试系统-------------------------------------
 import  TEST  from "./test/test_core";
 var test = new TEST("默认测试");
