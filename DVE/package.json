@@ -6,7 +6,8 @@
   "scripts": {
     "test": "webpack",
     "webpack": "webpack",
-    "webpack-w": "webpack -w"
+    "webpack-w": "webpack -w",
+    "vvc":"webpack --config VCC.config.js"
   },
   "author": "nullice",
   "license": "LGPL",
