@@ -28,6 +28,13 @@
                     <div class="author"><span class="by">by </span>nullice</div>
                 </div>
 
+                <div class="net-messge-box">
+
+
+                    <div  class="msg-item lv{{x.lv}}" v-for="x in messge" v-if="x.lv > 0">
+                        <span v-on:click="msgOpen(x.url)">{{x.messge}}</span>
+                    </div>
+                </div>
 
             </div>
         </div>
@@ -40,9 +47,12 @@
 
 
     .setting_about_panel.suspend {
-        height: 70px;
-        background: transparent;
+        height: 110px;
+        bottom: 0;
+        background: rgb(240, 240, 240);
         border-bottom: none;
+        overflow: visible;
+        z-index: 10;
     }
 
     .setting_about_panel {
@@ -90,10 +100,10 @@
                 text-align: right;
                 width: 120px;
 
-                &.right
-                {
+                &.right {
                     border-left: 1px solid rgba(0, 0, 0, 0.07);
                     padding-left: 6px;
+                    height: 38px;
                 }
             }
 
@@ -124,6 +134,31 @@
             padding-bottom: 8px;
         }
 
+
+        .net-messge-box {
+            font-size: 11px;
+            color: #808080;
+            margin-top: 10px;
+                .msg-item{
+                    margin-bottom: 10px;
+                    span{   background: rgba(239, 228, 255, 0.42);
+                        border: 1px solid rgba(186, 140, 255, 0.33);
+                        color: rgba(60, 0, 102, 0.7);
+                        padding: 2px 20px;
+                        min-width: 123px;
+                        border-radius: 3px;
+                        cursor: pointer;
+                    }
+                }
+
+                .msg-item:nth-of-type(1)
+                {
+                    margin-bottom: 20px;
+                }
+
+
+        }
+
     }
 
 
@@ -138,10 +173,34 @@
         data(){
             return {
                 UIDNA: UIDNA,
+                messge: {},
+
             }
         },
 
-        methods: {},
+
+        ready: function ()
+        {
+            this.checkMessge()
+        },
+
+        methods: {
+            msgOpen:function (url)
+            {
+
+                opn(url)
+            },
+
+            checkMessge: async function ()
+            {
+                var messge = await  netCaryon.getOfficialMessges()
+                if (messge != undefined)
+                {
+                    this.messge = messge
+                }
+
+            }
+        },
 
         components: {
             "a-area": Area

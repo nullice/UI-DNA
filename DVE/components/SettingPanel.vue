@@ -35,6 +35,7 @@
     }
 
     .set_logo i {
+        pointer-events: none;
         font-size: 145px;
         position: absolute;
         opacity: .1;
@@ -53,7 +54,9 @@
 
 
     .set_logo.right i {
+        pointer-events: none;
         font-size: 200px;
+        z-index: 12;
         opacity: .1;
         right: 0;
         top: initial;
@@ -75,7 +78,7 @@
 
     .setting_panel {
         position: fixed;
-        z-index: 10;
+        z-index: 12;
         top: 0px;
         right: 0px;
         height: 100%;
@@ -83,15 +86,17 @@
         background: rgba(240, 240, 240, 1);
 
         .buttom_bar {
-            z-index: 10;
+            z-index: 13;
             height: 50px;
-            width: 100%;
+            width: 30px;
+            right: 28px;
             position: absolute;
             bottom: 0;
 
 
             .data_caryon_setting {
                 position: absolute;
+                z-index: 33;
                 top: 0;
                 bottom: 0;
                 right: 10%;

@@ -26,117 +26,14 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.4657258">
+    <splitter split-orientation="horizontal" split-proportion="0.64628214">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="QuickPanel.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/QuickPanel.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="63">
-                  <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-                  <folding>
-                    <element signature="n#div#0;n#div#0;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#div#1;n#div#0;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#select#0;n#div#1;n#div#0;n#div#1;n#div#0;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#quick-icon-button#0;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#0;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#quick-icon-button#1;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#1;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#2;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#3;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#span#0;n#quick-icon-button#4;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#5;n#div#0;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#div#0;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#select#0;n#div#5;n#div#0;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#div#2;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#i#0;n#label#0;n#div#0;n#div#2;n#div#2;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#div#3;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#i#0;n#label#0;n#div#0;n#div#2;n#div#3;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#div#4;n#div#1;n#div#1;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#quick-icon-button#0;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#0;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#1;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#2;n#div#0;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#div#0;n#div#1;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#div#1;n#div#1;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#div#2;n#div#1;n#div#2;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#1;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#div#0;n#div#1;n#div#0;n#div#1;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#1;n#div#0;n#div#4;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#2;n#div#0;n#div#4;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#3;n#div#0;n#div#4;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#i#0;n#quick-icon-button#1;n#div#0;n#div#5;n#a-area#0;n#template#0;n#!!top" expanded="true" />
-                    <element signature="e#48163#49062#0" expanded="false" />
-                    <element signature="e#54380#54432#0" expanded="true" />
-                    <element signature="e#58786#61339#0" expanded="false" />
-                    <element signature="e#62288#64390#0" expanded="false" />
-                    <element signature="e#66247#68349#0" expanded="false" />
-                    <element signature="e#69889#71285#0" expanded="false" />
-                    <element signature="e#72052#72743#0" expanded="false" />
-                    <element signature="e#73130#74950#0" expanded="false" />
-                    <element signature="e#75014#78438#0" expanded="false" />
-                    <element signature="e#78514#79098#0" expanded="false" />
-                    <element signature="e#79726#80969#0" expanded="false" />
-                    <element signature="e#79758#80113#0" expanded="false" />
-                    <element signature="e#80211#80302#0" expanded="false" />
-                    <element signature="e#81036#82273#0" expanded="false" />
-                    <element signature="e#82340#83625#0" expanded="false" />
-                    <element signature="e#83692#84241#0" expanded="false" />
-                    <element signature="e#84306#84971#0" expanded="false" />
-                    <element signature="e#85045#85569#0" expanded="false" />
-                    <element signature="e#85628#85804#0" expanded="false" />
-                    <element signature="e#88410#88591#0" expanded="false" />
-                    <element signature="e#88662#88909#0" expanded="false" />
-                    <element signature="e#88968#89461#0" expanded="false" />
-                    <element signature="e#89523#90021#0" expanded="false" />
-                    <element signature="e#90084#90594#0" expanded="false" />
-                    <element signature="e#90660#91170#0" expanded="false" />
-                    <element signature="e#94689#95241#0" expanded="false" />
-                    <element signature="e#95677#96321#0" expanded="false" />
-                    <element signature="e#96389#97408#0" expanded="false" />
-                    <element signature="e#99540#99814#0" expanded="false" />
-                    <element signature="e#99868#102846#0" expanded="false" />
-                    <element signature="e#102899#105192#0" expanded="false" />
-                    <element signature="e#105242#105838#0" expanded="false" />
-                    <element signature="e#105892#107504#0" expanded="false" />
-                    <marker date="1490848029359" expanded="true" signature="59370:59386" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="59620:59636" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="59829:59845" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="60118:60134" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="60327:60343" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="60536:60552" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="60805:60821" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="61014:61030" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="61244:61260" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="62421:62437" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="62671:62687" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="62880:62896" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="63169:63185" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="63378:63394" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="63587:63603" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="63856:63872" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="64065:64081" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="64295:64311" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="66380:66396" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="66630:66646" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="66839:66855" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="67128:67144" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="67337:67353" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="67546:67562" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="67815:67831" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="68024:68040" ph="..." />
-                    <marker date="1490848029359" expanded="true" signature="68254:68270" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SettingPanel_About.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="SettingPanel_About.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="525">
-                  <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+                <state relative-caret-position="532">
+                  <caret line="155" column="37" lean-forward="false" selection-start-line="155" selection-start-column="37" selection-end-line="155" selection-end-column="37" />
                   <folding />
                 </state>
               </provider>
@@ -147,16 +44,6 @@
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="105">
                   <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="QuickPanel_fillText.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="840">
-                  <caret line="40" column="15" lean-forward="false" selection-start-line="40" selection-start-column="15" selection-end-line="42" selection-end-column="29" />
                   <folding />
                 </state>
               </provider>
@@ -176,11 +63,31 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="netCaryon.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="SettingPanel.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/components/SettingPanel.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="-358">
+                  <caret line="93" column="22" lean-forward="false" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="netCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/netCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="657">
-                  <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+                <state relative-caret-position="414">
+                  <caret line="34" column="6" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="appCaryon.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="378">
+                  <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -232,10 +139,10 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="settingCaryon.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="settingCaryon.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/settingCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="526">
+                <state relative-caret-position="540">
                   <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
                   <folding>
                     <element signature="e#123#1216#0" expanded="false" />
@@ -256,11 +163,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="dataCaryon.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="dataCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="252">
-                  <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="14" />
+                <state relative-caret-position="-630">
+                  <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
                   <folding />
                 </state>
               </provider>
@@ -283,11 +190,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>列数</find>
-      <find>栅格化</find>
-      <find>rasterizeLayer</find>
-      <find>层创建链接对象</find>
-      <find>拼合</find>
       <find>o_rasterizeLayer</find>
       <find>func_text_advance_</find>
       <find>func_text_advance_dataEditor</find>
@@ -306,13 +208,18 @@
       <find>selected_func</find>
       <find>checked_sign</find>
       <find>doOpenSettingPanel</find>
-      <find>data_caryon_setting</find>
       <find>replacer</find>
       <find>JSON.</find>
       <find>路径</find>
       <find>JSON</find>
       <find>setSystem._path_appDir</find>
       <find>Euglena</find>
+      <find>.set_logo.right i</find>
+      <find>icon-settings</find>
+      <find>data_caryon_setting</find>
+      <find>.setting_about_panel</find>
+      <find>.setting_about_panel.suspend</find>
+      <find>setting_about_panel</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -374,13 +281,13 @@
         <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
         <option value="$PROJECT_DIR$/components/AttributePanel_optionMenu.vue" />
-        <option value="$PROJECT_DIR$/components/SettingPanel.vue" />
         <option value="$PROJECT_DIR$/components/SettingPanel_Set.vue" />
-        <option value="$PROJECT_DIR$/components/SettingPanel_About.vue" />
         <option value="$PROJECT_DIR$/Caryon/dataCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/Caryon/netCaryon.js" />
+        <option value="$PROJECT_DIR$/components/SettingPanel.vue" />
+        <option value="$PROJECT_DIR$/components/SettingPanel_About.vue" />
       </list>
     </option>
   </component>
@@ -489,6 +396,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Enzymes" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DVE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DVE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -818,12 +739,12 @@
       <workItem from="1490972270756" duration="57892000" />
       <workItem from="1491622537995" duration="260000" />
       <workItem from="1491718615936" duration="606000" />
-      <workItem from="1491719774939" duration="7398000" />
+      <workItem from="1491719774939" duration="11849000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3008723000" />
+    <option name="totallyTimeSpent" value="3013174000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -842,11 +763,12 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733223" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34697217" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1685761" sideWeight="0.52094716" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41495124" sideWeight="0.4790528" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2112676" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24183351" sideWeight="0.468039" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24183351" sideWeight="0.531961" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21451788" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21451788" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29985118" sideWeight="0.44026187" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -855,7 +777,6 @@
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5438787" sideWeight="0.49770793" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="REST Client" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32936078" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41495124" sideWeight="0.4790528" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1065,13 +986,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bin/MIX/Shadow/main.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
@@ -1198,16 +1112,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/SettingPanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="46" column="31" lean-forward="false" selection-start-line="46" selection-start-column="31" selection-end-line="46" selection-end-column="31" />
-          <folding>
-            <element signature="e#2357#2402#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/SettingPanel_Set.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="525">
@@ -1325,26 +1229,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/5.2.0/core-modules/fs.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="1211" column="17" lean-forward="false" selection-start-line="1211" selection-start-column="17" selection-end-line="1211" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1353,16 +1241,6 @@
         <state relative-caret-position="1155">
           <caret line="55" column="22" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1392,9 +1270,43 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-630">
+          <caret line="20" column="18" lean-forward="true" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="20" column="0" lean-forward="true" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="4" lean-forward="false" selection-start-line="5" selection-start-column="4" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="483">
+          <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/settingCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="526">
+        <state relative-caret-position="540">
           <caret line="187" column="13" lean-forward="true" selection-start-line="187" selection-start-column="13" selection-end-line="187" selection-end-column="13" />
           <folding>
             <element signature="e#123#1216#0" expanded="false" />
@@ -1402,10 +1314,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/dataCaryon.js">
+    <entry file="file://$PROJECT_DIR$/Caryon/netCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="14" lean-forward="false" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="14" />
+        <state relative-caret-position="414">
+          <caret line="34" column="6" lean-forward="true" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/SettingPanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-358">
+          <caret line="93" column="22" lean-forward="false" selection-start-line="93" selection-start-column="22" selection-end-line="93" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -1422,10 +1342,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/netCaryon.js">
+    <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="657">
-          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state relative-caret-position="532">
+          <caret line="155" column="37" lean-forward="false" selection-start-line="155" selection-start-column="37" selection-end-line="155" selection-end-column="37" />
           <folding />
         </state>
       </provider>

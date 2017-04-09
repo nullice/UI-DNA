@@ -6,16 +6,16 @@ var axios = require("axios")
 
 /**
  * 网络通信核心
- * @returns {netCaryon}
+ * @returns {NetCaryon}
  */
-var netCaryon = function ()
+var NetCaryon = function ()
 {
     this.HOSTURL = ["http://127.0.0.1", "http://design-enzyme.com"][0]
     return this;
 }
 
 
-netCaryon.prototype.getOnce = async function (url)
+NetCaryon.prototype.getOnce = async function (url)
 {
     var self = this
     return new Promise(function (resolve, reject)
@@ -29,23 +29,23 @@ netCaryon.prototype.getOnce = async function (url)
             .catch(function (error)
             {
                 console.info("axios.get", error)
-                reject(error);
+                reject(null);
             });
 
     })
 }
 
 
-netCaryon.prototype.getOfficialMessges = async function (url)
+NetCaryon.prototype.getOfficialMessges = async function (url)
 {
     var self = this
     return await this.getOnce('/api/uidna/messge')
 }
 
-netCaryon.prototype.getLatestVersion= async function (url)
+NetCaryon.prototype.getLatestVersion= async function (url)
 {
     var self = this
     return await this.getOnce('/api/uidna/latest_var')
 }
 
-export  default netCaryon
+export  default NetCaryon
