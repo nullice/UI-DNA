@@ -165,6 +165,10 @@ import  AppCaryon  from "./Caryon/appCaryon";
 var appCaryon = new AppCaryon();
 window.appCaryon = appCaryon
 
+//网络通信相关-------------------------------------
+import  NetCaryon  from "./Caryon/netCaryon";
+window.netCaryon = new NetCaryon()
+
 //Photoshop 事件相关-------------------------------------
 import  EventCaryon  from "./Caryon/eventCaryon";
 var eventCaryon = new EventCaryon("默认测试");
@@ -174,6 +178,8 @@ window.eventCaryon = eventCaryon
 import  Proteins  from "./Proteins/Proteins.js";
 window.Proteins = Proteins
 Proteins.init();
+
+
 
 
 //测试相关 -----------------------------------
@@ -260,3 +266,5 @@ async function asyncTask()
 
 var __result = asyncTask()
 console.log("sss_end" + __result)
+
+
