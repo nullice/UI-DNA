@@ -44,7 +44,8 @@ import App from "./components/area.vue";
 var UIDNA = {
     name: "UI-DNA",
     version: "0.0.1",
-    varData:"2017/4/3",
+    verIndex: 1,
+    varData: "2017/4/3",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://nullice.com",
@@ -68,6 +69,7 @@ var os = require('os')
 window.os = os;
 var path = require('path')
 window.path = path;
+
 
 
 // javascript 常用库
@@ -131,7 +133,6 @@ import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
 window.ColorRNA = ColorRNA;
 
 
-
 //设置系统-------------------------------------
 import  SetSystem  from "./Caryon/settingCaryon";
 var setSystem = new SetSystem();
@@ -178,8 +179,6 @@ window.eventCaryon = eventCaryon
 import  Proteins  from "./Proteins/Proteins.js";
 window.Proteins = Proteins
 Proteins.init();
-
-
 
 
 //测试相关 -----------------------------------

@@ -2,8 +2,8 @@
  * Created by nullice on 2017/4/9.
  */
 
-var axios = require("axios")
 
+//  import axios from "axios"
 /**
  * 网络通信核心
  * @returns {NetCaryon}
@@ -36,13 +36,13 @@ NetCaryon.prototype.getOnce = async function (url)
 }
 
 
-NetCaryon.prototype.getOfficialMessges = async function (url)
+NetCaryon.prototype.getOfficialMessges = async function ()
 {
     var self = this
     return await this.getOnce('/api/uidna/messge')
 }
 
-NetCaryon.prototype.getLatestVersion= async function (url)
+NetCaryon.prototype.getLatestVersion= async function ()
 {
     var self = this
     return await this.getOnce('/api/uidna/latest_var')

@@ -4,6 +4,13 @@
     <div v-show="setSystem.ui.panel.main.settingPanel" class="setting_panel ">
 
 
+        <bubble-box v-if="o_msg_bubble.show"
+                    v-bind:msg="o_msg_bubble.msg"
+                    v-bind:msg_title="o_msg_bubble.title"
+                    v-bind:msg_color="o_msg_bubble.color"
+        ></bubble-box>
+
+
         <set-area></set-area>
         <about-area></about-area>
         <div class="buttom_bar">
@@ -39,7 +46,7 @@
         font-size: 145px;
         position: absolute;
         opacity: .1;
-        top:0;
+        top: 0;
         margin-left: -72px;
         margin-top: -72px;
         display: inline-block;
@@ -49,9 +56,6 @@
         -webkit-animation-timing-function: linear;
         animation-timing-function: linear;
     }
-
-
-
 
     .set_logo.right i {
         pointer-events: none;
@@ -85,6 +89,10 @@
         width: 100%;
         background: rgba(240, 240, 240, 1);
 
+        .message-box-bubbble {
+            margin-top: 8px;
+        }
+
         .buttom_bar {
             z-index: 13;
             height: 50px;
@@ -92,7 +100,6 @@
             right: 28px;
             position: absolute;
             bottom: 0;
-
 
             .data_caryon_setting {
                 position: absolute;
@@ -119,6 +126,9 @@
 
     import SetArea from './SettingPanel_Set.vue';
     import AboutArea from './SettingPanel_About.vue';
+    import BubbleBox from '../components/MessageBox/BubbleBox.vue';
+
+
     export default{
         ready: function ()
         {
@@ -128,6 +138,8 @@
         data(){
             return {
                 setSystem: setSystem,
+                o_msg_bubble: UI_model.msg_bubble.setting_panel,
+
             }
         },
         methods: {
@@ -139,7 +151,10 @@
 
         },
         computed: {},
-        components: {"about-area": AboutArea,
-        "set-area":SetArea}
+        components: {
+            "about-area": AboutArea,
+            "set-area": SetArea,
+            "bubble-box": BubbleBox,
+        }
     }
 </script>

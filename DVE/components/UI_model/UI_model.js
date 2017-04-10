@@ -12,6 +12,7 @@ var UI_model = {
         var_panel: {title: "", msg: "", show: false, color: "none"},
         input_box: {title: "", msg: "", show: false, color: "none"},
         layer_selector: {title: "", msg: "", show: false, color: "none"},
+        setting_panel: {title: "", msg: "", show: false, color: "none"},
     },
     msg_input: {
         var_panel: {title: "", data: [], show: false, color: "none", callback: function () {return 0}},

@@ -13,3 +13,5 @@ window.nodeCsvWriter =  require("node-csv").createWriter();
 window.base65536 = require("base65536");
 //----------------------------------------
 window.opn = require('opn');
+//----------------------------------------
+window.axios = require("axios");
