@@ -193,6 +193,17 @@ SetSystem.prototype.loadAppState = function ()
 }
 
 
+SetSystem.prototype._getVueColorCylinderMenu ="none"
+
+SetSystem.prototype.getVueColorCylinderMenu =function ()
+{
+    if(this._getVueColorCylinderMenu!=="none")
+    {
+        return this._getVueColorCylinderMenu()
+    }
+}
+
+
 //---------------------------
 
 export default SetSystem;

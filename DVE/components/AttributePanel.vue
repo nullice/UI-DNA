@@ -7,7 +7,7 @@
                         v-bind:callback_confirm="UI_model.msg_color_picker.color1.callback"
                         v-bind:callback_reject="UI_model.msg_color_picker.color1.callback_reject"
                         v-bind:end_func="UI_model.msg_color_picker.color1.end_func"
-
+                        v-bind:get_menu.sync="setSystem._getVueColorCylinderMenu"
     ></vue-color-cylinder>
 
     <a-area area_title="UI-DNA 属性" area_id="attr_panel" v-bind:area_disable_fixbut="true"
@@ -995,6 +995,7 @@
 
                 UI_model: UI_model,
                 Lang: Lang,
+                setSystem:setSystem,
                 o_value: "",
                 o_attr_open: true,
                 o_show_name_group: 0,

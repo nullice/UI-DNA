@@ -359,6 +359,8 @@
                 <span class="sub_title">WCAG Luma:</span> {{color1.ex.theLuma_WCAG}}
                 <br>
                 <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
+
+
             </div>
         </div>
         <div v-if="cofirm_mode='true'" class="confirm-box">
@@ -478,6 +480,7 @@
             z-index: 33;
             box-shadow: 0 1px 4px rgba(34, 34, 34, 0.36);
             border-radius: 2px;
+            height: inherit;
 
             .model-title {
                 font-size: 12px;
@@ -580,7 +583,7 @@
     var IchiColor = IchiColor_ex(IchiColor_base);
 
     export default{
-        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject', "end_func"],
+        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject', "end_func", "get_menu"],
         watch: {
 
             "color_bullets": function (val)
@@ -610,9 +613,28 @@
                     }
                 }
 
+            },
+
+
+        },
+        ready: function ()
+        {
+            if (this.get_menu != undefined)
+            {
+                var self = this;
+                this.get_menuset = function ()
+                {
+
+                  var setting =  {
+                        hue:self.o_menu.hue.state,
+                      hsl:self.o_menu.hsl.state,
+                    }
+                    return self.o_menu;
+                }
             }
 
         },
+
         data(){
             return {
                 msg: 'hello vue',

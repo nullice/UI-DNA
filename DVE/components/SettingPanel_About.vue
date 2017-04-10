@@ -55,12 +55,12 @@
         <div class="links-box">
             <ul>
                 <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'主页' | lang}}</li>
-                <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'社区' | lang}}</li>
+                <li v-on:click="openUrl('http://re-dna')">{{'社区' | lang}}</li>
                 <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'微博' | lang}}</li>
-                <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'Twitter' | lang}}</li>
-                <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'知乎' | lang}}</li>
-                <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'Github' | lang}}</li>
-                <li v-on:click="openUrl('http://design-enzyme.com/UI-DNA')">{{'Dribbble' | lang}}</li>
+                <li v-on:click="openUrl('http://twitter.com/nullice')">{{'Twitter' | lang}}</li>
+                <li v-on:click="openUrl('https://zhuanlan.zhihu.com/nullice-design-lab')">{{'知乎' | lang}}</li>
+                <li v-on:click="openUrl('https://github.com/nullice')">{{'Github' | lang}}</li>
+                <li v-on:click="openUrl('http://dribbble.com/')">{{'Dribbble' | lang}}</li>
             </ul>
         </div>
 
