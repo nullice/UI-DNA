@@ -5,53 +5,55 @@
 var fs = require("fs")
 var path = require("path")
 
-
+console.info("[module] - settingCaryon.js")
 var SetSystem = function ()
 {
     //定义设置项
 
-    this._svaeJson = "",
-        this.ui = {
-            panel: {
-                main: {
-                    settingPanel: false,
-                    tagsActive: {
-                        position: true,
-                        shape: false,
-                        text: false,
-                        smartobject: false,
-                        style: false,
-                        more: false,
-                    },
-                    nameGroupTitle: {
-                        "0": "0",
-                        "1": "1",
-                        "2": "2",
-                        "3": "3",
-                        "4": "4",
-                        "5": "5",
-                        "6": "6",
-                        "7": "7",
-                        "8": "8",
-                        "9": "9",
-                    }
-                }
-            },
-            hostTheme: {
-                syncColor: false,
-                syncTheme: false,
-                themeCss1: null, /*最亮*/
-                themeCss2: null, /**/
-                themeCss3: null, /**/
-                themeCss4: null, /*最暗*/
+    this._svaeJson = "";
 
-            },
-            quick: {
-                shape_radius: "",
-                shape_enable_curnerEditor: false,
-                shape_use_svgo: true
-            },
-        }
+    this.ui = {
+        language: null,
+        panel: {
+            main: {
+                settingPanel: false,
+                tagsActive: {
+                    position: true,
+                    shape: false,
+                    text: false,
+                    smartobject: false,
+                    style: false,
+                    more: false,
+                },
+                nameGroupTitle: {
+                    "0": "0",
+                    "1": "1",
+                    "2": "2",
+                    "3": "3",
+                    "4": "4",
+                    "5": "5",
+                    "6": "6",
+                    "7": "7",
+                    "8": "8",
+                    "9": "9",
+                }
+            }
+        },
+        hostTheme: {
+            syncColor: false,
+            syncTheme: false,
+            themeCss1: null, /*最亮*/
+            themeCss2: null, /**/
+            themeCss3: null, /**/
+            themeCss4: null, /*最暗*/
+
+        },
+        quick: {
+            shape_radius: "",
+            shape_enable_curnerEditor: false,
+            shape_use_svgo: true
+        },
+    }
 
     this.gob = {
         $anchor: 0,
@@ -69,10 +71,9 @@ var SetSystem = function ()
 }
 
 
-
 SetSystem.prototype.timerForSave = function ()
 {
-    var self =this;
+    var self = this;
     this.save(true)
 
     setTimeout(function ()
@@ -102,6 +103,10 @@ SetSystem.prototype.init = function ()
     var userDataDir = path.join(appDir, "UserData")
     _checkDir(userDataDir);
     this._path_userDataDir = userDataDir;
+
+    var languageDir = path.join(appDir, "languageDir")
+    _checkDir(languageDir);
+    this._path_languageDir = languageDir;
 
     var extraDir = path.join(userDataDir, "Extra")
     _checkDir(extraDir);
@@ -260,10 +265,79 @@ SetSystem.prototype.setVueColorCylinderMenu = function (vCCsetting)
 }
 
 
-SetSystem.prototype.loadUserCss =function ()
+function fileUrl(str)
+{
+    var pathName = path.resolve(str).replace(/\\/g, '/');
+    if (pathName[0] !== '/')
+    {
+        pathName = '/' + pathName;
+    }
+    return encodeURI('file://' + pathName);
+};
+
+
+SetSystem.prototype.loadUserCss = function ()
 {
     this._path_userDataDir_extraCssDir
+    var csss = fs.readdirSync(setSystem._path_userDataDir_extraCssDir)
+    var htmlBox = document.querySelector("#user-css-box")
+    for (var i = 0; i < csss.length; i++)
+    {
+
+        var link = document.createElement("link")
+        link.setAttribute("rel", "stylesheet")
+        link.setAttribute("type", "text/css")
+        link.setAttribute("href", fileUrl(path.join(setSystem._path_userDataDir_extraCssDir, csss[i])))
+        htmlBox.appendChild(link)
+
+    }
 }
+
+SetSystem.prototype.loadUserJs = function ()
+{
+    this._path_userDataDir_extraJsDir
+    var jss = fs.readdirSync(setSystem._path_userDataDir_extraJsDir)
+    var htmlBox = document.querySelector("#user-js-box")
+    for (var i = 0; i < jss.length; i++)
+    {
+        var scriptElemnt = document.createElement("script")
+        scriptElemnt.type = "text/javascript";
+        scriptElemnt.async = true;
+        scriptElemnt.setAttribute('src', fileUrl(path.join(setSystem._path_userDataDir_extraJsDir, jss[i])));
+        htmlBox.appendChild(scriptElemnt)
+
+    }
+}
+
+
+SetSystem.prototype.loadLanguage = function ()
+{
+    this._path_languageDir
+    var langJsons = fs.readdirSync(setSystem._path_languageDir)
+    for (var i = 0; i < langJsons.length; i++)
+    {
+        try
+        {
+            var data = fs.readFileSync(path.join(this._path_languageDir, langJsons[i]))
+            if (data != undefined)
+            {
+                var ob = JSON.parse(data)
+                if (typeof  ob === "object")
+                {
+                    if (ob.languageName != undefined)
+                    {
+                        Lang["LANG_" + ob.languageName] = ob.languageMap;
+                    }
+                }
+            }
+        } catch (e)
+        {
+            console.log
+        }
+    }
+}
+
+
 //---------------------------
 
 export default SetSystem;

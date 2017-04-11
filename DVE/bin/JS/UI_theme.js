@@ -35,8 +35,15 @@
             {
                 body[0].style.backgroundColor ="#"+ panelBgColor;
                 $(".editmod").css("background-color","#"+ panelBgColor);
-
             }
+
+            //设置  body class
+            var htmlbody = document.querySelector("body")
+            htmlbody.classList.remove("pstheme1")
+            htmlbody.classList.remove("pstheme2")
+            htmlbody.classList.remove("pstheme3")
+            htmlbody.classList.remove("pstheme4")
+
 
 			//=== 切换 CSS 文件
             function changeCSSfile(id,file)
@@ -51,6 +58,7 @@
             {
                 if(panelBgColor > LIGHT1_2_SWITCH_COLOR)
                 {
+                    htmlbody.classList.add("pstheme1")
                     if(setSystem.ui.hostTheme.syncTheme)
                     {
                         changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss1);
@@ -62,9 +70,10 @@
                 }
                 else
                 {
+                    htmlbody.classList.add("pstheme2")
                     if(setSystem.ui.hostTheme.syncTheme)
                     {
-                        changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss4);
+                        changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss2);
                     }
                     //light2
                     //alert("light2")
@@ -74,8 +83,10 @@
             }
             else
             {
+
                 if(panelBgColor > DARK1_2_SWITCH_COLOR)
                 {
+                    htmlbody.classList.add("pstheme3")
                     if(setSystem.ui.hostTheme.syncTheme)
                     {
                         changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss3);
@@ -87,6 +98,7 @@
                 }
                 else
                 {
+                    htmlbody.classList.add("pstheme4")
                     if(setSystem.ui.hostTheme.syncTheme)
                     {
                         changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss4);

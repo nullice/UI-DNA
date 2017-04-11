@@ -28,7 +28,7 @@
 
 </head>
 
-<body style="background-color: #F0F0F0" spellcheck="false">
+<body style="background-color: #F0F0F0" spellcheck="false" v-bind:class="setSystem.ui.language" >
 <!--页面内容：-->
 
 
@@ -200,8 +200,8 @@
 <!--载入界面颜色变化 JavaScript 库-->
 <script type="text/javascript" src="./JS/UI_theme.js"></script>
 <link href="" rel="stylesheet" type="text/css" id="psthemecss">
-<div class="user-css-box"></div>
-
+<div id="user-css-box"></div>
+<div id="user-js-box"></div>
 <script>
     /*页面滚动*/
     $(document).ready(function ()

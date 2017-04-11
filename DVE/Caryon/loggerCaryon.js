@@ -3,7 +3,7 @@
  */
 var path = require("path")
 
-
+console.info("[module] - loggerCaryon.js")
 var LoggerCaryon = function ()
 {
 

@@ -211,9 +211,22 @@ import QuickPanel from  "./components/QuickPanel.vue"
 import SettingPanel from  "./components/SettingPanel.vue"
 
 
+//初始化-------------------------------------------
+setSystem.load()
+setTimeout(function ()
+{
+    setSystem.loadLanguage()
+    Lang.currentLANG = setSystem.ui.language
+    setSystem.loadAppState(true)
+    setSystem.loadUserCss()
+    setSystem.loadUserJs()
+
+}, 300)
+
+
 var mainVue = new Vue({
     el: 'body',
-    data: {},
+    data: {setSystem:setSystem},
     components: {
         // include the required component
         // in the options
@@ -229,16 +242,6 @@ var mainVue = new Vue({
 window.mainVue = mainVue
 
 
-//初始化-------------------------------------------
-setSystem.load()
-
-setTimeout(function ()
-{
-    setSystem.loadAppState(true)
-
-
-
-}, 300)
 
 
 
