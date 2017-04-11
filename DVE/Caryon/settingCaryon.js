@@ -36,6 +36,15 @@ var SetSystem = function ()
                 }
             }
         },
+        hostTheme:{
+            syncColor:false,
+            syncTheme:false,
+            themeCss1:null,/*最亮*/
+            themeCss2:null,/**/
+            themeCss3:null,/**/
+            themeCss4:null,/*最暗*/
+
+        },
         quick: {
             shape_radius: "",
             shape_enable_curnerEditor: false,

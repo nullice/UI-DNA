@@ -28,11 +28,15 @@
             var panelBgColor = toHex(skinInfo.panelBackgroundColor.color);
 
             //===设置界面背景色为 PS 外观设置
+
+
             var body = document.getElementsByTagName("body");
-            body[0].style.backgroundColor ="#"+ panelBgColor;
+            if(setSystem.ui.hostTheme.syncColor)
+            {
+                body[0].style.backgroundColor ="#"+ panelBgColor;
+                $(".editmod").css("background-color","#"+ panelBgColor);
 
-            $(".editmod").css("background-color","#"+ panelBgColor);
-
+            }
 
 			//=== 切换 CSS 文件
             function changeCSSfile(id,file)
@@ -47,6 +51,10 @@
             {
                 if(panelBgColor > LIGHT1_2_SWITCH_COLOR)
                 {
+                    if(setSystem.ui.hostTheme.syncTheme)
+                    {
+                        changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss1);
+                    }
                     //light1
                     //alert("light1")
                     //changeCSSfile("css_topcoat","css/topcoat-desktop-light.css");
@@ -54,6 +62,10 @@
                 }
                 else
                 {
+                    if(setSystem.ui.hostTheme.syncTheme)
+                    {
+                        changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss4);
+                    }
                     //light2
                     //alert("light2")
                     //changeCSSfile("css_topcoat","css/topcoat-desktop-light.css");
@@ -64,6 +76,10 @@
             {
                 if(panelBgColor > DARK1_2_SWITCH_COLOR)
                 {
+                    if(setSystem.ui.hostTheme.syncTheme)
+                    {
+                        changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss3);
+                    }
                     //dark1
                    // alert("dark1")
                     //changeCSSfile("css_topcoat","css/topcoat-desktop-dark.css");
@@ -71,6 +87,10 @@
                 }
                 else
                 {
+                    if(setSystem.ui.hostTheme.syncTheme)
+                    {
+                        changeCSSfile("psthemecss",setSystem.ui.hostTheme.themeCss4);
+                    }
                     //dark2
                     //alert("dark2")
                     //changeCSSfile("css_topcoat","css/topcoat-desktop-dark.css");
