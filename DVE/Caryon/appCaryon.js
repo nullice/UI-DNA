@@ -23,9 +23,20 @@ AppCaryon.prototype.start_UI_DNA_Shadow = function ()
 
 AppCaryon.prototype.restar_UI_DNA = function ()
 {
+    setSystem.saveAppState()
     eventCaryon.sampleEventSend("UI-DNA-Shadow:restart")
     cs.closeExtension()
 }
+
+AppCaryon.prototype.restarCold_UI_DNA = function ()
+{
+    eventCaryon.sampleEventSend("UI-DNA-Shadow:restart")
+    cs.closeExtension()
+}
+
+
+
+
 AppCaryon.prototype.openUrl = function (url)
 {
     cs.openURLInDefaultBrowser(url)

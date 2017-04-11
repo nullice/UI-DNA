@@ -248,6 +248,16 @@
 
                         }
                     },
+                    setting_c: {
+                        name: Lang.from("冷重启 UI-DNA"),
+                        title:Lang.from("不保留当前应用状态"),
+                        type: "button",
+                        state: false,
+                        selected_func: function ()
+                        {
+                            appCaryon.restarCold_UI_DNA()
+                        },
+                    },
                     setting: {
                         name: Lang.from("重启 UI-DNA"),
                         type: "button",
@@ -256,8 +266,8 @@
                         {
                             appCaryon.restar_UI_DNA()
                         },
-
                     },
+
                 },
                 o_menu_save: {
                     hue: {

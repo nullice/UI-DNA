@@ -33,7 +33,6 @@ var SetSystem = function ()
                     "7": "7",
                     "8": "8",
                     "9": "9",
-
                 }
             }
         },
@@ -65,7 +64,6 @@ var SetSystem = function ()
  */
 SetSystem.prototype.init = function ()
 {
-
     //目录初始化
     this._userDataDir = "";
     var seriesDir = path.join(cs.getSystemPath(SystemPath.USER_DATA), "nullice.designEnzyme")
@@ -151,11 +149,10 @@ SetSystem.prototype.load = function ()
     {
         logger.err(e)
     }
-
 }
 
 
-SetSystem.prototype.saveAppState = function (usence)
+SetSystem.prototype.saveAppState = function (useonce)
 {
     //0.保存设置
     this.save()
@@ -163,7 +160,11 @@ SetSystem.prototype.saveAppState = function (usence)
     var appState = {
         vars: varSystem.vars,
         dataCaryon: dataCaryon,
-        usence:usence,
+        useonce: useonce,
+        ui: {
+            lastWidth: document.documentElement.clientWidth,
+            lastHeight: document.documentElement.clientHeight
+        }
     }
 
     var obJson = JSON.stringify(appState, null, 4)
@@ -173,36 +174,53 @@ SetSystem.prototype.saveAppState = function (usence)
 
 SetSystem.prototype.loadAppState = function ()
 {
-    this.load()
-
-    var data = fs.readFileSync(path.join(this._path_userDataDir, "appState.json"))
-    if (data != undefined)
+    try
     {
-        var ob = JSON.parse(data)
-        if (typeof  ob === "object")
+        if (fs.existsSync(path.join(this._path_userDataDir, "appState.json")))
         {
-            OBJ.objectCopyToObject(ob.dataCaryon, dataCaryon)
-            varSystem.loadVarsFromObject(ob.vars)
-
-            if(ob.usence)
+            var data = fs.readFileSync(path.join(this._path_userDataDir, "appState.json"))
+            if (data != undefined)
             {
-                fs.unlinkSync(path.join(this._path_userDataDir, "appState.json"))
+                this.load()
+                var ob = JSON.parse(data)
+                if (typeof  ob === "object")
+                {
+                    OBJ.objectCopyToObject(ob.dataCaryon, dataCaryon)
+                    varSystem.loadVarsFromObject(ob.vars)
+                    cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight)
+                    if (ob.useonce)
+                    {
+                        fs.unlinkSync(path.join(this._path_userDataDir, "appState.json"))
+                    }
+                }
             }
         }
+    } catch (e)
+    {
+        logger.err(e)
     }
+
 }
 
 
-SetSystem.prototype._getVueColorCylinderMenu ="none"
+SetSystem.prototype._getVueColorCylinderMenu = "none"
+SetSystem.prototype._setVueColorCylinderMenu = "none"
 
-SetSystem.prototype.getVueColorCylinderMenu =function ()
+
+SetSystem.prototype.getVueColorCylinderMenu = function ()
 {
-    if(this._getVueColorCylinderMenu!=="none")
+    if (this._getVueColorCylinderMenu !== "none")
     {
         return this._getVueColorCylinderMenu()
     }
 }
-
+SetSystem.prototype.setVueColorCylinderMenu = function (vCCsetting)
+{
+    if (this._setVueColorCylinderMenu !== "none")
+    {
+        this._setVueColorCylinderMenu(vCCsetting)
+    }
+}
 
 //---------------------------
 

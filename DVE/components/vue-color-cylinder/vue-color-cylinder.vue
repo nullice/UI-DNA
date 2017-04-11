@@ -361,6 +361,9 @@
                 <span class="sub_title">Wavelength:</span> {{color1.ex.theWavelength}}
 
 
+
+
+
             </div>
         </div>
         <div v-if="cofirm_mode='true'" class="confirm-box">
@@ -583,7 +586,7 @@
     var IchiColor = IchiColor_ex(IchiColor_base);
 
     export default{
-        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject', "end_func", "get_menu"],
+        props: ['ichi_color', 'confirm_mode', 'callback_confirm', 'callback_reject', "end_func", "get_menu", "set_menu"],
         watch: {
 
             "color_bullets": function (val)
@@ -622,14 +625,51 @@
             if (this.get_menu != undefined)
             {
                 var self = this;
-                this.get_menuset = function ()
+                this.get_menu = function ()
                 {
+                    var setting = {}
+                    for (var x in self.o_menu)
+                    {
+                        if (self.o_menu[x].hr != true)
+                        {
+                            setting[x] = {}
+                            setting[x].state = self.o_menu[x].state
 
-                  var setting =  {
-                        hue:self.o_menu.hue.state,
-                      hsl:self.o_menu.hsl.state,
+                            if (self.o_menu[x].child != undefined)
+                            {
+                                setting[x].child = {}
+                                for (var x2 in self.o_menu[x].child)
+                                {
+                                    setting[x].child[x2] = self.o_menu[x].child[x2]
+                                }
+                            }
+                        }
                     }
-                    return self.o_menu;
+                    return setting;
+                }
+            }
+
+
+            if (this.set_menu != undefined)
+            {
+                var self = this;
+                this.set_menu = function (setting)
+                {
+                    for (var x in setting)
+                    {
+                        if (self.o_menu[x] != undefined)
+                        {
+                            setting[x].state = setting[x].state
+
+                            if (setting[x].child != undefined && self.o_menu[x].child != undefined)
+                            {
+                                for (var x2 in setting[x].child)
+                                {
+                                    self.o_menu[x].child[x2] = setting[x].child[x2]
+                                }
+                            }
+                        }
+                    }
                 }
             }
 

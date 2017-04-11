@@ -79,7 +79,11 @@ var objectOBJ = {
 
             if (ob1[x].constructor === Object)
             {
-                ob2[name] = {};
+                if(typeof ob2[name] !=="object")
+                {
+                    ob2[name] = {};
+                }
+
                 this.objectCopyToObject(ob1[x], ob2[name], func_allowCopy, func_rename, func_valueFiter)
             } else
             {

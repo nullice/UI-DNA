@@ -71,7 +71,6 @@ var path = require('path')
 window.path = path;
 
 
-
 // javascript 常用库
 
 import ARR from "./Caryon/Richang_JSEX/arrayARR.js"
@@ -137,6 +136,7 @@ window.ColorRNA = ColorRNA;
 import  SetSystem  from "./Caryon/settingCaryon";
 var setSystem = new SetSystem();
 window.setSystem = setSystem;
+
 
 //渲染系统-------------------------------------
 import  RenderCaryon  from "./Caryon/renderCaryon";
@@ -229,6 +229,14 @@ var mainVue = new Vue({
 window.mainVue = mainVue
 
 
+//初始化
+setSystem.load()
+
+setTimeout(function ()
+{
+    setSystem.loadAppState(true)
+}, 300)
+
 //测试 ----------------------
 async function doAsync()
 {
@@ -258,7 +266,6 @@ async function asyncTask()
     console.log("ssss1")
     var a = await  doAsync();
     console.log("ssss2" + a)
-
     return 2016
 }
 
