@@ -879,7 +879,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                                 }
                             } catch (e)
                             {
-                                logger.err("Gob._set()", e)
+                                console.error("Gob._set()", e)
                             }
 
 

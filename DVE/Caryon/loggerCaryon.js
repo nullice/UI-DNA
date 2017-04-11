@@ -4,7 +4,6 @@
 var path = require("path")
 
 
-
 var LoggerCaryon = function ()
 {
 
@@ -18,15 +17,37 @@ var LoggerCaryon = function ()
 
     this.logs = []//存储每一条日志
 
-
+    var self = this
     window.onerror = function (errorMessage, scriptURI, lineNumber, columnNumber, errorObj)
     {
-        this.err("错误信息：", errorMessage, "文件：", scriptURI, "位置（行/列）：", lineNumber + "/" + columnNumber, "错误详情：", errorObj)
+        self.err("错误信息：", errorMessage, "文件：", scriptURI, "位置（行/列）：", lineNumber + "/" + columnNumber, "错误详情：", errorObj)
+        self.saveToFile("error.log")
+
     }
 
-    // throw new Error("出错了！");
 
     return this;
+
+}
+
+LoggerCaryon.prototype.printToConsole = function (onlyError)
+{
+    for (var i = 0; i < this.logs.length; i++)
+    {
+        if (onlyError)
+        {
+            if (this.logs[i].type != "error")
+            {
+                continue;
+            }
+        }
+        if(console[this.logs[i].type]!= undefined)
+        {
+            console[this.logs[i].type].apply(console, this.logs[i].msgs)
+        }
+
+
+    }
 
 }
 
@@ -57,7 +78,7 @@ LoggerCaryon.prototype.log = function ()
 LoggerCaryon.prototype.err = function ()
 {
     var msgs = Array.from(arguments);//参数转换为数组
-    this._logMeta("err", msgs);
+    this._logMeta("error", msgs);
     if (this.hideAll == false && this.hideErr == false)
     {
         console.error.apply(console, msgs)
@@ -145,7 +166,7 @@ LoggerCaryon.prototype.group = function ()
     }
 }
 
-LoggerCaryon.prototype.groupEnd= function ()
+LoggerCaryon.prototype.groupEnd = function ()
 {
     var msgs = Array.from(arguments);//参数转换为数组
     this._logMeta("groupEnd", msgs);
@@ -160,12 +181,14 @@ LoggerCaryon.prototype.groupEnd= function ()
 
 LoggerCaryon.prototype.saveToFile = function (fileName)
 {
-    var data =  JSON.stringify(this.logs)
-    var result = window.cep.fs.writeFile( path.join( setSystem._path_logDir,fileName||"0.log"), data);
-    if (0 == result.err) {
+    var data = JSON.stringify(this.logs)
+    var result = window.cep.fs.writeFile(path.join(setSystem._path_logDir, fileName || "0.log"), data);
+    if (0 == result.err)
+    {
         // 成功·
     }
-    else {
+    else
+    {
         // 失败
     }
 

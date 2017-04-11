@@ -77,7 +77,9 @@ var objectOBJ = {
                 name = func_rename(x, ob1[x]);
             }
 
-            if (ob1[x].constructor === Object)
+
+
+            if ( ob1[x]!= undefined && ob1[x].constructor === Object)
             {
                 if(typeof ob2[name] !=="object")
                 {
@@ -87,8 +89,6 @@ var objectOBJ = {
                 this.objectCopyToObject(ob1[x], ob2[name], func_allowCopy, func_rename, func_valueFiter)
             } else
             {
-
-
                 if (func_valueFiter != undefined)
                 {
                     ob2[name] = func_valueFiter(x, ob1[x]);

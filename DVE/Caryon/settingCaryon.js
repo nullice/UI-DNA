@@ -10,47 +10,48 @@ var SetSystem = function ()
 {
     //定义设置项
 
-    this.ui = {
-        panel: {
-            main: {
-                settingPanel: false,
-                tagsActive: {
-                    position: true,
-                    shape: false,
-                    text: false,
-                    smartobject: false,
-                    style: false,
-                    more: false,
-                },
-                nameGroupTitle: {
-                    "0": "0",
-                    "1": "1",
-                    "2": "2",
-                    "3": "3",
-                    "4": "4",
-                    "5": "5",
-                    "6": "6",
-                    "7": "7",
-                    "8": "8",
-                    "9": "9",
+    this._svaeJson = "",
+        this.ui = {
+            panel: {
+                main: {
+                    settingPanel: false,
+                    tagsActive: {
+                        position: true,
+                        shape: false,
+                        text: false,
+                        smartobject: false,
+                        style: false,
+                        more: false,
+                    },
+                    nameGroupTitle: {
+                        "0": "0",
+                        "1": "1",
+                        "2": "2",
+                        "3": "3",
+                        "4": "4",
+                        "5": "5",
+                        "6": "6",
+                        "7": "7",
+                        "8": "8",
+                        "9": "9",
+                    }
                 }
-            }
-        },
-        hostTheme:{
-            syncColor:false,
-            syncTheme:false,
-            themeCss1:null,/*最亮*/
-            themeCss2:null,/**/
-            themeCss3:null,/**/
-            themeCss4:null,/*最暗*/
+            },
+            hostTheme: {
+                syncColor: false,
+                syncTheme: false,
+                themeCss1: null, /*最亮*/
+                themeCss2: null, /**/
+                themeCss3: null, /**/
+                themeCss4: null, /*最暗*/
 
-        },
-        quick: {
-            shape_radius: "",
-            shape_enable_curnerEditor: false,
-            shape_use_svgo: true
-        },
-    }
+            },
+            quick: {
+                shape_radius: "",
+                shape_enable_curnerEditor: false,
+                shape_use_svgo: true
+            },
+        }
 
     this.gob = {
         $anchor: 0,
@@ -67,6 +68,18 @@ var SetSystem = function ()
 
 }
 
+
+
+SetSystem.prototype.timerForSave = function ()
+{
+    var self =this;
+    this.save(true)
+
+    setTimeout(function ()
+    {
+        self.timerForSave()
+    }, 30000)
+}
 
 /**
  * 初始化设置系统配置
@@ -133,9 +146,21 @@ SetSystem.prototype.init = function ()
 }
 
 
-SetSystem.prototype.save = function ()
+SetSystem.prototype.save = function (checkChange)
 {
+
     var obJson = JSON.stringify(this, null, 4)
+
+    if (checkChange)
+    {
+        if (this._svaeJson === obJson)
+        {
+            console.log("SetSystem..save() checkChange:未更改")
+            return
+        }
+    }
+
+    this._svaeJson = obJson
     fs.writeFileSync(path.join(this._path_userDataDir, "setting.json"), obJson)
 }
 
@@ -144,19 +169,22 @@ SetSystem.prototype.load = function ()
 {
     try
     {
-        var data = fs.readFileSync(path.join(this._path_userDataDir, "setting.json"))
-        if (data != undefined)
+        if (fs.existsSync(path.join(this._path_userDataDir, "setting.json")))
         {
-            var ob = JSON.parse(data)
-            if (typeof  ob === "object")
+            var data = fs.readFileSync(path.join(this._path_userDataDir, "setting.json"))
+            if (data != undefined)
             {
-                OBJ.objectCopyToObject(ob, this)
+                var ob = JSON.parse(data)
+                if (typeof  ob === "object")
+                {
+                    OBJ.objectCopyToObject(ob, this)
+                }
             }
         }
     }
     catch (e)
     {
-        logger.err(e)
+        console.error(e)
     }
 }
 
@@ -206,7 +234,7 @@ SetSystem.prototype.loadAppState = function ()
         }
     } catch (e)
     {
-        logger.err(e)
+        console.error(e)
     }
 
 }
@@ -231,6 +259,11 @@ SetSystem.prototype.setVueColorCylinderMenu = function (vCCsetting)
     }
 }
 
+
+SetSystem.prototype.loadUserCss =function ()
+{
+    this._path_userDataDir_extraCssDir
+}
 //---------------------------
 
 export default SetSystem;

@@ -229,13 +229,18 @@ var mainVue = new Vue({
 window.mainVue = mainVue
 
 
-//初始化
+//初始化-------------------------------------------
 setSystem.load()
 
 setTimeout(function ()
 {
     setSystem.loadAppState(true)
+
+
+
 }, 300)
+
+
 
 //测试 ----------------------
 async function doAsync()

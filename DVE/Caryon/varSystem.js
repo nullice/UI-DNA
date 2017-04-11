@@ -471,7 +471,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         }
     } catch (e)
     {
-        logger.err(e)
+       console.error(e)
         return varValue
     }
 }

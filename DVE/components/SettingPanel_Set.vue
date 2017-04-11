@@ -4,14 +4,6 @@
     >
         <h3>应用数据路径</h3>
         <div class="set-item">
-            <div class="exmo_box_name">{{'应用数据' | lang}}  </div>
-            <input type="readonly"    class="exmo_input_text edit_input"  v-bind:value="setSystem._path_appDir">
-            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_appDir)">
-                <i class="icon-layer-group-collapsed"></i>
-            </button>
-       </div>
-
-        <div class="set-item">
             <div class="exmo_box_name">{{'用户数据' | lang}}  </div>
             <input type="readonly"   class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
             <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_userDataDir)">
@@ -19,20 +11,35 @@
             </button>
         </div>
 
+        <div class="set-item">
+            <div class="exmo_box_name">{{'日志' | lang}}  </div>
+            <input type="readonly"    class="exmo_input_text edit_input"  v-bind:value="setSystem._path_logDir">
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_logDir)">
+                <i class="icon-layer-group-collapsed"></i>
+            </button>
+        </div>
+
+
+
         <h3>自定义</h3>
         <div class="set-item">
             <div class="exmo_box_name">{{'外观 CSS' | lang}}  </div>
-
-
-        </div>
-
-        <div class="set-item">
-            <div class="exmo_box_name">{{'javascript' | lang}}  </div>
             <input type="readonly"   class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
             <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_userDataDir)">
                 <i class="icon-layer-group-collapsed"></i>
             </button>
+
         </div>
+
+        <!--<div class="set-item">-->
+            <!--<div class="exmo_box_name">{{'javascript' | lang}}  </div>-->
+            <!--<input type="readonly"   class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">-->
+            <!--<button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_userDataDir)">-->
+                <!--<i class="icon-layer-group-collapsed"></i>-->
+            <!--</button>-->
+        <!--</div>-->
+
+
         <h2>测试</h2>
 
 
