@@ -137,7 +137,7 @@ SetSystem.prototype.init = function ()
     this._path_userExDir = userExDir;
 
     logger.pin("setting", "settingCaryon.js:SetSystem.prototype.init",
-        "初始化目录", {"seriesDir": seriesDir, "appDir": appDir, "userDataDir": userDataDir})
+        "初始化目录", {"extensionDir":this._path_extensionDir,"seriesDir": seriesDir, "appDir": appDir, "userDataDir": userDataDir})
 
 
     //END ----------------------------

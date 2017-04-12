@@ -50,7 +50,7 @@ AppCaryon.prototype.unzipInstallExtra = function ()
 
     try
     {
-        var zipPath =path.join(setSystem._path_extensionDir, "Extra/install.zip")
+        var zipPath =path.join(setSystem._path_extensionDir, "EXTRA/install.zip")
         if (fs.existsSync(zipPath))
         {
             var adm_zip = new AdmZip(zipPath)

@@ -116,6 +116,9 @@
         position: absolute;
         right: inherit;
         color: #6C55C0;
+
+        overflow: hidden;
+        overflow-y: scroll;
     }
     .debug-microscope pre {
         -webkit-user-select: text;
