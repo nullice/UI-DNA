@@ -65,8 +65,8 @@
         </div>
 
         <div class="tag-box tag-position" v-show="tagsActive.position" v-bind:class="{active:tagsActive.position}"
-             transition="trans-fade">
-            <h3><span> {{'位置' |lang}} </span></h3>
+             transition="trans-fade-att">
+            <h3><span> {{'位置' | lang}} </span></h3>
             <value-input name="X" v-bind:edit_value.sync="Gob.position.x"
                          v-bind:out_value.sync="Gob.position.assignment.x"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.x"
@@ -99,8 +99,8 @@
 
         <div class="tag-box tag-shape" v-show="tagsActive.shape"
              v-bind:class="{active:tagsActive.shape, 'advance_on':o_advance_shape}"
-             transition="trans-fade">
-            <h3><span> {{'形状' |lang}} </span></h3>
+             transition="trans-fade-att">
+            <h3><span> {{'形状' | lang}} </span></h3>
             <color-input v-bind:name="Lang.from('填充')"
                          v-bind:title="Lang.from('填充')"
                          v-bind:out_value.sync="Gob.shape.assignment.fillColor"
@@ -146,7 +146,7 @@
             <input type="checkbox" id="advance_2" autocomplete="off" v-model="o_advance_shape">
             <label class="btn btn_primary" title="{{'高级' |lang}}"
                    for="advance_2">
-                <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' |lang}}</span></span>
+                <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' | lang}}</span></span>
             </label>
             <div class="advance_box">
 
@@ -296,8 +296,8 @@
 
         <div class="tag-box tag-text" v-show="tagsActive.text"
              v-bind:class="{active:tagsActive.text, 'advance_on':o_advance_text}"
-             transition="trans-fade">
-            <h3><span> {{'文本' |lang}} </span></h3>
+             transition="trans-fade-att">
+            <h3><span> {{'文本' | lang}} </span></h3>
 
             <!--<vue-color-cylinder></vue-color-cylinder>-->
             <color-input v-bind:name="Lang.from('颜色')"
@@ -338,7 +338,7 @@
             <input type="checkbox" id="advance_1" autocomplete="off" v-model="o_advance_text">
             <label class="btn btn_primary" title="{{'高级' |lang}}"
                    for="advance_1">
-                <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' |lang}}</span></span>
+                <span><i class="select_triangle_icon icon-play3"></i><span class="text">{{'高级' | lang}}</span></span>
             </label>
             <div class="advance_box">
 
@@ -458,8 +458,8 @@
 
         <div class="tag-box tag-smartobject" v-show="tagsActive.smartobject"
              v-bind:class="{active:tagsActive.smartobject}"
-             transition="trans-fade">
-            <h3><span> {{'智能对象' |lang}} </span></h3>
+             transition="trans-fade-att">
+            <h3><span> {{'智能对象' | lang}} </span></h3>
 
             <div class="attr-checkbox">
                 <label class="exmo_checkbox">
@@ -490,8 +490,8 @@
         </div>
 
         <div class="tag-box tag-style" v-show="tagsActive.style" v-bind:class="{active:tagsActive.style}"
-             transition="trans-fade">
-            <h3><span> {{'阴影' |lang}} </span></h3>
+             transition="trans-fade-att">
+            <h3><span> {{'阴影' | lang}} </span></h3>
 
             <value-input v-bind:name="Lang.from('X')"
                          v-bind:title="Lang.from('阴影水平偏移')"
@@ -553,7 +553,7 @@
                          mini="true"
             ></value-input>
 
-            <h3><span> {{'图层样式' |lang}} </span></h3>
+            <h3><span> {{'图层样式' | lang}} </span></h3>
             <value-input v-bind:name="Lang.from('全部')"
                          v-bind:title="Lang.from('全部图层样式')"
                          v-bind:edit_value.sync="Gob.quickEffect.copyEffect_All"
@@ -565,11 +565,10 @@
         </div>
 
         <div class="tag-box tag-more" v-show="tagsActive.more" v-bind:class="{active:tagsActive.more}"
-             transition="trans-fade">
+             transition="trans-fade-att">
 
 
-
-            <h3><span> {{'外观' |lang}} </span></h3>
+            <h3><span> {{'外观' | lang}} </span></h3>
             <value-input v-bind:name=""
                          v-bind:title="Lang.from('图层不透明度')"
                          name_html="<i class='icon-uniE9B5'></i>"
@@ -619,7 +618,7 @@
             </div>
 
 
-            <h3><span> {{'信息' |lang}} </span></h3>
+            <h3><span> {{'信息' | lang}} </span></h3>
             <value-input v-bind:name="Lang.from('名称')"
                          v-bind:title="Lang.from('图层名称')"
                          v-bind:edit_value.sync="Gob.more.layerName"
@@ -645,9 +644,7 @@
             </select-input>
 
 
-
-
-            <h3><span> {{'自定义' |lang}} </span></h3>
+            <h3><span> {{'自定义' | lang}} </span></h3>
 
             <value-input v-bind:name="Lang.from('标签')"
                          v-bind:title="Lang.from('自定义标签')"
@@ -673,7 +670,8 @@
                           in_class="namegroup"
             >
 
-            </select-input> <span class="name_group_name">{{nameGroupTitle[o_show_name_group]!=o_show_name_group?nameGroupTitle[o_show_name_group]:""}}</span>
+            </select-input>
+            <span class="name_group_name">{{nameGroupTitle[o_show_name_group] != o_show_name_group ? nameGroupTitle[o_show_name_group] : ""}}</span>
             <div>
                 <value-input
                         v-show="o_show_name_group == 0"
@@ -777,7 +775,9 @@
     /*opacity: 1;*/
     /*transition: all .5s;*/
     /*}*/
-
+    .exmo_area.attr_panel {
+        border-bottom: none;
+    }
     span.name_group_name {
         position: absolute;
         margin-top: -24px;
@@ -808,7 +808,7 @@
         display: inline-block;
     }
 
-    .tag-position.trans-fade-transition {
+    .tag-position.trans-fade-att-transitione {
         height: 130px;
         margin-bottom: 28px;
 
@@ -822,7 +822,7 @@
         margin-left: -63px;
     }
 
-    .tag-text.trans-fade-transition {
+    .tag-text.trans-fade-att-transition {
         height: 260px;
         &.advance_on {
             height: 500px;
@@ -830,19 +830,18 @@
 
     }
 
-    .tag-shape.trans-fade-transition {
+    .tag-shape.trans-fade-att-transition {
         height: 155px;
         &.advance_on {
             height: 500px;
         }
     }
 
-    .tag-style.trans-fade-transition {
+    .tag-style.trans-fade-att-transition {
         height: 250px;
 
     }
-
-    .tag-more.trans-fade-transition {
+    .tag-more.trans-fade-att-transition {
         height: 450px;
 
     }
@@ -851,7 +850,7 @@
         overflow: visible;
     }
 
-    .tag-box .trans-fade-transition {
+    .trans-fade-att-transition {
         transition: all .2s ease;
         height: 150px;
         opacity: 1;
@@ -860,9 +859,9 @@
 
     /* .expand-enter 定义进入的开始状态 */
     /* .expand-leave 定义离开的结束状态 */
-    .tag-box .trans-fade-enter, .trans-fade-leave {
+    .trans-fade-att-enter, .trans-fade-att-leave {
         height: 0;
-        opacity: .4;
+        opacity: 0;
     }
 
     /*-----*/
@@ -995,7 +994,7 @@
 
                 UI_model: UI_model,
                 Lang: Lang,
-                setSystem:setSystem,
+                setSystem: setSystem,
                 o_value: "",
                 o_attr_open: true,
                 o_show_name_group: 0,
@@ -1169,7 +1168,7 @@
             "vue-color-cylinder": VueColorCylinder,
             "color-input": ColorInput,
             "debug-microscope": DebugPanel,
-            "attr-option-menu":AttrOptionMenu,
+            "attr-option-menu": AttrOptionMenu,
 //        "comp-a":ValueInput
         }
     };
