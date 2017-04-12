@@ -35,11 +35,28 @@
             <express-effect v-show="o_render_status.rendering"></express-effect>
         </button>
 
-        <div class="data_caryon_save">
-            <button v-on:click="doDataSave" class="exmo_button_icon mini">
-                <i v-bind:class="{eff_animation_flip:o_data_status.status.saving}" class="icon-floppy-disk"></i>
-            </button>
-            <div v-show="o_data_status.status.saved" class="data_saved_icon"><i class="icon-checkmark"></i></div>
+
+        <menu-box
+                v-bind:menu_data="o_menu_save"
+                in_class="expresspanel_save"
+        >
+
+            <div class="data_caryon_save">
+                <button v-on:click="doDataSave" class="exmo_button_icon mini">
+                    <i v-bind:class="{eff_animation_flip:o_data_status.status.saving}" class="icon-floppy-disk"></i>
+                </button>
+                <div v-show="o_data_status.status.saved" class="data_saved_icon"><i class="icon-checkmark"></i></div>
+            </div>
+
+        </menu-box>
+
+
+
+
+
+
+
+
 
             <!--<div class="more_option">-->
             <!--<label class="express_auto_save exmo_checkbox">-->
@@ -49,7 +66,7 @@
             <!--</label>-->
             <!--</div>-->
 
-        </div>
+
     </div>
 
 

@@ -166,6 +166,31 @@ Kinase.document.hasArtBoard = function (returnArtBoard)
     }
 }
 
+// if (!app.activeDocument.saved)
+
+/**
+ * 保存当前文档，如果文档从未保存，弹出对话框
+ */
+Kinase.document.save_byActive = function ()
+{
+    try
+    {
+        app.activeDocument.save()
+    } catch (e)
+    {
+
+        try
+        {
+            executeAction(charIDToTypeID("save"), new ActionDescriptor(), DialogModes.ALL);
+        } catch (e)
+        {
+        }
+    }
+
+}
+
+
+
 // Kinase.selection
 // 选区相关功能  ====================================================================================================
 Kinase.selection = {}
@@ -178,16 +203,13 @@ Kinase.selection.createSelection_byActive = function ()
 
     var ad = new ActionDescriptor();
     var af = new ActionReference();
-    af.putProperty( charIDToTypeID( "Chnl" ), charIDToTypeID( "fsel" ) );
-    ad.putReference( charIDToTypeID( "null" ), af );
+    af.putProperty(charIDToTypeID("Chnl"), charIDToTypeID("fsel"));
+    ad.putReference(charIDToTypeID("null"), af);
     var af2 = new ActionReference();
-    af2.putEnumerated( charIDToTypeID( "Chnl" ), charIDToTypeID( "Chnl" ), charIDToTypeID( "Trsp" ) );
-    ad.putReference( charIDToTypeID( "T   " ), af2 );
-    executeAction( charIDToTypeID( "setd" ), ad, DialogModes.NO );
+    af2.putEnumerated(charIDToTypeID("Chnl"), charIDToTypeID("Chnl"), charIDToTypeID("Trsp"));
+    ad.putReference(charIDToTypeID("T   "), af2);
+    executeAction(charIDToTypeID("setd"), ad, DialogModes.NO);
 }
-
-
-
 
 
 // Kinase.layer
@@ -5584,7 +5606,6 @@ Kinase.layer.cancelLinkLayers_ByActive = function ()
 // END===========================[图层链接]========================
 
 
-
 // ===========================[拾色器]========================
 
 /*创建拾色器*/
@@ -6443,12 +6464,12 @@ Kinase.layer.createMask_byActive = function ()
     try
     {
         var ad = new ActionDescriptor();
-        ad.putClass( charIDToTypeID( "Nw  " ), charIDToTypeID( "Chnl" ));
+        ad.putClass(charIDToTypeID("Nw  "), charIDToTypeID("Chnl"));
         var af = new ActionReference();
-        af.putEnumerated( charIDToTypeID( "Chnl" ), charIDToTypeID( "Chnl" ), charIDToTypeID( "Msk " ) );
-        ad.putReference( charIDToTypeID( "At  " ), af );
-        ad.putEnumerated( charIDToTypeID( "Usng" ), charIDToTypeID( "UsrM" ), charIDToTypeID( "RvlS" ) );
-        executeAction( charIDToTypeID( "Mk  " ), ad, DialogModes.NO );
+        af.putEnumerated(charIDToTypeID("Chnl"), charIDToTypeID("Chnl"), charIDToTypeID("Msk "));
+        ad.putReference(charIDToTypeID("At  "), af);
+        ad.putEnumerated(charIDToTypeID("Usng"), charIDToTypeID("UsrM"), charIDToTypeID("RvlS"));
+        executeAction(charIDToTypeID("Mk  "), ad, DialogModes.NO);
 
 
     } catch (e)
@@ -6468,10 +6489,10 @@ Kinase.layer.applyMask_byActive = function ()
     {
         var ad = new ActionDescriptor();
         var af = new ActionReference();
-        af.putEnumerated( charIDToTypeID( "Chnl" ),  charIDToTypeID( "Chnl" ), charIDToTypeID( "Msk " ) );
-        ad.putReference(  charIDToTypeID( "null" ), af );
-        ad.putBoolean( charIDToTypeID( "Aply" ), true );
-        executeAction( charIDToTypeID( "Dlt " ), ad, DialogModes.NO );
+        af.putEnumerated(charIDToTypeID("Chnl"), charIDToTypeID("Chnl"), charIDToTypeID("Msk "));
+        ad.putReference(charIDToTypeID("null"), af);
+        ad.putBoolean(charIDToTypeID("Aply"), true);
+        executeAction(charIDToTypeID("Dlt "), ad, DialogModes.NO);
 
     } catch (e)
     {
@@ -6479,8 +6500,6 @@ Kinase.layer.applyMask_byActive = function ()
         return null
     }
 }
-
-
 
 
 /**

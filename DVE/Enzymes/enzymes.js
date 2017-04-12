@@ -75,6 +75,25 @@ var Enzymes = function ()
     return this;
 }
 
+
+/**
+ * 保存当前文档
+ * @returns {Promise}
+ */
+Enzymes.prototype.saveActiveDocument = async function ()
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `Kinase.document.save_byActive()`;
+        evalScript(_jsxCode,
+            (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
+    })
+}
+
+
+
+
+
 /**
  * 创建新图层，可指定图层名，
  * @param layerName
@@ -105,6 +124,9 @@ Enzymes.prototype.deleteLayer = async function (id)
             (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
     })
 }
+
+
+
 
 
 /**
