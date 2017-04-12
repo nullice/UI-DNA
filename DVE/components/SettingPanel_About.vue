@@ -44,8 +44,8 @@
                 </div>
 
                 <div class="net-messge-box">
-                    <div class="msg-item lv{{x.lv}}" v-for="x in messge" v-if="x.lv > 0">
-                        <span v-on:click="msgOpen(x.url)">{{x.messge}}</span>
+                    <div v-bind:title="x.url" class=" marquee msg-item lv{{x.lv}}" v-for="x in messge" v-if="x.lv > 0">
+                        <span class="" v-on:click="msgOpen(x.url)"> {{x.messge}} </span>
                     </div>
                 </div>
 
@@ -68,6 +68,31 @@
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
+
+    .marquee {
+        /*width: 450px;*/
+        /*margin: 0 auto;*/
+        white-space: nowrap;
+        overflow: hidden;
+        box-sizing: border-box;
+    }
+
+    .marquee span {
+        display: inline-block;
+        padding-left: 100%;  /* show the marquee just outside the paragraph */
+        animation: marquee 15s linear infinite;
+    }
+
+    .marquee span:hover {
+        animation-play-state: paused
+    }
+
+    /* Make it move */
+    @keyframes marquee {
+        0%   { transform: translate(0, 0); }
+        100% { transform: translate(-100%, 0); }
+    }
+
 
 
     .setting_about_panel.suspend {
@@ -217,9 +242,11 @@
             font-size: 11px;
             color: #808080;
             margin-top: 10px;
+            text-align: center;
+
             .msg-item {
                 margin-bottom: 10px;
-                span {
+                display: inline-block;
                     background: rgba(239, 228, 255, 0.42);
                     border: 1px solid rgba(186, 140, 255, 0.33);
                     color: rgba(60, 0, 102, 0.7);
@@ -227,14 +254,14 @@
                     min-width: 123px;
                     border-radius: 3px;
                     cursor: pointer;
-                }
+                    width: calc(100% - 100px);
             }
 
             .msg-item:nth-of-type(1) {
                 margin-bottom: 20px;
             }
 
-            .msg-item.lv1 span {
+            .msg-item.lv1  {
                 background: rgba(234, 234, 234, 0.42);
                 border: 1px solid rgba(165, 165, 165, 0.33);
                 color: rgba(103, 103, 103, 0.7);

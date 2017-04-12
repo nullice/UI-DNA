@@ -51,20 +51,13 @@
         </menu-box>
 
 
-
-
-
-
-
-
-
-            <!--<div class="more_option">-->
-            <!--<label class="express_auto_save exmo_checkbox">-->
-            <!--<input type="checkbox">-->
-            <!--<div class="exmo_checkbox_shadow"></div>-->
-            <!--自动保存-->
-            <!--</label>-->
-            <!--</div>-->
+        <!--<div class="more_option">-->
+        <!--<label class="express_auto_save exmo_checkbox">-->
+        <!--<input type="checkbox">-->
+        <!--<div class="exmo_checkbox_shadow"></div>-->
+        <!--自动保存-->
+        <!--</label>-->
+        <!--</div>-->
 
 
     </div>
@@ -175,6 +168,7 @@
             }
 
             .data_saved_icon {
+                pointer-events: none;
                 position: absolute;
                 width: 6px;
                 height: 6px;
@@ -254,29 +248,19 @@
                 o_menu_setting: {
                     freshen: {
                         name: Lang.from("刷新"),
-                        title:Lang.from("刷新 UI-DNA 属性"),
+                        title: Lang.from("刷新 UI-DNA 属性"),
                         type: "button",
                         state: false,
-                        selected_func: function ()
-                        {
-                            Gob.updateSelect()
-                        },
+                        selected_func: this.doFreshen,
                     },
-                    more: {
+                    hr: {
                         type: "multi_select",
                         state: true,
                         hr: true,
-                        child: {
-                            rgba: true,
-                            rgb: false,
-                            hex: true,
-                            int: false,
-
-                        }
                     },
                     setting_c: {
                         name: Lang.from("冷重启 UI-DNA"),
-                        title:Lang.from("不保留当前应用状态"),
+                        title: Lang.from("不保留当前应用状态"),
                         type: "button",
                         state: false,
                         selected_func: function ()
@@ -296,114 +280,24 @@
 
                 },
                 o_menu_save: {
-                    hue: {
-                        name: "Hue",
+//                    hue: {
+//                        name: "Hue",
+//                        type: "multi_select",
+//                        state: true,
+//                    },
+//                    hr: {
+//                        type: "multi_select",
+//                        state: true,
+//                        hr: true,
+//                    },
+                    ableDocSave: {
+                        name: Lang.from("同时保存文档"),
                         type: "multi_select",
-                        state: true,
-                    },
-                    hr: {
-                        type: "multi_select",
-                        state: true,
-                        hr: true,
-                    },
-                    hsl: {
-                        name: "HSL",
-                        type: "multi_select",
-                        state: true,
-                        child: {
-                            h: true,
-                            s: true,
-                            l: true,
-                        }
-                    },
-                    hsl255: {
-                        name: "HSL 255",
-                        type: "multi_select",
-                        state: false,
-                        child: {
-                            h: true,
-                            s: true,
-                            l: true,
-                        }
-                    },
-                    hsl240: {
-                        name: "HSL 240",
-                        type: "multi_select",
-                        state: false,
-                        child: {
-                            h: true,
-                            s: true,
-                            l: true,
-                        }
-                    },
-                    hsv: {
-                        name: "HSB",
-                        type: "multi_select",
-                        state: false,
-                        child: {
-                            h: true,
-                            s: true,
-                            v: true,
-                        }
-                    },
-                    hwb: {
-                        name: "HWB",
-                        type: "multi_select",
-                        state: false,
-                        child: {
-                            h: true,
-                            w: true,
-                            b: true,
-                        }
-                    },
-                    rgb: {
-                        name: "RGB",
-                        type: "multi_select",
-                        state: true,
-                        child: {
-                            r: true,
-                            g: true,
-                            b: true,
-                        }
-                    },
-                    labPs: {
-                        name: "Lab",
-                        type: "multi_select",
-                        state: false,
-                        child: {
-                            l: true,
-                            a: true,
-                            b: true,
-                        }
-                    },
-                    xyz: {
-                        name: "XYZ",
-                        type: "multi_select",
-
-                        state: false,
-                        child: {
-                            x: true,
-                            y: true,
-                            z: true,
-                        }
-                    },
-                    more: {
-                        type: "multi_select",
-                        state: true,
-                        hr: true,
-                        child: {
-                            rgba: true,
-                            rgb: false,
-                            hex: true,
-                            int: false,
-
-                        }
-                    },
-                    setting: {
-                        name: "更多设置",
-                        type: "select",
-                        state: false,
-
+                        state: setSystem.inset.able_saveDoc,
+                        selected_func: function ()
+                        {
+                            setSystem.inset.able_saveDoc = !setSystem.inset.able_saveDoc
+                        },
                     },
                 },
 
@@ -415,21 +309,30 @@
             {
                 renderCaryon.renderDocument();
             },
-            doDataSave: function ()
+            doDataSave: async function ()
             {
-                dataCaryon.save();
+                await  dataCaryon.save();
+                if (setSystem.inset.able_saveDoc)
+                {
+                    enzymes.saveActiveDocument()
+                }
             }
             ,
             doFreshen: function ()
             {
+                setSystem.ui.panel.att.nowFreshen = true
                 Gob.updateSelect()
+                setTimeout(function ()
+                {
+                    setSystem.ui.panel.att.nowFreshen = false
+                }, 800)
+
             }
             ,
             doOpenSettingPanel: function ()
             {
                 setSystem.ui.panel.main.settingPanel = true
             }
-
 
         },
         components: {

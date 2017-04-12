@@ -5,10 +5,9 @@
     </menu-buttom>
 
     <label title="{{'刷新'|lang}}" class="exmo_button_icon  freshen mini" v-on:click="click_freshen"
-        v-bind:class="{'freshen-rotate':nowFreshen}">
+           v-bind:class="{'freshen-rotate':nowFreshen}">
         <i class="icon-refresh"></i>
     </label>
-
 
 
 </template>
@@ -26,7 +25,6 @@
             font-size: 13px;
         }
     }
-
 
     .exmo_area:hover .attribute_panel_option {
         visibility: visible;
@@ -54,7 +52,6 @@
         /* color: rgba(0, 0, 0, 0.55); */
     }
 
-
     @-webkit-keyframes freshen-rotate-key {
         0%,
         100% {
@@ -65,9 +62,9 @@
         }
     }
 
-    .freshen-rotate i{
+    .freshen-rotate i {
         display: inline-block;
-        animation:  freshen-rotate-key  .4s linear infinite
+        animation: freshen-rotate-key .4s linear infinite
     }
 
 </style>
@@ -82,8 +79,8 @@
             return {
 
                 o_use_mRNA: false,
-                Gob:Gob,
-                nowFreshen:false,
+                Gob: Gob,
+
 
                 options: [
                     {
@@ -300,24 +297,24 @@
         },
         methods: {
 
-            click_freshen:function ()
+            click_freshen: function ()
             {
 
-                var self =this
-                self.nowFreshen =true
+                var self = this
+                self.nowFreshen = true
                 Gob.updateSelect()
                 setTimeout(function ()
                 {
-                    self.nowFreshen =false
-                },800)
+                    self.nowFreshen = false
+                }, 800)
             },
 
             copy_effect: async function ()
             {
-                var str = await Gob.exportEffectRNA(this.use_mRNA,!this.use_mRNA)
+                var str = await Gob.exportEffectRNA(this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
-            paste_effect:  function ()
+            paste_effect: function ()
             {
                 var str = NodeCopy.paste();
                 Gob.importEffectRNA(str)
@@ -325,68 +322,79 @@
             },
             copy_position: async function ()
             {
-                var str = await Gob.exportGobRNA("position",this.use_Assign,this.use_mRNA, !this.use_mRNA)
+                var str = await Gob.exportGobRNA("position", this.use_Assign, this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_position: async function ()
             {
                 var str = NodeCopy.paste();
-                Gob.importGobRNA("position",str)
+                Gob.importGobRNA("position", str)
             },
             copy_shape: async function ()
             {
-                var str = await Gob.exportGobRNA("shape",this.use_Assign,this.use_mRNA,!this.use_mRNA)
+                var str = await Gob.exportGobRNA("shape", this.use_Assign, this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_shape: async function ()
             {
                 var str = NodeCopy.paste();
-                Gob.importGobRNA("shape",str)
+                Gob.importGobRNA("shape", str)
             },
             copy_text: async function ()
             {
-                var str = await Gob.exportGobRNA("text",this.use_Assign,this.use_mRNA,!this.use_mRNA)
+                var str = await Gob.exportGobRNA("text", this.use_Assign, this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_text: async function ()
             {
                 var str = NodeCopy.paste();
-                Gob.importGobRNA("text",str)
+                Gob.importGobRNA("text", str)
             },
             copy_smartObject: async function ()
             {
-                var str = await Gob.exportGobRNA("smartObject",this.use_Assign,this.use_mRNA,!this.use_mRNA)
+                var str = await Gob.exportGobRNA("smartObject", this.use_Assign, this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_smartObject: async function ()
             {
                 var str = NodeCopy.paste();
-                Gob.importGobRNA("smartObject",str)
+                Gob.importGobRNA("smartObject", str)
             },
             copy_quickEffect: async function ()
             {
-                var str = await Gob.exportGobRNA("quickEffect",this.use_Assign,this.use_mRNA,!this.use_mRNA)
+                var str = await Gob.exportGobRNA("quickEffect", this.use_Assign, this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_quickEffect: async function ()
             {
                 var str = NodeCopy.paste();
-                Gob.importGobRNA("quickEffect",str)
+                Gob.importGobRNA("quickEffect", str)
             },
             copy_more: async function ()
             {
-                var str = await Gob.exportGobRNA("more",this.use_Assign,this.use_mRNA,!this.use_mRNA)
+                var str = await Gob.exportGobRNA("more", this.use_Assign, this.use_mRNA, !this.use_mRNA)
                 NodeCopy.copy(str)
             },
             paste_more: async function ()
             {
                 var str = NodeCopy.paste();
-                Gob.importGobRNA("more",str)
+                Gob.importGobRNA("more", str)
             },
 
         },
         computed: {
 
+            nowFreshen: {
+                get: function ()
+                {
+                    return setSystem.ui.panel.att.nowFreshen
+                },
+                set: function (x)
+                {
+                    setSystem.ui.panel.att.nowFreshen = x;
+                }
+
+            },
             use_mRNA: {
                 get: function ()
                 {

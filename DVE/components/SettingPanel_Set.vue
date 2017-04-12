@@ -52,13 +52,6 @@
              </button>
         </div>
 
-        <div class="set-item">
-            <div class="exmo_box_name">{{'Devtool' | lang}}  </div>
-            <button class="exmo_button "  v-on:click="openUrl('http://127.0.0.1:9217')">
-                127.0.0.1:9217
-             </button>
-        </div>
-
 
         <div class="set-item">
             <div class="exmo_box_name">{{'语言' | lang}}  </div>
@@ -72,7 +65,20 @@
             </button>
         </div>
 
+        <div class="set-item">
+            <div class="exmo_box_name">{{'监视' | lang}}  </div>
 
+            <div class="exmo_checkbox">
+                <input type="checkbox" id="setdebugms" v-model="showDebugMicroscope">
+                <div class="exmo_checkbox_shadow"></div>
+                <label for="setdebugms">
+                    启用
+                </label>
+            </div>
+
+        </div>
+
+        <debug-microscope v-if="showDebugMicroscope">Debug-microscope</debug-microscope>
 
 
 
@@ -102,6 +108,10 @@
         .set-item {
             margin: 6px 0;
 
+            .exmo_checkbox
+            {
+                vertical-align: middle;
+            }
             .button.exmo_button {
                 font-size: 12px;
             }
@@ -130,7 +140,7 @@
 <script>
 
     import Area from '../components/area.vue';
-
+    import DebugPanel from "./DebugPanel.vue"
 
     export default {
         data(){
@@ -138,6 +148,7 @@
                 UIDNA: UIDNA,
                 setSystem: setSystem,
                 openUrl: appCaryon.openUrl,
+                showDebugMicroscope:false,
 
 
             }
@@ -153,7 +164,8 @@
         },
 
         components: {
-            "a-area": Area
+            "a-area": Area,
+            "debug-microscope": DebugPanel,
         },
 
     };

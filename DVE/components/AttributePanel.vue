@@ -1,6 +1,6 @@
 <template>
 
-    <!--<debug-microscope>测试用</debug-microscope>-->
+    <!---->
     <!---->
     <vue-color-cylinder v-show="UI_model.msg_color_picker.color1.show"
                         v-bind:ichi_color.sync="UI_model.msg_color_picker.color1.color" confirm="true"
@@ -939,7 +939,6 @@
     import AttrTextarea from "./AttributePanel_textarea.vue"
     import VueColorCylinder from "./vue-color-cylinder/vue-color-cylinder.vue"
     import ColorInput from '../components/AttributePanel_color.vue';
-    import DebugPanel from "./DebugPanel.vue"
     import AttrOptionMenu from "./AttributePanel_optionMenu.vue"
 
     //import CompA from '../components/A.vue'
@@ -1167,7 +1166,7 @@
             "attr-textarea": AttrTextarea,
             "vue-color-cylinder": VueColorCylinder,
             "color-input": ColorInput,
-            "debug-microscope": DebugPanel,
+
             "attr-option-menu": AttrOptionMenu,
 //        "comp-a":ValueInput
         }

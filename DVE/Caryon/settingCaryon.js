@@ -37,6 +37,9 @@ var SetSystem = function ()
                     "8": "8",
                     "9": "9",
                 }
+            },
+            att:{
+                nowFreshen:false,
             }
         },
         hostTheme: {
@@ -61,6 +64,7 @@ var SetSystem = function ()
 
 
     this.inset = {
+        able_saveDoc:false,/*保存uidna属性同时保存文档*/
         selectMax: 6, /*最大选中图层数，大于这个数，选中图层时 Gob 将不从实际图层拉取数据而是仅显示“多值”*/
     }
 
@@ -351,6 +355,8 @@ SetSystem.prototype.outDebugLanguageJson = function ()
 
 
 }
+
+
 
 
 
