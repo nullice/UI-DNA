@@ -138,6 +138,7 @@
         data(){
             return {
                 setSystem: setSystem,
+                openUrl: appCaryon.openUrl,
                 o_msg_bubble: UI_model.msg_bubble.setting_panel,
 
             }

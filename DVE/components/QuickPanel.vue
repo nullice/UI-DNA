@@ -683,9 +683,9 @@
                 </quick-icon-button>
 
                 <quick-icon-button v-bind:title="Lang.from('更多功能')" name="shape_advance"
-                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:click_more_func="click_onecMore" in_class="more-but"
                                    v-bind:more_onoff="more_onoff.shape_advance" v-bind:func="func_shape_shape_advance">
-                    <i class="iconfont  icon-gengduo-shuxiang"></i>
+                    <i class="  iconfont  icon-gengduo-shuxiang"></i>
                 </quick-icon-button>
 
             </div>
@@ -844,7 +844,7 @@
                     <i class="icon-shrink"></i>
                 </quick-icon-button>
                 <quick-icon-button v-bind:title="Lang.from('多文本框编辑')" name="text_multEditor"
-                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:click_more_func="click_onecMore" in_class="more-but"
                                    v-bind:more_onoff="more_onoff.text_multEditor"
                                    v-bind:func="func_text_advance_multEditor">
                     <i class="icon-insert-template"
@@ -852,7 +852,7 @@
                 </quick-icon-button>
 
                 <quick-icon-button v-bind:title="Lang.from('多文本框数据化编辑（JSON\CVS）')" name="text_dataEditor"
-                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:click_more_func="click_onecMore" in_class="more-but"
                                    v-bind:more_onoff="more_onoff.text_dataEditor"
                                    v-bind:func="func_text_advance_dataEditor">
                     <i class="iconfont  icon-zidongpingjia"
@@ -860,7 +860,7 @@
                 </quick-icon-button>
 
                 <quick-icon-button v-bind:title="Lang.from('文本填充')" name="text_fill"
-                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:click_more_func="click_onecMore" in_class="more-but"
                                    v-bind:more_onoff="more_onoff.text_fill"
                                    v-bind:func="func_text_advance_textFill">
                     <i class="icon-menu-commands"
@@ -938,10 +938,10 @@
             <h4>创建</h4>
             <div class="quick_buts">
                 <quick-icon-button v-bind:title="Lang.from('从现有图层创建链接对象')" name="create_smartlinkFrom"
-                                   v-bind:click_more_func="click_onecMore"
+                                   v-bind:click_more_func="click_onecMore" in_class="more-but"
                                    v-bind:more_onoff="more_onoff.create_smartlinkFrom"
                                    v-bind:func="func_text_advance_smartlinkFrom">
-                    <i class="icon-images"></i>
+                    <i class="icon-images" style=" margin-left: -1px;"></i>
                 </quick-icon-button>
 
                 <quick-icon-button v-bind:title="Lang.from('创建文本表格')" name="create_textTable"
@@ -1157,7 +1157,6 @@
         }
 
         .quick_more_item {
-
             .exmo_inbox {
                 width: 100%;
                 margin-bottom: 8px;
@@ -1168,7 +1167,6 @@
                     input.exmo_input_text {
                         width: calc(50% - 8px);
                     }
-
                 }
 
                 .exmo_checkbox {
@@ -1235,6 +1233,11 @@
                 border-bottom: 1px dashed rgba(0, 0, 0, 0.22);
             }
 
+            .fun_block:nth-last-of-type(1) {
+                margin-bottom: 8px;
+            }
+
+
             h4 {
                 font-weight: normal;
                 font-size: 13px;
@@ -1246,9 +1249,14 @@
                 -webkit-user-select: text;
                 font-size: 12px;
                 color: #797878;
-                padding-bottom: 6px;
-                margin-bottom: 4px;
+                padding-bottom: 3px;
+                padding-top: 3px;
                 position: relative;
+
+                &:not(:nth-last-of-type(1))
+                {
+                    margin-bottom: 4px;
+                }
 
                 .sub {
                     color: rgba(0, 0, 0, 0.34);
@@ -1259,7 +1267,7 @@
                     position: absolute;
                     right: 10px;
                     top: 0px;
-                    margin-top: -5px;
+                    margin-top: -1px;
                 }
 
                 .inline-but-bar {

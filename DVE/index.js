@@ -69,6 +69,7 @@ var os = require('os')
 window.os = os;
 var path = require('path')
 window.path = path;
+var fs = require('fs')
 
 
 // javascript 常用库
@@ -213,11 +214,21 @@ import SettingPanel from  "./components/SettingPanel.vue"
 
 //初始化-------------------------------------------
 setSystem.load()
+
+if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
+{
+
+}else
+{//第一次安装
+    fs.writeFileSync(path.join(setSystem._path_appDir,"UI-DNA.json") ,JSON.stringify(UIDNA,null,4))
+    var zlib = require("zlib")
+}
+
 setTimeout(function ()
 {
     setSystem.loadLanguage()
     Lang.currentLANG = setSystem.ui.language
-    setSystem.loadAppState(true)
+    setSystem.loadAppState()
     setSystem.loadUserCss()
     setSystem.loadUserJs()
 

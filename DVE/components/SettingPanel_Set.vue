@@ -5,42 +5,75 @@
         <h3>应用数据路径</h3>
         <div class="set-item">
             <div class="exmo_box_name">{{'用户数据' | lang}}  </div>
-            <input type="readonly"   class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
-            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_userDataDir)">
+            <input type="readonly" class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
+                    v-on:click="doOpen(setSystem._path_userDataDir)">
                 <i class="icon-layer-group-collapsed"></i>
             </button>
         </div>
 
         <div class="set-item">
             <div class="exmo_box_name">{{'日志' | lang}}  </div>
-            <input type="readonly"    class="exmo_input_text edit_input"  v-bind:value="setSystem._path_logDir">
-            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_logDir)">
+            <input type="readonly" class="exmo_input_text edit_input" v-bind:value="setSystem._path_logDir">
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
+                    v-on:click="doOpen(setSystem._path_logDir)">
                 <i class="icon-layer-group-collapsed"></i>
             </button>
         </div>
-
 
 
         <h3>自定义</h3>
         <div class="set-item">
             <div class="exmo_box_name">{{'外观 CSS' | lang}}  </div>
-            <input type="readonly"   class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
-            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_userDataDir)">
+            <input type="readonly" class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
+                    v-on:click="doOpen(setSystem._path_userDataDir)">
                 <i class="icon-layer-group-collapsed"></i>
             </button>
 
         </div>
 
-        <!--<div class="set-item">-->
-            <!--<div class="exmo_box_name">{{'javascript' | lang}}  </div>-->
-            <!--<input type="readonly"   class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">-->
-            <!--<button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini" v-on:click="doOpen(setSystem._path_userDataDir)">-->
-                <!--<i class="icon-layer-group-collapsed"></i>-->
-            <!--</button>-->
-        <!--</div>-->
+        <div class="set-item">
+            <div class="exmo_box_name">{{'javaScript' | lang}}  </div>
+            <input type="readonly" class="exmo_input_text edit_input" v-bind:value="setSystem._path_userDataDir">
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
+                    v-on:click="doOpen(setSystem._path_userDataDir)">
+                <i class="icon-layer-group-collapsed"></i>
+            </button>
+        </div>
 
 
-        <h2>测试</h2>
+        <h3>测试</h3>
+
+        <div class="set-item">
+            <div class="exmo_box_name">{{'Devtool' | lang}}  </div>
+            <button class="exmo_button "  v-on:click="openUrl('http://127.0.0.1:9217')">
+                127.0.0.1:9217
+             </button>
+        </div>
+
+        <div class="set-item">
+            <div class="exmo_box_name">{{'Devtool' | lang}}  </div>
+            <button class="exmo_button "  v-on:click="openUrl('http://127.0.0.1:9217')">
+                127.0.0.1:9217
+             </button>
+        </div>
+
+
+        <div class="set-item">
+            <div class="exmo_box_name">{{'语言' | lang}}  </div>
+            <button class="exmo_button " v-on:click="setSystem.outDebugLanguageJson()">
+                {{'导出测试语言文件' | lang}}
+            </button>
+
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
+                    v-on:click="doOpen(setSystem._path_languageDir)">
+                <i class="icon-layer-group-collapsed"></i>
+            </button>
+        </div>
+
+
+
 
 
     </a-area>
@@ -49,6 +82,10 @@
 <style lang="scss" rel="stylesheet/scss">
 
     .setting_set_panel {
+        height: calc(100% - 176px);
+        overflow-y: scroll;
+        border-bottom: none;
+
         h3 {
             margin: 0;
             padding: 0;
@@ -62,6 +99,13 @@
 
         }
 
+        .set-item {
+            margin: 6px 0;
+
+            .button.exmo_button {
+                font-size: 12px;
+            }
+        }
         .exmo_box_name {
             font-size: 12px;
             text-align: left;
@@ -93,6 +137,7 @@
             return {
                 UIDNA: UIDNA,
                 setSystem: setSystem,
+                openUrl: appCaryon.openUrl,
 
 
             }
@@ -100,7 +145,7 @@
 
         methods: {
 
-            doOpen:function (inPath)
+            doOpen: function (inPath)
             {
                 opn(inPath)
             }

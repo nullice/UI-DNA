@@ -104,7 +104,7 @@ SetSystem.prototype.init = function ()
     _checkDir(userDataDir);
     this._path_userDataDir = userDataDir;
 
-    var languageDir = path.join(appDir, "languageDir")
+    var languageDir = path.join(appDir, "language")
     _checkDir(languageDir);
     this._path_languageDir = languageDir;
 
@@ -227,8 +227,10 @@ SetSystem.prototype.loadAppState = function ()
                 var ob = JSON.parse(data)
                 if (typeof  ob === "object")
                 {
+                    console.log("loadAppState",ob)
                     OBJ.objectCopyToObject(ob.dataCaryon, dataCaryon)
                     varSystem.loadVarsFromObject(ob.vars)
+
                     cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight)
                     if (ob.useonce)
                     {
@@ -332,10 +334,24 @@ SetSystem.prototype.loadLanguage = function ()
             }
         } catch (e)
         {
-            console.log
+            console.error(e)
         }
     }
 }
+
+SetSystem.prototype.outDebugLanguageJson = function ()
+{
+
+    var ob= {
+        languageName:'Debug',
+        languageMap:Lang.LANG_DEBUG
+    }
+    var obJson = JSON.stringify(ob, null, 4)
+    fs.writeFileSync(path.join(this._path_languageDir, "Debug.language.json"), obJson)
+
+
+}
+
 
 
 //---------------------------

@@ -851,8 +851,8 @@
         overflow: visible;
     }
 
-    .trans-fade-transition {
-        transition: all .3s ease;
+    .tag-box .trans-fade-transition {
+        transition: all .2s ease;
         height: 150px;
         opacity: 1;
 
@@ -860,9 +860,9 @@
 
     /* .expand-enter 定义进入的开始状态 */
     /* .expand-leave 定义离开的结束状态 */
-    .trans-fade-enter, .trans-fade-leave {
+    .tag-box .trans-fade-enter, .trans-fade-leave {
         height: 0;
-        opacity: 0;
+        opacity: .4;
     }
 
     /*-----*/

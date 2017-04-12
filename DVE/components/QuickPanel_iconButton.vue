@@ -32,6 +32,30 @@
             margin-left: -1px;
             width: 40px;
 
+            &.more-but {
+
+                .quick_but_icon:hover
+                {
+                    background: linear-gradient(0deg, rgba(92, 164, 255, 0.09), rgba(0, 116, 255, 0.2));
+                    border: 1px solid transparent;
+                }
+
+                .quick_but_icon.more_on{
+                   i{
+                       color: #1E76E3;
+                   }
+                    background: linear-gradient(0deg, rgba(92, 164, 255, 0.09), rgba(0, 116, 255, 0.2));
+                }
+
+                .quick_but_more_icon {
+
+                   &.more_on {
+                        background: -webkit-linear-gradient(bottom, rgba(19, 101, 202, 0.36), rgba(206, 220, 239, 1));
+
+                    }
+                }
+            }
+
             .quick_but_icon {
                 display: inline-block;
                 padding: 5px 12px;

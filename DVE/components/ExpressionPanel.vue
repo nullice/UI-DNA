@@ -235,7 +235,16 @@
                 o_render_status: renderCaryon.status,
                 o_setting: setSystem,
                 o_menu_setting: {
-
+                    freshen: {
+                        name: Lang.from("刷新"),
+                        title:Lang.from("刷新 UI-DNA 属性"),
+                        type: "button",
+                        state: false,
+                        selected_func: function ()
+                        {
+                            Gob.updateSelect()
+                        },
+                    },
                     more: {
                         type: "multi_select",
                         state: true,

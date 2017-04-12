@@ -4,8 +4,29 @@
         <i class="icon-briefcase"></i>
     </menu-buttom>
 
+    <label title="{{'刷新'|lang}}" class="exmo_button_icon  freshen mini" v-on:click="click_freshen"
+        v-bind:class="{'freshen-rotate':nowFreshen}">
+        <i class="icon-refresh"></i>
+    </label>
+
+
+
 </template>
 <style lang="scss" rel="stylesheet/scss">
+
+
+    label.exmo_button_icon.freshen.mini {
+        position: absolute;
+        top: 5px;
+        left: 102px;
+        color: #F0F0F0;
+        padding: 1px 5px;
+        i {
+            color: rgba(0, 0, 0, 0.42);
+            font-size: 13px;
+        }
+    }
+
 
     .exmo_area:hover .attribute_panel_option {
         visibility: visible;
@@ -34,6 +55,21 @@
     }
 
 
+    @-webkit-keyframes freshen-rotate-key {
+        0%,
+        100% {
+            -webkit-transform: rotate(0deg);
+        }
+        100% {
+            -webkit-transform: rotate(360deg);
+        }
+    }
+
+    .freshen-rotate i{
+        display: inline-block;
+        animation:  freshen-rotate-key  .4s linear infinite
+    }
+
 </style>
 <script>
 
@@ -46,6 +82,8 @@
             return {
 
                 o_use_mRNA: false,
+                Gob:Gob,
+                nowFreshen:false,
 
                 options: [
                     {
@@ -261,6 +299,19 @@
             }
         },
         methods: {
+
+            click_freshen:function ()
+            {
+
+                var self =this
+                self.nowFreshen =true
+                Gob.updateSelect()
+                setTimeout(function ()
+                {
+                    self.nowFreshen =false
+                },800)
+            },
+
             copy_effect: async function ()
             {
                 var str = await Gob.exportEffectRNA(this.use_mRNA,!this.use_mRNA)

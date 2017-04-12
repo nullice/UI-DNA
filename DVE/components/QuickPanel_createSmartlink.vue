@@ -37,7 +37,7 @@
             <div class="info">
                 <span>模板文件夹：</span>
                 <div class="func_enable">
-                    <button title="打开填充模板文件夹" class="exmo_button_icon mini">
+                    <button title="打开填充模板文件夹" class="exmo_button_icon mini" v-on:click="opn(path.join(setSystem._path_userDataDir, 'FillImage'))">
                         <i class="icon-layer-group-collapsed"></i>
                     </button>
 
@@ -158,6 +158,8 @@
             return {
                 setSystem: setSystem,
                 random: true,
+                opn:opn,
+                path:path,
                 o_mask_type: "CM",
                 o_linkLayer: true,
                 o_deleteOrgMask: true,
