@@ -214,7 +214,6 @@ import SettingPanel from  "./components/SettingPanel.vue"
 
 //初始化-------------------------------------------
 setSystem.load()
-
 if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
 {
 
@@ -223,21 +222,30 @@ if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
     fs.writeFileSync(path.join(setSystem._path_appDir,"UI-DNA.json") ,JSON.stringify(UIDNA,null,4))
     var zlib = require("zlib")
 }
-
 setTimeout(function ()
 {
     setSystem.loadLanguage()
     Lang.currentLANG = setSystem.ui.language
-    setSystem.loadAppState()
     setSystem.loadUserCss()
     setSystem.loadUserJs()
 
-}, 300)
+
+},300)
+
 
 
 var mainVue = new Vue({
     el: 'body',
     data: {setSystem:setSystem},
+    ready:function ()
+    {
+        setTimeout(function ()
+        {
+            setSystem.loadAppState()
+        },300)
+
+
+    },
     components: {
         // include the required component
         // in the options

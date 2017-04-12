@@ -230,7 +230,7 @@ SetSystem.prototype.loadAppState = function ()
                     console.log("loadAppState",ob)
                     OBJ.objectCopyToObject(ob.dataCaryon, dataCaryon)
                     varSystem.loadVarsFromObject(ob.vars)
-
+                    console.log(`cs.resizeContent(${ob.ui.lastWidth}, ${ob.ui.lastHeight})`,cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight))
                     cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight)
                     if (ob.useonce)
                     {
