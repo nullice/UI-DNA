@@ -219,8 +219,9 @@ if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
 
 }else
 {//第一次安装
+    console.info("[第一次运行] 安装文件...")
     fs.writeFileSync(path.join(setSystem._path_appDir,"UI-DNA.json") ,JSON.stringify(UIDNA,null,4))
-    var zlib = require("zlib")
+    appCaryon.unzipInstallExtra()
 }
 setTimeout(function ()
 {

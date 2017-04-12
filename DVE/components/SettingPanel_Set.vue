@@ -47,9 +47,10 @@
 
         <div class="set-item">
             <div class="exmo_box_name">{{'Devtool' | lang}}  </div>
-            <button class="exmo_button "  v-on:click="openUrl('http://127.0.0.1:9217')">
+            <button class="exmo_button " v-on:click="openUrl('http://127.0.0.1:9217')">
                 127.0.0.1:9217
-             </button>
+
+            </button>
         </div>
 
 
@@ -57,6 +58,7 @@
             <div class="exmo_box_name">{{'语言' | lang}}  </div>
             <button class="exmo_button " v-on:click="setSystem.outDebugLanguageJson()">
                 {{'导出测试语言文件' | lang}}
+
             </button>
 
             <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
@@ -64,6 +66,15 @@
                 <i class="icon-layer-group-collapsed"></i>
             </button>
         </div>
+
+        <div class="set-item">
+            <div class="exmo_box_name">{{'安装' | lang}}  </div>
+            <button class="exmo_button " title="执行一次首次运行时解压并额外安装文件的操作，主要是自带的图片、文本填充素材"
+                    v-on:click="appCaryon.unzipInstallExtra()">
+                解压额外文件
+            </button>
+        </div>
+
 
         <div class="set-item">
             <div class="exmo_box_name">{{'监视' | lang}}  </div>
@@ -79,7 +90,6 @@
         </div>
 
         <debug-microscope v-if="showDebugMicroscope">Debug-microscope</debug-microscope>
-
 
 
     </a-area>
@@ -108,8 +118,7 @@
         .set-item {
             margin: 6px 0;
 
-            .exmo_checkbox
-            {
+            .exmo_checkbox {
                 vertical-align: middle;
             }
             .button.exmo_button {
@@ -148,7 +157,8 @@
                 UIDNA: UIDNA,
                 setSystem: setSystem,
                 openUrl: appCaryon.openUrl,
-                showDebugMicroscope:false,
+                showDebugMicroscope: false,
+                appCaryon: appCaryon,
 
 
             }

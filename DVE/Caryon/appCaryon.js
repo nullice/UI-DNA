@@ -2,6 +2,8 @@
  * Created by nullice on 2017/4/1.
  */
 
+var path = require("path")
+var fs = require("fs")
 
 var AppCaryon = function ()
 {
@@ -19,8 +21,6 @@ AppCaryon.prototype.start_UI_DNA_Shadow = function ()
 }
 
 
-
-
 AppCaryon.prototype.restar_UI_DNA = function ()
 {
     setSystem.saveAppState(true)
@@ -35,13 +35,37 @@ AppCaryon.prototype.restarCold_UI_DNA = function ()
 }
 
 
-
-
 AppCaryon.prototype.openUrl = function (url)
 {
     cs.openURLInDefaultBrowser(url)
 }
 
 
+/**
+ * 第一次安装时解压额外资源 zip 包到用户目录
+ * @param url
+ */
+AppCaryon.prototype.unzipInstallExtra = function ()
+{
+
+    try
+    {
+        var zipPath =path.join(setSystem._path_extensionDir, "Extra/install.zip")
+        if (fs.existsSync(zipPath))
+        {
+            var adm_zip = new AdmZip(zipPath)
+            adm_zip.extractAllTo(setSystem._path_userDataDir, true)
+
+        }else
+        {
+            console.log("unzipInstallExtra","install.zip not exist",zipPath)
+        }
+
+    } catch (e)
+    {
+        console.error(e)
+    }
+
+}
 
 export default AppCaryon;

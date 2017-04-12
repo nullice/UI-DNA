@@ -15,3 +15,6 @@ window.base65536 = require("base65536");
 window.opn = require('opn');
 //----------------------------------------
 window.axios = require("axios");
+//----------------------------------------
+window.AdmZip = require("adm-zip");
+

@@ -26,7 +26,7 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.6046186">
+    <splitter split-orientation="horizontal" split-proportion="0.16806723">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="ExpressionPanel.vue" pinned="false" current-in-tab="false">
@@ -45,7 +45,7 @@
             <entry file="file://$PROJECT_DIR$/components/UI_model/UI_model.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="311">
-                  <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+                  <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
@@ -56,8 +56,8 @@
           <file leaf-file-name="EditTextLabel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/EditTextLabel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1071">
-                  <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+                <state relative-caret-position="155">
+                  <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -89,7 +89,7 @@
             <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="-1628">
-                  <caret line="82" column="44" lean-forward="true" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="44" />
+                  <caret line="82" column="44" lean-forward="false" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -131,7 +131,7 @@
             <entry file="file://$PROJECT_DIR$/components/QuickPanel_createSmartlink.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="591">
-                  <caret line="163" column="34" lean-forward="true" selection-start-line="163" selection-start-column="34" selection-end-line="163" selection-end-column="34" />
+                  <caret line="163" column="34" lean-forward="false" selection-start-line="163" selection-start-column="34" selection-end-line="163" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -144,42 +144,46 @@
           <file leaf-file-name="settingCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/settingCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="374">
-                  <caret line="358" column="0" lean-forward="true" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
+                <state relative-caret-position="375">
+                  <caret line="96" column="27" lean-forward="false" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="27" />
                   <folding>
                     <element signature="e#166#1655#0" expanded="false" />
                     <element signature="e#612#931#0" expanded="false" />
                     <element signature="e#1705#1825#0" expanded="false" />
-                    <element signature="e#1887#3637#0" expanded="false" />
-                    <element signature="e#3690#4023#0" expanded="false" />
-                    <element signature="e#6313#6425#0" expanded="false" />
-                    <element signature="e#6494#6609#0" expanded="false" />
+                    <element signature="e#3820#4153#0" expanded="false" />
+                    <element signature="e#6443#6555#0" expanded="false" />
+                    <element signature="e#6624#6739#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="DebugPanel.vue" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/components/DebugPanel.vue">
+          <file leaf-file-name="CSInterface.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/bin/JS/adobe/CSInterface.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="399">
-                  <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+                <state relative-caret-position="201">
+                  <caret line="821" column="2" lean-forward="true" selection-start-line="821" selection-start-column="2" selection-end-line="821" selection-end-column="2" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AttributePanel_optionMenu.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/AttributePanel_optionMenu.vue">
+          <file leaf-file-name="appCaryon.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="70" column="7" lean-forward="false" selection-start-line="70" selection-start-column="7" selection-end-line="70" selection-end-column="7" />
-                  <folding>
-                    <element signature="e#457#672#0" expanded="false" />
-                    <element signature="n#script#0;n#!!top" expanded="false" />
-                    <element signature="e#1907#9799#0" expanded="false" />
-                    <element signature="e#10201#10334#0" expanded="false" />
-                  </folding>
+                <state relative-caret-position="173">
+                  <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="47" selection-end-column="37" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="DebugPanel.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/components/DebugPanel.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="399">
+                  <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -188,27 +192,7 @@
             <entry file="file://$PROJECT_DIR$/components/QuickPanel_iconButton.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="252">
-                  <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="objectOBJ.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Caryon/Richang_JSEX/objectOBJ.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1848">
-                  <caret line="88" column="0" lean-forward="true" selection-start-line="88" selection-start-column="0" selection-end-line="88" selection-end-column="0" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="SettingPanel_About.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="460">
-                  <caret line="263" column="26" lean-forward="false" selection-start-line="263" selection-start-column="26" selection-end-line="263" selection-end-column="26" />
+                  <caret line="45" column="20" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -241,10 +225,10 @@
           <file leaf-file-name="SettingPanel_Set.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/SettingPanel_Set.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="112" column="39" lean-forward="false" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
+                <state relative-caret-position="156">
+                  <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
                   <folding>
-                    <element signature="e#4273#4315#0" expanded="true" />
+                    <element signature="e#4567#4609#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -337,13 +321,23 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="3301">
-                  <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
+                <state relative-caret-position="209">
+                  <caret line="223" column="31" lean-forward="false" selection-start-line="223" selection-start-column="14" selection-end-line="223" selection-end-column="31" />
                   <folding>
                     <element signature="e#2844#2895#0" expanded="true" />
                     <element signature="e#4157#4221#0" expanded="true" />
                     <element signature="e#6586#6642#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="zlib.js" pinned="false" current-in-tab="false">
+            <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/5.2.0/core-modules/zlib.js">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="274">
+                  <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -365,9 +359,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>.setting_about_panel.suspend</find>
-      <find>logo_version</find>
-      <find>o_msg_bubble</find>
       <find>.setting_panel</find>
       <find>in_title</find>
       <find>constructor</find>
@@ -395,6 +386,9 @@
       <find>radio</find>
       <find>cheack</find>
       <find>长阴影</find>
+      <find>getEx</find>
+      <find>Extensions</find>
+      <find>getExtensionID</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -450,20 +444,20 @@
         <option value="$PROJECT_DIR$/Caryon/Richang_JSEX/objectOBJ.js" />
         <option value="$PROJECT_DIR$/components/QuickPanel_iconButton.vue" />
         <option value="$PROJECT_DIR$/components/QuickPanel_createSmartlink.vue" />
-        <option value="$PROJECT_DIR$/Caryon/appCaryon.js" />
         <option value="$USER_HOME$/AppData/Roaming/nullice.designEnzyme/UI-DNA/UserData/appState.json" />
         <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/components/SettingPanel.vue" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes.js" />
         <option value="$PROJECT_DIR$/components/AttributePanel_optionMenu.vue" />
         <option value="$PROJECT_DIR$/components/ExpressionPanel.vue" />
-        <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/components/SettingPanel_About.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
-        <option value="$PROJECT_DIR$/components/SettingPanel_Set.vue" />
         <option value="$PROJECT_DIR$/components/DebugPanel.vue" />
+        <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
+        <option value="$PROJECT_DIR$/index.js" />
+        <option value="$PROJECT_DIR$/components/SettingPanel_Set.vue" />
+        <option value="$PROJECT_DIR$/Caryon/appCaryon.js" />
       </list>
     </option>
   </component>
@@ -939,12 +933,12 @@
       <workItem from="1491718615936" duration="606000" />
       <workItem from="1491719774939" duration="18549000" />
       <workItem from="1491796448120" duration="52436000" />
-      <workItem from="1491972569892" duration="14785000" />
+      <workItem from="1491972569892" duration="19199000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3087095000" />
+    <option name="totallyTimeSpent" value="3091509000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -965,7 +959,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1685761" sideWeight="0.52094716" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24710222" sideWeight="0.17226435" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.38786566" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.079089925" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14120126" sideWeight="0.75947994" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26218852" sideWeight="0.4667747" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.12961012" sideWeight="0.43661973" order="2" side_tool="true" content_ui="tabs" />
@@ -1051,13 +1045,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Caryon/eventCaryon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="373">
-          <caret line="212" column="32" lean-forward="true" selection-start-line="212" selection-start-column="32" selection-end-line="212" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/VarPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
@@ -1114,6 +1101,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="671">
           <caret line="35" column="10" lean-forward="false" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="10" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1121,16 +1109,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="28" column="13" lean-forward="false" selection-start-line="28" selection-start-column="13" selection-end-line="28" selection-end-column="13" />
-          <folding>
-            <element signature="n#!!doc" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/JS/adobe/CSInterface.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="1109" column="62" lean-forward="true" selection-start-line="1109" selection-start-column="3" selection-end-line="1109" selection-end-column="62" />
           <folding>
             <element signature="n#!!doc" expanded="false" />
           </folding>
@@ -1281,14 +1259,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="25" column="23" lean-forward="true" selection-start-line="25" selection-start-column="23" selection-end-line="25" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Roaming/nullice.designEnzyme/UI-DNA/UserData/appState.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-979">
@@ -1328,7 +1298,7 @@
     <entry file="file://$PROJECT_DIR$/Enzymes/Enzymes.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1628">
-          <caret line="82" column="44" lean-forward="true" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="44" />
+          <caret line="82" column="44" lean-forward="false" selection-start-line="82" selection-start-column="44" selection-end-line="82" selection-end-column="44" />
           <folding />
         </state>
       </provider>
@@ -1336,7 +1306,7 @@
     <entry file="file://$PROJECT_DIR$/components/QuickPanel_createSmartlink.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="591">
-          <caret line="163" column="34" lean-forward="true" selection-start-line="163" selection-start-column="34" selection-end-line="163" selection-end-column="34" />
+          <caret line="163" column="34" lean-forward="false" selection-start-line="163" selection-start-column="34" selection-end-line="163" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -1390,37 +1360,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/settingCaryon.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="358" column="0" lean-forward="true" selection-start-line="358" selection-start-column="0" selection-end-line="358" selection-end-column="0" />
-          <folding>
-            <element signature="e#166#1655#0" expanded="false" />
-            <element signature="e#612#931#0" expanded="false" />
-            <element signature="e#1705#1825#0" expanded="false" />
-            <element signature="e#1887#3637#0" expanded="false" />
-            <element signature="e#3690#4023#0" expanded="false" />
-            <element signature="e#6313#6425#0" expanded="false" />
-            <element signature="e#6494#6609#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/UI_model/UI_model.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
-          <caret line="16" column="16" lean-forward="true" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/EditTextLabel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1071">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1432,22 +1378,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3301">
-          <caret line="193" column="0" lean-forward="false" selection-start-line="193" selection-start-column="0" selection-end-line="193" selection-end-column="0" />
-          <folding>
-            <element signature="e#2844#2895#0" expanded="true" />
-            <element signature="e#4157#4221#0" expanded="true" />
-            <element signature="e#6586#6642#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/QuickPanel_iconButton.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
-          <caret line="45" column="20" lean-forward="true" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <caret line="45" column="20" lean-forward="false" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -1534,16 +1468,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/SettingPanel_Set.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="112" column="39" lean-forward="false" selection-start-line="112" selection-start-column="39" selection-end-line="112" selection-end-column="39" />
-          <folding>
-            <element signature="e#4273#4315#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="230">
@@ -1569,7 +1493,76 @@
     <entry file="file://$PROJECT_DIR$/components/DebugPanel.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="399">
-          <caret line="67" column="0" lean-forward="true" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_CONFIG_DIR$/javascript/nodejs/5.2.0/core-modules/zlib.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="274">
+          <caret line="149" column="0" lean-forward="false" selection-start-line="149" selection-start-column="0" selection-end-line="149" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bin/JS/adobe/CSInterface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="201">
+          <caret line="821" column="2" lean-forward="true" selection-start-line="821" selection-start-column="2" selection-end-line="821" selection-end-column="2" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/settingCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="375">
+          <caret line="96" column="27" lean-forward="false" selection-start-line="96" selection-start-column="9" selection-end-line="96" selection-end-column="27" />
+          <folding>
+            <element signature="e#166#1655#0" expanded="false" />
+            <element signature="e#612#931#0" expanded="false" />
+            <element signature="e#1705#1825#0" expanded="false" />
+            <element signature="e#3820#4153#0" expanded="false" />
+            <element signature="e#6443#6555#0" expanded="false" />
+            <element signature="e#6624#6739#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/EditTextLabel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="209">
+          <caret line="223" column="31" lean-forward="false" selection-start-line="223" selection-start-column="14" selection-end-line="223" selection-end-column="31" />
+          <folding>
+            <element signature="e#2844#2895#0" expanded="true" />
+            <element signature="e#4157#4221#0" expanded="true" />
+            <element signature="e#6586#6642#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/SettingPanel_Set.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="52" column="21" lean-forward="true" selection-start-line="52" selection-start-column="21" selection-end-line="52" selection-end-column="21" />
+          <folding>
+            <element signature="e#4567#4609#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="173">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="47" selection-end-column="37" />
           <folding />
         </state>
       </provider>

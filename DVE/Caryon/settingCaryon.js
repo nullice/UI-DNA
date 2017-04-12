@@ -92,6 +92,10 @@ SetSystem.prototype.timerForSave = function ()
 SetSystem.prototype.init = function ()
 {
     //目录初始化
+
+    var uidnaInfo = ARR.getByKey(cs.getExtensions(),"id",cs.getExtensionID())
+    this._path_extensionDir = uidnaInfo.basePath;
+
     this._userDataDir = "";
     var seriesDir = path.join(cs.getSystemPath(SystemPath.USER_DATA), "nullice.designEnzyme")
     _checkDir(seriesDir);
