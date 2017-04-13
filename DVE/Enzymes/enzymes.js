@@ -91,9 +91,6 @@ Enzymes.prototype.saveActiveDocument = async function ()
 }
 
 
-
-
-
 /**
  * 创建新图层，可指定图层名，
  * @param layerName
@@ -124,9 +121,6 @@ Enzymes.prototype.deleteLayer = async function (id)
             (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
     })
 }
-
-
-
 
 
 /**
@@ -484,7 +478,7 @@ Enzymes.prototype.getLayerInfo_smartObject_byId = async function (layerID)
  * @param layerID
  * @returns {Promise}
  */
-Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, layerID,doSelect)
+Enzymes.prototype.setLayerInfo_smartObject_byId = async function (smartObject, layerID, doSelect)
 {
 
 //     * smartInfo = {
@@ -559,9 +553,6 @@ Enzymes.prototype.setLayerInfo_more_byId = async function (moreInfo, layerID)
         }
     )
 }
-
-
-
 
 
 /**
@@ -782,19 +773,33 @@ Enzymes.prototype.DNAExpress = function (mRNA_Layers)
  */
 Enzymes.prototype._escape = function (str)
 {
-    str = str.replace(/\\/g, "\\\\")
-    str = str.replace(/\'/g, "$(q1)$")
-    str = str.replace(/\"/g, "$(q2)$")
-    str = str.replace(/\n/g, "\\n")
+    try
+    {
+        str = str.replace(/\\/g, "\\\\")
+        str = str.replace(/\'/g, "$(q1)$")
+        str = str.replace(/\"/g, "$(q2)$")
+        str = str.replace(/\n/g, "\\n")
+    } catch (e)
+    {
 
+        console.error("Enzymes._escape str:", str, e)
+    }
     return str;
 }
 
 Enzymes.prototype._unEscape = function (str)
 {
-    str = str.replace(/\$\(q1\)\$/g, "\'")
-    str = str.replace(/\$\(q2\)\$/g, "\"")
-    str = str.replace(/\\\\/g, "\\")
+    try
+    {
+        str = str.replace(/\$\(q1\)\$/g, "\'")
+        str = str.replace(/\$\(q2\)\$/g, "\"")
+        str = str.replace(/\\\\/g, "\\")
+    } catch (e)
+    {
+
+        console.error("Enzymes._unEscape str:", str, e)
+    }
+
     return str;
 }
 
@@ -804,7 +809,7 @@ Enzymes.prototype._unEscape = function (str)
 
 function jsxBackCheck(returnValue, jsxCode)
 {
-    if (returnValue.slice(0,17) == "EvalScript error.")
+    if (returnValue.slice(0, 17) == "EvalScript error.")
     {
         console.error(returnValue);
         console.error(jsxCode)
