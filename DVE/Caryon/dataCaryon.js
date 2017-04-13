@@ -124,14 +124,13 @@ DataCaryon.prototype.cleanLayers = async function ()
 
     for (var x in this.layers)
     {
-        if ( ARR.hasMember(allIds, this.layers[x].id)==false)
+        if (ARR.hasMember(allIds, this.layers[x].id) == false)
         {
             console.info(`[[delete dataCaryonLayer ]]id:${this.layers[x].id} , name:${this.layers[x].name}`)
             delete this.layers[x]
         }
     }
 }
-
 
 
 DataCaryon.prototype.save = async function ()

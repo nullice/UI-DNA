@@ -642,7 +642,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
             if (ARR.hasMember(["name", "id"], x) == false)
             {
 
-                if (x = "position")
+                if (x == "position")
                 {
                     if (typeof  layer[x] == "object")
                     {
@@ -674,8 +674,9 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     {
         if (isNeedRenderLayer(mRNA_DataLayers[x]) != true)
         {
+            console.log("layer - _copyValue: delete notNeed mRNA", x,mRNA_DataLayers[x])
             delete mRNA_DataLayers[x]
-            console.log("layer - _copyValue: delete notNeed mRNA", x)
+
         }
     }
 

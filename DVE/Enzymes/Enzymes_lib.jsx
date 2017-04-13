@@ -72,6 +72,28 @@ EnzJSX.deletLayer = function (id)
         // alert(typeof  selectSave)
         EnzJSX.selectLoad(selectSave)
     }
+}
+
+
+EnzJSX.colorHexToPsCMYK = function (hex)
+{
+    try
+    {
+        var c = new SolidColor();
+        c.rgb.hexValue = hex.slice(1)
+        var cob = {
+
+            k: Math.round(c.cmyk.black),
+            c: Math.round(c.cmyk.cyan),
+            m: Math.round(c.cmyk.magenta),
+            y: Math.round(c.cmyk.yellow),
+        }
+
+        return JSON.stringify(cob);
+    } catch (e)
+    {
+        return ""
+    }
 
 
 }
@@ -126,7 +148,6 @@ EnzJSX.getAllLayersList = function (retrunRaw)
     {
         return JSON.stringify(layersList);
     }
-
 }
 
 
@@ -1054,14 +1075,14 @@ EnzJSX.setLayerInfo_quickEffect_byId = function (quickEffect, id, doSelect)
     {
         try
         {
-            if (typeof quickEffect.copyEffect_All.value  === "object")
+            if (typeof quickEffect.copyEffect_All.value === "object")
             {
                 var obALL = quickEffect.copyEffect_All
 
-            }else{
+            } else
+            {
                 var obALL = JSON.parse(quickEffect.copyEffect_All)
             }
-
 
 
             if (obALL.value != undefined)
@@ -1533,7 +1554,7 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json)
     var layers = mRNA_Layers_json
 
 
-    _func(); //封装功能代码，以便只产生一个 Photoshop 的历史记录
+    // _func(); //封装功能代码，以便只产生一个 Photoshop 的历史记录
 
     app.activeDocument.suspendHistory("UI-DNA 渲染", "_func()");
 

@@ -167,11 +167,11 @@ var VarSystem = function ()
             var c = ichiColor.hsv
             return `hsv(${c.h}, ${c.s}, ${c.v})`;
         },
-        cmyk: function (value, self)
+        cmyk: async function (value, self)
         {
             ichiColor.set(value)
-            var cmyk = ichiColor.ex.colorRNA.CMYK()
-            return `cmyk(${cmyk[0]}, ${cmyk[1]}, ${cmyk[2]}, ${cmyk[3]})`;
+            var cmyk =   await  enzymes.colorHexToPsCMYK(ichiColor.hex)
+            return `cmyk(${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k})`;
         },
         lab: function (value, self)
         {
@@ -186,6 +186,7 @@ var VarSystem = function ()
     /*计数*/
     this.$count = 0;
     this.$layerount = 0;
+
 
 
     return this;
@@ -447,22 +448,22 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         {
             if (inVar[0] == "#" || varValue[0] == ">")
             {
-                return retrunFilter(inVar)
+                return await retrunFilter(inVar)
             }
 
-            return retrunFilter(math.format(math.eval(inVar), {precision: 14}))
+            return await retrunFilter(math.format(math.eval(inVar), {precision: 14}))
         } catch (e)
         {
             console.error(`math.eval(${inVar})`, e)
-            return retrunFilter(inVar)
+            return  await retrunFilter(inVar)
         }
 
-        function retrunFilter(value)
+        async  function  retrunFilter(value)
         {
 
             if (hasFunction)
             {
-                return self._execFunction_end(value, result.funcName)
+                return  await  self._execFunction_end(value, result.funcName)
             } else
             {
                 return value
@@ -518,13 +519,13 @@ VarSystem.prototype._execFunction_satrt = function (varValue)
 }
 
 
-VarSystem.prototype._execFunction_end = function (value, funcName)
+VarSystem.prototype._execFunction_end = async function (value, funcName)
 {
 
     console.log(`_execFunction_end(${value},${funcName})`)
     if (this.varFunctions[funcName] != undefined)
     {
-        var func = this.varFunctions[funcName];
+        var func = await this.varFunctions[funcName];
         var result = func(funcName, this)
         return result
     }

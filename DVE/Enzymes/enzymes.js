@@ -76,6 +76,17 @@ var Enzymes = function ()
 }
 
 
+Enzymes.prototype.colorHexToPsCMYK = async function (hex)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `EnzJSX.colorHexToPsCMYK("${hex}")`;
+        evalScript(_jsxCode,
+            (r) => {resolve(JSON.parse(jsxBackCheck(r, _jsxCode)))})
+    })
+}
+
+
 /**
  * 保存当前文档
  * @returns {Promise}
@@ -778,7 +789,7 @@ Enzymes.prototype._escape = function (str)
         str = str.replace(/\\/g, "\\\\")
         str = str.replace(/\'/g, "$(q1)$")
         str = str.replace(/\"/g, "$(q2)$")
-        str = str.replace(/\n/g, "\\n")
+        str = str.replace(/\r\n|\n/g, "\\n")
     } catch (e)
     {
 
