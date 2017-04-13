@@ -425,8 +425,19 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     this.__getLayerData_cache.layerId = null;
     varSystem.$count = 0;
     varSystem.$layerCount = 0;
+
+    var allLayerArray = await  enzymes.getAllLayerArray()
+
     for (var layerId in dataCaryon.layers)
     {
+
+        if (ARR.getByKey(allLayerArray, "id", layerId) == undefined)
+        {
+            console.log("layer - doAssign: skip deleted layer:", layerId)
+            continue
+        }
+
+
         console.group("layer:", dataCaryon.layers[layerId].name, dataCaryon.layers[layerId].id)
         var propertyNames = ["position", "text", "shape", "smartObject", "quickEffect", "more"]
         for (var i = 0; i < propertyNames.length; i++)
@@ -600,15 +611,21 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     }
 
 
-//  2、表达式解析-------------------------------------------------------------------
+//  2、表达式解析 ，并把 dataCaryon 复制一份到 mRNA  -------------------------------------------------------------------
     console.log("2、表达式解析------------:")
     var mRNA_DataLayers = {}
-
 
     var lastId = null;
 
     for (var layerId in dataCaryon.layers)
     {
+
+        if (ARR.getByKey(allLayerArray, "id", layerId) == undefined)
+        {
+            console.log("layer - _copyValue: skip deleted layer:", layerId)
+            continue
+        }
+
         console.group("_copyValue", "layerId:", layerId)
         mRNA_DataLayers[layerId] = {};
 
@@ -616,6 +633,53 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
         varSystem.$layerCount++;
         console.groupEnd()
     }
+
+    function isNeedRenderLayer(layer) //判断 mRNA 中图层是否是需要渲染的图层，不是则裁剪
+    {
+
+        for (var x in layer)
+        {
+            if (ARR.hasMember(["name", "id"], x) == false)
+            {
+
+                if (x = "position")
+                {
+                    if (typeof  layer[x] == "object")
+                    {
+                        if (Object.keys(layer[x]).length > 1)
+                        {
+                            return true
+                        }
+
+                    }
+
+                } else
+                {
+                    if (typeof  layer[x] == "object")
+                    {
+                        if (OBJ.isEmptyObject(layer[x]) != true)
+                        {
+                            return true
+                        }
+                    }
+                }
+
+            }
+        }
+        return false
+    }
+
+
+    for (var x in mRNA_DataLayers)
+    {
+        if (isNeedRenderLayer(mRNA_DataLayers[x]) != true)
+        {
+            delete mRNA_DataLayers[x]
+            console.log("layer - _copyValue: delete notNeed mRNA", x)
+        }
+    }
+
+    console.log("isNeedRenderLayer", isNeedRenderLayer(dataCaryon.layers[layerId]), dataCaryon.layers[layerId])
 
 
     /**
@@ -730,6 +794,12 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     logger.groupEnd("----------------START【renderDocument】----------------")
 }
 
+
+// EnzJSX.DNAExpress({
+//     "1": {"name": "背景", "id": 1, "position": {"$anchor": "0"}},
+//     "123": {"name": "矩形 1", "id": 123, "position": {"$anchor": "0"}, "shape": {}},
+//     "124": {"name": "矩形 2", "id": 124, "position": {"$anchor": "0", "w": "243", "h": "232"}, "shape": {}}
+// })
 
 /**
  * 值是否出现在数组中
