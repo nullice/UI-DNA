@@ -5,13 +5,14 @@
         <div class="fun_block">
             <div class="info">
                 从选择图层创建链接对象
+
                 <div class="inline-but-bar">
 
                     <input type="checkbox" class="exmo_icon_cheackbox" id="quick_create_1"
                            name="group_derive_mirror"
                            v-model="random">
                     <label class="exmo_button_icon mini" for="quick_create_1">
-                        <span>{{'随机'|lang}}</span></label>
+                        <span>{{'随机' | lang}}</span></label>
                 </div>
             </div>
             <div class="fill-text-item" v-for="item in fill_data_item_list">
@@ -37,7 +38,8 @@
             <div class="info">
                 <span>模板文件夹：</span>
                 <div class="func_enable">
-                    <button title="打开填充模板文件夹" class="exmo_button_icon mini" v-on:click="opn(path.join(setSystem._path_userDataDir, 'FillImage'))">
+                    <button title="打开填充模板文件夹" class="exmo_button_icon mini"
+                            v-on:click="opn(path.join(setSystem._path_userDataDir, 'FillImage'))">
                         <i class="icon-layer-group-collapsed"></i>
                     </button>
 
@@ -59,10 +61,10 @@
 
         <div class="fun_block">
             <div class="exmo_inbox " title="新图层覆盖原有图层的方式">
-                <div class="exmo_box_name">{{'覆盖方式'|lang}}</div>
+                <div class="exmo_box_name">{{'覆盖方式' | lang}}</div>
                 <select class="exmo_select" v-model="o_mask_type" style="width: 126px;">
-                    <option value="CM"> {{"剪贴蒙版"|lang}}</option>
-                    <option value="SM"> {{"蒙版"|lang}}</option>
+                    <option value="CM"> {{"剪贴蒙版" | lang}}</option>
+                    <option value="SM"> {{"蒙版" | lang}}</option>
                 </select>
             </div>
 
@@ -88,12 +90,12 @@
 
 
             <!--<div class="exmo_checkbox" v-show="o_mask_type=='SM'">-->
-                <!--<input type="checkbox" id="quick_create_fsl3"-->
-                       <!--v-model="o_deleteOrgMask">-->
-                <!--<div class="exmo_checkbox_shadow"></div>-->
-                <!--<label for="quick_create_fsl3" title="删除用来生成蒙版的原图层">-->
-                    <!--删除原图层-->
-                <!--</label>-->
+            <!--<input type="checkbox" id="quick_create_fsl3"-->
+            <!--v-model="o_deleteOrgMask">-->
+            <!--<div class="exmo_checkbox_shadow"></div>-->
+            <!--<label for="quick_create_fsl3" title="删除用来生成蒙版的原图层">-->
+            <!--删除原图层-->
+            <!--</label>-->
             <!--</div>-->
 
             <br>
@@ -158,8 +160,8 @@
             return {
                 setSystem: setSystem,
                 random: true,
-                opn:opn,
-                path:path,
+                opn: opn,
+                path: path,
                 o_mask_type: "CM",
                 o_linkLayer: true,
                 o_deleteOrgMask: true,
@@ -178,8 +180,12 @@
                             "C型": ["从"],
                         }
                     },
-
-
+                    {
+                        name: "打开文件...",
+                        title: "",
+                        fillData: "openFiles",
+                    }
+                    ,
                 ],
                 options: [
                     {
@@ -218,9 +224,27 @@
 
                         }
                     }
-                    else if (data.slice(0, 4) === "(_%/")
+                    else if (data === "openFiles")
                     {
-                        data = [data]
+                        try
+                        {
+                            var result = window.cep.fs.showOpenDialogEx(true, false, "打开图片", "");
+
+                            if (result.data != undefined)
+                            {
+                                data = []
+                                for (var i = 0; i < result.data.length; i++)
+                                {
+                                    data.push(result.data[i])
+                                }
+
+                            }
+
+                        } catch (e)
+                        {
+                            console.error(e)
+                        }
+
                     }
 
                 }
