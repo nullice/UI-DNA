@@ -411,7 +411,7 @@
             {
                 var imagePoll = []
 
-                console.info("func_create_smartlink：fillData", fillData)
+//                console.info("func_create_smartlink：fillData", fillData)
 
                 var selectLength = Gob.selectList.length
                 var z = 0;

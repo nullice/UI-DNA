@@ -1127,10 +1127,19 @@ GobCaryon.prototype.getLayerInfoObejct_position = async function (layerId)
     //[position]---------------------------------------------------------------
     var item_position = this.__new_position();
     var position = await enzymes.getLayerInfo_position_byId(layerId)
-    item_position.x = position.x
-    item_position.y = position.y
-    item_position.w = position.w
-    item_position.h = position.h
+
+    try
+    {
+        item_position.x = position.x
+        item_position.y = position.y
+        item_position.w = position.w
+        item_position.h = position.h
+
+    } catch (e)
+    {
+        console.error("GobCaryon.getLayerInfoObejct_position id:", layerId, e)
+    }
+
 
     return item_position
 }
@@ -1141,21 +1150,27 @@ GobCaryon.prototype.getLayerInfoObejct_text = async function (layerId)
     //[text]---------------------------------------------------------------
     var item_text = this.__new_text();
     var text = await enzymes.getLayerInfo_text_byId(layerId);
-    item_text.text = text.text;
-    this._setTypeColor(item_text.color, text.color)
-    item_text.size = text.size;
-    item_text.fontPostScriptName = text.fontPostScriptName;
-    item_text.bold = text.bold;
-    item_text.italic = text.italic;
-    item_text.antiAlias = text.antiAlias;
-    item_text.underline = text.underline;
-    item_text.justification = text.justification;
-    item_text.leading = text.leading;
-    item_text.tracking = text.tracking;
-    item_text.baselineShift = text.baselineShift;
-    item_text.horizontalScale = text.horizontalScale;
-    item_text.verticalScale = text.verticalScale;
 
+    try
+    {
+        item_text.text = text.text;
+        this._setTypeColor(item_text.color, text.color)
+        item_text.size = text.size;
+        item_text.fontPostScriptName = text.fontPostScriptName;
+        item_text.bold = text.bold;
+        item_text.italic = text.italic;
+        item_text.antiAlias = text.antiAlias;
+        item_text.underline = text.underline;
+        item_text.justification = text.justification;
+        item_text.leading = text.leading;
+        item_text.tracking = text.tracking;
+        item_text.baselineShift = text.baselineShift;
+        item_text.horizontalScale = text.horizontalScale;
+        item_text.verticalScale = text.verticalScale;
+    } catch (e)
+    {
+        console.error("GobCaryon.getLayerInfoObejct_text id:", layerId, e)
+    }
     return item_text
 }
 
@@ -1165,17 +1180,25 @@ GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
     // [shape]---------------------------------------------------------------
     var item_shape = this.__new_shape();
     var shape = await enzymes.getLayerInfo_shape_byId(layerId);
-    item_shape.strokeColorEnabled = shape.strokeColorEnabled;
-    this._setTypeColor(item_shape.strokeColor, shape.strokeColor);
-    item_shape.fillColorEnabled = shape.fillColorEnabled;
-    this._setTypeColor(item_shape.fillColor, shape.fillColor);
-    item_shape.lineWidth = shape.lineWidth;
-    item_shape.dashSet = shape.dashSet;
-    item_shape.lineAlignment = shape.lineAlignment;
-    item_shape.lineCapType = shape.lineCapType;
-    item_shape.lineJoinType = shape.lineJoinType;
-    item_shape.shapeSize = shape.shapeSize;
-    item_shape.radian = shape.radian;
+
+    try
+    {
+        item_shape.strokeColorEnabled = shape.strokeColorEnabled;
+        this._setTypeColor(item_shape.strokeColor, shape.strokeColor);
+        item_shape.fillColorEnabled = shape.fillColorEnabled;
+        this._setTypeColor(item_shape.fillColor, shape.fillColor);
+        item_shape.lineWidth = shape.lineWidth;
+        item_shape.dashSet = shape.dashSet;
+        item_shape.lineAlignment = shape.lineAlignment;
+        item_shape.lineCapType = shape.lineCapType;
+        item_shape.lineJoinType = shape.lineJoinType;
+        item_shape.shapeSize = shape.shapeSize;
+        item_shape.radian = shape.radian;
+    } catch (e)
+    {
+        console.error("GobCaryon.getLayerInfo_shape_byId id:", layerId, e)
+    }
+
 
     return item_shape
 }
@@ -1185,9 +1208,18 @@ GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
     // [smartObject]---------------------------------------------------------------
     var item_smartObject = this.__new_smartObject();
     var smartObject = await enzymes.getLayerInfo_smartObject_byId(layerId);
-    item_smartObject.link = smartObject.link;
-    item_smartObject.linked = smartObject.linked;
-    item_smartObject.fileReference = smartObject.fileReference;
+
+    try
+    {
+        item_smartObject.link = smartObject.link;
+        item_smartObject.linked = smartObject.linked;
+        item_smartObject.fileReference = smartObject.fileReference;
+    } catch (e)
+    {
+        console.error("GobCaryon.getLayerInfoObejct_smartObject id:", layerId, e)
+    }
+
+
     return item_smartObject
 }
 
@@ -1198,32 +1230,38 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId, ge
     var item_quickEffect = this.__new_quickEffect();
     var quickEffect = await enzymes.getLayerInfo_quickEffect_byId(layerId);
 
+    try
+    {
+        item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
+        item_quickEffect.dropShadow.opacity = quickEffect.dropShadow.opacity;
+        this._setTypeColor(item_quickEffect.dropShadow.color, quickEffect.dropShadow.color);
+        item_quickEffect.dropShadow.x = quickEffect.dropShadow.x;
+        item_quickEffect.dropShadow.y = quickEffect.dropShadow.y;
+        item_quickEffect.dropShadow.blur = quickEffect.dropShadow.blur;
+        item_quickEffect.dropShadow.spread = quickEffect.dropShadow.spread;
+        if (getRaw)
+        {
+            item_quickEffect.copyEffect_All = JSON.stringify(quickEffect.raw);
+        } else
+        {
+            item_quickEffect.copyEffect_All = quickEffect.copyEffect_All;
+        }
 
-    item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
-    item_quickEffect.dropShadow.opacity = quickEffect.dropShadow.opacity;
-    this._setTypeColor(item_quickEffect.dropShadow.color, quickEffect.dropShadow.color);
-    item_quickEffect.dropShadow.x = quickEffect.dropShadow.x;
-    item_quickEffect.dropShadow.y = quickEffect.dropShadow.y;
-    item_quickEffect.dropShadow.blur = quickEffect.dropShadow.blur;
-    item_quickEffect.dropShadow.spread = quickEffect.dropShadow.spread;
-    if (getRaw)
+        item_quickEffect.copyEffect_dropShadow = quickEffect.copyEffect_dropShadow;
+        item_quickEffect.copyEffect_innerShadow = quickEffect.copyEffect_innerShadow;
+        item_quickEffect.copyEffect_chromeFX = quickEffect.copyEffect_chromeFX;
+        item_quickEffect.copyEffect_frameFX = quickEffect.copyEffect_frameFX;
+        item_quickEffect.copyEffect_bevelEmboss = quickEffect.copyEffect_bevelEmboss;
+        item_quickEffect.copyEffect_innerGlow = quickEffect.copyEffect_innerGlow;
+        item_quickEffect.copyEffect_outerGlow = quickEffect.copyEffect_outerGlow;
+        item_quickEffect.copyEffect_patternFill = quickEffect.copyEffect_patternFill;
+        item_quickEffect.copyEffect_solidFill = quickEffect.copyEffect_solidFill;
+        item_quickEffect.copyEffect_gradientFill = quickEffect.copyEffect_gradientFill;
+    } catch (e)
     {
-        item_quickEffect.copyEffect_All = JSON.stringify(quickEffect.raw);
-    } else
-    {
-        item_quickEffect.copyEffect_All = quickEffect.copyEffect_All;
+        console.error("GobCaryon.getLayerInfoObejct_quickEffect id:", layerId, e)
     }
 
-    item_quickEffect.copyEffect_dropShadow = quickEffect.copyEffect_dropShadow;
-    item_quickEffect.copyEffect_innerShadow = quickEffect.copyEffect_innerShadow;
-    item_quickEffect.copyEffect_chromeFX = quickEffect.copyEffect_chromeFX;
-    item_quickEffect.copyEffect_frameFX = quickEffect.copyEffect_frameFX;
-    item_quickEffect.copyEffect_bevelEmboss = quickEffect.copyEffect_bevelEmboss;
-    item_quickEffect.copyEffect_innerGlow = quickEffect.copyEffect_innerGlow;
-    item_quickEffect.copyEffect_outerGlow = quickEffect.copyEffect_outerGlow;
-    item_quickEffect.copyEffect_patternFill = quickEffect.copyEffect_patternFill;
-    item_quickEffect.copyEffect_solidFill = quickEffect.copyEffect_solidFill;
-    item_quickEffect.copyEffect_gradientFill = quickEffect.copyEffect_gradientFill;
 
     return item_quickEffect
 }
@@ -1236,12 +1274,20 @@ GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
     var moreInfo = await enzymes.getLayerInfo_more_byId(layerId);
 
 
-    item_more.layerName = moreInfo.layerName;
-    item_more.visible = moreInfo.visible;
-    item_more.layerColor = moreInfo.layerColor;
-    item_more.mode = moreInfo.mode;
-    item_more.opacity = moreInfo.opacity;
-    item_more.fillOpacity = moreInfo.fillOpacity;
+    try
+    {
+        item_more.layerName = moreInfo.layerName;
+        item_more.visible = moreInfo.visible;
+        item_more.layerColor = moreInfo.layerColor;
+        item_more.mode = moreInfo.mode;
+        item_more.opacity = moreInfo.opacity;
+        item_more.fillOpacity = moreInfo.fillOpacity;
+
+    } catch (e)
+    {
+        console.error("GobCaryon.getLayerInfoObejct_more id:", layerId, e)
+    }
+
 
     return item_more
 }
@@ -1718,7 +1764,7 @@ GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA, fo
     if (format == true)
     {
         var format = 2;
-    }else
+    } else
     {
         var format = 0;
     }
@@ -1883,11 +1929,10 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format)
     if (format == true)
     {
         var format = 2;
-    }else
+    } else
     {
         var format = 0;
     }
-
 
 
     if (Gob.selectList[0] != undefined)
@@ -1946,7 +1991,7 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format)
             }
         }
 
-        var rna = JSON.stringify(ob,null,format)
+        var rna = JSON.stringify(ob, null, format)
         if (mRNA_encode)
         {
             rna = this.mRNA_encode(rna, "Effect")
