@@ -205,7 +205,35 @@ var VarSystem = function ()
             var done = +leftValue - +w
             // alert("leftValue = " + leftValue + ", w:" + w+" d:"+done)
             return done;
+        },
+
+
+        bottom :  async function (value, self, thisId, names, orgVar)
+        {
+            async function getThisHeigth()
+            {
+                if (dataCaryon.layers[thisId] != undefined)
+                {
+                    if (dataCaryon.layers[thisId].position != undefined && dataCaryon.layers[thisId].position.h != undefined)
+                    {
+                        return await self.evalVar(dataCaryon.layers[thisId].position.h, thisId, ["position","h"])
+                    }
+                }
+                var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
+                return staic_position["h"]
+            }
+
+            var reg = /@\w+/
+            var bottom = orgVar.replace(reg, "$&.y + $&.h")
+
+            var h = await  getThisHeigth()
+            var bottomValue = await self.evalVar(bottom, thisId, names)
+
+            var done = +bottomValue - +h
+            // alert("leftValue = " + leftValue + ", w:" + w+" d:"+done)
+            return done;
         }
+
     }
 
 

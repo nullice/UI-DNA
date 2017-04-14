@@ -319,8 +319,6 @@
                  * 3 新建文本图层
                  * 4 文本图层的文本内容设置为此变量
                  * */
-
-
                 /*创建变量-----------------------------*/
                 var linkVarName = ""
                 if (self.assign_value == undefined || self.assign_value == "")/*没有 assign*/
