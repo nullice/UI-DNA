@@ -49,7 +49,6 @@
             <div class="exmo_box_name">{{'Devtool' | lang}}  </div>
             <button class="exmo_button " v-on:click="openUrl('http://127.0.0.1:9217')">
                 127.0.0.1:9217
-
             </button>
         </div>
 
@@ -112,7 +111,6 @@
             font-size: 12px;
             padding-top: 10px;
             font-weight: bold;
-
         }
 
         .set-item {
@@ -138,11 +136,8 @@
 
         .exmo_input_text, .exmo_select {
             padding: 2px 0;
-
         }
-
     }
-
 </style>
 
 
@@ -159,25 +154,17 @@
                 openUrl: appCaryon.openUrl,
                 showDebugMicroscope: false,
                 appCaryon: appCaryon,
-
-
             }
         },
-
         methods: {
-
             doOpen: function (inPath)
             {
                 opn(inPath)
             }
-
         },
-
         components: {
             "a-area": Area,
             "debug-microscope": DebugPanel,
         },
-
     };
-
 </script>

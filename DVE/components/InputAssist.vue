@@ -2,7 +2,7 @@
 <template>
 
 
-    <div class="input-assist-box" v-bind:class="{'input_foucs':input_foucs}">
+    <div class="input-assist-box {{assist_type}} {{input_foucs?'input_foucs':''}}">
 
         <!--<input type="text" @blur.stop="bl" @focus.stop="fs" >-->
 
@@ -30,7 +30,6 @@
                          v-bind:in_class="(inline_block&&!item.block)?'inline_block':''"
                          v-bind:button="item.button"
             >
-
             </attr-option>
         </div>
     </div>
@@ -49,6 +48,18 @@
         max-height: 999px;
         transition: all .3s;
         overflow: hidden;
+    }
+
+    .mini .input-assist-box.assign_normal {
+        margin-left: 91px;
+    }
+
+    .input-assist-box.assign_normal {
+        margin-left: 165px;
+    }
+
+    .color_input .mini .input-assist-box.assign_normal {
+        margin-left: 165px;
     }
 
     .input-assist-box {
@@ -102,14 +113,47 @@
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
                         selected_func: this.info_pin,
-                        varSystem: varSystem,
-                        dataCaryon: dataCaryon,
-
                         button: true
                     }
-
-
                 ],
+
+                options_assign_normal: [{
+                    value: 'assign_apply_same',
+                    label_html: '<i class="icon-windows" style="font-size: 14px;">',
+                    title: "应用所用启用的赋值项",
+                    selected_func: this.assign_apply_same,
+                    button: true
+                }],
+
+                options_position_x: [{
+                    value: 'info_pin',
+                    label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                    title: "创建变量标注",
+                    selected_func: this.info_pin,
+                    button: true
+                }, {
+                    value: 'position_setLeft',
+                    label_html: '<i class=" icon-export" style="font-size: 14px;  display: inline-block; transform: rotate(-90deg);">',
+                    title: "贴靠左边",
+                    selected_func: this.position_setLeft,
+                    button: true
+                }],
+
+                options_position_y: [{
+                    value: 'info_pin',
+                    label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                    title: "创建变量标注",
+                    selected_func: this.info_pin,
+                    button: true
+                }, {
+                    value: 'position_setBottom',
+                    label_html: '<i class=" icon-export" style="font-size: 14px;">',
+                    title: "贴靠底边",
+                    selected_func: this.position_setLeft,
+                    button: true
+                }],
+
+
                 options_color: [
                     {
                         value: 'color_eyedropper',
@@ -473,7 +517,7 @@
 
                 if (result != undefined && result.data != undefined)
                 {
-                    console.info("open_file:result:",result.data,"result")
+                    console.info("open_file:result:", result.data, "result")
                     if (result.data.length == 1)
                     {
                         this.edit_value = result.data[0]
@@ -537,16 +581,76 @@
                     }
                 }
                 ;
+            },
+            position_setLeft: async function ()
+            {
+                var str = _.trim(this.edit_value)
+                if (str[0] === "@")
+                {
+                    str = `left(${str} - 0)`
+                    this.edit_value = str
+
+                } else if (str.slice(0, 5) == "bottom")
+                {
+                    str = STR.insert(str, 0, 5, "left")
+                    this.edit_value = str
+                }
+                else
+                {
+                    UI_action.show_message_bubble("att_panel", "", Lang.from("需要对象变量的表达式 @ "))
+                }
+
+
+            },
+            position_setButtom: async function ()
+            {
+                var str = _.trim(this.edit_value)
+                if (str[0] === "@")
+                {
+                    str = `bottom(${str} - 0)`
+                    this.edit_value = str
+
+                } else if (str.slice(0, 4) == "left")
+                {
+                    str = STR.insert(str, 0, 4, "bottom")
+                    this.edit_value = str
+                } else
+                {
+                    UI_action.show_message_bubble("att_panel", "", Lang.from("需要对象变量的表达式 @ "))
+                }
+
             }
+            ,
+            assign_apply_same: function ()
+            {
+                var  self =this
 
+                for (var z in Gob)
+                {
+                    if (Gob[z].enableAssigns != undefined)
+                    {
+                        _apply(z)
+                    }
+                }
+                function _apply(item)
+                {
+                    for (var x in Gob[item].enableAssigns)
+                    {
+                        if (Gob[item].enableAssigns[x])
+                        {
+                            Gob[item].assignment[x] = self.edit_value
+                        }
 
+                    }
+
+                }
+            }
         },
         computed: {
             // 一个计算属性的 getter
             now_options: {
                 get: function ()
                 {
-
                     if (this.assist_type == "normal")
                     {
                         return this.options_normal
@@ -567,8 +671,18 @@
                     {
                         return this.options_radian
                     }
-
-
+                    else if (this.assist_type == "position_x")
+                    {
+                        return this.options_position_x
+                    }
+                    else if (this.assist_type == "position_y")
+                    {
+                        return this.options_position_y
+                    }
+                    else if (this.assist_type == "assign_normal")
+                    {
+                        return this.options_assign_normal
+                    }
                     return this.options_normal;
                 },
             },
