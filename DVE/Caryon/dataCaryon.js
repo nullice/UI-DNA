@@ -181,12 +181,11 @@ DataCaryon.prototype.load = async function ()
 
 }
 
-DataCaryon.prototype.switchDocment = async function ()
+DataCaryon.prototype.switchDocment = async function (dontGobSelect)
 {
 
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
     var docId = await enzymes.getActiveDocumentId()
-
 
     if (docId != undefined)
     {
@@ -198,16 +197,14 @@ DataCaryon.prototype.switchDocment = async function ()
         if (this.layers == undefined || OBJ.isEmptyObject(this.layers))
         {
             console.log("load");
-            this.load();
+            await this.load();
         }
 
 
         if (this.info._status[docId] == undefined)
         {
-
             Vue.set(this.info._status, docId, {saved: false, saving: false, _id: docId})
             console.log({saved: false, saving: false}, docId, this.info._status[docId])
-
             this.info.status = this.info._status[docId];
 
         } else
@@ -217,7 +214,12 @@ DataCaryon.prototype.switchDocment = async function ()
 
 
     }
-    Gob.updateSelect();
+
+    if (dontGobSelect != true)
+    {
+        Gob.updateSelect();
+    }
+
 }
 
 

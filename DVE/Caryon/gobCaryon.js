@@ -1056,6 +1056,12 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
 
+    if (dataCaryon.layers == undefined)
+    {
+      await  dataCaryon.switchDocment(true)
+    }
+
+
     logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【开始】选中图层周期 [updateSelect]--------------------")
     logger.group("%c[updateSelect]", "color:#09ae9d;")
 
@@ -1069,6 +1075,7 @@ GobCaryon.prototype.updateSelect = async function ()
     //判断选中图层是否有改变
 
     var newList = (await enzymes.getSelectLayerArray()).reverse();//"获取图层"
+
     this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
     logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
     this.selectList = newList;
@@ -1352,84 +1359,92 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     console.time("拉取每个选中图层的数据")
     //----------2. 拉取每个选中图层的数据：
-
-    if (this.selectList.length < setSystem.inset.selectMax)/*小于最大选中限制时，拉取每个图层的数据*/
+    try
     {
-        for (var i = 0; i < this.selectList.length; i++)
+        if (this.selectList.length > 0)
         {
-            //属性注册[7/8]
-            //[position]---------------------------------------------------------------
-            console.time("position获取耗时")
-            var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
-            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
-            _objectToObject(item_position, temp.position, true, !(i == 0));
-            console.timeEnd("position 获取耗时")
-
-            //[text]---------------------------------------------------------------
-            console.time("text获取耗时")
-            var item_text = await this.getLayerInfoObejct_text(this.selectList[i].id);
-            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
-            _objectToObject(item_text, temp.text, true, !(i == 0));
-            console.timeEnd("text获取耗时")
-
-            // [shape]---------------------------------------------------------------
-            console.time("shape获取耗时")
-            var item_shape = await this.getLayerInfoObejct_shape(this.selectList[i].id);
-            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
-            _objectToObject(item_shape, temp.shape, true, !(i == 0));
-            console.timeEnd("shape获取耗时")
-
-            // [smartObject]---------------------------------------------------------------
-            console.time("smartObject获取耗时")
-            var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
-            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
-            _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
-            console.timeEnd("smartObject获取耗时")
-
-
-            // [quickEffect]---------------------------------------------------------------
-            console.time("quickEffect获取耗时")
-            var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
-            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
-            _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
-            console.timeEnd("quickEffect获取耗时")
-
-            // [more]---------------------------------------------------------------
-            console.time("more获取耗时")
-            var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
-            _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
-            _objectToObject(item_more, temp.more, true, !(i == 0));
-            console.timeEnd("more获取耗时")
-        }
-    } else/*大于最大选中限制时，忽略*/
-    {
-
-        _setObejctAll(temp, Gob.MULT)
-        Gob.position.$anchor = setSystem.gob.$anchor;
-
-        function _setObejctAll(object, value)
-        {
-
-            for (var v in object)
+            if (this.selectList.length < setSystem.inset.selectMax)/*小于最大选中限制时，拉取每个图层的数据*/
             {
-                if (v != 'enableAssigns')
+                for (var i = 0; i < this.selectList.length; i++)
                 {
-                    if (object[v] instanceof Object)
-                    {
-                        _setObejctAll(object[v], value)
 
-                    } else
+
+                    //属性注册[7/8]
+                    //[position]---------------------------------------------------------------
+                    console.time("position获取耗时")
+                    var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
+                    _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
+                    _objectToObject(item_position, temp.position, true, !(i == 0));
+                    console.timeEnd("position 获取耗时")
+
+                    //[text]---------------------------------------------------------------
+                    console.time("text获取耗时")
+                    var item_text = await this.getLayerInfoObejct_text(this.selectList[i].id);
+                    _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text")
+                    _objectToObject(item_text, temp.text, true, !(i == 0));
+                    console.timeEnd("text获取耗时")
+
+                    // [shape]---------------------------------------------------------------
+                    console.time("shape获取耗时")
+                    var item_shape = await this.getLayerInfoObejct_shape(this.selectList[i].id);
+                    _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape")
+                    _objectToObject(item_shape, temp.shape, true, !(i == 0));
+                    console.timeEnd("shape获取耗时")
+
+                    // [smartObject]---------------------------------------------------------------
+                    console.time("smartObject获取耗时")
+                    var item_smartObject = await this.getLayerInfoObejct_smartObject(this.selectList[i].id);
+                    _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject")
+                    _objectToObject(item_smartObject, temp.smartObject, true, !(i == 0));
+                    console.timeEnd("smartObject获取耗时")
+
+
+                    // [quickEffect]---------------------------------------------------------------
+                    console.time("quickEffect获取耗时")
+                    var item_quickEffect = await this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
+                    _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect")
+                    _objectToObject(item_quickEffect, temp.quickEffect, true, !(i == 0));
+                    console.timeEnd("quickEffect获取耗时")
+
+                    // [more]---------------------------------------------------------------
+                    console.time("more获取耗时")
+                    var item_more = await this.getLayerInfoObejct_more(this.selectList[i].id);
+                    _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more")
+                    _objectToObject(item_more, temp.more, true, !(i == 0));
+                    console.timeEnd("more获取耗时")
+                }
+            } else/*大于最大选中限制时，忽略*/
+            {
+                console.log("GobCaryon.updateGob 大于最大选中限制时，忽略")
+                _setObejctAll(temp, Gob.MULT)
+                Gob.position.$anchor = setSystem.gob.$anchor;
+
+                function _setObejctAll(object, value)
+                {
+
+                    for (var v in object)
                     {
-                        object[v] = value
+                        if (v != 'enableAssigns')
+                        {
+                            if (object[v] instanceof Object)
+                            {
+                                _setObejctAll(object[v], value)
+
+                            } else
+                            {
+                                object[v] = value
+                            }
+                        }
                     }
                 }
+
+
             }
         }
-
-
+    } catch (e)
+    {
+        console.error("GobCaryon.updateGob 拉取每个选中图层的数据", e)
     }
-
-
     console.timeEnd("拉取每个选中图层的数据")
     //属性注册[8/8]
 
