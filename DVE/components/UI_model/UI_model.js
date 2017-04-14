@@ -10,6 +10,7 @@ var UI_model = {
 
     msg_bubble: {
         var_panel: {title: "", msg: "", show: false, color: "none"},
+        att_panel: {title: "", msg: "", show: false, color: "none"},
         input_box: {title: "", msg: "", show: false, color: "none"},
         layer_selector: {title: "", msg: "", show: false, color: "none"},
         setting_panel: {title: "", msg: "", show: false, color: "none"},

@@ -14,6 +14,12 @@
             v-bind:area_opened.sync="o_attr_open">
         <attr-option-menu></attr-option-menu>
 
+        <bubble-box v-if="o_msg_bubble.show"
+                    v-bind:msg="o_msg_bubble.msg"
+                    v-bind:msg_title="o_msg_bubble.title"
+                    v-bind:msg_color="o_msg_bubble.color"
+        ></bubble-box>
+
         <div class="exmo_btn_group" data-toggle="buttons">
             <input type="checkbox" v-model="tagsActive.position"
                    name="group1" id="option1" autocomplete="off" checked>
@@ -70,11 +76,13 @@
             <value-input name="X" v-bind:edit_value.sync="Gob.position.x"
                          v-bind:out_value.sync="Gob.position.assignment.x"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.x"
+                         v-bind:assist_type="'position_x'"
                          mini="true"></value-input>
 
             <value-input name="Y" v-bind:edit_value.sync="Gob.position.y"
                          v-bind:out_value.sync="Gob.position.assignment.y"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.y"
+                         v-bind:assist_type="'position_y'"
                          mini="true"></value-input>
 
             <value-input name="W" v-bind:edit_value.sync="Gob.position.w"
@@ -940,6 +948,8 @@
     import VueColorCylinder from "./vue-color-cylinder/vue-color-cylinder.vue"
     import ColorInput from '../components/AttributePanel_color.vue';
     import AttrOptionMenu from "./AttributePanel_optionMenu.vue"
+    import BubbleBox from '../components/MessageBox/BubbleBox.vue';
+
 
     //import CompA from '../components/A.vue'
 
@@ -990,7 +1000,7 @@
                 Gob: Gob,
                 tagsActive: setSystem.ui.panel.main.tagsActive,
                 nameGroupTitle: setSystem.ui.panel.main.nameGroupTitle,
-
+                o_msg_bubble: UI_model.msg_bubble.att_panel,
                 UI_model: UI_model,
                 Lang: Lang,
                 setSystem: setSystem,
@@ -1166,7 +1176,7 @@
             "attr-textarea": AttrTextarea,
             "vue-color-cylinder": VueColorCylinder,
             "color-input": ColorInput,
-
+            "bubble-box": BubbleBox,
             "attr-option-menu": AttrOptionMenu,
 //        "comp-a":ValueInput
         }

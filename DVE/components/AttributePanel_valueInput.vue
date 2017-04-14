@@ -17,30 +17,37 @@
                v-bind:class="{'uppercase':o_uppercase}"
                @focus.stop="on_foucs"
                @blur.stop="on_blur"
-
         >
-
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name+title|lowercase}}" autocomplete="off"
                checked
                v-model:value="enable_assign">
         <label class="attr_value_set exmo_button_icon mini" for="check_btn_{{name+title|lowercase}}"
                title="{{'赋值到:' |lang}}"><i
-                class="icon-carousel-right"></i></label>
+                class="icon-carousel-right"></i>
+        </label>
 
         <input type="text" class="exmo_input_text out_input"
                v-model:value="o_out"
-               v-bind:placeholder="o_out_placeholder">
+               v-bind:placeholder="o_out_placeholder"
+               @focus.stop="o_foucs2=true"
+               @blur.stop="o_foucs2=false"
+        >
 
         <input-assist
-
                       v-bind:input_foucs="o_foucs"
                       v-bind:assist_type="assist_type"  v-bind:edit_value.sync="o_edit"
                       v-bind:assign_value.sync="o_out"   v-bind:enable_assign.sync="enable_assign"
                       v-bind:assist_range_max="assist_range_max" v-bind:input_title="title||name"
                       v-bind:assist_range_min="assist_range_min"  v-bind:assist_range_width="assist_range_width"
-
         ></input-assist>
+
+        <input-assist
+                v-bind:input_foucs="o_foucs2"
+               assist_type="assign_normal"  v-bind:edit_value.sync="o_out"
+        ></input-assist>
+
+
     </div>
 
 </template>
@@ -175,6 +182,7 @@
                 o_out_isMult: false,
                 o_uppercase: false,
                 o_foucs: false,
+                o_foucs2:false,
 //                pressOut_input: pressOut_input,
             }
         },

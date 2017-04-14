@@ -29,7 +29,7 @@
                              v-bind:in_title="item.title||''"
                              v-bind:in_class="(inline_block&&!item.block)?'inline_block':''"
                              v-bind:button="item.button"
-                             v-bind:in_class2="item.class?item.class:''"
+                             v-bind:in_class2="returnValue(item.class)"
                              v-bind:state.sync="item.state"
                 >
 
@@ -238,6 +238,16 @@
         },
         methods: {
 
+            returnValue: function (inClass)
+            {
+                if(inClass==undefined)
+                {
+                    return ""
+                }else
+                {
+                    return inClass
+                }
+            },
             click_menu_button: function ()
             {
 //                alert(1)

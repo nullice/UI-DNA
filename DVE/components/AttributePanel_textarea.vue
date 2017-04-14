@@ -12,11 +12,12 @@
         <div class="value_input_textarea_sub"
              v-bind:class="{press_out:enable_assign, mini:mini}">
 
-            <div class="text_minisize">
-                <input type="checkbox" class="exmo_icon_cheackbox" id="check_text_minisize" autocomplete="off" checked="">
-                <label class="text_minisize exmo_button_icon mini" for="check_text_minisize"><i class="icon-shrink" title="最小化文本框"></i></label>
-            </div>
-
+            <!--todo: 自动缩小文本框-->
+            <!--<div class="text_minisize">-->
+                <!--<input type="checkbox" class="exmo_icon_cheackbox" id="check_text_minisize" autocomplete="off"-->
+                       <!--checked="">-->
+                <!--<label class="text_minisize exmo_button_icon mini" for="check_text_minisize"><i class="icon-shrink" title="最小化文本框"></i></label>-->
+            <!--</div>-->
 
 
             <div class="checkbox">
@@ -88,7 +89,7 @@
 
             .press_out {
 
-                .out_input  {
+                .out_input {
                     width: 97px;
                     transition: all 0.3s;
                 }
@@ -98,10 +99,19 @@
         .text_minisize {
             position: absolute;
             left: 44px;
-            margin-top: 2px;
+            margin-top: 3px;
             display: inline-block;
             text-align: left;
             z-index: 2;
+
+            padding: 0px 3px;
+
+            i {
+                font-size: 12px;
+                vertical-align: baseline;
+                margin-top: -1px;
+            }
+
         }
     }
 

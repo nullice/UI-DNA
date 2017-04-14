@@ -190,7 +190,6 @@ Kinase.document.save_byActive = function ()
 }
 
 
-
 // Kinase.selection
 // 选区相关功能  ====================================================================================================
 Kinase.selection = {}
@@ -455,6 +454,11 @@ Kinase.layer.layerIdArray_ToItemIndexArray = function (layerIdArray)
  */
 Kinase.layer.getTargetLayersItemIndex = function ()
 {
+    if (app.documents.length < 1)//
+    {
+        return []
+    }
+
     var ref = new ActionReference();
     ref.putProperty(charIDToTypeID('Prpr'), stringIDToTypeID("targetLayers"));
     ref.putEnumerated(charIDToTypeID("Dcmn"), charIDToTypeID('Ordn'), charIDToTypeID('Trgt'));

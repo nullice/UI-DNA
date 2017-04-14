@@ -310,7 +310,6 @@
         methods: {
             msgOpen: function (url)
             {
-
                 opn(url)
             },
 
@@ -322,10 +321,8 @@
                     this.messge = messge
                 }
             },
-
             checkUpdate: async function ()
             {
-
                 var latest = await  netCaryon.getLatestVersion()
                 if (latest != undefined)
                 {
@@ -336,9 +333,7 @@
 
                         return true
                     }
-
                 }
-
                 return false
             },
             click_update: async function ()

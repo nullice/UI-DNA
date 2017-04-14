@@ -1553,19 +1553,14 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json)
     var log = ""
     var layers = mRNA_Layers_json
 
-
     // _func(); //封装功能代码，以便只产生一个 Photoshop 的历史记录
-
     app.activeDocument.suspendHistory("UI-DNA 渲染", "_func()");
-
 
     function _func()
     {
         var save = EnzJSX.selectSave(true);
-
         //图层信息查询缓存
         var queryCache = {};
-
         //【首轮循环】----------------------------
         var _inArray = EnzJSX._inArray;
         for (var layerId in layers)
