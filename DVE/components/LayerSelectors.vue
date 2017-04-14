@@ -26,8 +26,12 @@
 
 
         <div class="mini_info">
-            <span class="layerNumber">{{Gob.selectList.length}}</span>
+            <span class="layerNumber" title="{{'选中图层数'|lang}}">{{Gob.selectList.length}}</span>
         </div>
+        <div class="mini_select_preview">
+            <span>{{select_preview_text}}</span>
+        </div>
+
 
         <div class="layers_list">
             <div class="layer-item" v-for="layer in Gob.selectList">
@@ -70,6 +74,7 @@
             </div>
 
         </div>
+
     </a-area>
 </template>
 
@@ -92,6 +97,22 @@
         position: absolute;
         top: 6px;
         left: 77px;
+    }
+
+    .mini_select_preview {
+        position: absolute;
+        top: 12px;
+        left: 101px;
+        font-size: 11px;
+        font-weight: normal;
+        color: rgba(0, 0, 0, 0.52);
+        -webkit-user-select: text;
+        cursor: default;
+        white-space: nowrap;
+        max-width: calc(100% - 168px);
+        display: inline-block;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     .layer-item {
@@ -426,8 +447,7 @@
                 ]
 
 
-                async
-                function ok_func(data, doneFunc)
+                async function ok_func(data, doneFunc)
                 {
                     if (data[0].value == "")
                     {
@@ -472,8 +492,7 @@
                 }
                 data[0].select = x;
 
-                async
-                function ok_func(data, doneFunc)
+                async function ok_func(data, doneFunc)
                 {
 
                     if (data[0].select == undefined || data[0].select === "")
@@ -520,6 +539,37 @@
                 UI_action.show_message_input("layer_selector", "图层选中状态记录", data, ok_func)
 
 
+            }
+
+
+        },
+        computed: {
+            select_preview_text: {
+                get: function ()
+                {
+                    var text = ""
+                    for (var i = 0; i < Gob.selectList.length ; i++)
+                    {
+                        if(i>5)
+                        {
+                            break;
+                        }
+                        text += Gob.selectList[i].name
+                        if (i < Gob.selectList.length - 1 )
+                        {
+                            text += ", "
+                        }
+
+
+                    }
+                    if (Gob.selectList.length > 5)
+                    {
+                        text +="..."
+                    }
+
+
+                    return text
+                }
             }
 
 
