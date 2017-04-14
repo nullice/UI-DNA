@@ -529,33 +529,63 @@
             var rankIds_xy = sortIds(ids, "xy", layerPool)
 
 
+            //顶点图层 Zero
+            //  Zero x   x
+            //   x   x   x
+            //   x   x   x
             var zero = getByKey(layerPool, "id", rankIds_xy[0])
             var layerArr = idsTolayerArr(rankIds_xy, layerPool)
             // $.writeln("rowColDivide layerArr.length：" + json(layerArr.length))
             // $.writeln("rowColDivide rankIds_xy：" + json(rankIds_xy))
             // $.writeln("rowColDivide rankIds_xy.slice(1)：" + json(rankIds_xy.slice(1)))
 
+
+            //例外的图层，如尺寸为0的图层，
+            var exceptIds = []
+
+            // 在 zero 右边的所有图层
             var zeroRigth = []
+
+            // 在 zero 下边的所有图层
+            var zeroBottom = []
+
             for (var i = 0; i < layerArr.length; i++)
             {
+                if (layerArr[i].id == zero.id)
+                {
+                    continue
+                }
+
+                if (layerArr[i].x == 0 && layerArr[i].y == 0 && layerArr[i].h == 0 && layerArr[i].w == 0)
+                {
+                    exceptIds.push(layerArr[i].id)
+                    continue
+                }
+
+                if (layerArr[i].x < zero.right && layerArr[i].y < zero.bottom)
+                {
+                    exceptIds.push(layerArr[i].id)
+                    continue
+                }
+
                 if (layerArr[i].x >= zero.right)
                 {
                     zeroRigth.push(layerArr[i].id)
                 }
-            }
-            // $.writeln("zeroRigth：" + json(zeroRigth))
 
-            var zeroBottom = []
-            for (var i = 0; i < layerArr.length; i++)
-            {
                 if (layerArr[i].y >= zero.bottom)
                 {
                     zeroBottom.push(layerArr[i].id)
                 }
+
             }
+            // $.writeln("zeroRigth：" + json(zeroRigth))
+
+
             // $.writeln("zeroBottom：" + json(zeroBottom))
 
 
+            // 通过差集计算出行列
             var rowIds = difference(zeroBottom, zeroRigth)
             var colIds = difference(zeroRigth, zeroBottom)
             // rowIds = sortIds(rowIds, "y", layerPool)
@@ -568,6 +598,13 @@
             // $.writeln("colIds：" + json(colIds))
 
             var thisRow = []
+
+            for (var i = 0; i < exceptIds.length; i++)
+            {
+                thisRow.push(exceptIds[i])
+                SingleIds.push(exceptIds[i])
+            }
+
             thisRow.push(zero.id)
             SingleIds.push(zero.id)
             for (var i = 0; i < colIds.length; i++)
