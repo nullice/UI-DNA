@@ -170,7 +170,7 @@ var VarSystem = function ()
         cmyk: async function (value, self)
         {
             ichiColor.set(value)
-            var cmyk =   await  enzymes.colorHexToPsCMYK(ichiColor.hex)
+            var cmyk = await  enzymes.colorHexToPsCMYK(ichiColor.hex)
             return `cmyk(${cmyk.c}, ${cmyk.m}, ${cmyk.y}, ${cmyk.k})`;
         },
         lab: function (value, self)
@@ -178,7 +178,33 @@ var VarSystem = function ()
             ichiColor.set(value)
             var c = ichiColor.ex.labPs
             return `lab(${c.l}, ${c.a}, ${c.b})`;
-            ;
+        },
+
+        left: async function (value, self, thisId, names, orgVar)
+        {
+            async function getThisWidth()
+            {
+                if (dataCaryon.layers[thisId] != undefined)
+                {
+                    if (dataCaryon.layers[thisId].position != undefined && dataCaryon.layers[thisId].position.w != undefined)
+                    {
+                        return await self.evalVar(dataCaryon.layers[thisId].position.w, thisId, ["position","w"])
+                    }
+                }
+                var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
+                return staic_position["w"]
+            }
+
+            var reg = /@\w+/
+            var left = orgVar.replace(reg, "$&.x + $&.w")
+
+            var w = await  getThisWidth()
+            var leftValue = await self.evalVar(left, thisId, names)
+            // console.log({value, self, thisId, names, orgVar})
+
+            var done = +leftValue - +w
+            // alert("leftValue = " + leftValue + ", w:" + w+" d:"+done)
+            return done;
         }
     }
 
@@ -186,7 +212,6 @@ var VarSystem = function ()
     /*计数*/
     this.$count = 0;
     this.$layerount = 0;
-
 
 
     return this;
@@ -333,10 +358,12 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         if (result.funcName != undefined)
         {
             var inVar = result.value;
+            var orgVar = result.value;
             var hasFunction = true;
         } else
         {
             var inVar = varValue;
+            var orgVar = varValue;
             var hasFunction = false;
         }
 
@@ -455,15 +482,15 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         } catch (e)
         {
             console.error(`math.eval(${inVar})`, e)
-            return  await retrunFilter(inVar)
+            return await retrunFilter(inVar)
         }
 
-        async  function  retrunFilter(value)
+        async function retrunFilter(value)
         {
 
             if (hasFunction)
             {
-                return  await  self._execFunction_end(value, result.funcName)
+                return await  self._execFunction_end(value, result.funcName, thisId, names, orgVar)
             } else
             {
                 return value
@@ -472,7 +499,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         }
     } catch (e)
     {
-       console.error(e)
+        console.error(e)
         return varValue
     }
 }
@@ -519,14 +546,14 @@ VarSystem.prototype._execFunction_satrt = function (varValue)
 }
 
 
-VarSystem.prototype._execFunction_end = async function (value, funcName)
+VarSystem.prototype._execFunction_end = async function (value, funcName, thisId, names, orgVar)
 {
 
     console.log(`_execFunction_end(${value},${funcName})`)
     if (this.varFunctions[funcName] != undefined)
     {
         var func = await this.varFunctions[funcName];
-        var result = func(funcName, this)
+        var result = func(value, this, thisId, names, orgVar)
         return result
     }
 
@@ -594,7 +621,6 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
  */
 VarSystem.prototype.scanFormulasInText = function (formula, flat)
 {
-
     // var re = /{{\s*[\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
     var re = /{{\s*[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_\$\@￥\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
 
