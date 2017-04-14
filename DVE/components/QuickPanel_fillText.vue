@@ -5,6 +5,12 @@
         <div class="fun_block">
             <div class="info">
                 文本填充
+
+
+
+
+
+
                 <div class="inline-but-bar">
 
 
@@ -12,7 +18,7 @@
                            name="group_derive_mirror"
                            v-model="random">
                     <label class="exmo_button_icon mini" for="quick_text_fill_02">
-                        <span>{{'随机'|lang}}</span></label>
+                        <span>{{'随机' | lang}}</span></label>
                 </div>
             </div>
             <div class="fill-text-item" v-for="item in fill_data_item_list">
@@ -111,26 +117,20 @@
                 random: true,
                 fill_data_item_list: [],
                 fill_data_item_list_org: [
-                    {
-                        name: "士大夫撒",
-                        title: "",
-                        fillData: ["阿萨德发", "sdaf1发士大夫", "sadf1", "sdf"],
-                    },
-                    {
-                        name: "人名",
-                        title: "",
-                        fillData: "all",
-                        moreData: {
-                            "A型": ["CE", "CE", "C6"],
-                            "B型": ["C1", "C2", "C3"],
-                            "C型": ["CC", "CC", "C2"],
-                        }
-                    },
+//                    {
+//                        name: "人名",
+//                        title: "",
+//                        fillData: "all",
+//                        moreData: {
+//                            "A型": ["CE", "CE", "C6"],
+//                            "B型": ["C1", "C2", "C3"],
+//                            "C型": ["CC", "CC", "C2"],
+//                        }
+//                    },
                     {
                         name: "数字序列",
                         title: "",
                         fillData: "(_%/count%_)",
-
                     },
                     {
                         name: "电话号码占位",
@@ -139,12 +139,9 @@
                         moreData: {
                             "中国大陆": ["(_%/phone_cn%_)"],
                             "台湾": ["(_%/phone_tw%_)"],
-                            "美国": ["(_%/phone_us%_)"],
+                            "日本": ["(_%/phone_jp%_)"],
                         }
-
-
                     },
-
 
                 ],
                 options: [
@@ -362,16 +359,35 @@
                     } else if (getValue === "(_%/phone_cn%_)")
                     {
                         var a = [156, 181, 171, 136, 219]
-                        var b = "xxxx"
+                        var b = "XXXX"
                         var c = Math.floor(1000 + Math.random() * (9999 - 1000 + 1))
                         getValue = a[Math.floor(Math.random() * (a.length - 1))] + b + c
                     }
                     else if (getValue === "(_%/phone_tw%_)")
                     {
-                        var a = [156, 181, 171, 136, 219]
-                        var b = "xxxx"
-                        var c = Math.floor(1000 + Math.random() * (9999 - 1000 + 1))
-                        getValue = a[Math.floor(Math.random() * (a.length - 1))] + b + c
+                        var seed = '0123456789', i = 0, len = seed.length, max = 10, rs = '', min = 0;
+                        var def = new Array('0910', '0911', '0912', '0919', '0921', '0928', '0932', '0933', '0934', '0937', '0963', '0972', '0914', '0918', '0920', '0922', '0935', '0939', '0952', '0953', '0958', '0961', '0970', '0916', '0917', '0926', '0930', '0931', '0936', '0954', '0955', '0913', '0915', '0925', '0927', '0938', '0924', '0929', '0956', '0960', '0971', '0923', '0968', '0982', '0986', '0987', '0988', '0989');
+                        var st = 0;
+                        if (st == 0) rs = def[Math.floor(Math.random() * def.length)].toString(); else rs = st.toString();
+                        min = rs.length;
+                        for (i = 0; i < max - min; i++)
+                        {
+                            rs += seed.substr(Math.floor(Math.random() * len), 1);
+                        }
+                       rs =  STR.insert(rs,3,3,"XXX")
+                        getValue = rs
+                    }
+                    else if (getValue === "(_%/phone_jp%_)")
+                    {
+                        var seed = '0123456789', i = 0, len = seed.length, max = 11, rs = '', min = 0;
+                        var def = new Array('050', '080', '090', '070', '020', '060');
+                        var st = 0;
+                        if (st == 0) rs = def[Math.floor(Math.random() * def.length)].toString(); else rs = st.toString();
+                        min = rs.length;
+                        for (i = 0; i < max - min; i++)rs += seed.substr(Math.floor(Math.random() * len), 1);
+
+                        rs = STR.insert(rs,4,3,"XXX")
+                        getValue = rs
                     }
 
                     return getValue
@@ -383,4 +399,7 @@
             "menu-buttom": MenuButtom
         }
     }
+
+
+
 </script>
