@@ -636,7 +636,6 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     function isNeedRenderLayer(layer) //判断 mRNA 中图层是否是需要渲染的图层，不是则裁剪
     {
-
         for (var x in layer)
         {
             if (ARR.hasMember(["name", "id"], x) == false)

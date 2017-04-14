@@ -253,14 +253,21 @@
                         state: false,
                         selected_func: this.doFreshen,
                     },
+                    doClean: {
+                        name: Lang.from("清理数据"),
+                        title: Lang.from("清理当前文档已失效的数据"),
+                        type: "button",
+                        state: false,
+                        selected_func: this.doClean,
+                    },
                     hr: {
                         type: "multi_select",
                         state: true,
                         hr: true,
                     },
                     setting_c: {
-                        name: Lang.from("冷重启 UI-DNA"),
-                        title: Lang.from("不保留当前应用状态"),
+                        name: Lang.from("冷重启"),
+                        title: Lang.from("不保留当前应用状态的重启"),
                         type: "button",
                         state: false,
                         selected_func: function ()
@@ -269,7 +276,8 @@
                         },
                     },
                     setting: {
-                        name: Lang.from("重启 UI-DNA"),
+                        name: Lang.from("重启"),
+                        title: Lang.from("重启 UI-DNA"),
                         type: "button",
                         state: false,
                         selected_func: function ()
@@ -332,6 +340,25 @@
             doOpenSettingPanel: function ()
             {
                 setSystem.ui.panel.main.settingPanel = true
+            },
+
+            doClean: async function ()
+            {
+                var count = 0
+                var allLayerArray = await  enzymes.getAllLayerArray()
+
+                for (var x in  dataCaryon.layers)
+                {
+                    if (ARR.getByKey(allLayerArray, "id", x) == undefined)
+                    {
+                        console.log("clean data deleted emty layer:", x)
+                        delete  dataCaryon.layers[x]
+                        count++
+                    }
+                }
+           
+                UI_action.show_message_bubble("layer_selector", "", Lang.from("已清理 ") + count + Lang.from(" 项无用数据"), "")
+
             }
 
         },

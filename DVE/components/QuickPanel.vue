@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="../bin/CSS/Vendor/animate.css">
 <template>
 
-    <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true">
+    <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true",  v-bind:area_init_close="true">
         <!--<pre> {{Gob_selectTypes|json}}</pre>-->
 
         <!--变换-->
