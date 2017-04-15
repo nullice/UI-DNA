@@ -23,7 +23,7 @@
                 in_class="expresspanel_setting"
         >
             <div class="data_caryon_setting">
-                <button v-on:click="doOpenSettingPanel" class="exmo_button_icon mini" title="{{'设置'|lang}}">
+                <button v-on:click="doOpenSettingPanel" class="exmo_button_icon mini" title="{{'打开设置'|lang}}">
                     <i class="icon-settings"></i>
                 </button>
             </div>
@@ -42,7 +42,7 @@
         >
 
             <div class="data_caryon_save">
-                <button v-on:click="doDataSave" class="exmo_button_icon mini">
+                <button v-on:click="doDataSave" class="exmo_button_icon mini" title="{{'保存 UI-DNA 数据到文档'|lang}}">
                     <i v-bind:class="{eff_animation_flip:o_data_status.status.saving}" class="icon-floppy-disk"></i>
                 </button>
                 <div v-show="o_data_status.status.saved" class="data_saved_icon"><i class="icon-checkmark"></i></div>

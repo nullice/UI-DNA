@@ -170,16 +170,16 @@
 
                 fill_data_item_list: [],
                 fill_data_item_list_org: [
-                    {
-                        name: "调试",
-                        title: "",
-                        fillData: "all",
-                        moreData: {
-                            "A型": ["啊"],
-                            "B型": ["b"],
-                            "C型": ["从"],
-                        }
-                    },
+//                    {
+//                        name: "调试",
+//                        title: "",
+//                        fillData: "all",
+//                        moreData: {
+//                            "A型": ["啊"],
+//                            "B型": ["b"],
+//                            "C型": ["从"],
+//                        }
+//                    },
                     {
                         name: "打开文件...",
                         title: "",

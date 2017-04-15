@@ -44,7 +44,9 @@
             <div class="info">
                 <span>模板文件夹：</span>
                 <div class="func_enable">
-                    <button title="打开填充模板文件夹" class="exmo_button_icon mini">
+                    <button title="打开填充模板文件夹"
+                            v-on:click="opn(path.join(setSystem._path_userDataDir, 'FillTxet'))"
+                            class="exmo_button_icon mini">
                         <i class="icon-layer-group-collapsed"></i>
                     </button>
 
@@ -115,6 +117,8 @@
             return {
                 setSystem: setSystem,
                 random: true,
+                path: path,
+                opn: opn,
                 fill_data_item_list: [],
                 fill_data_item_list_org: [
 //                    {
@@ -308,6 +312,8 @@
 
             func_text_fillText: async function (fillData)
             {
+
+                var  self =this
                 var textTable = await Proteins.exec("quick_text_calcTextTable")
                 var z = 0;
                 var count = 1;
@@ -335,7 +341,7 @@
                 {
                     var getValue = null;
 
-                    console.info("self.random")
+                    console.info("self.random",self.random)
                     if (self.random)
                     {
                         var index = Math.floor(Math.random() * (fillData.length - 1))
