@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="../bin/CSS/Vendor/animate.css">
 <template>
 
-    <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true",  v-bind:area_init_close="true">
+    <a-area area_title="快捷功能" area_id="quick_panel" v-bind:area_disable_fixbut="true" v-bind:area_opened="true" ,
+            v-bind:area_init_close="true">
         <!--<pre> {{Gob_selectTypes|json}}</pre>-->
 
         <!--变换-->
@@ -53,13 +54,15 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.transform_angle}">
                     <div class="info">
                         变换平面角度
+
+
                     </div>
 
                     <div class="exmo_inbox " title="为 0 时自动计算">
                         <div class="exmo_box_name">变换角</div>
                         <select class="exmo_select" v-model="o_tansform_anglePanel" style="width: 126px;">
-                            <option value="0"> {{"左"|lang}}</option>
-                            <option value="1"> {{"右"|lang}}</option>
+                            <option value="0"> {{"左" | lang}}</option>
+                            <option value="1"> {{"右" | lang}}</option>
                         </select>
                     </div>
                 </div>
@@ -206,9 +209,9 @@
                     <div class="exmo_inbox " title="新图层的命名方式">
                         <div class="exmo_box_name">命名</div>
                         <select class="exmo_select" v-model="o_derive_matrix_rename" style="width: 126px;">
-                            <option value="0"> {{"默认"|lang}}</option>
-                            <option value="1"> {{"原名 -序号"|lang}}</option>
-                            <option value="2"> {{"原名 -行号-列号"|lang}}</option>
+                            <option value="0"> {{"默认" | lang}}</option>
+                            <option value="1"> {{"原名 -序号" | lang}}</option>
+                            <option value="2"> {{"原名 -行号-列号" | lang}}</option>
                         </select>
                     </div>
 
@@ -231,6 +234,8 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_mirror}">
                     <div class="info">
                         镜像方向
+
+
                         <div class="inline-but-bar">
                             <input type="radio" class="exmo_icon_cheackbox" id="quick_derive_mirror_01"
                                    value="0" name="group_derive_mirror"
@@ -252,6 +257,8 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_longShadow}">
                     <div class="info">
                         长阴影方向
+
+
                     </div>
 
                     <div class="exmo_inbox min">
@@ -339,6 +346,8 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.derive_3D_depth}">
                     <div class="info">
                         厚度层方向
+
+
                     </div>
 
                     <div class="exmo_inbox min">
@@ -381,6 +390,8 @@
                     <br>
                     <div class="info">
                         斜面不透明度
+
+
                     </div>
                     <div class="exmo_inbox min">
                         <div class="exmo_box_name">顶部</div>
@@ -524,6 +535,8 @@
                     <br>
                     <div class="info">
                         行内垂直对齐方式
+
+
                         <div class="inline-but-bar"><input type="radio" class="exmo_icon_cheackbox"
                                                            id="quick_permute_01"
                                                            value="top" name="group_permut_spacing0"
@@ -589,6 +602,8 @@
                     <br>
                     <div class="info">
                         图层对齐网格锚点
+
+
                     </div>
 
                     <select-input block="true" default_value="0"
@@ -695,6 +710,8 @@
                     <div class="fun_block">
                         <div class="info">
                             设置圆角 {{o_radius_now}}
+
+
                         </div>
 
                         <div class="exmo_inbox">
@@ -794,6 +811,8 @@
                     <div class="fun_block">
                         <div class="info">
                             形状属性
+
+
                             <div class="more_button_bar_big inline">
                                 <button class="exmo_button_ghost" v-on:click="func_shape_copyShapeProperty">复制</button>
                                 <button class="exmo_button_ghost" v-on:click="func_shape_pasetShapeProperty">粘贴</button>
@@ -809,6 +828,8 @@
 
                         <div class="info">
                             SVG
+
+
                             <div class="more_button_bar_big inline">
                                 <button class="exmo_button_ghost" v-on:click="func_shape_copySvg">复制</button>
                                 <button class="exmo_button_ghost" v-on:click="func_shape_saveSvg">导出</button>
@@ -874,6 +895,8 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.text_multEditor}">
                     <div class="info">
                         多文本框编辑
+
+
                         <div class="more_button_bar_big inline">
                             <button class="exmo_button_ghost" v-on:click="func_text_multEditor_render">应用</button>
                         </div>
@@ -884,6 +907,8 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.text_dataEditor}">
                     <div class="info">
                         数据化编辑
+
+
 
                         <div class="inline-but-bar data-editor-mode ">
                             <input type="radio" class="exmo_icon_cheackbox"
@@ -963,6 +988,8 @@
                 <div class="quick_more_item" v-bind:class="{'more_on':more_onoff.create_textTable}">
                     <div class="info">
                         创建文本表格
+
+
                         <div class="inline-but-bar data-editor-mode ">
                             <input type="radio" class="exmo_icon_cheackbox"
                                    id="quick_ceate_t01"
@@ -1237,7 +1264,6 @@
                 margin-bottom: 8px;
             }
 
-
             h4 {
                 font-weight: normal;
                 font-size: 13px;
@@ -1253,8 +1279,7 @@
                 padding-top: 3px;
                 position: relative;
 
-                &:not(:nth-last-of-type(1))
-                {
+                &:not(:nth-last-of-type(1)) {
                     margin-bottom: 4px;
                 }
 
@@ -2366,6 +2391,18 @@
                 {
 
                     var csv = self.o_text_dataEditor_input
+                    //-------------------------------------
+
+                    if (csv.search != undefined)
+                    {
+                        var findC = csv.search(",")
+                        if (findC == -1)
+                        {
+                            csv = csv.replace(/\t/g, ", ")
+                        }
+                    }
+
+                    //-------------------------------------
                     var newArr = nodeCsvReader.parse(csv)
                     toTextTable(newArr)
                     Proteins.exec("quick_text_textTableRender", {

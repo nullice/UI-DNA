@@ -59,18 +59,6 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="eventCaryon.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Caryon/eventCaryon.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="363">
-                  <caret line="85" column="61" lean-forward="false" selection-start-line="85" selection-start-column="48" selection-end-line="85" selection-end-column="61" />
-                  <folding>
-                    <element signature="n#!!doc" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
@@ -81,11 +69,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="QuickPanel_fillText.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="QuickPanel_fillText.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="174">
-                  <caret line="315" column="21" lean-forward="false" selection-start-line="315" selection-start-column="21" selection-end-line="315" selection-end-column="21" />
+                <state relative-caret-position="405">
+                  <caret line="314" column="0" lean-forward="false" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
                   <folding>
                     <element signature="n#style#0;n#!!top" expanded="false" />
                     <element signature="e#3486#4465#0" expanded="false" />
@@ -113,6 +101,44 @@
                 <state relative-caret-position="328">
                   <caret line="68" column="47" lean-forward="false" selection-start-line="68" selection-start-column="47" selection-end-line="68" selection-end-column="47" />
                   <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="QuickPanel.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/components/QuickPanel.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="552">
+                  <caret line="2400" column="33" lean-forward="false" selection-start-line="2400" selection-start-column="33" selection-end-line="2400" selection-end-column="33" />
+                  <folding>
+                    <marker date="1492232605621" expanded="true" signature="59777:59793" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="60027:60043" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="60236:60252" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="60525:60541" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="60734:60750" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="60943:60959" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="61212:61228" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="61421:61437" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="61651:61667" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="62828:62844" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="63078:63094" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="63287:63303" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="63576:63592" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="63785:63801" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="63994:64010" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="64263:64279" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="64472:64488" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="64702:64718" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="66787:66803" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="67037:67053" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="67246:67262" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="67535:67551" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="67744:67760" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="67953:67969" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="68222:68238" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="68431:68447" ph="..." />
+                    <marker date="1492232605621" expanded="true" signature="68661:68677" ph="..." />
+                  </folding>
                 </state>
               </provider>
             </entry>
@@ -251,8 +277,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>o_msg_bubble</find>
-      <find>message-content</find>
       <find>text_minisize</find>
       <find>EnzJSX</find>
       <find>options_position_x</find>
@@ -281,6 +305,8 @@
       <find>computed</find>
       <find>quick_text_calcTextTable</find>
       <find>random</find>
+      <find>数据化</find>
+      <find>func_text_dataEditor_render</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -341,7 +367,6 @@
         <option value="$PROJECT_DIR$/Caryon/dataCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
         <option value="$PROJECT_DIR$/components/LayerSelectors.vue" />
-        <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
         <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/Proteins/libs/quick_permute.jsx" />
         <option value="E:/Project/nullice.com/新主页/2017 修改/index.html" />
@@ -350,6 +375,7 @@
         <option value="$PROJECT_DIR$/components/ExpressionPanel.vue" />
         <option value="$USER_HOME$/AppData/Roaming/nullice.designEnzyme/UI-DNA/UserData/FillTxet/人名.json" />
         <option value="$PROJECT_DIR$/components/QuickPanel_fillText.vue" />
+        <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
       </list>
     </option>
   </component>
@@ -836,12 +862,12 @@
       <workItem from="1491719774939" duration="18549000" />
       <workItem from="1491796448120" duration="52436000" />
       <workItem from="1491972569892" duration="20117000" />
-      <workItem from="1492053635478" duration="61259000" />
+      <workItem from="1492053635478" duration="62679000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3153686000" />
+    <option name="totallyTimeSpent" value="3155106000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1295,42 +1321,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/QuickPanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="143" lean-forward="false" selection-start-line="4" selection-start-column="143" selection-end-line="4" selection-end-column="143" />
-          <folding>
-            <marker date="1492181850959" expanded="true" signature="59746:59762" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="59996:60012" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="60205:60221" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="60494:60510" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="60703:60719" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="60912:60928" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="61181:61197" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="61390:61406" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="61620:61636" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="62797:62813" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="63047:63063" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="63256:63272" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="63545:63561" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="63754:63770" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="63963:63979" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="64232:64248" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="64441:64457" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="64671:64687" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="66756:66772" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="67006:67022" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="67215:67231" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="67504:67520" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="67713:67729" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="67922:67938" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="68191:68207" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="68400:68416" ph="..." />
-            <marker date="1492181850959" expanded="true" signature="68630:68646" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -1472,11 +1462,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/components/QuickPanel_fillText.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="315" column="21" lean-forward="false" selection-start-line="315" selection-start-column="21" selection-end-line="315" selection-end-column="21" />
+        <state relative-caret-position="405">
+          <caret line="314" column="0" lean-forward="false" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
           <folding>
             <element signature="n#style#0;n#!!top" expanded="false" />
             <element signature="e#3486#4465#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/QuickPanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="552">
+          <caret line="2400" column="33" lean-forward="false" selection-start-line="2400" selection-start-column="33" selection-end-line="2400" selection-end-column="33" />
+          <folding>
+            <marker date="1492232605621" expanded="true" signature="59777:59793" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="60027:60043" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="60236:60252" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="60525:60541" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="60734:60750" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="60943:60959" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="61212:61228" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="61421:61437" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="61651:61667" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="62828:62844" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="63078:63094" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="63287:63303" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="63576:63592" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="63785:63801" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="63994:64010" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="64263:64279" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="64472:64488" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="64702:64718" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="66787:66803" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="67037:67053" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="67246:67262" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="67535:67551" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="67744:67760" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="67953:67969" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="68222:68238" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="68431:68447" ph="..." />
+            <marker date="1492232605621" expanded="true" signature="68661:68677" ph="..." />
           </folding>
         </state>
       </provider>

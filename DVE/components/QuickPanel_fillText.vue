@@ -312,7 +312,6 @@
 
             func_text_fillText: async function (fillData)
             {
-
                 var  self =this
                 var textTable = await Proteins.exec("quick_text_calcTextTable")
                 var z = 0;
