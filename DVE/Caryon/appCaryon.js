@@ -54,7 +54,6 @@ AppCaryon.prototype.unzipInstallExtra = function ()
         if (fs.existsSync(zipPath))
         {
             var adm_zip = new AdmZip(zipPath)
-            adm_zip.__decode ="gbk"
             adm_zip.extractAllTo(setSystem._path_userDataDir, true)
 
         }else

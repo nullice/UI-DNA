@@ -489,7 +489,13 @@
                     if (now_color != color)
                     {
 //                        console.info("watchColor_end-2",now_color )
-                        self.edit_value = now_color;
+
+                        setTimeout(function ()
+                        {
+                            self.edit_value = now_color;
+                        },200)
+
+
                         await Proteins.exec("inputAssist_setCurrentTool", {toolName: tool})
                         await Proteins.exec("inputAssist_setForegroundColor_hex", {hexValue: oldColor.slice(1)})
                         return;

@@ -84,6 +84,7 @@
         watch: {
             "o_color": function (val)
             {
+
                 var _outsideOperate = this.o_outsideOperate;
                 this.o_outsideOperate = false;
                 var self = this;
@@ -95,6 +96,7 @@
                     if (val[0] != "#")
                     {
                         this.color.$hex = val;
+
                         _setColorFromVar();
                         async function _setColorFromVar()
                         {
@@ -117,6 +119,7 @@
                     }
                     else
                     {
+
                         this.ichi_color.hex = val;
                         this.color.r = this.ichi_color.r;
                         this.color.g = this.ichi_color.g;
