@@ -15,7 +15,7 @@
 <style>
 
     .attr_option.rigth-but {
-        position: absolute;
+        position: absolute!important;
         right: 0;
     }
 

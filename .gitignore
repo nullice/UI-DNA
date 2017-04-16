@@ -1,11 +1,14 @@
 node_modules
 VI
 TEMP
+RELEASE
 
 !DVE/bin/node_modules
 !DVE/bin/node_modules/*/node_modules
 !DVE/bin/node_modules/*/node_modules/*/node_modules
 !DVE/bin/node_modules/*/node_modules/*/node_modules/*/node_modules
+
+
 
 # Windows image file caches
 Thumbs.db

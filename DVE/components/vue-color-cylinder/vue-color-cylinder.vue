@@ -683,7 +683,7 @@
                     hue: {
                         name: "Hue",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                     },
                     hr: {
                         type: "multi_select",
@@ -743,7 +743,7 @@
                     rgb: {
                         name: "RGB",
                         type: "multi_select",
-                        state: true,
+                        state: false,
                         child: {
                             r: true,
                             g: true,
