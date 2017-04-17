@@ -183,7 +183,7 @@ SetSystem.prototype.save = function (checkChange)
     {
         if (__saveJson == obJson)
         {
-            console.log("SetSystem..save() checkChange:未更改")
+            // console.log("SetSystem..save() checkChange:未更改")
             return
         }
     }

@@ -1102,11 +1102,11 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
 
-    if (this.disableAttrPanel)// AttrPanel 关闭了，不需要更新
-    {
-
-    } else
-    {
+    // if (this.disableAttrPanel)// AttrPanel 关闭了，不需要更新 - 取消这个策略 2017.4.17
+    // {
+    //
+    // } else
+    // {
         //******************
         try
         {
@@ -1117,7 +1117,7 @@ GobCaryon.prototype.updateSelect = async function ()
         }
 
         //******************
-    }
+    // }
 
     this.selectUpdateing = false;
     console.log("selectUpdateing:false")
@@ -1367,7 +1367,6 @@ GobCaryon.prototype.updateGob = async function (disableRender)
             {
                 for (var i = 0; i < this.selectList.length; i++)
                 {
-
 
                     //属性注册[7/8]
                     //[position]---------------------------------------------------------------
