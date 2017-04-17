@@ -157,7 +157,6 @@
             }
 
 
-
             function angleOnce()
             {
                 var orgBounds = Kinase.layer.getLayersRange(Kinase.layer.getTargetLayersID())
@@ -226,15 +225,21 @@
 
             function scaleEffect(scale)
             {
-                var ad = new ActionDescriptor();
-                ad.putUnitDouble(charIDToTypeID("Scl "), charIDToTypeID("#Prc"), (+scale) * 100);
-                executeAction(stringIDToTypeID("scaleEffectsEvent"), ad, DialogModes.NO);
+                try
+                {
+                    var ad = new ActionDescriptor();
+                    ad.putUnitDouble(charIDToTypeID("Scl "), charIDToTypeID("#Prc"), (+scale) * 100);
+                    executeAction(stringIDToTypeID("scaleEffectsEvent"), ad, DialogModes.NO);
+                } catch (e)
+                {
+                    $.writeln("  Libs.quick_transform_scale scaleEffect",e)
+                }
             }
 
         }
 
 
-        Proteins.doCon(_func, "缩放", false)
+        Proteins.doCon(_func, "缩放", true)
     }
 
 
@@ -261,11 +266,11 @@
 
             function rotationOnce()
             {
-               Kinase.layer.rotationLayer_byActive({
-                   angle :infoObjec.angle||0,
-                   centerState:infoObjec.centerState,
+                Kinase.layer.rotationLayer_byActive({
+                    angle: infoObjec.angle || 0,
+                    centerState: infoObjec.centerState,
 
-               })
+                })
             }
 
 
