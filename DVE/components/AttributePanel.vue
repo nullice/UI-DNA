@@ -771,6 +771,9 @@
 
 
     </a-area>
+    <div class="panel-shadow"></div>
+
+
 </template>
 
 <style lang="scss" rel="stylesheet/scss">
@@ -929,13 +932,21 @@
 
     .exmo_area.attr_panel.area_pad.suspend_off {
         overflow: hidden;
-        position: absolute;
+        position: fixed;
         bottom: 88px;
         border-bottom: none;
         border-top: 2px solid rgba(0, 0, 0, 0.08);
         height: 6px;
         background: #F0F0F0;
 
+    }
+
+    .panel-shadow{
+        height: 0;
+    }
+
+    .exmo_area.attr_panel.area_pad.suspend_off+.panel-shadow {
+        height: 38px;
     }
 
     .attr_panel .exmo_btn_group {

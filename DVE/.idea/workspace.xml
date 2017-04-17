@@ -130,25 +130,25 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="AttributePanel.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="105">
-                  <caret line="5" column="75" lean-forward="true" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
+                <state relative-caret-position="396">
+                  <caret line="949" column="5" lean-forward="true" selection-start-line="949" selection-start-column="5" selection-end-line="949" selection-end-column="5" />
                   <folding>
                     <element signature="n#div#0;n#a-area#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#label#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#div#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#div#1;n#div#6;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-                    <marker date="1492401557914" expanded="true" signature="46045:46061" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="46295:46311" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="46504:46520" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="46793:46809" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="47002:47018" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="47211:47227" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="47480:47496" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="47689:47705" ph="..." />
-                    <marker date="1492401557914" expanded="true" signature="47919:47935" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="46218:46234" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="46468:46484" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="46677:46693" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="46966:46982" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="47175:47191" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="47384:47400" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="47653:47669" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="47862:47878" ph="..." />
+                    <marker date="1492416020239" expanded="true" signature="48092:48108" ph="..." />
                   </folding>
                 </state>
               </provider>
@@ -212,7 +212,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="quick_transform.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="quick_transform.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_transform.jsx">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="301">
@@ -239,7 +239,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>o_color</find>
       <find>色</find>
       <find>rigth-but</find>
       <find>.attr_option.rigth-but</find>
@@ -269,6 +268,7 @@
       <find>_getVueColorCylinderMenu</find>
       <find>.position_anchor</find>
       <find>stopSelectEvent</find>
+      <find>scaleEffect</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -332,12 +332,12 @@
         <option value="$PROJECT_DIR$/components/AttributePanel_selectInput.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
         <option value="$PROJECT_DIR$/components/InputAssist.vue" />
-        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue" />
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
         <option value="$PROJECT_DIR$/Proteins/libs/quick_transform.jsx" />
+        <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
       </list>
     </option>
   </component>
@@ -818,12 +818,12 @@
       <workItem from="1492242472313" duration="707000" />
       <workItem from="1492244537669" duration="10396000" />
       <workItem from="1492344664968" duration="931000" />
-      <workItem from="1492346968593" duration="19200000" />
+      <workItem from="1492346968593" duration="20134000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3190469000" />
+    <option name="totallyTimeSpent" value="3191403000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -838,15 +838,15 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815595" sideWeight="0.7183099" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24815595" sideWeight="0.71180934" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32733223" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.34669557" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1685761" sideWeight="0.52094716" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.41495124" sideWeight="0.4790528" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22708113" sideWeight="0.3347779" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24815595" sideWeight="0.2881907" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16576381" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22708113" sideWeight="0.6652221" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22708113" sideWeight="0.6652221" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26218852" sideWeight="0.4667747" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815595" sideWeight="0.22426869" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1329,28 +1329,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="75" lean-forward="true" selection-start-line="5" selection-start-column="75" selection-end-line="5" selection-end-column="75" />
-          <folding>
-            <element signature="n#div#0;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#label#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#div#1;n#div#6;n#a-area#0;n#template#0;n#!!top" expanded="false" />
-            <marker date="1492401557914" expanded="true" signature="46045:46061" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="46295:46311" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="46504:46520" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="46793:46809" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="47002:47018" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="47211:47227" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="47480:47496" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="47689:47705" ph="..." />
-            <marker date="1492401557914" expanded="true" signature="47919:47935" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="290">
@@ -1408,6 +1386,28 @@
         <state relative-caret-position="301">
           <caret line="190" column="0" lean-forward="false" selection-start-line="190" selection-start-column="0" selection-end-line="190" selection-end-column="30" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="949" column="5" lean-forward="true" selection-start-line="949" selection-start-column="5" selection-end-line="949" selection-end-column="5" />
+          <folding>
+            <element signature="n#div#0;n#a-area#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#label#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#3;n#a-area#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#1;n#div#6;n#a-area#0;n#template#0;n#!!top" expanded="false" />
+            <marker date="1492416020239" expanded="true" signature="46218:46234" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="46468:46484" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="46677:46693" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="46966:46982" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="47175:47191" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="47384:47400" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="47653:47669" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="47862:47878" ph="..." />
+            <marker date="1492416020239" expanded="true" signature="48092:48108" ph="..." />
+          </folding>
         </state>
       </provider>
     </entry>
