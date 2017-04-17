@@ -657,9 +657,12 @@
                 {
                     for (var x in setting)
                     {
+//                        console.log("setting",x)
                         if (self.o_menu[x] != undefined)
                         {
-                            setting[x].state = setting[x].state
+//                            console.log("self.o_menu ",self.o_menu[x])
+//                            console.log("self.o_menu[x].state ", self.o_menu[x].state)
+                            self.o_menu[x].state= setting[x].state
 
                             if (setting[x].child != undefined && self.o_menu[x].child != undefined)
                             {

@@ -5,6 +5,7 @@
 var fs = require("fs")
 var path = require("path")
 
+var __saveJson
 console.info("[module] - settingCaryon.js")
 var SetSystem = function ()
 {
@@ -38,8 +39,8 @@ var SetSystem = function ()
                     "9": "9",
                 }
             },
-            att:{
-                nowFreshen:false,
+            att: {
+                nowFreshen: false,
             }
         },
         hostTheme: {
@@ -64,14 +65,19 @@ var SetSystem = function ()
 
 
     this.inset = {
-        able_saveDoc:false,/*保存uidna属性同时保存文档*/
+        able_saveDoc: false, /*保存uidna属性同时保存文档*/
         selectMax: 6, /*最大选中图层数，大于这个数，选中图层时 Gob 将不从实际图层拉取数据而是仅显示“多值”*/
     }
 
     this.autoRender = false;
     this.init();
 
-    this.timerForSave()
+    var self = this
+    setTimeout(function ()
+    {
+        self.timerForSave()
+    }, 1500)
+
     return this;
 
 }
@@ -85,7 +91,7 @@ SetSystem.prototype.timerForSave = function ()
     setTimeout(function ()
     {
         self.timerForSave()
-    }, 20000)
+    }, 15000)
 }
 
 /**
@@ -95,7 +101,7 @@ SetSystem.prototype.init = function ()
 {
     //目录初始化
 
-    var uidnaInfo = ARR.getByKey(cs.getExtensions(),"id",cs.getExtensionID())
+    var uidnaInfo = ARR.getByKey(cs.getExtensions(), "id", cs.getExtensionID())
     this._path_extensionDir = uidnaInfo.basePath;
 
     this._userDataDir = "";
@@ -139,7 +145,12 @@ SetSystem.prototype.init = function ()
     this._path_userExDir = userExDir;
 
     logger.pin("setting", "settingCaryon.js:SetSystem.prototype.init",
-        "初始化目录", {"extensionDir":this._path_extensionDir,"seriesDir": seriesDir, "appDir": appDir, "userDataDir": userDataDir})
+        "初始化目录", {
+            "extensionDir": this._path_extensionDir,
+            "seriesDir": seriesDir,
+            "appDir": appDir,
+            "userDataDir": userDataDir
+        })
 
 
     //END ----------------------------
@@ -164,20 +175,22 @@ SetSystem.prototype.init = function ()
 SetSystem.prototype.save = function (checkChange)
 {
 
+    this.vcc = this.getVueColorCylinderMenu()// VueColorCylinder 设置
+
     var obJson = JSON.stringify(this, null, 4)
 
     if (checkChange)
     {
-        if (this._svaeJson === obJson)
+        if (__saveJson == obJson)
         {
             console.log("SetSystem..save() checkChange:未更改")
             return
         }
     }
 
-    this._svaeJson = obJson
+    __saveJson = obJson
     var filePath = path.join(this._path_userDataDir, "setting.json")
-    console.log("设置保存.",filePath)
+    console.log("[设置保存.]", filePath)
     fs.writeFileSync(filePath, obJson)
 }
 
@@ -186,22 +199,34 @@ SetSystem.prototype.load = function ()
 {
     try
     {
-        if (fs.existsSync(path.join(this._path_userDataDir, "setting.json")))
+        var filePath = path.join(this._path_userDataDir, "setting.json")
+        if (fs.existsSync(filePath))
         {
-            var data = fs.readFileSync(path.join(this._path_userDataDir, "setting.json"))
+            var data = fs.readFileSync(filePath)
             if (data != undefined)
             {
                 var ob = JSON.parse(data)
                 if (typeof  ob === "object")
                 {
                     OBJ.objectCopyToObject(ob, this)
+                    console.log("[设置载入.]", filePath)
+                    if (this.vcc != undefined)
+                    {
+                        this.setVueColorCylinderMenu(this.vcc) // VueColorCylinder 设置
+                    }else
+                    {
+                        console.log("[设置载入 vcc 无效]", this)
+                    }
+
+                }else{
+                    console.log("[设置载入无效.]", filePath)
                 }
             }
         }
     }
     catch (e)
     {
-        console.error(e)
+        console.error("[设置载入失败]SetSystem.prototype.load",e)
     }
 }
 
@@ -239,10 +264,10 @@ SetSystem.prototype.loadAppState = function ()
                 var ob = JSON.parse(data)
                 if (typeof  ob === "object")
                 {
-                    console.log("loadAppState",ob)
+                    console.log("loadAppState", ob)
                     OBJ.objectCopyToObject(ob.dataCaryon, dataCaryon)
                     varSystem.loadVarsFromObject(ob.vars)
-                    console.log(`cs.resizeContent(${ob.ui.lastWidth}, ${ob.ui.lastHeight})`,cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight))
+                    console.log(`cs.resizeContent(${ob.ui.lastWidth}, ${ob.ui.lastHeight})`, cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight))
                     cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight)
                     if (ob.useonce)
                     {
@@ -354,18 +379,15 @@ SetSystem.prototype.loadLanguage = function ()
 SetSystem.prototype.outDebugLanguageJson = function ()
 {
 
-    var ob= {
-        languageName:'Debug',
-        languageMap:Lang.LANG_DEBUG
+    var ob = {
+        languageName: 'Debug',
+        languageMap: Lang.LANG_DEBUG
     }
     var obJson = JSON.stringify(ob, null, 4)
     fs.writeFileSync(path.join(this._path_languageDir, "Debug.language.json"), obJson)
 
 
 }
-
-
-
 
 
 //---------------------------

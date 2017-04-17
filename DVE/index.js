@@ -214,6 +214,7 @@ import SettingPanel from  "./components/SettingPanel.vue"
 
 //初始化-------------------------------------------
 setSystem.load()
+
 if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
 {
 
@@ -225,6 +226,7 @@ if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
 }
 setTimeout(function ()
 {
+    setSystem.load()
     setSystem.loadLanguage()
     Lang.currentLANG = setSystem.ui.language
     setSystem.loadUserCss()
