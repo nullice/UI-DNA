@@ -47,24 +47,24 @@
     }
 
     .color_input .exmo_inbox.value_input_box.mini {
-        width: 250px;
+        width: calc(100% - 15px);
     }
 
     .color_input .exmo_inbox.value_input_box.mini:not(.press_out) .edit_input {
-        width: 150px;
+        width: calc(100% - 55px);
     }
 
     .color_input .exmo_inbox.value_input_box.mini:not(.press_out):hover .edit_input {
-        width: 150px;
+        width: calc(100% - 85px);
     }
 
     .color_input .exmo_inbox.value_input_box.mini.press_out .edit_input {
-        width: 65px;
+        width: calc(50% - 45px);
 
     }
 
     .color_input .exmo_inbox.value_input_box.mini.press_out .out_input {
-        width: 84px;
+        width: calc(50% - 45px);
     }
 
     .color_input .value_input_box .exmo_box_name {

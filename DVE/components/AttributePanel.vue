@@ -96,7 +96,7 @@
 
             <select-input block="true" default_value="0"
                           v-bind:value.sync="Gob.position.$anchor"
-                          v-bind:select_style="{width:'69px'}"
+                          v-bind:select_style="{width:'75px'}"
                           v-bind:list_style="{width:'147px'}"
                           v-bind:options="o_positon_anchor_options"
                           in_class="position_anchor"
@@ -323,6 +323,7 @@
                          v-bind:edit_value.sync="Gob.text.fontPostScriptName"
                          v-bind:out_value.sync="Gob.text.assignment.fontPostScriptName"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.fontPostScriptName"
+                         mini="true"
             ></value-input>
 
 
@@ -331,8 +332,8 @@
                          v-bind:edit_value.sync="Gob.text.size"
                          v-bind:out_value.sync="Gob.text.assignment.size"
                          v-bind:enable_assign.sync="Gob.text.enableAssigns.size"
-                         v-bind:assist_range_max="128"
-                         v-bind:assist_range_width="150"
+                         v-bind:assist_range_max="72"
+
 
                          mini="true"></value-input>
 
@@ -786,6 +787,7 @@
     .exmo_area.attr_panel {
         border-bottom: none;
     }
+
     span.name_group_name {
         position: absolute;
         margin-top: -24px;
@@ -823,7 +825,7 @@
     }
 
     .attr_select.position_anchor {
-        margin-left: 161px;
+        margin-left: calc(50% + 20px);
     }
 
     .option_list.position_anchor {
@@ -849,6 +851,7 @@
         height: 250px;
 
     }
+
     .tag-more.trans-fade-att-transition {
         height: 450px;
 
@@ -859,7 +862,7 @@
     }
 
     .trans-fade-att-transition {
-        transition: all .2s ease;
+        transition: all 0s ease;
         height: 150px;
         opacity: 1;
 
@@ -934,6 +937,13 @@
 
     }
 
+    .attr_panel .exmo_btn_group {
+        text-align: center;
+    }
+
+    .tag-box.tag-position.trans-fade-att-transition.active {
+        margin-bottom: -40px;
+    }
 
 </style>
 

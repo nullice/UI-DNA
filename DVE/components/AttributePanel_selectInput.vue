@@ -25,7 +25,9 @@
 <style lang='scss' rel="stylesheet/scss">
 
     .select_input {
+
         .more-edit{
+            width: calc(100% - 130px);
             display: inline-block;
             vertical-align: bottom;
             opacity: 0;
@@ -35,6 +37,10 @@
                 display: none;
             }
 
+
+            .value_input_box.mini{
+                width: calc(100%);
+            }
         }
 
         &:hover .more-edit{

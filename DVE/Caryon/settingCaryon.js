@@ -70,6 +70,8 @@ var SetSystem = function ()
 
     this.autoRender = false;
     this.init();
+
+    this.timerForSave()
     return this;
 
 }
@@ -83,7 +85,7 @@ SetSystem.prototype.timerForSave = function ()
     setTimeout(function ()
     {
         self.timerForSave()
-    }, 30000)
+    }, 20000)
 }
 
 /**
@@ -174,7 +176,9 @@ SetSystem.prototype.save = function (checkChange)
     }
 
     this._svaeJson = obJson
-    fs.writeFileSync(path.join(this._path_userDataDir, "setting.json"), obJson)
+    var filePath = path.join(this._path_userDataDir, "setting.json")
+    console.log("设置保存.",filePath)
+    fs.writeFileSync(filePath, obJson)
 }
 
 

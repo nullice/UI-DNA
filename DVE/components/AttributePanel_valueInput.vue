@@ -58,33 +58,44 @@
         color: rgb(173, 173, 173);
     }
 
+
+
+    .exmo_inbox.value_input_box .exmo_input_text
+    {
+
+        margin: 4px 2px;
+    }
+
+
+
     .exmo_inbox.value_input_box.mini {
-        width: 128px;
-        overflow: hidden;
+        width: calc(50% - 10px);
+        position: relative;
+        overflow: visible;
 
         .edit_input {
-            width: 85px;
+            width: calc(100% - 30px);
         }
 
         &:not(.press_out) {
             .edit_input {
-                width: 85px;
+                width: calc(100% - 30px);
                 transition: all 0.3s;
             }
 
             &:hover .edit_input {
-                width: 60px;
+                width: calc(100% - 70px);
             }
         }
 
         &.press_out {
             .edit_input {
-                width: 23px;
+                width: calc(50% - 30px);
                 transition: all 0.3s;
             }
 
             .out_input {
-                width: 23px;
+                width: calc(50% - 35x);
                 transition: all 0.3s;
 
             }
@@ -95,6 +106,15 @@
     label.attr_value_set.exmo_button_icon {
         opacity: 0;
         display: none;
+        padding: 2px 2px;
+        padding-top: 3px;
+
+        i{
+            margin-top:  -2px;
+            font-size: 12px;
+            display: inline-block;
+        }
+
     }
 
     .value_input_box:hover label.attr_value_set.exmo_button_icon {
@@ -110,10 +130,11 @@
     .value_input_box .exmo_box_name {
         width: 24px;
         transition: all 0.3s;
+        padding-right: 2px;
     }
 
     .exmo_inbox.value_input_box {
-        width: 260px;
+        width: calc(100% - 15px);
         overflow: hidden;
         transition: all 0.3s;
         white-space: nowrap;
@@ -122,12 +143,12 @@
     .value_input_box:not(.press_out) {
 
         .edit_input {
-            width: 217px;
+            width: calc(100% - 45px);
             transition: all 0.3s;
         }
 
         &:hover .edit_input {
-            width: 190px;
+            width: calc(100% - 65px);
         }
 
     }
@@ -142,12 +163,12 @@
 
     .press_out {
         .edit_input {
-            width: 97px;
+            width: calc(50% - 36px);
             transition: all 0.3s;
         }
 
         .out_input {
-            width: 97px;
+            width: calc(50% - 36px);
             transition: all 0.3s;
 
             /*display: inline-block;*/

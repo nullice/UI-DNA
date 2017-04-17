@@ -2,14 +2,14 @@
 <template>
 
 
-    <div class="input-assist-box {{assist_type}} {{input_foucs?'input_foucs':''}}">
+    <div class="input-assist-box {{assist_type}} {{(assist_range_max!=undefined)?'range':''}} {{input_foucs?'input_foucs':''}}">
 
         <!--<input type="text" @blur.stop="bl" @focus.stop="fs" >-->
 
         <div class="assist-range" v-if="assist_range_max!=undefined">
             <input type="range" v-model="edit_value" debounce="800" class="exmo_range" v-bind:max="assist_range_max"
                    v-bind:min="assist_range_min||0" v-bind:style="o_range_style">
-            <div class="max-info">{{assist_range_max}}</div>
+            <div class="max-info">{{edit_value}} / {{assist_range_max}}</div>
 
         </div>
 
@@ -38,6 +38,13 @@
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
+
+    .input-assist-box.range {
+        width:  calc(100% - 32px);
+
+    }
+
+
     .exmo_inbox.value_input_box .input-assist-box:not(:hover) {
         max-height: 0px;
         transition: all .5s;
@@ -51,15 +58,15 @@
     }
 
     .mini .input-assist-box.assign_normal {
-        margin-left: 91px;
+        margin-left: calc(50% + 34px);
     }
 
     .input-assist-box.assign_normal {
-        margin-left: 165px;
+        margin-left: calc(50% + 8px);
     }
 
     .color_input .mini .input-assist-box.assign_normal {
-        margin-left: 165px;
+        margin-left: calc(50% + 42px);
     }
 
     .input-assist-box {
@@ -76,17 +83,20 @@
         }
 
         .assist-range {
+
             position: relative;
             input.exmo_range {
+                width: 100%;
                 padding: 10px;
-                width: 90px;
+                box-sizing: border-box;
             }
 
             .max-info {
-                font-size: 8px;
+                font-size: 9px;
                 position: absolute;
                 right: 12px;
                 top: 18px;
+                font-weight: normal;
                 color: rgba(0, 0, 0, 0.46);
             }
         }
@@ -149,7 +159,7 @@
                     value: 'position_setBottom',
                     label_html: '<i class=" icon-export" style="font-size: 14px;">',
                     title: "贴靠底边",
-                    selected_func: this.position_setLeft,
+                    selected_func: this.position_setButtom,
                     button: true
                 }],
 
@@ -490,10 +500,11 @@
                     {
 //                        console.info("watchColor_end-2",now_color )
 
+                        self.edit_value = now_color;
                         setTimeout(function ()
                         {
                             self.edit_value = now_color;
-                        },200)
+                        },500)
 
 
                         await Proteins.exec("inputAssist_setCurrentTool", {toolName: tool})
@@ -704,7 +715,7 @@
                     else
                     {
                         return {
-                            width: "90px"
+                            width: "calc(100% - 30px);"
                         }
                     }
                 },
