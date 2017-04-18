@@ -5662,15 +5662,26 @@ Kinase.layer.creatNewColorSampler = function (x, y)
  */
 Kinase.layer.isLayerSet = function (targetReference, target)
 {
-    var layerSection = ki.layer.get_XXX_Objcet(targetReference, target, "layerSection").layerSection.value.enumerationValue;
 
-    if (layerSection == "layerSectionStart")
+    try
     {
-        return true;
-    } else
+        var layerSection = ki.layer.get_XXX_Objcet(targetReference, target, "layerSection").layerSection.value.enumerationValue;
+
+        if (layerSection == "layerSectionStart")
+        {
+            return true;
+        } else
+        {
+            return false;
+        }
+    } catch (e)
     {
-        return false;
+
+        $.writeln("err : Kinase.layer.isLayerSet: " + e)
+
     }
+    return false;
+
 }
 /**
  * 判断图层是否是画板

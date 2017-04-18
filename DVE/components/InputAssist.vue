@@ -500,11 +500,11 @@
                     {
 //                        console.info("watchColor_end-2",now_color )
 
-                        self.edit_value = now_color;
+//                        self.edit_value = now_color;
                         setTimeout(function ()
                         {
                             self.edit_value = now_color;
-                        },500)
+                        },300)
 
 
                         await Proteins.exec("inputAssist_setCurrentTool", {toolName: tool})
