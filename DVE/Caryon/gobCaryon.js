@@ -1133,10 +1133,10 @@ GobCaryon.prototype.getLayerInfoObejct_position = async function (layerId)
 {
     //[position]---------------------------------------------------------------
     var item_position = this.__new_position();
-    var position = await enzymes.getLayerInfo_position_byId(layerId)
 
     try
     {
+        var position = await enzymes.getLayerInfo_position_byId(layerId)
         item_position.x = position.x
         item_position.y = position.y
         item_position.w = position.w
@@ -1156,10 +1156,11 @@ GobCaryon.prototype.getLayerInfoObejct_text = async function (layerId)
 {
     //[text]---------------------------------------------------------------
     var item_text = this.__new_text();
-    var text = await enzymes.getLayerInfo_text_byId(layerId);
+
 
     try
     {
+        var text = await enzymes.getLayerInfo_text_byId(layerId);
         item_text.text = text.text;
         this._setTypeColor(item_text.color, text.color)
         item_text.size = text.size;
@@ -1186,10 +1187,11 @@ GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
 {
     // [shape]---------------------------------------------------------------
     var item_shape = this.__new_shape();
-    var shape = await enzymes.getLayerInfo_shape_byId(layerId);
+
 
     try
     {
+        var shape = await enzymes.getLayerInfo_shape_byId(layerId);
         item_shape.strokeColorEnabled = shape.strokeColorEnabled;
         this._setTypeColor(item_shape.strokeColor, shape.strokeColor);
         item_shape.fillColorEnabled = shape.fillColorEnabled;
@@ -1214,10 +1216,11 @@ GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
 {
     // [smartObject]---------------------------------------------------------------
     var item_smartObject = this.__new_smartObject();
-    var smartObject = await enzymes.getLayerInfo_smartObject_byId(layerId);
+
 
     try
     {
+        var smartObject = await enzymes.getLayerInfo_smartObject_byId(layerId);
         item_smartObject.link = smartObject.link;
         item_smartObject.linked = smartObject.linked;
         item_smartObject.fileReference = smartObject.fileReference;
@@ -1235,10 +1238,11 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId, ge
 {
     // [quickEffect]---------------------------------------------------------------
     var item_quickEffect = this.__new_quickEffect();
-    var quickEffect = await enzymes.getLayerInfo_quickEffect_byId(layerId);
+
 
     try
     {
+        var quickEffect = await enzymes.getLayerInfo_quickEffect_byId(layerId);
         item_quickEffect.dropShadow.enable = quickEffect.dropShadow.enable;
         item_quickEffect.dropShadow.opacity = quickEffect.dropShadow.opacity;
         this._setTypeColor(item_quickEffect.dropShadow.color, quickEffect.dropShadow.color);
@@ -1278,11 +1282,12 @@ GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
 {
     // [more]---------------------------------------------------------------
     var item_more = this.__new_more();
-    var moreInfo = await enzymes.getLayerInfo_more_byId(layerId);
+
 
 
     try
     {
+        var moreInfo = await enzymes.getLayerInfo_more_byId(layerId);
         item_more.layerName = moreInfo.layerName;
         item_more.visible = moreInfo.visible;
         item_more.layerColor = moreInfo.layerColor;
