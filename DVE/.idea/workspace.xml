@@ -29,25 +29,25 @@
     <splitter split-orientation="horizontal" split-proportion="0.70688605">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1377">
-                  <caret line="556" column="24" lean-forward="false" selection-start-line="556" selection-start-column="24" selection-end-line="556" selection-end-column="24" />
+                <state relative-caret-position="63">
+                  <caret line="381" column="109" lean-forward="false" selection-start-line="381" selection-start-column="109" selection-end-line="381" selection-end-column="109" />
                   <folding>
-                    <element signature="n#div#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="e#27374#31032#0" expanded="false" />
+                    <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+                    <element signature="e#27387#31045#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="color-range.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="color-range.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="504">
-                  <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+                <state relative-caret-position="1890">
+                  <caret line="90" column="27" lean-forward="true" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
                   <folding />
                 </state>
               </provider>
@@ -376,9 +376,9 @@
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
         <option value="$PROJECT_DIR$/components/InputAssist.vue" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
-        <option value="$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue" />
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-map.vue" />
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue" />
+        <option value="$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue" />
       </list>
     </option>
   </component>
@@ -916,12 +916,12 @@
       <workItem from="1492244537669" duration="10396000" />
       <workItem from="1492344664968" duration="931000" />
       <workItem from="1492346968593" duration="31878000" />
-      <workItem from="1492516084157" duration="6025000" />
+      <workItem from="1492516084157" duration="6549000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3209172000" />
+    <option name="totallyTimeSpent" value="3209696000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1485,23 +1485,23 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1377">
-          <caret line="556" column="24" lean-forward="false" selection-start-line="556" selection-start-column="24" selection-end-line="556" selection-end-column="24" />
-          <folding>
-            <element signature="n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#27374#31032#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="1890">
+          <caret line="90" column="27" lean-forward="true" selection-start-line="90" selection-start-column="27" selection-end-line="90" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
-          <folding />
+        <state relative-caret-position="63">
+          <caret line="381" column="109" lean-forward="false" selection-start-line="381" selection-start-column="109" selection-end-line="381" selection-end-column="109" />
+          <folding>
+            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#27387#31045#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

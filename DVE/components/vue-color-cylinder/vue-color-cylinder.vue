@@ -1,5 +1,5 @@
 <template>
-
+<div>
     <div class="vue-color-cylinder-main-box" v-bind:style="positon_style" v-on:mousedown="main_box_mousedown($event)">
         <!--<div class="saturation-lighteness-picker-board"></div>-->
 
@@ -380,6 +380,8 @@
         <!--<pre> {{color1|json 4}}</pre>-->
     </div>
     <div class="box-out" v-bind:style="positon_style" v-on:mousedown="main_box_mousedown($event,true)"></div>
+</div>
+
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
