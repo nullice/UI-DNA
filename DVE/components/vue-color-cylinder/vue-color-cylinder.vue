@@ -2,6 +2,8 @@
 
     <div class="vue-color-cylinder-main-box" v-bind:style="positon_style" v-on:mousedown="main_box_mousedown($event)">
         <!--<div class="saturation-lighteness-picker-board"></div>-->
+
+
         <color-map v-bind:in_value="color1.hsv.s" v-bind:in_value2="color1.hsv.v" v-bind:in_value3="color1.hsv.h"
                    v-bind:value_type="o_menu.hue.state?'hue':'sv'"
                    v-bind:edit_color="color1"></color-map>
@@ -377,7 +379,7 @@
 
         <!--<pre> {{color1|json 4}}</pre>-->
     </div>
-
+    <div class="box-out" v-bind:style="positon_style" v-on:mousedown="main_box_mousedown($event,true)"></div>
 </template>
 <style lang="scss" rel="stylesheet/scss">
 
@@ -544,7 +546,16 @@
             }
         }
     }
-
+    .box-out {
+        background: rgba(255, 0, 0, 0);
+        width: 420px;
+        height: 200px;
+        position: absolute;
+        margin-left: -80px;
+        margin-top: -40px;
+        z-index: 3;
+        cursor: default;
+    }
     .color-picker {
         padding: 5px 20px;
         border-bottom: 1px solid rgba(0, 0, 0, 0.08);
@@ -819,13 +830,13 @@
                 this.callback_reject();
                 this.end_func();
             },
-            main_box_mousedown: function (e)
+            main_box_mousedown: function (e, sureMove)
             {
                 console.log("main_box_mousedown",
                     ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box")
                     , e.target.classList)
 
-                if (ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box"))
+                if (sureMove||ARR.hasMember(e.target.classList, "color-picker") || ARR.hasMember(e.target.classList, " color-input-box"))
                 {
                     this.o_mouseIsDown = true;
                     this.mouse_start_X = e.pageX;

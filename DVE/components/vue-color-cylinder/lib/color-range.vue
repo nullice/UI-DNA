@@ -82,7 +82,7 @@
                 left: 0px;
                 margin: auto;
                 border-radius: 1px;
-                box-shadow: 0 0px 2px rgba(0, 0, 0, 0.42);
+                box-shadow: 0 0px 2px rgba(0, 0, 0, 0.55);
                 outline: none;
                 border: 2px solid #fff;
                 background: rgba(255, 255, 255, 0);
@@ -90,6 +90,20 @@
                 margin-left: -3px;
                 z-index: 1;
             }
+          .range-thumb:after {
+                content: " ";
+                position: absolute;
+                top: 0;
+                display: inline-block;
+                color: #fff;
+                background: rgba(186, 97, 97, 0.0);
+                width: 17px;
+                height: 30px;
+                margin-top: -9px;
+                margin-left: -6px;
+            }
+
+
         }
 
         .range-title {

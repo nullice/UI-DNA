@@ -45,6 +45,20 @@
                 margin-left: -3px;
                 cursor: default;
             }
+            .map-thumb:after {
+                content: " ";
+                position: absolute;
+                top: 0;
+                display: inline-block;
+                color: #fff;
+                background: rgba(255, 0, 0, 0);
+                width: 20px;
+                height: 20px;
+                margin-top: -9px;
+                margin-left: -8px;
+            }
+
+
 
             .picker-map-background-h, .picker-map-background-s, .picker-map-background-v {
                 position: absolute;

@@ -26,23 +26,44 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.20109689">
+    <splitter split-orientation="horizontal" split-proportion="0.70688605">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="vue-color-cylinder.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="166">
-                  <caret line="658" column="21" lean-forward="true" selection-start-line="658" selection-start-column="21" selection-end-line="658" selection-end-column="21" />
+                <state relative-caret-position="1377">
+                  <caret line="556" column="24" lean-forward="false" selection-start-line="556" selection-start-column="24" selection-end-line="556" selection-end-column="24" />
                   <folding>
+                    <element signature="n#div#0;n#template#0;n#!!top" expanded="false" />
                     <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-                    <element signature="e#27030#30688#0" expanded="false" />
+                    <element signature="e#27374#31032#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="InputAssist.vue" pinned="false" current-in-tab="true">
+          <file leaf-file-name="color-range.vue" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="504">
+                  <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="color-map.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-map.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="417">
+                  <caret line="54" column="28" lean-forward="true" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="InputAssist.vue" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/components/InputAssist.vue">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="285">
@@ -106,11 +127,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/index.js">
+          <file leaf-file-name="webpack.config.js" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/webpack.config.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="4536">
-                  <caret line="228" column="20" lean-forward="false" selection-start-line="228" selection-start-column="20" selection-end-line="228" selection-end-column="20" />
+                <state relative-caret-position="567">
+                  <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="9" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/package.json">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="651">
+                  <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
                   <folding />
                 </state>
               </provider>
@@ -164,7 +195,7 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="gobCaryon.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="gobCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="416">
@@ -249,7 +280,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>b</find>
       <find>l</find>
       <find>left</find>
       <find>left(</find>
@@ -279,6 +309,7 @@
       <find>.exmo_area.attr_panel.area_pad.suspend_off</find>
       <find>layerSection = ki.layer.get_XXX_Objcet(targetReference, target, &quot;layerSection&quot;).layerSection.value.enumerationValue;</find>
       <find>getLayerInfo_shape_byId</find>
+      <find>map-thumb</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -297,8 +328,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Caryon/netCaryon.js" />
-        <option value="$PROJECT_DIR$/bin/node.js" />
         <option value="C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/UI-DNA/node_modules/svgo/test/index.js" />
         <option value="$PROJECT_DIR$/bin/JS/UI_theme.js" />
         <option value="$PROJECT_DIR$/bin/index.html" />
@@ -339,7 +368,6 @@
         <option value="$PROJECT_DIR$/components/AttributePanel_selectInput.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
         <option value="$PROJECT_DIR$/index.js" />
-        <option value="$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue" />
         <option value="$PROJECT_DIR$/Caryon/settingCaryon.js" />
         <option value="$PROJECT_DIR$/Proteins/libs/quick_transform.jsx" />
         <option value="$PROJECT_DIR$/components/AttributePanel.vue" />
@@ -348,6 +376,9 @@
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
         <option value="$PROJECT_DIR$/components/InputAssist.vue" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
+        <option value="$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue" />
+        <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-map.vue" />
+        <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue" />
       </list>
     </option>
   </component>
@@ -505,6 +536,50 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="vue-color-cylinder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DVE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DVE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vue-color-cylinder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="test" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DVE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DVE" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="components" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="vue-color-cylinder" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -841,12 +916,12 @@
       <workItem from="1492244537669" duration="10396000" />
       <workItem from="1492344664968" duration="931000" />
       <workItem from="1492346968593" duration="31878000" />
-      <workItem from="1492516084157" duration="2770000" />
+      <workItem from="1492516084157" duration="6025000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3205917000" />
+    <option name="totallyTimeSpent" value="3209172000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -858,7 +933,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13540569" sideWeight="0.69014084" order="3" side_tool="false" content_ui="combo" />
@@ -953,20 +1028,6 @@
     </PATH>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/components/SettingPanel_About.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="445">
-          <caret line="340" column="15" lean-forward="false" selection-start-line="340" selection-start-column="15" selection-end-line="340" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/MessageBox/BubbleBox.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="16" column="16" lean-forward="false" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/AttributePanel_textarea.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="116">
@@ -1326,33 +1387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="462">
-          <caret line="22" column="28" lean-forward="false" selection-start-line="22" selection-start-column="28" selection-end-line="22" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="658" column="21" lean-forward="true" selection-start-line="658" selection-start-column="21" selection-end-line="658" selection-end-column="21" />
-          <folding>
-            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
-            <element signature="e#27030#30688#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="37">
@@ -1380,6 +1414,30 @@
             <marker date="1492423279266" expanded="true" signature="47864:47880" ph="..." />
             <marker date="1492423279266" expanded="true" signature="48094:48110" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="1332" column="29" lean-forward="false" selection-start-line="1332" selection-start-column="20" selection-end-line="1332" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="567">
+          <caret line="48" column="9" lean-forward="false" selection-start-line="48" selection-start-column="4" selection-end-line="48" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="651">
+          <caret line="31" column="24" lean-forward="true" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1419,10 +1477,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-map.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="1332" column="29" lean-forward="false" selection-start-line="1332" selection-start-column="20" selection-end-line="1332" selection-end-column="29" />
+        <state relative-caret-position="417">
+          <caret line="54" column="28" lean-forward="true" selection-start-line="54" selection-start-column="28" selection-end-line="54" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1377">
+          <caret line="556" column="24" lean-forward="false" selection-start-line="556" selection-start-column="24" selection-end-line="556" selection-end-column="24" />
+          <folding>
+            <element signature="n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="n#div#0;n#div#0;n#template#0;n#!!top" expanded="false" />
+            <element signature="e#27374#31032#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="84" column="56" lean-forward="false" selection-start-line="84" selection-start-column="56" selection-end-line="84" selection-end-column="56" />
           <folding />
         </state>
       </provider>
