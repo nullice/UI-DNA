@@ -12,7 +12,7 @@ Proteins.evalJsxFolder("C:/Users/nullice/MyProject/UI-DNA/DVE/Proteins/libs")
   //    var ob = Kinase.layer.get_XXX_Objcet(Kinase.REF_ActiveLayer, null, "layerEffects")
 
 //var ob = Kinase.layer.getLayerInfoObject_byActiveLayer ()
-Kinase.layer.getTargetLayersID()
+  Proteins.exec('quick_transform_scale',{"scale":2,"scaleEffect":true})
 
 ///  ob=Kinase.layer.getEffectsList_universal (ob,"dropShadow")
 //EnzJSX.setLayerInfo_quickEffect_byId({"dropShadow":{"color":{"r":79,"g":219,"b":95}}} ,423 )

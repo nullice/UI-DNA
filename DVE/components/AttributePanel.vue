@@ -939,6 +939,7 @@
         height: 6px;
         background: #F0F0F0;
 
+
     }
 
     .panel-shadow{
@@ -955,6 +956,7 @@
 
     .tag-box.tag-position.trans-fade-att-transition.active {
         margin-bottom: -40px;
+
     }
 
 </style>
