@@ -428,15 +428,14 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     var allLayerArray = await  enzymes.getAllLayerArray()
 
+    var dependentList = []
     for (var layerId in dataCaryon.layers)
     {
-
         if (ARR.getByKey(allLayerArray, "id", layerId) == undefined)
         {
             console.log("layer - doAssign: skip deleted layer:", layerId)
             continue
         }
-
 
         console.group("layer:", dataCaryon.layers[layerId].name, dataCaryon.layers[layerId].id)
         var propertyNames = ["position", "text", "shape", "smartObject", "quickEffect", "more"]
@@ -446,11 +445,14 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
             {
                 // await _doAssign(dataCaryon.layers[layerId], propertyNames[i]);
                 await _doAssignNames(dataCaryon.layers[layerId], propertyNames[i]);
-
             }
         }
         console.groupEnd()
     }
+
+
+    console.info("dependentList:",dependentList)
+
 
     console.log("varSystem.vars", varSystem.vars)
     console.timeEnd("Assign_变量赋值耗时")
@@ -514,7 +516,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
      * @returns {Promise.<void>}
      * @private
      */
-    async function _doAssignNames(layer, rootName)
+    async function _doAssignNames(layer, rootName, dependentList)
     {
         var undefinedAssign = (layer[rootName].assignment == undefined)
         var emptyAssign = OBJ.isEmptyObject(layer[rootName].assignment)
@@ -558,6 +560,13 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                             {
                                 if (varSystem.isFormula(dataCaryonValue))
                                 {
+                                    dependentList.push({
+                                        layerId: layer.id,
+                                        rootName: rootName,
+                                        names: names,
+                                        getValue: getValue
+                                    })
+
                                     var getValue = await varSystem.evalVar(dataCaryonValue, layer.id, names);
                                 } else
                                 {
@@ -673,7 +682,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     {
         if (isNeedRenderLayer(mRNA_DataLayers[x]) != true)
         {
-            console.log("layer - _copyValue: delete notNeed mRNA", x,mRNA_DataLayers[x])
+            console.log("layer - _copyValue: delete notNeed mRNA", x, mRNA_DataLayers[x])
             delete mRNA_DataLayers[x]
 
         }

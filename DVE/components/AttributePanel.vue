@@ -106,7 +106,7 @@
             <!--<comp-a></comp-a>-->
         </div>
 
-        <div class="tag-box tag-shape" v-show="tagsActive.shape"
+        <div class="tag-box tag-shape" v-show="tagsActive.shape&&Gob.selectTypes.shape"
              v-bind:class="{active:tagsActive.shape, 'advance_on':o_advance_shape}"
              transition="trans-fade-att">
             <h3><span> {{'形状' | lang}} </span></h3>
@@ -303,7 +303,7 @@
         </div>
 
 
-        <div class="tag-box tag-text" v-show="tagsActive.text"
+        <div class="tag-box tag-text" v-show="tagsActive.text&&Gob.selectTypes.text"
              v-bind:class="{active:tagsActive.text, 'advance_on':o_advance_text}"
              transition="trans-fade-att">
             <h3><span> {{'文本' | lang}} </span></h3>
