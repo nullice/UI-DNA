@@ -20,6 +20,7 @@
     <!--<script type="text/javascript">window.module = undefined</script>-->
     <script src="JS/jquery-2.1.4.min.js" type="text/javascript"></script>
     <script src="JS/jquery.nicescroll.min.js" type="text/javascript"></script>
+    <script src="JS/jquery.autocomplete.js" type="text/javascript"></script>
     <script src="./JS/lodash.js" type="text/javascript"></script>
     <script src="./JSX/json3.js" type="text/javascript"></script>
     <!--载入 nodejs 模块-->
@@ -203,7 +204,7 @@
 <div id="user-css-box"></div>
 <div id="user-js-box"></div>
 <script>
-    /*页面滚动*/
+    /*页面滚动 nicescroll*/
     $(document).ready(function ()
     {
         $("html").niceScroll({
@@ -213,7 +214,47 @@
             mousescrollstep: 5, // scrolling speed with mouse wheel (pixel)});
         })
     });
+
+    /*自动完成  autocomplete*/
+
+
+    $('.value_input_box .edit_input,.value_input_box .out_input ').autocomplete({
+        lookup:autocomplete_var,
+        orientation:"top",
+        width:"flex"
+
+    });
+
 </script>
+
+<!--<div class="autocomplete-suggestions" style="  width: 100px;margin-left: 20px;">-->
+    <!--<div class="autocomplete-group"><strong>NHL</strong>NHL</div>-->
+    <!--<div class="autocomplete-suggestion autocomplete-selected"><strong>NHL</strong>asdfsdaf</div>-->
+    <!--<div class="autocomplete-suggestion"><strong>NHL</strong>sdfsdaf</div>-->
+    <!--<div class="autocomplete-suggestion"><strong>NHL</strong>asdfsadfsdafasdf</div>-->
+<!--</div>-->
+<style>
+    /*自动完成  autocomplete*/
+    .autocomplete-suggestions {
+        color: rgba(239, 239, 239, 0.8);
+        border-radius: 2px;
+        background: #545454;
+        box-shadow: 0 3px 4px rgba(0, 0, 0, 0.17);
+        overflow: auto;
+        min-width: 80px;
+    font-size: 13px;
+
+    }
+    .autocomplete-suggestion { padding: 3px 8px; white-space: nowrap; overflow: hidden; }
+    .autocomplete-selected { background: #41A4FF; }
+    .autocomplete-suggestions strong { font-weight: normal; color: #5EAEFC; }
+    .autocomplete-suggestion.autocomplete-selected strong{ color: #F0F0F0; }
+    .autocomplete-group { padding: 2px 5px; }
+    .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
+</style>
+
+
+
 </body>
 
 

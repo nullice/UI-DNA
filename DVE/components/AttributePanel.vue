@@ -11,6 +11,7 @@
                         v-bind:set_menu.sync="setSystem._setVueColorCylinderMenu"
     ></vue-color-cylinder>
 
+
     <a-area area_title="UI-DNA 属性" area_id="attr_panel" v-bind:area_disable_fixbut="true"
             v-bind:area_opened.sync="o_attr_open">
         <attr-option-menu></attr-option-menu>
@@ -73,7 +74,8 @@
 
         <div class="tag-box tag-position" v-show="tagsActive.position" v-bind:class="{active:tagsActive.position}"
              transition="trans-fade-att">
-            <h3><span> {{'位置' | lang}} </span></h3>
+            <h3><span class="auto-add-assign" title="{{'双击为此类属性自动生成变量'|lang}}"
+                      v-on:dblclick="autoAddAssign('position')"> {{'位置' | lang}} </span></h3>
             <value-input name="X" v-bind:edit_value.sync="Gob.position.x"
                          v-bind:out_value.sync="Gob.position.assignment.x"
                          v-bind:enable_assign.sync="Gob.position.enableAssigns.x"
@@ -778,6 +780,12 @@
 
 <style lang="scss" rel="stylesheet/scss">
 
+
+    span.auto-add-assign {
+        cursor: default;
+        user-select: none;
+    }
+
     /*.exmo_area .tag-box{*/
     /*!*display: none;*!*/
     /*opacity: 0;*/
@@ -939,14 +947,13 @@
         height: 6px;
         background: #F0F0F0;
 
-
     }
 
-    .panel-shadow{
+    .panel-shadow {
         height: 0;
     }
 
-    .exmo_area.attr_panel.area_pad.suspend_off+.panel-shadow {
+    .exmo_area.attr_panel.area_pad.suspend_off + .panel-shadow {
         height: 38px;
     }
 
@@ -1002,6 +1009,82 @@
             selectOnce: function (tagName)
             {
                 this.tagsActive[tagName] = !this.tagsActive[tagName];
+            },
+            autoAddAssign: function (name)
+            {
+
+                var self = this
+                if (Gob.selectList.length == 1)
+                {
+                    var layerName = Gob.selectList[0].name
+
+                    var reg = /[\@\+\\\/\-\*\(\)\.\,\，\n\ ]/g
+                    layerName = layerName.replace(reg, "")
+
+                    var verify = varSystem.scanVarsInFormula(layerName, true)
+                    if (verify != undefined && verify.length == 1 && verify[0] == layerName)
+                    {
+                        var doneName = _addVar("@" + layerName,0)
+
+                    } else
+                    {
+                        var doneName = _addVar("@a",0)
+                    }
+
+
+                    if (doneName != undefined)
+                    {
+
+                        _apply(name)
+                        function _apply(item)
+                        {
+                            for (var x in Gob[item].enableAssigns)
+                            {
+                                Gob[item].enableAssigns[x] = true
+                                Gob[item].assignment[x] = doneName
+                            }
+
+                        }
+                    }
+
+                } else if (Gob.selectList.length == 0)
+                {
+                    UI_action.show_message_bubble("att_panel", "", Lang.from("没有选中的图层"))
+                } else if (Gob.selectList.length > 1)
+                {
+
+                    UI_action.show_message_bubble("att_panel", "", Lang.from("不要同时为多个图层自动创建变量"))
+                }
+
+                function _addVar(name, time)
+                {
+                    var time = time || 0
+
+                    if (time > 0)
+                    {
+                        var _name = name + time
+                    }else {
+
+                        var _name =name
+                    }
+                    
+                    if (name != undefined && varSystem.vars[_name] == undefined)
+                    {
+                        varSystem.addVar(_name, {})
+                        return _name
+                    } else
+                    {
+                        if (time > 777)
+                        {
+                            return null
+                        }
+
+                        return _addVar(name, time + 1)
+
+                    }
+
+                }
+
             }
 
         },
@@ -1028,6 +1111,7 @@
                 UI_model: UI_model,
                 Lang: Lang,
                 setSystem: setSystem,
+                varSystem_vars: varSystem.vars,
                 o_value: "",
                 o_attr_open: true,
                 o_show_name_group: 0,

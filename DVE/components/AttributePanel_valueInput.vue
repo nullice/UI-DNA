@@ -32,6 +32,7 @@
                v-bind:placeholder="o_out_placeholder"
                @focus.stop="o_foucs2=true"
                @blur.stop="o_foucs2=false"
+               list="datalist_var"
         >
 
         <input-assist
@@ -110,9 +111,10 @@
         padding-top: 3px;
 
         i{
-            margin-top:  -2px;
+            margin-top:  5px;
             font-size: 12px;
             display: inline-block;
+            vertical-align: top;
         }
 
     }

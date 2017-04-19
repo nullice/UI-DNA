@@ -188,7 +188,7 @@ var VarSystem = function ()
                 {
                     if (dataCaryon.layers[thisId].position != undefined && dataCaryon.layers[thisId].position.w != undefined)
                     {
-                        return await self.evalVar(dataCaryon.layers[thisId].position.w, thisId, ["position","w"])
+                        return await self.evalVar(dataCaryon.layers[thisId].position.w, thisId, ["position", "w"])
                     }
                 }
                 var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
@@ -208,7 +208,7 @@ var VarSystem = function ()
         },
 
 
-        bottom :  async function (value, self, thisId, names, orgVar)
+        bottom: async function (value, self, thisId, names, orgVar)
         {
             async function getThisHeigth()
             {
@@ -216,7 +216,7 @@ var VarSystem = function ()
                 {
                     if (dataCaryon.layers[thisId].position != undefined && dataCaryon.layers[thisId].position.h != undefined)
                     {
-                        return await self.evalVar(dataCaryon.layers[thisId].position.h, thisId, ["position","h"])
+                        return await self.evalVar(dataCaryon.layers[thisId].position.h, thisId, ["position", "h"])
                     }
                 }
                 var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
@@ -241,7 +241,7 @@ var VarSystem = function ()
     this.$count = 0;
     this.$layerount = 0;
 
-
+    this.inintVarNameList()
     return this;
 }
 
@@ -270,6 +270,24 @@ VarSystem.prototype.loadVarsFromObject = function (object)
 
 
 /**
+ * 初始化变量名称列表，为了自动补全功能
+ * @param object
+ */
+VarSystem.prototype.inintVarNameList = function ()
+{
+    window.autocomplete_var = [
+        {value: "sss123"}
+    ];
+
+    window.autocomplete_var.splice(0, window.autocomplete_var.length)
+    for (var x in this.vars)
+    {
+        window.autocomplete_var.push({value: x})
+    }
+}
+
+
+/**
  添加变量
  */
 VarSystem.prototype.addVar = function (name, value, type, isFormula, relatives)
@@ -293,6 +311,13 @@ VarSystem.prototype.addVar = function (name, value, type, isFormula, relatives)
         relatives: relatives || []
     }))
 
+
+    if (name != undefined)
+    {
+        window.autocomplete_var.push({value: name})//为自动补全
+    }
+
+
 }
 
 //删除变量
@@ -305,6 +330,7 @@ VarSystem.prototype.removeVar = function (name)
 
     Vue.delete(this.vars, name)
 
+    ARR.deleteByKey(window.autocomplete_var, "value", name)
     return relatives;
 }
 

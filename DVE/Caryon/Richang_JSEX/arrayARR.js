@@ -324,6 +324,44 @@ var arrayARR = {
 
     },
 
+    /**
+     * 对象数组删除
+     * 从对象数组中找到出一个对象元素，并删除这个元素。
+     * arr: [{name:a},{name:b}] deleteByKey(arr,"name","b") => arr: [{name:a}]
+     * @param {[Object]} objectArr 对象数组
+     * @param {String} key 关键属性
+     * @param keyValue 欲提取的关键属性值
+     * @param equalRule 值比较函数，可空
+     * @returns {*}
+     */
+    deleteByKey: function (objectArr, key, keyValue, equalRule)
+    {
+        for (var i = 0; i < objectArr.length; i++)
+        {
+            if (objectArr[i][key] != undefined)
+            {
+                if (equalRule != undefined)
+                {
+                    if (equalRule(objectArr[i][key], keyValue))
+                    {
+                        objectArr.splice(i,1)
+                    }
+
+                } else
+                {
+                    if (objectArr[i][key] == keyValue)
+                    {
+                        objectArr.splice(i,1)
+                    }
+                }
+            }
+        }
+
+    },
+
+
+
+
 
     /**
      * 排序对象数组
