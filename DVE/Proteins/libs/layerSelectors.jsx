@@ -148,6 +148,11 @@ Libs.invertSelectLayer = function ()
 
     for (var i = 0; i < layerPool.length; i++)
     {
+
+        if (layerPool[i].name === "__UI-DNA__" || layerPool[i].name === "_DNA_DATA_" || layerPool[i].name === "_ui-dna.nullice.com_")
+        {
+            continue;
+        }
         allIds.push(layerPool[i].id)
     }
 
