@@ -1067,7 +1067,7 @@
 
                         var _name =name
                     }
-                    
+
                     if (name != undefined && varSystem.vars[_name] == undefined)
                     {
                         varSystem.addVar(_name, {})

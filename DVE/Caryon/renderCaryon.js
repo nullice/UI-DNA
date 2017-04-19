@@ -444,7 +444,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
             if (dataCaryon.layers[layerId][propertyNames[i]] != undefined)
             {
                 // await _doAssign(dataCaryon.layers[layerId], propertyNames[i]);
-                await _doAssignNames(dataCaryon.layers[layerId], propertyNames[i]);
+                await _doAssignNames(dataCaryon.layers[layerId], propertyNames[i],dependentList);
             }
         }
         console.groupEnd()
@@ -452,6 +452,15 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
 
     console.info("dependentList:",dependentList)
+    for (var i = 0; i < dependentList.length; i++)
+    {
+        var id = dependentList[i].layerId
+        if (dataCaryon.layers[id][dependentList[i].rootName] != undefined)
+        {
+            await _doAssignNames(dataCaryon.layers[id], [dependentList[i].rootName],[]);
+        }
+    }
+
 
 
     console.log("varSystem.vars", varSystem.vars)
