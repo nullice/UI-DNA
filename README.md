@@ -25,12 +25,15 @@ UI 设计构建工具 - Photoshop 扩展 - Windows/MacOS
 
 ## Build
 
-
- `/DVE` 为工作目录
+ `./DVE` 为工作目录
  
-1. 下载或克隆项目后，在  `/DVE` 中执行 `npm install` 或者  `yarn` 安装依赖 
-2. 在  `/DVE` 目录下执行 `webpack` 即可构建项目  
-3. Build 后的代码生成在 `/DVE/bin` 中， `bin` 文件夹可直接放入 Photoshop 的扩展目录中运行（由于未签名所以需要打开 Photoshop 的调试模式）
+ 要编译本项目首先需要一个 Node.js 开发环境，首先下载并安装 [Node.js](https://nodejs.org/zh-cn/), 然后
+ 
+1. 下载或克隆项目后，在  `./DVE` 目录中中执行 `npm install` 或者  [`yarn`](https://yarnpkg.com/zh-Hans/) 安装依赖 
+2. 在  `./DVE` 目录下执行 `npm run webpack` 即可开始构建项目  
+3. 构建后的代码生成在 `./DVE/bin` 中， `bin` 文件夹可直接放入 Photoshop 的扩展目录中运行（由于未签名所以需要打开 Photoshop 的调试模式）
+
+
 
 ## 结构
 UI-DNA 基本结构如下：
@@ -38,7 +41,7 @@ UI-DNA 基本结构如下：
 ![](http://ww1.sinaimg.cn/large/c35419f1gy1fer61z31u7j20nn0rbt9q.jpg)
 
 
-
+更多信息慢慢详细写....
  
 
 
