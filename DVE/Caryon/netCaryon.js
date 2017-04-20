@@ -10,7 +10,7 @@
  */
 var NetCaryon = function ()
 {
-    this.HOSTURL = ["http://127.0.0.1", "http://design-enzyme.com"][0]
+    this.HOSTURL = ["http://127.0.0.1", "http://design-enzyme.com"][1]
     return this;
 }
 

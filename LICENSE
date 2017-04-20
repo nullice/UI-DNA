@@ -1,33 +1,24 @@
 --------------------------------------------------------------------------------
 UI-DNA
 
-MIT License
+LGPL License
 
 Copyright (c) 2016 nullice (nullice.com , ui@nullice.com) 
 License 什么的是没有人会看的. 已经没有什么源值得去开了~  嘘
+
  　　∧ ∧＿＿__
  　／(*ﾟーﾟ)　／＼   
 　／|￣∪∪￣|＼／
 　  | しぃ  |／
 　　 ￣￣￣￣
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+LGPL License : http://www.gnu.org/licenses/lgpl.htm
+简单来说 LGPL 协议的要点：
+1.修改本项目源码衍生的程序必须开源
+2.如果不改动源码，仅仅是另外的程序中调用本程序的接口可以不受此限制
+3.
+4.免责，使用本程序造成任何后果，作者不对此负责
+5.以上是注解，具体以 LGPL License 为准
 
 --------------------------------------------------------------------------------
 axios
