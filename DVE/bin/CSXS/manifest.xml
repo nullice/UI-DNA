@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <ExtensionManifest xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ExtensionBundleId="UI-DNA" ExtensionBundleVersion="1.0" Version="6.0"> <!-- MAJOR-VERSION-UPDATE-MARKER -->
     <ExtensionList>
-        <Extension Id="UI-DNA" Version="1.0"/> <!-- 设置扩展 ID-->
-        <Extension Id="UI-DNA-Shadow" Version="1.0"/> <!-- 设置扩展 ID-->
+        <Extension Id="UI-DNA" Version="0.0"/> <!-- 设置扩展 ID-->
+        <Extension Id="UI-DNA-Shadow" Version="0.0"/> <!-- 设置扩展 ID-->
     </ExtensionList>
 
     <ExecutionEnvironment>

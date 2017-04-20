@@ -67,9 +67,14 @@ body {
     width: $width;
 }
 
+
+
+.exmo_select {
+    -webkit-user-select: none;
+    }
+    
 .exmo_input_text, .exmo_select {
     outline: none;
-    -webkit-user-select: none;
     border: none;
 
     border-bottom: 1px solid $color_read_line;

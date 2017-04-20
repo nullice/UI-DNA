@@ -9,9 +9,15 @@ body {
 .test {
   width: 100px; }
 
+
+.exmo_select {
+    -webkit-user-select: none;
+    }
+    
+
+
 .exmo_input_text, .exmo_select {
   outline: none;
-  -webkit-user-select: none;
   border: none;
   border-bottom: 1px solid #adadad;
   color: #292929;

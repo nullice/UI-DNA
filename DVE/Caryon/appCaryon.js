@@ -48,17 +48,24 @@ AppCaryon.prototype.openUrl = function (url)
 AppCaryon.prototype.unzipInstallExtra = function ()
 {
 
+    //todo:现在使用的支持中文 zip 文件名的 TextDecoder 方法在旧版 ps 中不支持，计划换成 decompress-zip
     try
     {
-        var zipPath =path.join(setSystem._path_extensionDir, "EXTRA/install.zip")
+
+        if (window.TextDecoder == undefined)
+        {
+            return;
+        }
+
+        var zipPath = path.join(setSystem._path_extensionDir, "EXTRA/install.zip")
         if (fs.existsSync(zipPath))
         {
             var adm_zip = new AdmZip(zipPath)
             adm_zip.extractAllTo(setSystem._path_userDataDir, true)
 
-        }else
+        } else
         {
-            console.log("unzipInstallExtra","install.zip not exist",zipPath)
+            console.log("unzipInstallExtra", "install.zip not exist", zipPath)
         }
 
     } catch (e)

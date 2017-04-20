@@ -43,12 +43,12 @@ import App from "./components/area.vue";
 //重要信息
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.1",
-    verIndex: 1,
-    varData: "2017/4/3",
+    version: "0.0.2",
+    verIndex: 2,
+    varData: "2017/4/20",
     codename: ["Euglena"][0],
     author: "nullice",
-    website: "http://nullice.com",
+    website: "http://design-enzyme.com/UI-DNA",
     email: "ui@nullice.com"
 
 }

@@ -75,6 +75,16 @@
         </div>
 
 
+
+        <div class="set-item">
+            <div class="exmo_box_name">{{'实例' | lang}}  </div>
+            <button class="exmo_button " title="让扩展面板被关闭时结束实例不在后台运行"
+                    v-on:click="doUnPersistent">
+                关闭后台运行
+            </button>
+        </div>
+
+
         <div class="set-item">
             <div class="exmo_box_name">{{'监视' | lang}}  </div>
 
@@ -85,7 +95,6 @@
                     启用
                 </label>
             </div>
-
         </div>
 
         <debug-microscope v-if="showDebugMicroscope">Debug-microscope</debug-microscope>
@@ -160,6 +169,10 @@
             doOpen: function (inPath)
             {
                 opn(inPath)
+            },
+            doUnPersistent:function ()
+            {
+                gonzUnPersistent()
             }
         },
         components: {

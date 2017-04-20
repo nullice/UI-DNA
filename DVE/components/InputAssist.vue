@@ -47,12 +47,14 @@
 
     .exmo_inbox.value_input_box .input-assist-box:not(:hover) {
         max-height: 0px;
+        max-width: 0;
         transition: all .5s;
         overflow: hidden;
     }
 
     .exmo_inbox.value_input_box:hover .input_foucs.input-assist-box, .input-assist-box:hover {
         max-height: 999px;
+        max-width: 999px;
         transition: all .3s;
         overflow: hidden;
     }
