@@ -29,31 +29,29 @@
 
 </head>
 
-<body style="background-color: #F0F0F0" spellcheck="false" v-bind:class="setSystem.ui.language" >
+<body style="background-color: #F0F0F0" spellcheck="false" v-bind:class="setSystem.ui.language">
 <!--页面内容：-->
 
 
-    <layers-panel>
-        {{main}}
-    </layers-panel>
+<layers-panel>
+    {{main}}
+</layers-panel>
 
-    <quick-panel>
-        {{dna}}
-    </quick-panel>
+<quick-panel>
+    {{dna}}
+</quick-panel>
 
-    <attr-panel>
-        {{dna}}
-    </attr-panel>
+<attr-panel>
+    {{dna}}
+</attr-panel>
 
-    <var-panel>
-        {{var}}
-    </var-panel>
+<var-panel>
+    {{var}}
+</var-panel>
 
-    <Expression-panel>
-        {{Express}}
-    </Expression-panel>
-
-
+<Expression-panel>
+    {{Express}}
+</Expression-panel>
 
 
 <setting-panel></setting-panel>
@@ -221,19 +219,19 @@
 
 
     $('.value_input_box .edit_input,.value_input_box .out_input ').autocomplete({
-        lookup:autocomplete_var,
-        orientation:"top",
-        width:"flex"
+        lookup: autocomplete_var,
+        orientation: "top",
+        width: "flex"
 
     });
 
 </script>
 
 <!--<div class="autocomplete-suggestions" style="  width: 100px;margin-left: 20px;">-->
-    <!--<div class="autocomplete-group"><strong>NHL</strong>NHL</div>-->
-    <!--<div class="autocomplete-suggestion autocomplete-selected"><strong>NHL</strong>asdfsdaf</div>-->
-    <!--<div class="autocomplete-suggestion"><strong>NHL</strong>sdfsdaf</div>-->
-    <!--<div class="autocomplete-suggestion"><strong>NHL</strong>asdfsadfsdafasdf</div>-->
+<!--<div class="autocomplete-group"><strong>NHL</strong>NHL</div>-->
+<!--<div class="autocomplete-suggestion autocomplete-selected"><strong>NHL</strong>asdfsdaf</div>-->
+<!--<div class="autocomplete-suggestion"><strong>NHL</strong>sdfsdaf</div>-->
+<!--<div class="autocomplete-suggestion"><strong>NHL</strong>asdfsadfsdafasdf</div>-->
 <!--</div>-->
 <style>
     /*自动完成  autocomplete*/
@@ -244,17 +242,39 @@
         box-shadow: 0 3px 4px rgba(0, 0, 0, 0.17);
         overflow: auto;
         min-width: 80px;
-    font-size: 13px;
-
+        font-size: 13px;
+        cursor: default
     }
-    .autocomplete-suggestion { padding: 3px 8px; white-space: nowrap; overflow: hidden; }
-    .autocomplete-selected { background: #41A4FF; }
-    .autocomplete-suggestions strong { font-weight: normal; color: #5EAEFC; }
-    .autocomplete-suggestion.autocomplete-selected strong{ color: #F0F0F0; }
-    .autocomplete-group { padding: 2px 5px; }
-    .autocomplete-group strong { display: block; border-bottom: 1px solid #000; }
-</style>
 
+    .autocomplete-suggestion {
+        padding: 3px 8px;
+        white-space: nowrap;
+        overflow: hidden;
+        cursor: default
+    }
+
+    .autocomplete-selected {
+        background: #41A4FF;
+    }
+
+    .autocomplete-suggestions strong {
+        font-weight: normal;
+        color: #5EAEFC;
+    }
+
+    .autocomplete-suggestion.autocomplete-selected strong {
+        color: #F0F0F0;
+    }
+
+    .autocomplete-group {
+        padding: 2px 5px;
+    }
+
+    .autocomplete-group strong {
+        display: block;
+        border-bottom: 1px solid #000;
+    }
+</style>
 
 
 </body>

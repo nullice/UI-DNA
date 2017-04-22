@@ -197,6 +197,7 @@
             // Listen for click event on suggestions list:
             container.on('click.autocomplete', suggestionSelector, function () {
                 that.select($(this).data('index'));
+
             });
 
             container.on('click.autocomplete', function () {
@@ -924,6 +925,7 @@
 
             if (that.currentValue !== that.el.val() && !that.options.preserveInput) {
                 that.el.val(that.currentValue);
+                that.el.change()
             }
 
             that.signalHint(null);
