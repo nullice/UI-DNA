@@ -254,11 +254,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="false">
+          <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="256">
-                  <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
+                  <caret line="226" column="118" lean-forward="false" selection-start-line="226" selection-start-column="118" selection-end-line="226" selection-end-column="118" />
                   <folding>
                     <element signature="e#432#1334#0" expanded="false" />
                     <element signature="e#1391#1674#0" expanded="false" />
@@ -266,7 +266,8 @@
                     <element signature="e#1773#2750#0" expanded="false" />
                     <element signature="e#2833#2893#0" expanded="false" />
                     <element signature="e#2934#3026#0" expanded="false" />
-                    <element signature="e#7219#7470#0" expanded="false" />
+                    <element signature="e#4932#5458#0" expanded="false" />
+                    <element signature="e#7309#7560#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -294,13 +295,12 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="quick_transform.jsx" pinned="false" current-in-tab="true">
+          <file leaf-file-name="quick_transform.jsx" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_transform.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="624">
-                  <caret line="251" column="33" lean-forward="true" selection-start-line="251" selection-start-column="33" selection-end-line="251" selection-end-column="33" />
+                <state relative-caret-position="256">
+                  <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="14" />
                   <folding>
-                    <element signature="e#332#2879#0" expanded="false" />
                     <element signature="e#2917#5550#0" expanded="false" />
                     <element signature="e#6980#8315#0" expanded="false" />
                   </folding>
@@ -325,7 +325,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>_getVueColorCylinderMenu</find>
       <find>.position_anchor</find>
       <find>stopSelectEvent</find>
       <find>scaleEffect</find>
@@ -355,6 +354,7 @@
       <find>.exmo_inbox.value_input_box:hover .input_foucs.input-assist-box, .input-assist-box:hover</find>
       <find>HOSTURL</find>
       <find>re =</find>
+      <find>reg</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -422,8 +422,8 @@
         <option value="$PROJECT_DIR$/bin/CSXS/manifest.xml" />
         <option value="$PROJECT_DIR$/components/InputAssist.vue" />
         <option value="$PROJECT_DIR$/Caryon/netCaryon.js" />
-        <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
         <option value="$PROJECT_DIR$/Proteins/libs/quick_transform.jsx" />
+        <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
       </list>
     </option>
   </component>
@@ -933,12 +933,12 @@
       <workItem from="1492346968593" duration="31878000" />
       <workItem from="1492516084157" duration="26688000" />
       <workItem from="1492664356356" duration="9825000" />
-      <workItem from="1492873066065" duration="541000" />
+      <workItem from="1492873066065" duration="1649000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3240201000" />
+    <option name="totallyTimeSpent" value="3241309000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1490,22 +1490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="198" column="0" lean-forward="false" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />
-          <folding>
-            <element signature="e#432#1334#0" expanded="false" />
-            <element signature="e#1391#1674#0" expanded="false" />
-            <element signature="e#1677#1714#0" expanded="false" />
-            <element signature="e#1773#2750#0" expanded="false" />
-            <element signature="e#2833#2893#0" expanded="false" />
-            <element signature="e#2934#3026#0" expanded="false" />
-            <element signature="e#7219#7470#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Proteins/Proteins.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1526,12 +1510,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Proteins/libs/quick_transform.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="624">
-          <caret line="251" column="33" lean-forward="true" selection-start-line="251" selection-start-column="33" selection-end-line="251" selection-end-column="33" />
+        <state relative-caret-position="256">
+          <caret line="48" column="14" lean-forward="false" selection-start-line="48" selection-start-column="13" selection-end-line="48" selection-end-column="14" />
           <folding>
-            <element signature="e#332#2879#0" expanded="false" />
             <element signature="e#2917#5550#0" expanded="false" />
             <element signature="e#6980#8315#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="256">
+          <caret line="226" column="118" lean-forward="false" selection-start-line="226" selection-start-column="118" selection-end-line="226" selection-end-column="118" />
+          <folding>
+            <element signature="e#432#1334#0" expanded="false" />
+            <element signature="e#1391#1674#0" expanded="false" />
+            <element signature="e#1677#1714#0" expanded="false" />
+            <element signature="e#1773#2750#0" expanded="false" />
+            <element signature="e#2833#2893#0" expanded="false" />
+            <element signature="e#2934#3026#0" expanded="false" />
+            <element signature="e#4932#5458#0" expanded="false" />
+            <element signature="e#7309#7560#0" expanded="false" />
           </folding>
         </state>
       </provider>

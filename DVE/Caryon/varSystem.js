@@ -224,7 +224,7 @@ var VarSystem = function ()
                 return staic_position["h"]
             }
 
-            var reg = /@\w+/
+            var reg = /@[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
             var bottom = orgVar.replace(reg, "$&.y + $&.h")
 
             var h = await  getThisHeigth()
