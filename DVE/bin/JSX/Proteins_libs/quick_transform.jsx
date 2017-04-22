@@ -277,7 +277,7 @@
         }
 
 
-        Proteins.doCon(_func, "旋转", false)
+        Proteins.doCon(_func, "旋转", true)
 
     }
 
