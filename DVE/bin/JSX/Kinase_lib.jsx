@@ -1265,6 +1265,7 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
             }
         }
 
+
         var ref = new ActionReference();
         if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
         targetReference(ref, _value(target, null), "textLayer")
@@ -1643,6 +1644,8 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
         adOb.null.value.container = refOb;
         mu.executeActionObjcet(charIDToTypeID("setd"), adOb)
     }
+
+
 //--------------------------------------------------
     var textKey_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "textKey");
     textKey_raw = textKey_raw.textKey;
@@ -1738,7 +1741,46 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
     {
         if (adOb.to.value.textStyleRange == undefined)
         {
-            adOb.to.value.textStyleRange = textKey_raw.value.textStyleRange
+            try {
+                var adOb2 = {
+                    "null": {
+                        "value": {
+                            "container": {
+                                "container": {"container": {}},
+                                "form": "ReferenceFormType.ENUMERATED",
+                                "desiredClass": "textLayer",
+                                "enumeratedType": "ordinal",
+                                "enumeratedValue": "targetEnum"
+                            }, "form": "ReferenceFormType.PROPERTY", "desiredClass": "property", "property": "textStyle"
+                        }, "type": "DescValueType.REFERENCETYPE"
+                    },
+                    "to": {
+                        "value": {
+                            "textOverrideFeatureName": {"value": 808466226, "type": "DescValueType.INTEGERTYPE"},
+                            "typeStyleOperationType": {"value": 3, "type": "DescValueType.INTEGERTYPE"},
+                            "color": {
+                                "value": {
+                                    "red": {"value": textInfo.color.r, "type": "DescValueType.DOUBLETYPE"},
+                                    "grain": {"value": textInfo.color.g, "type": "DescValueType.DOUBLETYPE"},
+                                    "blue": {"value": textInfo.color.b, "type": "DescValueType.DOUBLETYPE"}
+                                }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
+                            }
+                        }, "type": "DescValueType.OBJECTTYPE", "objectType": "textStyle"
+                    }
+                }
+                var ref = new ActionReference();
+                if (targetReference == undefined) targetReference = Kinase.REF_ActiveLayer;
+                targetReference(ref, _value(target, null), "textLayer")
+                var refOb = mu.actionReferenceToObject(ref)
+                adOb2.null.value.container = refOb;
+                mu.executeActionObjcet(charIDToTypeID("setd"), adOb2)
+            }catch (e){
+
+                adOb.to.value.textStyleRange = textKey_raw.value.textStyleRange
+            }
+
+
+
         }
 
         for (var i in  adOb.to.value.textStyleRange.value)

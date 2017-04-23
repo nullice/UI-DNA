@@ -40,10 +40,9 @@
 
 
     .input-assist-box.range {
-        width:  calc(100% - 32px);
+        width: calc(100% - 32px);
 
     }
-
 
     .exmo_inbox.value_input_box .input-assist-box:not(:hover) {
         max-height: 0px;
@@ -377,7 +376,26 @@
                  * */
                 /*创建变量-----------------------------*/
                 var linkVarName = ""
+                var _newVar = false
                 if (self.assign_value == undefined || self.assign_value == "")/*没有 assign*/
+                {
+                    _newVar = true
+                } else
+                {
+                    var _varNames = self.assign_value.split((/[,，]/));
+
+                    _newVar = true
+                    for (var x in _varNames)
+                    {
+                        if (_varNames[x][0] != '@')
+                        {
+                            linkVarName = _varNames[0]
+                            _newVar = false
+                        }
+                    }
+                }
+
+                if (_newVar)
                 {
                     linkVarName = "_pin_";
                     for (var i = 0; i < 71020; i++)
@@ -386,19 +404,20 @@
                         {
                             linkVarName = linkVarName + i;
                             varSystem.addVar(linkVarName, this.edit_value)
-                            this.assign_value = linkVarName
+
+                            if (self.assign_value == undefined || self.assign_value == "")
+                            {
+                                this.assign_value = linkVarName
+                            } else
+                            {
+                                this.assign_value += ", " + linkVarName
+                            }
+
                             break;
                         }
                     }
-                } else
-                {
-                    var _varNames = self.assign_value.split((/[,，]/));
-
-                    if (_varNames.length > 0)
-                    {
-                        linkVarName = _varNames[0]
-                    }
                 }
+
                 this.enable_assign = true;
 
                 /*创建图层----------------------*/
@@ -506,7 +525,7 @@
                         setTimeout(function ()
                         {
                             self.edit_value = now_color;
-                        },300)
+                        }, 300)
 
 
                         await Proteins.exec("inputAssist_setCurrentTool", {toolName: tool})
@@ -524,11 +543,11 @@
             },
             boolean_true: function ()
             {
-                this.edit_value = true
+                this.edit_value = "true"
             },
             boolean_false: function ()
             {
-                this.edit_value = false
+                this.edit_value = "false"
             },
             open_file: async function ()
             {
@@ -642,7 +661,7 @@
             ,
             assign_apply_same: function ()
             {
-                var  self =this
+                var self = this
 
                 for (var z in Gob)
                 {

@@ -17,6 +17,7 @@
                v-bind:class="{'uppercase':o_uppercase}"
                @focus.stop="on_foucs"
                @blur.stop="on_blur"
+               @mousewheel="mousewheelValue($event)"
         >
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name+title|lowercase}}" autocomplete="off"
@@ -33,6 +34,7 @@
                @focus.stop="o_foucs2=true"
                @blur.stop="o_foucs2=false"
                @change="assignInputChange"
+               @mousewheel="mousewheelValue($event)"
                list="datalist_var"
         >
 
@@ -325,6 +327,11 @@
                 }
 
 
+            },
+
+            mousewheelValue:function (e)
+            {
+                console.log(e)
             }
         },
         components: {

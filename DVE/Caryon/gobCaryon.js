@@ -800,17 +800,20 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
 
         //统一渲染
         var renderOnce = false
-        if (ARR.hasMember(["text", "shape",], names[0]))
+        if (this.selectList.length > 1)
         {
-            if (_lastName != "text")
+            if (ARR.hasMember(["text", "shape",], names[0]))
+            {
+                if (_lastName != "text")
+                {
+                    renderOnce = true
+                }
+
+            }
+            if (ARR.hasMember(["layerColor", "opacity", "fillOpacity", "mode", "visible"], _lastName))
             {
                 renderOnce = true
             }
-
-        }
-        if (ARR.hasMember(["layerColor", "opacity", "fillOpacity", "mode", "visible"], _lastName))
-        {
-            renderOnce = true
         }
 
 
@@ -1058,7 +1061,7 @@ GobCaryon.prototype.updateSelect = async function ()
 
     if (dataCaryon.layers == undefined)
     {
-      await  dataCaryon.switchDocment(true)
+        await  dataCaryon.switchDocment(true)
     }
 
 
@@ -1107,16 +1110,16 @@ GobCaryon.prototype.updateSelect = async function ()
     //
     // } else
     // {
-        //******************
-        try
-        {
-            await this.updateGob();
-        } catch (e)
-        {
-            logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob")
-        }
+    //******************
+    try
+    {
+        await this.updateGob();
+    } catch (e)
+    {
+        logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob")
+    }
 
-        //******************
+    //******************
     // }
 
     this.selectUpdateing = false;
