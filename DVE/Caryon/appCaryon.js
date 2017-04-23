@@ -25,7 +25,10 @@ AppCaryon.prototype.restar_UI_DNA = function ()
 {
     setSystem.saveAppState(true)
     eventCaryon.sampleEventSend("UI-DNA-Shadow:restart")
-    cs.closeExtension()
+    setTimeout(function ()
+    {
+        cs.closeExtension()
+    }, 100)
 }
 
 AppCaryon.prototype.restarCold_UI_DNA = function ()

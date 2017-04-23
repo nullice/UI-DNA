@@ -303,13 +303,21 @@ RenderCaryon.prototype._getLayerData = async function (rootName, name, layerId)
     if (rootName == "position")
     {
         console.log("_getLayerData:getLayerInfo_position_byId")
-        var position = await enzymes.getLayerInfo_position_byId(layerId)
+        try
+        {
+            var position = await enzymes.getLayerInfo_position_byId(layerId)
+            this.__getLayerData_cache.rootName = rootName;
+            this.__getLayerData_cache.layerId = layerId;
+            this.__getLayerData_cache.cache = position;
+            return position[name];
+        } catch (e)
+        {
 
-        this.__getLayerData_cache.rootName = rootName;
-        this.__getLayerData_cache.layerId = layerId;
-        this.__getLayerData_cache.cache = position;
+            console.error("RenderCaryon.prototype._getLayerData ", e)
+            return null;
+        }
 
-        return position[name];
+
     }
 
 }
@@ -444,23 +452,22 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
             if (dataCaryon.layers[layerId][propertyNames[i]] != undefined)
             {
                 // await _doAssign(dataCaryon.layers[layerId], propertyNames[i]);
-                await _doAssignNames(dataCaryon.layers[layerId], propertyNames[i],dependentList);
+                await _doAssignNames(dataCaryon.layers[layerId], propertyNames[i], dependentList);
             }
         }
         console.groupEnd()
     }
 
 
-    console.info("dependentList:",dependentList)
+    console.info("dependentList:", dependentList)
     for (var i = 0; i < dependentList.length; i++)
     {
         var id = dependentList[i].layerId
         if (dataCaryon.layers[id][dependentList[i].rootName] != undefined)
         {
-            await _doAssignNames(dataCaryon.layers[id], [dependentList[i].rootName],[]);
+            await _doAssignNames(dataCaryon.layers[id], [dependentList[i].rootName], []);
         }
     }
-
 
 
     console.log("varSystem.vars", varSystem.vars)

@@ -1283,8 +1283,6 @@ GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
     // [more]---------------------------------------------------------------
     var item_more = this.__new_more();
 
-
-
     try
     {
         var moreInfo = await enzymes.getLayerInfo_more_byId(layerId);

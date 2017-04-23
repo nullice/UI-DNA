@@ -5,7 +5,7 @@
 
         <div class="exmo_box_name" v-on:click="click_uppercase"
              v-bind:title="title"
-        >{{name|lang}} {{{name_html}}}
+        >{{name | lang}} {{{name_html}}}
 
         </div>
         <slot></slot>
@@ -32,20 +32,21 @@
                v-bind:placeholder="o_out_placeholder"
                @focus.stop="o_foucs2=true"
                @blur.stop="o_foucs2=false"
+               @change="assignInputChange"
                list="datalist_var"
         >
 
         <input-assist
-                      v-bind:input_foucs="o_foucs"
-                      v-bind:assist_type="assist_type"  v-bind:edit_value.sync="o_edit"
-                      v-bind:assign_value.sync="o_out"   v-bind:enable_assign.sync="enable_assign"
-                      v-bind:assist_range_max="assist_range_max" v-bind:input_title="title||name"
-                      v-bind:assist_range_min="assist_range_min"  v-bind:assist_range_width="assist_range_width"
+                v-bind:input_foucs="o_foucs"
+                v-bind:assist_type="assist_type" v-bind:edit_value.sync="o_edit"
+                v-bind:assign_value.sync="o_out" v-bind:enable_assign.sync="enable_assign"
+                v-bind:assist_range_max="assist_range_max" v-bind:input_title="title||name"
+                v-bind:assist_range_min="assist_range_min" v-bind:assist_range_width="assist_range_width"
         ></input-assist>
 
         <input-assist
                 v-bind:input_foucs="o_foucs2"
-               assist_type="assign_normal"  v-bind:edit_value.sync="o_out"
+                assist_type="assign_normal" v-bind:edit_value.sync="o_out"
         ></input-assist>
 
 
@@ -59,15 +60,10 @@
         color: rgb(173, 173, 173);
     }
 
-
-
-    .exmo_inbox.value_input_box .exmo_input_text
-    {
+    .exmo_inbox.value_input_box .exmo_input_text {
 
         margin: 4px 2px;
     }
-
-
 
     .exmo_inbox.value_input_box.mini {
         width: calc(50% - 10px);
@@ -110,8 +106,8 @@
         padding: 2px 2px;
         padding-top: 3px;
 
-        i{
-            margin-top:  5px;
+        i {
+            margin-top: 5px;
             font-size: 12px;
             display: inline-block;
             vertical-align: top;
@@ -194,7 +190,7 @@
 //        编辑值，输出值，值名称，值类型
         props: ['edit_value', "title", "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini",
             "mode_color", "enable_uppercase", 'readonly',
-            'assist_type','assist_range_max','assist_range_min','assist_range_width'],
+            'assist_type', 'assist_range_max', 'assist_range_min', 'assist_range_width'],
         data(){
             return {
                 o_edit: "",
@@ -205,7 +201,7 @@
                 o_out_isMult: false,
                 o_uppercase: false,
                 o_foucs: false,
-                o_foucs2:false,
+                o_foucs2: false,
 //                pressOut_input: pressOut_input,
             }
         },
@@ -279,7 +275,7 @@
             {
                 this.o_foucs = true;
             },
-            on_blur:function ()
+            on_blur: function ()
             {
 
                 this.o_foucs = false;
@@ -294,17 +290,42 @@
                 }
 
             },
-            bl: function() {
+            bl: function ()
+            {
 
                 alert("blur")
 
             },
 
-            fs: function() {
+            fs: function ()
+            {
 
                 alert("focus")
 
             },
+            assignInputChange: function ()
+            {
+
+                if (TYP.type(this.o_out) === "string")
+                {
+                    var _varNames = this.o_out.split((/[,，]/));//-----多个赋值："xx,ddd，cc"
+
+                    for (var i = 0; i < _varNames.length; i++)
+                    {
+                        if (_varNames[i] != undefined)
+                        {
+                            if (ARR.getByKey( window.autocomplete_var, "value", _varNames[i]) == undefined)
+                            {
+
+                                window.autocomplete_var.push({value: _varNames[i]})//为自动补全
+                            }
+                        }
+
+                    }
+                }
+
+
+            }
         },
         components: {
             "input-assist": InputAssist

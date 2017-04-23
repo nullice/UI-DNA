@@ -139,12 +139,12 @@ var VarSystem = function ()
 
     //变量存储对象：
     this.vars = {
-        'zero': new VarType({name: 'zero', value: 12, type: null, isFormula: false, relatives: []}),
-        'a': new VarType({name: 'a', value: 123, type: null, isFormula: false, relatives: ['x']}),
-        'b': new VarType({name: 'b', value: 1000, type: null, isFormula: false, relatives: ['x']}),
-        'x': new VarType({name: 'x', value: "a*b", type: null, isFormula: true, relatives: []}),
-        't': new VarType({name: 't', value: "true", type: null, isFormula: true, relatives: []}),
-        'cc': new VarType({name: 'cc', value: "#f01", type: null, isFormula: true, relatives: []}),
+        'zero': new VarType({name: 'zero', value: "10-10", type: null, isFormula: true, relatives: []}),
+        // 'a': new VarType({name: 'a', value: 123, type: null, isFormula: false, relatives: ['x']}),
+        // 'b': new VarType({name: 'b', value: 1000, type: null, isFormula: false, relatives: ['x']}),
+        // 'x': new VarType({name: 'x', value: "a*b", type: null, isFormula: true, relatives: []}),
+        // 't': new VarType({name: 't', value: "true", type: null, isFormula: true, relatives: []}),
+        // 'cc': new VarType({name: 'cc', value: "#f01", type: null, isFormula: true, relatives: []}),
     };
 
 
@@ -286,6 +286,28 @@ VarSystem.prototype.inintVarNameList = function ()
         window.autocomplete_var.push({value: x})
     }
 }
+
+/**
+ * 清理初始化名称列表
+ */
+VarSystem.prototype.cleanVarNameList = function ()
+{
+
+    for (var i = 0; i < window.autocomplete_var.length; i++)
+    {
+
+        if(this.vars[window.autocomplete_var[i].value] == undefined)
+        {
+            window.autocomplete_var.splice(i, 1)
+            i--;
+        }
+    }
+
+}
+
+
+
+
 
 
 /**
