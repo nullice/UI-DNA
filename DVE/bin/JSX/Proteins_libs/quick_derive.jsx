@@ -79,7 +79,8 @@
 
             }
 
-            var offset = {x: infoObjec.dX + orgX, y: 0}
+
+            var offset = {x: +infoObjec.dX + orgX, y: 0}
             var time = 0
             for (var r = 0; r < row; r++)
             {
@@ -93,11 +94,13 @@
 
                     if (c > 0)
                     {
-                        var offset = {x: infoObjec.dX + orgX, y: 0}
+                        var offset = {x: +infoObjec.dX + orgX, y: 0}
                     }
 
                     var ids = Kinase.layer.copyLayer_byActive()
                     newIds.push(ids)
+
+                    $.writeln("move:"+json(offset))
                     Kinase.layer.moveLayerXY(Kinase.REF_ActiveLayer, null, offset)
                     if (infoObjec.rename != undefined && +infoObjec.rename == 1)
                     {
@@ -111,7 +114,7 @@
                 }
                 // $.writeln("r::::" + -(infoObjec.dX * (col - 1))+","+infoObjec.dY)
                 // $.writeln("r::::" + -(infoObjec.dX * (col - 1))+","+infoObjec.dY)
-                var offset = {x: -((infoObjec.dX + orgX) * (col - 1 )), y: infoObjec.dY + orgY}
+                var offset = {x: -((+infoObjec.dX + orgX) * (col - 1 )), y: +infoObjec.dY + orgY}
 
             }
         }

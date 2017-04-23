@@ -115,7 +115,7 @@
 
                     if (isObject)
                     {
-                        data[0].value = JSON.stringify(this.in_value)
+                        data[0].value = JSON.stringify(this.in_value,null,4)
                     }
 
 
