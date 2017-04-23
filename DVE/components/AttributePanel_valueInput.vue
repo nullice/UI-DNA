@@ -12,12 +12,12 @@
         <input type="text" class="exmo_input_text edit_input "
                v-bind:type="readonly?'readonly':'text'"
                v-model:value="o_edit"
-               debounce="800"
+               debounce="500"
                v-bind:placeholder="o_edit_placeholder"
                v-bind:class="{'uppercase':o_uppercase}"
                @focus.stop="on_foucs"
                @blur.stop="on_blur"
-               @mousewheel="mousewheelValue($event)"
+               @mousewheel="mousewheelValue($event,'o_edit')"
         >
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name+title|lowercase}}" autocomplete="off"
@@ -34,7 +34,7 @@
                @focus.stop="o_foucs2=true"
                @blur.stop="o_foucs2=false"
                @change="assignInputChange"
-               @mousewheel="mousewheelValue($event)"
+               @mousewheel="mousewheelValue($event,'o_out')"
                list="datalist_var"
         >
 
@@ -316,7 +316,7 @@
                     {
                         if (_varNames[i] != undefined)
                         {
-                            if (ARR.getByKey( window.autocomplete_var, "value", _varNames[i]) == undefined)
+                            if (ARR.getByKey(window.autocomplete_var, "value", _varNames[i]) == undefined)
                             {
 
                                 window.autocomplete_var.push({value: _varNames[i]})//为自动补全
@@ -329,10 +329,39 @@
 
             },
 
-            mousewheelValue:function (e)
+            mousewheelValue: function (e, varName)
             {
-                console.log(e)
+                var oldVal = this[varName]
+                var reg = /^[0-9\.]+$/
+
+                if (reg.test(oldVal))
+                {
+                    var offset = (e.wheelDelta / 120) / 5;
+
+                    if (offset < 1 && offset > 0)
+                    {
+                        offset = 1;
+                    }
+                    if (offset > -1 && offset < 0)
+                    {
+                        offset = -1;
+                    }
+
+                    if (e.altKey)
+                    {
+                        offset = offset * 10;
+                    }
+
+                    offset = Math.round(offset)
+                    var self = this
+                    self[varName] = +oldVal + offset;
+
+
+                    e.preventDefault();
+                }
             }
+
+
         },
         components: {
             "input-assist": InputAssist
