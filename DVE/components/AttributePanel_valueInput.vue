@@ -17,7 +17,7 @@
                v-bind:class="{'uppercase':o_uppercase}"
                @focus.stop="on_foucs"
                @blur.stop="on_blur"
-               @mousewheel="mousewheelValue($event,'o_edit')"
+               @mousewheel.stop="mousewheelValue($event,'o_edit')"
         >
 
         <input type="checkbox" class="exmo_icon_cheackbox" id="check_btn_{{name+title|lowercase}}" autocomplete="off"
@@ -189,6 +189,7 @@
     var muti_edit = false;
     //    var pressOut_input = false
     export default{
+
 //        编辑值，输出值，值名称，值类型
         props: ['edit_value', "title", "out_value", 'name', 'name_html', "value_type", "enable_assign", "mini",
             "mode_color", "enable_uppercase", 'readonly',
@@ -225,7 +226,7 @@
                     }
                 },
                 // setter
-                set: function (newValue)
+                set: _.debounce(function (newValue)
                 {
                     if (this.o_edit_isMult)
                     {
@@ -237,7 +238,7 @@
                     {
                         this.edit_value = newValue;
                     }
-                }
+                },300)
             },
             o_out: {
                 // getter
@@ -356,9 +357,8 @@
                     var self = this
                     self[varName] = +oldVal + offset;
 
-
-                    e.preventDefault();
                 }
+                return false
             }
 
 

@@ -14,7 +14,7 @@
         <div class="range-title">{{range_title}}</div>
         <div v-if="!(value_type=='alpha')" class="range-input">
             <input type="text" v-model="in_value"
-                   v-on:mousewheel="mousewheel($event)">
+                   v-on:mousewheel.stop="mousewheel($event)">
             <div class="spin-button">
                 <div v-on:click="click_up" class="spin-up"><i class="icon-dropdown-arrow"></i></div>
                 <div v-on:click="click_down" class="spin-down"><i class="icon-dropdown-arrow"></i></div>
