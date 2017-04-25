@@ -1054,12 +1054,63 @@ Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
     // log("-----------")
     // log(json(textKey_raw.value.boundingBox))
     // log("-----------")
+
+
+    var boundingBox_bottom = Math.round(textKey_raw.value.boundingBox.value.bottom.value.doubleValue)
+    var boundingBox_top = Math.round(textKey_raw.value.boundingBox.value.top.value.doubleValue)
+    var boundingBox_right = Math.round(textKey_raw.value.boundingBox.value.right.value.doubleValue)
+    var boundingBox_left = Math.round(textKey_raw.value.boundingBox.value.left.value.doubleValue)
+
+
+    var fontSizeMax = 0
+    for (x in textKey_raw.value.textStyleRange.value)
+    {
+        var size = textKey_raw.value.textStyleRange.value[x].value.textStyle.value.size.value.doubleValue
+
+
+        if (fontSizeMax < size)
+        {
+            fontSizeMax = size
+        }
+    }
+
+
+    // $.writeln("fontSizeMax:" + fontSizeMax)
+    var _offset_w = (fontSizeMax / 10) * 2+2
+    var _offset_h = _offset_w / 2
+
+
+    // $.writeln("_offset_w:" + _offset_w)
+    // $.writeln("_offset_h:" + _offset_h)
+    //
+    // $.writeln("oldBounds:" + json({
+    //
+    //         top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
+    //         left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
+    //         bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
+    //         right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value
+    //
+    //     }))
+
+
     var newBounds = {
         top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
         left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
-        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + textKey_raw.value.boundingBox.value.bottom.value.doubleValue - textKey_raw.value.boundingBox.value.top.value.doubleValue + 3,
-        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value + textKey_raw.value.boundingBox.value.right.value.doubleValue - textKey_raw.value.boundingBox.value.left.value.doubleValue + 3
+        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + (boundingBox_bottom - boundingBox_top ) + _offset_h+boundingBox_top,
+        right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value + (boundingBox_right - boundingBox_left) + _offset_w,
+
     }
+    //
+    // $.writeln("newBounds:" + json(newBounds))
+    //
+    //
+    // $.writeln("boundingBox_bottom:" + json({
+    //         boundingBox_top: boundingBox_top,
+    //         boundingBox_bottom: boundingBox_bottom,
+    //         boundingBox_right: boundingBox_right,
+    //         boundingBox_left: boundingBox_left
+    //     }))
+    // $.writeln("width:" + json(boundingBox_right - boundingBox_left))
 
 
     adOb.to.value.textShape = textKey_raw.value.textShape;
@@ -1741,7 +1792,8 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
     {
         if (adOb.to.value.textStyleRange == undefined)
         {
-            try {
+            try
+            {
                 var adOb2 = {
                     "null": {
                         "value": {
@@ -1774,11 +1826,11 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
                 var refOb = mu.actionReferenceToObject(ref)
                 adOb2.null.value.container = refOb;
                 mu.executeActionObjcet(charIDToTypeID("setd"), adOb2)
-            }catch (e){
+            } catch (e)
+            {
 
                 adOb.to.value.textStyleRange = textKey_raw.value.textStyleRange
             }
-
 
 
         }
