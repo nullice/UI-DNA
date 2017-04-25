@@ -909,7 +909,6 @@
                         数据化编辑
 
 
-
                         <div class="inline-but-bar data-editor-mode ">
                             <input type="radio" class="exmo_icon_cheackbox"
                                    id="quick_text_data_01"
@@ -1753,7 +1752,7 @@
             {
                 Proteins.exec("quick_shape_path_symDifference")
             },
-            func_shape_radius: _.debounce(function (e)
+            func_shape_radius: _.debounce(async function (e)
             {
 
                 var text = this.setSystem.ui.quick.shape_radius
@@ -1761,6 +1760,8 @@
                 if (text != undefined && text.split != undefined)
                 {
                     var textArr = text.split(/[,，\ ]/)
+                    console.log("func_shape_radius :text", text, "textArr:", textArr)
+
 
                     var reg = /[0-9]*/
                     var intArr = []
@@ -1778,23 +1779,60 @@
                         }
                     }
 
+
+                    if (intArr.length == 1)
+                    {
+                        intArr = [intArr[0], intArr[0], intArr[0], intArr[0]]
+                    }
+                     else if (intArr.length == 2)
+                    {
+                        intArr = [intArr[0], intArr[1], intArr[0], intArr[1]]
+                    }
+                    else if (intArr.length == 3)
+                    {
+                        intArr = [intArr[0], intArr[1], intArr[2], intArr[1]]
+                    }
+
+
                     if (intArr.length > 0)
                     {
+
+                        var _Radian = {}
+
                         var setValue = intArr[0]
-                        this.Gob.shape.radian.topLeft = +setValue
-                        if (intArr[1] != undefined) setValue = intArr[1]
-                        this.Gob.shape.radian.topRight = +setValue
-                        if (intArr[2] != undefined) setValue = intArr[2]
-                        this.Gob.shape.radian.bottomRight = +setValue
-                        if (intArr[3] != undefined) setValue = intArr[3]
-                        this.Gob.shape.radian.bottomLeft = +setValue
+                        Gob.shape.radian.topLeft = +setValue
+                        _Radian.topLeft = +setValue
+
+
+                        if (intArr[1] != undefined)
+                        {
+                            setValue = intArr[1]
+                            Gob.shape.radian.topRight = +setValue
+                            _Radian.topRight = +setValue
+                        }
+
+                        if (intArr[2] != undefined)
+                        {
+                            setValue = intArr[2]
+                            Gob.shape.radian.bottomRight = +setValue
+                            _Radian.bottomRight = +setValue
+                        }
+
+                        if (intArr[3] != undefined)
+                        {
+                            setValue = intArr[3]
+                            Gob.shape.radian.bottomLeft = +setValue
+                            _Radian.bottomLeft = +setValue
+                        }
+
+
                     }
 
 
                 }
 
 
-            }, 500),
+            }, 300),
 
             func_shape_shape_advance: function ()
             {

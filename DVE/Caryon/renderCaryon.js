@@ -42,15 +42,6 @@ RenderCaryon.prototype.test = async function (x)
  */
 RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notSelectLayer, activeLayer)
 {
-    this._DB_renderPatch_param = [layerId, names, value, notSelectLayer, activeLayer]
-
-    this._DB_RAW_renderPatch.apply(this,this._DB_renderPatch_param )
-}
-
-RenderCaryon.prototype._DB_RAW_renderPatch =
-
-_.debounce( async function (layerId, names, value, notSelectLayer, activeLayer)
-{
     if (Gob._unripe)
     {
         logger.info("[未准备好的渲染触发]", `renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
@@ -288,7 +279,9 @@ _.debounce( async function (layerId, names, value, notSelectLayer, activeLayer)
 
         return ob
     }
-},350)
+}
+
+
 
 /**
  * renderDocument() 变量赋值阶段使用的图层查询·缓存
