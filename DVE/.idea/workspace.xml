@@ -32,7 +32,7 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-105">
+                <state relative-caret-position="21">
                   <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
                   <folding />
                 </state>
@@ -293,7 +293,7 @@
           <file leaf-file-name="debug.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="279">
+                <state relative-caret-position="5943">
                   <caret line="316" column="20" lean-forward="false" selection-start-line="316" selection-start-column="20" selection-end-line="316" selection-end-column="20" />
                   <folding>
                     <element signature="n#!!block;n#boundingBox#0;n#!!block;n#value#0;n#!!top" expanded="false" />
@@ -305,8 +305,8 @@
           <file leaf-file-name="Kinase_lib.jsx" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="457">
-                  <caret line="1087" column="83" lean-forward="false" selection-start-line="1087" selection-start-column="83" selection-end-line="1087" selection-end-column="83" />
+                <state relative-caret-position="562">
+                  <caret line="1089" column="49" lean-forward="false" selection-start-line="1089" selection-start-column="49" selection-end-line="1089" selection-end-column="49" />
                   <folding>
                     <element signature="e#34375#36243#0" expanded="false" />
                     <element signature="e#36298#37725#0" expanded="false" />
@@ -923,12 +923,13 @@
       <workItem from="1492664356356" duration="9825000" />
       <workItem from="1492873066065" duration="21522000" />
       <workItem from="1493048734883" duration="618000" />
-      <workItem from="1493088877271" duration="5163000" />
+      <workItem from="1493088877271" duration="5341000" />
+      <workItem from="1493117095583" duration="621000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3266963000" />
+    <option name="totallyTimeSpent" value="3267762000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -940,7 +941,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1932" height="1056" extended-state="0" />
+    <frame x="-8" y="-8" width="1932" height="1056" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19799367" sideWeight="0.6034669" order="3" side_tool="false" content_ui="combo" />
@@ -948,9 +949,9 @@
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22318527" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1685761" sideWeight="0.52094716" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22703274" sideWeight="0.42145178" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22703274" sideWeight="0.42686892" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.10509209" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22703274" sideWeight="0.5785482" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22703274" sideWeight="0.5731311" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26218852" sideWeight="0.4667747" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815595" sideWeight="0.22426869" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1298,7 +1299,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="638" column="34" lean-forward="false" selection-start-line="638" selection-start-column="34" selection-end-line="638" selection-end-column="34" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1331,7 +1331,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="14427">
           <caret line="687" column="13" lean-forward="false" selection-start-line="687" selection-start-column="13" selection-end-line="687" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1487,7 +1486,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-105">
+        <state relative-caret-position="21">
           <caret line="48" column="29" lean-forward="false" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
           <folding />
         </state>
@@ -1495,7 +1494,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/test/debug.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
+        <state relative-caret-position="5943">
           <caret line="316" column="20" lean-forward="false" selection-start-line="316" selection-start-column="20" selection-end-line="316" selection-end-column="20" />
           <folding>
             <element signature="n#!!block;n#boundingBox#0;n#!!block;n#value#0;n#!!top" expanded="false" />
@@ -1505,8 +1504,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Enzymes/Kinase_lib.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="457">
-          <caret line="1087" column="83" lean-forward="false" selection-start-line="1087" selection-start-column="83" selection-end-line="1087" selection-end-column="83" />
+        <state relative-caret-position="562">
+          <caret line="1089" column="49" lean-forward="false" selection-start-line="1089" selection-start-column="49" selection-end-line="1089" selection-end-column="49" />
           <folding>
             <element signature="e#34375#36243#0" expanded="false" />
             <element signature="e#36298#37725#0" expanded="false" />
