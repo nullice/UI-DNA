@@ -12,7 +12,7 @@
         <input type="text" class="exmo_input_text edit_input "
                v-bind:type="readonly?'readonly':'text'"
                v-model:value="o_edit"
-           
+
                v-bind:placeholder="o_edit_placeholder"
                v-bind:class="{'uppercase':o_uppercase}"
                @focus.stop="on_foucs"

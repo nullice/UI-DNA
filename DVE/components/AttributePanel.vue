@@ -224,6 +224,17 @@
                     <div class="exmo_box_name">圆角弧度</div>
                 </div>
                 <div>
+
+                    <value-input v-bind:name="Lang.from('左上')"
+                                 v-bind:title="Lang.from('左上')"
+                                 v-bind:edit_value.sync="Gob.shape.radian.topLeft"
+                                 v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+                                 v-bind:assist_type="'radian'"
+                                 v-bind:assist_range_max="100"
+                                 mini="true"></value-input>
+
+
                     <value-input v-bind:name="Lang.from('右上')"
                                  v-bind:title="Lang.from('右上')"
                                  v-bind:edit_value.sync="Gob.shape.radian.topRight"
@@ -234,11 +245,12 @@
 
                                  mini="true"></value-input>
 
-                    <value-input v-bind:name="Lang.from('左上')"
-                                 v-bind:title="Lang.from('左上')"
-                                 v-bind:edit_value.sync="Gob.shape.radian.topLeft"
-                                 v-bind:out_value.sync="Gob.shape.assignment.radian.topLeft"
-                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.topLeft"
+
+                    <value-input v-bind:name="Lang.from('左下')"
+                                 v-bind:title="Lang.from('左下')"
+                                 v-bind:edit_value.sync="Gob.shape.radian.bottomLeft"
+                                 v-bind:out_value.sync="Gob.shape.assignment.radian.bottomLeft"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomLeft"
                                  v-bind:assist_type="'radian'"
                                  v-bind:assist_range_max="100"
                                  mini="true"></value-input>
@@ -252,14 +264,7 @@
                                  v-bind:assist_range_max="100"
                                  mini="true"></value-input>
 
-                    <value-input v-bind:name="Lang.from('左下')"
-                                 v-bind:title="Lang.from('左下')"
-                                 v-bind:edit_value.sync="Gob.shape.radian.bottomLeft"
-                                 v-bind:out_value.sync="Gob.shape.assignment.radian.bottomLeft"
-                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.radian.bottomLeft"
-                                 v-bind:assist_type="'radian'"
-                                 v-bind:assist_range_max="100"
-                                 mini="true"></value-input>
+
                 </div>
 
                 <div>
