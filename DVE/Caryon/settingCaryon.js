@@ -273,7 +273,12 @@ SetSystem.prototype.loadAppState = function ()
                     OBJ.objectCopyToObject(ob.dataCaryon, dataCaryon)
                     varSystem.loadVarsFromObject(ob.vars)
                     console.log(`cs.resizeContent(${ob.ui.lastWidth}, ${ob.ui.lastHeight})`, cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight))
-                    cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight)
+
+                    setTimeout(function ()
+                    {
+                        cs.resizeContent(ob.ui.lastWidth, ob.ui.lastHeight)
+                    },300)
+
                     if (ob.useonce)
                     {
                         fs.unlinkSync(path.join(this._path_userDataDir, "appState.json"))

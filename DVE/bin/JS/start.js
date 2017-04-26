@@ -15,15 +15,15 @@ window.UIDNA_BASE_VERINNDEX = 5;
 
     var scriptBox = document.getElementById("script-box")
     var loadingBox = document.createElement("div")
+    var jslist = []
     loadingBox.id = "loading-box"
     addScript("./JS/gonz.js")
     //------------------------------
-
     loading_Main()
     //-----------------------------
     addScript("./JS/UI_theme.js")
-    scriptBox.appendChild(loadingBox)
 
+    loadJs()
 
     function loading_Main()
     {
@@ -68,19 +68,43 @@ window.UIDNA_BASE_VERINNDEX = 5;
 
     function addScript(src)
     {
+
         var js = document.createElement("script")
         js.src = src
-        loadingBox.appendChild(js)
+        jslist.push(js)
     }
 
 
-    setTimeout(function ()
+    function loadJs()
     {
-        loading_jquery()
-    }, 100)
+        for (var i = 0; i < jslist.length; i++)
+        {
+            if (i < jslist.length - 1)
+            {
+                jslist[i].onload = (function (i)
+                {
+                    return function ()
+                    {
+                        console.info("loadJs",i + 1,jslist[i + 1])
+                        scriptBox.appendChild(jslist[i + 1])
+                    }
+                })(i)
+            }else
+            {
+
+                jslist[i].onload =  loading_jquery
+
+            }
+        }
+        console.info("loadJs",0,jslist[0])
+        scriptBox.appendChild(jslist[0])
+    }
+
+
 
     function loading_jquery()
     {
+        console.info("loadJs","loading_jquery")
         /*页面滚动 nicescroll*/
         $(document).ready(function ()
         {

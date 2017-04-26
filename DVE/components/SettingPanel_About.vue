@@ -20,7 +20,7 @@
         <div class="top-box">
 
             <div class="logo-box">
-                <div class="logo" title="{{'访问官网'|lang}}" v-on:click="openUrl('http://design-enzyme.com/UI-DNA')"><i
+                <div class="logo"><i  title="{{'访问官网'|lang}}" v-on:click="openUrl('http://design-enzyme.com/UI-DNA')"
                         class="iconfont  icon-ui-dna"></i></div>
             </div>
 
@@ -171,8 +171,9 @@
             i {
                 font-size: 33px;
                 color: #525252;
+                cursor: pointer;
             }
-            cursor: pointer;
+
         }
 
         .lnfo-box {
