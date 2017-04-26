@@ -26,7 +26,7 @@
     <favorites_list name="DVE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7695338">
+    <splitter split-orientation="horizontal" split-proportion="0.21011162">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
@@ -148,16 +148,16 @@
       </split-first>
       <split-second>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="AttributePanel_valueInput.vue" pinned="false" current-in-tab="false">
+          <file leaf-file-name="AttributePanel_valueInput.vue" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="42">
-                  <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+                <state relative-caret-position="294">
+                  <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
                   <folding>
                     <element signature="n#style#0;n#!!top" expanded="false" />
-                    <element signature="e#2263#2305#0" expanded="false" />
-                    <element signature="e#6619#7639#0" expanded="false" />
-                    <element signature="e#8366#9037#0" expanded="false" />
+                    <element signature="e#2245#2287#0" expanded="false" />
+                    <element signature="e#6601#7621#0" expanded="false" />
+                    <element signature="e#8348#9019#0" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -205,11 +205,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="true">
+          <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="125">
-                  <caret line="625" column="9" lean-forward="true" selection-start-line="625" selection-start-column="9" selection-end-line="625" selection-end-column="9" />
+                <state relative-caret-position="334">
+                  <caret line="490" column="74" lean-forward="false" selection-start-line="490" selection-start-column="74" selection-end-line="490" selection-end-column="74" />
                   <folding />
                 </state>
               </provider>
@@ -300,7 +300,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>color</find>
       <find>debounce</find>
       <find>getLayerInfoObejct_more</find>
       <find>J</find>
@@ -330,6 +329,7 @@
       <find>info</find>
       <find>autoUpdateInfo</find>
       <find>.logo</find>
+      <find>_execFunction_end</find>
     </findStrings>
     <replaceStrings>
       <replace>Kinase</replace>
@@ -387,8 +387,6 @@
         <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
         <option value="$PROJECT_DIR$/components/vue-color-cylinder/lib/color-range.vue" />
-        <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
-        <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
         <option value="$PROJECT_DIR$/components/InputAssist.vue" />
         <option value="$PROJECT_DIR$/bin/index.html" />
         <option value="$PROJECT_DIR$/bin/start.js" />
@@ -399,6 +397,8 @@
         <option value="$PROJECT_DIR$/bin/JS/start.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/components/SettingPanel_About.vue" />
+        <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
+        <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
       </list>
     </option>
   </component>
@@ -970,12 +970,12 @@
       <workItem from="1493048734883" duration="618000" />
       <workItem from="1493088877271" duration="5341000" />
       <workItem from="1493117095583" duration="27818000" />
-      <workItem from="1493185153167" duration="7998000" />
+      <workItem from="1493185153167" duration="10167000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3302957000" />
+    <option name="totallyTimeSpent" value="3305126000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1343,19 +1343,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#!!top" expanded="false" />
-            <element signature="e#2263#2305#0" expanded="false" />
-            <element signature="e#6619#7639#0" expanded="false" />
-            <element signature="e#8366#9037#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/components/vue-color-cylinder/vue-color-cylinder.vue">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12600">
@@ -1503,14 +1490,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="125">
-          <caret line="625" column="9" lean-forward="true" selection-start-line="625" selection-start-column="9" selection-end-line="625" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/appCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
@@ -1574,6 +1553,27 @@
         <state relative-caret-position="-798">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="490" column="74" lean-forward="false" selection-start-line="490" selection-start-column="74" selection-end-line="490" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_valueInput.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="14" column="11" lean-forward="true" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding>
+            <element signature="n#style#0;n#!!top" expanded="false" />
+            <element signature="e#2245#2287#0" expanded="false" />
+            <element signature="e#6601#7621#0" expanded="false" />
+            <element signature="e#8348#9019#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

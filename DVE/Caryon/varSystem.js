@@ -260,7 +260,7 @@ var VarSystem = function ()
                 return done;
 
 
-            }else if  (names[names.length - 1] == "y")
+            } else if (names[names.length - 1] == "y")
             {
 
                 var center = targetValue.replace(reg, "$&.y + ($&.h)*(" + scalc + ")")
@@ -285,6 +285,7 @@ var VarSystem = function ()
                 var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
                 return staic_position["w"]
             }
+
             async function getThisHeigth()
             {
                 if (dataCaryon.layers[thisId] != undefined)
@@ -485,10 +486,10 @@ VarSystem.prototype.layerSample = {
  */
 VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 {
-
     try
     {
-        console.log("varSystem.evalVar('" + varValue + "').", thisId, names)
+        console.log(`varSystem.evalVar("${varValue}", ${thisId} , [${names}])`)
+
         var self = this
         var result = this._execFunction_satrt(varValue)
 
@@ -577,7 +578,8 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                     }
                     else
                     {
-                        var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
+                        var getValue = await
+                            enzymes.evalEnhancer(_this_var.value, thisId);
                     }
 
 
@@ -589,7 +591,8 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                         var getValue = _this_var.value;
                     } else
                     {
-                        var getValue = await this.evalVar(_this_var.value, thisId, names);
+                        var getValue = await
+                            this.evalVar(_this_var.value, thisId, names);
                     }
 
                 }
@@ -612,14 +615,17 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         {
             if (inVar[0] == "#" || varValue[0] == ">")
             {
-                return await retrunFilter(inVar)
+                return await
+                    retrunFilter(inVar)
             }
 
-            return await retrunFilter(math.format(math.eval(inVar), {precision: 14}))
+            return await
+                retrunFilter(math.format(math.eval(inVar), {precision: 14}))
         } catch (e)
         {
             console.error(`math.eval(${inVar})`, e)
-            return await retrunFilter(inVar)
+            return await
+                retrunFilter(inVar)
         }
 
         async function retrunFilter(value)
@@ -634,7 +640,8 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
             }
 
         }
-    } catch (e)
+    }
+    catch (e)
     {
         console.error(e)
         return varValue
@@ -675,8 +682,11 @@ VarSystem.prototype._execFunction_satrt = function (varValue)
         if (result[0] != undefined)
         {
             var funcName = result[0].slice(0, result[0].length - 1)
-            var body = varValue.slice(result[0].length, varValue.length - 1)
-            return {value: body, funcName: funcName}
+            if (this.varFunctions[funcName] != undefined)
+            {
+                var body = varValue.slice(result[0].length, varValue.length - 1)
+                return {value: body, funcName: funcName}
+            }
         }
     }
     return {value: varValue, funcName: null}
@@ -686,7 +696,9 @@ VarSystem.prototype._execFunction_satrt = function (varValue)
 VarSystem.prototype._execFunction_end = async function (value, funcName, thisId, names, orgVar)
 {
 
-    console.log(`_execFunction_end(${value},${funcName})`)
+    console.log(
+        `_execFunction_end(${value},${funcName})`
+    )
     if (this.varFunctions[funcName] != undefined)
     {
         var func = await this.varFunctions[funcName];
