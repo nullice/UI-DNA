@@ -296,7 +296,7 @@
                         value: 'radian_all',
                         label_html: '<i class=" icon-radio-unchecked" style="font-size: 14px;">',
                         title: "应用到所有圆角",
-                        selected_func: this.open_file,
+                        selected_func: this.apply_all_radian,
                         button: true
                     },
                     {
@@ -637,6 +637,16 @@
                 }
                 ;
             },
+
+            apply_all_radian: async function ()
+            {
+                Gob.shape.radian.topLeft = this.edit_value
+                Gob.shape.radian.topRight = this.edit_value
+                Gob.shape.radian.bottomLeft = this.edit_value
+                Gob.shape.radian.bottomRight = this.edit_value
+            },
+
+
             position_setRight: async function ()
             {
                 var reg = /(bottom\()|(center\()/
@@ -649,8 +659,9 @@
                 } else if (reg.test(str))
                 {
                     var reg2 = /center\(/
-                    if(reg2.test(str))
-                    {  var reg2 = /\(.+[,，]/
+                    if (reg2.test(str))
+                    {
+                        var reg2 = /\(.+[,，]/
                         str = str.replace(reg2, "(")
                     }
 
@@ -676,8 +687,9 @@
                 } else if (reg.test(str))
                 {
                     var reg2 = /center\(/
-                    if(reg2.test(str))
-                    {  var reg2 = /\(.+[,，]/
+                    if (reg2.test(str))
+                    {
+                        var reg2 = /\(.+[,，]/
                         str = str.replace(reg2, "(")
                     }
 

@@ -804,7 +804,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
         {
             if (ARR.hasMember(["text", "shape",], names[0]))
             {
-                if (_lastName != "text")
+                if (_lastName != "text" && _lastButOneName != "shapeSize")
                 {
                     renderOnce = true
                 }
@@ -843,7 +843,8 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                             }
                             else
                             {
-                                var finValue = value;
+                                var reg =/[\+\-\*\/\%\(\)\!\^\?\:\>\<]/
+                                var finValue = await varSystem.evalVar(value, this.selectList[i].id, names)
                             }
                             //-----------------------------------------------------------------
 

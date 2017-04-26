@@ -1076,7 +1076,7 @@ Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
 
 
     // $.writeln("fontSizeMax:" + fontSizeMax)
-    var _offset_w = (fontSizeMax / 10) * 2+2
+    var _offset_w = (fontSizeMax / 10) * 2 + 2
     var _offset_h = _offset_w / 2
 
 
@@ -1096,7 +1096,7 @@ Kinase.layer.setLayerTextMinBounds_Quick = function (targetReference, target)
     var newBounds = {
         top: textKey_raw.value.textShape.value[0].value.bounds.value.top.value,
         left: textKey_raw.value.textShape.value[0].value.bounds.value.left.value,
-        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + (boundingBox_bottom - boundingBox_top ) + _offset_h+boundingBox_top,
+        bottom: textKey_raw.value.textShape.value[0].value.bounds.value.top.value + (boundingBox_bottom - boundingBox_top ) + _offset_h + boundingBox_top,
         right: textKey_raw.value.textShape.value[0].value.bounds.value.left.value + (boundingBox_right - boundingBox_left) + _offset_w,
 
     }
