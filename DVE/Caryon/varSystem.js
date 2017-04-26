@@ -180,7 +180,7 @@ var VarSystem = function ()
             return `lab(${c.l}, ${c.a}, ${c.b})`;
         },
 
-        left: async function (value, self, thisId, names, orgVar)
+        right: async function (value, self, thisId, names, orgVar)
         {
             async function getThisWidth()
             {
@@ -233,8 +233,72 @@ var VarSystem = function ()
             var done = +bottomValue - +h
             // alert("leftValue = " + leftValue + ", w:" + w+" d:"+done)
             return done;
-        }
+        },
 
+        center: async function (value, self, thisId, names, orgVar)
+        {
+
+            var values = orgVar.split(/[,，]/)
+
+            if (values.length == 1)
+            {
+                var scalc = 1 / 2
+                var targetValue = values[0]
+            } else if (values.length == 2)
+            {
+                var scalc = await self.evalVar(values[0], thisId, names)
+                var targetValue = values[1]
+            }
+
+            var reg = /@[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
+            if (names[names.length - 1] == "x")
+            {
+                var center = targetValue.replace(reg, "$&.x + ($&.w)*(" + scalc + ")")
+                var centerValue = await self.evalVar(center, thisId, names)
+                var w = await  getThisWidth()
+                var done = Math.round((+centerValue - (+w / 2)))
+                return done;
+
+
+            }else if  (names[names.length - 1] == "y")
+            {
+
+                var center = targetValue.replace(reg, "$&.y + ($&.h)*(" + scalc + ")")
+                var centerValue = await self.evalVar(center, thisId, names)
+                var h = await  getThisHeigth()
+                var done = Math.round((+centerValue - (+h / 2)))
+                return done;
+
+
+            }
+            return value
+
+            async function getThisWidth()
+            {
+                if (dataCaryon.layers[thisId] != undefined)
+                {
+                    if (dataCaryon.layers[thisId].position != undefined && dataCaryon.layers[thisId].position.w != undefined)
+                    {
+                        return await self.evalVar(dataCaryon.layers[thisId].position.w, thisId, ["position", "w"])
+                    }
+                }
+                var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
+                return staic_position["w"]
+            }
+            async function getThisHeigth()
+            {
+                if (dataCaryon.layers[thisId] != undefined)
+                {
+                    if (dataCaryon.layers[thisId].position != undefined && dataCaryon.layers[thisId].position.h != undefined)
+                    {
+                        return await self.evalVar(dataCaryon.layers[thisId].position.h, thisId, ["position", "h"])
+                    }
+                }
+                var staic_position = await  enzymes.getLayerInfo_position_byId(thisId)
+                return staic_position["h"]
+            }
+
+        }
     }
 
 
@@ -296,7 +360,7 @@ VarSystem.prototype.cleanVarNameList = function ()
     for (var i = 0; i < window.autocomplete_var.length; i++)
     {
 
-        if(this.vars[window.autocomplete_var[i].value] == undefined)
+        if (this.vars[window.autocomplete_var[i].value] == undefined)
         {
             window.autocomplete_var.splice(i, 1)
             i--;
@@ -304,10 +368,6 @@ VarSystem.prototype.cleanVarNameList = function ()
     }
 
 }
-
-
-
-
 
 
 /**

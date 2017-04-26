@@ -124,6 +124,11 @@ SetSystem.prototype.init = function ()
     _checkDir(languageDir);
     this._path_languageDir = languageDir;
 
+
+    var autoUpdateDir = path.join(appDir, "AutoUpdate")
+    _checkDir(autoUpdateDir);
+    this._path_autoUpdateDir = autoUpdateDir;
+
     var extraDir = path.join(userDataDir, "Extra")
     _checkDir(extraDir);
     this._path_userDataDir_extraDir = extraDir;

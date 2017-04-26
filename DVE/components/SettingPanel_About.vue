@@ -4,9 +4,11 @@
             v-bind:area_suspend="true"
     >
 
+        <auto-update v-if="showAutoUpdate" v-bind:info="autoUpdateInfo" v-bind:show.sync="showAutoUpdate"></auto-update>
+
 
         <div v-if="updateInfo.hasNewVar" class="var-update-box animated  bounceInLeft"
-             v-on:click="openUrl(updateInfo.latestVar.url)"
+             v-on:click="newVerUpdata"
              v-bind:title="updateInfo.latestVar.varData +' - ' + updateInfo.latestVar.title">
 
             <span class="title">{{'新版本' | json}}</span> <span class="var-to"></span> <span
@@ -79,7 +81,7 @@
 
     .marquee span {
         display: inline-block;
-        padding-left: 100%;  /* show the marquee just outside the paragraph */
+        padding-left: 100%; /* show the marquee just outside the paragraph */
         animation: marquee 15s linear infinite;
     }
 
@@ -89,11 +91,13 @@
 
     /* Make it move */
     @keyframes marquee {
-        0%   { transform: translate(0, 0); }
-        100% { transform: translate(-100%, 0); }
+        0% {
+            transform: translate(0, 0);
+        }
+        100% {
+            transform: translate(-100%, 0);
+        }
     }
-
-
 
     .setting_about_panel.suspend {
         height: 110px;
@@ -109,7 +113,7 @@
 
         .links-box {
 
-            text-align:  center;
+            text-align: center;
             ul {
                 padding: 0 30px;
             }
@@ -168,7 +172,7 @@
                 font-size: 33px;
                 color: #525252;
             }
-            cursor:  pointer;
+            cursor: pointer;
         }
 
         .lnfo-box {
@@ -247,21 +251,21 @@
             .msg-item {
                 margin-bottom: 10px;
                 display: inline-block;
-                    background: rgba(239, 228, 255, 0.42);
-                    border: 1px solid rgba(186, 140, 255, 0.33);
-                    color: rgba(60, 0, 102, 0.7);
-                    padding: 2px 20px;
-                    min-width: 123px;
-                    border-radius: 3px;
-                    cursor: pointer;
-                    width: calc(100% - 100px);
+                background: rgba(239, 228, 255, 0.42);
+                border: 1px solid rgba(186, 140, 255, 0.33);
+                color: rgba(60, 0, 102, 0.7);
+                padding: 2px 20px;
+                min-width: 123px;
+                border-radius: 3px;
+                cursor: pointer;
+                width: calc(100% - 100px);
             }
 
             .msg-item:nth-of-type(1) {
                 margin-bottom: 20px;
             }
 
-            .msg-item.lv1  {
+            .msg-item.lv1 {
                 background: rgba(234, 234, 234, 0.42);
                 border: 1px solid rgba(165, 165, 165, 0.33);
                 color: rgba(103, 103, 103, 0.7);
@@ -282,6 +286,8 @@
 <script>
 
     import Area from '../components/area.vue';
+    import AutoUpdate from '../components/AutoUpdate.vue';
+
 
     export default {
         data(){
@@ -294,7 +300,9 @@
                 updateInfo: {
                     hasNewVar: false,
                     latestVar: {}
-                }
+                },
+                showAutoUpdate:false,
+                autoUpdateInfo:{},
 
             }
         },
@@ -311,6 +319,25 @@
             msgOpen: function (url)
             {
                 opn(url)
+            },
+            newVerUpdata: function ()
+            {
+
+                if (1||this.updateInfo.latestVar.autoUpdate != undefined)
+                {
+                    if (1||UIDNA_BASE_VERINNDEX == +this.updateInfo.latestVar.autoUpdate.minBaseVer)
+                    {
+                        this.showAutoUpdate =true
+                        this.autoUpdateInfo = this.updateInfo.latestVar
+
+//                        appCaryon.startAutoUptate(this.updateInfo.latestVar.autoUpdate.url,
+//                            this.updateInfo.latestVar.autoUpdate.fileName,
+//                            this.updateInfo.latestVar)
+                        return
+                    }
+                }
+                this.openUrl(this.updateInfo.latestVar.url)
+
             },
 
             checkMessge: async function ()
@@ -350,7 +377,8 @@
         },
 
         components: {
-            "a-area": Area
+            "a-area": Area,
+            "auto-update":AutoUpdate
         },
 
     };

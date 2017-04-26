@@ -78,4 +78,26 @@ AppCaryon.prototype.unzipInstallExtra = function ()
 
 }
 
+
+
+AppCaryon.prototype.startAutoUptate = async function (url, filename)
+{
+
+    try
+    {
+      // var fileName = "patch_main_V0@5_test.js"
+      // var data = netCaryon.getOnce("http://nullice.coding.me/UI-DNA-CN/patch_main_V0%405_test.js",true)
+        var fileName = filename
+        var data = await netCaryon.getOnce(url,true)
+        fs.writeFileSync(path.join(setSystem._path_autoUpdateDir,fileName),data)
+    } catch (e)
+    {
+        console.error(e)
+    }
+}
+
+
+
+
+
 export default AppCaryon;

@@ -12,7 +12,7 @@
         <input type="text" class="exmo_input_text edit_input "
                v-bind:type="readonly?'readonly':'text'"
                v-model:value="o_edit"
-               debounce="500"
+               debounce="600"
                v-bind:placeholder="o_edit_placeholder"
                v-bind:class="{'uppercase':o_uppercase}"
                @focus.stop="on_foucs"
@@ -238,7 +238,7 @@
                     {
                         this.edit_value = newValue;
                     }
-                },300)
+                },500)
             },
             o_out: {
                 // getter

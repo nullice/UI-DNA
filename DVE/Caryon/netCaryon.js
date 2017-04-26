@@ -15,12 +15,20 @@ var NetCaryon = function ()
 }
 
 
-NetCaryon.prototype.getOnce = async function (url)
+NetCaryon.prototype.getOnce = async function (url, isFullUrl)
 {
     var self = this
+    if (isFullUrl)
+    {
+        var url = url
+    } else
+    {
+        var url = self.HOSTURL + url
+    }
+
     return new Promise(function (resolve, reject)
     {
-        axios.get(self.HOSTURL + url)
+        axios.get(url)
             .then(function (response)
             {
                 console.info("axios.get", response)
@@ -42,7 +50,7 @@ NetCaryon.prototype.getOfficialMessges = async function ()
     return await this.getOnce('/api/uidna/messge')
 }
 
-NetCaryon.prototype.getLatestVersion= async function ()
+NetCaryon.prototype.getLatestVersion = async function ()
 {
     var self = this
     return await this.getOnce('/api/uidna/latest_var')
