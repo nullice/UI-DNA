@@ -3,12 +3,11 @@
  */
 
 //基础版本
-window.UIDNA_BASE_VERINNDEX = 5;
+window.UIDNA_BASE_VERINNDEX = 6;
 
 
 (function ()
 {
-
     var fs = require("fs")
     var path = require("path")
     var cs = new CSInterface()
@@ -65,7 +64,6 @@ window.UIDNA_BASE_VERINNDEX = 5;
         addScript("./JS/main.js")
     }
 
-
     function addScript(src)
     {
 
@@ -99,8 +97,6 @@ window.UIDNA_BASE_VERINNDEX = 5;
         console.info("loadJs",0,jslist[0])
         scriptBox.appendChild(jslist[0])
     }
-
-
 
     function loading_jquery()
     {

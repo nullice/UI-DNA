@@ -43,9 +43,9 @@ import App from "./components/area.vue";
 //重要信息
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.5",
-    verIndex: 5,
-    varData: "2017/4/26",
+    version: "0.0.6",
+    verIndex: 6,
+    varData: "2017/4/27",
     codename: ["Euglena"][1],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
@@ -55,6 +55,14 @@ var UIDNA = {
 
 
 window.UIDNA = UIDNA
+
+
+if (UIDNA.verIndex > UIDNA_BASE_VERINNDEX)// 判断当前实例是否是动态更新的版本
+{
+    UIDNA._ON_AUTOUPDATA_ = true;
+}
+
+
 //CEP 库-------------------------------------
 if (typeof window.__adobe_cep__ !== "undefined")
 {
@@ -114,14 +122,7 @@ logger.info(
     }
 )
 
-//PhotoShop 接口操作库-------------------------------------
-import  Enzymes  from "./Enzymes/Enzymes";
-if (typeof window.__adobe_cep__ !== "undefined")
-{
-    var enzymes = new Enzymes();
-    window.enzymes = enzymes;
 
-}
 //数据结构--------------------------------------------
 import  IchiColor_base  from "./Caryon/IchiColor/ichi-color.js";
 import  IchiColor_ex  from "./Caryon/IchiColor/ichi-color-extension";
@@ -138,6 +139,14 @@ import  SetSystem  from "./Caryon/settingCaryon";
 var setSystem = new SetSystem();
 window.setSystem = setSystem;
 
+
+//PhotoShop 接口操作库-------------------------------------
+import  Enzymes  from "./Enzymes/Enzymes";
+if (typeof window.__adobe_cep__ !== "undefined")
+{
+    var enzymes = new Enzymes();
+    window.enzymes = enzymes;
+}
 
 //渲染系统-------------------------------------
 import  RenderCaryon  from "./Caryon/renderCaryon";
@@ -215,13 +224,13 @@ import SettingPanel from  "./components/SettingPanel.vue"
 //初始化-------------------------------------------
 setSystem.load()
 
-if(fs.existsSync(path.join(setSystem._path_appDir,"UI-DNA.json")))
+if (fs.existsSync(path.join(setSystem._path_appDir, "UI-DNA.json")))
 {
 
-}else
+} else
 {//第一次安装
     console.info("[第一次运行] 安装文件...")
-    fs.writeFileSync(path.join(setSystem._path_appDir,"UI-DNA.json") ,JSON.stringify(UIDNA,null,4))
+    fs.writeFileSync(path.join(setSystem._path_appDir, "UI-DNA.json"), JSON.stringify(UIDNA, null, 4))
     appCaryon.unzipInstallExtra()
 }
 setTimeout(function ()
@@ -233,19 +242,18 @@ setTimeout(function ()
     setSystem.loadUserJs()
 
 
-},300)
-
+}, 300)
 
 
 var mainVue = new Vue({
     el: 'body',
-    data: {setSystem:setSystem},
-    ready:function ()
+    data: {setSystem: setSystem},
+    ready: function ()
     {
         setTimeout(function ()
         {
             setSystem.loadAppState()
-        },300)
+        }, 300)
 
 
     },
@@ -262,9 +270,6 @@ var mainVue = new Vue({
 })
 
 window.mainVue = mainVue
-
-
-
 
 
 //测试 ----------------------
