@@ -21,6 +21,9 @@
 //
 // }
 
+var fs =require("fs")
+var path = require("path")
+
 if (typeof window.__adobe_cep__ !== "undefined")
 {
     /**
@@ -68,7 +71,34 @@ var Enzymes = function ()
 
 
     //初始化 extendScript 中的 Enzymes 库：
-    var extendPath = cs.getSystemPath(SystemPath.EXTENSION) //扩展所在路径
+
+    if (UIDNA._ON_AUTOUPDATA_)
+    {
+        var aupJsxPath = path.join(setSystem._path_autoUpdateDir, "JSX_V0@" + UIDNA.verIndex)
+
+        var readly = false;
+        if (fs.existsSync(aupJsxPath))
+        {
+            readly =true
+            readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/json3.js"))
+            readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/Muclease_lib.jsx"))
+            readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/Kinase_lib.jsx"))
+            readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/Proteins_lib.jsx"))
+        }
+
+        if(readly )
+        {
+            var extendPath = aupJsxPath.replace(/\\/g,"/") //扩展所在路径
+        }else
+        {
+            var extendPath = cs.getSystemPath(SystemPath.EXTENSION) //扩展所在路径
+        }
+
+    } else
+    {
+        var extendPath = cs.getSystemPath(SystemPath.EXTENSION) //扩展所在路径
+    }
+    logger.pin("Enzymes", "Enzymes 初始化", "载入 Enzymes 脚本文件夹:" + extendPath)
     evalScript(`initEnzymes('${extendPath}')`)
 
 
@@ -103,7 +133,7 @@ Enzymes.prototype.saveActiveDocument = async function ()
 
 
 /**
- * 创建新图层，可指定图层名，
+ * 创建新图层，可指定图层名
  * @param layerName
  * @returns {Promise}
  */
@@ -785,11 +815,11 @@ Enzymes.prototype.DNAExpress = function (mRNA_Layers)
 Enzymes.prototype._escape = function (str)
 {
 
-    if(str==undefined)
+    if (str == undefined)
     {
         return ""
     }
-    
+
     try
     {
         str = str.replace(/\\/g, "\\\\")
@@ -806,10 +836,10 @@ Enzymes.prototype._escape = function (str)
 
 Enzymes.prototype._unEscape = function (str)
 {
-   if(str==undefined)
-   {
-       return ""
-   }
+    if (str == undefined)
+    {
+        return ""
+    }
     try
     {
         str = str.replace(/\$\(q1\)\$/g, "\'")
