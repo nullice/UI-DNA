@@ -843,7 +843,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                             }
                             else
                             {
-                                var reg =/[\+\-\*\/\%\(\)\!\^\?\:\>\<]/
+                                var reg = /[\+\-\*\/\%\(\)\!\^\?\:\>\<]/
                                 var finValue = await varSystem.evalVar(value, this.selectList[i].id, names)
                             }
                             //-----------------------------------------------------------------
@@ -1106,15 +1106,15 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
 
-    // if (this.disableAttrPanel)// AttrPanel 关闭了，不需要更新 - 取消这个策略 2017.4.17
-    // {
-    //
-    // } else
-    // {
     //******************
     try
     {
-        await this.updateGob();
+
+        if (this.disableAttrPanel != true)// AttrPanel 关闭了，不需要更新
+        {
+            await this.updateGob();
+        }
+
     } catch (e)
     {
         logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob")
@@ -1335,6 +1335,7 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color)
 GobCaryon.prototype.updateGob = async function (disableRender)
 {
 
+    var self = this;
     logger.group("[updateGob]")
     console.time("updateGob 耗时")
     this.disableRender = disableRender || false;
@@ -1459,47 +1460,54 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.time("属性赋值到Gob耗时")
     // console.group("--position--------------------------", temp.position)
 
-    // console.time("属性赋值到Gob.position耗时")
-    await _objectToGob_async(temp.position, ["position"], this)
-    // console.timeEnd("属性赋值到Gob.position耗时")
-    // console.groupEnd()
 
-    // console.group("--text--------------------------", temp.text,)
-    // console.time("属性赋值到Gob.text耗时")
-    await _objectToGob_async(temp.text, ["text"], this)
-    // console.timeEnd("属性赋值到Gob.text耗时")
-    // console.groupEnd()
+    try
+    {
+        // console.time("属性赋值到Gob.position耗时")
+        await _objectToGob_async(temp.position, ["position"], this)
+        // console.timeEnd("属性赋值到Gob.position耗时")
+        // console.groupEnd()
 
-    // console.group("--shape--------------------------", temp.shape,)
-    // console.time("属性赋值到Gob.shape耗时")
-    await _objectToGob_async(temp.shape, ["shape"], this)
-    // console.timeEnd("属性赋值到Gob.shape耗时")
-    // console.groupEnd()
+        // console.group("--text--------------------------", temp.text,)
+        // console.time("属性赋值到Gob.text耗时")
+        await _objectToGob_async(temp.text, ["text"], this)
+        // console.timeEnd("属性赋值到Gob.text耗时")
+        // console.groupEnd()
 
-    // console.group("--smartObject--------------------------", temp.smartObject,)
-    // console.time("属性赋值到Gob.smartObject耗时")
-    await _objectToGob_async(temp.smartObject, ["smartObject"], this)
-    // console.timeEnd("属性赋值到Gob.smartObject耗时")
-    // console.groupEnd()
+        // console.group("--shape--------------------------", temp.shape,)
+        // console.time("属性赋值到Gob.shape耗时")
+        await _objectToGob_async(temp.shape, ["shape"], this)
+        // console.timeEnd("属性赋值到Gob.shape耗时")
+        // console.groupEnd()
 
-    // console.group("--quickEffect--------------------------", temp.quickEffect,)
-    // console.time("属性赋值到Gob.quickEffect耗时")
-    await _objectToGob_async(temp.quickEffect, ["quickEffect"], this)
-    // console.timeEnd("属性赋值到Gob.quickEffect耗时")
-    // console.groupEnd()
+        // console.group("--smartObject--------------------------", temp.smartObject,)
+        // console.time("属性赋值到Gob.smartObject耗时")
+        await _objectToGob_async(temp.smartObject, ["smartObject"], this)
+        // console.timeEnd("属性赋值到Gob.smartObject耗时")
+        // console.groupEnd()
 
-    // console.group("--more--------------------------", temp.more,)
-    // console.time("属性赋值到Gob.more耗时")
-    await _objectToGob_async(temp.more, ["more"], this)
-    // console.timeEnd("属性赋值到Gob.more耗时")
-    // console.groupEnd()
+        // console.group("--quickEffect--------------------------", temp.quickEffect,)
+        // console.time("属性赋值到Gob.quickEffect耗时")
+        await _objectToGob_async(temp.quickEffect, ["quickEffect"], this)
+        // console.timeEnd("属性赋值到Gob.quickEffect耗时")
+        // console.groupEnd()
+
+        // console.group("--more--------------------------", temp.more,)
+        // console.time("属性赋值到Gob.more耗时")
+        await _objectToGob_async(temp.more, ["more"], this)
+        // console.timeEnd("属性赋值到Gob.more耗时")
+        // console.groupEnd()
+    } catch (e)
+    {
+        console.error("GobCaryon.updateGob _objectToGob_async", e)
+    }
+
 
     console.timeEnd("属性赋值到Gob耗时")
     console.info("============")
     console.groupEnd()
 
 
-    var self = this;
     setTimeout(function ()
     {
         self.disableRender = false;//恢复默认值；

@@ -1099,6 +1099,7 @@
                 if (val === false)
                 {
                     Gob.disableAttrPanel = true
+                    Gob.updateSelect()
                 } else
                 {
                     Gob.disableAttrPanel = false
