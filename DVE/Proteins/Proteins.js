@@ -9,7 +9,7 @@
 // nullice.com
 // license: LGPL
 
-
+var fs =require("fs")
 var path = require("path")
 var Proteins = {
     exec: async function (functionName, parameObject)
@@ -108,7 +108,31 @@ Proteins.init = async function ()
     evalScript(_jsxCode,)
 
 
-    var libsPath = path.join(cs.getSystemPath(SystemPath.EXTENSION), "JSX", "Proteins_libs")
+
+    if (UIDNA._ON_AUTOUPDATA_)
+    {
+        var aupProteinsPath = path.join(setSystem._path_autoUpdateDir, "JSX_V0@" + UIDNA.verIndex+"/JSX/Proteins_libs")
+
+        var readly = false;
+        if (fs.existsSync(aupProteinsPath))
+        {
+            readly = true
+            readly = readly & fs.existsSync(path.join(aupProteinsPath, "/quick_transform.jsx"))
+            readly = readly & fs.existsSync(path.join(aupProteinsPath, "/quick_shape_distribution.jsx"))
+        }
+
+        if(readly)
+        {
+            var libsPath = aupProteinsPath.replace(/\\/g,"/")
+        }else
+        {
+            var libsPath = path.join(cs.getSystemPath(SystemPath.EXTENSION), "JSX", "Proteins_libs")
+        }
+
+    } else
+    {
+        var libsPath = path.join(cs.getSystemPath(SystemPath.EXTENSION), "JSX", "Proteins_libs")
+    }
 
     logger.pin("Proteins", "Proteins.int()", "载入脚本功能库文件夹:" + libsPath)
     var log = await  Proteins.evalJsxFolder(libsPath)

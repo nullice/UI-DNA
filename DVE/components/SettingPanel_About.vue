@@ -324,9 +324,10 @@
             newVerUpdata: function ()
             {
 
-                if (1||this.updateInfo.latestVar.autoUpdate != undefined)
+                if (this.updateInfo.latestVar.autoUpdate != undefined)
                 {
-                    if (1||UIDNA_BASE_VERINNDEX == +this.updateInfo.latestVar.autoUpdate.minBaseVer)
+//                    if (UIDNA_BASE_VERINNDEX == +this.updateInfo.latestVar.autoUpdate.minBaseVer)
+                    if (UIDNA_BASE_VERINNDEX >= +this.updateInfo.latestVar.autoUpdate.minBaseVer)
                     {
                         this.showAutoUpdate =true
                         this.autoUpdateInfo = this.updateInfo.latestVar

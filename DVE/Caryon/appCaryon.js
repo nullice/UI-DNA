@@ -4,6 +4,7 @@
 
 var path = require("path")
 var fs = require("fs")
+var nodeUrl = require("url")
 
 var AppCaryon = function ()
 {
@@ -80,7 +81,7 @@ AppCaryon.prototype.unzipInstallExtra = function ()
 
 
 
-AppCaryon.prototype.startAutoUptate = async function (url, filename)
+AppCaryon.prototype.startAutoUptate = async function (url, filename,jsxs,verIndex)
 {
 
     try
@@ -90,12 +91,148 @@ AppCaryon.prototype.startAutoUptate = async function (url, filename)
         var fileName = filename
         var data = await netCaryon.getOnce(url,true)
         fs.writeFileSync(path.join(setSystem._path_autoUpdateDir,fileName),data)
+
+        if(jsxs!=undefined)
+        {
+
+            var downloadJson = await netCaryon.getOnce(jsxs,true)
+            if(downloadJson.jsxs!=undefined)
+            {
+                var aupJsxPath = path.join(setSystem._path_autoUpdateDir, "JSX_V0@" + verIndex)
+                var jsxPath =path.join(aupJsxPath,"JSX")
+                var proteins_libsPath =path.join(jsxPath,"Proteins_libs")
+                try {
+
+                    rmdirAllSync(aupJsxPath)
+                }catch (e)
+                {
+                }
+
+                fs.mkdirSync(aupJsxPath)
+                fs.mkdirSync(jsxPath)
+                fs.mkdirSync(proteins_libsPath)
+                await  downloadList(downloadJson.jsxs,jsxPath)
+
+                if(downloadJson.proteins!=undefined)
+                {
+                    await  downloadList(downloadJson.proteins,proteins_libsPath)
+                }
+            }
+        }
+
+        this.deletOldAutoUptateFile(verIndex)
+        return true
+
     } catch (e)
     {
+        try {
+            var aupJsxPath = path.join(setSystem._path_autoUpdateDir, "JSX_V0@" + verIndex)
+            rmdirAllSync(aupJsxPath)
+            fs.unlinkSync(path.join(setSystem._path_autoUpdateDir,fileName))
+
+        }catch (e){}
+
+
         console.error(e)
+        return e
+    }
+
+
+
+    async function downloadList(urls, savePath)
+    {
+        for (var i = 0; i < urls.length; i++)
+        {
+            var urlOb = nodeUrl.parse(urls[i])
+            var fileName = path.basename(urlOb.pathname)
+            fileName = fileName.replace("%40","@")
+
+            console.info("[downloadList]",i,fileName,"url:",urls[i])
+            var data = await netCaryon.getOnce(urls[i],true)
+
+            if(TYP.type(data) == "object")
+            {
+                data = JSON.stringify(data)
+            }
+            fs.writeFileSync(path.join(savePath,fileName),data)
+        }
+
+
     }
 }
 
+
+
+AppCaryon.prototype.deletOldAutoUptateFile = async function (verIndex)
+{
+    try {
+        var aupJsxPath = path.join(setSystem._path_autoUpdateDir, "JSX_V0@" + (verIndex-1))
+        rmdirAllSync(aupJsxPath)
+
+
+    }catch (e){console.error(e)}
+
+
+    try {
+        var fileList = fs.readdirSync(setSystem._path_autoUpdateDir)
+        var reg = /^patch_main_V0@[0-9]{0,4}/
+        var reg_ver = /@[0-9]{0,4}/
+
+
+        for (var i = 0; i < fileList.length; i++)
+        {
+            if (reg.test(fileList[i]))
+            {
+                var thisver = +(reg_ver.exec(fileList[i])[0].slice(1))
+                if (thisver <verIndex)
+                {
+                    fs.unlinkSync(path.join(setSystem._path_autoUpdateDir,fileList[i]))
+
+                }
+            }
+        }
+
+    }catch (e){console.error(e)}
+
+
+
+
+
+
+}
+
+
+var rmdirAllSync = (function(){
+    function iterator(url,dirs){
+        var stat = fs.statSync(url);
+        if(stat.isDirectory()){
+            dirs.unshift(url);
+            inner(url,dirs);
+        }else if(stat.isFile()){
+            fs.unlinkSync(url);
+        }
+    }
+    function inner(path,dirs){
+        var arr = fs.readdirSync(path);
+        for(var i = 0, el ; el = arr[i++];){
+            iterator(path+"/"+el,dirs);
+        }
+    }
+    return function(dir,cb){
+        cb = cb || function(){};
+        var dirs = [];
+
+        try{
+            iterator(dir,dirs);
+            for(var i = 0, el ; el = dirs[i++];){
+                fs.rmdirSync(el);
+            }
+            cb()
+        }catch(e){
+            e.code === "ENOENT" ? cb() : cb(e);
+        }
+    }
+})();
 
 
 

@@ -1,6 +1,6 @@
 <template>
     <div id="auto-update">
-        <label  id="auto-update-close-but" class="exmo_button_icon mini " v-on:click="doClose">x</label>
+        <label id="auto-update-close-but" class="exmo_button_icon mini " v-on:click="doClose">x</label>
 
 
         <h2>{{'新版本：' | lang}}{{info.version}}  <span class="sub">{{info.varData}}</span></h2>
@@ -42,12 +42,14 @@
         width: 100%;
         left: 0;
         right: 0;
-        min-height: 200px;
+        min-height: 100px;
         h2 {
             font-size: 16px;
             padding: 14px;
             padding-top: 20px;
             padding-bottom: 2px;
+            font-weight: normal;
+            color: rgba(45, 38, 140, 0.72);
 
             span.sub {
                 font-size: 12px;
@@ -82,14 +84,19 @@
             font-size: 12px;
             text-align: left;
             padding: 12px 20px;
-            color: rgba(0, 0, 0, 0.72);
+            color: rgba(0, 0, 0, 0.75);
+            max-height: 158px;
+            overflow: hidden;
+            overflow-y: scroll;
+            overflow-x: hidden;
+            margin-bottom: 12px;
             ul {
                 padding: 0;
                 list-style: none;
 
-                il {
+                li {
                     display: block;
-                    padding: 4px;
+                    padding: 3px;
                 }
             }
         }
@@ -156,14 +163,20 @@
             {
 
                 this.downloaing = true
-                await appCaryon.startAutoUptate(this.info.autoUpdate.url, this.info.autoUpdate.fileName)
+                var suc = await appCaryon.startAutoUptate(this.info.autoUpdate.url, this.info.autoUpdate.fileName, this.info.autoUpdate["jsxs"],this.info.verIndex)
                 this.downloaing = false
-                appCaryon.restar_UI_DNA()
+                if(suc)
+                {
+                    appCaryon.restar_UI_DNA()
+                }else {
+                    alert("更新失败:"+suc)
+                }
+
 
             },
-            doClose:function ()
+            doClose: function ()
             {
-                this.show=false
+                this.show = false
             }
         },
         computed: {
