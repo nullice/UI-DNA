@@ -840,7 +840,7 @@ Kinase.layer.getLayerTextInfo = function (targetReference, target)
 
     var layerKind = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     // log("layerKind :" + layerKind.layerKind.value)
-    if (layerKind.layerKind.value == 3)
+    if (layerKind!= undefined &&layerKind.layerKind.value == 3)
     {
         var textKey_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "textKey");
         textKey_raw = textKey_raw.textKey;
@@ -942,7 +942,7 @@ Kinase.layer.getLayerTextInfo = function (targetReference, target)
     }
     else
     {
-        log("not text layer :" + layerKind.layerKind.value)
+       // log("not text layer :" + layerKind.layerKind.value)
     }
 
 

@@ -784,6 +784,12 @@ Enzymes.prototype.DNAExpress = function (mRNA_Layers)
  */
 Enzymes.prototype._escape = function (str)
 {
+
+    if(str==undefined)
+    {
+        return ""
+    }
+    
     try
     {
         str = str.replace(/\\/g, "\\\\")
@@ -800,6 +806,10 @@ Enzymes.prototype._escape = function (str)
 
 Enzymes.prototype._unEscape = function (str)
 {
+   if(str==undefined)
+   {
+       return ""
+   }
     try
     {
         str = str.replace(/\$\(q1\)\$/g, "\'")
