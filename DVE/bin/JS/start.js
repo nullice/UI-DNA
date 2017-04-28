@@ -3,7 +3,7 @@
  */
 
 //基础版本
-window.UIDNA_BASE_VERINNDEX = 6;
+window.UIDNA_BASE_VERINNDEX = 7;
 
 
 (function ()

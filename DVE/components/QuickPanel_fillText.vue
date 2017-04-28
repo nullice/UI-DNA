@@ -5,12 +5,6 @@
         <div class="fun_block">
             <div class="info">
                 文本填充
-
-
-
-
-
-
                 <div class="inline-but-bar">
 
 
@@ -111,6 +105,11 @@
         {
             window.fill_data_item_list = this.fill_data_item_list;
             this.importFillDataFromFile()
+            var self = this;
+            window._QuickPanel_fillText_importFillDataFromFile = function ()
+            {
+                self.importFillDataFromFile()
+            }
         },
         props: [],
         data(){
@@ -289,8 +288,6 @@
 
             creatMenuOptions: function (dataIndex, moreData)
             {
-
-
                 var options = []
 
                 for (var x in moreData)
@@ -312,7 +309,7 @@
 
             func_text_fillText: async function (fillData)
             {
-                var  self =this
+                var self = this
                 var textTable = await Proteins.exec("quick_text_calcTextTable")
                 var z = 0;
                 var count = 1;
@@ -340,7 +337,7 @@
                 {
                     var getValue = null;
 
-                    console.info("self.random",self.random)
+                    console.info("self.random", self.random)
                     if (self.random)
                     {
                         var index = Math.floor(Math.random() * (fillData.length - 1))
@@ -379,7 +376,7 @@
                         {
                             rs += seed.substr(Math.floor(Math.random() * len), 1);
                         }
-                       rs =  STR.insert(rs,3,3,"XXX")
+                        rs = STR.insert(rs, 3, 3, "XXX")
                         getValue = rs
                     }
                     else if (getValue === "(_%/phone_jp%_)")
@@ -391,7 +388,7 @@
                         min = rs.length;
                         for (i = 0; i < max - min; i++)rs += seed.substr(Math.floor(Math.random() * len), 1);
 
-                        rs = STR.insert(rs,4,3,"XXX")
+                        rs = STR.insert(rs, 4, 3, "XXX")
                         getValue = rs
                     }
 
@@ -404,7 +401,6 @@
             "menu-buttom": MenuButtom
         }
     }
-
 
 
 </script>

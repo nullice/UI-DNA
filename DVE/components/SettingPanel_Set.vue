@@ -30,7 +30,6 @@
                     v-on:click="doOpen(setSystem._path_userDataDir)">
                 <i class="icon-layer-group-collapsed"></i>
             </button>
-
         </div>
 
         <div class="set-item">
@@ -41,6 +40,19 @@
                 <i class="icon-layer-group-collapsed"></i>
             </button>
         </div>
+
+
+        <h3>扩展所在路径</h3>
+        <div class="set-item">
+            <div class="exmo_box_name">{{'UI-DNA' | lang}}  </div>
+            <input type="readonly" class="exmo_input_text edit_input" v-bind:value="setSystem._path_extensionDir">
+            <button title="{{'打开文件夹' | lang}}" class="exmo_button_icon mini"
+                    v-on:click="doOpen(setSystem._path_extensionDir)">
+                <i class="icon-layer-group-collapsed"></i>
+            </button>
+        </div>
+
+
 
 
         <h3>测试</h3>

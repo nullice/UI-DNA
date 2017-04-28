@@ -3,6 +3,10 @@
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/bin/JSX" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/node_modules/base65536/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/node_modules/copy-paste/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/node_modules/opn/node_modules" />
+      <excludeFolder url="file://$MODULE_DIR$/bin/node_modules/svgo/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/node_modules" />
     </content>
     <orderEntry type="inheritedJdk" />

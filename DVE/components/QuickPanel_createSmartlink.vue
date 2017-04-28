@@ -154,6 +154,14 @@
         {
             window.fill_data_item_list = this.fill_data_item_list;
             this.importFillDataFromFile()
+
+
+            var self = this;
+            window._QuickPanel_createSmartLink_importFillDataFromFile = function ()
+            {
+                self.importFillDataFromFile()
+            }
+
         },
         props: [],
         data(){

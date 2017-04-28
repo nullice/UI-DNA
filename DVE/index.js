@@ -43,8 +43,8 @@ import App from "./components/area.vue";
 //重要信息
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.6",
-    verIndex: 6,
+    version: "0.0.7",
+    verIndex: 7,
     varData: "2017/4/27",
     codename: ["Euglena"][1],
     author: "nullice",
@@ -232,6 +232,7 @@ if (fs.existsSync(path.join(setSystem._path_appDir, "UI-DNA.json")))
     console.info("[第一次运行] 安装文件...")
     fs.writeFileSync(path.join(setSystem._path_appDir, "UI-DNA.json"), JSON.stringify(UIDNA, null, 4))
     appCaryon.unzipInstallExtra()
+
 }
 setTimeout(function ()
 {
