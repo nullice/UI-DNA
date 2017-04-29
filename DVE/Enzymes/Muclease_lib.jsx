@@ -83,7 +83,7 @@ Muclease.prototype.actionReferenceToObject = function (actionReference)
         }
         try
         {
-            ob.identifier = typeIDToStringID(actionReference.getIdentifier())
+            ob.identifier = actionReference.getIdentifier()
         } catch (e)
         {
         }
@@ -361,7 +361,9 @@ Muclease.prototype.objectToActionReference = function (ob)
         if (ob.identifier !== undefined)
         {
             //putIdentifier(desiredClass,value)
-            af.putIdentifier(stringIDToTypeID(ob.desiredClass), stringIDToTypeID(ob.identifier))
+            
+
+            af.putIdentifier(stringIDToTypeID(ob.desiredClass), ob.identifier)
             hasDesiredClass = true;
         }
         if (ob.index !== undefined)

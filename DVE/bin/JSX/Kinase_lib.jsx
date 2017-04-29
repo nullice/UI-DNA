@@ -2674,7 +2674,7 @@ Kinase.layer.setLayerBounds = function (boundsInfo, targetReference, target, doV
     }
 
 
-    // log(json(adOb))
+    log(json(adOb))
     mu.executeActionObjcet(charIDToTypeID("Trnf"), adOb);
 
 
