@@ -1382,7 +1382,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
                     var item_position = await this.getLayerInfoObejct_position(this.selectList[i].id);
                     _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position")
                     _objectToObject(item_position, temp.position, true, !(i == 0));
-                    console.timeEnd("position 获取耗时")
+                    console.timeEnd("position获取耗时")
 
                     //[text]---------------------------------------------------------------
                     console.time("text获取耗时")
@@ -1463,6 +1463,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     try
     {
+        console.time("属性赋值到 Gob.XXX 耗时")
         // console.time("属性赋值到Gob.position耗时")
         await _objectToGob_async(temp.position, ["position"], this)
         // console.timeEnd("属性赋值到Gob.position耗时")
@@ -1497,6 +1498,9 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         await _objectToGob_async(temp.more, ["more"], this)
         // console.timeEnd("属性赋值到Gob.more耗时")
         // console.groupEnd()
+
+
+        console.timeEnd("属性赋值到 Gob.XXX 耗时")
     } catch (e)
     {
         console.error("GobCaryon.updateGob _objectToGob_async", e)

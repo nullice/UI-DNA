@@ -134,16 +134,27 @@ Kinase.document.getDocumentInfoObject_byActive = function ()
     return ob;
 }
 
+
 /**
  * 是否存在画板。
  * @param returnArtBoard 为真返回值会是个对象，会包含最先找到的画板 id：{hasArtBoard: true, aArtBoardId: id}
  * @returns {*}
  */
-Kinase.document.hasArtBoard = function (returnArtBoard)
+Kinase.document.hasArtBoard = function (returnArtBoard, maxScanTime)
 {
 
     for (var i = 0; i < activeDocument.layers.length; i++)
     {
+        if (i > maxScanTime)
+        {
+            if (returnArtBoard)
+            {
+                return {hasArtBoard: false, aArtBoardId: null}
+            } else
+            {
+                return false;
+            }
+        }
         if (Kinase.layer.isArtBoard(Kinase.REF_LayerID, activeDocument.layers[i].id))
         {
             if (returnArtBoard)
@@ -165,6 +176,38 @@ Kinase.document.hasArtBoard = function (returnArtBoard)
         return false;
     }
 }
+
+
+/**
+ * 获取 Photoshop 原生文档属性 Json
+ * @param lessInfo
+ * @returns {*}
+ */
+Kinase.document.getDocumentInfoJson = function (lessInfo)
+{
+
+    // Build Action Descriptor
+    var af = new ActionReference();
+    var ad = new ActionDescriptor();
+    af.putProperty(charIDToTypeID('Prpr'), stringIDToTypeID("json"));
+    af.putEnumerated(stringIDToTypeID("document"), charIDToTypeID('Ordn'), charIDToTypeID('Trgt'));
+    ad.putReference(charIDToTypeID('null'), af);
+
+
+    if (lessInfo != true)
+    {
+        ad.putBoolean(stringIDToTypeID("expandSmartObjects"), true);
+        ad.putBoolean(stringIDToTypeID("selectedLayers"), true);
+        ad.putBoolean(stringIDToTypeID("getTextStyles"), true);
+        ad.putBoolean(stringIDToTypeID("getFullTextStyles"), true);
+        ad.putBoolean(stringIDToTypeID("getDefaultLayerFX"), true);
+        ad.putBoolean(stringIDToTypeID("getPathData"), true);
+
+    }
+
+    return executeAction(charIDToTypeID("getd"), ad, DialogModes.NO).getString(stringIDToTypeID("json"));
+}
+
 
 // if (!app.activeDocument.saved)
 
@@ -216,6 +259,90 @@ Kinase.selection.createSelection_byActive = function ()
 
 Kinase.layer = {};
 
+
+Kinase.layer.findRootLayers_byItemIndex = function (itemIndex)
+{
+    // var itemIndex = Kinase.layer.getItemIndexBylayerID(layerId)
+
+    var maxLen = activeDocument.layers.length
+    // for (var i = activeDocument.layers.length - 1; i >= 0; i--)
+    // {
+    //     activeDocument.layers[i].itemIndex
+    // }
+    var wanna_itemIndex = itemIndex
+    // $.writeln("wanna_itemIndex:" + wanna_itemIndex)
+    return _scanLayers(app.activeDocument.layers, 0, app.activeDocument.layers.length - 1)
+
+
+    function _scanLayers(layers, start, end)
+    {
+        // $.writeln(" start:" + start + " end:" + end + "len : " + layers.length)
+        var start_itemIndex_h = layers[start].itemIndex
+        var end_itemIndex_l = layers[end].itemIndex
+        //
+        //
+        // $.writeln("start_itemIndex_h:" + start_itemIndex_h)
+        // $.writeln("end_itemIndex_l:" + end_itemIndex_l)
+        if ((start - end) == 0)
+        {
+            var mid = start
+        } else
+        {
+            var _v = wanna_itemIndex - end_itemIndex_l
+            var _i = start_itemIndex_h - end_itemIndex_l
+
+            var mid = start + (( 1 - ( _v / _i)) * (end - start));
+            var mid = Math.floor(mid)
+
+            if (mid > end)
+            {
+                // $.writeln("mid>end" +mid )
+                mid = end
+            }
+        }
+
+
+        //
+        // $.writeln("_v:" + _v)
+        // $.writeln("_i:" + _i)
+        // $.writeln ("mid:"+mid)
+
+        var mid_itemIndex = layers[mid].itemIndex
+        // $.writeln("mid_itemIndex:" + mid_itemIndex)
+
+        if (mid + 1 >= maxLen)
+        {
+            var mid_1_itemIndex = 0
+        } else
+        {
+
+            var mid_1_itemIndex = layers[mid + 1].itemIndex
+        }
+        // $.writeln("mid_1_itemIndex:" + mid_1_itemIndex)
+        if (wanna_itemIndex < mid_itemIndex && wanna_itemIndex > mid_1_itemIndex)
+        {
+            if ((layers[mid].typename == "LayerSet"))
+            {
+                return Kinase.layer.getLayerIdByItemIndex(mid_itemIndex)
+            }
+        }
+
+        if (wanna_itemIndex > mid_itemIndex)
+        {
+            // $.writeln("mid - 1:" + (mid - 1))
+            return _scanLayers(layers, start, mid - 1)
+        }
+        else if (wanna_itemIndex < mid_itemIndex)
+        {
+            // $.writeln("mid + 1:" + (mid + 1))
+            return _scanLayers(layers, mid + 1, end)
+        }
+
+        return null
+    }
+
+
+}
 /**
  * 根据 layerId 返回图层基本信息
  * {
@@ -840,7 +967,7 @@ Kinase.layer.getLayerTextInfo = function (targetReference, target)
 
     var layerKind = Kinase.layer.get_XXX_Objcet(targetReference, target, "layerKind");
     // log("layerKind :" + layerKind.layerKind.value)
-    if (layerKind!= undefined &&layerKind.layerKind.value == 3)
+    if (layerKind != undefined && layerKind.layerKind.value == 3)
     {
         var textKey_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "textKey");
         textKey_raw = textKey_raw.textKey;
@@ -942,7 +1069,7 @@ Kinase.layer.getLayerTextInfo = function (targetReference, target)
     }
     else
     {
-       // log("not text layer :" + layerKind.layerKind.value)
+        // log("not text layer :" + layerKind.layerKind.value)
     }
 
 
@@ -1883,15 +2010,46 @@ Kinase.layer.getStrokeStyle = function (targetReference, target, returnKeyOrigin
     var adjustment_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "adjustment")
 
 
+    try
+    {
+
+        if (AGMStrokeStyleInfo != undefined)
+        {
+            strokeStyle.fillColor.enabled = AGMStrokeStyleInfo.value.fillEnabled.value;
+        } else
+        {
+            var _root_fillEnabled = Kinase.layer.get_XXX_Objcet(targetReference, target, "fillEnabled")
+            if (_root_fillEnabled != undefined)
+            {
+                strokeStyle.fillColor.enabled = true
+                // strokeStyle.fillColor.enabled =  _root_fillEnabled.fillEnabled.value
+
+            } else
+            {
+                strokeStyle.fillColor.enabled = false
+            }
+
+        }
+
+        strokeStyle.fillColor.r = adjustment_raw.adjustment.value[0].value.color.value.red.value;
+        strokeStyle.fillColor.g = adjustment_raw.adjustment.value[0].value.color.value.grain.value;
+        strokeStyle.fillColor.b = adjustment_raw.adjustment.value[0].value.color.value.blue.value;
+    } catch (e)
+    {
+        $.writeln("Kinase.layer.getStrokeStyle   strokeStyle.fillColor:" + e);
+    }
+
+
     if (isEmptyObject(AGMStrokeStyleInfo_raw) || AGMStrokeStyleInfo_raw.AGMStrokeStyleInfo == undefined)
     {
-        strokeStyle.err = "err:not shape layer."
+        strokeStyle.err = "err:not AGMStrokeStyleInfo layer."
         return strokeStyle;
     }
     else
     {
         var AGMStrokeStyleInfo = AGMStrokeStyleInfo_raw.AGMStrokeStyleInfo;
     }
+
     try
     {
         strokeStyle.strokeColor.enabled = AGMStrokeStyleInfo.value.strokeEnabled.value;
@@ -1901,24 +2059,16 @@ Kinase.layer.getStrokeStyle = function (targetReference, target, returnKeyOrigin
 
     } catch (e)
     {
-        log(e);
+        $.writeln("Kinase.layer.getStrokeStyle  strokeStyle.strokeColor:" + e);
     }
-    try
-    {
-        strokeStyle.fillColor.enabled = AGMStrokeStyleInfo.value.fillEnabled.value;
-        strokeStyle.fillColor.r = adjustment_raw.adjustment.value[0].value.color.value.red.value;
-        strokeStyle.fillColor.g = adjustment_raw.adjustment.value[0].value.color.value.grain.value;
-        strokeStyle.fillColor.b = adjustment_raw.adjustment.value[0].value.color.value.blue.value;
-    } catch (e)
-    {
-        log(e);
-    }
+
     try
     {
         strokeStyle.lineWidth = AGMStrokeStyleInfo.value.strokeStyleLineWidth.value.doubleValue;
     } catch (e)
     {
-        log(e);
+
+        $.writeln("Kinase.layer.getStrokeStyle   strokeStyle.lineWidth:" + e);
     }
     try
     {
@@ -1931,7 +2081,7 @@ Kinase.layer.getStrokeStyle = function (targetReference, target, returnKeyOrigin
 
     } catch (e)
     {
-        log(e);
+        $.writeln("Kinase.layer.getStrokeStyle strokeStyle.dashSet:" + e);
     }
     try
     {
@@ -1941,7 +2091,7 @@ Kinase.layer.getStrokeStyle = function (targetReference, target, returnKeyOrigin
 
     } catch (e)
     {
-        log(e);
+        $.writeln("Kinase.layer.getStrokeStyle strokeStyle.lineAlignment:" + e);
     }
 
     return strokeStyle;
@@ -1960,6 +2110,44 @@ Kinase.layer.setStrokeStyle_byActive = function (strokeStyle)
     if (strokeStyle.fillColor.r == undefined) strokeStyle.fillColor.r = oldStrokeStyle.fillColor.r;
     if (strokeStyle.fillColor.g == undefined) strokeStyle.fillColor.g = oldStrokeStyle.fillColor.g;
     if (strokeStyle.fillColor.b == undefined) strokeStyle.fillColor.b = oldStrokeStyle.fillColor.b;
+
+
+    var adOb_fillColor = {
+        "null": {
+            "value": {
+                "container": {
+                    "container": {}
+                },
+                "form": "ReferenceFormType.ENUMERATED",
+                "desiredClass": "contentLayer",
+                "enumeratedType": "ordinal",
+                "enumeratedValue": "targetEnum"
+            }, "type": "DescValueType.REFERENCETYPE"
+        },
+        "to": {
+            "value": {
+                "fillContents": {
+                    "value": {
+                        "color": {
+                            "value": {
+                                "red": {"value": strokeStyle.fillColor.r, "type": "DescValueType.DOUBLETYPE"},
+                                "grain": {"value": strokeStyle.fillColor.g, "type": "DescValueType.DOUBLETYPE"},
+                                "blue": {"value": strokeStyle.fillColor.b, "type": "DescValueType.DOUBLETYPE"}
+                            }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
+                        }
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "solidColorLayer"
+                },
+                "strokeStyle": {
+                    "value": {
+                        "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
+                        "fillEnabled": {"value": strokeStyle.fillColor.enabled, "type": "DescValueType.BOOLEANTYPE"}
+                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
+                }
+            }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
+        }
+    }
+    mu.executeActionObjcet(charIDToTypeID("setd"), adOb_fillColor)
+
 
     var adOb_strokeColor = {
         "null": {
@@ -1999,43 +2187,6 @@ Kinase.layer.setStrokeStyle_byActive = function (strokeStyle)
         }
     }
     mu.executeActionObjcet(charIDToTypeID("setd"), adOb_strokeColor)
-
-    var adOb_fillColor = {
-        "null": {
-            "value": {
-                "container": {
-                    "container": {}
-                },
-                "form": "ReferenceFormType.ENUMERATED",
-                "desiredClass": "contentLayer",
-                "enumeratedType": "ordinal",
-                "enumeratedValue": "targetEnum"
-            }, "type": "DescValueType.REFERENCETYPE"
-        },
-        "to": {
-            "value": {
-                "fillContents": {
-                    "value": {
-                        "color": {
-                            "value": {
-                                "red": {"value": strokeStyle.fillColor.r, "type": "DescValueType.DOUBLETYPE"},
-                                "grain": {"value": strokeStyle.fillColor.g, "type": "DescValueType.DOUBLETYPE"},
-                                "blue": {"value": strokeStyle.fillColor.b, "type": "DescValueType.DOUBLETYPE"}
-                            }, "type": "DescValueType.OBJECTTYPE", "objectType": "RGBColor"
-                        }
-                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "solidColorLayer"
-                },
-                "strokeStyle": {
-                    "value": {
-                        "strokeStyleVersion": {"value": 2, "type": "DescValueType.INTEGERTYPE"},
-                        "fillEnabled": {"value": strokeStyle.fillColor.enabled, "type": "DescValueType.BOOLEANTYPE"}
-                    }, "type": "DescValueType.OBJECTTYPE", "objectType": "strokeStyle"
-                }
-            }, "type": "DescValueType.OBJECTTYPE", "objectType": "shapeStyle"
-        }
-    }
-
-    mu.executeActionObjcet(charIDToTypeID("setd"), adOb_fillColor)
 
     //描边宽度-------------------------------------------------------------------
     if (strokeStyle.lineWidth != undefined)
@@ -2488,7 +2639,6 @@ Kinase.layer.getLayerBounds = function (targetReference, target, getType)
 
 
     }
-
     else
     {
         var boundsInfo_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, classStr, "Lyr ");
@@ -2522,23 +2672,49 @@ Kinase.layer.getLayerBounds = function (targetReference, target, getType)
 
 
     //画板修正
-    var itemIndex_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "itemIndex", "Lyr ");
-    var parentLayerItemIndex = ki.layer.getParentLayerItemIndex_byItemIndex(itemIndex_raw.itemIndex.value);
-    if (parentLayerItemIndex > -1)
+
+    // var
+
+    // if(activeDocument.layers[0].itemIndex)
+
+    var result_artBoard = Kinase.document.hasArtBoard(true, 3)
+    if (result_artBoard.hasArtBoard)
     {
-        var artBoard_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex + Kinase.BKOffset(), "artboardEnabled", "Lyr ");
-        if (artBoard_raw.artboardEnabled.value == true)
-        {
-            var artBoard_boundsInfo_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex + Kinase.BKOffset(), "boundsNoEffects", "Lyr ");
-            artBoard_boundsInfo_raw = artBoard_boundsInfo_raw.boundsNoEffects;
+        var itemIndex_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "itemIndex", "Lyr ");
 
-            boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
-            boundsInfo.right = boundsInfo.right - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+        var rootId = Kinase.layer.findRootLayers_byItemIndex(itemIndex_raw.itemIndex.value)
 
-            boundsInfo.y = boundsInfo.y - artBoard_boundsInfo_raw.value.top.value.doubleValue;
-            boundsInfo.bottom = boundsInfo.bottom - artBoard_boundsInfo_raw.value.top.value.doubleValue;
-        }
+
+        var artBoard_boundsInfo_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_LayerID, rootId, "boundsNoEffects", "Lyr ");
+        artBoard_boundsInfo_raw = artBoard_boundsInfo_raw.boundsNoEffects;
+
+        boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+        boundsInfo.right = boundsInfo.right - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+
+        boundsInfo.y = boundsInfo.y - artBoard_boundsInfo_raw.value.top.value.doubleValue;
+        boundsInfo.bottom = boundsInfo.bottom - artBoard_boundsInfo_raw.value.top.value.doubleValue;
+
     }
+
+
+    //
+    // var itemIndex_raw = Kinase.layer.get_XXX_Objcet(targetReference, target, "itemIndex", "Lyr ");
+    // var parentLayerItemIndex = ki.layer.getParentLayerItemIndex_byItemIndex(itemIndex_raw.itemIndex.value);
+    // if (parentLayerItemIndex > -1)
+    // {
+    //     var artBoard_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex + Kinase.BKOffset(), "artboardEnabled", "Lyr ");
+    //     if (artBoard_raw.artboardEnabled.value == true)
+    //     {
+    //         var artBoard_boundsInfo_raw = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, parentLayerItemIndex + Kinase.BKOffset(), "boundsNoEffects", "Lyr ");
+    //         artBoard_boundsInfo_raw = artBoard_boundsInfo_raw.boundsNoEffects;
+    //
+    //         boundsInfo.x = boundsInfo.x - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+    //         boundsInfo.right = boundsInfo.right - artBoard_boundsInfo_raw.value.left.value.doubleValue;
+    //
+    //         boundsInfo.y = boundsInfo.y - artBoard_boundsInfo_raw.value.top.value.doubleValue;
+    //         boundsInfo.bottom = boundsInfo.bottom - artBoard_boundsInfo_raw.value.top.value.doubleValue;
+    //     }
+    // }
 
 
     return boundsInfo;
@@ -7260,31 +7436,158 @@ Kinase.layer.getChildLayerDOM_byItemIndex = function (itemIndex)
 
 /**
  * 根据 ItemIndex 获取图层的 DOM 对象
- * @param itemIndex
+ * @param wanna_itemIndex
  * @returns {*}
  */
-Kinase.layer.getLayerDOMObject_byItemIndex = function (itemIndex)
+Kinase.layer.getLayerDOMObject_byItemIndex = function (wanna_itemIndex)
 {
 
-    return _scanLayers(app.activeDocument.layers)
 
-    function _scanLayers(layers)
+    return _scanLayers(app.activeDocument.layers, 0, app.activeDocument.layers.length - 1)
+
+    function _scanLayers(layers, start, end)
     {
-        var layerSet;
-        // log("===_scanLayers:"+layers +"("+layers.length+")")
-        for (var i = layers.length - 1; i >= 0; i--)
-        {
-            // log(i + "/" + layers.length + "-#" + layers[i].itemIndex + layers[i])
-            if (layers[i].itemIndex == itemIndex)
-            {
-                return layers[i];
-            }
 
-            if ((layers[i].typename == "LayerSet") && layers[i].itemIndex > itemIndex)
+        // $.writeln("------")
+        // for (var i = 0; i < layers.length; i++)
+        // {
+        //     if (i >= start && i <= end)
+        //     {
+        //         $.write("[v]")
+        //     }
+        //     $.writeln("【" + i + "】" + layers[i].itemIndex + "=" + layers[i].name)
+        //
+        // }
+        // $.writeln("------")
+
+        // $.writeln(" start:" + start + " end:" + end + "len : " + layers.length)
+        var start_itemIndex_h = layers[start].itemIndex
+        var end_itemIndex_l = layers[end].itemIndex
+
+        if (start_itemIndex_h == wanna_itemIndex)
+        {
+            return layers[start]
+        }
+
+        if (end_itemIndex_l == wanna_itemIndex)
+        {
+            return layers[end]
+        }
+
+        // var end_itemIndex - start_itemIndex
+        // var mid = start + (Math.floor((end - start) / 2))
+
+        // $.writeln("start:" + start +" start_itemIndex:" + start_itemIndex_h  )
+        // $.writeln("end:" + end +" end_itemIndex:" + end_itemIndex_l  )
+        // $.writeln("wanna_itemIndex - start_itemIndex:" + (wanna_itemIndex - start_itemIndex_h) )
+        // $.writeln("1- :" + (1 - (wanna_itemIndex - end_itemIndex_l) / ( start_itemIndex_h - end_itemIndex_l)))
+        // $.writeln("end - start:" + (end - start))
+
+
+        if ((start - end) == 0)
+        {
+            var mid = start
+        } else
+        {
+            var _v = wanna_itemIndex - end_itemIndex_l
+            var _i = start_itemIndex_h - end_itemIndex_l
+
+            // $.writeln("_v:" + _v)
+            // $.writeln("_i:" + _i)
+            var mid = start + (( 1 - ( _v / _i)) * (end - start));
+            var mid = Math.floor(mid)
+
+            if (mid > end)
             {
-                return _scanLayers(layers[i].layers)
+                // $.writeln("mid>end" +mid )
+                mid = end
             }
         }
+
+
+        // $.writeln("--mid:" + mid)
+        var mid_itemIndex = layers[mid].itemIndex
+
+
+        // $.writeln("[start:" + start + " end:" + end + " mid:" + mid + "] mid_itemIndex:" + mid_itemIndex + " wanna_itemIndex:" + wanna_itemIndex + (wanna_itemIndex < mid_itemIndex))
+
+        if (mid_itemIndex == wanna_itemIndex)
+        {
+            return layers[mid];
+        }
+
+
+        if (wanna_itemIndex > mid_itemIndex)
+        {
+            // $.writeln("wanna_itemIndex  > mid_itemIndex")
+            if (mid == 0)
+            {
+                // $.writeln("mid == 0")
+                return _scanLayers(layers[mid].layers, 0, layers[mid].layers.length - 1)
+            } else
+            {
+
+                if (wanna_itemIndex < layers[mid - 1].itemIndex)
+                {
+                    // $.writeln("LayerSet")
+                    if ((layers[mid - 1].typename == "LayerSet"))
+                    {
+                        return _scanLayers(layers[mid - 1].layers, 0, layers[mid - 1].layers.length - 1)
+                    }
+                }
+
+                // $.writeln("mid - 1:" + (mid - 1))
+                return _scanLayers(layers, start, mid - 1)
+
+            }
+        }
+        else if (wanna_itemIndex < mid_itemIndex)
+        {
+            // $.writeln("wanna_itemIndex < mid_itemIndex")
+            if (mid == layers.length - 1)
+            {
+                // $.writeln("mid == layers.length - 1")
+                return _scanLayers(layers[mid].layers, 0, layers[mid].layers.length - 1)
+            } else
+            {
+
+                if (wanna_itemIndex > layers[mid + 1].itemIndex)
+                {
+                    // $.writeln("LayerSet")
+                    if ((layers[mid].typename == "LayerSet"))
+                    {
+                        return _scanLayers(layers[mid].layers, 0, layers[mid].layers.length - 1)
+                    }
+                }
+
+                // $.writeln("mid + 1:" + (mid + 1))
+                return _scanLayers(layers, mid + 1, end)
+
+            }
+
+        }
+
+        // if (mid_itemIndex > itemIndex)
+        //     return _scanLayers(app.activeDocument.layers, 0, app.activeDocument.layers.length - 1)
+        //
+        // InsertionSearch(a, value, low, mid - 1);
+        // if (a[mid] < value)
+        //     return InsertionSearch(a, value, mid + 1, high);
+        //
+        //
+        // for (var i = layers.length - 1; i >= 0; i--)
+        // {
+        //     // log(i + "/" + layers.length + "-#" + layers[i].itemIndex + layers[i])
+        //     if (layers[i].itemIndex == itemIndex)
+        //     {
+        //         return layers[i];
+        //     }
+        //
+        //     if ((layers[i].typename == "LayerSet") && layers[i].itemIndex > itemIndex)
+        //     {
+        //         return _scanLayers(layers[i].layers)
+        //     }
+        // }
     }
 }
 

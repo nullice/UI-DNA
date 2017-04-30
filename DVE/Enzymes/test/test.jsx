@@ -20,6 +20,8 @@ function log(info)
 function logSave()
 {
     var f = new File(File($.fileName).path + "/debug.log");
+
+    $.writeln("logSave:"+f)
     f.open("w");
     f.write(debug_log);
 }
