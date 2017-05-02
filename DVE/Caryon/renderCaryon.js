@@ -282,7 +282,6 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notS
 }
 
 
-
 /**
  * renderDocument() 变量赋值阶段使用的图层查询·缓存
  * @type {{rootName: null, layerId: null, cache: null}}
@@ -323,15 +322,19 @@ RenderCaryon.prototype._getLayerData = async function (rootName, name, layerId)
 
 }
 
-RenderCaryon.prototype._getLayerDataByNamse = async function (rootName, names, layerId)
+RenderCaryon.prototype._getLayerDataByNamse = async function (rootName, names, layerId, disableCache)
 {
     var self = this;
 
     console.log("_getLayerData:", rootName, "[" + names + "]", layerId)
+
     //调用缓存：
-    if ((this.__getLayerData_cache.rootName == rootName) && (this.__getLayerData_cache.layerId == layerId))
+    if (disableCache != true)
     {
-        return _returnFilter(OBJ.getObjectValueByNames(this.__getLayerData_cache.cache, names));
+        if ((this.__getLayerData_cache.rootName == rootName) && (this.__getLayerData_cache.layerId == layerId))
+        {
+            return _returnFilter(OBJ.getObjectValueByNames(this.__getLayerData_cache.cache, names));
+        }
     }
 
 
@@ -391,10 +394,12 @@ RenderCaryon.prototype._getLayerDataByNamse = async function (rootName, names, l
 
     function _saveCache(info)
     {
-        self.__getLayerData_cache.rootName = rootName;
-        self.__getLayerData_cache.layerId = layerId;
-        self.__getLayerData_cache.cache = info;
-
+        if (disableCache != true)
+        {
+            self.__getLayerData_cache.rootName = rootName;
+            self.__getLayerData_cache.layerId = layerId;
+            self.__getLayerData_cache.cache = info;
+        }
     }
 
     function _returnFilter(value)
@@ -434,7 +439,7 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     this.__getLayerData_cache.layerId = null;
     varSystem.$count = 0;
     varSystem.$layerCount = 0;
-
+    varSystem.$userCounts = {};
     var allLayerArray = await  enzymes.getAllLayerArray()
 
     var dependentList = []

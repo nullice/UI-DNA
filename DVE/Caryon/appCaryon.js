@@ -84,7 +84,7 @@ AppCaryon.prototype.unzipInstallExtra = function ()
                 unzipper.extract({
                     path: setSystem._path_userDataDir,
                 });
-            },800)
+            },2800)
 
         }
 

@@ -165,6 +165,27 @@ Enzymes.prototype.deleteLayer = async function (id)
 
 
 /**
+ *
+ * @param id
+ * @returns {Promise}
+ */
+Enzymes.prototype.getParentLayerId_byLayerId = async function (id)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = ` Kinase.layer.getParentLayerId_byLayerId(${JSON.stringify(id)})`
+        evalScript(_jsxCode,
+            (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
+    })
+}
+
+
+
+
+
+
+
+/**
  * 获取全部图层的名称、ID、itemIndex 信息的数组。根据给定的参数，可返回 4 种类型的数组：
  * 0.图层 [id]；
  * 1.图层 [itemIndex]；

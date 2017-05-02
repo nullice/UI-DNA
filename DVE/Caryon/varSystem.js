@@ -306,6 +306,7 @@ var VarSystem = function ()
     /*计数*/
     this.$count = 0;
     this.$layerount = 0;
+    this.$userCounts = {};
 
     this.inintVarNameList()
     return this;
@@ -488,7 +489,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 {
     try
     {
-        console.log(`varSystem.evalVar("${varValue}", ${thisId} , [${names}])`)
+        console.log(`varSystem.evalVar("${varValue}", ${thisId} , ${JSON.stringify(names)})`)
 
         var self = this
         var result = this._execFunction_satrt(varValue)
@@ -526,7 +527,8 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 
             if (varList[i].name[0] == "$" || varList[i].name[0] == "￥")
             {
-                var _this_var = {value: varList[i].name};
+                var _this_var = await this.evalVarEnhancer(varList[i].name.slice(1), thisId,names)
+
             } else
             {
                 if (varList[i].name[0] == "@")
@@ -565,9 +567,13 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 
             if (_this_var !== undefined)
             {
+
+
                 // console.log(varList[i].index + increment + "-" + varList[i].name.length)
                 if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
                 {
+
+                    var reg = /\+\+$/
                     if (ARR.hasMember(["计数", "count", "i"],) , _this_var.value.slice(1))
                     {
                         var getValue = this.$count;
@@ -576,13 +582,24 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                     {
                         var getValue = this.$layerCount;
                     }
+                    else if (reg.test(_this_var.value.slice(1)))
+                    {
+
+                        var userVar = _this_var.value.slice(1, _this_var.value.length - 2)
+
+                        if (this.$userCounts[userVar] == undefined)
+                        {
+                            this.$userCounts[userVar] = 0
+                        } else
+                        {
+                            this.$userCounts[userVar]++
+                        }
+                        var getValue = this.$userCounts[userVar];
+                    }
                     else
                     {
-                        var getValue = await
-                            enzymes.evalEnhancer(_this_var.value, thisId);
+                        var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
                     }
-
-
                 }
                 else
                 {
@@ -591,8 +608,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                         var getValue = _this_var.value;
                     } else
                     {
-                        var getValue = await
-                            this.evalVar(_this_var.value, thisId, names);
+                        var getValue = await this.evalVar(_this_var.value, thisId, names);
                     }
 
                 }
@@ -646,6 +662,52 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
         console.error(e)
         return varValue
     }
+}
+
+VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
+{
+
+    var varArr = varValue.split(".")
+    var layerId = null
+    if (ARR.hasMember(["parent"], varArr[0]))
+    {
+        var parentId = await enzymes.getParentLayerId_byLayerId(thisId)
+        console.log("parentId",parentId)
+        if (parentId != null)
+        {
+            layerId = parentId
+        }
+
+    }
+
+
+    if (layerId != undefined)
+    {
+
+        if (varArr.length === 1)
+        {
+            var names = names;
+
+        } else if (varArr.length > 1)
+        {
+            if (ARR.hasMember(["x", "y", "w", "h"], varArr[1]))
+            {
+                names.unshift("position")
+            }
+            names = varArr.slice(1)
+        }
+
+        var rootName = names[0]
+        console.log("rootName:",rootName)
+        var resultValue = await renderCaryon._getLayerDataByNamse(rootName, names, layerId, true)
+        console.log("resultValue:",resultValue)
+        return {value: resultValue}
+    }
+    else
+    {
+        return {value: "$" + varValue}
+    }
+
 }
 
 
