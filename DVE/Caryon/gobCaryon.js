@@ -1075,53 +1075,59 @@ GobCaryon.prototype.updateSelect = async function ()
     this.selectRender = false;
     this.selectRenderVarList = [];
     console.log("【this.nowSwitching = true】")
-
-    //判断选中图层是否有改变
-
-    var newList = (await enzymes.getSelectLayerArray()).reverse();//"获取图层"
-
-    this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
-    logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
-    this.selectList = newList;
-    if (this.selectChanged)
-    {
-        this.selectTime++;
-    }
-
-    // 更新 Gob.selectTypes
-    for (var x in this.selectTypes)
-    {
-        this.selectTypes[x] = false
-    }
-
-    for (var i = 0; i < this.selectList.length; i++)
-    {
-        for (var x in this.selectTypes)
-        {
-            if (this.selectList[i].type.typeName == x)
-            {
-                this.selectTypes[x] = true;
-            }
-        }
-    }
-
-
-    //******************
     try
     {
+        //判断选中图层是否有改变
 
-        if (this.disableAttrPanel != true)// AttrPanel 关闭了，不需要更新
+        var newList = (await enzymes.getSelectLayerArray()).reverse();//"获取图层"
+
+        this.selectChanged = ((ARR.symDifference_ObjectArray(newList, this.selectList, "id")).length > 0);
+        logger.pin("Gob", "GobCaryon.prototype.updateSelect", "selectChanged:", this.selectChanged)
+        this.selectList = newList;
+        if (this.selectChanged)
         {
-            await this.updateGob();
+            this.selectTime++;
         }
+
+        // 更新 Gob.selectTypes
+        for (var x in this.selectTypes)
+        {
+            this.selectTypes[x] = false
+        }
+
+        for (var i = 0; i < this.selectList.length; i++)
+        {
+            for (var x in this.selectTypes)
+            {
+                if (this.selectList[i].type.typeName == x)
+                {
+                    this.selectTypes[x] = true;
+                }
+            }
+        }
+
+
+        //******************
+        try
+        {
+
+            if (this.disableAttrPanel != true)// AttrPanel 关闭了，不需要更新
+            {
+                await this.updateGob();
+            }
+
+        } catch (e)
+        {
+            logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob")
+        }
+
+        //******************
+        // }
 
     } catch (e)
     {
-        logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob")
+        console.error("Gob.updateSelect nowSwitching",e)
     }
-
-    //******************
-    // }
 
     this.selectUpdateing = false;
     console.log("selectUpdateing:false")
