@@ -216,8 +216,8 @@
           <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="405">
-                  <caret line="701" column="44" lean-forward="false" selection-start-line="701" selection-start-column="44" selection-end-line="701" selection-end-column="44" />
+                <state relative-caret-position="48">
+                  <caret line="666" column="35" lean-forward="false" selection-start-line="666" selection-start-column="20" selection-end-line="666" selection-end-column="35" />
                   <folding />
                 </state>
               </provider>
@@ -239,12 +239,10 @@
           <file leaf-file-name="renderCaryon.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="184">
+                <state relative-caret-position="162">
                   <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
                   <folding>
                     <element signature="e#8308#9112#0" expanded="false" />
-                    <element signature="e#9638#9868#0" expanded="false" />
-                    <element signature="e#9902#10127#0" expanded="false" />
                     <element signature="e#10162#10392#0" expanded="false" />
                     <element signature="e#10433#10692#0" expanded="false" />
                     <element signature="e#10733#10999#0" expanded="false" />
@@ -430,9 +428,9 @@
         <option value="$PROJECT_DIR$/Caryon/appCaryon.js" />
         <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
-        <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/Enzymes/Enzymes.js" />
         <option value="$PROJECT_DIR$/Enzymes/Kinase_lib.jsx" />
+        <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/varSystem.js" />
       </list>
     </option>
@@ -905,12 +903,12 @@
       <workItem from="1493474297731" duration="15037000" />
       <workItem from="1493518470617" duration="33108000" />
       <workItem from="1493649337235" duration="9476000" />
-      <workItem from="1493730650715" duration="3000000" />
+      <workItem from="1493730650715" duration="3904000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3397974000" />
+    <option name="totallyTimeSpent" value="3398878000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -925,13 +923,13 @@
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0943098" sideWeight="0.49295774" order="3" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17017913" sideWeight="0.49295774" order="3" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32719395" sideWeight="0.49681866" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Regex Tester" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22318527" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16793066" sideWeight="0.52094716" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0943098" sideWeight="0.5070422" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3726977" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17017913" sideWeight="0.5070422" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.03900325" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18598525" sideWeight="0.72264355" order="0" side_tool="false" content_ui="tabs" x="29" y="133" width="329" height="565" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26218852" sideWeight="0.4667747" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24815595" sideWeight="0.22426869" order="2" side_tool="true" content_ui="tabs" />
@@ -1517,12 +1515,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/renderCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
+        <state relative-caret-position="162">
           <caret line="324" column="0" lean-forward="false" selection-start-line="324" selection-start-column="0" selection-end-line="324" selection-end-column="0" />
           <folding>
             <element signature="e#8308#9112#0" expanded="false" />
-            <element signature="e#9638#9868#0" expanded="false" />
-            <element signature="e#9902#10127#0" expanded="false" />
             <element signature="e#10162#10392#0" expanded="false" />
             <element signature="e#10433#10692#0" expanded="false" />
             <element signature="e#10733#10999#0" expanded="false" />
@@ -1533,8 +1529,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="701" column="44" lean-forward="false" selection-start-line="701" selection-start-column="44" selection-end-line="701" selection-end-column="44" />
+        <state relative-caret-position="48">
+          <caret line="666" column="35" lean-forward="false" selection-start-line="666" selection-start-column="20" selection-end-line="666" selection-end-column="35" />
           <folding />
         </state>
       </provider>

@@ -699,7 +699,7 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
 
         var rootName = names[0]
         console.log("rootName:",rootName)
-        var resultValue = await renderCaryon._getLayerDataByNamse(rootName, names, layerId, true)
+        var resultValue = await renderCaryon._getLayerDataByNamse(rootName, names.slice(1), layerId, true)
         console.log("resultValue:",resultValue)
         return {value: resultValue}
     }
