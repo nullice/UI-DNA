@@ -651,7 +651,8 @@
             {
                 var reg = /(bottom\()|(center\()/
                 var str = _.trim(this.edit_value)
-                if (str[0] === "@")
+                var reg_Name =/^[@$￥]/
+                if (reg_Name.test(str))
                 {
                     str = `right(${str} - 0)`
                     this.edit_value = str
@@ -679,7 +680,8 @@
             {
                 var reg = /(right\()|(center\()/
                 var str = _.trim(this.edit_value)
-                if (str[0] === "@")
+                var reg_Name =/^[@$￥]/
+                if (reg_Name.test(str))
                 {
                     str = `bottom(${str} - 0)`
                     this.edit_value = str
@@ -706,9 +708,10 @@
             {
 
                 var reg = /(right\()|(bottom\()/
+                var reg_Name =/^[@$￥]/
 
                 var str = _.trim(this.edit_value)
-                if (str[0] === "@")
+                if (reg_Name.test(str))
                 {
                     str = `center( 1/2, ${str})`
                     this.edit_value = str
