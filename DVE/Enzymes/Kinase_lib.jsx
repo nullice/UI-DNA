@@ -7324,6 +7324,51 @@ Kinase.layer.getParentLayerId_byItemIndex = function (itemIndex)
     return parentId;
 }
 
+
+/**
+ * 获取父图层的子图层
+ * @param layerId
+ * @param childIndex
+ * @returns {*}
+ */
+Kinase.layer.getParentChildLayerId_byLayerId = function (layerId, childIndex)
+{
+
+    var layerDOM = Kinase.layer.getLayerDOMObject_byItemIndex(Kinase.layer.getItemIndexBylayerID(layerId))
+
+
+    if (layerDOM.parent != undefined)
+    {
+        parentDOM = layerDOM.parent
+    } else
+    {
+        parentDOM = activeDocument
+    }
+
+
+    if (parentDOM.layers != undefined)
+    {
+        var getIndex = childIndex
+        var layersLength = parentDOM.layers.length
+
+        if (layersLength > 0)
+        {
+            if (childIndex < 0)
+            {
+                getIndex = layersLength + getIndex
+            }
+
+            if (getIndex < 0) getIndex = 0;
+            if (getIndex > layersLength - 1) getIndex = layersLength - 1;
+
+
+            return parentDOM.layers[getIndex]
+        }
+    }
+
+}
+
+
 /**
  * 根据 layerId 获取图层父级图层的 Id
  * @param layerId
