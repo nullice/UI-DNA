@@ -1197,8 +1197,6 @@ GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
 {
     // [shape]---------------------------------------------------------------
     var item_shape = this.__new_shape();
-
-
     try
     {
         var shape = await enzymes.getLayerInfo_shape_byId(layerId);

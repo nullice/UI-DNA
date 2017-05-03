@@ -21,7 +21,7 @@
 //
 // }
 
-var fs =require("fs")
+var fs = require("fs")
 var path = require("path")
 
 if (typeof window.__adobe_cep__ !== "undefined")
@@ -79,17 +79,17 @@ var Enzymes = function ()
         var readly = false;
         if (fs.existsSync(aupJsxPath))
         {
-            readly =true
+            readly = true
             readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/json3.js"))
             readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/Muclease_lib.jsx"))
             readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/Kinase_lib.jsx"))
             readly = readly & fs.existsSync(path.join(aupJsxPath, "/JSX/Proteins_lib.jsx"))
         }
 
-        if(readly )
+        if (readly)
         {
-            var extendPath = aupJsxPath.replace(/\\/g,"/") //扩展所在路径
-        }else
+            var extendPath = aupJsxPath.replace(/\\/g, "/") //扩展所在路径
+        } else
         {
             var extendPath = cs.getSystemPath(SystemPath.EXTENSION) //扩展所在路径
         }
@@ -178,11 +178,6 @@ Enzymes.prototype.getParentLayerId_byLayerId = async function (id)
             (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
     })
 }
-
-
-
-
-
 
 
 /**
@@ -881,16 +876,23 @@ Enzymes.prototype._unEscape = function (str)
 
 function jsxBackCheck(returnValue, jsxCode)
 {
-    if (returnValue.slice(0, 17) == "EvalScript error.")
+    try
     {
-        console.error(returnValue);
-        console.error(jsxCode)
-        return ""
-    }
-    else
+        if (returnValue.slice(0, 17) == "EvalScript error.")
+        {
+            console.error(returnValue);
+            console.error(jsxCode)
+            return null
+        }
+        else
+        {
+            return returnValue
+        }
+    } catch (e)
     {
-        return returnValue
+        return null
     }
+
 
 }
 
