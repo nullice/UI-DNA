@@ -8,8 +8,6 @@
                      v-bind:mini="mini"
                      v-bind:enable_uppercase="true"
                      v-bind:assist_type="'color'"
-
-
         >
 
             <div class="color-bottom" v-bind:style="color_style"
