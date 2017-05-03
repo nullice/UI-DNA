@@ -195,7 +195,7 @@ var VarSystem = function ()
                 return staic_position["w"]
             }
 
-            var reg = /@[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
+            var reg = /[@$￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
 
             var left = orgVar.replace(reg, "$&.x + $&.w")
 
@@ -224,7 +224,7 @@ var VarSystem = function ()
                 return staic_position["h"]
             }
 
-            var reg = /@[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
+            var reg = /[@$￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
             var bottom = orgVar.replace(reg, "$&.y + $&.h")
 
             var h = await  getThisHeigth()
@@ -250,7 +250,7 @@ var VarSystem = function ()
                 var targetValue = values[1]
             }
 
-            var reg = /@[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
+            var reg = /[@$￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]+/
             if (names[names.length - 1] == "x")
             {
                 var center = targetValue.replace(reg, "$&.x + ($&.w)*(" + scalc + ")")
@@ -573,7 +573,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                 if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
                 {
 
-                    var reg = /\+\+$/
+                    var reg = /^i_/
                     if (ARR.hasMember(["计数", "count", "i"],) , _this_var.value.slice(1))
                     {
                         var getValue = this.$count;
@@ -669,7 +669,9 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
 
     var varArr = varValue.split(".")
     var layerId = null
-    if (ARR.hasMember(["parent"], varArr[0]))
+
+    var reg_index
+    if (ARR.hasMember(["parent","親", "父", "box"], varArr[0]))
     {
         var parentId = await enzymes.getParentLayerId_byLayerId(thisId)
         console.log("parentId",parentId)
@@ -677,6 +679,8 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
         {
             layerId = parentId
         }
+    }else  (ARR.hasMember(["parent","親", "父", "box"], varArr[0]))
+    {
 
     }
 
@@ -690,11 +694,11 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
 
         } else if (varArr.length > 1)
         {
+            names = varArr.slice(1)
             if (ARR.hasMember(["x", "y", "w", "h"], varArr[1]))
             {
                 names.unshift("position")
             }
-            names = varArr.slice(1)
         }
 
         var rootName = names[0]
