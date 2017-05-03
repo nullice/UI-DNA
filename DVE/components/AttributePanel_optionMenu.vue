@@ -300,6 +300,10 @@
 
                 var self = this
                 self.nowFreshen = true
+
+
+                Gob.disableSelectEvent =false;
+                Gob.selectUpdateing = false;
                 Gob.updateSelect()
                 setTimeout(function ()
                 {
