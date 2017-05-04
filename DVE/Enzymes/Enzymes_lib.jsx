@@ -126,7 +126,7 @@ EnzJSX.getLayerType_byID = function (layerId)
  */
 EnzJSX.getAllLayersList = function (retrunRaw)
 {
-    var layersList = ki.layer.getAllLayerList();
+    var layersList = ki.layer.getAllLayerList_quick();
     // var itemIndexs = ki.layer.getAllLayersItemIndex();
     //
     // for (var i = 0; i < itemIndexs.length; i++)

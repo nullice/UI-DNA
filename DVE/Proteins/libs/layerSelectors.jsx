@@ -103,7 +103,7 @@ Libs.layerNameFindAndSelected = function (infoObjec, envObject)
     function _func()
     {
         var foundIds = []
-        var layerPool = Kinase.layer.getAllLayerList()
+        var layerPool = Kinase.layer.getAllLayerList_quick()
 
         for (var i = 0; i < layerPool.length; i++)
         {

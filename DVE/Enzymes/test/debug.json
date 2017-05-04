@@ -1,6 +1,489 @@
 {
-  "json": {
-    "value": "{\"version\":\"1.5.0\",\"timeStamp\":1493551931.809,\"count\":46,\"id\":821,\"file\":\"C:\\\\Users\\\\nullice\\\\AppData\\\\Local\\\\Temp\\\\Rar$DRa0.471\\\\Dark_UI.psd\",\"bounds\":{\"top\":0,\"left\":0,\"bottom\":4174,\"right\":1440},\"selection\":[262],\"resolution\":72,\"globalLight\":{\"angle\":92,\"altitude\":30},\"generatorSettings\":{\"generator_45_assets\":{\"json\":\"{\\\"enabled\\\":false}\"},\"layerTime\":1.48215e+09},\"profile\":\"Î´±ê¼ÇµÄ RGB\",\"mode\":\"RGBColor\",\"depth\":8,\"layers\":[{\"id\":19881,\"index\":262,\"type\":\"layerSection\",\"name\":\"Table \",\"bounds\":{\"top\":1097,\"left\":0,\"bottom\":1815,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19881,\"index\":262,\"layers\":[{\"id\":19880,\"index\":261,\"type\":\"layerSection\",\"name\":\"Table header\",\"bounds\":{\"top\":1273,\"left\":292,\"bottom\":1284,\"right\":1180},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19880,\"index\":261,\"layers\":[{\"id\":19879,\"index\":260,\"type\":\"textLayer\",\"name\":\"Products              \",\"bounds\":{\"top\":1273,\"left\":292,\"bottom\":1284,\"right\":348},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19878,\"index\":259,\"type\":\"textLayer\",\"name\":\"Incom                CTR                 ROI                 KP\",\"bounds\":{\"top\":1273,\"left\":897,\"bottom\":1284,\"right\":1180},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19876,\"index\":257,\"type\":\"layerSection\",\"name\":\"Title \",\"bounds\":{\"top\":1201,\"left\":248,\"bottom\":1224,\"right\":416},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19876,\"index\":257,\"layers\":[{\"id\":19875,\"index\":256,\"type\":\"textLayer\",\"name\":\"Efficiency review\",\"bounds\":{\"top\":1201,\"left\":248,\"bottom\":1224,\"right\":416},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19873,\"index\":254,\"type\":\"layerSection\",\"name\":\"Button\",\"bounds\":{\"top\":1189,\"left\":1055,\"bottom\":1230,\"right\":1224},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19873,\"index\":254,\"layers\":[{\"id\":19872,\"index\":253,\"type\":\"layerSection\",\"name\":\"Button \",\"bounds\":{\"top\":1189,\"left\":1055,\"bottom\":1230,\"right\":1224},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19872,\"index\":253,\"layers\":[{\"id\":19871,\"index\":252,\"type\":\"textLayer\",\"name\":\"export as csv\",\"bounds\":{\"top\":1206,\"left\":1092,\"bottom\":1216,\"right\":1189},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19870,\"index\":251,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":1189,\"left\":1055,\"bottom\":1230,\"right\":1224},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"fillOpacity\":{\"value\":0,\"units\":\"percentUnit\"}},\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"strokeStyle\":{\"strokeStyleVersion\":2,\"strokeEnabled\":true,\"fillEnabled\":true,\"strokeStyleLineWidth\":{\"value\":1,\"units\":\"pointsUnit\"},\"strokeStyleLineDashOffset\":{\"value\":0,\"units\":\"pointsUnit\"},\"strokeStyleMiterLimit\":100,\"strokeStyleLineCapType\":\"strokeStyleButtCap\",\"strokeStyleLineJoinType\":\"strokeStyleMiterJoin\",\"strokeStyleLineAlignment\":\"strokeStyleAlignInside\",\"strokeStyleScaleLock\":false,\"strokeStyleStrokeAdjust\":false,\"strokeStyleBlendMode\":\"normal\",\"strokeStyleOpacity\":{\"value\":100,\"units\":\"percentUnit\"},\"strokeStyleContent\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992}},\"strokeStyleResolution\":72},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":1189,\"left\":1055,\"bottom\":1230,\"right\":1224}}}],\"bounds\":{\"top\":1189,\"left\":1055,\"bottom\":1230,\"right\":1224},\"defaultFill\":false}}]}]},{\"id\":19867,\"index\":248,\"type\":\"layerSection\",\"name\":\"Total\",\"bounds\":{\"top\":1646,\"left\":290,\"bottom\":1659,\"right\":1185},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19867,\"index\":248,\"layers\":[{\"id\":19866,\"index\":247,\"type\":\"textLayer\",\"name\":\"Total\",\"bounds\":{\"top\":1646,\"left\":290,\"bottom\":1657,\"right\":334},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19865,\"index\":246,\"type\":\"textLayer\",\"name\":\"$14 789             78%             46%            32%\",\"bounds\":{\"top\":1646,\"left\":885,\"bottom\":1659,\"right\":1185},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19863,\"index\":244,\"type\":\"layerSection\",\"name\":\"Products\",\"bounds\":{\"top\":1325,\"left\":290,\"bottom\":1617,\"right\":1185},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19863,\"index\":244,\"layers\":[{\"id\":19862,\"index\":243,\"type\":\"layerSection\",\"name\":\"1\",\"bounds\":{\"top\":1569,\"left\":290,\"bottom\":1617,\"right\":1183},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19862,\"index\":243,\"layers\":[{\"id\":19861,\"index\":242,\"type\":\"textLayer\",\"name\":\" $3 568             24%             68%            45%\",\"bounds\":{\"top\":1584,\"left\":893,\"bottom\":1597,\"right\":1183},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19860,\"index\":241,\"type\":\"textLayer\",\"name\":\"More then\",\"bounds\":{\"top\":1576,\"left\":359,\"bottom\":1587,\"right\":441},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19859,\"index\":240,\"type\":\"textLayer\",\"name\":\"by Torry Likewise  The protons and neutrons in the nucleus are \",\"bounds\":{\"top\":1598,\"left\":358,\"bottom\":1613,\"right\":465},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19858,\"index\":239,\"type\":\"layerSection\",\"name\":\"logo\",\"bounds\":{\"top\":1569,\"left\":290,\"bottom\":1617,\"right\":338},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19858,\"index\":239,\"layers\":[{\"id\":19857,\"index\":238,\"type\":\"textLayer\",\"name\":\">\",\"bounds\":{\"top\":1586,\"left\":308,\"bottom\":1601,\"right\":321},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19856,\"index\":237,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle 1\",\"bounds\":{\"top\":1569,\"left\":290,\"bottom\":1617,\"right\":338},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":109.004,\"blue\":75.0039},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":1569,\"left\":290,\"bottom\":1617,\"right\":338}}}],\"bounds\":{\"top\":1569,\"left\":290,\"bottom\":1617,\"right\":338},\"defaultFill\":false}}]}]},{\"id\":19853,\"index\":234,\"type\":\"layerSection\",\"name\":\"2\",\"bounds\":{\"top\":1487,\"left\":290,\"bottom\":1535,\"right\":1184},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19853,\"index\":234,\"layers\":[{\"id\":19852,\"index\":233,\"type\":\"textLayer\",\"name\":\"$3 568             24%             89%            12%\",\"bounds\":{\"top\":1503,\"left\":894,\"bottom\":1516,\"right\":1184},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19851,\"index\":232,\"type\":\"textLayer\",\"name\":\"Coded Tneutrons in the nucleus are attracted to each other by a\",\"bounds\":{\"top\":1495,\"left\":358,\"bottom\":1506,\"right\":405},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19850,\"index\":231,\"type\":\"textLayer\",\"name\":\"by Torry Likewise  The protons and neutrons in the nucleus are \",\"bounds\":{\"top\":1517,\"left\":358,\"bottom\":1532,\"right\":465},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19849,\"index\":230,\"type\":\"layerSection\",\"name\":\"logo\",\"bounds\":{\"top\":1487,\"left\":290,\"bottom\":1535,\"right\":338},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19849,\"index\":230,\"layers\":[{\"id\":19848,\"index\":229,\"type\":\"textLayer\",\"name\":\"{\",\"bounds\":{\"top\":1501,\"left\":310,\"bottom\":1523,\"right\":316},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19847,\"index\":228,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle 1\",\"bounds\":{\"top\":1487,\"left\":290,\"bottom\":1535,\"right\":338},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":157.001,\"green\":223,\"blue\":0},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":1487,\"left\":290,\"bottom\":1535,\"right\":338}}}],\"bounds\":{\"top\":1487,\"left\":290,\"bottom\":1535,\"right\":338},\"defaultFill\":false}}]}]},{\"id\":19844,\"index\":225,\"type\":\"layerSection\",\"name\":\"3\",\"bounds\":{\"top\":1405,\"left\":290,\"bottom\":1453,\"right\":1184},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19844,\"index\":225,\"layers\":[{\"id\":19843,\"index\":224,\"type\":\"textLayer\",\"name\":\" $3 568             45%            67%             44%\",\"bounds\":{\"top\":1422,\"left\":894,\"bottom\":1435,\"right\":1184},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19842,\"index\":223,\"type\":\"textLayer\",\"name\":\"Cinematography\",\"bounds\":{\"top\":1414,\"left\":359,\"bottom\":1425,\"right\":493},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19841,\"index\":222,\"type\":\"textLayer\",\"name\":\"by Torry Likewise  The protons and neutrons in the nucleus are \",\"bounds\":{\"top\":1436,\"left\":359,\"bottom\":1451,\"right\":466},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19840,\"index\":221,\"type\":\"layerSection\",\"name\":\"logo\",\"bounds\":{\"top\":1405,\"left\":290,\"bottom\":1453,\"right\":338},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19840,\"index\":221,\"layers\":[{\"id\":19839,\"index\":220,\"type\":\"textLayer\",\"name\":\"C\",\"bounds\":{\"top\":1421,\"left\":305,\"bottom\":1439,\"right\":321},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19838,\"index\":219,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle 1\",\"bounds\":{\"top\":1405,\"left\":290,\"bottom\":1453,\"right\":338},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":207.997,\"blue\":17.9997},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":1405,\"left\":290,\"bottom\":1453,\"right\":338}}}],\"bounds\":{\"top\":1405,\"left\":290,\"bottom\":1453,\"right\":338},\"defaultFill\":false}}]}]},{\"id\":19835,\"index\":216,\"type\":\"layerSection\",\"name\":\"4\",\"bounds\":{\"top\":1325,\"left\":290,\"bottom\":1373,\"right\":1185},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19835,\"index\":216,\"layers\":[{\"id\":19834,\"index\":215,\"type\":\"textLayer\",\"name\":\"$3 568                58%               35%                 35%\",\"bounds\":{\"top\":1341,\"left\":897,\"bottom\":1354,\"right\":1185},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19833,\"index\":214,\"type\":\"textLayer\",\"name\":\"The protons and neutrons in the nucleus are attracted to each o\",\"bounds\":{\"top\":1333,\"left\":359,\"bottom\":1344,\"right\":459},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19832,\"index\":213,\"type\":\"textLayer\",\"name\":\"by Torry Likewise  The protons and neutrons in the nucleus are \",\"bounds\":{\"top\":1355,\"left\":359,\"bottom\":1370,\"right\":466},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19831,\"index\":212,\"type\":\"layerSection\",\"name\":\"logo\",\"bounds\":{\"top\":1325,\"left\":290,\"bottom\":1373,\"right\":338},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19831,\"index\":212,\"layers\":[{\"id\":19830,\"index\":211,\"type\":\"textLayer\",\"name\":\"P\",\"bounds\":{\"top\":1341,\"left\":304,\"bottom\":1359,\"right\":324},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19829,\"index\":210,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":1325,\"left\":290,\"bottom\":1373,\"right\":338},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":97.0039,\"green\":63.0039,\"blue\":149},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":1325,\"left\":290,\"bottom\":1373,\"right\":338}}}],\"bounds\":{\"top\":1325,\"left\":290,\"bottom\":1373,\"right\":338},\"defaultFill\":false}}]}]}]},{\"id\":19825,\"index\":206,\"type\":\"layerSection\",\"name\":\"Table\",\"bounds\":{\"top\":1248,\"left\":248,\"bottom\":1673.06,\"right\":1224},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19825,\"index\":206,\"layers\":[{\"id\":19824,\"index\":205,\"type\":\"layerSection\",\"name\":\"Line\",\"bounds\":{\"top\":1308,\"left\":248,\"bottom\":1633,\"right\":1224},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19824,\"index\":205,\"layers\":[{\"id\":19823,\"index\":204,\"type\":\"shapeLayer\",\"name\":\"line \",\"bounds\":{\"top\":1308,\"left\":248,\"bottom\":1309,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":1308,\"left\":248,\"bottom\":1309,\"right\":1224}}}],\"bounds\":{\"top\":1308,\"left\":248,\"bottom\":1309,\"right\":1224},\"defaultFill\":false}},{\"id\":19822,\"index\":203,\"type\":\"shapeLayer\",\"name\":\"line \",\"bounds\":{\"top\":1389,\"left\":248,\"bottom\":1390,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":1389,\"left\":248,\"bottom\":1390,\"right\":1224}}}],\"bounds\":{\"top\":1389,\"left\":248,\"bottom\":1390,\"right\":1224},\"defaultFill\":false}},{\"id\":19821,\"index\":202,\"type\":\"shapeLayer\",\"name\":\"line \",\"bounds\":{\"top\":1470,\"left\":248,\"bottom\":1471,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":1470,\"left\":248,\"bottom\":1471,\"right\":1224}}}],\"bounds\":{\"top\":1470,\"left\":248,\"bottom\":1471,\"right\":1224},\"defaultFill\":false}},{\"id\":19820,\"index\":201,\"type\":\"shapeLayer\",\"name\":\"line \",\"bounds\":{\"top\":1551,\"left\":248,\"bottom\":1552,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":1551,\"left\":248,\"bottom\":1552,\"right\":1224}}}],\"bounds\":{\"top\":1551,\"left\":248,\"bottom\":1552,\"right\":1224},\"defaultFill\":false}},{\"id\":19819,\"index\":200,\"type\":\"shapeLayer\",\"name\":\"line \",\"bounds\":{\"top\":1632,\"left\":248,\"bottom\":1633,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":1632,\"left\":248,\"bottom\":1633,\"right\":1224}}}],\"bounds\":{\"top\":1632,\"left\":248,\"bottom\":1633,\"right\":1224},\"defaultFill\":false}}]},{\"id\":19817,\"index\":198,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":1632.94,\"left\":248,\"bottom\":1673.06,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":25.9996,\"green\":29.0034,\"blue\":37.9994},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[0,5,5,0],\"type\":\"roundedRect\",\"bounds\":{\"top\":1632.94,\"left\":248,\"bottom\":1673.06,\"right\":1224}}}],\"bounds\":{\"top\":1632.94,\"left\":248,\"bottom\":1673.06,\"right\":1224},\"defaultFill\":false}},{\"id\":19816,\"index\":197,\"type\":\"shapeLayer\",\"name\":\"Frame\",\"bounds\":{\"top\":1248,\"left\":248,\"bottom\":1673,\"right\":1224},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":19.0036,\"green\":21.9997,\"blue\":31.9995},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":1248,\"left\":248,\"bottom\":1673,\"right\":1224}}}],\"bounds\":{\"top\":1248,\"left\":248,\"bottom\":1673,\"right\":1224},\"defaultFill\":false}}]},{\"id\":19814,\"index\":195,\"type\":\"layerSection\",\"name\":\"BG\",\"bounds\":{\"top\":1097,\"left\":0,\"bottom\":1815,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19814,\"index\":195,\"layers\":[{\"id\":19813,\"index\":194,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":1097,\"left\":0,\"bottom\":1815,\"right\":1440},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":11.9998,\"green\":13.9998,\"blue\":19.9997},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":1097,\"left\":0,\"bottom\":1815,\"right\":1440}}}],\"bounds\":{\"top\":1097,\"left\":0,\"bottom\":1815,\"right\":1440},\"defaultFill\":false}}]}]},{\"id\":19810,\"index\":191,\"type\":\"layerSection\",\"name\":\"Blog\",\"bounds\":{\"top\":-5,\"left\":0,\"bottom\":1053,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19810,\"index\":191,\"layers\":[{\"id\":19809,\"index\":190,\"type\":\"layerSection\",\"name\":\"Title\",\"bounds\":{\"top\":131,\"left\":149,\"bottom\":327,\"right\":1043},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19809,\"index\":190,\"layers\":[{\"id\":19808,\"index\":189,\"type\":\"textLayer\",\"name\":\"The development of the mass allowed the  of atoms to be measure\",\"bounds\":{\"top\":131,\"left\":149,\"bottom\":282,\"right\":1043},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19807,\"index\":188,\"type\":\"textLayer\",\"name\":\"¡ª Kim Lake \",\"bounds\":{\"top\":313,\"left\":149,\"bottom\":327,\"right\":232},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19805,\"index\":186,\"type\":\"layerSection\",\"name\":\"Articles\",\"bounds\":{\"top\":383,\"left\":150,\"bottom\":817,\"right\":1290},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19805,\"index\":186,\"layers\":[{\"id\":19804,\"index\":185,\"type\":\"layerSection\",\"name\":\"6\",\"bounds\":{\"top\":613,\"left\":930,\"bottom\":817,\"right\":1290},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19804,\"index\":185,\"layers\":[{\"id\":19803,\"index\":184,\"type\":\"textLayer\",\"name\":\"GADGETS\",\"bounds\":{\"top\":631,\"left\":1218,\"bottom\":639,\"right\":1265},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19802,\"index\":183,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":625,\"left\":1207,\"bottom\":645,\"right\":1278},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":211.023,\"blue\":77.0039},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":625,\"left\":1207,\"bottom\":645,\"right\":1278}}}],\"bounds\":{\"top\":625,\"left\":1207,\"bottom\":645,\"right\":1278},\"defaultFill\":false}},{\"id\":19801,\"index\":182,\"type\":\"textLayer\",\"name\":\"Read More  \",\"bounds\":{\"top\":753,\"left\":974,\"bottom\":767,\"right\":1051},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19800,\"index\":181,\"type\":\"textLayer\",\"name\":\"LoopPay is a mobile-payment system that could power Samsung¡¯s s\",\"bounds\":{\"top\":694,\"left\":974,\"bottom\":736,\"right\":1185},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19799,\"index\":180,\"type\":\"textLayer\",\"name\":\"Ways to Make Your IP Address\",\"bounds\":{\"top\":661,\"left\":973,\"bottom\":679,\"right\":1212},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19798,\"index\":179,\"type\":\"shapeLayer\",\"name\":\"BG\",\"bounds\":{\"top\":613,\"left\":930,\"bottom\":817,\"right\":1290},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":19.0036,\"green\":21.9997,\"blue\":31.9995},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":613,\"left\":930,\"bottom\":817,\"right\":1290}}}],\"bounds\":{\"top\":613,\"left\":930,\"bottom\":817,\"right\":1290},\"defaultFill\":false}}]},{\"id\":19796,\"index\":177,\"type\":\"layerSection\",\"name\":\"5\",\"bounds\":{\"top\":613,\"left\":540,\"bottom\":817,\"right\":900},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19796,\"index\":177,\"layers\":[{\"id\":19795,\"index\":176,\"type\":\"textLayer\",\"name\":\"GADGETS\",\"bounds\":{\"top\":631,\"left\":828,\"bottom\":639,\"right\":875},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19794,\"index\":175,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":625,\"left\":817,\"bottom\":645,\"right\":888},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":165.997,\"green\":229,\"blue\":15.0037},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":625,\"left\":817,\"bottom\":645,\"right\":888}}}],\"bounds\":{\"top\":625,\"left\":817,\"bottom\":645,\"right\":888},\"defaultFill\":false}},{\"id\":19793,\"index\":174,\"type\":\"textLayer\",\"name\":\"Read More  \",\"bounds\":{\"top\":753,\"left\":584,\"bottom\":767,\"right\":661},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19792,\"index\":173,\"type\":\"textLayer\",\"name\":\"Sublattice of electrons that point in one direction, than from \",\"bounds\":{\"top\":694,\"left\":584,\"bottom\":735,\"right\":836},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19791,\"index\":172,\"type\":\"textLayer\",\"name\":\"A Helpful Tablet Buying Guide\",\"bounds\":{\"top\":661,\"left\":583,\"bottom\":679,\"right\":821},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19790,\"index\":171,\"type\":\"shapeLayer\",\"name\":\"BG\",\"bounds\":{\"top\":613,\"left\":540,\"bottom\":817,\"right\":900},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":19.0036,\"green\":21.9997,\"blue\":31.9995},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":613,\"left\":540,\"bottom\":817,\"right\":900}}}],\"bounds\":{\"top\":613,\"left\":540,\"bottom\":817,\"right\":900},\"defaultFill\":false}}]},{\"id\":19788,\"index\":169,\"type\":\"layerSection\",\"name\":\"4\",\"bounds\":{\"top\":613,\"left\":150,\"bottom\":817,\"right\":510},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19788,\"index\":169,\"layers\":[{\"id\":19787,\"index\":168,\"type\":\"textLayer\",\"name\":\"GADGETS\",\"bounds\":{\"top\":631,\"left\":438,\"bottom\":639,\"right\":485},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19786,\"index\":167,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":625,\"left\":427,\"bottom\":645,\"right\":498},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":109.002,\"blue\":73.9989},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":625,\"left\":427,\"bottom\":645,\"right\":498}}}],\"bounds\":{\"top\":625,\"left\":427,\"bottom\":645,\"right\":498},\"defaultFill\":false}},{\"id\":19785,\"index\":166,\"type\":\"textLayer\",\"name\":\"Read More  \",\"bounds\":{\"top\":753,\"left\":194,\"bottom\":767,\"right\":271},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19784,\"index\":165,\"type\":\"textLayer\",\"name\":\"Sublattice of electrons that point in one direction, than from \",\"bounds\":{\"top\":694,\"left\":194,\"bottom\":735,\"right\":429},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19783,\"index\":164,\"type\":\"textLayer\",\"name\":\"Making Project Simple \",\"bounds\":{\"top\":661,\"left\":195,\"bottom\":679,\"right\":368},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19782,\"index\":163,\"type\":\"shapeLayer\",\"name\":\"BG\",\"bounds\":{\"top\":613,\"left\":150,\"bottom\":817,\"right\":510},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":19.0036,\"green\":21.9997,\"blue\":31.9995},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":613,\"left\":150,\"bottom\":817,\"right\":510}}}],\"bounds\":{\"top\":613,\"left\":150,\"bottom\":817,\"right\":510},\"defaultFill\":false}}]},{\"id\":19780,\"index\":161,\"type\":\"layerSection\",\"name\":\"3\",\"bounds\":{\"top\":383,\"left\":930,\"bottom\":587,\"right\":1290},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19780,\"index\":161,\"layers\":[{\"id\":19779,\"index\":160,\"type\":\"textLayer\",\"name\":\"GADGETS\",\"bounds\":{\"top\":401,\"left\":1218,\"bottom\":409,\"right\":1265},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19778,\"index\":159,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":395,\"left\":1207,\"bottom\":415,\"right\":1278},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":77.0027,\"green\":161.001,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":395,\"left\":1207,\"bottom\":415,\"right\":1278}}}],\"bounds\":{\"top\":395,\"left\":1207,\"bottom\":415,\"right\":1278},\"defaultFill\":false}},{\"id\":19777,\"index\":158,\"type\":\"textLayer\",\"name\":\"Read More  \",\"bounds\":{\"top\":523,\"left\":974,\"bottom\":537,\"right\":1051},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19776,\"index\":157,\"type\":\"textLayer\",\"name\":\"Sublattice of electrons that point in one direction, than from \",\"bounds\":{\"top\":464,\"left\":974,\"bottom\":505,\"right\":1226},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19775,\"index\":156,\"type\":\"textLayer\",\"name\":\"Next Step\",\"bounds\":{\"top\":431,\"left\":975,\"bottom\":449,\"right\":1052},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19774,\"index\":155,\"type\":\"shapeLayer\",\"name\":\"BG\",\"bounds\":{\"top\":383,\"left\":930,\"bottom\":587,\"right\":1290},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":18.572,\"green\":21.9261,\"blue\":32},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":383,\"left\":930,\"bottom\":587,\"right\":1290}}}],\"bounds\":{\"top\":383,\"left\":930,\"bottom\":587,\"right\":1290},\"defaultFill\":false}}]},{\"id\":19772,\"index\":153,\"type\":\"layerSection\",\"name\":\"2\",\"bounds\":{\"top\":383,\"left\":540,\"bottom\":587,\"right\":900},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19772,\"index\":153,\"layers\":[{\"id\":19771,\"index\":152,\"type\":\"textLayer\",\"name\":\"GADGETS\",\"bounds\":{\"top\":401,\"left\":828,\"bottom\":409,\"right\":875},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19770,\"index\":151,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":395,\"left\":817,\"bottom\":415,\"right\":888},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":109.002,\"blue\":73.9989},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":395,\"left\":817,\"bottom\":415,\"right\":888}}}],\"bounds\":{\"top\":395,\"left\":817,\"bottom\":415,\"right\":888},\"defaultFill\":false}},{\"id\":19769,\"index\":150,\"type\":\"textLayer\",\"name\":\"Read More  \",\"bounds\":{\"top\":523,\"left\":584,\"bottom\":537,\"right\":661},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19768,\"index\":149,\"type\":\"textLayer\",\"name\":\"Every year more than four million traffic lights use an estimat\",\"bounds\":{\"top\":464,\"left\":583,\"bottom\":506,\"right\":839},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19767,\"index\":148,\"type\":\"textLayer\",\"name\":\"Even in Freeview\",\"bounds\":{\"top\":431,\"left\":585,\"bottom\":445,\"right\":715},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19766,\"index\":147,\"type\":\"shapeLayer\",\"name\":\"BG\",\"bounds\":{\"top\":383,\"left\":540,\"bottom\":587,\"right\":900},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":19.0036,\"green\":21.9997,\"blue\":31.9995},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":383,\"left\":540,\"bottom\":587,\"right\":900}}}],\"bounds\":{\"top\":383,\"left\":540,\"bottom\":587,\"right\":900},\"defaultFill\":false}}]},{\"id\":19764,\"index\":145,\"type\":\"layerSection\",\"name\":\"1\",\"bounds\":{\"top\":383,\"left\":150,\"bottom\":587,\"right\":510},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19764,\"index\":145,\"layers\":[{\"id\":19763,\"index\":144,\"type\":\"textLayer\",\"name\":\"GADGETS\",\"bounds\":{\"top\":401,\"left\":438,\"bottom\":409,\"right\":485},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19762,\"index\":143,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":395,\"left\":427,\"bottom\":415,\"right\":498},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":77.0027,\"green\":161.001,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":395,\"left\":427,\"bottom\":415,\"right\":498}}}],\"bounds\":{\"top\":395,\"left\":427,\"bottom\":415,\"right\":498},\"defaultFill\":false}},{\"id\":19761,\"index\":142,\"type\":\"textLayer\",\"name\":\"Read More  \",\"bounds\":{\"top\":523,\"left\":194,\"bottom\":537,\"right\":271},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19760,\"index\":141,\"type\":\"textLayer\",\"name\":\"Sublattice of electrons that point in one direction, than from \",\"bounds\":{\"top\":464,\"left\":194,\"bottom\":506,\"right\":388},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19759,\"index\":140,\"type\":\"textLayer\",\"name\":\"Next Step\",\"bounds\":{\"top\":431,\"left\":195,\"bottom\":449,\"right\":272},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19758,\"index\":139,\"type\":\"shapeLayer\",\"name\":\"BG\",\"bounds\":{\"top\":383,\"left\":150,\"bottom\":587,\"right\":510},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":19.0036,\"green\":21.9997,\"blue\":31.9995},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":383,\"left\":150,\"bottom\":587,\"right\":510}}}],\"bounds\":{\"top\":383,\"left\":150,\"bottom\":587,\"right\":510},\"defaultFill\":false}}]}]},{\"id\":19755,\"index\":136,\"type\":\"layerSection\",\"name\":\"Button\",\"bounds\":{\"top\":849,\"left\":150,\"bottom\":898,\"right\":370},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19755,\"index\":136,\"layers\":[{\"id\":19754,\"index\":135,\"type\":\"textLayer\",\"name\":\"load more posts\",\"bounds\":{\"top\":868,\"left\":193,\"bottom\":880,\"right\":327},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19753,\"index\":134,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle  \",\"bounds\":{\"top\":849,\"left\":150,\"bottom\":898,\"right\":370},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"opacity\":{\"value\":20,\"units\":\"percentUnit\"}},\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"strokeStyle\":{\"strokeStyleVersion\":2,\"strokeEnabled\":true,\"fillEnabled\":false,\"strokeStyleLineWidth\":1,\"strokeStyleLineDashOffset\":{\"value\":0,\"units\":\"pointsUnit\"},\"strokeStyleMiterLimit\":100,\"strokeStyleLineCapType\":\"strokeStyleButtCap\",\"strokeStyleLineJoinType\":\"strokeStyleMiterJoin\",\"strokeStyleLineAlignment\":\"strokeStyleAlignInside\",\"strokeStyleScaleLock\":false,\"strokeStyleStrokeAdjust\":false,\"strokeStyleBlendMode\":\"normal\",\"strokeStyleOpacity\":{\"value\":100,\"units\":\"percentUnit\"},\"strokeStyleContent\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255}},\"strokeStyleResolution\":72},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":849,\"left\":150,\"bottom\":898,\"right\":370}}}],\"bounds\":{\"top\":849,\"left\":150,\"bottom\":898,\"right\":370},\"defaultFill\":false}}]},{\"id\":19751,\"index\":132,\"type\":\"shapeLayer\",\"name\":\"bg \",\"bounds\":{\"top\":-5,\"left\":0,\"bottom\":1053,\"right\":1440},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":12.0778,\"green\":14.0545,\"blue\":20},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"rect\",\"bounds\":{\"top\":-5,\"left\":0,\"bottom\":1053,\"right\":1440}}}],\"bounds\":{\"top\":-5,\"left\":0,\"bottom\":1053,\"right\":1440},\"defaultFill\":false}}]},{\"id\":19962,\"index\":130,\"type\":\"layerSection\",\"name\":\"Call to Action\",\"bounds\":{\"top\":2747,\"left\":0,\"bottom\":3235,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19962,\"index\":130,\"layers\":[{\"id\":19961,\"index\":129,\"type\":\"layerSection\",\"name\":\"Text\",\"bounds\":{\"top\":2899,\"left\":440,\"bottom\":3016,\"right\":997},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19961,\"index\":129,\"layers\":[{\"id\":19960,\"index\":128,\"type\":\"textLayer\",\"name\":\"great app \",\"bounds\":{\"top\":2899,\"left\":681,\"bottom\":2910,\"right\":760},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19959,\"index\":127,\"type\":\"textLayer\",\"name\":\"Dalton is atomic theory could why water absorbs different gases\",\"bounds\":{\"top\":2936,\"left\":440,\"bottom\":3016,\"right\":997},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19957,\"index\":125,\"type\":\"layerSection\",\"name\":\"Buttons\",\"bounds\":{\"top\":3059,\"left\":540,\"bottom\":3098,\"right\":900},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19957,\"index\":125,\"layers\":[{\"id\":19956,\"index\":124,\"type\":\"layerSection\",\"name\":\"Button \",\"bounds\":{\"top\":3059,\"left\":735,\"bottom\":3098,\"right\":900},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19956,\"index\":124,\"layers\":[{\"id\":19955,\"index\":123,\"type\":\"textLayer\",\"name\":\"try free\",\"bounds\":{\"top\":3075,\"left\":789,\"bottom\":3084,\"right\":847},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19954,\"index\":122,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":3059,\"left\":735,\"bottom\":3098,\"right\":900},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":165.997,\"green\":229,\"blue\":15.0037},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4.99809,4.99809,4.99809,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":3059,\"left\":735,\"bottom\":3098,\"right\":900}}}],\"bounds\":{\"top\":3059,\"left\":735,\"bottom\":3098,\"right\":900},\"defaultFill\":false}}]},{\"id\":19952,\"index\":120,\"type\":\"layerSection\",\"name\":\"Button \",\"bounds\":{\"top\":3059,\"left\":540,\"bottom\":3098,\"right\":705},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19952,\"index\":120,\"layers\":[{\"id\":19951,\"index\":119,\"type\":\"textLayer\",\"name\":\"Buy for $99\",\"bounds\":{\"top\":3073,\"left\":584,\"bottom\":3085,\"right\":662},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19950,\"index\":118,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":3059,\"left\":540,\"bottom\":3098,\"right\":705},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":77.0027,\"green\":161.001,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":3059,\"left\":540,\"bottom\":3098,\"right\":705}}}],\"bounds\":{\"top\":3059,\"left\":540,\"bottom\":3098,\"right\":705},\"defaultFill\":false}}]}]},{\"id\":19947,\"index\":115,\"type\":\"layerSection\",\"name\":\"Img\",\"bounds\":{\"top\":2747,\"left\":0,\"bottom\":3235,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19947,\"index\":115,\"layers\":[{\"id\":19946,\"index\":114,\"type\":\"layer\",\"name\":\"[both] White Matte1\",\"bounds\":{\"top\":2281,\"left\":0,\"bottom\":3629,\"right\":1440},\"visible\":true,\"clipped\":true,\"generatorSettings\":false,\"smartObject\":{\"ID\":\"bd2d246a-55a1-117a-a3e5-943ada4cdda5\",\"placed\":\"bd2d2465-55a1-117a-a3e5-943ada4cdda5\",\"crop\":1,\"antiAliasType\":16,\"type\":2,\"transform\":[0,2281,1440,2281,1440,3629,0,3629],\"comp\":-1,\"compInfo\":{\"compID\":-1,\"originalCompID\":-1}}},{\"id\":19945,\"index\":113,\"type\":\"shapeLayer\",\"name\":\"Bg\",\"bounds\":{\"top\":2747,\"left\":0,\"bottom\":3235,\"right\":1440},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":15.0039,\"green\":18,\"blue\":27.0039},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"rect\",\"bounds\":{\"top\":2747,\"left\":0,\"bottom\":3235,\"right\":1440}}}],\"bounds\":{\"top\":2747,\"left\":0,\"bottom\":3235,\"right\":1440},\"defaultFill\":false}}]}]},{\"id\":19942,\"index\":110,\"type\":\"layerSection\",\"name\":\"Pricing\",\"bounds\":{\"top\":1859,\"left\":0,\"bottom\":2695,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19942,\"index\":110,\"layers\":[{\"id\":19941,\"index\":109,\"type\":\"layerSection\",\"name\":\"Check\",\"bounds\":{\"top\":2116.78,\"left\":634,\"bottom\":2394.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19941,\"index\":109,\"layers\":[{\"id\":19940,\"index\":108,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2384.78,\"left\":1006,\"bottom\":2394.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2384.78,\"left\":1006,\"bottom\":2394.91,\"right\":1019.34}}}],\"bounds\":{\"top\":2384.78,\"left\":1006,\"bottom\":2394.91,\"right\":1019.34},\"defaultFill\":false}},{\"id\":19939,\"index\":107,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2328.78,\"left\":1006,\"bottom\":2338.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2328.78,\"left\":1006,\"bottom\":2338.91,\"right\":1019.34}}}],\"bounds\":{\"top\":2328.78,\"left\":1006,\"bottom\":2338.91,\"right\":1019.34},\"defaultFill\":false}},{\"id\":19938,\"index\":106,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2328.78,\"left\":817,\"bottom\":2338.91,\"right\":830.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2328.78,\"left\":817,\"bottom\":2338.91,\"right\":830.344}}}],\"bounds\":{\"top\":2328.78,\"left\":817,\"bottom\":2338.91,\"right\":830.344},\"defaultFill\":false}},{\"id\":19937,\"index\":105,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2275.78,\"left\":1006,\"bottom\":2285.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2275.78,\"left\":1006,\"bottom\":2285.91,\"right\":1019.34}}}],\"bounds\":{\"top\":2275.78,\"left\":1006,\"bottom\":2285.91,\"right\":1019.34},\"defaultFill\":false}},{\"id\":19936,\"index\":104,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2275.78,\"left\":817,\"bottom\":2285.91,\"right\":830.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2275.78,\"left\":817,\"bottom\":2285.91,\"right\":830.344}}}],\"bounds\":{\"top\":2275.78,\"left\":817,\"bottom\":2285.91,\"right\":830.344},\"defaultFill\":false}},{\"id\":19935,\"index\":103,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2222.78,\"left\":1006,\"bottom\":2232.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2222.78,\"left\":1006,\"bottom\":2232.91,\"right\":1019.34}}}],\"bounds\":{\"top\":2222.78,\"left\":1006,\"bottom\":2232.91,\"right\":1019.34},\"defaultFill\":false}},{\"id\":19934,\"index\":102,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2222.78,\"left\":817,\"bottom\":2232.91,\"right\":830.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2222.78,\"left\":817,\"bottom\":2232.91,\"right\":830.344}}}],\"bounds\":{\"top\":2222.78,\"left\":817,\"bottom\":2232.91,\"right\":830.344},\"defaultFill\":false}},{\"id\":19933,\"index\":101,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2222.78,\"left\":634,\"bottom\":2232.91,\"right\":647.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2222.78,\"left\":634,\"bottom\":2232.91,\"right\":647.344}}}],\"bounds\":{\"top\":2222.78,\"left\":634,\"bottom\":2232.91,\"right\":647.344},\"defaultFill\":false}},{\"id\":19932,\"index\":100,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2168.78,\"left\":1006,\"bottom\":2178.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2168.78,\"left\":1006,\"bottom\":2178.91,\"right\":1019.34}}}],\"bounds\":{\"top\":2168.78,\"left\":1006,\"bottom\":2178.91,\"right\":1019.34},\"defaultFill\":false}},{\"id\":19931,\"index\":99,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2168.78,\"left\":817,\"bottom\":2178.91,\"right\":830.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2168.78,\"left\":817,\"bottom\":2178.91,\"right\":830.344}}}],\"bounds\":{\"top\":2168.78,\"left\":817,\"bottom\":2178.91,\"right\":830.344},\"defaultFill\":false}},{\"id\":19930,\"index\":98,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2168.78,\"left\":634,\"bottom\":2178.91,\"right\":647.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2168.78,\"left\":634,\"bottom\":2178.91,\"right\":647.344}}}],\"bounds\":{\"top\":2168.78,\"left\":634,\"bottom\":2178.91,\"right\":647.344},\"defaultFill\":false}},{\"id\":19929,\"index\":97,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2116.78,\"left\":1006,\"bottom\":2126.91,\"right\":1019.34},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2116.78,\"left\":1006,\"bottom\":2126.91,\"right\":1019.34}}}],\"bounds\":{\"top\":2116.78,\"left\":1006,\"bottom\":2126.91,\"right\":1019.34},\"defaultFill\":false}},{\"id\":19928,\"index\":96,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2116.78,\"left\":817,\"bottom\":2126.91,\"right\":830.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2116.78,\"left\":817,\"bottom\":2126.91,\"right\":830.344}}}],\"bounds\":{\"top\":2116.78,\"left\":817,\"bottom\":2126.91,\"right\":830.344},\"defaultFill\":false}},{\"id\":19927,\"index\":95,\"type\":\"shapeLayer\",\"name\":\"check\",\"bounds\":{\"top\":2116.78,\"left\":634,\"bottom\":2126.91,\"right\":647.344},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2116.78,\"left\":634,\"bottom\":2126.91,\"right\":647.344}}}],\"bounds\":{\"top\":2116.78,\"left\":634,\"bottom\":2126.91,\"right\":647.344},\"defaultFill\":false}}]},{\"id\":19925,\"index\":93,\"type\":\"textLayer\",\"name\":\"Choose Your Plan Be with us\",\"bounds\":{\"top\":1975,\"left\":565,\"bottom\":2006,\"right\":875},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19924,\"index\":92,\"type\":\"layerSection\",\"name\":\"Tag\",\"bounds\":{\"top\":2324,\"left\":485,\"bottom\":2344,\"right\":531},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19924,\"index\":92,\"layers\":[{\"id\":19923,\"index\":91,\"type\":\"textLayer\",\"name\":\"new\",\"bounds\":{\"top\":2329,\"left\":494,\"bottom\":2338,\"right\":522},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19922,\"index\":90,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":2324,\"left\":485,\"bottom\":2344,\"right\":531},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":109.002,\"blue\":73.9989},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[10,10,10,10],\"type\":\"roundedRect\",\"bounds\":{\"top\":2324,\"left\":485,\"bottom\":2344,\"right\":531}}}],\"bounds\":{\"top\":2324,\"left\":485,\"bottom\":2344,\"right\":531},\"defaultFill\":false}}]},{\"id\":19920,\"index\":88,\"type\":\"textLayer\",\"name\":\"third option  \",\"bounds\":{\"top\":2062,\"left\":953,\"bottom\":2073,\"right\":1055},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19919,\"index\":87,\"type\":\"textLayer\",\"name\":\"second option  \",\"bounds\":{\"top\":2062,\"left\":765,\"bottom\":2073,\"right\":881},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19918,\"index\":86,\"type\":\"textLayer\",\"name\":\"first option  \",\"bounds\":{\"top\":2062,\"left\":596,\"bottom\":2073,\"right\":695},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19917,\"index\":85,\"type\":\"layerSection\",\"name\":\"Button\",\"bounds\":{\"top\":2434,\"left\":939,\"bottom\":2483,\"right\":1081},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19917,\"index\":85,\"layers\":[{\"id\":19916,\"index\":84,\"type\":\"textLayer\",\"name\":\"Button\",\"bounds\":{\"top\":2453,\"left\":975,\"bottom\":2465,\"right\":1052},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19915,\"index\":83,\"type\":\"shapeLayer\",\"name\":\"Button\",\"bounds\":{\"top\":2434,\"left\":939,\"bottom\":2483,\"right\":1081},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":15.0037,\"green\":17.9997,\"blue\":27.0035},\"class\":\"solidColorLayer\"},\"strokeStyle\":{\"strokeStyleVersion\":2,\"strokeEnabled\":true,\"fillEnabled\":true,\"strokeStyleLineWidth\":1,\"strokeStyleLineDashOffset\":{\"value\":0,\"units\":\"pointsUnit\"},\"strokeStyleMiterLimit\":100,\"strokeStyleLineCapType\":\"strokeStyleButtCap\",\"strokeStyleLineJoinType\":\"strokeStyleMiterJoin\",\"strokeStyleLineAlignment\":\"strokeStyleAlignInside\",\"strokeStyleScaleLock\":false,\"strokeStyleStrokeAdjust\":false,\"strokeStyleBlendMode\":\"normal\",\"strokeStyleOpacity\":{\"value\":100,\"units\":\"percentUnit\"},\"strokeStyleContent\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992}},\"strokeStyleResolution\":72},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":2434,\"left\":939,\"bottom\":2483,\"right\":1081}}}],\"bounds\":{\"top\":2434,\"left\":939,\"bottom\":2483,\"right\":1081},\"defaultFill\":false}}]},{\"id\":19913,\"index\":81,\"type\":\"layerSection\",\"name\":\"Button\",\"bounds\":{\"top\":2434,\"left\":756,\"bottom\":2483,\"right\":898},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19913,\"index\":81,\"layers\":[{\"id\":19912,\"index\":80,\"type\":\"textLayer\",\"name\":\"button\",\"bounds\":{\"top\":2453,\"left\":792,\"bottom\":2465,\"right\":869},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19911,\"index\":79,\"type\":\"shapeLayer\",\"name\":\"button\",\"bounds\":{\"top\":2434,\"left\":756,\"bottom\":2483,\"right\":898},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":77.0027,\"green\":161.001,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":2434,\"left\":756,\"bottom\":2483,\"right\":898}}}],\"bounds\":{\"top\":2434,\"left\":756,\"bottom\":2483,\"right\":898},\"defaultFill\":false}}]},{\"id\":19909,\"index\":77,\"type\":\"layerSection\",\"name\":\"Button\",\"bounds\":{\"top\":2434,\"left\":571,\"bottom\":2483,\"right\":713},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19909,\"index\":77,\"layers\":[{\"id\":19908,\"index\":76,\"type\":\"textLayer\",\"name\":\"Button\",\"bounds\":{\"top\":2453,\"left\":609,\"bottom\":2465,\"right\":686},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19907,\"index\":75,\"type\":\"shapeLayer\",\"name\":\"Button\",\"bounds\":{\"top\":2434,\"left\":571,\"bottom\":2483,\"right\":713},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":15.0037,\"green\":17.9997,\"blue\":27.0035},\"class\":\"solidColorLayer\"},\"strokeStyle\":{\"strokeStyleVersion\":2,\"strokeEnabled\":true,\"fillEnabled\":true,\"strokeStyleLineWidth\":1,\"strokeStyleLineDashOffset\":{\"value\":0,\"units\":\"pointsUnit\"},\"strokeStyleMiterLimit\":100,\"strokeStyleLineCapType\":\"strokeStyleButtCap\",\"strokeStyleLineJoinType\":\"strokeStyleMiterJoin\",\"strokeStyleLineAlignment\":\"strokeStyleAlignInside\",\"strokeStyleScaleLock\":false,\"strokeStyleStrokeAdjust\":false,\"strokeStyleBlendMode\":\"normal\",\"strokeStyleOpacity\":{\"value\":100,\"units\":\"percentUnit\"},\"strokeStyleContent\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992}},\"strokeStyleResolution\":72},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":2434,\"left\":571,\"bottom\":2483,\"right\":713}}}],\"bounds\":{\"top\":2434,\"left\":571,\"bottom\":2483,\"right\":713},\"defaultFill\":false}}]},{\"id\":19905,\"index\":73,\"type\":\"textLayer\",\"name\":\"Power and Battery\",\"bounds\":{\"top\":2379,\"left\":381,\"bottom\":2396,\"right\":513},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19904,\"index\":72,\"type\":\"textLayer\",\"name\":\"TV and Video\",\"bounds\":{\"top\":2325,\"left\":380,\"bottom\":2339,\"right\":475},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19903,\"index\":71,\"type\":\"textLayer\",\"name\":\"Audio Playback \",\"bounds\":{\"top\":2272,\"left\":380,\"bottom\":2289,\"right\":492},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19902,\"index\":70,\"type\":\"textLayer\",\"name\":\"Audio Playback\",\"bounds\":{\"top\":2219,\"left\":380,\"bottom\":2236,\"right\":492},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19901,\"index\":69,\"type\":\"textLayer\",\"name\":\"Audio Calling\",\"bounds\":{\"top\":2166,\"left\":380,\"bottom\":2183,\"right\":474},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19900,\"index\":68,\"type\":\"textLayer\",\"name\":\"Video Calling\",\"bounds\":{\"top\":2114,\"left\":380,\"bottom\":2131,\"right\":473},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19899,\"index\":67,\"type\":\"layerSection\",\"name\":\"Table\",\"bounds\":{\"top\":2093,\"left\":345,\"bottom\":2502,\"right\":1095},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19899,\"index\":67,\"layers\":[{\"id\":19898,\"index\":66,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2145,\"left\":346,\"bottom\":2146,\"right\":1094},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2145,\"left\":346,\"bottom\":2146,\"right\":1094}}}],\"bounds\":{\"top\":2145,\"left\":346,\"bottom\":2146,\"right\":1094},\"defaultFill\":false}},{\"id\":19897,\"index\":65,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2198,\"left\":346,\"bottom\":2199,\"right\":1094},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2198,\"left\":346,\"bottom\":2199,\"right\":1094}}}],\"bounds\":{\"top\":2198,\"left\":346,\"bottom\":2199,\"right\":1094},\"defaultFill\":false}},{\"id\":19896,\"index\":64,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2252,\"left\":346,\"bottom\":2253,\"right\":1094},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2252,\"left\":346,\"bottom\":2253,\"right\":1094}}}],\"bounds\":{\"top\":2252,\"left\":346,\"bottom\":2253,\"right\":1094},\"defaultFill\":false}},{\"id\":19895,\"index\":63,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2305,\"left\":346,\"bottom\":2306,\"right\":1094},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2305,\"left\":346,\"bottom\":2306,\"right\":1094}}}],\"bounds\":{\"top\":2305,\"left\":346,\"bottom\":2306,\"right\":1094},\"defaultFill\":false}},{\"id\":19894,\"index\":62,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2415,\"left\":346,\"bottom\":2416,\"right\":1094},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2415,\"left\":346,\"bottom\":2416,\"right\":1094}}}],\"bounds\":{\"top\":2415,\"left\":346,\"bottom\":2416,\"right\":1094},\"defaultFill\":false}},{\"id\":19893,\"index\":61,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2358,\"left\":346,\"bottom\":2359,\"right\":1094},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2358,\"left\":346,\"bottom\":2359,\"right\":1094}}}],\"bounds\":{\"top\":2358,\"left\":346,\"bottom\":2359,\"right\":1094},\"defaultFill\":false}},{\"id\":19892,\"index\":60,\"type\":\"shapeLayer\",\"name\":\"Shape\",\"bounds\":{\"top\":2093,\"left\":552,\"bottom\":2502,\"right\":920},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2093,\"left\":552,\"bottom\":2502,\"right\":553}}},{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2093,\"left\":733,\"bottom\":2502,\"right\":734}}},{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":2093,\"left\":919,\"bottom\":2502,\"right\":920}}}],\"bounds\":{\"top\":2093,\"left\":552,\"bottom\":2502,\"right\":920},\"defaultFill\":false}},{\"id\":19891,\"index\":59,\"type\":\"shapeLayer\",\"name\":\"Table\",\"bounds\":{\"top\":2093,\"left\":345,\"bottom\":2502,\"right\":1095},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":15.0037,\"green\":17.9997,\"blue\":27.0035},\"class\":\"solidColorLayer\"},\"strokeStyle\":{\"strokeStyleVersion\":2,\"strokeEnabled\":true,\"fillEnabled\":true,\"strokeStyleLineWidth\":1,\"strokeStyleLineDashOffset\":{\"value\":0,\"units\":\"pointsUnit\"},\"strokeStyleMiterLimit\":100,\"strokeStyleLineCapType\":\"strokeStyleButtCap\",\"strokeStyleLineJoinType\":\"strokeStyleMiterJoin\",\"strokeStyleLineAlignment\":\"strokeStyleAlignInside\",\"strokeStyleScaleLock\":false,\"strokeStyleStrokeAdjust\":false,\"strokeStyleBlendMode\":\"normal\",\"strokeStyleOpacity\":{\"value\":100,\"units\":\"percentUnit\"},\"strokeStyleContent\":{\"color\":{\"red\":39.9994,\"green\":45.0032,\"blue\":53.9992}},\"strokeStyleResolution\":72},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":2093,\"left\":345,\"bottom\":2502,\"right\":1095}}}],\"bounds\":{\"top\":2093,\"left\":345,\"bottom\":2502,\"right\":1095},\"defaultFill\":false}}]},{\"id\":19889,\"index\":57,\"type\":\"layerSection\",\"name\":\"Logos\",\"bounds\":{\"top\":2551,\"left\":571,\"bottom\":2578,\"right\":867},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19889,\"index\":57,\"layers\":[{\"id\":19888,\"index\":56,\"type\":\"layer\",\"name\":\"PayPal \",\"bounds\":{\"top\":2557,\"left\":808,\"bottom\":2571,\"right\":867},\"boundsWithFX\":{\"top\":2557,\"left\":808,\"bottom\":2571,\"right\":867},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"layerEffects\":{\"solidFill\":{\"enabled\":true,\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028}}},\"smartObject\":{\"ID\":\"bd2d2469-55a1-117a-a3e5-943ada4cdda5\",\"placed\":\"bd2d2460-55a1-117a-a3e5-943ada4cdda5\",\"crop\":1,\"antiAliasType\":16,\"type\":1,\"transform\":[808,2557,867,2557,867,2571,808,2571],\"comp\":-1}},{\"id\":19887,\"index\":55,\"type\":\"layer\",\"name\":\"Visa \",\"bounds\":{\"top\":2554,\"left\":571,\"bottom\":2569,\"right\":618},\"boundsWithFX\":{\"top\":2554,\"left\":571,\"bottom\":2569,\"right\":618},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"layerEffects\":{\"solidFill\":{\"enabled\":true,\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028}}},\"smartObject\":{\"ID\":\"bd2d2468-55a1-117a-a3e5-943ada4cdda5\",\"placed\":\"bd2d1688-55a1-117a-a3e5-943ada4cdda5\",\"crop\":1,\"antiAliasType\":16,\"type\":1,\"transform\":[571,2554,618,2554,618,2569,571,2569],\"comp\":-1}},{\"id\":19886,\"index\":54,\"type\":\"layer\",\"name\":\"Master Card \",\"bounds\":{\"top\":2551,\"left\":740,\"bottom\":2578,\"right\":775},\"boundsWithFX\":{\"top\":2551,\"left\":740,\"bottom\":2578,\"right\":775},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"layerEffects\":{\"solidFill\":{\"enabled\":true,\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028}}},\"smartObject\":{\"ID\":\"bd2d2467-55a1-117a-a3e5-943ada4cdda5\",\"placed\":\"bd2d1683-55a1-117a-a3e5-943ada4cdda5\",\"crop\":1,\"antiAliasType\":16,\"type\":1,\"transform\":[740,2551,775,2551,775,2578,740,2578],\"comp\":-1}},{\"id\":19885,\"index\":53,\"type\":\"shapeLayer\",\"name\":\"Pay \",\"bounds\":{\"top\":2552,\"left\":659,\"bottom\":2573,\"right\":703},\"boundsWithFX\":{\"top\":2552,\"left\":659,\"bottom\":2573,\"right\":703},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":49.9992,\"green\":59.9991,\"blue\":71.0028},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"layerEffects\":{\"solidFill\":{\"enabled\":true,\"color\":{\"red\":55.9991,\"green\":61.9991,\"blue\":71.0028}}},\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2552,\"left\":659,\"bottom\":2568.38,\"right\":672.5}}},{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2553.16,\"left\":676.563,\"bottom\":2568.13,\"right\":684.719}}},{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2557.28,\"left\":685.594,\"bottom\":2568.38,\"right\":693.156}}},{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":2557.53,\"left\":693.938,\"bottom\":2573,\"right\":703}}}],\"bounds\":{\"top\":2552,\"left\":659,\"bottom\":2573,\"right\":703},\"defaultFill\":false}}]},{\"id\":19883,\"index\":51,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":1859,\"left\":0,\"bottom\":2695,\"right\":1440},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":15.0037,\"green\":17.9997,\"blue\":27.0035},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[4,4,4,4],\"type\":\"roundedRect\",\"bounds\":{\"top\":1859,\"left\":0,\"bottom\":2695,\"right\":1440}}}],\"bounds\":{\"top\":1859,\"left\":0,\"bottom\":2695,\"right\":1440},\"defaultFill\":false}}]},{\"id\":20011,\"index\":49,\"type\":\"layerSection\",\"name\":\"Header\",\"bounds\":{\"top\":3283,\"left\":0,\"bottom\":4178,\"right\":1440},\"boundsWithFX\":{\"top\":3283,\"left\":0,\"bottom\":4178,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":20011,\"index\":49,\"layers\":[{\"id\":20010,\"index\":48,\"type\":\"layerSection\",\"name\":\"Chat button \",\"bounds\":{\"top\":4115,\"left\":1373,\"bottom\":4155,\"right\":1413},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":20010,\"index\":48,\"layers\":[{\"id\":20009,\"index\":47,\"type\":\"shapeLayer\",\"name\":\"Lines\",\"bounds\":{\"top\":4133,\"left\":1387,\"bottom\":4138,\"right\":1398},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":103.002,\"green\":97.0024,\"blue\":157.998},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[1,1,1,1],\"type\":\"roundedRect\",\"bounds\":{\"top\":4133,\"left\":1387,\"bottom\":4135,\"right\":1398}}},{\"origin\":{\"radii\":[1,1,1,1],\"type\":\"roundedRect\",\"bounds\":{\"top\":4136,\"left\":1387,\"bottom\":4138,\"right\":1398}}}],\"bounds\":{\"top\":4133,\"left\":1387,\"bottom\":4138,\"right\":1398},\"defaultFill\":false}},{\"id\":20008,\"index\":46,\"type\":\"shapeLayer\",\"name\":\"Shape \",\"bounds\":{\"top\":4125,\"left\":1381,\"bottom\":4146.03,\"right\":1404},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":4125,\"left\":1381,\"bottom\":4146.03,\"right\":1404}}}],\"bounds\":{\"top\":4125,\"left\":1381,\"bottom\":4146.03,\"right\":1404},\"defaultFill\":false}},{\"id\":20007,\"index\":45,\"type\":\"shapeLayer\",\"name\":\"Rounded Rectangle \",\"bounds\":{\"top\":4115,\"left\":1373,\"bottom\":4155,\"right\":1413},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":67.0029,\"green\":61.9991,\"blue\":117.002},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"ellipse\",\"bounds\":{\"top\":4115,\"left\":1373,\"bottom\":4155,\"right\":1413}}}],\"bounds\":{\"top\":4115,\"left\":1373,\"bottom\":4155,\"right\":1413},\"defaultFill\":false}}]},{\"id\":20005,\"index\":43,\"type\":\"layerSection\",\"name\":\"Input \",\"bounds\":{\"top\":3794,\"left\":250,\"bottom\":3846,\"right\":1193},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":20005,\"index\":43,\"layers\":[{\"id\":20004,\"index\":42,\"type\":\"shapeLayer\",\"name\":\"Lines\",\"bounds\":{\"top\":3794,\"left\":494,\"bottom\":3845,\"right\":768},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":65.999,\"green\":59.9991,\"blue\":123.002},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":3794,\"left\":494,\"bottom\":3845,\"right\":495}}},{\"origin\":{\"type\":\"line\",\"bounds\":{\"top\":3794,\"left\":767,\"bottom\":3845,\"right\":768}}}],\"bounds\":{\"top\":3794,\"left\":494,\"bottom\":3845,\"right\":768},\"defaultFill\":false}},{\"id\":20003,\"index\":41,\"type\":\"layerSection\",\"name\":\"Button\",\"bounds\":{\"top\":3794,\"left\":1064,\"bottom\":3846,\"right\":1193},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":20003,\"index\":41,\"layers\":[{\"id\":20002,\"index\":40,\"type\":\"textLayer\",\"name\":\"SEARCH\",\"bounds\":{\"top\":3815,\"left\":1102,\"bottom\":3826,\"right\":1158},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":20001,\"index\":39,\"type\":\"shapeLayer\",\"name\":\"Button \",\"bounds\":{\"top\":3794,\"left\":1064,\"bottom\":3846,\"right\":1193},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":77.0027,\"green\":161.001,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,0,0],\"type\":\"roundedRect\",\"bounds\":{\"top\":3794,\"left\":1064,\"bottom\":3846,\"right\":1193}}}],\"bounds\":{\"top\":3794,\"left\":1064,\"bottom\":3846,\"right\":1193},\"defaultFill\":false}}]},{\"id\":19999,\"index\":37,\"type\":\"layerSection\",\"name\":\"Keyword \",\"bounds\":{\"top\":3812.78,\"left\":783.688,\"bottom\":3830,\"right\":871},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19999,\"index\":37,\"layers\":[{\"id\":19998,\"index\":36,\"type\":\"shapeLayer\",\"name\":\"Search\",\"bounds\":{\"top\":3812.78,\"left\":783.688,\"bottom\":3827.19,\"right\":797.281},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":109.004,\"blue\":74},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":3812.78,\"left\":783.688,\"bottom\":3827.19,\"right\":797.281}}}],\"bounds\":{\"top\":3812.78,\"left\":783.688,\"bottom\":3827.19,\"right\":797.281},\"defaultFill\":false}},{\"id\":19997,\"index\":35,\"type\":\"textLayer\",\"name\":\"Keyword \",\"bounds\":{\"top\":3813,\"left\":811,\"bottom\":3830,\"right\":871},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19995,\"index\":33,\"type\":\"layerSection\",\"name\":\"Place\",\"bounds\":{\"top\":3812.81,\"left\":512.313,\"bottom\":3827.19,\"right\":599},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19995,\"index\":33,\"layers\":[{\"id\":19994,\"index\":32,\"type\":\"textLayer\",\"name\":\"Moscow \",\"bounds\":{\"top\":3814,\"left\":539,\"bottom\":3827,\"right\":599},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19993,\"index\":31,\"type\":\"shapeLayer\",\"name\":\"Place\",\"bounds\":{\"top\":3812.81,\"left\":512.313,\"bottom\":3827.19,\"right\":522.688},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":207.997,\"blue\":17.9997},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":3812.81,\"left\":512.313,\"bottom\":3827.19,\"right\":522.688}}}],\"bounds\":{\"top\":3812.81,\"left\":512.313,\"bottom\":3827.19,\"right\":522.688},\"defaultFill\":false}}]},{\"id\":19991,\"index\":29,\"type\":\"layerSection\",\"name\":\"Job Name\",\"bounds\":{\"top\":3811.81,\"left\":270.188,\"bottom\":3827,\"right\":370},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19991,\"index\":29,\"layers\":[{\"id\":19990,\"index\":28,\"type\":\"textLayer\",\"name\":\"Job name\",\"bounds\":{\"top\":3813,\"left\":299,\"bottom\":3827,\"right\":370},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19989,\"index\":27,\"type\":\"shapeLayer\",\"name\":\"Bag\",\"bounds\":{\"top\":3811.81,\"left\":270.188,\"bottom\":3826.19,\"right\":287.813},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":77.0027,\"green\":161.001,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":3811.81,\"left\":270.188,\"bottom\":3826.19,\"right\":287.813}}}],\"bounds\":{\"top\":3811.81,\"left\":270.188,\"bottom\":3826.19,\"right\":287.813},\"defaultFill\":false}}]},{\"id\":19987,\"index\":25,\"type\":\"shapeLayer\",\"name\":\"Input \",\"bounds\":{\"top\":3794,\"left\":250,\"bottom\":3846,\"right\":1176},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":67.1751,\"green\":61.9416,\"blue\":117},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"radii\":[5,5,5,5],\"type\":\"roundedRect\",\"bounds\":{\"top\":3794,\"left\":250,\"bottom\":3846,\"right\":1176}}}],\"bounds\":{\"top\":3794,\"left\":250,\"bottom\":3846,\"right\":1176},\"defaultFill\":false}}]},{\"id\":19985,\"index\":23,\"type\":\"layerSection\",\"name\":\"Head\",\"bounds\":{\"top\":3329,\"left\":40,\"bottom\":3357,\"right\":1402},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19985,\"index\":23,\"layers\":[{\"id\":19984,\"index\":22,\"type\":\"layerSection\",\"name\":\"Account\",\"bounds\":{\"top\":3335,\"left\":1340,\"bottom\":3353,\"right\":1402},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19984,\"index\":22,\"layers\":[{\"id\":19983,\"index\":21,\"type\":\"shapeLayer\",\"name\":\"account\",\"bounds\":{\"top\":3335,\"left\":1340,\"bottom\":3353,\"right\":1357.03},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":3335,\"left\":1340,\"bottom\":3353,\"right\":1357.03}}}],\"bounds\":{\"top\":3335,\"left\":1340,\"bottom\":3353,\"right\":1357.03},\"defaultFill\":false}},{\"id\":19982,\"index\":20,\"type\":\"textLayer\",\"name\":\"Login\",\"bounds\":{\"top\":3338,\"left\":1368,\"bottom\":3353,\"right\":1402},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19980,\"index\":18,\"type\":\"layerSection\",\"name\":\"Logo\",\"bounds\":{\"top\":3329,\"left\":40,\"bottom\":3357,\"right\":185},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19980,\"index\":18,\"layers\":[{\"id\":19979,\"index\":17,\"type\":\"textLayer\",\"name\":\"Re|source\",\"bounds\":{\"top\":3329,\"left\":40,\"bottom\":3357,\"right\":185},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]}]},{\"id\":19976,\"index\":14,\"type\":\"layerSection\",\"name\":\"Social \",\"bounds\":{\"top\":4122,\"left\":40,\"bottom\":4139,\"right\":156},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19976,\"index\":14,\"layers\":[{\"id\":19975,\"index\":13,\"type\":\"shapeLayer\",\"name\":\"Icon\",\"bounds\":{\"top\":4122,\"left\":40,\"bottom\":4138,\"right\":48},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":4122,\"left\":40,\"bottom\":4138,\"right\":48}}}],\"bounds\":{\"top\":4122,\"left\":40,\"bottom\":4138,\"right\":48},\"defaultFill\":false}},{\"id\":19974,\"index\":12,\"type\":\"shapeLayer\",\"name\":\"Icon\",\"bounds\":{\"top\":4123.81,\"left\":83,\"bottom\":4136.63,\"right\":102},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":4123.81,\"left\":83,\"bottom\":4136.63,\"right\":102}}}],\"bounds\":{\"top\":4123.81,\"left\":83,\"bottom\":4136.63,\"right\":102},\"defaultFill\":false}},{\"id\":19973,\"index\":11,\"type\":\"shapeLayer\",\"name\":\"Icon\",\"bounds\":{\"top\":4123,\"left\":137,\"bottom\":4139,\"right\":156},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":255,\"green\":255,\"blue\":255},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"unknown\",\"bounds\":{\"top\":4123,\"left\":137,\"bottom\":4139,\"right\":156}}}],\"bounds\":{\"top\":4123,\"left\":137,\"bottom\":4139,\"right\":156},\"defaultFill\":false}}]},{\"id\":19971,\"index\":9,\"type\":\"layerSection\",\"name\":\"Title\",\"bounds\":{\"top\":3572,\"left\":398,\"bottom\":3748,\"right\":1050},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19971,\"index\":9,\"layers\":[{\"id\":19970,\"index\":8,\"type\":\"textLayer\",\"name\":\"These more massive nuclei can not undergo an energy-producing f\",\"bounds\":{\"top\":3614,\"left\":398,\"bottom\":3748,\"right\":1050},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true},{\"id\":19969,\"index\":7,\"type\":\"textLayer\",\"name\":\"The closer an electron is to the \",\"bounds\":{\"top\":3572,\"left\":589,\"bottom\":3583,\"right\":854},\"visible\":true,\"clipped\":false,\"generatorSettings\":false,\"text\":true}]},{\"id\":19967,\"index\":5,\"type\":\"layerSection\",\"name\":\"BG\",\"bounds\":{\"top\":3283,\"left\":0,\"bottom\":4178,\"right\":1440},\"visible\":true,\"clipped\":false,\"blendOptions\":{\"mode\":\"passThrough\"},\"generatorSettings\":false,\"id\":19967,\"index\":5,\"layers\":[{\"id\":19966,\"index\":4,\"type\":\"layer\",\"name\":\"Img\",\"bounds\":{\"top\":3284,\"left\":-123,\"bottom\":4208,\"right\":1694},\"visible\":true,\"clipped\":true,\"blendOptions\":{\"opacity\":{\"value\":55,\"units\":\"percentUnit\"},\"mode\":\"multiply\"},\"generatorSettings\":false,\"smartObject\":{\"ID\":\"bd2d2466-55a1-117a-a3e5-943ada4cdda5\",\"placed\":\"bd2567c7-55a1-117a-a3e5-943ada4cdda5\",\"crop\":1,\"antiAliasType\":16,\"type\":2,\"transform\":[-123,3284,1694,3284,1694,4208,-123,4208],\"comp\":-1,\"compInfo\":{\"compID\":-1,\"originalCompID\":-1}}},{\"id\":19965,\"index\":3,\"type\":\"shapeLayer\",\"name\":\"Bg\",\"bounds\":{\"top\":3283,\"left\":0,\"bottom\":4178,\"right\":1440},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":54.1829,\"green\":48.3152,\"blue\":110},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"rect\",\"bounds\":{\"top\":3283,\"left\":0,\"bottom\":4178,\"right\":1440}}}],\"bounds\":{\"top\":3283,\"left\":0,\"bottom\":4178,\"right\":1440},\"defaultFill\":false}}]}]},{\"id\":5466,\"index\":0,\"type\":\"shapeLayer\",\"name\":\"bg\",\"bounds\":{\"top\":-11,\"left\":-5,\"bottom\":6700,\"right\":1440},\"visible\":true,\"clipped\":false,\"fill\":{\"color\":{\"red\":0,\"green\":0,\"blue\":0},\"class\":\"solidColorLayer\"},\"generatorSettings\":false,\"path\":{\"pathComponents\":[{\"origin\":{\"type\":\"rect\",\"bounds\":{\"top\":-11,\"left\":-5,\"bottom\":6700,\"right\":1440}}}],\"bounds\":{\"top\":-11,\"left\":-5,\"bottom\":6700,\"right\":1440},\"defaultFill\":false}}]}",
-    "type": "DescValueType.STRINGTYPE"
-  }
+  "version": "1.5.0",
+  "timeStamp": 1493908374.534,
+  "count": 202,
+  "id": 996,
+  "file": "Î´±êÌâ-4",
+  "bounds": {
+    "top": 0,
+    "left": 0,
+    "bottom": 744,
+    "right": 809
+  },
+  "selection": [
+    0
+  ],
+  "resolution": 118,
+  "globalLight": {
+    "angle": 90,
+    "altitude": 30
+  },
+  "generatorSettings": false,
+  "profile": "sRGB IEC61966-2.1",
+  "mode": "RGBColor",
+  "depth": 8,
+  "layers": [
+    {
+      "id": 20,
+      "index": 11,
+      "type": "layerSection",
+      "name": "×é 1",
+      "bounds": {
+        "top": 107,
+        "left": 79,
+        "bottom": 312,
+        "right": 496
+      },
+      "visible": true,
+      "clipped": false,
+      "blendOptions": {
+        "mode": "passThrough"
+      },
+      "generatorSettings": false,
+      "id": 20,
+      "index": 11,
+      "layers": [
+        {
+          "id": 32,
+          "index": 10,
+          "type": "shapeLayer",
+          "name": "¾ØÐÎ 1 ¿½±´ 4",
+          "bounds": {
+            "top": 127,
+            "left": 79,
+            "bottom": 270,
+            "right": 261
+          },
+          "visible": true,
+          "clipped": false,
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "type": "rect",
+                  "bounds": {
+                    "top": 127,
+                    "left": 79,
+                    "bottom": 270,
+                    "right": 261
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 127,
+              "left": 79,
+              "bottom": 270,
+              "right": 261
+            },
+            "defaultFill": false
+          }
+        },
+        {
+          "id": 26,
+          "index": 9,
+          "type": "layerSection",
+          "name": "×é 2",
+          "bounds": {
+            "top": 107,
+            "left": 212,
+            "bottom": 312,
+            "right": 496
+          },
+          "visible": true,
+          "clipped": false,
+          "blendOptions": {
+            "mode": "passThrough"
+          },
+          "generatorSettings": false,
+          "id": 26,
+          "index": 9,
+          "layers": [
+            {
+              "id": 25,
+              "index": 8,
+              "type": "shapeLayer",
+              "name": "¾ØÐÎ 1 ¿½±´",
+              "bounds": {
+                "top": 163,
+                "left": 212,
+                "bottom": 191,
+                "right": 303
+              },
+              "visible": true,
+              "clipped": false,
+              "fill": {
+                "color": {
+                  "red": 96,
+                  "green": 96,
+                  "blue": 96
+                },
+                "class": "solidColorLayer"
+              },
+              "strokeStyle": {
+                "strokeStyleVersion": 2,
+                "strokeEnabled": true,
+                "fillEnabled": true,
+                "strokeStyleLineWidth": 1,
+                "strokeStyleLineDashOffset": {
+                  "value": 0,
+                  "units": "pointsUnit"
+                },
+                "strokeStyleMiterLimit": 100,
+                "strokeStyleLineCapType": "strokeStyleButtCap",
+                "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+                "strokeStyleLineAlignment": "strokeStyleAlignInside",
+                "strokeStyleScaleLock": false,
+                "strokeStyleStrokeAdjust": false,
+                "strokeStyleBlendMode": "normal",
+                "strokeStyleOpacity": {
+                  "value": 100,
+                  "units": "percentUnit"
+                },
+                "strokeStyleContent": {
+                  "color": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0
+                  }
+                },
+                "strokeStyleResolution": 118
+              },
+              "generatorSettings": false,
+              "path": {
+                "pathComponents": [
+                  {
+                    "origin": {
+                      "type": "rect",
+                      "bounds": {
+                        "top": 163,
+                        "left": 212,
+                        "bottom": 191,
+                        "right": 303
+                      }
+                    }
+                  }
+                ],
+                "bounds": {
+                  "top": 163,
+                  "left": 212,
+                  "bottom": 191,
+                  "right": 303
+                },
+                "defaultFill": false
+              }
+            },
+            {
+              "id": 28,
+              "index": 7,
+              "type": "shapeLayer",
+              "name": "¾ØÐÎ 1 ¿½±´ 2",
+              "bounds": {
+                "top": 120,
+                "left": 314,
+                "bottom": 263,
+                "right": 496
+              },
+              "visible": true,
+              "clipped": false,
+              "fill": {
+                "color": {
+                  "red": 60,
+                  "green": 124.249,
+                  "blue": 255
+                },
+                "class": "solidColorLayer"
+              },
+              "strokeStyle": {
+                "strokeStyleVersion": 2,
+                "strokeEnabled": true,
+                "fillEnabled": true,
+                "strokeStyleLineWidth": 1,
+                "strokeStyleLineDashOffset": {
+                  "value": 0,
+                  "units": "pointsUnit"
+                },
+                "strokeStyleMiterLimit": 100,
+                "strokeStyleLineCapType": "strokeStyleButtCap",
+                "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+                "strokeStyleLineAlignment": "strokeStyleAlignInside",
+                "strokeStyleScaleLock": false,
+                "strokeStyleStrokeAdjust": false,
+                "strokeStyleBlendMode": "normal",
+                "strokeStyleOpacity": {
+                  "value": 100,
+                  "units": "percentUnit"
+                },
+                "strokeStyleContent": {
+                  "color": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0
+                  }
+                },
+                "strokeStyleResolution": 118
+              },
+              "generatorSettings": false,
+              "path": {
+                "pathComponents": [
+                  {
+                    "origin": {
+                      "type": "rect",
+                      "bounds": {
+                        "top": 120,
+                        "left": 314,
+                        "bottom": 263,
+                        "right": 496
+                      }
+                    }
+                  }
+                ],
+                "bounds": {
+                  "top": 120,
+                  "left": 314,
+                  "bottom": 263,
+                  "right": 496
+                },
+                "defaultFill": false
+              }
+            },
+            {
+              "id": 29,
+              "index": 6,
+              "type": "shapeLayer",
+              "name": "¾ØÐÎ 1 ¿½±´ 3",
+              "bounds": {
+                "top": 107,
+                "left": 212,
+                "bottom": 312,
+                "right": 473
+              },
+              "visible": true,
+              "clipped": false,
+              "fill": {
+                "color": {
+                  "red": 255,
+                  "green": 108,
+                  "blue": 180.65
+                },
+                "class": "solidColorLayer"
+              },
+              "strokeStyle": {
+                "strokeStyleVersion": 2,
+                "strokeEnabled": true,
+                "fillEnabled": true,
+                "strokeStyleLineWidth": 1,
+                "strokeStyleLineDashOffset": {
+                  "value": 0,
+                  "units": "pointsUnit"
+                },
+                "strokeStyleMiterLimit": 100,
+                "strokeStyleLineCapType": "strokeStyleButtCap",
+                "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+                "strokeStyleLineAlignment": "strokeStyleAlignInside",
+                "strokeStyleScaleLock": false,
+                "strokeStyleStrokeAdjust": false,
+                "strokeStyleBlendMode": "normal",
+                "strokeStyleOpacity": {
+                  "value": 100,
+                  "units": "percentUnit"
+                },
+                "strokeStyleContent": {
+                  "color": {
+                    "red": 0,
+                    "green": 0,
+                    "blue": 0
+                  }
+                },
+                "strokeStyleResolution": 118
+              },
+              "generatorSettings": false,
+              "path": {
+                "pathComponents": [
+                  {
+                    "origin": {
+                      "type": "rect",
+                      "bounds": {
+                        "top": 107,
+                        "left": 212,
+                        "bottom": 312,
+                        "right": 473
+                      }
+                    }
+                  }
+                ],
+                "bounds": {
+                  "top": 107,
+                  "left": 212,
+                  "bottom": 312,
+                  "right": 473
+                },
+                "defaultFill": false
+              }
+            }
+          ]
+        },
+        {
+          "id": 24,
+          "index": 4,
+          "type": "shapeLayer",
+          "name": "¾ØÐÎ 1",
+          "bounds": {
+            "top": 127,
+            "left": 79,
+            "bottom": 270,
+            "right": 261
+          },
+          "visible": true,
+          "clipped": false,
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "type": "rect",
+                  "bounds": {
+                    "top": 127,
+                    "left": 79,
+                    "bottom": 270,
+                    "right": 261
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 127,
+              "left": 79,
+              "bottom": 270,
+              "right": 261
+            },
+            "defaultFill": false
+          }
+        },
+        {
+          "id": 23,
+          "index": 3,
+          "type": "layer",
+          "name": "Í¼²ã 2",
+          "bounds": {
+            "top": 0,
+            "left": 0,
+            "bottom": 0,
+            "right": 0
+          },
+          "visible": true,
+          "clipped": false,
+          "pixels": true,
+          "generatorSettings": false
+        },
+        {
+          "id": 22,
+          "index": 2,
+          "type": "layer",
+          "name": "Í¼²ã 1",
+          "bounds": {
+            "top": 0,
+            "left": 0,
+            "bottom": 0,
+            "right": 0
+          },
+          "visible": true,
+          "clipped": false,
+          "pixels": true,
+          "generatorSettings": false
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "index": 0,
+      "type": "layer",
+      "name": "Í¼²ã 0",
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "bottom": 744,
+        "right": 809
+      },
+      "visible": true,
+      "clipped": false,
+      "pixels": true,
+      "generatorSettings": false
+    }
+  ]
 }

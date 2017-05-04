@@ -153,9 +153,10 @@ DataCaryon.prototype.save = async function ()
 
 DataCaryon.prototype.load = async function ()
 {
+    console.time("【DataCaryon.load】")
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
     var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
-    console.log("【DataCaryon.load】", dataJson)
+    // console.log("【DataCaryon.load】", dataJson)
 
     var ob = JSON.parse(dataJson);
     if (ob != undefined)
@@ -179,10 +180,13 @@ DataCaryon.prototype.load = async function ()
     }
 
 
+    console.timeEnd("【DataCaryon.load】")
+
 }
 
 DataCaryon.prototype.switchDocment = async function (dontGobSelect)
 {
+
 
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
     var docId = await enzymes.getActiveDocumentId()
@@ -192,14 +196,10 @@ DataCaryon.prototype.switchDocment = async function (dontGobSelect)
         console.log("【switchDocment】：" + docId)
         this.nowDoucmentId = docId; //切换当前 layers
 
-
-        console.log(this.layers)
         if (this.layers == undefined || OBJ.isEmptyObject(this.layers))
         {
-            console.log("load");
             await this.load();
         }
-
 
         if (this.info._status[docId] == undefined)
         {
@@ -219,6 +219,7 @@ DataCaryon.prototype.switchDocment = async function (dontGobSelect)
     {
         Gob.updateSelect();
     }
+
 
 }
 

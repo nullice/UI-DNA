@@ -197,9 +197,21 @@ Enzymes.prototype.getParentChildLayerId_byLayerId = async function (id, childInd
 }
 
 
-
-
-
+/**
+ * 获取相邻图层 Id
+ * @param id
+ * @param offsetIndex
+ * @returns {Promise}
+ */
+Enzymes.prototype.getNneighborLayerId_byLayerId = async function (id, offsetIndex)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = ` Kinase.layer.getNneighborLayerId_byLayerId(${JSON.stringify(id)}, ${JSON.stringify(offsetIndex)})`
+        evalScript(_jsxCode,
+            (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
+    })
+}
 
 
 

@@ -355,7 +355,11 @@ VarSystem.prototype.inintVarNameList = function ()
         window.autocomplete_var_hash[x] = true;
     }
 
-    var defaultWord = ["$i", "$z", "$i_name", "$parent"]
+    var defaultWord = ["$i", "$z", "$i_name", "$parent",
+        "$pad", "$up1", "$low1", "$nth1", "￥父", "￥底", "￥上1"
+        , "￥下1", "￥第1"]
+
+
     for (var x in defaultWord)
     {
         window.autocomplete_var_hash[defaultWord[x]] = true;
@@ -583,7 +587,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                 {
 
                     var reg = /^i_/
-                    console.log("_this_var.value", _this_var.value)
+                    console.log("_this_var.value:", _this_var.value)
                     if (ARR.hasMember(["计数", "count", "i"], _this_var.value.slice(1)))
                     {
                         var getValue = this.$count;
@@ -676,6 +680,10 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
     var layerId = null
 
     var reg_nth = /^(nth|第)[0-9_]+/
+    var reg_up = /^(up|pre|上|前)[0-9_]*/
+    var reg_low = /^(low|next|下|后)[0-9_]*/
+
+
     if (ARR.hasMember(["parent", "親", "父", "box"], varArr[0]))
     {
         var parentId = await enzymes.getParentLayerId_byLayerId(thisId)
@@ -701,15 +709,66 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
         if (numberStr[0] === "_")
         {
             var number = -+numberStr.slice(1)
-        }else
+        } else
         {
-            var number = +numberStr -1
+            var number = +numberStr - 1
         }
-
-
 
         var nthId = await enzymes.getParentChildLayerId_byLayerId(thisId, number)
         // console.log("parentId", parentId)
+        if (nthId != null)
+        {
+            layerId = nthId
+        }
+    }
+    else if (reg_up.test(varArr[0]))
+    {
+        var reg_number = /[0-9_]+/
+        var numberStr = reg_number.exec(varArr[0])
+        if (numberStr != undefined)
+        {
+            numberStr = numberStr[0]
+        } else
+        {
+            numberStr = 1
+        }
+
+        if (numberStr[0] === "_")
+        {
+            var number = -+numberStr.slice(1)
+        } else
+        {
+            var number = +numberStr
+        }
+
+        var nthId = await enzymes.getNneighborLayerId_byLayerId(thisId, number)
+        if (nthId != null)
+        {
+            layerId = nthId
+        }
+    } else if (reg_low.test(varArr[0]))
+    {
+        var reg_number = /[0-9_]+/
+
+        var numberStr = reg_number.exec(varArr[0])
+        if (numberStr != undefined)
+        {
+            numberStr = numberStr[0]
+        } else
+        {
+            numberStr = 1
+        }
+
+        if (numberStr[0] === "_")
+        {
+            var number = -+numberStr.slice(1)
+        } else
+        {
+            var number = +numberStr
+        }
+
+        console.log(`enzymes.getNneighborLayerId_byLayerId(${thisId}, ${-number})`)
+        var nthId = await enzymes.getNneighborLayerId_byLayerId(thisId, -number)
         if (nthId != null)
         {
             layerId = nthId

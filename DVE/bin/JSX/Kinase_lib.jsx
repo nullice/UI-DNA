@@ -660,16 +660,28 @@ Kinase.layer.getAllLayersItemIndex = function ()
  * 返回包含全部图层的 layerList [{id,name,itemIndex}]数组
  * @returns {Array}
  */
-Kinase.layer.getAllLayerList = function ()
+Kinase.layer.getAllLayerList = function (maxScanDeep, maxOnce)
 {
+
+
     var doc = app.activeDocument.layers;
     var layerList = [];
+    var deep = 0;
+
     _getLayers(doc, layerList);
 
     function _getLayers(layers, layerList)
     {
-        for (var i = 0; i < layers.length; i++)
+        deep++;
+
+        var len = layers.length
+        for (var i = 0; i < len; i++)
         {
+            if (maxOnce != undefined)
+            {
+                if (i > maxOnce) break;
+            }
+
             layerList.push({
                 id: layers[i].id,
                 name: layers[i].name,
@@ -678,9 +690,64 @@ Kinase.layer.getAllLayerList = function ()
 
             if (layers[i].typename != "ArtLayer")
             {
+
+
+                if (maxScanDeep != undefined)
+                {
+                    if (deep > maxScanDeep)
+                    {
+                        continue;
+                    }
+                }
                 _getLayers(layers[i].layers, layerList)
             }
         }
+        deep--
+    };
+
+    return layerList;
+}
+
+
+Kinase.layer.getAllLayerList_quick = function (maxScanDeep, maxOnce)
+{
+    var ob = JSON.parse(Kinase.document.getDocumentInfoJson(true))
+    var doc = ob.layers;
+    var layerList = [];
+    var deep = 0;
+
+    _getLayers(doc, layerList);
+
+    function _getLayers(layers, layerList)
+    {
+        deep++;
+        if (maxScanDeep != undefined)
+        {
+            if (deep > maxScanDeep)
+            {
+                return;
+            }
+        }
+
+        for (var i in layers)
+        {
+            if (maxOnce != undefined)
+            {
+                if (i > maxOnce) break;
+            }
+
+            layerList.push({
+                id: layers[i].id,
+                name: layers[i].name,
+                itemIndex: layers[i].index + 1
+            });
+
+            if (layers[i].type == "layerSection" && layers[i].layers != undefined)
+            {
+                _getLayers(layers[i].layers, layerList)
+            }
+        }
+        deep--
     };
 
     return layerList;
