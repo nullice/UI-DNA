@@ -22,6 +22,8 @@ var EventCaryon = function ()
         }
     }
 
+    this.stopEventListen =false
+
     EventCaryon.prototype.initEvent();
     return this;
 }
@@ -137,6 +139,13 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
 {
     // console.log("PhotoshopCallbackUnique");
     // console.log(csEvent);
+
+    if( eventCaryon.stopEventListen )
+    {
+        console.log("stopEventListen")
+        return false
+    }
+
     try
     {
         // console.log(typeof csEvent.data === "string")

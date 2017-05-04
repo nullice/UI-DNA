@@ -1,7 +1,9 @@
 <template>
     <div class="bottom_pad"></div>
 
-
+    <div v-if="stopEventListen" class="stopEx">
+        <button class="exmo_button_ghost" v-on:click="doContinue">{{"恢复运行" | lang}}  </button>
+    </div>
     <div class="express_pad">
 
         <!--<div class="more_option">-->
@@ -65,6 +67,41 @@
 
 </template>
 <style lang="scss" rel="stylesheet/scss">
+
+    .stopEx {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: rgba(110, 110, 110, 0.6);
+        z-index: 999;
+
+        .exmo_button_ghost {
+            cursor: default;
+            background-color: rgba(255, 255, 255, 0.74);
+            border-color: rgba(255, 255, 255, 0.0);
+            color: #5C5C5C;
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 128px;
+            height: 34px;
+            margin: auto;
+            text-align: center;
+
+            &:hover {
+                background: #fff;
+            }
+            &:active {
+                color: #5C5C5C;
+                background-color: rgba(214, 214, 214, 0.74);
+            }
+        }
+
+    }
 
     .express_pad {
         height: 50px;
@@ -245,6 +282,7 @@
                 o_data_status: dataCaryon.info,
                 o_render_status: renderCaryon.status,
                 o_setting: setSystem,
+                stopEventListen: eventCaryon.stopEventListen,
                 o_menu_setting: {
                     freshen: {
                         name: Lang.from("刷新"),
@@ -261,6 +299,19 @@
                         selected_func: this.doClean,
                     },
                     hr: {
+                        type: "multi_select",
+                        state: true,
+                        hr: true,
+                    },
+                    doStopEx: {
+                        name: Lang.from("暂停"),
+                        title: Lang.from("暂停 UI-DNA 运行"),
+                        type: "button",
+                        selected_func: this.doStopEx,
+
+                    },
+
+                    hr2: {
                         type: "multi_select",
                         state: true,
                         hr: true,
@@ -359,6 +410,17 @@
                 varSystem.cleanVarNameList()
                 UI_action.show_message_bubble("layer_selector", "", Lang.from("已清理 ") + count + Lang.from(" 项无用数据"), "")
 
+            },
+            doStopEx: async function ()
+            {
+                this.stopEventListen = !this.stopEventListen
+                eventCaryon.stopEventListen = this.stopEventListen
+            },
+            doContinue: async function ()
+            {
+                this.stopEventListen = false
+                eventCaryon.stopEventListen = false
+                Gob.updateSelect()
             }
 
         },
