@@ -304,8 +304,8 @@ var VarSystem = function ()
 
 
     /*计数*/
-    this.$count = 0;
-    this.$layerount = 0;
+    this.$count = 1;
+    this.$layerount = 1;
     this.$userCounts = {};
 
     this.inintVarNameList()
@@ -345,12 +345,23 @@ VarSystem.prototype.inintVarNameList = function ()
     window.autocomplete_var = [
         {value: "sss123"}
     ];
+    window.autocomplete_var_hash = {}
+
 
     window.autocomplete_var.splice(0, window.autocomplete_var.length)
     for (var x in this.vars)
     {
         window.autocomplete_var.push({value: x})
+        window.autocomplete_var_hash[x] = true;
     }
+
+    var defaultWord = ["$i", "$z", "$i_name", "$parent"]
+    for (var x in defaultWord)
+    {
+        window.autocomplete_var_hash[defaultWord[x]] = true;
+        window.autocomplete_var.push({value: defaultWord[x]})
+    }
+
 }
 
 /**
@@ -399,23 +410,23 @@ VarSystem.prototype.addVar = function (name, value, type, isFormula, relatives)
 
     if (name != undefined)
     {
-        window.autocomplete_var.push({value: name})//为自动补全
+        if (window.autocomplete_var_hash[name] != true)
+        {
+            window.autocomplete_var.push({value: name})//为自动补全
+            window.autocomplete_var_hash[name] = true;
+        }
     }
-
-
 }
 
 //删除变量
 VarSystem.prototype.removeVar = function (name)
 {
-
     var relatives = this.vars[name].relatives;
-
     // delete this.vars[name];
-
     Vue.delete(this.vars, name)
 
     ARR.deleteByKey(window.autocomplete_var, "value", name)
+    window.autocomplete_var_hash[name] = null;
     return relatives;
 }
 
@@ -527,7 +538,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 
             if (varList[i].name[0] == "$" || varList[i].name[0] == "￥")
             {
-                var _this_var = await this.evalVarEnhancer(varList[i].name.slice(1), thisId,names)
+                var _this_var = await this.evalVarEnhancer(varList[i].name.slice(1), thisId, names)
 
             } else
             {
@@ -567,40 +578,37 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 
             if (_this_var !== undefined)
             {
-
-
                 // console.log(varList[i].index + increment + "-" + varList[i].name.length)
                 if (_this_var.value[0] == "$" || _this_var.value[0] == "￥") //    --增强子变量
                 {
 
                     var reg = /^i_/
-                    console.log("_this_var.value",_this_var.value)
-                    if (ARR.hasMember(["计数", "count", "i"],_this_var.value.slice(1)))
+                    console.log("_this_var.value", _this_var.value)
+                    if (ARR.hasMember(["计数", "count", "i"], _this_var.value.slice(1)))
                     {
                         var getValue = this.$count;
                         this.$count++;
-                    } else if (ARR.hasMember(["图层计数", "layerCount", "z"], _this_var.value.slice(1)) )
+                    } else if (ARR.hasMember(["图层计数", "layerCount", "z"], _this_var.value.slice(1)))
                     {
                         var getValue = this.$layerCount;
                     }
                     else if (reg.test(_this_var.value.slice(1)))
                     {
-
                         var userVar = _this_var.value.slice(2)
-                        console.log("$userVar",userVar)
+                        console.log("$userVar", userVar)
                         if (this.$userCounts[userVar] == undefined)
                         {
-                            this.$userCounts[userVar] = 0
+                            this.$userCounts[userVar] = 1
                         } else
                         {
                             this.$userCounts[userVar]++
                         }
                         var getValue = this.$userCounts[userVar];
                     }
-                    else
-                    {
-                        var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
-                    }
+                    // else
+                    // {
+                    //     var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
+                    // }
                 }
                 else
                 {
@@ -611,9 +619,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                     {
                         var getValue = await this.evalVar(_this_var.value, thisId, names);
                     }
-
                 }
-
 
                 inVar = STR.insert(inVar,
                     varList[i].index + increment,
@@ -621,8 +627,6 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                     getValue
                 );
                 increment += getValue.toString().length - varList[i].name.toString().length;
-
-
             }
         }
 
@@ -671,18 +675,45 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
     var varArr = varValue.split(".")
     var layerId = null
 
-    var reg_index
-    if (ARR.hasMember(["parent","親", "父", "box"], varArr[0]))
+    var reg_nth = /^(nth|第)[0-9_]+/
+    if (ARR.hasMember(["parent", "親", "父", "box"], varArr[0]))
     {
         var parentId = await enzymes.getParentLayerId_byLayerId(thisId)
-        console.log("parentId",parentId)
+        // console.log("parentId", parentId)
         if (parentId != null)
         {
             layerId = parentId
         }
-    }else  (ARR.hasMember(["parent","親", "父", "box"], varArr[0]))
+    }
+    else if (ARR.hasMember(["pad", "floor", "底"], varArr[0]))
     {
+        var padId = await enzymes.getParentChildLayerId_byLayerId(thisId, -1)
+        // console.log("parentId", parentId)
+        if (padId != null)
+        {
+            layerId = padId
+        }
+    }
+    else if (reg_nth.test(varArr[0]))
+    {
+        var reg_number = /[0-9_]+/
+        var numberStr = reg_number.exec(varArr[0])[0]
+        if (numberStr[0] === "_")
+        {
+            var number = -+numberStr.slice(1)
+        }else
+        {
+            var number = +numberStr -1
+        }
 
+
+
+        var nthId = await enzymes.getParentChildLayerId_byLayerId(thisId, number)
+        // console.log("parentId", parentId)
+        if (nthId != null)
+        {
+            layerId = nthId
+        }
     }
 
 
@@ -703,9 +734,9 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
         }
 
         var rootName = names[0]
-        console.log("rootName:",rootName)
+        console.log("rootName:", rootName)
         var resultValue = await renderCaryon._getLayerDataByNamse(rootName, names.slice(1), layerId, true)
-        console.log("resultValue:",resultValue)
+        console.log("resultValue:", resultValue)
         return {value: resultValue}
     }
     else

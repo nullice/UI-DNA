@@ -5935,6 +5935,7 @@ Kinase.layer.creatNewColorSampler = function (x, y)
 Kinase.layer.isLayerSet = function (targetReference, target)
 {
 
+
     try
     {
         var layerSection = ki.layer.get_XXX_Objcet(targetReference, target, "layerSection").layerSection.value.enumerationValue;
@@ -7328,16 +7329,25 @@ Kinase.layer.getParentLayerId_byItemIndex = function (itemIndex)
 
 
 /**
- * 获取父图层的子图层
+ * 根据 layerId 获取图层父级图层的 Id
+ * @param layerId
+ * @returns {number}
+ */
+Kinase.layer.getParentLayerId_byLayerId = function (layerId)
+{
+    return Kinase.layer.getParentLayerId_byItemIndex(Kinase.layer.getItemIndexBylayerID(layerId))
+}
+
+
+/**
+ * 获取父图层的子图层 id
  * @param layerId
  * @param childIndex
  * @returns {*}
  */
 Kinase.layer.getParentChildLayerId_byLayerId = function (layerId, childIndex)
 {
-
     var layerDOM = Kinase.layer.getLayerDOMObject_byItemIndex(Kinase.layer.getItemIndexBylayerID(layerId))
-
 
     if (layerDOM.parent != undefined)
     {
@@ -7364,22 +7374,31 @@ Kinase.layer.getParentChildLayerId_byLayerId = function (layerId, childIndex)
             if (getIndex > layersLength - 1) getIndex = layersLength - 1;
 
 
-            return parentDOM.layers[getIndex]
+            return parentDOM.layers[getIndex].id
         }
     }
 
 }
 
 
-/**
- * 根据 layerId 获取图层父级图层的 Id
- * @param layerId
- * @returns {number}
- */
-Kinase.layer.getParentLayerId_byLayerId = function (layerId)
+Kinase.layer.getNneighborLayerId_byLayerId = function (layerId, offsetIndex)
 {
-    return Kinase.layer.getParentLayerId_byItemIndex(Kinase.layer.getItemIndexBylayerID(layerId))
+    var itemIndex = Kinase.layer.getItemIndexBylayerID(layerId)
+    var getItemIndex = itemIndex + offsetIndex
+
+    var layerSection = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, getItemIndex + Kinase.BKOffset(), "layerSection").layerSection.value.enumerationValue;
+    if (layerSection == "layerSectionEnd")
+    {
+        getItemIndex = getItemIndex - 1
+    }
+
+    if (getItemIndex < Kinase.lowerIndex()) getItemIndex = Kinase.lowerIndex();
+    if (getItemIndex > Kinase.upperIndex()) getItemIndex = Kinase.upperIndex();
+
+
+    return Kinase.layer.getLayerIdByItemIndex(getItemIndex)
 }
+
 
 /**
  * 根据 ItemIndex 获取图层组的所有子元素的 id 数组
@@ -7721,10 +7740,14 @@ Kinase.BKOffset = function ()
 
 Kinase.lowerIndex = function ()
 {
-    var lowerIndex = 0;
+    var lowerIndex = 1;
     try
     {
-        if (app.activeDocument.backgroundLayer) lowerIndex = 2;
+        var layerSection = Kinase.layer.get_XXX_Objcet(Kinase.REF_ItemIndex, 1, "layerSection").layerSection.value.enumerationValue;
+        if (layerSection == "layerSectionEnd")
+        {
+            lowerIndex = 2
+        }
 
     }
     catch (err)

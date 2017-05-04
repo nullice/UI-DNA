@@ -165,7 +165,7 @@ Enzymes.prototype.deleteLayer = async function (id)
 
 
 /**
- *
+ * 获取父级图层 id
  * @param id
  * @returns {Promise}
  */
@@ -178,6 +178,31 @@ Enzymes.prototype.getParentLayerId_byLayerId = async function (id)
             (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
     })
 }
+
+
+/**
+ * 获取父图层的子图层 id
+ * @param id
+ * @param childIndex
+ * @returns {Promise}
+ */
+Enzymes.prototype.getParentChildLayerId_byLayerId = async function (id, childIndex)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = ` Kinase.layer.getParentChildLayerId_byLayerId(${JSON.stringify(id)}, ${JSON.stringify(childIndex)})`
+        evalScript(_jsxCode,
+            (r) => {resolve(Number(jsxBackCheck(r, _jsxCode)))})
+    })
+}
+
+
+
+
+
+
+
+
 
 
 /**
