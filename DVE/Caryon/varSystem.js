@@ -585,7 +585,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                     else if (reg.test(_this_var.value.slice(1)))
                     {
 
-                        var userVar = _this_var.value.slice(1, _this_var.value.length - 2)
+                        var userVar = _this_var.value.slice(2)
 
                         if (this.$userCounts[userVar] == undefined)
                         {
