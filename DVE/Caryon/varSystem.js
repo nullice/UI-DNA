@@ -574,11 +574,12 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                 {
 
                     var reg = /^i_/
-                    if (ARR.hasMember(["计数", "count", "i"],) , _this_var.value.slice(1))
+                    console.log("_this_var.value",_this_var.value)
+                    if (ARR.hasMember(["计数", "count", "i"],_this_var.value.slice(1)))
                     {
                         var getValue = this.$count;
                         this.$count++;
-                    } else if (ARR.hasMember(["图层计数", "layerCount", "z"],) , _this_var.value.slice(1))
+                    } else if (ARR.hasMember(["图层计数", "layerCount", "z"], _this_var.value.slice(1)) )
                     {
                         var getValue = this.$layerCount;
                     }
@@ -586,7 +587,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                     {
 
                         var userVar = _this_var.value.slice(2)
-
+                        console.log("$userVar",userVar)
                         if (this.$userCounts[userVar] == undefined)
                         {
                             this.$userCounts[userVar] = 0

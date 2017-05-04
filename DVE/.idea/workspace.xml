@@ -211,8 +211,8 @@
           <file leaf-file-name="varSystem.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="500">
-                  <caret line="587" column="61" lean-forward="false" selection-start-line="587" selection-start-column="61" selection-end-line="587" selection-end-column="61" />
+                <state relative-caret-position="419">
+                  <caret line="586" column="21" lean-forward="true" selection-start-line="586" selection-start-column="21" selection-end-line="586" selection-end-column="21" />
                   <folding>
                     <element signature="e#14160#15352#0" expanded="false" />
                   </folding>
@@ -951,12 +951,12 @@
       <workItem from="1493518470617" duration="33108000" />
       <workItem from="1493649337235" duration="9476000" />
       <workItem from="1493730650715" duration="7847000" />
-      <workItem from="1493810286107" duration="12469000" />
+      <workItem from="1493810286107" duration="14162000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3415290000" />
+    <option name="totallyTimeSpent" value="3416983000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1587,8 +1587,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/varSystem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="587" column="61" lean-forward="false" selection-start-line="587" selection-start-column="61" selection-end-line="587" selection-end-column="61" />
+        <state relative-caret-position="419">
+          <caret line="586" column="21" lean-forward="true" selection-start-line="586" selection-start-column="21" selection-end-line="586" selection-end-column="21" />
           <folding>
             <element signature="e#14160#15352#0" expanded="false" />
           </folding>
