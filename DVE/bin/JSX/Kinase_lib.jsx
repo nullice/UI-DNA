@@ -1958,22 +1958,24 @@ Kinase.layer.setLayerTextInfo = function (textInfo, targetReference, target)
 
                 adOb.to.value.textStyleRange = textKey_raw.value.textStyleRange
             }
-
-
         }
 
-        for (var i in  adOb.to.value.textStyleRange.value)
-        {
-            try
-            {
-                adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.red.value = textInfo.color.r;
-                adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.grain.value = textInfo.color.g;
-                adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.blue.value = textInfo.color.b;
-            } catch (e)
-            {
 
-            }
-        }
+        // if (adOb.to.value.textStyleRange != undefined)
+        // {
+        //     for (var i in  adOb.to.value.textStyleRange.value)
+        //     {
+        //         try
+        //         {
+        //             adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.red.value = textInfo.color.r;
+        //             adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.grain.value = textInfo.color.g;
+        //             adOb.to.value.textStyleRange.value[i].value.textStyle.value.color.value.blue.value = textInfo.color.b;
+        //         } catch (e)
+        //         {
+        //
+        //         }
+        //     }
+        // }
     }
 
 
