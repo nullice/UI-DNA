@@ -4,7 +4,7 @@
         <i class="icon-briefcase"></i>
     </menu-buttom>
 
-    <label title="{{'刷新'|lang}}" class="exmo_button_icon  freshen mini" v-on:click="click_freshen"
+    <label title="{{'强制刷新'|lang}}" class="exmo_button_icon  freshen mini" v-on:click="click_freshen"
            v-bind:class="{'freshen-rotate':nowFreshen}">
         <i class="icon-refresh"></i>
     </label>
