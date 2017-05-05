@@ -15,8 +15,9 @@
                 <input v-model="o_fixed_height" type="checkbox" class="exmo_icon_cheackbox "
                        id="check_btn_{{area_id}}_1"
                        autocomplete="off">
-                <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1"><i
-                        class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i></label>
+                <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1" >
+                    <i class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i>
+                </label>
             </div>
 
             <div class="tool" v-if="area_disable_fixbut&&area_disable_fixbut_max">
@@ -29,9 +30,17 @@
 
             <div class="tool" v-if="area_disable_fixbut">
 
-                <label v-on:click="suspend_on"
-                       class="exmo_button_icon mini"><i
-                        class="{{o_suspend_on?'icon-shrink2':'icon-enlarge2'}}"></i></label>
+                <label v-on:click="suspend_on" :title="miniButTitle"
+                       class="exmo_button_icon mini">
+
+                    <i  v-if="area_id!='attr_panel'" class="{{o_suspend_on?'icon-shrink2':'icon-enlarge2'}}"></i>
+                    <i  v-if="area_id=='attr_panel'" class="{{o_suspend_on?'icon-pause2':'icon-play3'}}"></i>
+
+
+                </label>
+
+
+
             </div>
 
 
@@ -91,6 +100,32 @@
                     return "mod_fixed_height"
                 }
                 return ""
+            },
+            miniButTitle:function ()
+            {
+
+                if(this.area_id=='attr_panel')
+                {
+                    if(this.o_suspend_on)
+                    {
+                        var t ="最小化并暂停刷新"
+                    }else
+                    {
+                        var t ="展开并恢复刷新"
+                    }
+
+                }else {
+
+                    if(this.o_suspend_on)
+                    {
+                        var t ="最小化"
+                    }else
+                    {
+                        var t ="展开"
+                    }
+
+                }
+                return Lang.from(t)
             }
         },
         methods: {
@@ -194,8 +229,7 @@
         display: none;
 
         .exmo_button_icon i {
-            color: #ABABAB;
-
+            color: #9E9E9E;
             font-size: 11px;
         }
 
@@ -209,8 +243,18 @@
             padding: 0 4px;
             padding-bottom: 2px;
         }
-
     }
+
+    .attr_panel  .area_tool
+    {
+        .exmo_button_icon i {
+            vertical-align: middle;
+            display: inline-block;
+            margin-top: -1px;
+        }
+    }
+
+
 
     .exmo_area.suspend {
         position: fixed;
