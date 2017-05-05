@@ -16,6 +16,8 @@ cs.addEventListener("UI-DNA-Shadow:restart",
         setTimeout(function ()
         {
             cs.requestOpenExtension("UI-DNA")
+
+            setTimeout(function () {cs.requestOpenExtension("UI-DNA")},1500)//在速度慢的电脑上保证已重启
         },200)
 
     }
