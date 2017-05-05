@@ -81,6 +81,7 @@
 
         .attr_option.inline_block {
             display: inline-block;
+            min-width: 14px;
         }
 
         .assist-range {
@@ -136,13 +137,14 @@
                     button: true
                 }],
 
-                options_position_x: [{
-                    value: 'info_pin',
-                    label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
-                    title: "创建变量标注",
-                    selected_func: this.info_pin,
-                    button: true
-                }
+                options_position_x: [
+                     {
+                        value: 'position_setLeft',
+                         label_html: '<i class=" icon-export" style="font-size: 14px;  display: inline-block; transform: rotate(90deg);">',
+                        title: "贴靠左边",
+                        selected_func: this.position_setLeft,
+                        button: true
+                    }
                     , {
                         value: 'position_setCenter',
                         label_html: '<i class="icon-distribute-horizontally" style="font-size: 14px;">',
@@ -157,29 +159,52 @@
                         title: "贴靠右边",
                         selected_func: this.position_setRight,
                         button: true
-                    }],
-
-                options_position_y: [
+                    },
                     {
                         value: 'info_pin',
                         label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
                         title: "创建变量标注",
                         selected_func: this.info_pin,
                         button: true
-                    }, {
+                    }
+
+                    ],
+
+                options_position_y: [
+                    {
+                        value: 'position_setTop',
+                        label_html: '<i class=" icon-export" style="font-size: 14px;  display: inline-block; transform: rotate(180deg);">',
+                        title: "贴靠顶边",
+                        selected_func: this.position_setTop,
+                        button: true
+                    }
+                    , {
                         value: 'position_setCenter',
                         label_html: '<i class="icon-distribute-vertically" style="font-size: 14px;">',
                         title: "贴靠中间",
                         selected_func: this.position_setCenter,
                         button: true
-                    },
+                    }
+                    ,
+                    {
+                        br: true,
+                    }
+                    ,
                     {
                         value: 'position_setBottom',
                         label_html: '<i class=" icon-export" style="font-size: 14px;">',
                         title: "贴靠底边",
                         selected_func: this.position_setButtom,
                         button: true
-                    }],
+                    },
+                    {
+                        value: 'info_pin',
+                        label_html: '<i class="icon-pushpin" style="font-size: 12px;">',
+                        title: "创建变量标注",
+                        selected_func: this.info_pin,
+                        button: true
+                    }
+                    ],
 
 
                 options_color: [
@@ -645,7 +670,20 @@
                 Gob.shape.radian.bottomLeft = this.edit_value
                 Gob.shape.radian.bottomRight = this.edit_value
             },
-
+            position_setLeft: async function ()
+            {
+                var str = _.trim(this.edit_value)
+                var reg_Name =/^[@$￥]/
+                if (reg_Name.test(str))
+                {
+                    str = `${str} + 0)`
+                    this.edit_value = str
+                }
+                else
+                {
+                    this.edit_value = "$pad + 0"
+                }
+            },
 
             position_setRight: async function ()
             {
@@ -672,8 +710,20 @@
                 }
                 else
                 {
-
-                    UI_action.show_message_bubble("att_panel", "", Lang.from("需要对象变量的表达式 @ "))
+                    this.edit_value = "right($pad - 0)"
+                }
+            },
+            position_setTop: async function ()
+            {
+                var str = _.trim(this.edit_value)
+                var reg_Name =/^[@$￥]/
+                if (reg_Name.test(str))
+                {
+                    str = `${str} + 0`
+                    this.edit_value = str
+                }  else
+                {
+                    this.edit_value = "$pad + 0"
                 }
             },
             position_setButtom: async function ()
@@ -695,15 +745,17 @@
                         str = str.replace(reg2, "(")
                     }
 
-
                     str = str.replace(reg, "bottom(")
 
                     this.edit_value = str
                 } else
                 {
-                    UI_action.show_message_bubble("att_panel", "", Lang.from("需要对象变量的表达式 @ "))
+                    this.edit_value = "bottom($pad - 0)"
                 }
             },
+
+
+
             position_setCenter: async function ()
             {
 
@@ -722,7 +774,9 @@
                     this.edit_value = str
                 } else
                 {
-                    UI_action.show_message_bubble("att_panel", "", Lang.from("需要对象变量的表达式 @ "))
+
+                    this.edit_value = "center( 1/2, $pad)"
+//                    UI_action.show_message_bubble("att_panel", "", Lang.from("需要对象变量的表达式 @ "))
                 }
             },
 
