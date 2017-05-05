@@ -502,11 +502,43 @@ VarSystem.prototype.layerSample = {
  */
 VarSystem.prototype.evalVar = async function (varValue, thisId, names)
 {
+    var self = this
+
+    async function _sbeval(_varStr)
+    {
+        var reg_sb = /\[[^\[\]]*\]/g
+
+        var varList = []
+        var resullt = undefined;
+        while ((resullt = reg_sb.exec(_varStr)) !== null)
+        {
+            varList.push({name: resullt[0], index: resullt.index})
+        }
+        var increment = 0
+
+        for (var i = 0; i < varList.length; i++)
+        {
+            var name = varList[i].name.toString()
+            var getValue = "." + await  self.evalVar(name.slice(1, name.length - 1))
+
+            _varStr = STR.insert(_varStr,
+                varList[i].index + increment,
+                name.length,
+                getValue
+            );
+            increment += getValue.toString().length - name.length;
+        }
+
+        console.log(_varStr)
+        return _varStr
+    }
+
+
     try
     {
         console.log(`varSystem.evalVar("${varValue}", ${thisId} , ${JSON.stringify(names)})`)
 
-        var self = this
+
         var result = this._execFunction_satrt(varValue)
 
         if (result.funcName != undefined)
@@ -548,7 +580,11 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
             {
                 if (varList[i].name[0] == "@")
                 {
-                    var varArr = varList[i].name.split(".")
+                    var _varStr = varList[i].name
+                    _varStr = await _sbeval(_varStr)
+
+
+                    var varArr = _varStr.split(".")
                     if (varArr.length > 1)
                     {
 
@@ -896,7 +932,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
     // 日文平假名：3040-309F
     // 日文片假名：30A0-30FF
 
-    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$\@￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z0-9\.]*/g;
+    var re = /[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_a-zA-Z\$\@￥][\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF\[\]_a-zA-Z0-9\.]*/g;
     var varList = [];
     var resullt;
 
@@ -928,7 +964,7 @@ VarSystem.prototype.scanVarsInFormula = function (formula, flat)
 VarSystem.prototype.scanFormulasInText = function (formula, flat)
 {
     // var re = /{{\s*[\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
-    var re = /{{\s*[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF_\$\@￥\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
+    var re = /{{\s*[\u4E00-\u9FA5\u3400-\u4DB5\u3040-\u309F\u30A0-\u30FF\u1100-\u11FF\uAC00-\uD7AF\[\]_\$\@￥\w\.\(\)\+\-\*\/\ ]+\s*}}/g;
 
     var varList = [];
     var resullt;
