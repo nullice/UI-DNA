@@ -196,18 +196,20 @@ Kinase.document.getDocumentInfoJson = function (lessInfo)
 
     if (lessInfo != true)
     {
-        ad.putBoolean(stringIDToTypeID("expandSmartObjects"), true);
-        ad.putBoolean(stringIDToTypeID("selectedLayers"), true);
-        ad.putBoolean(stringIDToTypeID("getTextStyles"), true);
-        ad.putBoolean(stringIDToTypeID("getFullTextStyles"), true);
-        ad.putBoolean(stringIDToTypeID("getDefaultLayerFX"), true);
-        ad.putBoolean(stringIDToTypeID("getPathData"), true);
-
+        // ad.putBoolean(stringIDToTypeID("expandSmartObjects"), true);
+        // ad.putBoolean(stringIDToTypeID("selectedLayers"), true);
+        // ad.putBoolean(stringIDToTypeID("getTextStyles"), true);
+        // ad.putBoolean(stringIDToTypeID("getFullTextStyles"), true);
+        // ad.putBoolean(stringIDToTypeID("getDefaultLayerFX"), true);
+        // ad.putBoolean(stringIDToTypeID("getPathData"), true);
+        // ad.putBoolean(stringIDToTypeID("getAnnotations"), true);
+        // ad.putBoolean(stringIDToTypeID("compInfo"), true);
+        // ad.putBoolean(stringIDToTypeID( "getCompLayerSettings" ), true);
+        ad.putBoolean(stringIDToTypeID( "getNotes" ), true);
     }
 
     return executeAction(charIDToTypeID("getd"), ad, DialogModes.NO).getString(stringIDToTypeID("json"));
 }
-
 
 // if (!app.activeDocument.saved)
 

@@ -786,6 +786,21 @@
 <style lang="scss" rel="stylesheet/scss">
 
 
+    /*MacOS 校正*/
+
+    .macos {
+        h3 span {
+            padding: 2px 12px;
+        }
+        .exmo_btn_group .btn_primary {
+            padding: 8px 10px;
+        }
+
+        .exmo_btn_group .btn_primary i {
+            vertical-align: middle;
+        }
+    }
+
     span.auto-add-assign {
         cursor: default;
         user-select: none;
@@ -941,6 +956,7 @@
     input[id^="advance"] {
         height: 0;
         width: 0;
+        display: none;
     }
 
     .exmo_area.attr_panel.area_pad.suspend_off {
@@ -1029,11 +1045,11 @@
                     var verify = varSystem.scanVarsInFormula(layerName, true)
                     if (verify != undefined && verify.length == 1 && verify[0] == layerName)
                     {
-                        var doneName = _addVar("@" + layerName,0)
+                        var doneName = _addVar("@" + layerName, 0)
 
                     } else
                     {
-                        var doneName = _addVar("@a",0)
+                        var doneName = _addVar("@a", 0)
                     }
 
 
@@ -1068,9 +1084,10 @@
                     if (time > 0)
                     {
                         var _name = name + time
-                    }else {
+                    } else
+                    {
 
-                        var _name =name
+                        var _name = name
                     }
 
                     if (name != undefined && varSystem.vars[_name] == undefined)

@@ -1,18 +1,16 @@
 {
   "version": "1.5.0",
-  "timeStamp": 1493908374.534,
-  "count": 202,
-  "id": 996,
-  "file": "Î´±êÌâ-4",
+  "timeStamp": 1493970403.711,
+  "count": 152,
+  "id": 208,
+  "file": "Î´±êÌâ-2-»Ö¸´µÄ",
   "bounds": {
     "top": 0,
     "left": 0,
     "bottom": 744,
     "right": 809
   },
-  "selection": [
-    0
-  ],
+  "selection": [],
   "resolution": 118,
   "globalLight": {
     "angle": 90,
@@ -24,15 +22,15 @@
   "depth": 8,
   "layers": [
     {
-      "id": 20,
-      "index": 11,
+      "id": 73,
+      "index": 15,
       "type": "layerSection",
       "name": "×é 1",
       "bounds": {
-        "top": 107,
-        "left": 79,
-        "bottom": 312,
-        "right": 496
+        "top": 21,
+        "left": 81,
+        "bottom": 439,
+        "right": 570
       },
       "visible": true,
       "clipped": false,
@@ -40,93 +38,19 @@
         "mode": "passThrough"
       },
       "generatorSettings": false,
-      "id": 20,
-      "index": 11,
+      "id": 73,
+      "index": 15,
       "layers": [
         {
-          "id": 32,
-          "index": 10,
-          "type": "shapeLayer",
-          "name": "¾ØÐÎ 1 ¿½±´ 4",
-          "bounds": {
-            "top": 127,
-            "left": 79,
-            "bottom": 270,
-            "right": 261
-          },
-          "visible": true,
-          "clipped": false,
-          "fill": {
-            "color": {
-              "red": 60,
-              "green": 124.249,
-              "blue": 255
-            },
-            "class": "solidColorLayer"
-          },
-          "strokeStyle": {
-            "strokeStyleVersion": 2,
-            "strokeEnabled": true,
-            "fillEnabled": true,
-            "strokeStyleLineWidth": 1,
-            "strokeStyleLineDashOffset": {
-              "value": 0,
-              "units": "pointsUnit"
-            },
-            "strokeStyleMiterLimit": 100,
-            "strokeStyleLineCapType": "strokeStyleButtCap",
-            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
-            "strokeStyleLineAlignment": "strokeStyleAlignInside",
-            "strokeStyleScaleLock": false,
-            "strokeStyleStrokeAdjust": false,
-            "strokeStyleBlendMode": "normal",
-            "strokeStyleOpacity": {
-              "value": 100,
-              "units": "percentUnit"
-            },
-            "strokeStyleContent": {
-              "color": {
-                "red": 0,
-                "green": 0,
-                "blue": 0
-              }
-            },
-            "strokeStyleResolution": 118
-          },
-          "generatorSettings": false,
-          "path": {
-            "pathComponents": [
-              {
-                "origin": {
-                  "type": "rect",
-                  "bounds": {
-                    "top": 127,
-                    "left": 79,
-                    "bottom": 270,
-                    "right": 261
-                  }
-                }
-              }
-            ],
-            "bounds": {
-              "top": 127,
-              "left": 79,
-              "bottom": 270,
-              "right": 261
-            },
-            "defaultFill": false
-          }
-        },
-        {
-          "id": 26,
-          "index": 9,
+          "id": 86,
+          "index": 14,
           "type": "layerSection",
           "name": "×é 2",
           "bounds": {
-            "top": 107,
-            "left": 212,
-            "bottom": 312,
-            "right": 496
+            "top": 163,
+            "left": 232,
+            "bottom": 439,
+            "right": 570
           },
           "visible": true,
           "clipped": false,
@@ -134,100 +58,26 @@
             "mode": "passThrough"
           },
           "generatorSettings": false,
-          "id": 26,
-          "index": 9,
+          "id": 86,
+          "index": 14,
           "layers": [
             {
-              "id": 25,
-              "index": 8,
+              "id": 40,
+              "index": 13,
               "type": "shapeLayer",
               "name": "¾ØÐÎ 1 ¿½±´",
               "bounds": {
-                "top": 163,
-                "left": 212,
-                "bottom": 191,
-                "right": 303
+                "top": 277,
+                "left": 324,
+                "bottom": 326,
+                "right": 479
               },
               "visible": true,
               "clipped": false,
               "fill": {
                 "color": {
-                  "red": 96,
-                  "green": 96,
-                  "blue": 96
-                },
-                "class": "solidColorLayer"
-              },
-              "strokeStyle": {
-                "strokeStyleVersion": 2,
-                "strokeEnabled": true,
-                "fillEnabled": true,
-                "strokeStyleLineWidth": 1,
-                "strokeStyleLineDashOffset": {
-                  "value": 0,
-                  "units": "pointsUnit"
-                },
-                "strokeStyleMiterLimit": 100,
-                "strokeStyleLineCapType": "strokeStyleButtCap",
-                "strokeStyleLineJoinType": "strokeStyleMiterJoin",
-                "strokeStyleLineAlignment": "strokeStyleAlignInside",
-                "strokeStyleScaleLock": false,
-                "strokeStyleStrokeAdjust": false,
-                "strokeStyleBlendMode": "normal",
-                "strokeStyleOpacity": {
-                  "value": 100,
-                  "units": "percentUnit"
-                },
-                "strokeStyleContent": {
-                  "color": {
-                    "red": 0,
-                    "green": 0,
-                    "blue": 0
-                  }
-                },
-                "strokeStyleResolution": 118
-              },
-              "generatorSettings": false,
-              "path": {
-                "pathComponents": [
-                  {
-                    "origin": {
-                      "type": "rect",
-                      "bounds": {
-                        "top": 163,
-                        "left": 212,
-                        "bottom": 191,
-                        "right": 303
-                      }
-                    }
-                  }
-                ],
-                "bounds": {
-                  "top": 163,
-                  "left": 212,
-                  "bottom": 191,
-                  "right": 303
-                },
-                "defaultFill": false
-              }
-            },
-            {
-              "id": 28,
-              "index": 7,
-              "type": "shapeLayer",
-              "name": "¾ØÐÎ 1 ¿½±´ 2",
-              "bounds": {
-                "top": 120,
-                "left": 314,
-                "bottom": 263,
-                "right": 496
-              },
-              "visible": true,
-              "clipped": false,
-              "fill": {
-                "color": {
-                  "red": 60,
-                  "green": 124.249,
+                  "red": 255,
+                  "green": 255,
                   "blue": 255
                 },
                 "class": "solidColorLayer"
@@ -236,7 +86,7 @@
                 "strokeStyleVersion": 2,
                 "strokeEnabled": true,
                 "fillEnabled": true,
-                "strokeStyleLineWidth": 1,
+                "strokeStyleLineWidth": 0,
                 "strokeStyleLineDashOffset": {
                   "value": 0,
                   "units": "pointsUnit"
@@ -254,9 +104,9 @@
                 },
                 "strokeStyleContent": {
                   "color": {
-                    "red": 0,
-                    "green": 0,
-                    "blue": 0
+                    "red": 77.0027,
+                    "green": 161.001,
+                    "blue": 255
                   }
                 },
                 "strokeStyleResolution": 118
@@ -266,43 +116,49 @@
                 "pathComponents": [
                   {
                     "origin": {
-                      "type": "rect",
+                      "radii": [
+                        8,
+                        8,
+                        8,
+                        8
+                      ],
+                      "type": "roundedRect",
                       "bounds": {
-                        "top": 120,
-                        "left": 314,
-                        "bottom": 263,
-                        "right": 496
+                        "top": 277,
+                        "left": 324,
+                        "bottom": 326,
+                        "right": 479
                       }
                     }
                   }
                 ],
                 "bounds": {
-                  "top": 120,
-                  "left": 314,
-                  "bottom": 263,
-                  "right": 496
+                  "top": 277,
+                  "left": 324,
+                  "bottom": 326,
+                  "right": 479
                 },
                 "defaultFill": false
               }
             },
             {
-              "id": 29,
-              "index": 6,
+              "id": 77,
+              "index": 12,
               "type": "shapeLayer",
-              "name": "¾ØÐÎ 1 ¿½±´ 3",
+              "name": "¾ØÐÎ 3",
               "bounds": {
-                "top": 107,
-                "left": 212,
-                "bottom": 312,
-                "right": 473
+                "top": 163,
+                "left": 232,
+                "bottom": 439,
+                "right": 570
               },
               "visible": true,
               "clipped": false,
               "fill": {
                 "color": {
-                  "red": 255,
-                  "green": 108,
-                  "blue": 180.65
+                  "red": 219.66,
+                  "green": 219.66,
+                  "blue": 219.66
                 },
                 "class": "solidColorLayer"
               },
@@ -328,9 +184,9 @@
                 },
                 "strokeStyleContent": {
                   "color": {
-                    "red": 0,
-                    "green": 0,
-                    "blue": 0
+                    "red": 210.339,
+                    "green": 210.339,
+                    "blue": 210.339
                   }
                 },
                 "strokeStyleResolution": 118
@@ -340,21 +196,21 @@
                 "pathComponents": [
                   {
                     "origin": {
-                      "type": "rect",
+                      "type": "unknown",
                       "bounds": {
-                        "top": 107,
-                        "left": 212,
-                        "bottom": 312,
-                        "right": 473
+                        "top": 163,
+                        "left": 232,
+                        "bottom": 439,
+                        "right": 570
                       }
                     }
                   }
                 ],
                 "bounds": {
-                  "top": 107,
-                  "left": 212,
-                  "bottom": 312,
-                  "right": 473
+                  "top": 163,
+                  "left": 232,
+                  "bottom": 439,
+                  "right": 570
                 },
                 "defaultFill": false
               }
@@ -362,15 +218,15 @@
           ]
         },
         {
-          "id": 24,
-          "index": 4,
+          "id": 79,
+          "index": 10,
           "type": "shapeLayer",
-          "name": "¾ØÐÎ 1",
+          "name": "¾ØÐÎ 4 ¿½±´",
           "bounds": {
-            "top": 127,
-            "left": 79,
-            "bottom": 270,
-            "right": 261
+            "top": 21,
+            "left": 225,
+            "bottom": 86,
+            "right": 259
           },
           "visible": true,
           "clipped": false,
@@ -418,62 +274,599 @@
                 "origin": {
                   "type": "rect",
                   "bounds": {
-                    "top": 127,
-                    "left": 79,
-                    "bottom": 270,
-                    "right": 261
+                    "top": 21,
+                    "left": 225,
+                    "bottom": 86,
+                    "right": 259
                   }
                 }
               }
             ],
             "bounds": {
-              "top": 127,
-              "left": 79,
-              "bottom": 270,
-              "right": 261
+              "top": 21,
+              "left": 225,
+              "bottom": 86,
+              "right": 259
             },
             "defaultFill": false
           }
         },
         {
-          "id": 23,
-          "index": 3,
-          "type": "layer",
-          "name": "Í¼²ã 2",
+          "id": 84,
+          "index": 9,
+          "type": "shapeLayer",
+          "name": "Ô²½Ç¾ØÐÎ 2 ¿½±´ 3",
           "bounds": {
-            "top": 0,
-            "left": 0,
-            "bottom": 0,
-            "right": 0
+            "top": 65,
+            "left": 401,
+            "bottom": 97,
+            "right": 433
           },
           "visible": true,
           "clipped": false,
-          "pixels": true,
-          "generatorSettings": false
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "radii": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ],
+                  "type": "roundedRect",
+                  "bounds": {
+                    "top": 65,
+                    "left": 401,
+                    "bottom": 97,
+                    "right": 433
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 65,
+              "left": 401,
+              "bottom": 97,
+              "right": 433
+            },
+            "defaultFill": false
+          }
         },
         {
-          "id": 22,
-          "index": 2,
-          "type": "layer",
-          "name": "Í¼²ã 1",
+          "id": 83,
+          "index": 8,
+          "type": "shapeLayer",
+          "name": "Ô²½Ç¾ØÐÎ 2 ¿½±´ 2",
           "bounds": {
-            "top": 0,
-            "left": 0,
-            "bottom": 0,
-            "right": 0
+            "top": 65,
+            "left": 359,
+            "bottom": 97,
+            "right": 391
           },
           "visible": true,
           "clipped": false,
-          "pixels": true,
-          "generatorSettings": false
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "radii": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ],
+                  "type": "roundedRect",
+                  "bounds": {
+                    "top": 65,
+                    "left": 359,
+                    "bottom": 97,
+                    "right": 391
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 65,
+              "left": 359,
+              "bottom": 97,
+              "right": 391
+            },
+            "defaultFill": false
+          }
+        },
+        {
+          "id": 82,
+          "index": 7,
+          "type": "shapeLayer",
+          "name": "Ô²½Ç¾ØÐÎ 2 ¿½±´",
+          "bounds": {
+            "top": 23,
+            "left": 401,
+            "bottom": 55,
+            "right": 433
+          },
+          "visible": true,
+          "clipped": false,
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "radii": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ],
+                  "type": "roundedRect",
+                  "bounds": {
+                    "top": 23,
+                    "left": 401,
+                    "bottom": 55,
+                    "right": 433
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 23,
+              "left": 401,
+              "bottom": 55,
+              "right": 433
+            },
+            "defaultFill": false
+          }
+        },
+        {
+          "id": 81,
+          "index": 6,
+          "type": "shapeLayer",
+          "name": "Ô²½Ç¾ØÐÎ 2",
+          "bounds": {
+            "top": 23,
+            "left": 359,
+            "bottom": 55,
+            "right": 391
+          },
+          "visible": true,
+          "clipped": false,
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "radii": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ],
+                  "type": "roundedRect",
+                  "bounds": {
+                    "top": 23,
+                    "left": 359,
+                    "bottom": 55,
+                    "right": 391
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 23,
+              "left": 359,
+              "bottom": 55,
+              "right": 391
+            },
+            "defaultFill": false
+          }
+        },
+        {
+          "id": 80,
+          "index": 5,
+          "type": "shapeLayer",
+          "name": "Ô²½Ç¾ØÐÎ 1",
+          "bounds": {
+            "top": 36,
+            "left": 81,
+            "bottom": 80,
+            "right": 113
+          },
+          "visible": true,
+          "clipped": false,
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "radii": [
+                    10,
+                    10,
+                    10,
+                    10
+                  ],
+                  "type": "roundedRect",
+                  "bounds": {
+                    "top": 36,
+                    "left": 81,
+                    "bottom": 80,
+                    "right": 113
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 36,
+              "left": 81,
+              "bottom": 80,
+              "right": 113
+            },
+            "defaultFill": false
+          }
+        },
+        {
+          "id": 78,
+          "index": 4,
+          "type": "shapeLayer",
+          "name": "¾ØÐÎ 4",
+          "bounds": {
+            "top": 21,
+            "left": 161,
+            "bottom": 86,
+            "right": 195
+          },
+          "visible": true,
+          "clipped": false,
+          "fill": {
+            "color": {
+              "red": 60,
+              "green": 124.249,
+              "blue": 255
+            },
+            "class": "solidColorLayer"
+          },
+          "strokeStyle": {
+            "strokeStyleVersion": 2,
+            "strokeEnabled": true,
+            "fillEnabled": true,
+            "strokeStyleLineWidth": 1,
+            "strokeStyleLineDashOffset": {
+              "value": 0,
+              "units": "pointsUnit"
+            },
+            "strokeStyleMiterLimit": 100,
+            "strokeStyleLineCapType": "strokeStyleButtCap",
+            "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+            "strokeStyleLineAlignment": "strokeStyleAlignInside",
+            "strokeStyleScaleLock": false,
+            "strokeStyleStrokeAdjust": false,
+            "strokeStyleBlendMode": "normal",
+            "strokeStyleOpacity": {
+              "value": 100,
+              "units": "percentUnit"
+            },
+            "strokeStyleContent": {
+              "color": {
+                "red": 0,
+                "green": 0,
+                "blue": 0
+              }
+            },
+            "strokeStyleResolution": 118
+          },
+          "generatorSettings": false,
+          "path": {
+            "pathComponents": [
+              {
+                "origin": {
+                  "type": "rect",
+                  "bounds": {
+                    "top": 21,
+                    "left": 161,
+                    "bottom": 86,
+                    "right": 195
+                  }
+                }
+              }
+            ],
+            "bounds": {
+              "top": 21,
+              "left": 161,
+              "bottom": 86,
+              "right": 195
+            },
+            "defaultFill": false
+          }
         }
       ]
     },
     {
-      "id": 33,
+      "id": 75,
+      "index": 2,
+      "type": "shapeLayer",
+      "name": "¾ØÐÎ 1",
+      "bounds": {
+        "top": 285,
+        "left": -287,
+        "bottom": 460,
+        "right": -82
+      },
+      "visible": true,
+      "clipped": false,
+      "fill": {
+        "color": {
+          "red": 103,
+          "green": 106.588,
+          "blue": 255
+        },
+        "class": "solidColorLayer"
+      },
+      "strokeStyle": {
+        "strokeStyleVersion": 2,
+        "strokeEnabled": true,
+        "fillEnabled": true,
+        "strokeStyleLineWidth": 1,
+        "strokeStyleLineDashOffset": {
+          "value": 0,
+          "units": "pointsUnit"
+        },
+        "strokeStyleMiterLimit": 100,
+        "strokeStyleLineCapType": "strokeStyleButtCap",
+        "strokeStyleLineJoinType": "strokeStyleMiterJoin",
+        "strokeStyleLineAlignment": "strokeStyleAlignInside",
+        "strokeStyleScaleLock": false,
+        "strokeStyleStrokeAdjust": false,
+        "strokeStyleBlendMode": "normal",
+        "strokeStyleOpacity": {
+          "value": 100,
+          "units": "percentUnit"
+        },
+        "strokeStyleContent": {
+          "color": {
+            "red": 0,
+            "green": 0,
+            "blue": 0
+          }
+        },
+        "strokeStyleResolution": 118
+      },
+      "generatorSettings": false,
+      "path": {
+        "pathComponents": [
+          {
+            "origin": {
+              "type": "rect",
+              "bounds": {
+                "top": 285,
+                "left": -287,
+                "bottom": 460,
+                "right": -82
+              }
+            }
+          }
+        ],
+        "bounds": {
+          "top": 285,
+          "left": -287,
+          "bottom": 460,
+          "right": -82
+        },
+        "defaultFill": false
+      }
+    },
+    {
+      "id": 46,
+      "index": 1,
+      "type": "textLayer",
+      "name": "_pin_1",
+      "bounds": {
+        "top": 0,
+        "left": 0,
+        "bottom": 0,
+        "right": 0
+      },
+      "visible": false,
+      "clipped": false,
+      "generatorSettings": false,
+      "text": true
+    },
+    {
+      "id": 1,
       "index": 0,
-      "type": "layer",
-      "name": "Í¼²ã 0",
+      "type": "backgroundLayer",
+      "name": "±³¾°",
+      "protection": {
+        "transparency": true,
+        "position": true,
+        "artboardAutonest": true
+      },
       "bounds": {
         "top": 0,
         "left": 0,

@@ -146,13 +146,14 @@
             right: 10px;
             top: 12px;
             cursor: pointer;
+            overflow: hidden;
 
             span.title {
                 padding: 2px 4px 2px 10px;
             }
 
             span.new-var {
-                padding: 1px 8px;
+                padding: 8px 8px;
                 background: #7D74FF;
                 color: #EDECFF;
                 border-radius: 0 2px 2px 0;

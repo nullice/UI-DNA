@@ -43,9 +43,9 @@ import App from "./components/area.vue";
 //重要信息
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.8",
-    verIndex: 8,
-    varData: "2017/4/30",
+    version: "0.0.9",
+    verIndex: 9,
+    varData: "2017/05/05",
     codename: ["Euglena"][1],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
@@ -271,6 +271,15 @@ var mainVue = new Vue({
 })
 
 window.mainVue = mainVue
+
+//------------------------
+
+if(os.platform()=="darwin")
+{
+    $("body").addClass("macos")
+}else {
+    $("body").addClass("windows")
+}
 
 
 //测试 ----------------------
