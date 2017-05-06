@@ -8,7 +8,7 @@
     "webpack": "webpack",
     "webpack-w": "webpack -w",
     "webpack-p": "webpack -p",
-    "vvc": "webpack --config VCC.config.js",
+    "vvc": "webpack --config VCC.config.js"
   },
   "author": "nullice",
   "license": "LGPL",

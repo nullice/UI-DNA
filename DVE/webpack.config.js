@@ -52,7 +52,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new webpack.BannerPlugin("UI-DNA By nullce - nullice.com - ui@nullice.com\n"+"这些代码由 Webpack1 打包生成，查看源代码请到 https://github.com/nullice/UI-DNA/tree/master/DVE"),
+        new webpack.BannerPlugin("UI-DNA By nullce - nullice.com - ui@nullice.com\n"+"这些代码由 Webpack2 打包生成，查看源代码请到 https://github.com/nullice/UI-DNA/tree/master/DVE"),
         // new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
         // new webpack.optimize.UglifyJsPlugin({compress: {warnings: false}}),
         new CopyWebpackPlugin(
