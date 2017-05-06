@@ -19,7 +19,7 @@ UI 设计构建工具 - Photoshop 扩展 - Windows/MacOS
 
 - 本项目是一个 CEP 应用，也就说是基于 Node.js 
 - 界面框架使用的是 ：Vue.js 1
-- 本项目使用 Webpack 1 来打包代码模块
+- 本项目使用 Webpack 2 来打包代码模块
 - 本项目使用 Babel 6 （es2015, stage-0）转换 JavaScript ，主要是为了使用 ` await/async` （所有从 CEP 中对 Photoshop 的操作都是异步的）
 
 
