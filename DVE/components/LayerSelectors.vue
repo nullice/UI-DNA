@@ -17,6 +17,7 @@
     <a-area area_title="选中图层" area_id="layer_selectors"
             v-bind:area_disable_fixbut="true"
             v-bind:area_init_close="true"
+            v-bind:area_pad="true"
     >
         <bubble-box v-if="o_msg_bubble.layer_selector.show"
                     v-bind:msg="o_msg_bubble.layer_selector.msg"

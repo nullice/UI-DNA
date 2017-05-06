@@ -30,7 +30,7 @@
                     <div class="logo_title">UI DNA</div>
                     <div class="logo_version" title="{{'检查更新'|lang}}" v-on:click="click_update">
                         <span class="ver-tag">Beta</span>
-                        <sapn class="ver" title="{{UIDNA.varData}}">{{UIDNA.version}}</sapn>
+                        <span class="ver sapn" title="{{UIDNA.varData}}">{{UIDNA.version}}</span>
                         <!--<sapn class="ver-data">- {{UIDNA.varData}}</sapn>-->
                     </div>
                 </div>
@@ -46,7 +46,7 @@
                 </div>
 
                 <div class="net-messge-box">
-                    <div v-bind:title="x.url" class=" marquee msg-item lv{{x.lv}}" v-for="x in messge" v-if="x.lv > 0">
+                    <div v-bind:title="x.url" class=" marquee msg-item lv{{x.lv}}" v-for="x in messge" v-show="x.lv > 0">
                         <span class="" v-on:click="msgOpen(x.url)"> {{x.messge}} </span>
                     </div>
                 </div>
@@ -188,7 +188,7 @@
                 font-size: 10px;
                 margin-top: 2px;
 
-                sapn.ver {
+                .sapn.ver {
                     font-weight: bold;
                 }
             }

@@ -33,7 +33,6 @@
                              v-bind:state.sync="item.state"
                 >
 
-
                     <div v-if="item.type==='multi_select'" class="checked_sign_shadow"></div>
                     <div v-if="item.type==='multi_select'" class="checked_sign"><i v-show="item.state"
                                                                                    class="icon-checkmark"></i>

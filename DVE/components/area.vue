@@ -1,11 +1,9 @@
 <template>
 
-    <div class="exmo_area {{o_height_mode}} {{area_id}} {{area_suspend?'suspend':''}} "
+    <div class="exmo_area "
          v-bind:style="o_fixed_height?o_style_css:null"
-         v-bind:class="{'suspend':area_suspend, 'suspend_on':o_suspend_on, 'suspend_off':(o_suspend_on===false),   'area_pad':'area_pad', 'suspend_max':o_suspend_max_on}"
+         v-bind:class="[o_height_mode,area_id, {'suspend':area_suspend, 'suspend_on':o_suspend_on, 'suspend_off':(o_suspend_on===false),   'area_pad':area_pad, 'suspend_max':o_suspend_max_on}]"
     >
-
-
         <h2> {{area_title}} </h2>
 
 
@@ -15,7 +13,7 @@
                 <input v-model="o_fixed_height" type="checkbox" class="exmo_icon_cheackbox "
                        id="check_btn_{{area_id}}_1"
                        autocomplete="off">
-                <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1" >
+                <label class="exmo_button_icon mini" for="check_btn_{{area_id}}_1">
                     <i class="{{o_fixed_height?'icon-shrink2':'icon-enlarge2'}}"></i>
                 </label>
             </div>
@@ -33,12 +31,11 @@
                 <label v-on:click="suspend_on" :title="miniButTitle"
                        class="exmo_button_icon mini">
 
-                    <i  v-if="area_id!='attr_panel'" class="{{o_suspend_on?'icon-shrink2':'icon-enlarge2'}}"></i>
-                    <i  v-if="area_id=='attr_panel'" class="{{o_suspend_on?'icon-pause2':'icon-play3'}}"></i>
+                    <i v-if="area_id!='attr_panel'" class="{{o_suspend_on?'icon-shrink2':'icon-enlarge2'}}"></i>
+                    <i v-if="area_id=='attr_panel'" class="{{o_suspend_on?'icon-pause2':'icon-play3'}}"></i>
 
 
                 </label>
-
 
 
             </div>
@@ -48,19 +45,20 @@
 
         <slot></slot>
     </div>
-
-    <div draggable="true" v-if="o_fixed_height" v-on:dragstart="drag_heigth_start($event)"
-         v-on:dragend="drag_heigth_end($event)"
-         v-on:drag="drag_heigth($event)"
-
-
-         class="exmo_drag"></div>
+    <!--<div draggable="true"-->
+         <!--class="exmo_drag"-->
+         <!--v-if="o_fixed_height"-->
+         <!--v-on:dragstart="drag_heigth_start($event)"-->
+         <!--v-on:dragend="drag_heigth_end($event)"-->
+         <!--v-on:drag="drag_heigth($event)"-->
+        <!--&gt;-->
+    <!--</div>-->
 </template>
 
 <script>
 
     export default {
-        props: ['area_title', "area_id", "area_hight", "area_disable_fixbut", "area_disable_fixbut_max", "area_suspend", "area_pad","area_init_close","area_opened"],
+        props: ['area_title', "area_id", "area_hight", "area_disable_fixbut", "area_disable_fixbut_max", "area_suspend", "area_pad", "area_init_close", "area_opened"],
 
         ready: function ()
         {
@@ -70,7 +68,7 @@
                 this.o_fixed_height = true;
             }
 
-            if(this.area_init_close)
+            if (this.area_init_close)
             {
 
                 this.o_suspend_on = false;
@@ -86,8 +84,7 @@
                 o_suspend_max_on: false,
                 o_last_offset: 0,
                 o_style_css: {
-                    height: "223px",
-//                    background: "rgba(255, 0, 0, 0.37)"
+                    height: "223px"
                 },
                 o_dragging: false
             }
@@ -101,27 +98,28 @@
                 }
                 return ""
             },
-            miniButTitle:function ()
+            miniButTitle: function ()
             {
 
-                if(this.area_id=='attr_panel')
+                if (this.area_id == 'attr_panel')
                 {
-                    if(this.o_suspend_on)
+                    if (this.o_suspend_on)
                     {
-                        var t ="最小化并暂停刷新"
-                    }else
+                        var t = "最小化并暂停刷新"
+                    } else
                     {
-                        var t ="展开并恢复刷新"
+                        var t = "展开并恢复刷新"
                     }
 
-                }else {
+                } else
+                {
 
-                    if(this.o_suspend_on)
+                    if (this.o_suspend_on)
                     {
-                        var t ="最小化"
-                    }else
+                        var t = "最小化"
+                    } else
                     {
-                        var t ="展开"
+                        var t = "展开"
                     }
 
                 }
@@ -240,21 +238,18 @@
         }
 
         .exmo_button_icon.mini {
-            padding: 0 4px;
+            padding: 0 6px;
             padding-bottom: 2px;
         }
     }
 
-    .attr_panel  .area_tool
-    {
+    .attr_panel .area_tool {
         .exmo_button_icon i {
             vertical-align: middle;
             display: inline-block;
             margin-top: -1px;
         }
     }
-
-
 
     .exmo_area.suspend {
         position: fixed;

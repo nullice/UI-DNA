@@ -238,7 +238,7 @@
                     {
                         this.edit_value = newValue;
                     }
-                },800)
+                },500)
             },
             o_out: {
                 // getter

@@ -128,7 +128,6 @@
                         button: true,
                         class: "subbut",
                     },
-                    ,
                     {
                         value: 'paste_position',
                         label: '粘贴',
@@ -155,7 +154,6 @@
                         button: true,
                         class: "subbut",
                     },
-                    ,
                     {
                         value: 'paste_shape',
                         label: '粘贴',
@@ -289,7 +287,7 @@
                         state: true,
                         block: true,
                         type: "multi_select",
-                    },
+                    }
                 ]
             }
         },

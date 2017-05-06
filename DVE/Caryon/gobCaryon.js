@@ -1066,8 +1066,8 @@ GobCaryon.prototype.updateSelect = async function ()
     }
 
 
-    logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【开始】选中图层周期 [updateSelect]--------------------")
-    logger.group("%c[updateSelect]", "color:#09ae9d;")
+    logger.log("%c【开始】选中图层周期 -------------------- ", "color:#999;")
+    logger.group("%c[updateSelect] ", "color:#09ae9d;")
 
 
     this.selectUpdateing = true; //标志正在更新选中图层
@@ -1126,13 +1126,13 @@ GobCaryon.prototype.updateSelect = async function ()
 
     } catch (e)
     {
-        console.error("Gob.updateSelect nowSwitching",e)
+        console.error("Gob.updateSelect nowSwitching", e)
     }
 
     this.selectUpdateing = false;
     console.log("selectUpdateing:false")
-    logger.pin("Gob", "GobCaryon.prototype.updateSelect", "【结束】选中图层周期 [updateSelect]--------------------")
     console.groupEnd()
+    logger.log("%c【结束】选中图层周期 -------------------- ", "color:#999;")
 }
 
 
@@ -1459,15 +1459,10 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.timeEnd("拉取每个选中图层的数据")
     //属性注册[8/8]
 
-    console.group("====_objectToObject_async====================================================")
-
-    console.time("属性赋值到Gob耗时")
-    // console.group("--position--------------------------", temp.position)
-
-
+    console.group("属性赋值到 Gob")
+    console.time("属性赋值到 Gob 耗时:")
     try
     {
-        console.time("属性赋值到 Gob.XXX 耗时")
         // console.time("属性赋值到Gob.position耗时")
         await _objectToGob_async(temp.position, ["position"], this)
         // console.timeEnd("属性赋值到Gob.position耗时")
@@ -1503,16 +1498,11 @@ GobCaryon.prototype.updateGob = async function (disableRender)
         // console.timeEnd("属性赋值到Gob.more耗时")
         // console.groupEnd()
 
-
-        console.timeEnd("属性赋值到 Gob.XXX 耗时")
     } catch (e)
     {
         console.error("GobCaryon.updateGob _objectToGob_async", e)
     }
-
-
-    console.timeEnd("属性赋值到Gob耗时")
-    console.info("============")
+    console.timeEnd("属性赋值到 Gob 耗时:")
     console.groupEnd()
 
 

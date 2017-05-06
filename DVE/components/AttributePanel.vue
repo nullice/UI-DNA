@@ -12,7 +12,7 @@
     ></vue-color-cylinder>
 
 
-    <a-area area_title="UI-DNA 属性" area_id="attr_panel" v-bind:area_disable_fixbut="true"
+    <a-area area_title="UI-DNA 属性" area_id="attr_panel" v-bind:area_disable_fixbut="true"  v-bind:area_pad="true"
             v-bind:area_opened.sync="o_attr_open">
         <attr-option-menu></attr-option-menu>
 
@@ -566,7 +566,6 @@
                          v-bind:out_value.sync="Gob.quickEffect.assignment.dropShadow.opacity"
                          v-bind:enable_assign.sync="Gob.quickEffect.enableAssigns.dropShadow.opacity"
                          v-bind:assist_range_max="100"
-                         v-bind:assist_range_width="120"
                          mini="true"
             ></value-input>
 
@@ -593,7 +592,7 @@
                          v-bind:out_value.sync="Gob.more.assignment.opacity"
                          v-bind:enable_assign.sync="Gob.more.enableAssigns.opacity"
                          v-bind:assist_range_max="100"
-                         v-bind:assist_range_width="120"
+
 
                          mini="true"
             ></value-input>

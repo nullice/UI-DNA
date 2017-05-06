@@ -9,6 +9,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = {
     /*...*/
     target: 'node',
+    devtool: "source-map",
     context: __dirname ,
     entry: {
         index: ["babel-polyfill","./index.js"],
