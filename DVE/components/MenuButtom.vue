@@ -50,7 +50,6 @@
 <style lang="scss" rel="stylesheet/scss">
 
 
-
     .menu-buttom-box {
         .menu-box {
             max-height: 0px;
@@ -87,8 +86,6 @@
 
         .menu-box {
 
-
-
             position: absolute;
             z-index: 44;
             background: whitesmoke;
@@ -102,8 +99,7 @@
                 display: inline-block;
 
             }
-            .attr_option
-            {
+            .attr_option {
                 position: relative;
             }
 
@@ -124,7 +120,6 @@
                 }
             }
 
-
         }
     }
 
@@ -136,7 +131,7 @@
     import OBJ from "../Caryon/Richang_JSEX/objectOBJ.js"
 
     export default{
-        props: ["memu_name", "options"],
+        props: ["memu_name", "options", "click_func"],
         data(){
             return {
                 o_onoff_on: false,
@@ -239,18 +234,21 @@
 
             returnValue: function (inClass)
             {
-                if(inClass==undefined)
+                if (inClass == undefined)
                 {
                     return ""
-                }else
+                } else
                 {
                     return inClass
                 }
             },
             click_menu_button: function ()
             {
-//                alert(1)
                 this.o_onoff_on = true
+                if (this.click_func != undefined)
+                {
+                    this.click_func()
+                }
             },
 
             click_menu_func: function (func)

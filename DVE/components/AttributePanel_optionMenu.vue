@@ -116,8 +116,6 @@
                         selected_func: null,
                         button: true,
                         class: "onlytext",
-
-
                     },
                     {
                         value: 'copy_position',

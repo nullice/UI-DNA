@@ -30,6 +30,13 @@
 
     >
 
+        <var-option-menu>
+        </var-option-menu>
+
+
+
+
+
         <bubble-box v-if="o_msg_bubble.var_panel.show"
                     v-bind:msg="o_msg_bubble.var_panel.msg"
                     v-bind:msg_title="o_msg_bubble.var_panel.title"
@@ -204,7 +211,7 @@
     import BubbleBox from '../components/MessageBox/BubbleBox.vue';
     import InputBox from '../components/MessageBox/InputBox.vue';
     import Area from '../components/area.vue';
-
+    import varOptionMenu from "./VarPanel_optionMenu.vue"
 
     export default {
         data(){
@@ -379,7 +386,8 @@
             "edit-text-label": EditTextLabel,
             "bubble-box": BubbleBox,
             "input-box": InputBox,
-            "a-area": Area
+            "a-area": Area,
+            "var-option-menu":varOptionMenu,
         },
 
     };

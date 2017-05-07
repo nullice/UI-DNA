@@ -340,15 +340,26 @@ VarSystem.prototype.loadVarsFromObject = function (object)
 VarSystem.prototype.importVarsFromObject = function (object)
 {
     /*新建变量*/
+
     for (var z in object)
     {
-        if (this.vars[z] == undefined)
+
+
+
+        if (z != undefined && object[z] != undefined)
         {
-            this.addVar(object[z].name, object[z].value, object[z].type, object[z].isFormula, object[z].relatives)
-        } else
-        {
-            this.setVar(object[z].name, object[z].value, object[z].type, object[z].isFormula)
+            if (this.vars[z] == undefined)
+            {
+                // console.log("add:",z, object[z])
+                this.addVar(object[z].name, object[z].value, object[z].type, object[z].isFormula, object[z].relatives)
+            } else
+            {
+                // console.log("set:",z, object[z])
+                this.setVar(object[z].name, object[z].value, object[z].type, object[z].isFormula)
+            }
         }
+
+
     }
 }
 
@@ -455,7 +466,23 @@ VarSystem.prototype.removeVar = function (name)
 VarSystem.prototype.setVar = function (name, value, type, isFormula)
 {
 
-    this.vars[name] = {value: value, type: type || null, isFormula: isFormula || false};
+    if (name != undefined && name != "")
+    {
+        if (this.vars[name] != undefined)
+        {
+            this.vars[name].value = value;
+
+            if(isFormula!=undefined)
+            {
+                this.vars[name].isFormula =isFormula
+            }
+            if(type!=undefined)
+            {
+                this.vars[name].type =type
+            }
+        }
+
+    }
 
 }
 /**
