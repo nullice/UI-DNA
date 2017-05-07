@@ -77,7 +77,6 @@
         props: [],
         data(){
             return {
-
                 o_use_mRNA: false,
                 Gob: Gob,
 

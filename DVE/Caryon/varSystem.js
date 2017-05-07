@@ -319,7 +319,6 @@ var VarSystem = function ()
  */
 VarSystem.prototype.loadVarsFromObject = function (object)
 {
-
     /*清空原变量表*/
     for (var x in this.vars)
     {
@@ -327,12 +326,30 @@ VarSystem.prototype.loadVarsFromObject = function (object)
     }
 
     /*新建变量*/
-
     for (var z in object)
     {
         this.addVar(object[z].name, object[z].value, object[z].type, object[z].isFormula, object[z].relatives)
     }
+}
 
+
+/**
+ * 导入变量表，从 json 反序列化过的 object 中载入变量表，已有重复的变量将被新值覆盖，不会清空原变量表，
+ * @param object
+ */
+VarSystem.prototype.importVarsFromObject = function (object)
+{
+    /*新建变量*/
+    for (var z in object)
+    {
+        if (this.vars[z] == undefined)
+        {
+            this.addVar(object[z].name, object[z].value, object[z].type, object[z].isFormula, object[z].relatives)
+        } else
+        {
+            this.setVar(object[z].name, object[z].value, object[z].type, object[z].isFormula)
+        }
+    }
 }
 
 
@@ -465,8 +482,6 @@ VarSystem.prototype.varifyName = function (newName)
 //重命名变量
 VarSystem.prototype.renameVar = function (name, newName)
 {
-
-
     if (this.vars[newName] != undefined)
     {
         return {name: name, err: "repe"};//存在重复的名称
