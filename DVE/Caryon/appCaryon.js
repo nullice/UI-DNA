@@ -59,7 +59,7 @@ AppCaryon.prototype.unzipInstallExtra = function ()
     try
     {
         var zipPath = path.join(setSystem._path_extensionDir, "EXTRA/install.zip")
-        if(window.AdmZip!=undefined)
+        if (window.AdmZip != undefined)
         {
 
             if (fs.existsSync(zipPath))
@@ -71,14 +71,15 @@ AppCaryon.prototype.unzipInstallExtra = function ()
             {
                 console.log("unzipInstallExtra", "install.zip not exist", zipPath)
             }
-        }else
+        } else
         {
             setTimeout(function ()
             {
-                console.info("[zip] START unzip",zipPath)
+                console.info("[zip] START unzip", zipPath)
                 var unzipper = new DecompressZip(zipPath)
-                unzipper.on('extract', function (log) {
-                    console.log('[zip]Finished extracting',zipPath);
+                unzipper.on('extract', function (log)
+                {
+                    console.log('[zip]Finished extracting', zipPath);
 
                     window._QuickPanel_fillText_importFillDataFromFile()
                     window._QuickPanel_createSmartLink_importFillDataFromFile()
@@ -87,7 +88,7 @@ AppCaryon.prototype.unzipInstallExtra = function ()
                 unzipper.extract({
                     path: setSystem._path_userDataDir,
                 });
-            },2800)
+            }, 2800)
 
         }
 
@@ -269,6 +270,91 @@ var rmdirAllSync = (function ()
         }
     }
 })();
+
+
+AppCaryon.prototype.userSaveFile =  function (data, name, filetype, windowTitle)
+{
+
+    if (windowTitle == undefined)
+    {
+        var windowTitle = "保存文件"
+    }
+
+    if (name == undefined)
+    {
+        var name = "file.json"
+    }
+    if (filetype == undefined)
+    {
+        var filetype = "json"
+    }
+
+    var result = window.cep.fs.showSaveDialogEx(windowTitle, "", [filetype], name, filetype);
+    if (0 == result.err)
+    {
+        if (result.data.length == 0)
+        {
+            console.log("用户放弃了保存");
+        }
+        else
+        {
+            if (result.data !== "")
+            {
+                var svaeResult = window.cep.fs.writeFile(result.data, data);
+            }
+        }
+    }
+}
+
+
+
+
+AppCaryon.prototype.userReadFile =  function (windowTitle,types)
+{
+
+    if (windowTitle == undefined)
+    {
+        var windowTitle = "打开文件"
+    }
+
+
+
+    try
+    {
+
+        var result = window.cep.fs.showOpenDialogEx(false, false, windowTitle, "",types);
+
+        if (result.data != undefined && result.data[0]!=undefined)
+        {
+            var readResult = window.cep.fs.readFile(result.data[0]);
+            if (0 == readResult.err)// err 为 0 读取成功
+            {
+                console.log("AppCaryon.userReadFile()", readResult.data)
+                return readResult.data
+            }
+            else
+            {
+                console.log("读取错误：" + readResult.err);// 失败
+            }
+        }
+
+    } catch (e)
+    {
+        console.error("AppCaryon.userReadFile()",e)
+    }
+
+
+
+}
+
+
+
+
+
+
+
+
+
 
 
 export default AppCaryon;
