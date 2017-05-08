@@ -2,13 +2,15 @@ node_modules
 VI
 TEMP
 RELEASE
+*.map
+
 
 !DVE/bin/node_modules
 !DVE/bin/node_modules/*/node_modules
 !DVE/bin/node_modules/*/node_modules/*/node_modules
 !DVE/bin/node_modules/*/node_modules/*/node_modules/*/node_modules
 
-*.map
+
 
 
 # Windows image file caches
