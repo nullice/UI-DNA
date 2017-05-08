@@ -1,13 +1,16 @@
 
+
+
+
 body{
     text-align: center;
-    background: qwer;/*UI-DNA: {{bk}}*/
-    color: #5EAEFC;
+    background: #2c2f59;/*UI-DNA: {{bk}}*/
+    color: #d1d1d1;/*UI-DNA: {{font_color}}*/
 }
 
 .box{
     display: inline-block;
-    width: wwpx;/*UI-DNA: {{ww}}px*/
-    height: hhpx;/*UI-DNA: {{hh}}px*/
- box_bk/*UI-DNA= {{box_bk}}*/
+    width: 102px;/*UI-DNA: {{ww}}px*/
+    height: 167px;/*UI-DNA: {{hh}}px*/
+ background:#fffc01;/*UI-DNA= background:{{box_bk}};*/
 }

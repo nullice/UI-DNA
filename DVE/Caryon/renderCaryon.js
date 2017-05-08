@@ -817,7 +817,17 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
     console.log("3、ExtendScript 端渲染")
     console.log("DNAExpress:", mRNA_DataLayers)
 
-    await enzymes.DNAExpress(mRNA_DataLayers)
+
+    try
+    {
+        await enzymes.DNAExpress(mRNA_DataLayers)
+
+    } catch (e)
+    {
+        console.error(" await enzymes.DNAExpress", e)
+    }
+
+
     this.status.rendering = false;
 
 
@@ -826,10 +836,6 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
 
     appCaryon.DNASyncReplace_bySetting()
-
-
-
-
 
 
 }

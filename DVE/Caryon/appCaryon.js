@@ -461,15 +461,21 @@ AppCaryon.prototype.DNASyncReplace = async function (filePath)
 }
 
 
-AppCaryon.prototype.DNASyncReplace_bySetting= function ()
+AppCaryon.prototype.DNASyncReplace_bySetting=  async function ()
 {
+    console.group("DNASyncReplace")
+    console.time("DNASyncReplace 耗时：")
     if( dataCaryon.doc.syncReplace!=undefined)
     {
-        for (var i = 0; i <  dataCaryon.doc.syncReplace.fileList; i++)
+
+        var fileList = dataCaryon.doc.syncReplace.fileList.split("\n")
+
+        for (var i = 0; i < fileList.length; i++)
         {
-            var filePath = dataCaryon.doc.syncReplace.fileList[i]
+            var filePath = fileList[i]
             try {
-                this.DNASyncReplace(filePath)
+                console.log("filePath",filePath)
+               await this.DNASyncReplace(filePath)
             }catch (e)
             {
                 console.error("AppCaryon.DNASyncReplace_bySetting filePath:",filePath,e)
@@ -477,6 +483,8 @@ AppCaryon.prototype.DNASyncReplace_bySetting= function ()
 
         }
     }
+    console.timeEnd("DNASyncReplace 耗时：")
+    console.groupEnd("DNASyncReplace")
 }
 
 

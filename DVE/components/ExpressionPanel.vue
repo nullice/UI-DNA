@@ -363,7 +363,6 @@
                                 dataCaryon.doc.syncReplace = {fileList: "", mode: "all"}
                             }
 
-
                             var data = [
                                 {name: "用变量替换下列文件中的文本", type: "note"},
                                 {name: "", type: "textarea", cows: 2, value: dataCaryon.doc.syncReplace.fileList},

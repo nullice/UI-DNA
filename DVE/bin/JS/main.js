@@ -9984,9 +9984,9 @@ var asyncTask = function () {
 
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.11",
-    verIndex: 11,
-    varData: "2017/05/07",
+    version: "0.0.12",
+    verIndex: 12,
+    varData: "2017/05/08",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
@@ -10724,18 +10724,62 @@ AppCaryon.prototype.DNASyncReplace = function () {
     };
 }();
 
-AppCaryon.prototype.DNASyncReplace_bySetting = function () {
-    if (dataCaryon.doc.syncReplace != undefined) {
-        for (var i = 0; i < dataCaryon.doc.syncReplace.fileList; i++) {
-            var filePath = dataCaryon.doc.syncReplace.fileList[i];
-            try {
-                this.DNASyncReplace(filePath);
-            } catch (e) {
-                console.error("AppCaryon.DNASyncReplace_bySetting filePath:", filePath, e);
+AppCaryon.prototype.DNASyncReplace_bySetting = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee5() {
+    var fileList, i, filePath;
+    return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+        while (1) {
+            switch (_context5.prev = _context5.next) {
+                case 0:
+                    console.group("DNASyncReplace");
+                    console.time("DNASyncReplace 耗时：");
+
+                    if (!(dataCaryon.doc.syncReplace != undefined)) {
+                        _context5.next = 19;
+                        break;
+                    }
+
+                    fileList = dataCaryon.doc.syncReplace.fileList.split("\n");
+                    i = 0;
+
+                case 5:
+                    if (!(i < fileList.length)) {
+                        _context5.next = 19;
+                        break;
+                    }
+
+                    filePath = fileList[i];
+                    _context5.prev = 7;
+
+                    console.log("filePath", filePath);
+                    _context5.next = 11;
+                    return this.DNASyncReplace(filePath);
+
+                case 11:
+                    _context5.next = 16;
+                    break;
+
+                case 13:
+                    _context5.prev = 13;
+                    _context5.t0 = _context5["catch"](7);
+
+                    console.error("AppCaryon.DNASyncReplace_bySetting filePath:", filePath, _context5.t0);
+
+                case 16:
+                    i++;
+                    _context5.next = 5;
+                    break;
+
+                case 19:
+                    console.timeEnd("DNASyncReplace 耗时：");
+                    console.groupEnd("DNASyncReplace");
+
+                case 21:
+                case "end":
+                    return _context5.stop();
             }
         }
-    }
-};
+    }, _callee5, this, [[7, 13]]);
+}));
 
 /* harmony default export */ __webpack_exports__["a"] = (AppCaryon);
 
@@ -15058,10 +15102,22 @@ RenderCaryon.prototype.renderDocument = function () {
                         console.log("3、ExtendScript 端渲染");
                         console.log("DNAExpress:", mRNA_DataLayers);
 
-                        _context8.next = 72;
+                        _context8.prev = 70;
+                        _context8.next = 73;
                         return enzymes.DNAExpress(mRNA_DataLayers);
 
-                    case 72:
+                    case 73:
+                        _context8.next = 78;
+                        break;
+
+                    case 75:
+                        _context8.prev = 75;
+                        _context8.t4 = _context8["catch"](70);
+
+                        console.error(" await enzymes.DNAExpress", _context8.t4);
+
+                    case 78:
+
                         this.status.rendering = false;
 
                         console.timeEnd("渲染文档耗时");
@@ -15069,12 +15125,12 @@ RenderCaryon.prototype.renderDocument = function () {
 
                         appCaryon.DNASyncReplace_bySetting();
 
-                    case 76:
+                    case 82:
                     case "end":
                         return _context8.stop();
                 }
             }
-        }, _callee8, this);
+        }, _callee8, this, [[70, 75]]);
     }));
 
     return function (_x15, _x16) {
