@@ -6,6 +6,7 @@
                   v-model:value="o_edit"
                   debounce="800"
                   v-bind:placeholder="o_edit_placeholder"
+                  wrap="virtual"
         >
         </textarea>
 
@@ -48,6 +49,12 @@
 
 </template>
 <style lang="scss" rel="stylesheet/scss">
+
+
+    textarea.exmo_inbox.value_input_box{
+        white-space:pre-wrap;
+    }
+
 
     .value_input_textarea_box {
         textarea.exmo_inbox.value_input_box {

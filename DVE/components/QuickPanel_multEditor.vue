@@ -30,6 +30,8 @@
             font-size: 11px;
             padding-left: 6px;
             color: rgba(0, 0, 0, 0.26);
+            text-overflow: ellipsis;
+            overflow: hidden;
         }
     }
 
@@ -43,6 +45,7 @@
         margin-top: 4px;
         width: calc(100% - 8px);
         font-size: 12px;
+
     }
 
     textarea.exmo_inbox.value_input_box:hover {
