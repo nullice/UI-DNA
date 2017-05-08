@@ -349,6 +349,53 @@
 //                        hr: true,
 //                    },
 
+                    syncReplice: {
+                        name: Lang.from("文件内容同步替换"),
+                        title: Lang.from(""),
+                        type: "select",
+                        state: setSystem.inset.able_saveDoc,
+
+                        selected_func: async function ()
+                        {
+
+                            if (dataCaryon.doc.syncReplace == undefined)
+                            {
+                                dataCaryon.doc.syncReplace = {fileList: "", mode: "all"}
+                            }
+
+
+                            var data = [
+                                {name: "用变量替换下列文件中的文本", type: "note"},
+                                {name: "", type: "textarea", cows: 2, value: dataCaryon.doc.syncReplace.fileList},
+                                {name: "添加文件", type: "addfiles", dataIndex: 1},
+                                {
+                                    name: "进行替换的场合", type: "select", options: [
+                                    {text: Lang.from('仅保存时'), value: 'save'},
+                                    {text: Lang.from('渲染、保存时'), value: 'all'}
+                                ], select: dataCaryon.doc.syncReplace.mode
+                                },
+                            ]
+
+                            var ok_func = function (data, doneFunc)
+                            {
+                                console.log(data)
+
+                                if (data != undefined)
+                                {
+                                    dataCaryon.doc.syncReplace.mode = data[3].select
+                                    dataCaryon.doc.syncReplace.fileList = data[1].value
+                                }
+
+
+                                doneFunc()
+                            }
+
+
+                            UI_action.show_message_input("var_panel", Lang.from("文件内容同步替换"), data, ok_func)
+
+                        },
+                    },
+                    hr0: {hr: true},
                     exportPSDJSON: {
                         name: Lang.from("导出 PSD 信息"),
                         title: Lang.from(""),
@@ -356,7 +403,7 @@
                         state: setSystem.inset.able_saveDoc,
                         selected_func: async function ()
                         {
-                            var data = JSON.stringify( await  enzymes.getDocumentInfoJson_byActive(),null,4)
+                            var data = JSON.stringify(await  enzymes.getDocumentInfoJson_byActive(), null, 4)
 
                             var docInfo = await  enzymes.getDocumentBaseInfo_byActive()
                             if (docInfo != undefined)
@@ -435,10 +482,12 @@
             doDataSave: async function ()
             {
                 await  dataCaryon.save();
+
                 if (setSystem.inset.able_saveDoc)
                 {
                     enzymes.saveActiveDocument()
                 }
+                appCaryon.DNASyncReplace_bySetting()
             }
             ,
             doFreshen: function ()

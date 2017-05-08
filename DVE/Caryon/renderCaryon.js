@@ -823,6 +823,15 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
 
     console.timeEnd("渲染文档耗时")
     logger.groupEnd("----------------START【renderDocument】----------------")
+
+
+    appCaryon.DNASyncReplace_bySetting()
+
+
+
+
+
+
 }
 
 

@@ -272,6 +272,16 @@ var rmdirAllSync = (function ()
 })();
 
 
+
+
+
+
+
+
+
+
+
+
 AppCaryon.prototype.userSaveFile = function (data, name, filetype, windowTitle)
 {
 
@@ -315,7 +325,6 @@ AppCaryon.prototype.userReadFile = function (windowTitle, types)
         var windowTitle = "打开文件"
     }
 
-
     try
     {
 
@@ -339,9 +348,37 @@ AppCaryon.prototype.userReadFile = function (windowTitle, types)
     {
         console.error("AppCaryon.userReadFile()", e)
     }
-
-
 }
+
+
+
+AppCaryon.prototype.userSelectFiles =function (windowTitle, types)
+{
+    if (windowTitle == undefined)
+    {
+        var windowTitle = "打开文件"
+    }
+    try
+    {
+        var result = window.cep.fs.showOpenDialog(true, false, windowTitle, "", types);
+
+        if (result.data != undefined && result.data[0] != undefined)
+        {
+            return result.data
+        }
+
+    } catch (e)
+    {
+        console.error("AppCaryon.userSelectFiles()", e)
+    }
+}
+
+
+
+
+
+
+
 
 /**
  * 同步替换。用变量替换一个文本文件里的文本
@@ -422,6 +459,27 @@ AppCaryon.prototype.DNASyncReplace = async function (filePath)
 
 
 }
+
+
+AppCaryon.prototype.DNASyncReplace_bySetting= function ()
+{
+    if( dataCaryon.doc.syncReplace!=undefined)
+    {
+        for (var i = 0; i <  dataCaryon.doc.syncReplace.fileList; i++)
+        {
+            var filePath = dataCaryon.doc.syncReplace.fileList[i]
+            try {
+                this.DNASyncReplace(filePath)
+            }catch (e)
+            {
+                console.error("AppCaryon.DNASyncReplace_bySetting filePath:",filePath,e)
+            }
+
+        }
+    }
+}
+
+
 
 
 export default AppCaryon;

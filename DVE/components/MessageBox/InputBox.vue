@@ -4,7 +4,7 @@
     <div class="message-box-input  message-color-{{msg_color}}">
 
         <!--animated zoomIn-->
-        <div class="message-window-input   " >
+        <div class="message-window-input   ">
             <h2 class="message-title">{{msg_title}}</h2>
             <div class="message-msg">{{{msg}}}</div>
             <bubble-box v-if="o_msg_bubble.input_box.show"
@@ -12,7 +12,8 @@
                         v-bind:msg_title="o_msg_bubble.input_box.title"
                         v-bind:msg_color="o_msg_bubble.input_box.color"
             ></bubble-box>
-            <div class="input_item" v-for="item in msg_input_data" v-bind:class="{'textarea-big':item.type=='textareaBig'}">
+            <div class="input_item" v-for="item in msg_input_data"
+                 v-bind:class="{'textarea-big':item.type=='textareaBig'}">
                 <span v-if="item.type!='checkbox'">{{item.name}}</span>
                 <input v-if="item.type=='text'" type="text" class="exmo_input_text"
                        placeholder="{{item.placeholder||''}}"
@@ -32,15 +33,20 @@
                     {{item.name}}
                 </label>
 
-                <div class="notetext" v-if="(item.type=='note')&&msg_input_data[item.value].checked"  >
+                <div class="notetext" v-if="(item.type=='note')&&msg_input_data[item.value].checked">
                     {{item.note}}{{{item.html}}}
                 </div>
 
-                <div class="notetext" v-if="(item.type=='notetext') "  >
-                    {{item.note}}{{{item.html}}}
+                <div class="user-seletc-files-but" v-if="(item.type=='addfiles') ">
+                    <button title="打开填充模板文件夹" class="exmo_button_icon mini"
+                            v-on:click="addFiles(item.dataIndex)">
+                        <i class="icon-layer-group-collapsed"></i>
+                    </button>
+
                 </div>
 
-                <div class="value_input_textarea_box" >
+
+                <div class="value_input_textarea_box">
 
                           <textarea
                                   v-if="item.type=='textarea'||item.type=='textareaBig'"
@@ -54,8 +60,8 @@
             </div>
 
             <div class="button_bar">
-                <button class="exmo_button" v-on:click="ok">{{"确定"||lang}}</button>
-                <button class="exmo_button" v-on:click="cancel">{{"返回"||lang}}</button>
+                <button class="exmo_button" v-on:click="ok">{{"确定" || lang}}</button>
+                <button class="exmo_button" v-on:click="cancel">{{"返回" || lang}}</button>
             </div>
         </div>
     </div>
@@ -87,8 +93,12 @@
             top: 20%;
             margin: auto;
 
+            .user-seletc-files-but {
+                display: inline-block;
+                margin: 10px;
+            }
 
-            .notetext{
+            .notetext {
                 -webkit-user-select: text;
                 font-size: 12px;
                 color: rgba(0, 0, 0, 0.47);
@@ -106,20 +116,19 @@
                 color: rgb(77, 77, 77);
                 margin-bottom: 8px;
 
-
-                &.textarea-big{
+                &.textarea-big {
                     position: relative;
                     width: 100%;
 
-                    .value_input_textarea_box{
+                    .value_input_textarea_box {
                         width: 100%;
                     }
 
-                    .value_input_textarea_box textarea.exmo_inbox.value_input_box{
+                    .value_input_textarea_box textarea.exmo_inbox.value_input_box {
                         padding: 0;
                     }
 
-                    span{
+                    span {
                         display: inline;
                         min-width: 0;
                     }
@@ -137,8 +146,6 @@
                     text-align: right;
                     opacity: .75;
                 }
-
-
 
             }
 
@@ -194,15 +201,33 @@
             {
                 this.msg_mode.show = false;
             },
-            change_verify:function (verify,value, $event)
+            change_verify: function (verify, value, $event)
             {
 
 //                console.log(verify)
-                if(typeof verify == "function")
+                if (typeof verify == "function")
                 {
-                    verify(value,$event)
+                    verify(value, $event)
 
                 }
+            },
+            addFiles: function (dataIndex)
+            {
+                var files = appCaryon.userSelectFiles()
+
+
+                if (files != undefined && files.length != undefined)
+                {
+                    for (var x in files)
+                    {
+                        if (this.msg_input_data[dataIndex].value.length > 0)
+                        {
+                            this.msg_input_data[dataIndex].value += "\n"
+                        }
+                        this.msg_input_data[dataIndex].value += files[x]
+                    }
+                }
+
             }
 
         },
