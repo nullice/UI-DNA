@@ -17570,14 +17570,12 @@ Enzymes.prototype.getDocumentBaseInfo_byActive = __WEBPACK_IMPORTED_MODULE_3_bab
                         evalScript(_jsxCode, function (r) {
                             var ob = JSON.parse(jsxBackCheck(r, _jsxCode));
                             if (ob != undefined && ob.path != undefined) {
-
                                 if (ob.path.length > 2 && ob.path.slice(0, 2) === "~/") {
                                     var homePath = process.env[process.platform == 'win32' ? 'USERPROFILE' : 'HOME'];
 
                                     ob.path = path.join(homePath, ob.path.slice(1));
                                 }
                             }
-
                             resolve(ob);
                         });
                     }));
@@ -17590,16 +17588,17 @@ Enzymes.prototype.getDocumentBaseInfo_byActive = __WEBPACK_IMPORTED_MODULE_3_bab
     }, _callee32, this);
 }));
 
-Enzymes.prototype.evalEnhancer = function () {
-    var _ref33 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee33(enhancer, thisId) {
+Enzymes.prototype.getDocumentInfoJson_byActive = function () {
+    var _ref33 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee33(less) {
         return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee33$(_context33) {
             while (1) {
                 switch (_context33.prev = _context33.next) {
                     case 0:
                         return _context33.abrupt("return", new __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_promise___default.a(function (resolve, reject) {
-                            var _jsxCode = "EnzJSX.evalEnhancer(" + enhancer + "," + thisId + ")";
+                            var _jsxCode = "Kinase.document.getDocumentInfoJson_byActive(" + less + ")";
                             evalScript(_jsxCode, function (r) {
-                                resolve(jsxBackCheck(r, _jsxCode));
+                                var ob = JSON.parse(jsxBackCheck(r, _jsxCode));
+                                resolve(ob);
                             });
                         }));
 
@@ -17611,8 +17610,34 @@ Enzymes.prototype.evalEnhancer = function () {
         }, _callee33, this);
     }));
 
-    return function (_x46, _x47) {
+    return function (_x46) {
         return _ref33.apply(this, arguments);
+    };
+}();
+
+Enzymes.prototype.evalEnhancer = function () {
+    var _ref34 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee34(enhancer, thisId) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee34$(_context34) {
+            while (1) {
+                switch (_context34.prev = _context34.next) {
+                    case 0:
+                        return _context34.abrupt("return", new __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_promise___default.a(function (resolve, reject) {
+                            var _jsxCode = "EnzJSX.evalEnhancer(" + enhancer + "," + thisId + ")";
+                            evalScript(_jsxCode, function (r) {
+                                resolve(jsxBackCheck(r, _jsxCode));
+                            });
+                        }));
+
+                    case 1:
+                    case "end":
+                        return _context34.stop();
+                }
+            }
+        }, _callee34, this);
+    }));
+
+    return function (_x47, _x48) {
+        return _ref34.apply(this, arguments);
     };
 }();
 

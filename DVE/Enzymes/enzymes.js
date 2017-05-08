@@ -829,7 +829,6 @@ Enzymes.prototype.getDocumentBaseInfo_byActive = async function ()
                var ob =  JSON.parse(jsxBackCheck(r, _jsxCode))
                 if(ob!=undefined && ob.path !=undefined)
                 {
-
                     if(ob.path.length>2 &&  ob.path.slice(0,2)==="~/")
                     {
                         var homePath =  process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
@@ -837,14 +836,36 @@ Enzymes.prototype.getDocumentBaseInfo_byActive = async function ()
                         ob.path =  path.join(homePath, ob.path.slice(1))
 
                     }
-
                 }
-
                 resolve(ob);
             }
         )
     })
 }
+
+
+/**
+ * 获取当前文档 PSD 信息对象
+ * @param less
+ * @returns {Promise}
+ */
+Enzymes.prototype.getDocumentInfoJson_byActive = async function (less)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `Kinase.document.getDocumentInfoJson_byActive(${less})`
+        evalScript(
+            _jsxCode
+            ,
+            (r) =>
+            {
+                var ob =  JSON.parse(jsxBackCheck(r, _jsxCode))
+                resolve(ob);
+            }
+        )
+    })
+}
+
 
 
 
