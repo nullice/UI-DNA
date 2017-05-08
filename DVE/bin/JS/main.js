@@ -10612,16 +10612,96 @@ AppCaryon.prototype.userReadFile = function (windowTitle, types) {
 };
 
 AppCaryon.prototype.DNASyncReplace = function () {
-    var _ref4 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(file) {
+    var _ref4 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(filePath) {
+        var stat, text, reg, resullt, varList, increment, i, name, lineSubs, formula, repliceType, doneValue, reg_sub, org, getValue;
         return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
             while (1) {
                 switch (_context4.prev = _context4.next) {
                     case 0:
+                        if (!fs.existsSync(filePath)) {
+                            _context4.next = 33;
+                            break;
+                        }
+
+                        _context4.prev = 1;
+                        stat = fs.statSync(filePath);
+                        text = fs.readFileSync(filePath, 'utf8');
+                        _context4.next = 10;
+                        break;
+
+                    case 6:
+                        _context4.prev = 6;
+                        _context4.t0 = _context4["catch"](1);
+
+                        console.error("AppCaryon.DNASyncReplace ", _context4.t0);
+                        return _context4.abrupt("return");
+
+                    case 10:
+                        reg = /.*\/\*UI-DNA[\:\=].*\*\//g;
+                        resullt = null;
+                        varList = [];
+
+                        while ((resullt = reg.exec(text)) !== null) {
+                            varList.push({ name: resullt[0], index: resullt.index });
+                        }
+
+                        increment = 0;
+                        i = 0;
+
+                    case 16:
+                        if (!(i < varList.length)) {
+                            _context4.next = 31;
+                            break;
+                        }
+
+                        name = varList[i].name.toString();
+                        lineSubs = name.split("/*UI-DNA");
+                        formula = lineSubs[1].slice(1, lineSubs[1].length - 2);
+                        repliceType = lineSubs[1].slice(0, 1) == ":" ? "value" : "all";
+                        _context4.next = 23;
+                        return varSystem.evalFormulasInText(formula);
+
+                    case 23:
+                        doneValue = _context4.sent;
+
+
+                        if (repliceType === "value") {
+                            reg_sub = /\:.*$/;
+                            org = reg_sub.exec(lineSubs[0]);
+
+                            if (org[org.length - 1] != ";") {
+                                if (doneValue[doneValue.length - 1] != ";") {
+                                    doneValue = doneValue + ";";
+                                }
+                            }
+
+                            lineSubs[0] = lineSubs[0].replace(reg_sub, ":" + doneValue);
+                        } else {
+                            lineSubs[0] = doneValue;
+                        }
+
+                        getValue = lineSubs[0] + "/*UI-DNA" + lineSubs[1];
+
+
+                        text = STR.insert(text, varList[i].index + increment, name.length, getValue);
+                        increment += getValue.toString().length - name.length;
+
+                    case 28:
+                        i++;
+                        _context4.next = 16;
+                        break;
+
+                    case 31:
+
+                        fs.writeFileSync(filePath, text);
+                        return _context4.abrupt("return", text);
+
+                    case 33:
                     case "end":
                         return _context4.stop();
                 }
             }
-        }, _callee4, this);
+        }, _callee4, this, [[1, 6]]);
     }));
 
     return function (_x8) {

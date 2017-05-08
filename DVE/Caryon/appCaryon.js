@@ -272,7 +272,7 @@ var rmdirAllSync = (function ()
 })();
 
 
-AppCaryon.prototype.userSaveFile =  function (data, name, filetype, windowTitle)
+AppCaryon.prototype.userSaveFile = function (data, name, filetype, windowTitle)
 {
 
     if (windowTitle == undefined)
@@ -307,9 +307,7 @@ AppCaryon.prototype.userSaveFile =  function (data, name, filetype, windowTitle)
 }
 
 
-
-
-AppCaryon.prototype.userReadFile =  function (windowTitle,types)
+AppCaryon.prototype.userReadFile = function (windowTitle, types)
 {
 
     if (windowTitle == undefined)
@@ -318,13 +316,12 @@ AppCaryon.prototype.userReadFile =  function (windowTitle,types)
     }
 
 
-
     try
     {
 
-        var result = window.cep.fs.showOpenDialogEx(false, false, windowTitle, "",types);
+        var result = window.cep.fs.showOpenDialogEx(false, false, windowTitle, "", types);
 
-        if (result.data != undefined && result.data[0]!=undefined)
+        if (result.data != undefined && result.data[0] != undefined)
         {
             var readResult = window.cep.fs.readFile(result.data[0]);
             if (0 == readResult.err)// err 为 0 读取成功
@@ -340,24 +337,91 @@ AppCaryon.prototype.userReadFile =  function (windowTitle,types)
 
     } catch (e)
     {
-        console.error("AppCaryon.userReadFile()",e)
+        console.error("AppCaryon.userReadFile()", e)
     }
 
 
-
 }
 
-
-AppCaryon.prototype.DNASyncReplace = async function (file)
+/**
+ * 同步替换。用变量替换一个文本文件里的文本
+ * @param filePath
+ * @returns {Promise.<void>}
+ * @constructor
+ */
+AppCaryon.prototype.DNASyncReplace = async function (filePath)
 {
+    if (fs.existsSync(filePath))
+    {
+        try
+        {
+            var stat = fs.statSync(filePath)
+            var text = fs.readFileSync(filePath, 'utf8')
+        } catch (e)
+        {
+            console.error("AppCaryon.DNASyncReplace ", e)
+            return
+        }
+
+
+        var reg = /.*\/\*UI-DNA[\:\=].*\*\//g
+        var resullt = null;
+        var varList = []
+        while ((resullt = reg.exec(text)) !== null)
+        {
+            varList.push({name: resullt[0], index: resullt.index})
+        }
+
+        var increment = 0
+        for (var i = 0; i < varList.length; i++)
+        {
+            var name = varList[i].name.toString()
+
+            var lineSubs = name.split("/*UI-DNA")
+
+            var formula = lineSubs[1].slice(1, lineSubs[1].length - 2)
+            var repliceType = ( lineSubs[1].slice(0, 1) == ":") ? "value" : "all"
+            var doneValue = await varSystem.evalFormulasInText(formula)
+
+
+            if (repliceType === "value")
+            {
+
+                var reg_sub = /\:.*$/
+                var org = reg_sub.exec(lineSubs[0])
+                if(org[org.length -1]!=";")
+                {
+                    if(doneValue[doneValue.length -1]!=";")
+                    {
+                        doneValue = doneValue+";"
+                    }
+                }
+
+                lineSubs[0] =    lineSubs[0].replace(reg_sub, ":" + doneValue)
+            }else
+            {
+                lineSubs[0] = doneValue
+            }
+
+            var getValue = lineSubs[0] +"/*UI-DNA"+ lineSubs[1]
+
+
+            text = STR.insert(text,
+                varList[i].index + increment,
+                name.length,
+                getValue
+            );
+            increment += getValue.toString().length - name.length;
+        }
+
+
+        fs.writeFileSync(filePath, text)
+        return text
+
+    }
+
 
 }
-
-
-
-
-
-
 
 
 export default AppCaryon;

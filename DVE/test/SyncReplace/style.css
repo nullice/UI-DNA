@@ -1,0 +1,13 @@
+
+body{
+    text-align: center;
+    background: qwer;/*UI-DNA: {{bk}}*/
+    color: #5EAEFC;
+}
+
+.box{
+    display: inline-block;
+    width: wwpx;/*UI-DNA: {{ww}}px*/
+    height: hhpx;/*UI-DNA: {{hh}}px*/
+ box_bk/*UI-DNA= {{box_bk}}*/
+}
