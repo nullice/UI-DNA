@@ -205,7 +205,7 @@ Kinase.document.getDocumentInfoJson_byActive = function (lessInfo)
         // ad.putBoolean(stringIDToTypeID("getAnnotations"), true);
         // ad.putBoolean(stringIDToTypeID("compInfo"), true);
         // ad.putBoolean(stringIDToTypeID( "getCompLayerSettings" ), true);
-        ad.putBoolean(stringIDToTypeID( "getNotes" ), true);
+        ad.putBoolean(stringIDToTypeID("getNotes"), true);
     }
 
     return executeAction(charIDToTypeID("getd"), ad, DialogModes.NO).getString(stringIDToTypeID("json"));
@@ -219,25 +219,26 @@ Kinase.document.getDocumentInfoJson_byActive = function (lessInfo)
  */
 Kinase.document.getDocumentBaseInfo_byActive = function ()
 {
-    if(app.activeDocument!= undefined)
+    if (app.activeDocument != undefined)
     {
-        var f = new File(activeDocument.fullName)
+        var filePath = ""
+
+        try{
+            var f = new File(activeDocument.fullName)
+            filePath = f.absoluteURI
+        }catch (e){}
+
 
         var baseOb = {
-            title:activeDocument.info.title,
-            fileNanme:activeDocument.name,
-            path:f.absoluteURI,
+            title: activeDocument.info.title||"",
+            fileNanme: activeDocument.name||"",
+            path:filePath
         }
 
         return baseOb
     }
 
 }
-
-
-
-
-
 
 
 // if (!app.activeDocument.saved)

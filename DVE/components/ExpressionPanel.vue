@@ -14,7 +14,6 @@
         <!--</label>-->
         <!--</div>-->
 
-
         <!--<div class="auto_express">-->
         <!--<input v-model:value="o_setting.autoRender" type="checkbox" class="exmo_icon_cheackbox" id="auto_express_check_btn2" autocomplete="off" >-->
         <!--<label class="exmo_button_icon mini" for="auto_express_check_btn2" title="{{'自动渲染'|lang}}"><i-->
@@ -164,7 +163,7 @@
 
             .exmo_button_icon.mini {
                 padding: 2px 5px;
-                padding-top: 1px;
+                padding-top: 1px; /*UI-DNA:{{dsf}}px*/
             }
             .exmo_button_icon.mini i {
                 font-size: 13px;
@@ -349,6 +348,52 @@
 //                        state: true,
 //                        hr: true,
 //                    },
+
+
+                    exportDNA: {
+                        name: Lang.from("导出 DNA"),
+                        title: Lang.from("导出 DNA 属性、变量列表、当前文档设置"),
+                        type: "select",
+                        state: setSystem.inset.able_saveDoc,
+                        selected_func: async function ()
+                        {
+                            var data = JSON.stringify(dataCaryon.getSaveDataObject())
+
+                            var  docInfo = await  enzymes.getDocumentBaseInfo_byActive()
+                            if(docInfo!=undefined)
+                            {
+                                var　name = docInfo.fileNanme+".UI-DNA.json";
+                            }else
+                            {
+                                var　name = "export.UI-DNA.json"
+                            }
+                            appCaryon.userSaveFile(data,name,"josn",Lang.from("导出到文件"))
+                        },
+                    },
+                    importDNA: {
+                        name: Lang.from("载入 DNA"),
+                        title: Lang.from("载入 DNA 属性、变量列表、当前文档设置，会丢失当前数据"),
+                        type: "select",
+                        state: setSystem.inset.able_saveDoc,
+                        selected_func: function ()
+                        {
+
+                            var varStr = appCaryon.userReadFile(Lang.from("打开一个 DNA 数据文件"), ["json"])
+                            try
+                            {
+                                var ob = JSON.parse(varStr)
+                                if (ob != undefined)
+                                {
+                                    dataCaryon.load(ob)
+                                }
+
+                            } catch (e)
+                            {
+                                console.error("ExpressionPanel.vue - importDNA()", e)
+                            }
+                        },
+                    },
+                    hr1: {hr: true},
                     ableDocSave: {
                         name: Lang.from("同时保存文档"),
                         type: "multi_select",

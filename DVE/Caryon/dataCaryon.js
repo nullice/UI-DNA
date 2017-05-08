@@ -133,16 +133,20 @@ DataCaryon.prototype.cleanLayers = async function ()
 }
 
 
-DataCaryon.prototype.save = async function ()
+DataCaryon.prototype.getSaveDataObject =function ()
 {
-    this.info.status.saving = true;
-
-
-    var dataOb = {
+    return {
         layers: this.layers,
         doc: this.doc,
         vars: varSystem.vars
     }
+}
+
+DataCaryon.prototype.save = async function ()
+{
+    this.info.status.saving = true;
+
+    var dataOb = this.getSaveDataObject()
 
     await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(dataOb));
 
@@ -151,14 +155,22 @@ DataCaryon.prototype.save = async function ()
 }
 
 
-DataCaryon.prototype.load = async function ()
+DataCaryon.prototype.load = async function (loadObject)
 {
     console.time("【DataCaryon.load】")
     // await  enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", JSON.stringify(this.layers));
-    var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
+
+    if (loadObject)
+    {
+        var ob = loadObject
+    }else
+    {
+        var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
+        var ob = JSON.parse(dataJson);
+    }
+
     // console.log("【DataCaryon.load】", dataJson)
 
-    var ob = JSON.parse(dataJson);
     if (ob != undefined)
     {
         if (ob.layers != undefined)
@@ -178,8 +190,6 @@ DataCaryon.prototype.load = async function ()
 
         this.info.status.saved = true;
     }
-
-
     console.timeEnd("【DataCaryon.load】")
 
 }

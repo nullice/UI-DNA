@@ -10761,6 +10761,14 @@ DataCaryon.prototype.cleanLayers = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_hel
     }, _callee2, this);
 }));
 
+DataCaryon.prototype.getSaveDataObject = function () {
+    return {
+        layers: this.layers,
+        doc: this.doc,
+        vars: varSystem.vars
+    };
+};
+
 DataCaryon.prototype.save = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3() {
     var dataOb;
     return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
@@ -10769,11 +10777,7 @@ DataCaryon.prototype.save = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_as
                 case 0:
                     this.info.status.saving = true;
 
-                    dataOb = {
-                        layers: this.layers,
-                        doc: this.doc,
-                        vars: varSystem.vars
-                    };
+                    dataOb = this.getSaveDataObject();
                     _context3.next = 4;
                     return enzymes.writeJSON("__UI-DNA__", "_DNA_DATA_", __WEBPACK_IMPORTED_MODULE_0_babel_runtime_core_js_json_stringify___default()(dataOb));
 
@@ -10790,45 +10794,63 @@ DataCaryon.prototype.save = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_as
     }, _callee3, this);
 }));
 
-DataCaryon.prototype.load = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee4() {
-    var dataJson, ob;
-    return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
-        while (1) {
-            switch (_context4.prev = _context4.next) {
-                case 0:
-                    console.time("【DataCaryon.load】");
-                    _context4.next = 3;
-                    return enzymes.readJSON("__UI-DNA__", "_DNA_DATA_");
+DataCaryon.prototype.load = function () {
+    var _ref4 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee4(loadObject) {
+        var ob, dataJson;
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+                switch (_context4.prev = _context4.next) {
+                    case 0:
+                        console.time("【DataCaryon.load】");
 
-                case 3:
-                    dataJson = _context4.sent;
-                    ob = JSON.parse(dataJson);
-
-                    if (ob != undefined) {
-                        if (ob.layers != undefined) {
-                            this.layers = ob.layers;
+                        if (!loadObject) {
+                            _context4.next = 5;
+                            break;
                         }
 
-                        if (ob.doc != undefined) {
-                            this.doc = ob.doc;
+                        ob = loadObject;
+                        _context4.next = 9;
+                        break;
+
+                    case 5:
+                        _context4.next = 7;
+                        return enzymes.readJSON("__UI-DNA__", "_DNA_DATA_");
+
+                    case 7:
+                        dataJson = _context4.sent;
+                        ob = JSON.parse(dataJson);
+
+                    case 9:
+
+                        if (ob != undefined) {
+                            if (ob.layers != undefined) {
+                                this.layers = ob.layers;
+                            }
+
+                            if (ob.doc != undefined) {
+                                this.doc = ob.doc;
+                            }
+
+                            if (ob.vars != undefined) {
+                                varSystem.loadVarsFromObject(ob.vars);
+                            }
+
+                            this.info.status.saved = true;
                         }
+                        console.timeEnd("【DataCaryon.load】");
 
-                        if (ob.vars != undefined) {
-                            varSystem.loadVarsFromObject(ob.vars);
-                        }
-
-                        this.info.status.saved = true;
-                    }
-
-                    console.timeEnd("【DataCaryon.load】");
-
-                case 7:
-                case "end":
-                    return _context4.stop();
+                    case 11:
+                    case "end":
+                        return _context4.stop();
+                }
             }
-        }
-    }, _callee4, this);
-}));
+        }, _callee4, this);
+    }));
+
+    return function (_x3) {
+        return _ref4.apply(this, arguments);
+    };
+}();
 
 DataCaryon.prototype.switchDocment = function () {
     var _ref5 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee5(dontGobSelect) {
@@ -10882,7 +10904,7 @@ DataCaryon.prototype.switchDocment = function () {
         }, _callee5, this);
     }));
 
-    return function (_x3) {
+    return function (_x4) {
         return _ref5.apply(this, arguments);
     };
 }();
@@ -20108,6 +20130,10 @@ var _regenerator = __webpack_require__(9);
 
 var _regenerator2 = _interopRequireDefault(_regenerator);
 
+var _stringify = __webpack_require__(14);
+
+var _stringify2 = _interopRequireDefault(_stringify);
+
 var _asyncToGenerator2 = __webpack_require__(8);
 
 var _asyncToGenerator3 = _interopRequireDefault(_asyncToGenerator2);
@@ -20184,6 +20210,67 @@ exports.default = {
 
             },
             o_menu_save: {
+
+                exportDNA: {
+                    name: Lang.from("导出 DNA"),
+                    title: Lang.from("导出 DNA 属性、变量列表、当前文档设置"),
+                    type: "select",
+                    state: setSystem.inset.able_saveDoc,
+                    selected_func: function () {
+                        var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
+                            var data, docInfo, name;
+                            return _regenerator2.default.wrap(function _callee$(_context) {
+                                while (1) {
+                                    switch (_context.prev = _context.next) {
+                                        case 0:
+                                            data = (0, _stringify2.default)(dataCaryon.getSaveDataObject());
+                                            _context.next = 3;
+                                            return enzymes.getDocumentBaseInfo_byActive();
+
+                                        case 3:
+                                            docInfo = _context.sent;
+
+                                            if (docInfo != undefined) {
+                                                name = docInfo.fileNanme + ".UI-DNA.json";
+                                            } else {
+                                                name = "export.UI-DNA.json";
+                                            }
+                                            appCaryon.userSaveFile(data, name, "josn", Lang.from("导出到文件"));
+
+                                        case 6:
+                                        case "end":
+                                            return _context.stop();
+                                    }
+                                }
+                            }, _callee, this);
+                        }));
+
+                        function selected_func() {
+                            return _ref.apply(this, arguments);
+                        }
+
+                        return selected_func;
+                    }()
+                },
+                importDNA: {
+                    name: Lang.from("载入 DNA"),
+                    title: Lang.from("载入 DNA 属性、变量列表、当前文档设置，会丢失当前数据"),
+                    type: "select",
+                    state: setSystem.inset.able_saveDoc,
+                    selected_func: function selected_func() {
+
+                        var varStr = appCaryon.userReadFile(Lang.from("打开一个 DNA 数据文件"), ["json"]);
+                        try {
+                            var ob = JSON.parse(varStr);
+                            if (ob != undefined) {
+                                dataCaryon.load(ob);
+                            }
+                        } catch (e) {
+                            console.error("ExpressionPanel.vue - importDNA()", e);
+                        }
+                    }
+                },
+                hr1: { hr: true },
                 ableDocSave: {
                     name: Lang.from("同时保存文档"),
                     type: "multi_select",
@@ -20203,12 +20290,12 @@ exports.default = {
             renderCaryon.renderDocument();
         },
         doDataSave: function () {
-            var _ref = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee() {
-                return _regenerator2.default.wrap(function _callee$(_context) {
+            var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+                return _regenerator2.default.wrap(function _callee2$(_context2) {
                     while (1) {
-                        switch (_context.prev = _context.next) {
+                        switch (_context2.prev = _context2.next) {
                             case 0:
-                                _context.next = 2;
+                                _context2.next = 2;
                                 return dataCaryon.save();
 
                             case 2:
@@ -20218,14 +20305,14 @@ exports.default = {
 
                             case 3:
                             case "end":
-                                return _context.stop();
+                                return _context2.stop();
                         }
                     }
-                }, _callee, this);
+                }, _callee2, this);
             }));
 
             function doDataSave() {
-                return _ref.apply(this, arguments);
+                return _ref2.apply(this, arguments);
             }
 
             return doDataSave;
@@ -20244,18 +20331,18 @@ exports.default = {
         },
 
         doClean: function () {
-            var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+            var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
                 var count, allLayerArray, x;
-                return _regenerator2.default.wrap(function _callee2$(_context2) {
+                return _regenerator2.default.wrap(function _callee3$(_context3) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context3.prev = _context3.next) {
                             case 0:
                                 count = 0;
-                                _context2.next = 3;
+                                _context3.next = 3;
                                 return enzymes.getAllLayerArray();
 
                             case 3:
-                                allLayerArray = _context2.sent;
+                                allLayerArray = _context3.sent;
 
 
                                 for (x in dataCaryon.layers) {
@@ -20270,52 +20357,28 @@ exports.default = {
 
                             case 7:
                             case "end":
-                                return _context2.stop();
-                        }
-                    }
-                }, _callee2, this);
-            }));
-
-            function doClean() {
-                return _ref2.apply(this, arguments);
-            }
-
-            return doClean;
-        }(),
-        doStopEx: function () {
-            var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
-                return _regenerator2.default.wrap(function _callee3$(_context3) {
-                    while (1) {
-                        switch (_context3.prev = _context3.next) {
-                            case 0:
-                                this.stopEventListen = !this.stopEventListen;
-                                eventCaryon.stopEventListen = this.stopEventListen;
-
-                            case 2:
-                            case "end":
                                 return _context3.stop();
                         }
                     }
                 }, _callee3, this);
             }));
 
-            function doStopEx() {
+            function doClean() {
                 return _ref3.apply(this, arguments);
             }
 
-            return doStopEx;
+            return doClean;
         }(),
-        doContinue: function () {
+        doStopEx: function () {
             var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
                 return _regenerator2.default.wrap(function _callee4$(_context4) {
                     while (1) {
                         switch (_context4.prev = _context4.next) {
                             case 0:
-                                this.stopEventListen = false;
-                                eventCaryon.stopEventListen = false;
-                                Gob.updateSelect();
+                                this.stopEventListen = !this.stopEventListen;
+                                eventCaryon.stopEventListen = this.stopEventListen;
 
-                            case 3:
+                            case 2:
                             case "end":
                                 return _context4.stop();
                         }
@@ -20323,8 +20386,32 @@ exports.default = {
                 }, _callee4, this);
             }));
 
-            function doContinue() {
+            function doStopEx() {
                 return _ref4.apply(this, arguments);
+            }
+
+            return doStopEx;
+        }(),
+        doContinue: function () {
+            var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5() {
+                return _regenerator2.default.wrap(function _callee5$(_context5) {
+                    while (1) {
+                        switch (_context5.prev = _context5.next) {
+                            case 0:
+                                this.stopEventListen = false;
+                                eventCaryon.stopEventListen = false;
+                                Gob.updateSelect();
+
+                            case 3:
+                            case "end":
+                                return _context5.stop();
+                        }
+                    }
+                }, _callee5, this);
+            }));
+
+            function doContinue() {
+                return _ref5.apply(this, arguments);
             }
 
             return doContinue;
@@ -31747,7 +31834,7 @@ exports = module.exports = __webpack_require__(3)();
 
 
 // module
-exports.push([module.i, ".stopEx {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background: rgba(110, 110, 110, 0.6);\n  z-index: 999; }\n  .stopEx .exmo_button_ghost {\n    cursor: default;\n    background-color: rgba(255, 255, 255, 0.74);\n    border-color: rgba(255, 255, 255, 0);\n    color: #5C5C5C;\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n    width: 128px;\n    height: 34px;\n    margin: auto;\n    text-align: center; }\n    .stopEx .exmo_button_ghost:hover {\n      background: #fff; }\n    .stopEx .exmo_button_ghost:active {\n      color: #5C5C5C;\n      background-color: rgba(214, 214, 214, 0.74); }\n\n.express_pad {\n  height: 50px;\n  width: 100%;\n  position: fixed;\n  bottom: 0;\n  background: inherit;\n  border-top: 2px solid rgba(0, 0, 0, 0.08);\n  overflow: visible;\n  z-index: 10; }\n  .express_pad .menu_box .option_list.menu {\n    bottom: -8px; }\n  .express_pad .menu_box .option_list.menu.expresspanel_setting {\n    right: calc(10% - 24px); }\n  .express_pad .more_option {\n    position: absolute;\n    width: 100px;\n    height: 40px;\n    background: #f0f0f0;\n    top: 0;\n    margin-left: -100px; }\n  .express_pad .express_but {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n    width: 128px;\n    height: 30px;\n    margin: auto;\n    overflow: hidden; }\n    .express_pad .express_but span {\n      z-index: 3;\n      position: relative; }\n    .express_pad .express_but .express_effect.socket {\n      -webkit-transform: scale(0.6);\n              transform: scale(0.6);\n      opacity: .31; }\n  .express_pad .auto_express {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 10%;\n    margin: auto;\n    height: 24px; }\n    .express_pad .auto_express .exmo_button_icon.mini {\n      padding: 2px 5px;\n      padding-top: 1px; }\n    .express_pad .auto_express .exmo_button_icon.mini i {\n      font-size: 13px;\n      padding: 0;\n      padding-top: 0; }\n  .express_pad .data_caryon_save {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 10%;\n    margin: auto;\n    height: 24px;\n    margin-top: 10px; }\n    .express_pad .data_caryon_save .express_auto_save.exmo_checkbox {\n      vertical-align: middle;\n      margin-top: -4px;\n      transition: .3s all;\n      opacity: 0; }\n    .express_pad .data_caryon_save:hover .express_auto_save.exmo_checkbox {\n      transition: .3s all;\n      opacity: 1; }\n    .express_pad .data_caryon_save .exmo_button_icon.mini {\n      padding: 6px 7px;\n      padding-top: 7px; }\n    .express_pad .data_caryon_save .exmo_button_icon.mini i {\n      font-size: 14px;\n      color: #747474;\n      margin-left: .5px; }\n    .express_pad .data_caryon_save .data_saved_icon {\n      pointer-events: none;\n      position: absolute;\n      width: 6px;\n      height: 6px;\n      font-size: 6px;\n      background: #747474;\n      color: #BEFFB0;\n      padding: 3px;\n      border-radius: 10px;\n      top: 14px;\n      left: 16px; }\n  .express_pad .data_caryon_setting {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    right: 10%;\n    margin: auto;\n    height: 24px;\n    margin-top: 10px; }\n    .express_pad .data_caryon_setting .exmo_button_icon.mini {\n      padding: 6px 7px;\n      padding-top: 7px; }\n\n.bottom_pad {\n  height: 88px; }\n\n.eff_animation_flip {\n  -webkit-animation: flip .7s infinite;\n          animation: flip .7s infinite; }\n\n@-webkit-keyframes flip {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  25% {\n    -webkit-transform: rotateY(45deg);\n            transform: rotateY(45deg); }\n  50% {\n    -webkit-transform: rotateY(90deg);\n            transform: rotateY(90deg); }\n  75% {\n    -webkit-transform: rotateY(135deg);\n            transform: rotateY(135deg); }\n  100% {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg); } }\n\n@keyframes flip {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  25% {\n    -webkit-transform: rotateY(45deg);\n            transform: rotateY(45deg); }\n  50% {\n    -webkit-transform: rotateY(90deg);\n            transform: rotateY(90deg); }\n  75% {\n    -webkit-transform: rotateY(135deg);\n            transform: rotateY(135deg); }\n  100% {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg); } }\n", ""]);
+exports.push([module.i, ".stopEx {\n  position: fixed;\n  top: 0;\n  bottom: 0;\n  right: 0;\n  left: 0;\n  background: rgba(110, 110, 110, 0.6);\n  z-index: 999; }\n  .stopEx .exmo_button_ghost {\n    cursor: default;\n    background-color: rgba(255, 255, 255, 0.74);\n    border-color: rgba(255, 255, 255, 0);\n    color: #5C5C5C;\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n    width: 128px;\n    height: 34px;\n    margin: auto;\n    text-align: center; }\n    .stopEx .exmo_button_ghost:hover {\n      background: #fff; }\n    .stopEx .exmo_button_ghost:active {\n      color: #5C5C5C;\n      background-color: rgba(214, 214, 214, 0.74); }\n\n.express_pad {\n  height: 50px;\n  width: 100%;\n  position: fixed;\n  bottom: 0;\n  background: inherit;\n  border-top: 2px solid rgba(0, 0, 0, 0.08);\n  overflow: visible;\n  z-index: 10; }\n  .express_pad .menu_box .option_list.menu {\n    bottom: -8px; }\n  .express_pad .menu_box .option_list.menu.expresspanel_setting {\n    right: calc(10% - 24px); }\n  .express_pad .more_option {\n    position: absolute;\n    width: 100px;\n    height: 40px;\n    background: #f0f0f0;\n    top: 0;\n    margin-left: -100px; }\n  .express_pad .express_but {\n    position: absolute;\n    left: 0;\n    right: 0;\n    top: 0;\n    bottom: 0;\n    width: 128px;\n    height: 30px;\n    margin: auto;\n    overflow: hidden; }\n    .express_pad .express_but span {\n      z-index: 3;\n      position: relative; }\n    .express_pad .express_but .express_effect.socket {\n      -webkit-transform: scale(0.6);\n              transform: scale(0.6);\n      opacity: .31; }\n  .express_pad .auto_express {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 10%;\n    margin: auto;\n    height: 24px; }\n    .express_pad .auto_express .exmo_button_icon.mini {\n      padding: 2px 5px;\n      padding-top: 1px;\n      /*UI-DNA:{{dsf}}px*/ }\n    .express_pad .auto_express .exmo_button_icon.mini i {\n      font-size: 13px;\n      padding: 0;\n      padding-top: 0; }\n  .express_pad .data_caryon_save {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    left: 10%;\n    margin: auto;\n    height: 24px;\n    margin-top: 10px; }\n    .express_pad .data_caryon_save .express_auto_save.exmo_checkbox {\n      vertical-align: middle;\n      margin-top: -4px;\n      transition: .3s all;\n      opacity: 0; }\n    .express_pad .data_caryon_save:hover .express_auto_save.exmo_checkbox {\n      transition: .3s all;\n      opacity: 1; }\n    .express_pad .data_caryon_save .exmo_button_icon.mini {\n      padding: 6px 7px;\n      padding-top: 7px; }\n    .express_pad .data_caryon_save .exmo_button_icon.mini i {\n      font-size: 14px;\n      color: #747474;\n      margin-left: .5px; }\n    .express_pad .data_caryon_save .data_saved_icon {\n      pointer-events: none;\n      position: absolute;\n      width: 6px;\n      height: 6px;\n      font-size: 6px;\n      background: #747474;\n      color: #BEFFB0;\n      padding: 3px;\n      border-radius: 10px;\n      top: 14px;\n      left: 16px; }\n  .express_pad .data_caryon_setting {\n    position: absolute;\n    top: 0;\n    bottom: 0;\n    right: 10%;\n    margin: auto;\n    height: 24px;\n    margin-top: 10px; }\n    .express_pad .data_caryon_setting .exmo_button_icon.mini {\n      padding: 6px 7px;\n      padding-top: 7px; }\n\n.bottom_pad {\n  height: 88px; }\n\n.eff_animation_flip {\n  -webkit-animation: flip .7s infinite;\n          animation: flip .7s infinite; }\n\n@-webkit-keyframes flip {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  25% {\n    -webkit-transform: rotateY(45deg);\n            transform: rotateY(45deg); }\n  50% {\n    -webkit-transform: rotateY(90deg);\n            transform: rotateY(90deg); }\n  75% {\n    -webkit-transform: rotateY(135deg);\n            transform: rotateY(135deg); }\n  100% {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg); } }\n\n@keyframes flip {\n  0% {\n    -webkit-transform: rotate(0deg);\n            transform: rotate(0deg); }\n  25% {\n    -webkit-transform: rotateY(45deg);\n            transform: rotateY(45deg); }\n  50% {\n    -webkit-transform: rotateY(90deg);\n            transform: rotateY(90deg); }\n  75% {\n    -webkit-transform: rotateY(135deg);\n            transform: rotateY(135deg); }\n  100% {\n    -webkit-transform: rotateY(180deg);\n            transform: rotateY(180deg); } }\n", ""]);
 
 // exports
 
@@ -32173,7 +32260,7 @@ module.exports = "\n\n<div class=\"edit-text-label\">\n    <div class=\"display_
 /* 519 */
 /***/ (function(module, exports) {
 
-module.exports = "\n<div class=\"bottom_pad\"></div>\n\n<div v-if=\"stopEventListen\" class=\"stopEx\">\n    <button class=\"exmo_button_ghost\" v-on:click=\"doContinue\">{{\"恢复运行\" | lang}}  </button>\n</div>\n<div class=\"express_pad\">\n\n    <!--<div class=\"more_option\">-->\n    <!--<label class=\"express_auto_save exmo_checkbox\">-->\n    <!--<input type=\"checkbox\">-->\n    <!--<div class=\"exmo_checkbox_shadow\"></div>-->\n    <!--自动保存-->\n    <!--</label>-->\n    <!--</div>-->\n\n\n    <!--<div class=\"auto_express\">-->\n    <!--<input v-model:value=\"o_setting.autoRender\" type=\"checkbox\" class=\"exmo_icon_cheackbox\" id=\"auto_express_check_btn2\" autocomplete=\"off\" >-->\n    <!--<label class=\"exmo_button_icon mini\" for=\"auto_express_check_btn2\" title=\"{{'自动渲染'|lang}}\"><i-->\n    <!--class=\"icon-spinner9\"></i></label>-->\n    <!--</div>-->\n    <menu-box\n            v-bind:menu_data=\"o_menu_setting\"\n            in_class=\"expresspanel_setting\"\n    >\n        <div class=\"data_caryon_setting\">\n            <button v-on:click=\"doOpenSettingPanel\" class=\"exmo_button_icon mini\" title=\"{{'打开设置'|lang}}\">\n                <i class=\"icon-settings\"></i>\n            </button>\n        </div>\n    </menu-box>\n\n\n    <button v-on:click=\"doDNAExpression\" class=\"express_but exmo_button \">\n        <span>{{\"渲染\" | lang}}</span>\n        <express-effect v-show=\"o_render_status.rendering\"></express-effect>\n    </button>\n\n\n    <menu-box\n            v-bind:menu_data=\"o_menu_save\"\n            in_class=\"expresspanel_save\"\n    >\n\n        <div class=\"data_caryon_save\">\n            <button v-on:click=\"doDataSave\" class=\"exmo_button_icon mini\" title=\"{{'保存 UI-DNA 数据到文档'|lang}}\">\n                <i v-bind:class=\"{eff_animation_flip:o_data_status.status.saving}\" class=\"icon-floppy-disk\"></i>\n            </button>\n            <div v-show=\"o_data_status.status.saved\" class=\"data_saved_icon\"><i class=\"icon-checkmark\"></i></div>\n        </div>\n\n    </menu-box>\n\n\n    <!--<div class=\"more_option\">-->\n    <!--<label class=\"express_auto_save exmo_checkbox\">-->\n    <!--<input type=\"checkbox\">-->\n    <!--<div class=\"exmo_checkbox_shadow\"></div>-->\n    <!--自动保存-->\n    <!--</label>-->\n    <!--</div>-->\n\n\n</div>\n\n\n";
+module.exports = "\n<div class=\"bottom_pad\"></div>\n\n<div v-if=\"stopEventListen\" class=\"stopEx\">\n    <button class=\"exmo_button_ghost\" v-on:click=\"doContinue\">{{\"恢复运行\" | lang}}  </button>\n</div>\n<div class=\"express_pad\">\n\n    <!--<div class=\"more_option\">-->\n    <!--<label class=\"express_auto_save exmo_checkbox\">-->\n    <!--<input type=\"checkbox\">-->\n    <!--<div class=\"exmo_checkbox_shadow\"></div>-->\n    <!--自动保存-->\n    <!--</label>-->\n    <!--</div>-->\n\n    <!--<div class=\"auto_express\">-->\n    <!--<input v-model:value=\"o_setting.autoRender\" type=\"checkbox\" class=\"exmo_icon_cheackbox\" id=\"auto_express_check_btn2\" autocomplete=\"off\" >-->\n    <!--<label class=\"exmo_button_icon mini\" for=\"auto_express_check_btn2\" title=\"{{'自动渲染'|lang}}\"><i-->\n    <!--class=\"icon-spinner9\"></i></label>-->\n    <!--</div>-->\n    <menu-box\n            v-bind:menu_data=\"o_menu_setting\"\n            in_class=\"expresspanel_setting\"\n    >\n        <div class=\"data_caryon_setting\">\n            <button v-on:click=\"doOpenSettingPanel\" class=\"exmo_button_icon mini\" title=\"{{'打开设置'|lang}}\">\n                <i class=\"icon-settings\"></i>\n            </button>\n        </div>\n    </menu-box>\n\n\n    <button v-on:click=\"doDNAExpression\" class=\"express_but exmo_button \">\n        <span>{{\"渲染\" | lang}}</span>\n        <express-effect v-show=\"o_render_status.rendering\"></express-effect>\n    </button>\n\n\n    <menu-box\n            v-bind:menu_data=\"o_menu_save\"\n            in_class=\"expresspanel_save\"\n    >\n\n        <div class=\"data_caryon_save\">\n            <button v-on:click=\"doDataSave\" class=\"exmo_button_icon mini\" title=\"{{'保存 UI-DNA 数据到文档'|lang}}\">\n                <i v-bind:class=\"{eff_animation_flip:o_data_status.status.saving}\" class=\"icon-floppy-disk\"></i>\n            </button>\n            <div v-show=\"o_data_status.status.saved\" class=\"data_saved_icon\"><i class=\"icon-checkmark\"></i></div>\n        </div>\n\n    </menu-box>\n\n\n    <!--<div class=\"more_option\">-->\n    <!--<label class=\"express_auto_save exmo_checkbox\">-->\n    <!--<input type=\"checkbox\">-->\n    <!--<div class=\"exmo_checkbox_shadow\"></div>-->\n    <!--自动保存-->\n    <!--</label>-->\n    <!--</div>-->\n\n\n</div>\n\n\n";
 
 /***/ }),
 /* 520 */
