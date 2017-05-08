@@ -929,11 +929,13 @@
     input[id^="advance"] + label + .advance_box {
         max-height: 0px;
         transition: all .3s;
+
     }
 
     input[id^="advance"] + label {
         position: absolute;
         right: 20px;
+        z-index: 2;
     }
 
     input[id^="advance"] + label span.text {
