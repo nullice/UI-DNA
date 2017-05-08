@@ -10611,6 +10611,24 @@ AppCaryon.prototype.userReadFile = function (windowTitle, types) {
     }
 };
 
+AppCaryon.prototype.DNASyncReplace = function () {
+    var _ref4 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee4(file) {
+        return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee4$(_context4) {
+            while (1) {
+                switch (_context4.prev = _context4.next) {
+                    case 0:
+                    case "end":
+                        return _context4.stop();
+                }
+            }
+        }, _callee4, this);
+    }));
+
+    return function (_x8) {
+        return _ref4.apply(this, arguments);
+    };
+}();
+
 /* harmony default export */ __webpack_exports__["a"] = (AppCaryon);
 
 /***/ }),
@@ -20211,9 +20229,9 @@ exports.default = {
             },
             o_menu_save: {
 
-                exportDNA: {
-                    name: Lang.from("导出 DNA"),
-                    title: Lang.from("导出 DNA 属性、变量列表、当前文档设置"),
+                exportPSDJSON: {
+                    name: Lang.from("导出 PSD 信息"),
+                    title: Lang.from(""),
                     type: "select",
                     state: setSystem.inset.able_saveDoc,
                     selected_func: function () {
@@ -20223,12 +20241,59 @@ exports.default = {
                                 while (1) {
                                     switch (_context.prev = _context.next) {
                                         case 0:
-                                            data = (0, _stringify2.default)(dataCaryon.getSaveDataObject());
+                                            _context.t0 = _stringify2.default;
                                             _context.next = 3;
+                                            return enzymes.getDocumentInfoJson_byActive();
+
+                                        case 3:
+                                            _context.t1 = _context.sent;
+                                            data = (0, _context.t0)(_context.t1, null, 4);
+                                            _context.next = 7;
+                                            return enzymes.getDocumentBaseInfo_byActive();
+
+                                        case 7:
+                                            docInfo = _context.sent;
+
+                                            if (docInfo != undefined) {
+                                                name = docInfo.fileNanme + ".psdinfo.json";
+                                            } else {
+                                                name = "export.psdinfo.json";
+                                            }
+                                            appCaryon.userSaveFile(data, name, "josn", Lang.from("导出到文件"));
+
+                                        case 10:
+                                        case "end":
+                                            return _context.stop();
+                                    }
+                                }
+                            }, _callee, this);
+                        }));
+
+                        function selected_func() {
+                            return _ref.apply(this, arguments);
+                        }
+
+                        return selected_func;
+                    }()
+                },
+                exportDNA: {
+                    name: Lang.from("导出 DNA"),
+                    title: Lang.from("导出 DNA 属性、变量列表、当前文档设置"),
+                    type: "select",
+                    state: setSystem.inset.able_saveDoc,
+                    selected_func: function () {
+                        var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
+                            var data, docInfo, name;
+                            return _regenerator2.default.wrap(function _callee2$(_context2) {
+                                while (1) {
+                                    switch (_context2.prev = _context2.next) {
+                                        case 0:
+                                            data = (0, _stringify2.default)(dataCaryon.getSaveDataObject());
+                                            _context2.next = 3;
                                             return enzymes.getDocumentBaseInfo_byActive();
 
                                         case 3:
-                                            docInfo = _context.sent;
+                                            docInfo = _context2.sent;
 
                                             if (docInfo != undefined) {
                                                 name = docInfo.fileNanme + ".UI-DNA.json";
@@ -20239,14 +20304,14 @@ exports.default = {
 
                                         case 6:
                                         case "end":
-                                            return _context.stop();
+                                            return _context2.stop();
                                     }
                                 }
-                            }, _callee, this);
+                            }, _callee2, this);
                         }));
 
                         function selected_func() {
-                            return _ref.apply(this, arguments);
+                            return _ref2.apply(this, arguments);
                         }
 
                         return selected_func;
@@ -20290,12 +20355,12 @@ exports.default = {
             renderCaryon.renderDocument();
         },
         doDataSave: function () {
-            var _ref2 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee2() {
-                return _regenerator2.default.wrap(function _callee2$(_context2) {
+            var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
+                return _regenerator2.default.wrap(function _callee3$(_context3) {
                     while (1) {
-                        switch (_context2.prev = _context2.next) {
+                        switch (_context3.prev = _context3.next) {
                             case 0:
-                                _context2.next = 2;
+                                _context3.next = 2;
                                 return dataCaryon.save();
 
                             case 2:
@@ -20305,14 +20370,14 @@ exports.default = {
 
                             case 3:
                             case "end":
-                                return _context2.stop();
+                                return _context3.stop();
                         }
                     }
-                }, _callee2, this);
+                }, _callee3, this);
             }));
 
             function doDataSave() {
-                return _ref2.apply(this, arguments);
+                return _ref3.apply(this, arguments);
             }
 
             return doDataSave;
@@ -20331,18 +20396,18 @@ exports.default = {
         },
 
         doClean: function () {
-            var _ref3 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee3() {
+            var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
                 var count, allLayerArray, x;
-                return _regenerator2.default.wrap(function _callee3$(_context3) {
+                return _regenerator2.default.wrap(function _callee4$(_context4) {
                     while (1) {
-                        switch (_context3.prev = _context3.next) {
+                        switch (_context4.prev = _context4.next) {
                             case 0:
                                 count = 0;
-                                _context3.next = 3;
+                                _context4.next = 3;
                                 return enzymes.getAllLayerArray();
 
                             case 3:
-                                allLayerArray = _context3.sent;
+                                allLayerArray = _context4.sent;
 
 
                                 for (x in dataCaryon.layers) {
@@ -20357,52 +20422,28 @@ exports.default = {
 
                             case 7:
                             case "end":
-                                return _context3.stop();
-                        }
-                    }
-                }, _callee3, this);
-            }));
-
-            function doClean() {
-                return _ref3.apply(this, arguments);
-            }
-
-            return doClean;
-        }(),
-        doStopEx: function () {
-            var _ref4 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee4() {
-                return _regenerator2.default.wrap(function _callee4$(_context4) {
-                    while (1) {
-                        switch (_context4.prev = _context4.next) {
-                            case 0:
-                                this.stopEventListen = !this.stopEventListen;
-                                eventCaryon.stopEventListen = this.stopEventListen;
-
-                            case 2:
-                            case "end":
                                 return _context4.stop();
                         }
                     }
                 }, _callee4, this);
             }));
 
-            function doStopEx() {
+            function doClean() {
                 return _ref4.apply(this, arguments);
             }
 
-            return doStopEx;
+            return doClean;
         }(),
-        doContinue: function () {
+        doStopEx: function () {
             var _ref5 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee5() {
                 return _regenerator2.default.wrap(function _callee5$(_context5) {
                     while (1) {
                         switch (_context5.prev = _context5.next) {
                             case 0:
-                                this.stopEventListen = false;
-                                eventCaryon.stopEventListen = false;
-                                Gob.updateSelect();
+                                this.stopEventListen = !this.stopEventListen;
+                                eventCaryon.stopEventListen = this.stopEventListen;
 
-                            case 3:
+                            case 2:
                             case "end":
                                 return _context5.stop();
                         }
@@ -20410,8 +20451,32 @@ exports.default = {
                 }, _callee5, this);
             }));
 
-            function doContinue() {
+            function doStopEx() {
                 return _ref5.apply(this, arguments);
+            }
+
+            return doStopEx;
+        }(),
+        doContinue: function () {
+            var _ref6 = (0, _asyncToGenerator3.default)(_regenerator2.default.mark(function _callee6() {
+                return _regenerator2.default.wrap(function _callee6$(_context6) {
+                    while (1) {
+                        switch (_context6.prev = _context6.next) {
+                            case 0:
+                                this.stopEventListen = false;
+                                eventCaryon.stopEventListen = false;
+                                Gob.updateSelect();
+
+                            case 3:
+                            case "end":
+                                return _context6.stop();
+                        }
+                    }
+                }, _callee6, this);
+            }));
+
+            function doContinue() {
+                return _ref6.apply(this, arguments);
             }
 
             return doContinue;

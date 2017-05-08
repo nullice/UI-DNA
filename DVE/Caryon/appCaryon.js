@@ -348,7 +348,10 @@ AppCaryon.prototype.userReadFile =  function (windowTitle,types)
 }
 
 
+AppCaryon.prototype.DNASyncReplace = async function (file)
+{
 
+}
 
 
 

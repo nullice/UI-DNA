@@ -349,7 +349,26 @@
 //                        hr: true,
 //                    },
 
+                    exportPSDJSON: {
+                        name: Lang.from("导出 PSD 信息"),
+                        title: Lang.from(""),
+                        type: "select",
+                        state: setSystem.inset.able_saveDoc,
+                        selected_func: async function ()
+                        {
+                            var data = JSON.stringify( await  enzymes.getDocumentInfoJson_byActive(),null,4)
 
+                            var docInfo = await  enzymes.getDocumentBaseInfo_byActive()
+                            if (docInfo != undefined)
+                            {
+                                var name = docInfo.fileNanme + ".psdinfo.json";
+                            } else
+                            {
+                                var name = "export.psdinfo.json"
+                            }
+                            appCaryon.userSaveFile(data, name, "josn", Lang.from("导出到文件"))
+                        },
+                    },
                     exportDNA: {
                         name: Lang.from("导出 DNA"),
                         title: Lang.from("导出 DNA 属性、变量列表、当前文档设置"),
@@ -359,15 +378,15 @@
                         {
                             var data = JSON.stringify(dataCaryon.getSaveDataObject())
 
-                            var  docInfo = await  enzymes.getDocumentBaseInfo_byActive()
-                            if(docInfo!=undefined)
+                            var docInfo = await  enzymes.getDocumentBaseInfo_byActive()
+                            if (docInfo != undefined)
                             {
-                                var　name = docInfo.fileNanme+".UI-DNA.json";
-                            }else
+                                var name = docInfo.fileNanme + ".UI-DNA.json";
+                            } else
                             {
-                                var　name = "export.UI-DNA.json"
+                                var name = "export.UI-DNA.json"
                             }
-                            appCaryon.userSaveFile(data,name,"josn",Lang.from("导出到文件"))
+                            appCaryon.userSaveFile(data, name, "josn", Lang.from("导出到文件"))
                         },
                     },
                     importDNA: {
