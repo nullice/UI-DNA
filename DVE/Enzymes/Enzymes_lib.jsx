@@ -792,6 +792,18 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
             strokeStyle.fillColor.g = shapeInfo.fillColor.g
             strokeStyle.fillColor.b = shapeInfo.fillColor.b
         }
+        if (shapeInfo.dashSet != undefined)
+        {
+            if(shapeInfo.dashSet.split!=undefined)
+            {
+                strokeStyle.dashSet = shapeInfo.dashSet.split(",")
+            }
+
+
+        }
+
+
+
         //todo：判定是否都为 null 值，减少无效99渲染次数
         $.writeln(JSON.stringify(shapeInfo))
         $.writeln(JSON.stringify(strokeStyle))

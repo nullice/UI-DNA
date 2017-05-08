@@ -804,6 +804,14 @@
                     }
 
                 }
+            },
+            dashset_42:function ()
+            {
+                this.edit_value ="4,2"
+            },
+            dashset_02:function ()
+            {
+                this.edit_value ="0,2"
             }
         },
         computed: {
