@@ -94,9 +94,20 @@ EnzJSX.colorHexToPsCMYK = function (hex)
     {
         return ""
     }
-
-
 }
+
+
+/**
+ *  获取当前文档基本信息。
+ * @param layerName
+ */
+EnzJSX.getDocumentBaseInfo_byActive = function ()
+{
+    var ob = Kinase.document.getDocumentBaseInfo_byActive()
+    return JSON.stringify(ob);
+}
+
+
 
 
 /**
@@ -1710,11 +1721,21 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json)
 }
 
 
-EnzJSX._setForTypeColor = function (color)
+/**
+ * 执行一个函数，返回值以 Json 返回
+ * @param jsxFunction
+ */
+EnzJSX.jsxFunctionReturnJson = function (jsxFunction)
 {
-
-
+        if(jsxFunction!=undefined)
+        {
+            return JSON.stringify( jsxFunction())
+        }
 }
+
+
+
+
 
 EnzJSX._inArray = function (name, array, prefix)
 {

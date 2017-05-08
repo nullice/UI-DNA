@@ -811,6 +811,43 @@ Enzymes.prototype.getActiveDocumentId = async function ()
     })
 }
 
+
+/**
+ * 获取当前文档基本信息
+ * @returns {Promise}
+ */
+Enzymes.prototype.getDocumentBaseInfo_byActive = async function ()
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `EnzJSX.getDocumentBaseInfo_byActive()`
+        evalScript(
+            _jsxCode
+            ,
+            (r) =>
+            {
+               var ob =  JSON.parse(jsxBackCheck(r, _jsxCode))
+                if(ob!=undefined && ob.path !=undefined)
+                {
+
+                    if(ob.path.length>2 &&  ob.path.slice(0,2)==="~/")
+                    {
+                        var homePath =  process.env[(process.platform == 'win32') ? 'USERPROFILE' : 'HOME'];
+
+                        ob.path =  path.join(homePath, ob.path.slice(1))
+
+                    }
+
+                }
+
+                resolve(ob);
+            }
+        )
+    })
+}
+
+
+
 /**
  * 解析增强子表达式
  * @param enhancer 增强子表达式

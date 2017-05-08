@@ -183,7 +183,7 @@ Kinase.document.hasArtBoard = function (returnArtBoard, maxScanTime)
  * @param lessInfo
  * @returns {*}
  */
-Kinase.document.getDocumentInfoJson = function (lessInfo)
+Kinase.document.getDocumentInfoJson_byActive = function (lessInfo)
 {
 
     // Build Action Descriptor
@@ -210,6 +210,35 @@ Kinase.document.getDocumentInfoJson = function (lessInfo)
 
     return executeAction(charIDToTypeID("getd"), ad, DialogModes.NO).getString(stringIDToTypeID("json"));
 }
+
+
+/**
+ * 获取当前文档基本信息。
+ * 示例：{"title":"文档标题","fileNanme":"未标题-3.psd","path":"~/Desktop/%E6%9C%AA%E6%A0%87%E9%A2%98-3.psd"}
+ * @returns {{title, fileNanme, path: *}}
+ */
+Kinase.document.getDocumentBaseInfo_byActive = function ()
+{
+    if(app.activeDocument!= undefined)
+    {
+        var f = new File(activeDocument.fullName)
+
+        var baseOb = {
+            title:activeDocument.info.title,
+            fileNanme:activeDocument.name,
+            path:f.absoluteURI,
+        }
+
+        return baseOb
+    }
+
+}
+
+
+
+
+
+
 
 // if (!app.activeDocument.saved)
 
@@ -713,7 +742,7 @@ Kinase.layer.getAllLayerList = function (maxScanDeep, maxOnce)
 
 Kinase.layer.getAllLayerList_quick = function (maxScanDeep, maxOnce)
 {
-    var ob = JSON.parse(Kinase.document.getDocumentInfoJson(true))
+    var ob = JSON.parse(Kinase.document.getDocumentInfoJson_byActive(true))
     var doc = ob.layers;
     var layerList = [];
     var deep = 0;
