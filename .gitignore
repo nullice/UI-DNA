@@ -3,7 +3,7 @@ VI
 TEMP
 RELEASE
 *.map
-
+!DVE/bin/JS/main.js.map
 
 !DVE/bin/node_modules
 !DVE/bin/node_modules/*/node_modules
