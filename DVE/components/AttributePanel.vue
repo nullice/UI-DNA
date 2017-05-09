@@ -285,20 +285,18 @@
                                  v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.y"
                                  v-bind:mini="true"></value-input>
 
+                    <value-input v-bind:name="Lang.from('W')"
+                                 v-bind:title="Lang.from('W')"
+                                 v-bind:edit_value.sync="Gob.shape.shapeSize.w"
+                                 v-bind:out_value.sync="Gob.shape.assignment.shapeSize.w"
+                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.w"
+                                 v-bind:mini="true"></value-input>
 
                     <value-input v-bind:name="Lang.from('H')"
                                  v-bind:title="Lang.from('H')"
                                  v-bind:edit_value.sync="Gob.shape.shapeSize.h"
                                  v-bind:out_value.sync="Gob.shape.assignment.shapeSize.h"
                                  v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.h"
-                                 v-bind:mini="true"></value-input>
-
-
-                    <value-input v-bind:name="Lang.from('W')"
-                                 v-bind:title="Lang.from('W')"
-                                 v-bind:edit_value.sync="Gob.shape.shapeSize.w"
-                                 v-bind:out_value.sync="Gob.shape.assignment.shapeSize.w"
-                                 v-bind:enable_assign.sync="Gob.shape.enableAssigns.shapeSize.w"
                                  v-bind:mini="true"></value-input>
 
                 </div>
