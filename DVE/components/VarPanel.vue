@@ -126,7 +126,7 @@
 
         .var_name {
             width: 30%;
-            max-width: 100px;
+            max-width: 300px;
         }
 
         .var_value {
