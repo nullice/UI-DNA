@@ -866,6 +866,29 @@ Enzymes.prototype.getDocumentInfoJson_byActive = async function (less)
     })
 }
 
+/**
+ * 获取指定颜色取样器的色彩的 hex
+ * @param index
+ * @returns {Promise}
+ */
+Enzymes.prototype.getColorSamplerColorHex = async function (index)
+{
+    return new Promise(function (resolve, reject)
+    {
+        var _jsxCode = `Kinase.layer.getColorSamplerColorHex(${index})`
+        evalScript(
+            _jsxCode
+            ,
+            (r) =>
+            {
+                resolve(jsxBackCheck(r, _jsxCode));
+            }
+        )
+    })
+}
+
+
+
 
 
 

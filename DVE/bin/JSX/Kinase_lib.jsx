@@ -5989,9 +5989,9 @@ Kinase.layer.cancelLinkLayers_ByActive = function ()
 // END===========================[图层链接]========================
 
 
-// ===========================[拾色器]========================
+// ===========================[颜色取样器]========================
 
-/*创建拾色器*/
+/*创建颜色取样器*/
 Kinase.layer.creatNewColorSampler = function (x, y)
 {
     var adOb = {
@@ -6027,6 +6027,23 @@ Kinase.layer.creatNewColorSampler = function (x, y)
         }
     }
     mu.executeActionObjcet(charIDToTypeID("Mk  "), adOb)
+}
+
+/**
+ * 获取指定颜色取样器的色彩的 hex
+ * @param colorSamplerIndex 颜色取样器索引
+ */
+Kinase.layer.getColorSamplerColorHex = function (colorSamplerIndex)
+{
+
+    if (colorSamplerIndex < activeDocument.colorSamplers.length )
+    {
+        if(activeDocument.colorSamplers[colorSamplerIndex]!=undefined)
+        {
+           return "#"+ activeDocument.colorSamplers[colorSamplerIndex].color.rgb.hexValue
+        }
+
+    }
 }
 
 

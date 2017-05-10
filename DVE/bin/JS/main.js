@@ -17821,14 +17821,14 @@ Enzymes.prototype.getDocumentInfoJson_byActive = function () {
     };
 }();
 
-Enzymes.prototype.evalEnhancer = function () {
-    var _ref34 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee34(enhancer, thisId) {
+Enzymes.prototype.getColorSamplerColorHex = function () {
+    var _ref34 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee34(index) {
         return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee34$(_context34) {
             while (1) {
                 switch (_context34.prev = _context34.next) {
                     case 0:
                         return _context34.abrupt("return", new __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_promise___default.a(function (resolve, reject) {
-                            var _jsxCode = "EnzJSX.evalEnhancer(" + enhancer + "," + thisId + ")";
+                            var _jsxCode = "Kinase.layer.getColorSamplerColorHex(" + index + ")";
                             evalScript(_jsxCode, function (r) {
                                 resolve(jsxBackCheck(r, _jsxCode));
                             });
@@ -17842,8 +17842,34 @@ Enzymes.prototype.evalEnhancer = function () {
         }, _callee34, this);
     }));
 
-    return function (_x47, _x48) {
+    return function (_x47) {
         return _ref34.apply(this, arguments);
+    };
+}();
+
+Enzymes.prototype.evalEnhancer = function () {
+    var _ref35 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee35(enhancer, thisId) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee35$(_context35) {
+            while (1) {
+                switch (_context35.prev = _context35.next) {
+                    case 0:
+                        return _context35.abrupt("return", new __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_promise___default.a(function (resolve, reject) {
+                            var _jsxCode = "EnzJSX.evalEnhancer(" + enhancer + "," + thisId + ")";
+                            evalScript(_jsxCode, function (r) {
+                                resolve(jsxBackCheck(r, _jsxCode));
+                            });
+                        }));
+
+                    case 1:
+                    case "end":
+                        return _context35.stop();
+                }
+            }
+        }, _callee35, this);
+    }));
+
+    return function (_x48, _x49) {
+        return _ref35.apply(this, arguments);
     };
 }();
 
