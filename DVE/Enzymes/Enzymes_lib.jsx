@@ -108,8 +108,6 @@ EnzJSX.getDocumentBaseInfo_byActive = function ()
 }
 
 
-
-
 /**
  * 根据名称获取图层 ID，不存在返回 -1
  * @param layerName
@@ -445,10 +443,11 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         if (re == undefined)
         {
             var upperIndex = Kinase.upperIndex()
-            if(Kinase.layer.isArtBoard(Kinase.REF_ItemIndex,upperIndex))
+            if (Kinase.layer.isArtBoard(Kinase.REF_ItemIndex, upperIndex + Kinase.BKOffset()))
             {
-                ki.layer.selectLayer_byItemIndex(upperIndex-1);
-            }else {
+                ki.layer.selectLayer_byItemIndex(upperIndex - 1);
+            } else
+            {
                 ki.layer.selectLayer_byItemIndex(upperIndex);
             }
 
@@ -482,7 +481,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist("_ui-dna.nullice.com_", "name", false, true);
         if (re == undefined)
         {
-
+            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
             ki.layer.creatNewTextLayer_ByActive("_ui-dna.nullice.com_", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
             // ki.layer.moveActiveLayerOrder(ki.layer.getItemIndexBylayerID(rootId))
             ki.layer.setAppearance_byActive({
@@ -490,8 +489,11 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
                 opacity: 100, /*不透明 0-255*/
                 visible: false, /*可视*/
             })
+            ki.layer.moveActiveLayerOrder(ki.layer.getItemIndexBylayerID(rootId) - 1)
             ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
+
         }
+
         //图层-------------------------------------------------------
 
         var re = EnzJSX.checkLayerExist(itemName, "name", false, true);
@@ -507,7 +509,7 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
 
         if (re == undefined || hasSameNameElse)
         {
-            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId) - 1)
+            ki.layer.selectLayer_byItemIndex(ki.layer.getItemIndexBylayerID(rootId))
             ki.layer.creatNewTextLayer_ByActive(itemName, 50, 100, json)
             ki.layer.setAppearance_byActive({
                 fillOpacity: 50, /*填充不透明度 0-255*/
@@ -800,14 +802,13 @@ EnzJSX.setLayerInfo_shape_byId = function (shapeInfo, id, doSelect)
         }
         if (shapeInfo.dashSet != undefined)
         {
-            if(shapeInfo.dashSet.split!=undefined)
+            if (shapeInfo.dashSet.split != undefined)
             {
                 strokeStyle.dashSet = shapeInfo.dashSet.split(",")
             }
 
 
         }
-
 
 
         //todo：判定是否都为 null 值，减少无效99渲染次数
@@ -1745,14 +1746,11 @@ EnzJSX.DNAExpress = function (mRNA_Layers_json)
  */
 EnzJSX.jsxFunctionReturnJson = function (jsxFunction)
 {
-        if(jsxFunction!=undefined)
-        {
-            return JSON.stringify( jsxFunction())
-        }
+    if (jsxFunction != undefined)
+    {
+        return JSON.stringify(jsxFunction())
+    }
 }
-
-
-
 
 
 EnzJSX._inArray = function (name, array, prefix)
