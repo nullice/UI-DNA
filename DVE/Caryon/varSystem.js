@@ -345,7 +345,6 @@ VarSystem.prototype.importVarsFromObject = function (object)
     {
 
 
-
         if (z != undefined && object[z] != undefined)
         {
             if (this.vars[z] == undefined)
@@ -384,7 +383,7 @@ VarSystem.prototype.inintVarNameList = function ()
     }
 
     var defaultWord = ["$i", "$z", "$i_name", "$parent",
-        "$pad", "$up1", "$low1", "$nth1", "￥父", "￥底", "￥上1"
+        "$pad", "$up1", "$low1", "$colorSampler1","$nth1", ,"￥色彩取样器1","￥父", "￥底", "￥上1"
         , "￥下1", "￥第1"]
 
 
@@ -472,13 +471,13 @@ VarSystem.prototype.setVar = function (name, value, type, isFormula)
         {
             this.vars[name].value = value;
 
-            if(isFormula!=undefined)
+            if (isFormula != undefined)
             {
-                this.vars[name].isFormula =isFormula
+                this.vars[name].isFormula = isFormula
             }
-            if(type!=undefined)
+            if (type != undefined)
             {
-                this.vars[name].type =type
+                this.vars[name].type = type
             }
         }
 
@@ -687,6 +686,7 @@ VarSystem.prototype.evalVar = async function (varValue, thisId, names)
                         }
                         var getValue = this.$userCounts[userVar];
                     }
+
                     // else
                     // {
                     //     var getValue = await enzymes.evalEnhancer(_this_var.value, thisId);
@@ -760,7 +760,7 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
     var reg_nth = /^(nth|第)[0-9_]+/
     var reg_up = /^(up|pre|上|前)[0-9_]*/
     var reg_low = /^(low|next|下|后)[0-9_]*/
-
+    var reg_colorSample = /^(colorSampler|色彩取样器)[0-9_]*/
 
     if (ARR.hasMember(["parent", "親", "父", "box"], varArr[0]))
     {
@@ -824,7 +824,8 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
         {
             layerId = nthId
         }
-    } else if (reg_low.test(varArr[0]))
+    }
+    else if (reg_low.test(varArr[0]))
     {
         var reg_number = /[0-9_]+/
 
@@ -851,6 +852,31 @@ VarSystem.prototype.evalVarEnhancer = async function (varValue, thisId, names)
         {
             layerId = nthId
         }
+    }
+    else if (reg_colorSample.test(varArr[0]))
+    {
+        var reg_number = /[0-9_]+/
+
+        var numberStr = reg_number.exec(varArr[0])
+        if (numberStr != undefined)
+        {
+            numberStr = numberStr[0]
+        } else
+        {
+            numberStr = 1
+        }
+        var number = +numberStr
+
+
+        console.log(`enzymes.getColorSamplerColorHex( ${number - 1})`)
+
+        var color = await enzymes.getColorSamplerColorHex(number - 1)
+        if (color != undefined)
+        {
+            return {value: color}
+        }
+
+
     }
 
 

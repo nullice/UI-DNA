@@ -16033,7 +16033,7 @@ VarSystem.prototype.inintVarNameList = function () {
         window.autocomplete_var_hash[x] = true;
     }
 
-    var defaultWord = ["$i", "$z", "$i_name", "$parent", "$pad", "$up1", "$low1", "$nth1", "￥父", "￥底", "￥上1", "￥下1", "￥第1"];
+    var defaultWord = ["$i", "$z", "$i_name", "$parent", "$pad", "$up1", "$low1", "$colorSampler1", "$nth1",, "￥色彩取样器1", "￥父", "￥底", "￥上1", "￥下1", "￥第1"];
 
     for (var x in defaultWord) {
         window.autocomplete_var_hash[defaultWord[x]] = true;
@@ -16355,6 +16355,7 @@ VarSystem.prototype.evalVar = function () {
                             }
                             getValue = this.$userCounts[userVar];
                         }
+
                         _context12.next = 43;
                         break;
 
@@ -16443,7 +16444,7 @@ VarSystem.prototype.evalVar = function () {
 
 VarSystem.prototype.evalVarEnhancer = function () {
     var _ref13 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee13(varValue, thisId, names) {
-        var varArr, layerId, reg_nth, reg_up, reg_low, parentId, padId, reg_number, numberStr, number, nthId, rootName, resultValue;
+        var varArr, layerId, reg_nth, reg_up, reg_low, reg_colorSample, parentId, padId, reg_number, numberStr, number, nthId, color, rootName, resultValue;
         return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee13$(_context13) {
             while (1) {
                 switch (_context13.prev = _context13.next) {
@@ -16453,45 +16454,46 @@ VarSystem.prototype.evalVarEnhancer = function () {
                         reg_nth = /^(nth|第)[0-9_]+/;
                         reg_up = /^(up|pre|上|前)[0-9_]*/;
                         reg_low = /^(low|next|下|后)[0-9_]*/;
+                        reg_colorSample = /^(colorSampler|色彩取样器)[0-9_]*/;
 
                         if (!__WEBPACK_IMPORTED_MODULE_3__Richang_JSEX_arrayARR_js__["default"].hasMember(["parent", "親", "父", "box"], varArr[0])) {
-                            _context13.next = 12;
+                            _context13.next = 13;
                             break;
                         }
 
-                        _context13.next = 8;
+                        _context13.next = 9;
                         return enzymes.getParentLayerId_byLayerId(thisId);
 
-                    case 8:
+                    case 9:
                         parentId = _context13.sent;
 
                         if (parentId != null) {
                             layerId = parentId;
                         }
-                        _context13.next = 50;
+                        _context13.next = 64;
                         break;
 
-                    case 12:
+                    case 13:
                         if (!__WEBPACK_IMPORTED_MODULE_3__Richang_JSEX_arrayARR_js__["default"].hasMember(["pad", "floor", "底"], varArr[0])) {
-                            _context13.next = 19;
+                            _context13.next = 20;
                             break;
                         }
 
-                        _context13.next = 15;
+                        _context13.next = 16;
                         return enzymes.getParentChildLayerId_byLayerId(thisId, -1);
 
-                    case 15:
+                    case 16:
                         padId = _context13.sent;
 
                         if (padId != null) {
                             layerId = padId;
                         }
-                        _context13.next = 50;
+                        _context13.next = 64;
                         break;
 
-                    case 19:
+                    case 20:
                         if (!reg_nth.test(varArr[0])) {
-                            _context13.next = 29;
+                            _context13.next = 30;
                             break;
                         }
 
@@ -16504,21 +16506,21 @@ VarSystem.prototype.evalVarEnhancer = function () {
                             number = +numberStr - 1;
                         }
 
-                        _context13.next = 25;
+                        _context13.next = 26;
                         return enzymes.getParentChildLayerId_byLayerId(thisId, number);
 
-                    case 25:
+                    case 26:
                         nthId = _context13.sent;
 
                         if (nthId != null) {
                             layerId = nthId;
                         }
-                        _context13.next = 50;
+                        _context13.next = 64;
                         break;
 
-                    case 29:
+                    case 30:
                         if (!reg_up.test(varArr[0])) {
-                            _context13.next = 40;
+                            _context13.next = 41;
                             break;
                         }
 
@@ -16537,21 +16539,21 @@ VarSystem.prototype.evalVarEnhancer = function () {
                             number = +numberStr;
                         }
 
-                        _context13.next = 36;
+                        _context13.next = 37;
                         return enzymes.getNneighborLayerId_byLayerId(thisId, number);
 
-                    case 36:
+                    case 37:
                         nthId = _context13.sent;
 
                         if (nthId != null) {
                             layerId = nthId;
                         }
-                        _context13.next = 50;
+                        _context13.next = 64;
                         break;
 
-                    case 40:
+                    case 41:
                         if (!reg_low.test(varArr[0])) {
-                            _context13.next = 50;
+                            _context13.next = 53;
                             break;
                         }
 
@@ -16571,19 +16573,53 @@ VarSystem.prototype.evalVarEnhancer = function () {
                         }
 
                         console.log("enzymes.getNneighborLayerId_byLayerId(" + thisId + ", " + -number + ")");
-                        _context13.next = 48;
+                        _context13.next = 49;
                         return enzymes.getNneighborLayerId_byLayerId(thisId, -number);
 
-                    case 48:
+                    case 49:
                         nthId = _context13.sent;
 
                         if (nthId != null) {
                             layerId = nthId;
                         }
+                        _context13.next = 64;
+                        break;
 
-                    case 50:
+                    case 53:
+                        if (!reg_colorSample.test(varArr[0])) {
+                            _context13.next = 64;
+                            break;
+                        }
+
+                        reg_number = /[0-9_]+/;
+                        numberStr = reg_number.exec(varArr[0]);
+
+                        if (numberStr != undefined) {
+                            numberStr = numberStr[0];
+                        } else {
+                            numberStr = 1;
+                        }
+                        number = +numberStr;
+
+
+                        console.log("enzymes.getColorSamplerColorHex( " + (number - 1) + ")");
+
+                        _context13.next = 61;
+                        return enzymes.getColorSamplerColorHex(number - 1);
+
+                    case 61:
+                        color = _context13.sent;
+
+                        if (!(color != undefined)) {
+                            _context13.next = 64;
+                            break;
+                        }
+
+                        return _context13.abrupt("return", { value: color });
+
+                    case 64:
                         if (!(layerId != undefined)) {
-                            _context13.next = 61;
+                            _context13.next = 75;
                             break;
                         }
 
@@ -16599,19 +16635,19 @@ VarSystem.prototype.evalVarEnhancer = function () {
                         rootName = names[0];
 
                         console.log("rootName:", rootName);
-                        _context13.next = 56;
+                        _context13.next = 70;
                         return renderCaryon._getLayerDataByNamse(rootName, names.slice(1), layerId, true);
 
-                    case 56:
+                    case 70:
                         resultValue = _context13.sent;
 
                         console.log("resultValue:", resultValue);
                         return _context13.abrupt("return", { value: resultValue });
 
-                    case 61:
+                    case 75:
                         return _context13.abrupt("return", { value: "$" + varValue });
 
-                    case 62:
+                    case 76:
                     case "end":
                         return _context13.stop();
                 }

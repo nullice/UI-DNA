@@ -6044,6 +6044,8 @@ Kinase.layer.getColorSamplerColorHex = function (colorSamplerIndex)
         }
 
     }
+
+    return ""
 }
 
 
