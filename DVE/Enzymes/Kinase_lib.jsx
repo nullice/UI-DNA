@@ -223,16 +223,24 @@ Kinase.document.getDocumentBaseInfo_byActive = function ()
     {
         var filePath = ""
 
-        try{
-            var f = new File(activeDocument.fullName)
-            filePath = f.absoluteURI
-        }catch (e){}
+        try
+        {
+
+            if (activeDocument.fullName != undefined)
+            {
+                var f = new File(activeDocument.fullName)
+                filePath = f.absoluteURI
+            }
+
+        } catch (e)
+        {
+        }
 
 
         var baseOb = {
-            title: activeDocument.info.title||"",
-            fileNanme: activeDocument.name||"",
-            path:filePath
+            title: activeDocument.info.title || "",
+            fileNanme: activeDocument.name || "",
+            path: filePath
         }
 
         return baseOb
