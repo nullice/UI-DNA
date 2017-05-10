@@ -444,7 +444,14 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist(rootName, "name", false, true);
         if (re == undefined)
         {
-            ki.layer.selectLayer_byItemIndex(Kinase.upperIndex());
+            var upperIndex = Kinase.upperIndex()
+            if(Kinase.layer.isArtBoard(Kinase.REF_ItemIndex,upperIndex))
+            {
+                ki.layer.selectLayer_byItemIndex(upperIndex-1);
+            }else {
+                ki.layer.selectLayer_byItemIndex(upperIndex);
+            }
+
 
             ki.layer.creatNewLayerSet_ByActive(rootName)
             ki.layer.setAppearance_byActive({
@@ -475,7 +482,6 @@ EnzJSX.writeJSON = function (rootName, itemName, json)
         var re = EnzJSX.checkLayerExist("_ui-dna.nullice.com_", "name", false, true);
         if (re == undefined)
         {
-
 
             ki.layer.creatNewTextLayer_ByActive("_ui-dna.nullice.com_", 100, 100, "UI-DNA 数据保存图层，请勿修改、删除")
             // ki.layer.moveActiveLayerOrder(ki.layer.getItemIndexBylayerID(rootId))
