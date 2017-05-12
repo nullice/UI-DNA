@@ -10805,12 +10805,14 @@ AppCaryon.prototype.DNASyncReplace_bySetting = __WEBPACK_IMPORTED_MODULE_2_babel
 var DataCaryon = function DataCaryon() {
     this._layers = {};
     this._doc = {};
+    this._vars = {};
 
     this.layers = null;
-    this.doc = null;
     this._nowDoucmentId = null;
     Object.defineProperty(this, "nowDoucmentId", {
         set: function set(x) {
+
+            var oldId = this._nowDoucmentId;
             if (x != undefined) {
                 if (this._layers[x] == undefined) {
                     this._layers[x] = {};
@@ -10825,6 +10827,19 @@ var DataCaryon = function DataCaryon() {
                 } else {
                     this.doc = this._doc[x];
                 }
+
+                if (this._vars[oldId] == undefined) {
+                    this._vars[oldId] = _.cloneDeep(varSystem.vars);
+                }
+
+                if (this._vars[x] == undefined) {
+                    this._doc[x] = {};
+                    varSystem.loadVarsFromObject(this._vars[x]);
+                } else {
+                    varSystem.loadVarsFromObject(this._vars[x]);
+                }
+
+                console.log("new id:", x);
             }
             this._nowDoucmentId = x;
         },
@@ -14596,48 +14611,44 @@ RenderCaryon.prototype.renderDocument = function () {
                                             while (1) {
                                                 switch (_context5.prev = _context5.next) {
                                                     case 0:
-                                                        console.info("_asDo4 - names:", names, object);
                                                         assignmentValue = __WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].getObjectValueByNames(object, names);
-
-                                                        console.info("assignmentValue:", assignmentValue);
-
-                                                        _context5.prev = 3;
+                                                        _context5.prev = 1;
 
                                                         if (!(__WEBPACK_IMPORTED_MODULE_6__Richang_JSEX_typeTYP_js__["a" /* default */].type(assignmentValue) == "object")) {
-                                                            _context5.next = 15;
+                                                            _context5.next = 13;
                                                             break;
                                                         }
 
                                                         if (!(__WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].isEmptyObject(assignmentValue) != true)) {
-                                                            _context5.next = 13;
+                                                            _context5.next = 11;
                                                             break;
                                                         }
 
                                                         _context5.t0 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_regenerator___default.a.keys(assignmentValue);
 
-                                                    case 7:
+                                                    case 5:
                                                         if ((_context5.t1 = _context5.t0()).done) {
-                                                            _context5.next = 13;
+                                                            _context5.next = 11;
                                                             break;
                                                         }
 
                                                         _x = _context5.t1.value;
-                                                        _context5.next = 11;
+                                                        _context5.next = 9;
                                                         return _asDo2(object, names.concat(_x));
 
+                                                    case 9:
+                                                        _context5.next = 5;
+                                                        break;
+
                                                     case 11:
-                                                        _context5.next = 7;
+                                                        _context5.next = 33;
                                                         break;
 
                                                     case 13:
-                                                        _context5.next = 35;
-                                                        break;
-
-                                                    case 15:
                                                         enable = __WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].getObjectValueByNames(enableAssigns, names);
 
                                                         if (!enable) {
-                                                            _context5.next = 35;
+                                                            _context5.next = 33;
                                                             break;
                                                         }
 
@@ -14646,12 +14657,12 @@ RenderCaryon.prototype.renderDocument = function () {
                                                         console.info("dataCaryonValue", dataCaryonValue);
 
                                                         if (!(dataCaryonValue != undefined && __WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].isEmptyObject(dataCaryonValue) != true)) {
-                                                            _context5.next = 30;
+                                                            _context5.next = 28;
                                                             break;
                                                         }
 
                                                         if (!varSystem.isFormula(dataCaryonValue)) {
-                                                            _context5.next = 27;
+                                                            _context5.next = 25;
                                                             break;
                                                         }
 
@@ -14662,31 +14673,31 @@ RenderCaryon.prototype.renderDocument = function () {
                                                             getValue: getValue
                                                         });
 
-                                                        _context5.next = 24;
+                                                        _context5.next = 22;
                                                         return varSystem.evalVar(dataCaryonValue, layer.id, names);
 
-                                                    case 24:
+                                                    case 22:
                                                         getValue = _context5.sent;
-                                                        _context5.next = 28;
+                                                        _context5.next = 26;
                                                         break;
 
-                                                    case 27:
+                                                    case 25:
                                                         getValue = dataCaryonValue;
 
-                                                    case 28:
-                                                        _context5.next = 34;
+                                                    case 26:
+                                                        _context5.next = 32;
                                                         break;
 
-                                                    case 30:
-                                                        _context5.next = 32;
+                                                    case 28:
+                                                        _context5.next = 30;
                                                         return _this._getLayerDataByNamse(rootName, names, layer.id);
 
-                                                    case 32:
+                                                    case 30:
                                                         getValue = _context5.sent;
 
                                                         console.info("getValue", getValue);
 
-                                                    case 34:
+                                                    case 32:
 
                                                         if (getValue != undefined) {
                                                             _varNames = assignmentValue.split(/[,，]/);
@@ -14711,22 +14722,22 @@ RenderCaryon.prototype.renderDocument = function () {
                                                             }
                                                         }
 
-                                                    case 35:
-                                                        _context5.next = 40;
+                                                    case 33:
+                                                        _context5.next = 38;
                                                         break;
 
-                                                    case 37:
-                                                        _context5.prev = 37;
-                                                        _context5.t2 = _context5["catch"](3);
+                                                    case 35:
+                                                        _context5.prev = 35;
+                                                        _context5.t2 = _context5["catch"](1);
 
                                                         console.error(_context5.t2);
 
-                                                    case 40:
+                                                    case 38:
                                                     case "end":
                                                         return _context5.stop();
                                                 }
                                             }
-                                        }, _callee5, this, [[3, 37]]);
+                                        }, _callee5, this, [[1, 35]]);
                                     }));
 
                                     return function _asDo2(_x20, _x21) {
@@ -15594,6 +15605,7 @@ VarType.prototype.clone = function () {
 };
 
 var VarSystem = function VarSystem() {
+
     this.vars = {
         'zero': new VarType({ name: 'zero', value: "10-10", type: null, isFormula: true, relatives: [] })
     };

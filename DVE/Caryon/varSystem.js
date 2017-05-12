@@ -138,14 +138,17 @@ var VarSystem = function ()
     // relatives 是记录引用这个变量的其他变量，当删除变量前可以给出依赖提示。
 
     //变量存储对象：
-    this.vars = {
+
+
+
+    this.vars =  {
         'zero': new VarType({name: 'zero', value: "10-10", type: null, isFormula: true, relatives: []}),
         // 'a': new VarType({name: 'a', value: 123, type: null, isFormula: false, relatives: ['x']}),
         // 'b': new VarType({name: 'b', value: 1000, type: null, isFormula: false, relatives: ['x']}),
         // 'x': new VarType({name: 'x', value: "a*b", type: null, isFormula: true, relatives: []}),
         // 't': new VarType({name: 't', value: "true", type: null, isFormula: true, relatives: []}),
         // 'cc': new VarType({name: 'cc', value: "#f01", type: null, isFormula: true, relatives: []}),
-    };
+    }
 
 
     /*变量可执行方法：*/
@@ -383,7 +386,7 @@ VarSystem.prototype.inintVarNameList = function ()
     }
 
     var defaultWord = ["$i", "$z", "$i_name", "$parent",
-        "$pad", "$up1", "$low1", "$colorSampler1","$nth1", ,"￥色彩取样器1","￥父", "￥底", "￥上1"
+        "$pad", "$up1", "$low1", "$colorSampler1", "$nth1", , "￥色彩取样器1", "￥父", "￥底", "￥上1"
         , "￥下1", "￥第1"]
 
 

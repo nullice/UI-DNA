@@ -19,15 +19,17 @@ var DataCaryon = function ()
     //实际存储属性
     this._layers = {}
     this._doc = {}
+    this._vars = {}
 
     //直接获取属性，文档切换时，通过 this.switchDocment() ，映射到不同的实际存储
     this.layers = null;
-    this.doc = null;
     this._nowDoucmentId = null;
     Object.defineProperty(this, "nowDoucmentId",
         {
             set: function (x)
             {
+
+               var  oldId = this._nowDoucmentId
                 if (x != undefined)
                 {
                     if (this._layers[x] == undefined)
@@ -50,6 +52,26 @@ var DataCaryon = function ()
                     {
                         this.doc = this._doc[x];
                     }
+
+
+                    if(this._vars[oldId] == undefined)
+                    {
+                        this._vars[oldId] = _.cloneDeep(varSystem.vars)
+                    }
+
+                    if (this._vars[x] == undefined)
+                    {
+                        this._doc[x] = {}
+                        varSystem.loadVarsFromObject(  this._vars[x])
+
+                    } else
+                    {
+                        varSystem.loadVarsFromObject(  this._vars[x])
+                    }
+
+
+                    console.log("new id:", x)
+
 
                 }
                 this._nowDoucmentId = x;
@@ -133,7 +155,7 @@ DataCaryon.prototype.cleanLayers = async function ()
 }
 
 
-DataCaryon.prototype.getSaveDataObject =function ()
+DataCaryon.prototype.getSaveDataObject = function ()
 {
     return {
         layers: this.layers,
@@ -163,7 +185,7 @@ DataCaryon.prototype.load = async function (loadObject)
     if (loadObject)
     {
         var ob = loadObject
-    }else
+    } else
     {
         var dataJson = await enzymes.readJSON("__UI-DNA__", "_DNA_DATA_")
         var ob = JSON.parse(dataJson);
