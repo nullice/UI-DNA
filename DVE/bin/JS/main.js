@@ -9984,9 +9984,9 @@ var asyncTask = function () {
 
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.13",
-    verIndex: 13,
-    varData: "2017/05/09",
+    version: "0.0.14",
+    verIndex: 14,
+    varData: "2017/05/10",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
@@ -20256,7 +20256,9 @@ exports.default = {
     props: ["in_value", "var_name", "display_class", "edit_class", "class_switch_1", "edit_set_func"],
     data: function data() {
         return {
-            o_editing: false
+            o_editing: false,
+            css_color: { background: "#fff" },
+            show_color: false
         };
     },
 
@@ -20285,9 +20287,7 @@ exports.default = {
                 var data = [{ name: "", type: "textareaBig", cows: 5, value: this.in_value }];
                 var self = this;
                 var ok_func = function ok_func(data, doneFunc) {
-
                     if (isObject) {
-
                         try {
                             self.in_value = JSON.parse(data[0].value);
                         } catch (e) {
@@ -20338,6 +20338,13 @@ exports.default = {
 
                 if (TYP.type(this.in_value) == "object") {
                     return Lang.from("[对象变量]");
+                }
+
+                if (this.in_value[0] === "#" && this.in_value.length < 10) {
+                    this.show_color = true;
+                    this.css_color.background = this.in_value;
+                } else {
+                    this.show_color = false;
                 }
 
                 return this.in_value;
@@ -32314,7 +32321,7 @@ exports = module.exports = __webpack_require__(2)();
 
 
 // module
-exports.push([module.i, ".edit-text-label {\n  display: inline;\n  -webkit-user-select: text;\n  white-space: nowrap; }\n  .edit-text-label .edit_label {\n    cursor: text; }\n", ""]);
+exports.push([module.i, ".edit-text-label {\n  display: inline;\n  -webkit-user-select: text;\n  white-space: nowrap; }\n  .edit-text-label .edit_label {\n    cursor: text; }\n  .edit-text-label .display_label {\n    min-width: 35px;\n    min-height: 12px; }\n  .edit-text-label .display_color_p {\n    display: inline-block;\n    width: 10px;\n    height: 10px;\n    border-radius: 10px;\n    margin: 0 2px; }\n", ""]);
 
 // exports
 
@@ -32762,7 +32769,7 @@ module.exports = "\n\n<div class=\"debug-microscope\">\n\n    <h3>debug-microsco
 /* 520 */
 /***/ (function(module, exports) {
 
-module.exports = "\n\n<div class=\"edit-text-label\">\n    <div class=\"display_label {{display_class}} {{class_switch_1}}\" v-show=\"!o_editing\" v-on:dblclick=\"dbclick\">\n        {{show_text}}\n    </div>\n    <input type=\"text\" id=\"edit_label_id_{{in_value}}\"\n           class=\"edit_label edit_label_input {{edit_class}} {{class_switch_1}}\"\n           v-model=\"edit_value\" lazy\n           v-if=\"o_editing\" v-on:blur=\"editEnd\">\n\n</div>\n";
+module.exports = "\n\n<div class=\"edit-text-label\">\n    <div class=\"display_label {{display_class}} {{class_switch_1}}\" v-show=\"!o_editing\" v-on:dblclick=\"dbclick\">\n        <span v-show=\"show_color\" class=\"display_color_p\" v-bind:style=\"css_color\">  </span> <span\n            class=\"display_value\">{{show_text}}</span>\n    </div>\n    <input type=\"text\" id=\"edit_label_id_{{in_value}}\"\n           class=\"edit_label edit_label_input {{edit_class}} {{class_switch_1}}\"\n           v-model=\"edit_value\" lazy\n           v-if=\"o_editing\" v-on:blur=\"editEnd\">\n\n</div>\n";
 
 /***/ }),
 /* 521 */

@@ -2,7 +2,8 @@
 
     <div class="edit-text-label">
         <div class="display_label {{display_class}} {{class_switch_1}}" v-show="!o_editing" v-on:dblclick="dbclick">
-            {{show_text}}
+            <span v-show="show_color" class="display_color_p" v-bind:style="css_color">  </span> <span
+                class="display_value">{{show_text}}</span>
         </div>
         <input type="text" id="edit_label_id_{{in_value}}"
                class="edit_label edit_label_input {{edit_class}} {{class_switch_1}}"
@@ -19,6 +20,19 @@
             cursor: text;
         }
         white-space: nowrap;
+
+        .display_label {
+            min-width: 35px;
+            min-height: 12px;
+        }
+
+        .display_color_p {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 10px;
+            margin: 0 2px;
+        }
     }
 </style>
 <script>
@@ -28,6 +42,8 @@
         data(){
             return {
                 o_editing: false,
+                css_color: {background: "#fff"},
+                show_color: false,
             }
 
         },
@@ -66,19 +82,14 @@
                         var isObject = true
                     }
 
-
                     var data = [
                         {name: "", type: "textareaBig", cows: 5, value: this.in_value},
                     ]
                     var self = this
                     var ok_func = function (data, doneFunc)
                     {
-
-
                         if (isObject)
                         {
-
-
                             try
                             {
                                 self.in_value = JSON.parse(data[0].value)
@@ -96,10 +107,6 @@
                             }
 
 
-
-
-
-
                         } else
                         {
                             self.in_value = data[0].value
@@ -115,9 +122,8 @@
 
                     if (isObject)
                     {
-                        data[0].value = JSON.stringify(this.in_value,null,4)
+                        data[0].value = JSON.stringify(this.in_value, null, 4)
                     }
-
 
                     UI_action.show_message_input("var_edit", "编辑：" + this.var_name, data, ok_func)
 
@@ -158,6 +164,15 @@
                     if (TYP.type(this.in_value) == "object")
                     {
                         return Lang.from("[对象变量]")
+                    }
+
+                    if (this.in_value[0] === "#" && this.in_value.length < 10)
+                    {
+                        this.show_color = true;
+                        this.css_color.background = this.in_value
+                    } else
+                    {
+                        this.show_color = false;
                     }
 
                     return this.in_value;
