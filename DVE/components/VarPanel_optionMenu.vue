@@ -188,8 +188,9 @@
                 var self = this;
 
                 var data = [
-                    {name: "", type: "notetext", html: Lang.from("是否真的要清空变量列表?")},
+                    {name: "", type: "textnote", html: Lang.from("是否真的要清空变量列表?")},
                 ]
+
                 UI_action.show_message_input("layer_selector", "确认", data, ok_func)
 
                 function ok_func(data, doneFunc)

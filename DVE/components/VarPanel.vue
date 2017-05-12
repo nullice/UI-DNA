@@ -33,10 +33,6 @@
         <var-option-menu>
         </var-option-menu>
 
-
-
-
-
         <bubble-box v-if="o_msg_bubble.var_panel.show"
                     v-bind:msg="o_msg_bubble.var_panel.msg"
                     v-bind:msg_title="o_msg_bubble.var_panel.title"

@@ -552,13 +552,11 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
             {
                 await _asDo(assignment, [x])
             }
-
             async function _asDo(object, names)
             {
                 // console.info("_asDo4 - names:", names, object)
                 var assignmentValue = OBJ.getObjectValueByNames(object, names);
                 // console.info("assignmentValue:", assignmentValue)
-
                 try
                 {
                     if (TYP.type(assignmentValue) == "object")
@@ -570,7 +568,6 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                                 await _asDo(object, names.concat(_x))
                             }
                         }
-
                     } else
                     {
                         var enable = OBJ.getObjectValueByNames(enableAssigns, names);

@@ -34,8 +34,13 @@
                 </label>
 
                 <div class="notetext" v-if="(item.type=='note')&&msg_input_data[item.value].checked">
-                    {{item.note}}{{{item.html}}}
+                    {{item.note}} {{{item.html}}}
                 </div>
+
+                <div class="notetext" v-if="(item.type=='textnote')">
+                    {{item.note}} {{{item.html}}}
+                </div>
+
 
                 <div class="user-seletc-files-but" v-if="(item.type=='addfiles') ">
                     <button title="打开填充模板文件夹" class="exmo_button_icon mini"

@@ -29,7 +29,7 @@ var DataCaryon = function ()
             set: function (x)
             {
 
-               var  oldId = this._nowDoucmentId
+                var oldId = this._nowDoucmentId
                 if (x != undefined)
                 {
                     if (this._layers[x] == undefined)
@@ -54,19 +54,16 @@ var DataCaryon = function ()
                     }
 
 
-                    if(this._vars[oldId] == undefined)
-                    {
-                        this._vars[oldId] = _.cloneDeep(varSystem.vars)
-                    }
+                    this._vars[oldId] = _.cloneDeep(varSystem.vars)
 
                     if (this._vars[x] == undefined)
                     {
                         this._doc[x] = {}
-                        varSystem.loadVarsFromObject(  this._vars[x])
+                        varSystem.loadVarsFromObject(this._vars[x])
 
                     } else
                     {
-                        varSystem.loadVarsFromObject(  this._vars[x])
+                        varSystem.loadVarsFromObject(this._vars[x])
                     }
 
 
