@@ -14639,28 +14639,33 @@ RenderCaryon.prototype.renderDocument = function () {
                                                         break;
 
                                                     case 11:
-                                                        _context5.next = 33;
+                                                        _context5.next = 34;
                                                         break;
 
                                                     case 13:
                                                         enable = __WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].getObjectValueByNames(enableAssigns, names);
 
                                                         if (!enable) {
-                                                            _context5.next = 33;
+                                                            _context5.next = 34;
                                                             break;
                                                         }
 
                                                         dataCaryonValue = __WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].getObjectValueByNames(layer[rootName], names);
 
+                                                        if (__WEBPACK_IMPORTED_MODULE_6__Richang_JSEX_typeTYP_js__["a" /* default */].type(dataCaryonValue) === "object") {
+                                                                if (dataCaryonValue["$hex"] != undefined && dataCaryonValue["$hex"][0] === "$") {
+                                                                    dataCaryonValue = dataCaryonValue["$hex"];
+                                                                }
+                                                            }
                                                         console.info("dataCaryonValue", dataCaryonValue);
 
                                                         if (!(dataCaryonValue != undefined && __WEBPACK_IMPORTED_MODULE_7__Richang_JSEX_objectOBJ_js__["default"].isEmptyObject(dataCaryonValue) != true)) {
-                                                            _context5.next = 28;
+                                                            _context5.next = 29;
                                                             break;
                                                         }
 
                                                         if (!varSystem.isFormula(dataCaryonValue)) {
-                                                            _context5.next = 25;
+                                                            _context5.next = 26;
                                                             break;
                                                         }
 
@@ -14671,31 +14676,31 @@ RenderCaryon.prototype.renderDocument = function () {
                                                             getValue: getValue
                                                         });
 
-                                                        _context5.next = 22;
+                                                        _context5.next = 23;
                                                         return varSystem.evalVar(dataCaryonValue, layer.id, names);
 
-                                                    case 22:
+                                                    case 23:
                                                         getValue = _context5.sent;
-                                                        _context5.next = 26;
+                                                        _context5.next = 27;
                                                         break;
-
-                                                    case 25:
-                                                        getValue = dataCaryonValue;
 
                                                     case 26:
-                                                        _context5.next = 32;
+                                                        getValue = dataCaryonValue;
+
+                                                    case 27:
+                                                        _context5.next = 33;
                                                         break;
 
-                                                    case 28:
-                                                        _context5.next = 30;
+                                                    case 29:
+                                                        _context5.next = 31;
                                                         return _this._getLayerDataByNamse(rootName, names, layer.id);
 
-                                                    case 30:
+                                                    case 31:
                                                         getValue = _context5.sent;
 
                                                         console.info("getValue", getValue);
 
-                                                    case 32:
+                                                    case 33:
 
                                                         if (getValue != undefined) {
                                                             _varNames = assignmentValue.split(/[,，]/);
@@ -14720,22 +14725,22 @@ RenderCaryon.prototype.renderDocument = function () {
                                                             }
                                                         }
 
-                                                    case 33:
-                                                        _context5.next = 38;
+                                                    case 34:
+                                                        _context5.next = 39;
                                                         break;
 
-                                                    case 35:
-                                                        _context5.prev = 35;
+                                                    case 36:
+                                                        _context5.prev = 36;
                                                         _context5.t2 = _context5["catch"](1);
 
                                                         console.error(_context5.t2);
 
-                                                    case 38:
+                                                    case 39:
                                                     case "end":
                                                         return _context5.stop();
                                                 }
                                             }
-                                        }, _callee5, this, [[1, 35]]);
+                                        }, _callee5, this, [[1, 36]]);
                                     }));
 
                                     return function _asDo2(_x20, _x21) {

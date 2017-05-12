@@ -574,6 +574,13 @@ RenderCaryon.prototype.renderDocument = async function (varUpdateMode, varUpdate
                         if (enable)
                         {
                             var dataCaryonValue = OBJ.getObjectValueByNames(layer[rootName], names);
+                            if (TYP.type(dataCaryonValue) === "object")// 处理色彩
+                            {
+                                if (dataCaryonValue["$hex"] != undefined && dataCaryonValue["$hex"][0] === "$")
+                                {
+                                    dataCaryonValue = dataCaryonValue["$hex"]
+                                }
+                            }
                             console.info("dataCaryonValue", dataCaryonValue)
                             if (dataCaryonValue != undefined && (OBJ.isEmptyObject(dataCaryonValue) != true))
                             {
