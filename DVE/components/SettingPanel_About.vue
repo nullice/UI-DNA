@@ -4,7 +4,8 @@
             v-bind:area_suspend="true"
     >
 
-        <auto-update v-if="showAutoUpdate" v-bind:info="autoUpdateInfo" v-bind:show.sync="showAutoUpdate"></auto-update>
+        <auto-update v-if="showAutoUpdate" v-bind:info="autoUpdateInfo"
+                     v-bind:show.sync="showAutoUpdate"></auto-update>
 
 
         <div v-if="updateInfo.hasNewVar" class="var-update-box animated  bounceInLeft"
@@ -20,25 +21,22 @@
         <div class="top-box">
 
             <div class="logo-box">
-                <div class="logo"><i  title="{{'访问官网'|lang}}" v-on:click="openUrl('http://design-enzyme.com/UI-DNA')"
-                        class="iconfont  icon-ui-dna"></i></div>
+                <div class="logo"><i title="{{'访问官网'|lang}}" v-on:click="openUrl('http://design-enzyme.com/UI-DNA')"
+                                     class="iconfont  icon-ui-dna"></i></div>
             </div>
 
             <div class="lnfo-box">
-
                 <div class="lnfo-cell">
                     <div class="logo_title">UI DNA</div>
                     <div class="logo_version" title="{{'检查更新'|lang}}" v-on:click="click_update">
                         <span class="ver-tag">Beta</span>
                         <span class="ver sapn" title="{{UIDNA.varData}}">{{UIDNA.version}}</span>
-                        <!--<sapn class="ver-data">- {{UIDNA.varData}}</sapn>-->
                     </div>
                 </div>
 
                 <div class="lnfo-cell right">
                     <div class="info">
                         设计构建工具
-
                     </div>
                     <div class="author" title="{{'作者主页 ： nullice.com'|lang}}"
                          v-on:click="openUrl('http://nullice.com')"><span class="by">by </span>nullice
@@ -46,7 +44,8 @@
                 </div>
 
                 <div class="net-messge-box">
-                    <div v-bind:title="x.url" class=" marquee msg-item lv{{x.lv}}" v-for="x in messge" v-show="x.lv > 0">
+                    <div v-bind:title="x.url" class=" marquee msg-item lv{{x.lv}}" v-for="x in messge"
+                         v-show="x.lv > 0">
                         <span class="" v-on:click="msgOpen(x.url)"> {{x.messge}} </span>
                     </div>
                 </div>
@@ -294,8 +293,26 @@
     export default {
         data(){
             return {
+
+
                 UIDNA: UIDNA,
                 messge: {},
+// [ {
+//                    "messge": "目前是测试版 BUG 较多请大家多提供反馈",
+//                    "url":"http://re-dna.cn",
+//                    "lv": "3"
+//                },
+//                    {
+//                        "messge": "sdfsadf ~",
+//                        "url":"http://re-dna.cn",
+//                        "lv": "2"
+//                    }
+//                    ,
+//                    {
+//                        "messge": "不显示",
+//                        "url":"http://re-dna.cn",
+//                        "lv": "1"
+//                    }],
                 opn: opn,
                 openUrl: appCaryon.openUrl,
                 o_msg_bubble: UI_model.msg_bubble.setting_panel,
@@ -303,16 +320,15 @@
                     hasNewVar: false,
                     latestVar: {}
                 },
-                showAutoUpdate:false,
-                autoUpdateInfo:{},
-
+                showAutoUpdate: false,
+                autoUpdateInfo: {},
             }
         },
 
 
         ready: function ()
         {
-            this.checkMessge()
+//            this.checkMessge()
 
             this.checkUpdate()
         },
@@ -324,13 +340,12 @@
             },
             newVerUpdata: function ()
             {
-
                 if (this.updateInfo.latestVar.autoUpdate != undefined)
                 {
 //                    if (UIDNA_BASE_VERINNDEX == +this.updateInfo.latestVar.autoUpdate.minBaseVer)
                     if (UIDNA_BASE_VERINNDEX >= +this.updateInfo.latestVar.autoUpdate.minBaseVer)
                     {
-                        this.showAutoUpdate =true
+                        this.showAutoUpdate = true
                         this.autoUpdateInfo = this.updateInfo.latestVar
 
 //                        appCaryon.startAutoUptate(this.updateInfo.latestVar.autoUpdate.url,
@@ -381,7 +396,7 @@
 
         components: {
             "a-area": Area,
-            "auto-update":AutoUpdate
+            "auto-update": AutoUpdate
         },
 
     };

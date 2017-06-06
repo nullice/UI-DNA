@@ -1,5 +1,6 @@
 <template>
 
+    <ps-theme></ps-theme>
     <!---->
     <!---->
     <vue-color-cylinder v-show="UI_model.msg_color_picker.color1.show"
@@ -797,12 +798,10 @@
             vertical-align: middle;
         }
     }
-
     span.auto-add-assign {
         cursor: default;
         user-select: none;
     }
-
     /*.exmo_area .tag-box{*/
     /*!*display: none;*!*/
     /*opacity: 0;*/
@@ -1000,7 +999,7 @@
     import ColorInput from '../components/AttributePanel_color.vue';
     import AttrOptionMenu from "./AttributePanel_optionMenu.vue"
     import BubbleBox from '../components/MessageBox/BubbleBox.vue';
-
+    import PsTheme from '../components/PsTheme.vue';
 
     //import CompA from '../components/A.vue'
 
@@ -1308,6 +1307,7 @@
             "color-input": ColorInput,
             "bubble-box": BubbleBox,
             "attr-option-menu": AttrOptionMenu,
+            "ps-theme":PsTheme
 //        "comp-a":ValueInput
         }
     };

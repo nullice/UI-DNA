@@ -1284,7 +1284,6 @@
 
                 .sub {
                     color: rgba(0, 0, 0, 0.34);
-                    padding-left: 5px;
                 }
 
                 .func_enable {

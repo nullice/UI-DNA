@@ -101,9 +101,7 @@ var GobCaryon = function ()
     giveSetter(this.quickEffect, ["quickEffect"], 1);
     giveSetter(this.more, ["more"], 1);
 
-
     return this;
-
 
     // END
     function giveSetter(object, names, index)

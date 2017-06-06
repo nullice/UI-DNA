@@ -926,7 +926,6 @@ Enzymes.prototype.DNAExpress = function (mRNA_Layers)
 {
     return new Promise(function (resolve, reject)
     {
-
         var obJson = JSON.stringify(mRNA_Layers);
         var _jsxCode = `EnzJSX.DNAExpress(${obJson})`
 

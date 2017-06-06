@@ -14,7 +14,7 @@
             {{dataCaryon.layers|json}}
              </code></pre>
         </div>
-
+        <br>
         <input type="checkbox" id="advance_45" autocomplete="off" >
         <label class="btn btn_primary"
                for="advance_45">
@@ -26,7 +26,7 @@
              </code></pre>
         </div>
 
-
+        <br>
         <input type="checkbox" id="advance_46" autocomplete="off" >
         <label class="btn btn_primary"
                for="advance_46">
@@ -38,7 +38,7 @@
              </code></pre>
         </div>
 
-
+        <br>
         <input type="checkbox" id="advance_47" autocomplete="off" >
         <label class="btn btn_primary"
                for="advance_47">
@@ -50,9 +50,7 @@
              </code></pre>
         </div>
 
-
-
-
+        <br>
         <input type="checkbox" id="advance_48" autocomplete="off" >
         <label class="btn btn_primary"
                for="advance_48">
