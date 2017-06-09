@@ -1044,8 +1044,9 @@ Kinase.layer.setAppearance_byActive = function (appearanceInfo)
 }
 
 
+
 /**
- * 获取文本图层的各文本信息
+ * 获取文本图层的各种信息
  * @param {function} targetReference - 目标图层类型 ，可以是 Kinase.REF_ActiveLayer - 当前选中图层、Kinase.REF_LayerID - 根据图层 ID 、Kinase.REF_ItemIndex - 根据图层 ItemIndex。
  * @param target - 目标图层参数，根据图层类型，填入图层 ID 或者 ItemIndex 。当目标图层类型是 Kinase.REF_ActiveLayer 时，请填 null。
  * @returns {{text: null, bounds: {x: null, y: null, w: null, h: null}, boundingBox: {x: null, y: null, w: null, h: null}, color: {r: null, g: null, b: null}, size: null, fontPostScriptName: null, bold: null, italic: null, antiAlias: null, underline: null, justification: null, leading: null, tracking: null, baselineShift: null, horizontalScale: null, verticalScale: null}}
