@@ -659,7 +659,7 @@
             </select-input>
 
 
-            <h3><span> {{'自定义' | lang}} </span></h3>
+            <h3><span> {{'额外' | lang}} </span></h3>
 
             <value-input v-bind:name="Lang.from('标签')"
                          v-bind:title="Lang.from('自定义标签')"
