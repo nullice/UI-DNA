@@ -14,8 +14,6 @@ import OBJ from "./Richang_JSEX/objectOBJ"
  */
 var DataCaryon = function ()
 {
-
-
     //实际存储属性
     this._layers = {}
     this._doc = {}

@@ -100,7 +100,7 @@
 
             <br>
 
-
+            <!--<qp-template></qp-template>-->
         </div>
 
 
@@ -147,6 +147,7 @@
 </style>
 <script>
     import  MenuButtom from '../components/MenuButtom.vue'
+    import  QuickPanel_template from '../components/QuickPanel_template.vue'
     var path = require("path")
     var fs = require("fs")
     export default{
@@ -174,7 +175,6 @@
                 o_linkLayer: true,
                 o_deleteOrgMask: true,
                 o_rasterizeLayer: false,
-
 
                 fill_data_item_list: [],
                 fill_data_item_list_org: [
@@ -461,7 +461,8 @@
         },
         computed: {},
         components: {
-            "menu-buttom": MenuButtom
+            "menu-buttom": MenuButtom,
+            "qp-template":QuickPanel_template
         }
     }
 </script>

@@ -1804,6 +1804,8 @@ GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA, fo
     {
         var ob = {}
         _copyOb(Gob.text, ob)
+        //不导出文本内容，所以删除 .text
+        delete ob.text
         return returnFilter(JSON.stringify({text: ob}, null, format))
     }
     else if (segment === "shape")
