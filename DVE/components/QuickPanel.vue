@@ -1783,7 +1783,7 @@
                     {
                         intArr = [intArr[0], intArr[0], intArr[0], intArr[0]]
                     }
-                     else if (intArr.length == 2)
+                    else if (intArr.length == 2)
                     {
                         intArr = [intArr[0], intArr[1], intArr[0], intArr[1]]
                     }
@@ -2168,6 +2168,7 @@
 
                 if (this.o_derive_matrix_copyDataCaryon)
                 {
+                    console.log("oldIds：", oldIds, "newIds：", newIds)
                     this.deriveSyncdataCaryon(oldIds, newIds)
                 }
             },

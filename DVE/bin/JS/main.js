@@ -23710,6 +23710,7 @@ exports.default = {
 
 
                                 if (this.o_derive_matrix_copyDataCaryon) {
+                                    console.log("oldIds：", oldIds, "newIds：", newIds);
                                     this.deriveSyncdataCaryon(oldIds, newIds);
                                 }
 
