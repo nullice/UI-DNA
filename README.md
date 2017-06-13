@@ -38,8 +38,9 @@ UI 设计构建工具 - Photoshop 扩展 - Windows/MacOS
 ## 结构
 UI-DNA 基本结构如下：
 
-![](http://ww1.sinaimg.cn/large/c35419f1gy1fer61z31u7j20nn0rbt9q.jpg)
-
+<p align="center">
+<img  src="http://ww1.sinaimg.cn/large/c35419f1gy1fer61z31u7j20nn0rbt9q.jpg">
+</p>
 
 更多信息慢慢详细写....
  
