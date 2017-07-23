@@ -30,12 +30,22 @@
           <file leaf-file-name="gobCaryon.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="304">
-                  <caret line="1509" column="10" lean-forward="false" selection-start-line="1509" selection-start-column="10" selection-end-line="1509" selection-end-column="10" />
+                <state relative-caret-position="892">
+                  <caret line="1448" column="32" lean-forward="false" selection-start-line="1448" selection-start-column="32" selection-end-line="1448" selection-end-column="32" />
                   <folding>
                     <element signature="e#41#85#0" expanded="true" />
-                    <element signature="e#48545#49054#0" expanded="false" />
+                    <element signature="e#48645#49154#0" expanded="false" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AttributePanel_optionMenu.vue" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/components/AttributePanel_optionMenu.vue">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="441">
+                  <caret line="301" column="41" lean-forward="false" selection-start-line="301" selection-start-column="41" selection-end-line="301" selection-end-column="41" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -67,13 +77,13 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="336">
-                  <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+                <state relative-caret-position="588">
+                  <caret line="327" column="21" lean-forward="false" selection-start-line="327" selection-start-column="21" selection-end-line="327" selection-end-column="21" />
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
-                    <element signature="e#2964#3015#0" expanded="true" />
-                    <element signature="e#4063#4127#0" expanded="true" />
-                    <element signature="e#6736#6792#0" expanded="true" />
+                    <element signature="e#2962#3013#0" expanded="true" />
+                    <element signature="e#4056#4118#0" expanded="true" />
+                    <element signature="e#6715#6771#0" expanded="true" />
                   </folding>
                 </state>
               </provider>
@@ -127,16 +137,6 @@
                   <folding>
                     <element signature="n#!!doc" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="Download.vue" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/../../DesignEnzyme/SPA/UI-DNA/src/view/Download.vue">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="357">
-                  <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-                  <folding />
                 </state>
               </provider>
             </entry>
@@ -270,7 +270,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>,</find>
       <find>,oad</find>
       <find>,oa</find>
       <find>lo</find>
@@ -299,6 +298,7 @@
       <find>renderPatch</find>
       <find>GobCaryon.updateGob 大于最大选中限制时，忽略</find>
       <find>nowSwitching</find>
+      <find>强制刷新</find>
       <find>up</find>
     </findStrings>
     <replaceStrings>
@@ -329,7 +329,6 @@
         <option value="$PROJECT_DIR$/components/area.vue" />
         <option value="$PROJECT_DIR$/components/AttributePanel_valueInput.vue" />
         <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/components/AttributePanel_optionMenu.vue" />
         <option value="$PROJECT_DIR$/components/LayerSelectors.vue" />
         <option value="$PROJECT_DIR$/bin/JS/main.js" />
         <option value="$PROJECT_DIR$/components/MenuButtom.vue" />
@@ -359,7 +358,6 @@
         <option value="$PROJECT_DIR$/components/QuickPanel.vue" />
         <option value="E:/Project/[GitHub]/nullice-resume/resume.html" />
         <option value="E:/Project/[GitHub]/nullice-resume/1`.html" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="C:/Program Files (x86)/Common Files/Adobe/CEP/extensions/Lanhu_Extension/jsx/main.jsx" />
         <option value="C:/Program Files/Adobe/Adobe Photoshop CC 2017/Plug-ins/Generator/io.zeplin.photoshop-plugin/lib/jsx/exportAssets.jsx" />
         <option value="$PROJECT_DIR$/Caryon/eventCaryon.js" />
@@ -369,6 +367,8 @@
         <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/Caryon/loggerCaryon.js" />
         <option value="$PROJECT_DIR$/Caryon/renderCaryon.js" />
+        <option value="$PROJECT_DIR$/components/AttributePanel_optionMenu.vue" />
+        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/Caryon/gobCaryon.js" />
       </list>
     </option>
@@ -855,12 +855,12 @@
       <workItem from="1500029517737" duration="817000" />
       <workItem from="1500258490444" duration="4488000" />
       <workItem from="1500337170230" duration="1263000" />
-      <workItem from="1500797553276" duration="8238000" />
+      <workItem from="1500797553276" duration="10078000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3734587000" />
+    <option name="totallyTimeSpent" value="3736427000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1012,13 +1012,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1819">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/components/AttributePanel_optionMenu.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="341" column="41" lean-forward="true" selection-start-line="341" selection-start-column="41" selection-end-line="341" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -1319,26 +1312,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/components/AttributePanel_optionMenu.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="441">
+          <caret line="301" column="41" lean-forward="false" selection-start-line="301" selection-start-column="41" selection-end-line="301" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="298" column="0" lean-forward="false" selection-start-line="298" selection-start-column="0" selection-end-line="298" selection-end-column="0" />
+        <state relative-caret-position="588">
+          <caret line="327" column="21" lean-forward="false" selection-start-line="327" selection-start-column="21" selection-end-line="327" selection-end-column="21" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#2964#3015#0" expanded="true" />
-            <element signature="e#4063#4127#0" expanded="true" />
-            <element signature="e#6736#6792#0" expanded="true" />
+            <element signature="e#2962#3013#0" expanded="true" />
+            <element signature="e#4056#4118#0" expanded="true" />
+            <element signature="e#6715#6771#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Caryon/gobCaryon.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="1509" column="10" lean-forward="false" selection-start-line="1509" selection-start-column="10" selection-end-line="1509" selection-end-column="10" />
+        <state relative-caret-position="892">
+          <caret line="1448" column="32" lean-forward="false" selection-start-line="1448" selection-start-column="32" selection-end-line="1448" selection-end-column="32" />
           <folding>
             <element signature="e#41#85#0" expanded="true" />
-            <element signature="e#48545#49054#0" expanded="false" />
+            <element signature="e#48645#49154#0" expanded="false" />
           </folding>
         </state>
       </provider>

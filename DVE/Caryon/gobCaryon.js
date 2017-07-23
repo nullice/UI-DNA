@@ -35,7 +35,7 @@ var GobCaryon = function () {
     this.selectUpdateing = false;
     this.disableRender = false //不渲染
     this.disableAttrPanel = false //AttrPanel 关闭了，不需要更新
-    this.updateTimestamp = ""
+    this.updateTimestamp = null
 
 
     this.nowSwitching = false;//是否在切换选中图层中
@@ -1026,7 +1026,7 @@ GobCaryon.prototype._getData = function (names) {
 /**
  * 更新选中图层。会触发 GobCaryon.updateGob()                                                                                                                                                                                                                                                                                                                                                           。
  */
-GobCaryon.prototype.updateSelect = _.debounce(async function () {
+GobCaryon.prototype.updateSelect = async function () {
 
 
     if (this.disableSelectEvent)// 如果设置了停止选择更新开关则返回
@@ -1127,7 +1127,7 @@ GobCaryon.prototype.updateSelect = _.debounce(async function () {
     console.log("selectUpdateing:false")
     console.groupEnd()
     logger.log("%c【结束】选中图层周期 -------------------- ", "color:#999;")
-}, 500)
+}
 
 
 /*------------------------------------------------------------------*/
@@ -1323,7 +1323,14 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color) {
  * @param disableRender 禁止 Gob 更新期间渲染图层
  * @returns {Promise.<void>}
  */
-GobCaryon.prototype.updateGob = _.debounce(async function (disableRender) {
+GobCaryon.prototype.updateGob = async function (disableRender) {
+
+
+    if (this.updateTimestamp != undefined)
+    {
+        console.info("updateGob updateTimestamp 未跳出")
+        return
+    }
 
     var self = this;
     var onceUpdateTimestamp = (new Date()).getTime().toString(36)
@@ -1417,8 +1424,8 @@ GobCaryon.prototype.updateGob = _.debounce(async function (disableRender) {
             } else/*大于最大选中限制时，忽略*/
             {
                 console.log("GobCaryon.updateGob 大于最大选中限制时，忽略")
-                _setObejctAll(temp, Gob.MULT)
                 Gob.position.$anchor = setSystem.gob.$anchor;
+                _setObejctAll(temp, Gob.MULT)
 
                 function _setObejctAll(object, value)
                 {
@@ -1438,6 +1445,8 @@ GobCaryon.prototype.updateGob = _.debounce(async function (disableRender) {
                         }
                     }
                 }
+
+                await sleep(1000)
 
 
             }
@@ -1495,50 +1504,24 @@ GobCaryon.prototype.updateGob = _.debounce(async function (disableRender) {
     console.timeEnd("属性赋值到 Gob 耗时:")
     console.groupEnd()
 
-    sleep(50)
+    await sleep(500)
 
-    setTimeout(function () {
-
-        if (self.updateTimestamp == onceUpdateTimestamp)
-        {
-            self.disableRender = false;//恢复默认值；
-            self._neverUpdate = false //未更新过 = false
-            self.nowSwitching = false
-            console.log("【this.nowSwitching = false】", onceUpdateTimestamp)
-        }
-
-    }, 300)
-
-
-    // this.nowSwitching = false;
-    // this._asyncSetSwitch = false;
-
-    // //----------------更新图层后渲染
-    // console.log("this.selectRender:", this.selectRender, " varSystem.autoRender", setSystem.autoRender, " selectChanged:", this.selectChanged,
-    //     " renderCaryon.status.rendering:", renderCaryon.status.rendering,
-    // )
-    // console.log("this.selectRenderVarList:", this.selectRenderVarList)
-    //
-    //
-    // if (this.selectRender && setSystem.autoRender && !this.selectChanged && !renderCaryon.status.rendering)
-    // {
-    //     if (this.selectRenderVarList != undefined && this.selectRenderVarList.length > 0)
-    //     {
-    //         console.log("更新图层后渲染")
-    //         // renderCaryon.renderDocument(true, this.selectRenderVarList)
-    //     }
-    // }
-    console.groupEnd();
-
+    if (self.updateTimestamp == onceUpdateTimestamp)
+    {
+        self.disableRender = false;//恢复默认值；
+        self._neverUpdate = false //未更新过 = false
+        self.nowSwitching = false
+        console.log("【this.nowSwitching = false】", onceUpdateTimestamp)
+        this.updateTimestamp = null
+    }
 
     if (this._unripe)
     {
-        setTimeout(function () {
-            self._unripe = false;
-            logger.info("[准备完成] _unripe")
-        }, 500)
-
+        self._unripe = false;
+        logger.info("[准备完成] _unripe")
     }
+
+    console.groupEnd();
     console.timeEnd("updateGob 耗时")
     logger.groupEnd()
 
@@ -1719,7 +1702,7 @@ GobCaryon.prototype.updateGob = _.debounce(async function (disableRender) {
     }
 
 
-}, 300)
+}
 
 
 function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)

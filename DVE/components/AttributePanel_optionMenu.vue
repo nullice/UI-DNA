@@ -299,7 +299,9 @@
 
                 Gob.disableSelectEvent =false;
                 Gob.selectUpdateing = false;
+                Gob.updateTimestamp =null
                 Gob.updateSelect()
+
                 setTimeout(function ()
                 {
                     self.nowFreshen = false

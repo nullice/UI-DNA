@@ -3,8 +3,6 @@
  */
 
 
-
-
 // import Vue from "vue";
 import App from "./components/area.vue";
 // import vi from "./components/AttributePanel_valueInput.vue";
@@ -96,17 +94,16 @@ window.FIL = FIL
 
 // 异步封装-------------------------------------
 
-window.svgoAsync = async function (svg)
-{
-    return new Promise(function (resolve, reject)
-    {
+window.svgoAsync = async function (svg) {
+    return new Promise(function (resolve, reject) {
         window.svgo.optimize(svg, (r) => {resolve(r)})
     })
 }
 
 
 //日志记录系统 -------------------------------------
-import  LoggerCaryon  from "./Caryon/loggerCaryon.js";
+import LoggerCaryon from "./Caryon/loggerCaryon.js";
+
 var logger = new LoggerCaryon();
 window.logger = logger;
 
@@ -123,24 +120,28 @@ logger.info(
 
 
 //数据结构--------------------------------------------
-import  IchiColor_base  from "./Caryon/IchiColor/ichi-color.js";
-import  IchiColor_ex  from "./Caryon/IchiColor/ichi-color-extension";
+import IchiColor_base from "./Caryon/IchiColor/ichi-color.js";
+import IchiColor_ex from "./Caryon/IchiColor/ichi-color-extension";
+
 var IchiColor = IchiColor_ex(IchiColor_base);
 window.IchiColor = IchiColor;
 window.ichiColor = new IchiColor();
 
-import  ColorRNA  from "./Caryon/IchiColor/lib/ColorRNA.js";
+import ColorRNA from "./Caryon/IchiColor/lib/ColorRNA.js";
+
 window.ColorRNA = ColorRNA;
 
 
 //设置系统-------------------------------------
-import  SetSystem  from "./Caryon/settingCaryon";
+import SetSystem from "./Caryon/settingCaryon";
+
 var setSystem = new SetSystem();
 window.setSystem = setSystem;
 
 
 //PhotoShop 接口操作库-------------------------------------
-import  Enzymes  from "./Enzymes/Enzymes";
+import Enzymes from "./Enzymes/Enzymes";
+
 if (typeof window.__adobe_cep__ !== "undefined")
 {
     var enzymes = new Enzymes();
@@ -148,55 +149,66 @@ if (typeof window.__adobe_cep__ !== "undefined")
 }
 
 //渲染系统-------------------------------------
-import  RenderCaryon  from "./Caryon/renderCaryon";
+import RenderCaryon from "./Caryon/renderCaryon";
+
 var renderCaryon = new RenderCaryon();
 window.renderCaryon = renderCaryon;
 
 //数据存储系统-------------------------------------
-import  DataCaryon  from "./Caryon/dataCaryon";
+import DataCaryon from "./Caryon/dataCaryon";
+
 var dataCaryon = new DataCaryon();
 window.dataCaryon = dataCaryon;
 // 变量系统-------------------------------------
-import  VarSystem  from "./Caryon/varSystem";
+import VarSystem from "./Caryon/varSystem";
+
 var varSystem = new VarSystem();
 window.varSystem = varSystem;
 
 //测试系统-------------------------------------
-import  TEST  from "./test/test_core";
+import TEST from "./test/test_core";
+
 var test = new TEST("默认测试");
 window.test = test
 //选中图层处理-------------------------------------
-import  GobCaryon  from "./Caryon/gobCaryon";
+import GobCaryon from "./Caryon/gobCaryon";
+
 var Gob = new GobCaryon("默认测试");
 window.Gob = Gob
 
 //应用功能-------------------------------------
-import  AppCaryon  from "./Caryon/appCaryon";
+import AppCaryon from "./Caryon/appCaryon";
+
 var appCaryon = new AppCaryon();
 window.appCaryon = appCaryon
 
 //网络通信相关-------------------------------------
-import  NetCaryon  from "./Caryon/netCaryon";
+import NetCaryon from "./Caryon/netCaryon";
+
 window.netCaryon = new NetCaryon()
 
 //Photoshop 事件相关-------------------------------------
-import  EventCaryon  from "./Caryon/eventCaryon";
+import EventCaryon from "./Caryon/eventCaryon";
+
 var eventCaryon = new EventCaryon("默认测试");
 window.eventCaryon = eventCaryon
 
 //脚本功能库相关-------------------------------------
-import  Proteins  from "./Proteins/Proteins.js";
+import Proteins from "./Proteins/Proteins.js";
+
 window.Proteins = Proteins
 Proteins.init();
 
 
 //测试相关 -----------------------------------
 window.tests = {};
-import  test_task_Enzymes from "./test/test_Enzymes_JS";
+import test_task_Enzymes from "./test/test_Enzymes_JS";
+
 window.tests.task_Enzymes = test_task_Enzymes;
 
 //多国语相关 -----------------------
-import  Lang from "./Caryon/lang";
+import Lang from "./Caryon/lang";
+
 Vue.filter('lang', Lang.fiterFunc);
 Lang.currentLANG = Lang.LANG_Chiness2English;
 window.Lang = Lang;
@@ -207,6 +219,7 @@ Vue.config.debug = true;//开启错误提示
 Vue.config.devtools = false;
 
 import {UI_model, UI_action} from "./components/UI_model/UI_model.js"
+
 window.UI_model = UI_model;
 window.UI_action = UI_action;
 
@@ -216,9 +229,9 @@ window.UI_action = UI_action;
 import AttrPanel from "./components/AttributePanel.vue";
 import LayerSelectors from "./components/LayerSelectors.vue";
 import VarPanel from "./components/VarPanel.vue";
-import ExpressionPanel from  "./components/ExpressionPanel.vue"
-import QuickPanel from  "./components/QuickPanel.vue"
-import SettingPanel from  "./components/SettingPanel.vue"
+import ExpressionPanel from "./components/ExpressionPanel.vue"
+import QuickPanel from "./components/QuickPanel.vue"
+import SettingPanel from "./components/SettingPanel.vue"
 
 
 //初始化-------------------------------------------
@@ -234,8 +247,7 @@ if (fs.existsSync(path.join(setSystem._path_appDir, "UI-DNA.json")))
     fs.writeFileSync(path.join(setSystem._path_appDir, "UI-DNA.json"), JSON.stringify(UIDNA, null, 4))
     appCaryon.unzipInstallExtra()
 }
-setTimeout(function ()
-{
+setTimeout(function () {
     setSystem.load()
     setSystem.loadLanguage()
     Lang.currentLANG = setSystem.ui.language
@@ -249,10 +261,8 @@ setTimeout(function ()
 var mainVue = new Vue({
     el: 'body',
     data: {setSystem: setSystem},
-    ready: function ()
-    {
-        setTimeout(function ()
-        {
+    ready: function () {
+        setTimeout(function () {
             setSystem.loadAppState()
         }, 300)
 
@@ -286,26 +296,22 @@ if (os.platform() == "darwin")
 //测试 ----------------------
 async function doAsync()
 {
-    return new Promise(function (resolve, reject)
-    {
-        setTimeout(() =>
-        {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
             console.log("sleep 2s");
             resolve(444)
         }, 2000)
     })
 }
 
-window.sleep = async function (ms)
-{
-    return new Promise(function (resolve, reject)
-    {
-        setTimeout(() =>
-        {
+window.sleep = async function (ms) {
+    return new Promise(function (resolve, reject) {
+        setTimeout(() => {
             resolve()
         }, ms)
     })
 }
+
 async function asyncTask()
 {
 
@@ -315,6 +321,12 @@ async function asyncTask()
     return 2016
 }
 
+window.sleepTask  =  async function (ms) {
+
+    console.log("等待",ms,"ms")
+    await  sleep(ms)
+    console.log("等待完了",ms,"ms")
+}
 
 var __result = asyncTask()
 console.log("sss_end" + __result)

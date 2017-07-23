@@ -10049,6 +10049,7 @@ window.svgoAsync = function () {
 }();
 
 
+
 var logger = new __WEBPACK_IMPORTED_MODULE_10__Caryon_loggerCaryon_js__["a" /* default */]();
 window.logger = logger;
 
@@ -10059,16 +10060,20 @@ logger.info("3,2,1 " + "%c" + UIDNA.name + " v" + UIDNA.version + " -" + UIDNA.c
 
 
 
+
 var IchiColor = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_12__Caryon_IchiColor_ichi_color_extension__["default"])(__WEBPACK_IMPORTED_MODULE_11__Caryon_IchiColor_ichi_color_js__["default"]);
 window.IchiColor = IchiColor;
 window.ichiColor = new IchiColor();
 
 
+
 window.ColorRNA = __WEBPACK_IMPORTED_MODULE_13__Caryon_IchiColor_lib_ColorRNA_js__["default"];
+
 
 
 var setSystem = new __WEBPACK_IMPORTED_MODULE_14__Caryon_settingCaryon__["a" /* default */]();
 window.setSystem = setSystem;
+
 
 
 if (typeof window.__adobe_cep__ !== "undefined") {
@@ -10077,35 +10082,44 @@ if (typeof window.__adobe_cep__ !== "undefined") {
 }
 
 
+
 var renderCaryon = new __WEBPACK_IMPORTED_MODULE_16__Caryon_renderCaryon__["a" /* default */]();
 window.renderCaryon = renderCaryon;
+
 
 
 var dataCaryon = new __WEBPACK_IMPORTED_MODULE_17__Caryon_dataCaryon__["a" /* default */]();
 window.dataCaryon = dataCaryon;
 
 
+
 var varSystem = new __WEBPACK_IMPORTED_MODULE_18__Caryon_varSystem__["a" /* default */]();
 window.varSystem = varSystem;
+
 
 
 var test = new __WEBPACK_IMPORTED_MODULE_19__test_test_core__["a" /* default */]("默认测试");
 window.test = test;
 
 
+
 var Gob = new __WEBPACK_IMPORTED_MODULE_20__Caryon_gobCaryon__["a" /* default */]("默认测试");
 window.Gob = Gob;
+
 
 
 var appCaryon = new __WEBPACK_IMPORTED_MODULE_21__Caryon_appCaryon__["a" /* default */]();
 window.appCaryon = appCaryon;
 
 
+
 window.netCaryon = new __WEBPACK_IMPORTED_MODULE_22__Caryon_netCaryon__["a" /* default */]();
+
 
 
 var eventCaryon = new __WEBPACK_IMPORTED_MODULE_23__Caryon_eventCaryon__["a" /* default */]("默认测试");
 window.eventCaryon = eventCaryon;
+
 
 
 window.Proteins = __WEBPACK_IMPORTED_MODULE_24__Proteins_Proteins_js__["a" /* default */];
@@ -10113,7 +10127,9 @@ __WEBPACK_IMPORTED_MODULE_24__Proteins_Proteins_js__["a" /* default */].init();
 
 window.tests = {};
 
+
 window.tests.task_Enzymes = __WEBPACK_IMPORTED_MODULE_25__test_test_Enzymes_JS__["a" /* default */];
+
 
 
 Vue.filter('lang', __WEBPACK_IMPORTED_MODULE_26__Caryon_lang__["a" /* default */].fiterFunc);
@@ -10122,6 +10138,7 @@ window.Lang = __WEBPACK_IMPORTED_MODULE_26__Caryon_lang__["a" /* default */];
 
 Vue.config.debug = true;
 Vue.config.devtools = false;
+
 
 
 window.UI_model = __WEBPACK_IMPORTED_MODULE_27__components_UI_model_UI_model_js__["a" /* UI_model */];
@@ -10200,6 +10217,32 @@ window.sleep = function () {
     };
 }();
 
+window.sleepTask = function () {
+    var _ref5 = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee5(ms) {
+        return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee5$(_context5) {
+            while (1) {
+                switch (_context5.prev = _context5.next) {
+                    case 0:
+
+                        console.log("等待", ms, "ms");
+                        _context5.next = 3;
+                        return sleep(ms);
+
+                    case 3:
+                        console.log("等待完了", ms, "ms");
+
+                    case 4:
+                    case "end":
+                        return _context5.stop();
+                }
+            }
+        }, _callee5, this);
+    }));
+
+    return function (_x3) {
+        return _ref5.apply(this, arguments);
+    };
+}();
 
 var __result = asyncTask();
 console.log("sss_end" + __result);
@@ -11648,7 +11691,7 @@ var GobCaryon = function GobCaryon() {
     this.selectUpdateing = false;
     this.disableRender = false;
     this.disableAttrPanel = false;
-    this.updateTimestamp = "";
+    this.updateTimestamp = null;
 
     this.nowSwitching = false;
     this.stopSelectEvent = false;
@@ -12495,7 +12538,7 @@ GobCaryon.prototype._getData = function (names) {
     return _valueFromObject(this, names, 0, true);
 };
 
-GobCaryon.prototype.updateSelect = _.debounce(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
+GobCaryon.prototype.updateSelect = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
     var self, newList, x, i;
     return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
@@ -12626,7 +12669,7 @@ GobCaryon.prototype.updateSelect = _.debounce(__WEBPACK_IMPORTED_MODULE_2_babel_
             }
         }
     }, _callee2, this, [[20, 41], [30, 36]]);
-})), 500);
+}));
 
 GobCaryon.prototype.getLayerInfoObejct_position = function () {
     var _ref3 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3(layerId) {
@@ -12945,7 +12988,7 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color) {
     }
 };
 
-GobCaryon.prototype.updateGob = _.debounce(function () {
+GobCaryon.prototype.updateGob = function () {
     var _ref9 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee10(disableRender) {
         var _objectToGob_async = function () {
             var _ref10 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee9(srcObject, names, gobThis) {
@@ -13094,6 +13137,15 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                             }
                         };
 
+                        if (!(this.updateTimestamp != undefined)) {
+                            _context10.next = 7;
+                            break;
+                        }
+
+                        console.info("updateGob updateTimestamp 未跳出");
+                        return _context10.abrupt("return");
+
+                    case 7:
                         self = this;
                         onceUpdateTimestamp = new Date().getTime().toString(36);
 
@@ -13121,31 +13173,31 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         console.timeEnd("updateGob前期准备耗时");
 
                         console.time("拉取每个选中图层的数据");
-                        _context10.prev = 27;
+                        _context10.prev = 30;
 
                         if (!(this.selectList.length > 0)) {
-                            _context10.next = 83;
+                            _context10.next = 88;
                             break;
                         }
 
                         if (!(this.selectList.length < setSystem.inset.selectMax)) {
-                            _context10.next = 79;
+                            _context10.next = 82;
                             break;
                         }
 
                         i = 0;
 
-                    case 31:
+                    case 34:
                         if (!(i < this.selectList.length)) {
-                            _context10.next = 77;
+                            _context10.next = 80;
                             break;
                         }
 
                         console.time("position获取耗时");
-                        _context10.next = 35;
+                        _context10.next = 38;
                         return this.getLayerInfoObejct_position(this.selectList[i].id);
 
-                    case 35:
+                    case 38:
                         item_position = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position");
@@ -13153,10 +13205,10 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         console.timeEnd("position获取耗时");
 
                         console.time("text获取耗时");
-                        _context10.next = 42;
+                        _context10.next = 45;
                         return this.getLayerInfoObejct_text(this.selectList[i].id);
 
-                    case 42:
+                    case 45:
                         item_text = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text");
@@ -13164,10 +13216,10 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         console.timeEnd("text获取耗时");
 
                         console.time("shape获取耗时");
-                        _context10.next = 49;
+                        _context10.next = 52;
                         return this.getLayerInfoObejct_shape(this.selectList[i].id);
 
-                    case 49:
+                    case 52:
                         item_shape = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape");
@@ -13175,10 +13227,10 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         console.timeEnd("shape获取耗时");
 
                         console.time("smartObject获取耗时");
-                        _context10.next = 56;
+                        _context10.next = 59;
                         return this.getLayerInfoObejct_smartObject(this.selectList[i].id);
 
-                    case 56:
+                    case 59:
                         item_smartObject = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject");
@@ -13186,10 +13238,10 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         console.timeEnd("smartObject获取耗时");
 
                         console.time("quickEffect获取耗时");
-                        _context10.next = 63;
+                        _context10.next = 66;
                         return this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
 
-                    case 63:
+                    case 66:
                         item_quickEffect = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect");
@@ -13197,26 +13249,26 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         console.timeEnd("quickEffect获取耗时");
 
                         console.time("more获取耗时");
-                        _context10.next = 70;
+                        _context10.next = 73;
                         return this.getLayerInfoObejct_more(this.selectList[i].id);
 
-                    case 70:
+                    case 73:
                         item_more = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more");
                         _objectToObject(item_more, temp.more, true, !(i == 0));
                         console.timeEnd("more获取耗时");
 
-                    case 74:
-                        i++;
-                        _context10.next = 31;
-                        break;
-
                     case 77:
-                        _context10.next = 83;
+                        i++;
+                        _context10.next = 34;
                         break;
 
-                    case 79:
+                    case 80:
+                        _context10.next = 88;
+                        break;
+
+                    case 82:
                         _setObejctAll2 = function _setObejctAll2(object, value) {
 
                             for (var v in object) {
@@ -13231,98 +13283,100 @@ GobCaryon.prototype.updateGob = _.debounce(function () {
                         };
 
                         console.log("GobCaryon.updateGob 大于最大选中限制时，忽略");
-                        _setObejctAll2(temp, Gob.MULT);
                         Gob.position.$anchor = setSystem.gob.$anchor;
+                        _setObejctAll2(temp, Gob.MULT);
 
-                    case 83:
                         _context10.next = 88;
+                        return sleep(1000);
+
+                    case 88:
+                        _context10.next = 93;
                         break;
 
-                    case 85:
-                        _context10.prev = 85;
-                        _context10.t0 = _context10["catch"](27);
+                    case 90:
+                        _context10.prev = 90;
+                        _context10.t0 = _context10["catch"](30);
 
                         console.error("GobCaryon.updateGob 拉取每个选中图层的数据", _context10.t0);
 
-                    case 88:
+                    case 93:
                         console.timeEnd("拉取每个选中图层的数据");
 
 
                         console.group("属性赋值到 Gob");
                         console.time("属性赋值到 Gob 耗时:");
-                        _context10.prev = 91;
-                        _context10.next = 94;
+                        _context10.prev = 96;
+                        _context10.next = 99;
                         return _objectToGob_async(temp.position, ["position"], this);
 
-                    case 94:
-                        _context10.next = 96;
+                    case 99:
+                        _context10.next = 101;
                         return _objectToGob_async(temp.text, ["text"], this);
 
-                    case 96:
-                        _context10.next = 98;
+                    case 101:
+                        _context10.next = 103;
                         return _objectToGob_async(temp.shape, ["shape"], this);
 
-                    case 98:
-                        _context10.next = 100;
+                    case 103:
+                        _context10.next = 105;
                         return _objectToGob_async(temp.smartObject, ["smartObject"], this);
 
-                    case 100:
-                        _context10.next = 102;
+                    case 105:
+                        _context10.next = 107;
                         return _objectToGob_async(temp.quickEffect, ["quickEffect"], this);
 
-                    case 102:
-                        _context10.next = 104;
+                    case 107:
+                        _context10.next = 109;
                         return _objectToGob_async(temp.more, ["more"], this);
 
-                    case 104:
-                        _context10.next = 109;
+                    case 109:
+                        _context10.next = 114;
                         break;
 
-                    case 106:
-                        _context10.prev = 106;
-                        _context10.t1 = _context10["catch"](91);
+                    case 111:
+                        _context10.prev = 111;
+                        _context10.t1 = _context10["catch"](96);
 
                         console.error("GobCaryon.updateGob _objectToGob_async", _context10.t1);
 
-                    case 109:
+                    case 114:
                         console.timeEnd("属性赋值到 Gob 耗时:");
                         console.groupEnd();
 
-                        sleep(50);
+                        _context10.next = 118;
+                        return sleep(500);
 
-                        setTimeout(function () {
+                    case 118:
 
-                            if (self.updateTimestamp == onceUpdateTimestamp) {
-                                self.disableRender = false;
-                                self._neverUpdate = false;
-                                self.nowSwitching = false;
-                                console.log("【this.nowSwitching = false】", onceUpdateTimestamp);
-                            }
-                        }, 300);
-
-                        console.groupEnd();
+                        if (self.updateTimestamp == onceUpdateTimestamp) {
+                            self.disableRender = false;
+                            self._neverUpdate = false;
+                            self.nowSwitching = false;
+                            console.log("【this.nowSwitching = false】", onceUpdateTimestamp);
+                            this.updateTimestamp = null;
+                        }
 
                         if (this._unripe) {
-                            setTimeout(function () {
-                                self._unripe = false;
-                                logger.info("[准备完成] _unripe");
-                            }, 500);
+                            self._unripe = false;
+                            logger.info("[准备完成] _unripe");
                         }
+
+                        console.groupEnd();
                         console.timeEnd("updateGob 耗时");
                         logger.groupEnd();
 
-                    case 117:
+                    case 123:
                     case "end":
                         return _context10.stop();
                 }
             }
-        }, _callee10, this, [[27, 85], [91, 106]]);
+        }, _callee10, this, [[30, 90], [96, 111]]);
     }));
 
     return function (_x11) {
         return _ref9.apply(this, arguments);
     };
-}(), 300);
+}();
 
 function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter) {
 
@@ -19407,7 +19461,9 @@ exports.default = {
 
             Gob.disableSelectEvent = false;
             Gob.selectUpdateing = false;
+            Gob.updateTimestamp = null;
             Gob.updateSelect();
+
             setTimeout(function () {
                 self.nowFreshen = false;
             }, 800);
