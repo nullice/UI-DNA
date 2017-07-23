@@ -118,7 +118,6 @@ EventCaryon.prototype.initEvent = async function ()
 
     // console.log("---initEvent------");
     cs.addEventListener("com.adobe.PhotoshopJSONCallback" + cs.getExtensionID(), EventCaryon.prototype.PhotoshopCallbackUnique);
-
     // var eventMake = 1298866208; // "Mk  "
     // var eventDelete = 1147958304; // "Dlt "
     // var eventClose = 1131180832; // "Cls "
@@ -162,7 +161,6 @@ EventCaryon.prototype.PhotoshopCallbackUnique = function (csEvent)
                     _do_FUNCS(eventCaryon.IDList[i].funcs, ob)
                     break;
                 }
-
             }
 
         }

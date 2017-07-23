@@ -9984,14 +9984,13 @@ var asyncTask = function () {
 
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.16",
-    verIndex: 16,
-    varData: "2017/06/06",
+    version: "0.0.17",
+    verIndex: 17,
+    varData: "2017/06/17",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
     email: "ui@nullice.com"
-
 };
 
 window.UIDNA = UIDNA;
@@ -11518,7 +11517,6 @@ EventCaryon.prototype.initEvent = __WEBPACK_IMPORTED_MODULE_1_babel_runtime_help
                     }
 
                     cs.addEventListener("com.adobe.PhotoshopJSONCallback" + cs.getExtensionID(), EventCaryon.prototype.PhotoshopCallbackUnique);
-
                     event = new CSEvent("com.adobe.PhotoshopRegisterEvent", "APPLICATION");
 
                     event.extensionId = cs.getExtensionID();

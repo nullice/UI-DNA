@@ -3,7 +3,7 @@
  */
 
 //基础版本
-window.UIDNA_BASE_VERINNDEX = 16;
+window.UIDNA_BASE_VERINNDEX = 17;
 
 
 (function ()
@@ -66,7 +66,6 @@ window.UIDNA_BASE_VERINNDEX = 16;
 
     function addScript(src)
     {
-
         var js = document.createElement("script")
         js.src = src
         jslist.push(js)
@@ -89,14 +88,15 @@ window.UIDNA_BASE_VERINNDEX = 16;
                 })(i)
             }else
             {
-
                 jslist[i].onload =  loading_jquery
-
             }
         }
         console.info("loadJs",0,jslist[0])
         scriptBox.appendChild(jslist[0])
     }
+
+
+
 
     function loading_jquery()
     {

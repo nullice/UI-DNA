@@ -43,14 +43,13 @@ import App from "./components/area.vue";
 //重要信息
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.16",
-    verIndex: 16,
-    varData: "2017/06/06",
+    version: "0.0.17",
+    verIndex: 17,
+    varData: "2017/06/17",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
     email: "ui@nullice.com"
-
 }
 
 
@@ -229,11 +228,11 @@ if (fs.existsSync(path.join(setSystem._path_appDir, "UI-DNA.json")))
 {
 
 } else
-{//第一次安装
+{
+    //第一次安装
     console.info("[第一次运行] 安装文件...")
     fs.writeFileSync(path.join(setSystem._path_appDir, "UI-DNA.json"), JSON.stringify(UIDNA, null, 4))
     appCaryon.unzipInstallExtra()
-
 }
 setTimeout(function ()
 {
@@ -275,10 +274,11 @@ window.mainVue = mainVue
 
 //------------------------
 
-if(os.platform()=="darwin")
+if (os.platform() == "darwin")
 {
     $("body").addClass("macos")
-}else {
+} else
+{
     $("body").addClass("windows")
 }
 
