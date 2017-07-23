@@ -296,7 +296,7 @@
                 var self = this
                 self.nowFreshen = true
 
-
+                Gob.nowSwitching =false
                 Gob.disableSelectEvent =false;
                 Gob.selectUpdateing = false;
                 Gob.updateTimestamp =null

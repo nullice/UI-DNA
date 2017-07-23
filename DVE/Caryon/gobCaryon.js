@@ -1105,9 +1105,12 @@ GobCaryon.prototype.updateSelect = async function () {
         try
         {
 
-            if (this.disableAttrPanel != true)// AttrPanel 关闭了，不需要更新
+            if (this.disableAttrPanel != true)
             {
                 await this.updateGob();
+            } else
+            {// AttrPanel 关闭了，不需要更新
+                this.nowSwitching = false;
             }
 
         } catch (e)

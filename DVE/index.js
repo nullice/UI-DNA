@@ -41,9 +41,9 @@ import App from "./components/area.vue";
 //重要信息
 var UIDNA = {
     name: "UI-DNA",
-    version: "0.0.17",
-    verIndex: 17,
-    varData: "2017/06/17",
+    version: "0.0.18",
+    verIndex: 18,
+    varData: "2017/07/24",
     codename: ["Euglena"][0],
     author: "nullice",
     website: "http://design-enzyme.com/UI-DNA",
@@ -332,3 +332,29 @@ var __result = asyncTask()
 console.log("sss_end" + __result)
 
 
+
+//统计用户数
+var analyser= function () {
+    function addAnalyser()
+    {
+        var js = document.createElement("script")
+        js.textContent = `    
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "http://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500493599");
+  		mta.setAttribute("cid", "500493600");
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+  	`
+        var scriptBox = document.getElementById("script-box")
+        scriptBox.appendChild(js)
+    }
+
+    setTimeout(addAnalyser, 1000)
+}
+
+analyser()
