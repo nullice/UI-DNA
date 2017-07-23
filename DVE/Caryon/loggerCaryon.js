@@ -24,8 +24,6 @@ var LoggerCaryon = function ()
         self.saveToFile("error.log")
 
     }
-    util.jsonCensor
-
     return this;
 
 }

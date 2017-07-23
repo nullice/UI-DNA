@@ -3,6 +3,7 @@
  */
 import ARR from "./Richang_JSEX/arrayARR.js"
 import TYP from "./Richang_JSEX/typeTYP.js"
+
 var zlib = require("zlib")
 
 /**
@@ -12,8 +13,7 @@ var zlib = require("zlib")
  * @returns {GobCaryon}
  * @constructor
  */
-var GobCaryon = function ()
-{
+var GobCaryon = function () {
     this.selectList = [];
     this.selectTypes = {
         bitmap: false,
@@ -35,6 +35,7 @@ var GobCaryon = function ()
     this.selectUpdateing = false;
     this.disableRender = false //不渲染
     this.disableAttrPanel = false //AttrPanel 关闭了，不需要更新
+    this.updateTimestamp = ""
 
 
     this.nowSwitching = false;//是否在切换选中图层中
@@ -155,8 +156,7 @@ var GobCaryon = function ()
 }
 
 //属性注册[3/8]
-GobCaryon.prototype.__new_position = function ()
-{
+GobCaryon.prototype.__new_position = function () {
     return {
         x: null,
         y: null,
@@ -167,8 +167,7 @@ GobCaryon.prototype.__new_position = function ()
         enableAssigns: {x: null, y: null, w: null, h: null, $anchor: null}
     }
 }
-GobCaryon.prototype.__new_text = function ()
-{
+GobCaryon.prototype.__new_text = function () {
     return {
         text: null,
         color: {r: null, g: null, b: null, $hex: null},
@@ -221,8 +220,7 @@ GobCaryon.prototype.__new_text = function ()
         }
     }
 }
-GobCaryon.prototype.__new_shape = function ()
-{
+GobCaryon.prototype.__new_shape = function () {
     return {
         strokeColor: {r: null, g: null, b: null, $hex: null}, /*描边颜色*/
         strokeColorEnabled: null, /*启用描边*/
@@ -283,8 +281,7 @@ GobCaryon.prototype.__new_shape = function ()
 }
 
 
-GobCaryon.prototype.__new_smartObject = function ()
-{
+GobCaryon.prototype.__new_smartObject = function () {
     return {
         linked: null, /*是否为链接对象*/
         link: null, /*链接地址*/
@@ -294,8 +291,7 @@ GobCaryon.prototype.__new_smartObject = function ()
     }
 }
 
-GobCaryon.prototype.__new_quickEffect = function ()
-{
+GobCaryon.prototype.__new_quickEffect = function () {
     return {
         dropShadow: {
             enable: null,
@@ -366,8 +362,7 @@ GobCaryon.prototype.__new_quickEffect = function ()
     }
 }
 
-GobCaryon.prototype.__new_more = function ()
-{
+GobCaryon.prototype.__new_more = function () {
     return {
         layerName: null, /*图层名*/
         $alias: null, /*别名*/
@@ -453,8 +448,7 @@ GobCaryon.prototype.__new_more = function ()
  * @returns {Promise.<void>}
  * @private
  */
-GobCaryon.prototype._setData = async function (names, value, onlySet)
-{
+GobCaryon.prototype._setData = async function (names, value, onlySet) {
 
     // console.log(`_setData([${names}], ${value}):`)
     var isFormula = false;
@@ -627,8 +621,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                     type: "antiAlias",
                     nameList: ["antiAlias"],
                     valueEnum: null,
-                    judgementFunc: function (value)
-                    {
+                    judgementFunc: function (value) {
                         if (value != undefined)
                         {
                             if (value.slice(0, 9) == "antiAlias")
@@ -646,8 +639,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                     type: "pathText",
                     nameList: ["link", "fileReference", 'layerName', 'fontPostScriptName'],
                     valueEnum: null,
-                    judgementFunc: function (value)
-                    {
+                    judgementFunc: function (value) {
                         if (value != undefined)
                         {
                             if (value[0] == ">")//>开头的路径要要经过变量处理
@@ -664,8 +656,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                     type: "rgnColor",
                     nameList: ["r", "g", 'b'],
                     valueEnum: null,
-                    judgementFunc: function (value)
-                    {
+                    judgementFunc: function (value) {
                         return true
                     }
                 },
@@ -854,8 +845,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
                                 if (re != undefined && re.newId != undefined && re.newId != this.selectList[i].id)
                                 {
                                     var layerId = this.selectList[i].id
-                                    Gob.selectList.map(function (x)
-                                    {
+                                    Gob.selectList.map(function (x) {
                                         if (x.id == layerId)
                                         {
                                             x.id = re.newId
@@ -867,8 +857,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
 
                                     if (save != undefined)
                                     {
-                                        save = save.map(function (x)
-                                        {
+                                        save = save.map(function (x) {
                                             if (x == layerId)
                                             {
                                                 return re.newId
@@ -1011,8 +1000,7 @@ GobCaryon.prototype._setData = async function (names, value, onlySet)
  * @returns {*}
  * @private
  */
-GobCaryon.prototype._getData = function (names)
-{
+GobCaryon.prototype._getData = function (names) {
     function _valueFromObject(fromObject, names, nameIndex, prefix)
     {
         var isLastName = nameIndex == names.length - 1
@@ -1038,8 +1026,7 @@ GobCaryon.prototype._getData = function (names)
 /**
  * 更新选中图层。会触发 GobCaryon.updateGob()                                                                                                                                                                                                                                                                                                                                                           。
  */
-GobCaryon.prototype.updateSelect = async function ()
-{
+GobCaryon.prototype.updateSelect = _.debounce(async function () {
 
 
     if (this.disableSelectEvent)// 如果设置了停止选择更新开关则返回
@@ -1055,6 +1042,15 @@ GobCaryon.prototype.updateSelect = async function ()
     if (this.selectUpdateing)// 如果另外的更新未结束则返回。
     {
         return;
+    }
+
+    if (this.nowSwitching) // 如果正在切换图层，等待 500 ms 后再刷新选中
+    {
+        var self = this;
+        setTimeout(function () {
+            self.updateSelect()
+        }, 500)
+        return
     }
 
 
@@ -1131,14 +1127,13 @@ GobCaryon.prototype.updateSelect = async function ()
     console.log("selectUpdateing:false")
     console.groupEnd()
     logger.log("%c【结束】选中图层周期 -------------------- ", "color:#999;")
-}
+}, 500)
 
 
 /*------------------------------------------------------------------*/
 
 
-GobCaryon.prototype.getLayerInfoObejct_position = async function (layerId)
-{
+GobCaryon.prototype.getLayerInfoObejct_position = async function (layerId) {
     //[position]---------------------------------------------------------------
     var item_position = this.__new_position();
 
@@ -1160,8 +1155,7 @@ GobCaryon.prototype.getLayerInfoObejct_position = async function (layerId)
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_text = async function (layerId)
-{
+GobCaryon.prototype.getLayerInfoObejct_text = async function (layerId) {
     //[text]---------------------------------------------------------------
     var item_text = this.__new_text();
 
@@ -1191,8 +1185,7 @@ GobCaryon.prototype.getLayerInfoObejct_text = async function (layerId)
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
-{
+GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId) {
     // [shape]---------------------------------------------------------------
     var item_shape = this.__new_shape();
     try
@@ -1218,8 +1211,7 @@ GobCaryon.prototype.getLayerInfoObejct_shape = async function (layerId)
     return item_shape
 }
 
-GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
-{
+GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId) {
     // [smartObject]---------------------------------------------------------------
     var item_smartObject = this.__new_smartObject();
 
@@ -1240,8 +1232,7 @@ GobCaryon.prototype.getLayerInfoObejct_smartObject = async function (layerId)
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId, getRaw)
-{
+GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId, getRaw) {
     // [quickEffect]---------------------------------------------------------------
     var item_quickEffect = this.__new_quickEffect();
 
@@ -1284,8 +1275,7 @@ GobCaryon.prototype.getLayerInfoObejct_quickEffect = async function (layerId, ge
 }
 
 
-GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
-{
+GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId) {
     // [more]---------------------------------------------------------------
     var item_more = this.__new_more();
 
@@ -1309,8 +1299,7 @@ GobCaryon.prototype.getLayerInfoObejct_more = async function (layerId)
 }
 
 
-GobCaryon.prototype._setTypeColor = function (typeColor, color)
-{
+GobCaryon.prototype._setTypeColor = function (typeColor, color) {
     typeColor.r = color.r
     typeColor.g = color.g
     typeColor.b = color.b
@@ -1334,20 +1323,23 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color)
  * @param disableRender 禁止 Gob 更新期间渲染图层
  * @returns {Promise.<void>}
  */
-GobCaryon.prototype.updateGob = async function (disableRender)
-{
+GobCaryon.prototype.updateGob = _.debounce(async function (disableRender) {
 
     var self = this;
+    var onceUpdateTimestamp = (new Date()).getTime().toString(36)
+    this.updateTimestamp = onceUpdateTimestamp
+        .toString(16)
     logger.group("[updateGob]")
     console.time("updateGob 耗时")
     this.disableRender = disableRender || false;
     logger.pin("Gob", "GobCaryon.prototype.updateGo",
-        `updateGob [START]`, "disableRender:" + this.disableRender)
+        `updateGob [START]`, "disableRender:" + this.disableRender, onceUpdateTimestamp)
 
     //----------1. 要拉取的数据：
 
     console.time("updateGob前期准备耗时")
     var temp = {};
+
 
     //属性注册[5/8`]
     var new_position = this.__new_position;
@@ -1503,14 +1495,19 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     console.timeEnd("属性赋值到 Gob 耗时:")
     console.groupEnd()
 
+    sleep(50)
 
-    setTimeout(function ()
-    {
-        self.disableRender = false;//恢复默认值；
-        self._neverUpdate = false //未更新过 = false
-        self.nowSwitching = false
-        console.log("【this.nowSwitching = false】")
-    }, 800)
+    setTimeout(function () {
+
+        if (self.updateTimestamp == onceUpdateTimestamp)
+        {
+            self.disableRender = false;//恢复默认值；
+            self._neverUpdate = false //未更新过 = false
+            self.nowSwitching = false
+            console.log("【this.nowSwitching = false】", onceUpdateTimestamp)
+        }
+
+    }, 300)
 
 
     // this.nowSwitching = false;
@@ -1536,8 +1533,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
 
     if (this._unripe)
     {
-        setTimeout(function ()
-        {
+        setTimeout(function () {
             self._unripe = false;
             logger.info("[准备完成] _unripe")
         }, 500)
@@ -1723,7 +1719,7 @@ GobCaryon.prototype.updateGob = async function (disableRender)
     }
 
 
-}
+}, 300)
 
 
 function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter)
@@ -1780,8 +1776,7 @@ function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter
  * @param enableAssign 是否导出 Assign 内容
  *
  */
-GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA, format)
-{
+GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA, format) {
     var self = this;
     var segment = segment.toLowerCase()
 
@@ -1883,8 +1878,7 @@ GobCaryon.prototype.exportGobRNA = function (segment, enableAssign, use_mRNA, fo
 }
 
 
-GobCaryon.prototype.importGobRNA = function (segment, gobRNA)
-{
+GobCaryon.prototype.importGobRNA = function (segment, gobRNA) {
     var segment = segment.toLowerCase()
 
 
@@ -1950,8 +1944,7 @@ GobCaryon.prototype.importGobRNA = function (segment, gobRNA)
 }
 
 
-GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format)
-{
+GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format) {
 
     if (format == true)
     {
@@ -2027,8 +2020,7 @@ GobCaryon.prototype.exportEffectRNA = async function (mRNA_encode, format)
     }
 }
 
-GobCaryon.prototype.importEffectRNA = async function (str)
-{
+GobCaryon.prototype.importEffectRNA = async function (str) {
     console.log("importEffectRNA", str)
     if (str.length > 8)
     {
@@ -2078,8 +2070,7 @@ GobCaryon.prototype.importEffectRNA = async function (str)
 
 
 //压缩字符串
-GobCaryon.prototype.mRNA_encode = function (text, signMark)
-{
+GobCaryon.prototype.mRNA_encode = function (text, signMark) {
     var buffer = zlib.deflateSync(text)
     var rnaStr = base65536.encode(buffer);
 
@@ -2092,8 +2083,7 @@ GobCaryon.prototype.mRNA_encode = function (text, signMark)
 }
 
 //解压字符串
-GobCaryon.prototype.mRNA_decode = function (rnaStr)
-{
+GobCaryon.prototype.mRNA_decode = function (rnaStr) {
     //忽略标识文本
     if (rnaStr.length > 8)
     {
@@ -2232,6 +2222,7 @@ function _inArray(name, array)
     }
     return false;
 }
+
 //----------------------------------------
 
 export default GobCaryon;

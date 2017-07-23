@@ -11623,6 +11623,7 @@ function CSEvent(type, scope, appId, extensionId) {
 
 
 
+
 var zlib = __webpack_require__(610);
 
 var GobCaryon = function GobCaryon() {
@@ -11647,6 +11648,7 @@ var GobCaryon = function GobCaryon() {
     this.selectUpdateing = false;
     this.disableRender = false;
     this.disableAttrPanel = false;
+    this.updateTimestamp = "";
 
     this.nowSwitching = false;
     this.stopSelectEvent = false;
@@ -12493,8 +12495,8 @@ GobCaryon.prototype._getData = function (names) {
     return _valueFromObject(this, names, 0, true);
 };
 
-GobCaryon.prototype.updateSelect = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
-    var newList, x, i;
+GobCaryon.prototype.updateSelect = _.debounce(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee2() {
+    var self, newList, x, i;
     return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
@@ -12523,15 +12525,28 @@ GobCaryon.prototype.updateSelect = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_hel
                     return _context2.abrupt("return");
 
                 case 6:
-                    if (!(dataCaryon.layers == undefined)) {
-                        _context2.next = 9;
+                    if (!this.nowSwitching) {
+                        _context2.next = 10;
                         break;
                     }
 
-                    _context2.next = 9;
+                    self = this;
+
+                    setTimeout(function () {
+                        self.updateSelect();
+                    }, 500);
+                    return _context2.abrupt("return");
+
+                case 10:
+                    if (!(dataCaryon.layers == undefined)) {
+                        _context2.next = 13;
+                        break;
+                    }
+
+                    _context2.next = 13;
                     return dataCaryon.switchDocment(true);
 
-                case 9:
+                case 13:
 
                     logger.log("%c【开始】选中图层周期 -------------------- ", "color:#999;");
                     logger.group("%c[updateSelect] ", "color:#09ae9d;");
@@ -12541,11 +12556,11 @@ GobCaryon.prototype.updateSelect = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_hel
                     this.selectRender = false;
                     this.selectRenderVarList = [];
                     console.log("【this.nowSwitching = true】");
-                    _context2.prev = 16;
-                    _context2.next = 19;
+                    _context2.prev = 20;
+                    _context2.next = 23;
                     return enzymes.getSelectLayerArray();
 
-                case 19:
+                case 23:
                     newList = _context2.sent.reverse();
 
 
@@ -12568,50 +12583,50 @@ GobCaryon.prototype.updateSelect = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_hel
                         }
                     }
 
-                    _context2.prev = 26;
+                    _context2.prev = 30;
 
                     if (!(this.disableAttrPanel != true)) {
-                        _context2.next = 30;
+                        _context2.next = 34;
                         break;
                     }
 
-                    _context2.next = 30;
+                    _context2.next = 34;
                     return this.updateGob();
 
-                case 30:
-                    _context2.next = 35;
+                case 34:
+                    _context2.next = 39;
                     break;
 
-                case 32:
-                    _context2.prev = 32;
-                    _context2.t0 = _context2["catch"](26);
+                case 36:
+                    _context2.prev = 36;
+                    _context2.t0 = _context2["catch"](30);
 
                     logger.pin("Gob", "GobCaryon.prototype.updateSelect():updateGob() ", "updateGob");
 
-                case 35:
-                    _context2.next = 40;
+                case 39:
+                    _context2.next = 44;
                     break;
 
-                case 37:
-                    _context2.prev = 37;
-                    _context2.t1 = _context2["catch"](16);
+                case 41:
+                    _context2.prev = 41;
+                    _context2.t1 = _context2["catch"](20);
 
                     console.error("Gob.updateSelect nowSwitching", _context2.t1);
 
-                case 40:
+                case 44:
 
                     this.selectUpdateing = false;
                     console.log("selectUpdateing:false");
                     console.groupEnd();
                     logger.log("%c【结束】选中图层周期 -------------------- ", "color:#999;");
 
-                case 44:
+                case 48:
                 case "end":
                     return _context2.stop();
             }
         }
-    }, _callee2, this, [[16, 37], [26, 32]]);
-}));
+    }, _callee2, this, [[20, 41], [30, 36]]);
+})), 500);
 
 GobCaryon.prototype.getLayerInfoObejct_position = function () {
     var _ref3 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee3(layerId) {
@@ -12930,7 +12945,7 @@ GobCaryon.prototype._setTypeColor = function (typeColor, color) {
     }
 };
 
-GobCaryon.prototype.updateGob = function () {
+GobCaryon.prototype.updateGob = _.debounce(function () {
     var _ref9 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee10(disableRender) {
         var _objectToGob_async = function () {
             var _ref10 = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_asyncToGenerator___default()(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.mark(function _callee9(srcObject, names, gobThis) {
@@ -12990,7 +13005,7 @@ GobCaryon.prototype.updateGob = function () {
             };
         }();
 
-        var self, temp, new_position, new_text, new_shape, new_smartObject, new_quickEffect, new_more, i, item_position, item_text, item_shape, item_smartObject, item_quickEffect, item_more, _setObejctAll2, _setValue, _fromDataCaryon, _objectToObject, _objectToObject_asyncSetCounter;
+        var self, onceUpdateTimestamp, temp, new_position, new_text, new_shape, new_smartObject, new_quickEffect, new_more, i, item_position, item_text, item_shape, item_smartObject, item_quickEffect, item_more, _setObejctAll2, _setValue, _fromDataCaryon, _objectToObject, _objectToObject_asyncSetCounter;
 
         return __WEBPACK_IMPORTED_MODULE_1_babel_runtime_regenerator___default.a.wrap(function _callee10$(_context10) {
             while (1) {
@@ -13080,11 +13095,13 @@ GobCaryon.prototype.updateGob = function () {
                         };
 
                         self = this;
+                        onceUpdateTimestamp = new Date().getTime().toString(36);
 
+                        this.updateTimestamp = onceUpdateTimestamp.toString(16);
                         logger.group("[updateGob]");
                         console.time("updateGob 耗时");
                         this.disableRender = disableRender || false;
-                        logger.pin("Gob", "GobCaryon.prototype.updateGo", "updateGob [START]", "disableRender:" + this.disableRender);
+                        logger.pin("Gob", "GobCaryon.prototype.updateGo", "updateGob [START]", "disableRender:" + this.disableRender, onceUpdateTimestamp);
 
                         console.time("updateGob前期准备耗时");
                         temp = {};
@@ -13104,31 +13121,31 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("updateGob前期准备耗时");
 
                         console.time("拉取每个选中图层的数据");
-                        _context10.prev = 25;
+                        _context10.prev = 27;
 
                         if (!(this.selectList.length > 0)) {
-                            _context10.next = 81;
+                            _context10.next = 83;
                             break;
                         }
 
                         if (!(this.selectList.length < setSystem.inset.selectMax)) {
-                            _context10.next = 77;
+                            _context10.next = 79;
                             break;
                         }
 
                         i = 0;
 
-                    case 29:
+                    case 31:
                         if (!(i < this.selectList.length)) {
-                            _context10.next = 75;
+                            _context10.next = 77;
                             break;
                         }
 
                         console.time("position获取耗时");
-                        _context10.next = 33;
+                        _context10.next = 35;
                         return this.getLayerInfoObejct_position(this.selectList[i].id);
 
-                    case 33:
+                    case 35:
                         item_position = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_position, "position");
@@ -13136,10 +13153,10 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("position获取耗时");
 
                         console.time("text获取耗时");
-                        _context10.next = 40;
+                        _context10.next = 42;
                         return this.getLayerInfoObejct_text(this.selectList[i].id);
 
-                    case 40:
+                    case 42:
                         item_text = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_text, "text");
@@ -13147,10 +13164,10 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("text获取耗时");
 
                         console.time("shape获取耗时");
-                        _context10.next = 47;
+                        _context10.next = 49;
                         return this.getLayerInfoObejct_shape(this.selectList[i].id);
 
-                    case 47:
+                    case 49:
                         item_shape = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_shape, "shape");
@@ -13158,10 +13175,10 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("shape获取耗时");
 
                         console.time("smartObject获取耗时");
-                        _context10.next = 54;
+                        _context10.next = 56;
                         return this.getLayerInfoObejct_smartObject(this.selectList[i].id);
 
-                    case 54:
+                    case 56:
                         item_smartObject = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_smartObject, "smartObject");
@@ -13169,10 +13186,10 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("smartObject获取耗时");
 
                         console.time("quickEffect获取耗时");
-                        _context10.next = 61;
+                        _context10.next = 63;
                         return this.getLayerInfoObejct_quickEffect(this.selectList[i].id);
 
-                    case 61:
+                    case 63:
                         item_quickEffect = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_quickEffect, "quickEffect");
@@ -13180,26 +13197,26 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("quickEffect获取耗时");
 
                         console.time("more获取耗时");
-                        _context10.next = 68;
+                        _context10.next = 70;
                         return this.getLayerInfoObejct_more(this.selectList[i].id);
 
-                    case 68:
+                    case 70:
                         item_more = _context10.sent;
 
                         _fromDataCaryon(dataCaryon.layers[this.selectList[i].id], item_more, "more");
                         _objectToObject(item_more, temp.more, true, !(i == 0));
                         console.timeEnd("more获取耗时");
 
-                    case 72:
+                    case 74:
                         i++;
-                        _context10.next = 29;
-                        break;
-
-                    case 75:
-                        _context10.next = 81;
+                        _context10.next = 31;
                         break;
 
                     case 77:
+                        _context10.next = 83;
+                        break;
+
+                    case 79:
                         _setObejctAll2 = function _setObejctAll2(object, value) {
 
                             for (var v in object) {
@@ -13217,66 +13234,71 @@ GobCaryon.prototype.updateGob = function () {
                         _setObejctAll2(temp, Gob.MULT);
                         Gob.position.$anchor = setSystem.gob.$anchor;
 
-                    case 81:
-                        _context10.next = 86;
+                    case 83:
+                        _context10.next = 88;
                         break;
 
-                    case 83:
-                        _context10.prev = 83;
-                        _context10.t0 = _context10["catch"](25);
+                    case 85:
+                        _context10.prev = 85;
+                        _context10.t0 = _context10["catch"](27);
 
                         console.error("GobCaryon.updateGob 拉取每个选中图层的数据", _context10.t0);
 
-                    case 86:
+                    case 88:
                         console.timeEnd("拉取每个选中图层的数据");
 
 
                         console.group("属性赋值到 Gob");
                         console.time("属性赋值到 Gob 耗时:");
-                        _context10.prev = 89;
-                        _context10.next = 92;
-                        return _objectToGob_async(temp.position, ["position"], this);
-
-                    case 92:
+                        _context10.prev = 91;
                         _context10.next = 94;
-                        return _objectToGob_async(temp.text, ["text"], this);
+                        return _objectToGob_async(temp.position, ["position"], this);
 
                     case 94:
                         _context10.next = 96;
-                        return _objectToGob_async(temp.shape, ["shape"], this);
+                        return _objectToGob_async(temp.text, ["text"], this);
 
                     case 96:
                         _context10.next = 98;
-                        return _objectToGob_async(temp.smartObject, ["smartObject"], this);
+                        return _objectToGob_async(temp.shape, ["shape"], this);
 
                     case 98:
                         _context10.next = 100;
-                        return _objectToGob_async(temp.quickEffect, ["quickEffect"], this);
+                        return _objectToGob_async(temp.smartObject, ["smartObject"], this);
 
                     case 100:
                         _context10.next = 102;
-                        return _objectToGob_async(temp.more, ["more"], this);
+                        return _objectToGob_async(temp.quickEffect, ["quickEffect"], this);
 
                     case 102:
-                        _context10.next = 107;
-                        break;
+                        _context10.next = 104;
+                        return _objectToGob_async(temp.more, ["more"], this);
 
                     case 104:
-                        _context10.prev = 104;
-                        _context10.t1 = _context10["catch"](89);
+                        _context10.next = 109;
+                        break;
+
+                    case 106:
+                        _context10.prev = 106;
+                        _context10.t1 = _context10["catch"](91);
 
                         console.error("GobCaryon.updateGob _objectToGob_async", _context10.t1);
 
-                    case 107:
+                    case 109:
                         console.timeEnd("属性赋值到 Gob 耗时:");
                         console.groupEnd();
 
+                        sleep(50);
+
                         setTimeout(function () {
-                            self.disableRender = false;
-                            self._neverUpdate = false;
-                            self.nowSwitching = false;
-                            console.log("【this.nowSwitching = false】");
-                        }, 800);
+
+                            if (self.updateTimestamp == onceUpdateTimestamp) {
+                                self.disableRender = false;
+                                self._neverUpdate = false;
+                                self.nowSwitching = false;
+                                console.log("【this.nowSwitching = false】", onceUpdateTimestamp);
+                            }
+                        }, 300);
 
                         console.groupEnd();
 
@@ -13289,18 +13311,18 @@ GobCaryon.prototype.updateGob = function () {
                         console.timeEnd("updateGob 耗时");
                         logger.groupEnd();
 
-                    case 114:
+                    case 117:
                     case "end":
                         return _context10.stop();
                 }
             }
-        }, _callee10, this, [[25, 83], [89, 104]]);
+        }, _callee10, this, [[27, 85], [91, 106]]);
     }));
 
     return function (_x11) {
         return _ref9.apply(this, arguments);
     };
-}();
+}(), 300);
 
 function _objectToObject(object, sameObject, checkMUTI, ignoreNull, asyncCounter) {
 
@@ -13713,7 +13735,6 @@ function _inArray(name, array) {
     return false;
 }
 
-
 /* harmony default export */ __webpack_exports__["a"] = (GobCaryon);
 
 /***/ }),
@@ -13797,7 +13818,6 @@ var LoggerCaryon = function LoggerCaryon() {
         self.err("错误信息：", errorMessage, "文件：", scriptURI, "位置（行/列）：", lineNumber + "/" + columnNumber, "错误详情：", errorObj);
         self.saveToFile("error.log");
     };
-
     return this;
 };
 
@@ -14142,6 +14162,15 @@ RenderCaryon.prototype.renderPatch = function () {
                         return _context2.abrupt("return");
 
                     case 6:
+                        if (!Gob.nowSwitching) {
+                            _context2.next = 9;
+                            break;
+                        }
+
+                        logger.info("[图层切换中的渲染触发]", "renderPatch: \", layerId:" + layerId + ", names:[" + names + "], value:" + value);
+                        return _context2.abrupt("return");
+
+                    case 9:
 
                         logger.group("renderPatch: \", layerId:" + layerId + ", names:[" + names + "], value:" + value);
                         this.status.rendering = true;item = names[names.length - 1];
@@ -14160,40 +14189,40 @@ RenderCaryon.prototype.renderPatch = function () {
                             }
 
                         if (!ignore) {
-                            _context2.next = 18;
+                            _context2.next = 21;
                             break;
                         }
 
                         console.log("----[ignore: renderPatch]----");
-                        _context2.next = 72;
+                        _context2.next = 75;
                         break;
 
-                    case 18:
+                    case 21:
                         Gob.stopSelectEvent = true;
                         Gob.disableSelectEvent = true;
 
                         if (!notSelectLayer) {
-                            _context2.next = 23;
+                            _context2.next = 26;
                             break;
                         }
 
-                        _context2.next = 25;
+                        _context2.next = 28;
                         break;
 
-                    case 23:
-                        _context2.next = 25;
+                    case 26:
+                        _context2.next = 28;
                         return enzymes.selectLayer_byID(layerId);
 
-                    case 25:
+                    case 28:
                         if (!(names[0] === "position")) {
-                            _context2.next = 34;
+                            _context2.next = 37;
                             break;
                         }
 
                         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[start:RenderCaryon：position:" + layerId + "]---");
 
                         if (!(namesLen == 2 && _inArray(item, ["x", "y", "w", "h"]))) {
-                            _context2.next = 34;
+                            _context2.next = 37;
                             break;
                         }
 
@@ -14206,12 +14235,12 @@ RenderCaryon.prototype.renderPatch = function () {
                         }
 
                         logger.pin("enzymes", "RenderCaryon.prototype.renderPatch ", "enzymes.setLayerInfo_position_byId(" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_json_stringify___default()(ob) + ", " + layerId + ")");
-                        _context2.next = 34;
+                        _context2.next = 37;
                         return enzymes.setLayerInfo_position_byId(ob, layerId);
 
-                    case 34:
+                    case 37:
                         if (!(names[0] === "text")) {
-                            _context2.next = 41;
+                            _context2.next = 44;
                             break;
                         }
 
@@ -14233,12 +14262,12 @@ RenderCaryon.prototype.renderPatch = function () {
                         }
 
                         console.log("enzymes.setLayerInfo_text_byId(" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_json_stringify___default()(ob) + ", " + layerId + ")");
-                        _context2.next = 41;
+                        _context2.next = 44;
                         return enzymes.setLayerInfo_text_byId(ob, layerId);
 
-                    case 41:
+                    case 44:
                         if (!(names[0] === "shape")) {
-                            _context2.next = 48;
+                            _context2.next = 51;
                             break;
                         }
 
@@ -14261,12 +14290,12 @@ RenderCaryon.prototype.renderPatch = function () {
                         }
 
                         console.log("enzymes.setLayerInfo_shape_byId(" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_json_stringify___default()(ob) + ", " + layerId + ")");
-                        _context2.next = 48;
+                        _context2.next = 51;
                         return enzymes.setLayerInfo_shape_byId(ob, layerId);
 
-                    case 48:
+                    case 51:
                         if (!(names[0] === "smartObject")) {
-                            _context2.next = 57;
+                            _context2.next = 60;
                             break;
                         }
 
@@ -14282,16 +14311,16 @@ RenderCaryon.prototype.renderPatch = function () {
                         }
 
                         console.log("enzymes.setLayerInfo_smartObject_byId(" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_json_stringify___default()(ob) + ", " + layerId + ")");
-                        _context2.next = 55;
+                        _context2.next = 58;
                         return enzymes.setLayerInfo_smartObject_byId(ob, layerId, true);
 
-                    case 55:
+                    case 58:
                         newId = _context2.sent;
                         needUpdateGob = true;
 
-                    case 57:
+                    case 60:
                         if (!(names[0] === "quickEffect")) {
-                            _context2.next = 63;
+                            _context2.next = 66;
                             break;
                         }
 
@@ -14314,12 +14343,12 @@ RenderCaryon.prototype.renderPatch = function () {
                         }
 
                         console.log("enzymes.setLayerInfo_quickEffect_byId(" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_json_stringify___default()(ob) + ", " + layerId + ")");
-                        _context2.next = 63;
+                        _context2.next = 66;
                         return enzymes.setLayerInfo_quickEffect_byId(ob, layerId);
 
-                    case 63:
+                    case 66:
                         if (!(names[0] === "more")) {
-                            _context2.next = 69;
+                            _context2.next = 72;
                             break;
                         }
 
@@ -14331,16 +14360,16 @@ RenderCaryon.prototype.renderPatch = function () {
                         }
 
                         console.log("enzymes.setLayerInfo_more_byId(" + __WEBPACK_IMPORTED_MODULE_2_babel_runtime_core_js_json_stringify___default()(ob) + ", " + layerId + ")");
-                        _context2.next = 69;
+                        _context2.next = 72;
                         return enzymes.setLayerInfo_more_byId(ob, layerId);
 
-                    case 69:
+                    case 72:
 
                         Gob.disableSelectEvent = false;
                         Gob.stopSelectEvent = false;
                         logger.pin("renderPatch", "RenderCaryon.prototype.renderPatch ", "----[end：RenderCaryon：" + layerId + "]---");
 
-                    case 72:
+                    case 75:
 
                         this.status.rendering = false;
 
@@ -14352,7 +14381,7 @@ RenderCaryon.prototype.renderPatch = function () {
                         };
                         return _context2.abrupt("return", re);
 
-                    case 76:
+                    case 79:
                     case "end":
                         return _context2.stop();
                 }

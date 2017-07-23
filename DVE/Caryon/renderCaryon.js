@@ -53,6 +53,13 @@ RenderCaryon.prototype.renderPatch = async function (layerId, names, value, notS
         return;
     }
 
+    if(Gob.nowSwitching)
+    {
+        logger.info("[图层切换中的渲染触发]", `renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
+        return
+    }
+
+
 
     logger.group(`renderPatch: ", layerId:${layerId}, names:[${names}], value:${value}`)
     this.status.rendering = true;// 标记渲染状态，会触发渲染按钮动画
