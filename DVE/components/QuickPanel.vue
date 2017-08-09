@@ -2033,7 +2033,6 @@
 
                         svgFin.push(svg)
                     }
-
                 }
             },
             func_permute_updateSpacingGird: async function ()

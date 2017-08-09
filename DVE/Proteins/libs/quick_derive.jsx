@@ -1271,11 +1271,11 @@
             function paddingOnce(id)
             {
                 Kinase.layer.creatNewShapeLayerBackBox_ByActive("_padding_", {
-                    left: infoObjec["left"],
-                    top: infoObjec["top"],
-                    right: infoObjec["right"],
-                    bottom: infoObjec["bottom"],
-                })
+                left: infoObjec["left"],
+                top: infoObjec["top"],
+                right: infoObjec["right"],
+                bottom: infoObjec["bottom"],
+            })
                 Libs.quick_shape_advance_pasetShapeProperty()
 
 

@@ -85,9 +85,8 @@ Proteins = {
 
     },
     firstFontPostScriptName: null,
-
-
 }
+
 /*获取首选字体：优先级： 微软雅黑，冬青黑，思源黑体*/
 Proteins.firstFontPostScriptName =  Kinase.app.getFontPostScriptName_byFontPostScriptName(["MicrosoftYaHei", "SourceHanSansCN-Normal", "HiraginoSansGB-W3"])
 //环境参数对象内容：
